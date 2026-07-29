@@ -1,0 +1,7 @@
+# DrivenData competition files are licensed for competition use and must not be
+# redistributed. Keep the local inventory, but exclude downloaded data.
+data/*
+!data/README.md
+
+# Retain downloaded reference pages locally; publish the concise reference and links
+instructions/source-pages/*.html

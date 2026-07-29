@@ -1,0 +1,20 @@
+# Python environments and runtime files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local configuration and secrets
+.env
+.env.*
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Stage 2 observations are supplied through the course portal and should stay local
+stage-2-bbo/data/*
+!stage-2-bbo/data/README.md
