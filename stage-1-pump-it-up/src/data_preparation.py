@@ -4,6 +4,10 @@ This module applies only fixed, evidence-backed structural rules. It does not
 learn statistics, impute values, encode categories or otherwise fit transforms.
 """
 
+# C#-brain note to future me: this postpones evaluation of type annotations.
+# It is roughly the difference between retaining type metadata as text and
+# resolving every referenced type while the module is being imported. It also
+# lets annotations refer to types that are declared later in the file.
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -13,6 +17,9 @@ from typing import Final
 import pandas as pd
 
 
+# `Final` is guidance for the type checker, not a runtime `const`. The tuple is
+# the important second half of the intent: unlike a list, it has no append or
+# item-assignment operations. I am using it as an ordered, readonly-ish schema.
 SOURCE_FEATURE_COLUMNS: Final[tuple[str, ...]] = (
     "id",
     "amount_tsh",
@@ -76,6 +83,9 @@ DROPPED_FEATURE_COLUMNS: Final[tuple[str, ...]] = (
     "quantity_group",
 )
 
+# Read this like a small LINQ query followed by `ToArray()`:
+# SOURCE_FEATURE_COLUMNS.Where(column => !excluded.Contains(column)).
+# Python calls the inner form a generator expression; `tuple(...)` consumes it.
 PREDICTOR_COLUMNS: Final[tuple[str, ...]] = tuple(
     column
     for column in SOURCE_FEATURE_COLUMNS
@@ -94,6 +104,10 @@ class DataPreparationError(ValueError):
     """Raised when source data breaks an agreed structural contract."""
 
 
+# A frozen dataclass is the nearest thing here to a small immutable C# record:
+# Python generates the constructor, equality and representation for me. The
+# freeze is shallow, so it prevents rebinding fields but would not freeze a
+# mutable object stored inside one.
 @dataclass(frozen=True)
 class ColumnAction:
     """A structural treatment applied to a source column."""
@@ -140,6 +154,9 @@ class PreparationReport:
     def to_frame(self) -> pd.DataFrame:
         """Return the structural actions as a display-friendly data frame."""
 
+        # The parenthesised expression is a lazy sequence, much like
+        # `IEnumerable<Dictionary<string, object>>`. DataFrame enumerates it and
+        # turns each dictionary into one row, using the keys as column names.
         return pd.DataFrame(
             (
                 {
@@ -192,10 +209,14 @@ class PreparedCompetitionData:
 def load_competition_data(data_directory: str | Path) -> CompetitionFrames:
     """Load the four canonical competition CSVs from a local data directory."""
 
+    # `Path` is my `FileInfo`/`DirectoryInfo` mental model. The `/` operator used
+    # below is deliberately overloaded for path joining, i.e. `Path.Combine`.
     directory = Path(data_directory)
     if not directory.is_dir():
         raise FileNotFoundError(f"Competition data directory not found: {directory}")
 
+    # This dictionary comprehension is the compact Python equivalent of
+    # `DATA_FILES.ToDictionary(name => name, name => directory / name)`.
     paths = {filename: directory / filename for filename in DATA_FILES}
     missing = [path for path in paths.values() if not path.is_file()]
     if missing:
@@ -204,6 +225,9 @@ def load_competition_data(data_directory: str | Path) -> CompetitionFrames:
             f"Competition data directory is missing: {missing_names}."
         )
 
+    # `read_csv` materialises each file as a mutable DataFrame. A DataFrame is
+    # best thought of as an in-memory table whose columns are Series objects;
+    # unlike a `DataTable`, its row labels (the index) participate in alignment.
     frames = {
         filename: pd.read_csv(path)
         for filename, path in paths.items()
@@ -224,6 +248,9 @@ def prepare_features(
 ) -> PreparedFeatures:
     """Validate and structurally prepare a training or test feature frame."""
 
+    # The bare `*` makes everything after it keyword-only. It is the Python way
+    # of making the call site say `dataset_name=...`, which saves me having to
+    # remember what an otherwise anonymous second string argument meant.
     _require_data_frame(source, dataset_name)
     _validate_exact_columns(source, SOURCE_FEATURE_COLUMNS, dataset_name)
     _validate_ids(source[ID_COLUMN], dataset_name)
@@ -231,12 +258,18 @@ def prepare_features(
     _validate_payment_mapping(source, dataset_name)
     _validate_recorded_by(source, dataset_name)
 
+    # `.loc[rows, columns]` means all rows (`:`), then these named columns in
+    # exactly this order. Pandas can return views in some selections, so the
+    # explicit deep copy is the reference-semantics firewall: later notebook
+    # edits cannot mutate the caller-owned frame through this result.
     predictors = source.loc[:, PREDICTOR_COLUMNS].copy(deep=True)
     ids = source[ID_COLUMN].copy(deep=True)
 
     report = PreparationReport(
         dataset_name=dataset_name,
         row_count=len(source),
+        # `shape` is `(row_count, column_count)`, hence index 1 here. This tuple
+        # convention is NumPy/pandas muscle memory rather than a named property.
         source_column_count=source.shape[1],
         predictor_column_count=predictors.shape[1],
     )
@@ -271,6 +304,9 @@ def prepare_training_data(
             f"{target_column!r} value(s)."
         )
 
+    # A pandas Index is not just a row number; it is a set-like collection of
+    # labels used for alignment. These `difference` calls are therefore my
+    # keyed integrity check before I attempt to line the target up with features.
     values_ids = pd.Index(prepared.ids)
     label_ids = pd.Index(training_labels[ID_COLUMN])
     missing_labels = values_ids.difference(label_ids)
@@ -282,8 +318,14 @@ def prepare_training_data(
             f"unexpected labels={len(unexpected_labels)}."
         )
 
+    # Think `ToDictionary(label => label.Id)` followed by projecting values in
+    # the feature-ID order. `set_index` makes ID the lookup key; `reindex` asks
+    # for that exact order. Missing keys would become NaN, which is why I prove
+    # the two ID sets match immediately above rather than silently accepting it.
     labels_by_id = training_labels.set_index(ID_COLUMN)[target_column]
     aligned_target = labels_by_id.reindex(prepared.ids.to_numpy()).copy(deep=True)
+    # Reindexing used IDs as temporary row labels. Restore the feature frame's
+    # original index so pandas will align target and predictors row for row later.
     aligned_target.index = training_values.index.copy()
     aligned_target.name = target_column
 
@@ -306,6 +348,9 @@ def prepare_competition_data(
     )
     test = prepare_features(frames.test_values, dataset_name="test")
 
+    # Tuple equality checks both content and order, unlike comparing two sets.
+    # That matters because downstream transformers will treat column position as
+    # part of the contract even when the same names exist in a different order.
     training_schema = tuple(training.predictors.columns)
     test_schema = tuple(test.predictors.columns)
     if training_schema != test_schema:
@@ -327,6 +372,8 @@ def load_and_prepare_competition_data(
 
 
 def _require_data_frame(value: object, dataset_name: str) -> None:
+    # Leading underscores mean "private implementation detail" by convention.
+    # Python does not enforce this like C# access modifiers do.
     if not isinstance(value, pd.DataFrame):
         raise TypeError(f"{dataset_name} must be a pandas DataFrame.")
 
@@ -336,12 +383,16 @@ def _validate_exact_columns(
     expected: tuple[str, ...],
     dataset_name: str,
 ) -> None:
+    # `duplicated()` returns one bool per column label. Feeding that boolean
+    # Series back into `frame.columns[...]` is vectorised filtering, comparable
+    # to a LINQ `Where`, but executed by pandas rather than a Python loop.
     duplicated = frame.columns[frame.columns.duplicated()].tolist()
     if duplicated:
         raise DataPreparationError(
             f"{dataset_name} contains duplicate column labels: {duplicated!r}."
         )
 
+    # Converting the Index to a tuple gives ordinary value-and-order equality.
     actual = tuple(frame.columns)
     if actual == expected:
         return
@@ -364,6 +415,10 @@ def _validate_exact_columns(
 
 
 def _validate_ids(ids: pd.Series, dataset_name: str) -> None:
+    # These methods operate on the whole column and return Series/scalars. In C#
+    # terms, read the first line as roughly `ids.Count(x => x is null)`—without
+    # writing a Python loop. `int(...)` converts NumPy's integer scalar to a
+    # plain Python integer for predictable messages and dataclass values.
     missing_count = int(ids.isna().sum())
     duplicate_count = int(ids.duplicated().sum())
     if missing_count or duplicate_count:
@@ -376,6 +431,9 @@ def _validate_ids(ids: pd.Series, dataset_name: str) -> None:
 def _validate_quantity_duplicate(frame: pd.DataFrame, dataset_name: str) -> None:
     quantity = frame["quantity"]
     quantity_group = frame["quantity_group"]
+    # `eq`, `isna`, `|` and `&` are element-by-element operations. Python's
+    # scalar `or`/`and` cannot combine whole Series. The explicit missing-value
+    # clause also matters because, like SQL NULL, NaN does not equal itself.
     matches = quantity.eq(quantity_group) | (
         quantity.isna() & quantity_group.isna()
     )
@@ -390,6 +448,8 @@ def _validate_quantity_duplicate(frame: pd.DataFrame, dataset_name: str) -> None
 
 def _validate_payment_mapping(frame: pd.DataFrame, dataset_name: str) -> None:
     payment = frame["payment"]
+    # `~` is element-wise boolean negation here—the Series equivalent of putting
+    # `!` in front of every result. `isin` is the vectorised `Contains` check.
     unknown_payment = ~payment.isin(PAYMENT_TO_PAYMENT_TYPE)
     if bool(unknown_payment.any()):
         unexpected = payment.loc[unknown_payment].drop_duplicates().tolist()
@@ -398,6 +458,9 @@ def _validate_payment_mapping(frame: pd.DataFrame, dataset_name: str) -> None:
             f"{unexpected!r}."
         )
 
+    # `map(dictionary)` replaces every Series value via that dictionary. My C#
+    # translation is `payment.Select(value => mapping[value])`, except pandas
+    # preserves the original row index so the comparison remains aligned.
     expected_payment_type = payment.map(PAYMENT_TO_PAYMENT_TYPE)
     matches = expected_payment_type.eq(frame["payment_type"])
     if not bool(matches.all()):
@@ -431,6 +494,9 @@ def _validate_submission_format(
     )
     _validate_ids(submission_format[ID_COLUMN], dataset_name)
 
+    # Series equality includes index labels. Resetting with `drop=True` discards
+    # those labels and creates 0..n-1 indexes, so this final comparison asks the
+    # intended question: are the ID values identical and in the same row order?
     if not submission_format[ID_COLUMN].reset_index(drop=True).equals(
         test_ids.reset_index(drop=True)
     ):
