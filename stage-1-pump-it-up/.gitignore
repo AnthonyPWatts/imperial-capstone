@@ -3,5 +3,8 @@
 data/*
 !data/README.md
 
+# Submission files repeat competition test identifiers and should remain local.
+submissions/*.csv
+
 # Retain downloaded reference pages locally; publish the concise reference and links
 instructions/source-pages/*.html

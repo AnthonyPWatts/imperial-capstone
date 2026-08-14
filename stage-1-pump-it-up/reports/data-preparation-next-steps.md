@@ -62,8 +62,27 @@ The notebooks contain the current audit work:
 
 - [`01-data-audit.ipynb`](../notebooks/01-data-audit.ipynb) contains the broader
   data audit.
+- [`01-data-audit-status_group.ipynb`](../notebooks/01-data-audit-status_group.ipynb)
+  contains the focused initial target analysis.
 - [`01-data-audit-amount_tsh.ipynb`](../notebooks/01-data-audit-amount_tsh.ipynb)
   contains the focused `amount_tsh` analysis.
+
+### Target label findings
+
+`status_group` has one complete label for each of the 59,400 unique training IDs
+and contains exactly the three documented classes:
+
+| `status_group` | Rows | Share |
+| --- | ---: | ---: |
+| `functional` | 32,259 | 54.31% |
+| `functional needs repair` | 4,317 | 7.27% |
+| `non functional` | 22,824 | 38.42% |
+
+An always-`functional` non-model would achieve 54.31% accuracy. The majority
+class is 7.47 times the size of `functional needs repair`. Use a stratified
+train/validation split, retain challenge accuracy as the primary comparison
+measure and inspect the confusion matrix and per-class recall during diagnosis.
+Do not apply oversampling or calculate class weights before the split.
 
 The duplicate-column audit covered both feature files:
 
