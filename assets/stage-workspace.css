@@ -1,0 +1,222 @@
+:root {
+  color-scheme: light;
+  font-family: var(--capstone-sans);
+  color: var(--capstone-ink);
+  background: var(--capstone-bg);
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: var(--capstone-bg);
+  line-height: 1.45;
+}
+
+.stage-workspace {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 1rem auto 2rem;
+}
+
+.stage-page-header,
+.empty-panel,
+.information-panel {
+  border: 1px solid var(--capstone-border);
+  background: var(--capstone-panel);
+}
+
+.stage-page-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: start;
+  padding: 1.25rem 1.4rem;
+  border-top: 3px solid #68727e;
+}
+
+.stage-page-code {
+  margin: 0 0 0.45rem;
+  color: var(--capstone-muted);
+  font-family: var(--capstone-mono);
+  font-size: 0.67rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+}
+
+.stage-page-header h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  line-height: 1.2;
+}
+
+.stage-page-summary {
+  max-width: 720px;
+  margin: 0.45rem 0 0;
+  color: var(--capstone-muted);
+  font-size: 0.84rem;
+}
+
+.stage-state {
+  padding: 0.2rem 0.45rem;
+  border: 1px solid #8a939c;
+  background: #f0f2f4;
+  color: #59636e;
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.stage-facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0.75rem 0;
+  border: 1px solid var(--capstone-border);
+  background: var(--capstone-panel);
+}
+
+.stage-facts > div {
+  min-width: 0;
+  padding: 0.8rem 1rem;
+  border-left: 1px solid var(--capstone-border-light);
+}
+
+.stage-facts > div:first-child {
+  border-left: 0;
+}
+
+.stage-facts dt {
+  margin-bottom: 0.18rem;
+  color: var(--capstone-muted);
+  font-size: 0.62rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.stage-facts dd {
+  margin: 0;
+  font-family: var(--capstone-mono);
+  font-size: 0.72rem;
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(20rem, 0.75fr);
+  gap: 0.75rem;
+}
+
+.empty-panel {
+  display: grid;
+  min-height: 22rem;
+  place-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.empty-panel-code {
+  color: var(--capstone-muted);
+  font-family: var(--capstone-mono);
+  font-size: 0.67rem;
+}
+
+.empty-panel h2 {
+  margin: 0.55rem 0 0.35rem;
+  font-size: 1.2rem;
+}
+
+.empty-panel p {
+  max-width: 32rem;
+  margin: 0;
+  color: var(--capstone-muted);
+  font-size: 0.82rem;
+}
+
+.information-panel h2 {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--capstone-border);
+  background: #fafbfc;
+  font-size: 0.88rem;
+}
+
+.next-list {
+  margin: 0;
+  padding: 0.65rem 0.9rem 0.65rem 2rem;
+  font-size: 0.78rem;
+}
+
+.next-list li {
+  padding: 0.3rem 0;
+}
+
+.record-links {
+  display: grid;
+  border-top: 1px solid var(--capstone-border-light);
+}
+
+.record-links a {
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--capstone-border-light);
+  color: var(--capstone-blue);
+  font-size: 0.75rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.record-links a:last-child {
+  border-bottom: 0;
+}
+
+.record-links a:hover,
+.record-links a:focus-visible {
+  outline: none;
+  background: var(--capstone-blue-bg);
+}
+
+@media (max-width: 820px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stage-facts > div:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .stage-facts > div:nth-child(n + 3) {
+    border-top: 1px solid var(--capstone-border-light);
+  }
+}
+
+@media (max-width: 520px) {
+  .stage-workspace {
+    width: calc(100% - 1rem);
+    margin-top: 0.5rem;
+  }
+
+  .stage-page-header {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .stage-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-facts > div,
+  .stage-facts > div:nth-child(odd) {
+    border-top: 1px solid var(--capstone-border-light);
+    border-left: 0;
+  }
+
+  .stage-facts > div:first-child {
+    border-top: 0;
+  }
+}

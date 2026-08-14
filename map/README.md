@@ -12,6 +12,9 @@ python -m http.server 8000
 
 Then open <http://localhost:8000/map/>.
 
+The Capstone Hub at <http://localhost:8000/> provides the shared entry point
+for this map, the status dashboard and both project stages.
+
 The page expects these ignored local files:
 
 - `stage-1-pump-it-up/data/TrainingSetValues.csv`

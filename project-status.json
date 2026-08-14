@@ -1,0 +1,55 @@
+{
+  "snapshot": {
+    "date": "2026-08-14",
+    "label": "14 August 2026"
+  },
+  "overall": {
+    "completed": 10,
+    "total": 28,
+    "current": "Finish target integrity + create split"
+  },
+  "stage1": {
+    "state": "Active",
+    "title": "Pump It Up",
+    "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
+    "nextCheckpoint": "Complete the target-integrity evidence and establish a reproducible local baseline.",
+    "startedDate": "2026-07-29",
+    "startedLabel": "29 July 2026"
+  },
+  "stage2": {
+    "state": "Scaffolded",
+    "title": "Black-box optimisation",
+    "summary": "Keep the assessed eight-function investigation reproducible as observations are released.",
+    "availability": "Awaiting Module 12 files",
+    "dates": "Not recorded"
+  },
+  "features": {
+    "examined": 1,
+    "total": 36,
+    "current": "amount_tsh"
+  },
+  "models": {
+    "evaluated": 0
+  },
+  "submissions": {
+    "total": 3,
+    "usedToday": 3,
+    "dailyLimit": 3,
+    "bestScore": 0.5461
+  },
+  "benchmarks": {
+    "targetScore": 0.8225,
+    "nearTermCeiling": 0.6
+  },
+  "data": {
+    "trainingRows": 59400,
+    "testRows": 14850,
+    "candidatePredictors": 36,
+    "targetClasses": 3,
+    "metric": "Accuracy"
+  },
+  "map": {
+    "plottedLocations": 57588,
+    "excludedCoordinates": 1812
+  }
+}

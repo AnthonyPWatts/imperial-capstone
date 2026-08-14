@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"
     />
+    <link rel="stylesheet" href="../assets/site-shell.css" />
     <link rel="stylesheet" href="styles.css?v=20260814-7" />
 
     <script defer src="tanzania-boundary.js?v=20260814-1"></script>
@@ -24,6 +25,18 @@
     <main class="map-shell" data-map-detail="quiet">
       <div id="map" aria-label="Map of Tanzanian water points by operating status"></div>
       <div class="map-vignette" aria-hidden="true"></div>
+
+      <nav class="capstone-nav capstone-nav--floating" aria-label="Capstone">
+        <a class="capstone-brand" href="../">
+          <strong>Stage 1 · Pump It Up</strong>
+          <span>Capstone workspace</span>
+        </a>
+        <div class="capstone-nav-links">
+          <a href="../">All stages</a>
+          <a href="../dashboard/">Status</a>
+          <a href="./" aria-current="page">Map</a>
+        </div>
+      </nav>
 
       <section class="map-toolbar glass-panel" aria-labelledby="legend-title">
         <h2 id="legend-title" class="visually-hidden">Status group filters</h2>

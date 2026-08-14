@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-GB" data-status-url="project-status.json">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Local workspace selector for the two Imperial ML and AI capstone stages.">
+    <title>Imperial ML &amp; AI — Capstone workspace</title>
+    <link rel="stylesheet" href="assets/site-shell.css">
+    <link rel="stylesheet" href="assets/hub.css">
+    <script defer src="assets/status-loader.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to stage selection</a>
+
+    <nav class="capstone-nav" aria-label="Capstone">
+      <a class="capstone-brand" href="./">
+        <strong>Imperial ML &amp; AI</strong>
+        <span>Capstone workspace</span>
+      </a>
+      <div class="capstone-nav-links">
+        <a href="README.md">Repository README</a>
+      </div>
+    </nav>
+
+    <main id="content" class="workspace">
+      <header class="workspace-header">
+        <p class="workspace-path">CAPSTONE / STAGE SELECTOR</p>
+        <h1>Two stages, kept distinct</h1>
+        <p>Select a stage before viewing its data, progress or working tools.</p>
+      </header>
+
+      <div class="stage-grid">
+        <article class="stage-card stage-card--active" aria-labelledby="stage-1-title">
+          <figure class="stage-preview">
+            <img src="assets/stage-1-dashboard.jpg" width="1265" height="712" alt="Stage 1 status dashboard showing the current project plan">
+          </figure>
+
+          <div class="stage-content">
+            <div class="stage-identity">
+              <span class="stage-code">STAGE 01</span>
+              <span class="stage-state stage-state--active" data-status-text="stage1.state">Active</span>
+            </div>
+            <h2 id="stage-1-title" data-status-text="stage1.title">Pump It Up</h2>
+            <p class="stage-type">Practice competition · multiclass classification</p>
+            <p class="stage-description" data-status-text="stage1.summary">Build a leakage-safe multiclass model for Tanzanian waterpoint condition.</p>
+            <dl class="stage-dates">
+              <div><dt>Local work since</dt><dd data-status-text="stage1.startedLabel">29 July 2026</dd></div>
+              <div><dt>Status snapshot</dt><dd data-status-text="snapshot.label">14 August 2026</dd></div>
+            </dl>
+          </div>
+
+          <a class="stage-open" href="dashboard/">Open Stage 1 workspace <span aria-hidden="true">→</span></a>
+        </article>
+
+        <article class="stage-card" aria-labelledby="stage-2-title">
+          <div class="stage-preview stage-preview--empty" role="img" aria-label="Stage 2 has no observations or visual evidence yet">
+            <div class="empty-grid" aria-hidden="true"></div>
+            <div class="empty-state">
+              <span>BBO / INPUT STATUS</span>
+              <strong>No observations loaded</strong>
+              <small>Awaiting Module 12 files</small>
+            </div>
+          </div>
+
+          <div class="stage-content">
+            <div class="stage-identity">
+              <span class="stage-code">STAGE 02</span>
+              <span class="stage-state" data-status-text="stage2.state">Scaffolded</span>
+            </div>
+            <h2 id="stage-2-title" data-status-text="stage2.title">Black-box optimisation</h2>
+            <p class="stage-type">Assessed capstone · eight unknown functions</p>
+            <p class="stage-description" data-status-text="stage2.summary">Keep the assessed eight-function investigation reproducible as observations are released.</p>
+            <dl class="stage-dates">
+              <div><dt>Availability</dt><dd data-status-text="stage2.availability">Awaiting Module 12 files</dd></div>
+              <div><dt>Dates</dt><dd data-status-text="stage2.dates">Not recorded</dd></div>
+            </dl>
+          </div>
+
+          <a class="stage-open" href="stage-2-bbo/">Open Stage 2 workspace <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+
+      <p class="workspace-note">Top-level progress metrics are deliberately omitted. Each stage owns its status and evidence.</p>
+    </main>
+  </body>
+</html>
