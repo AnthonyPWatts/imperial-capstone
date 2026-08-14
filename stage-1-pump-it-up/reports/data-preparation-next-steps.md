@@ -1,5 +1,5 @@
 ---
-status: ready-for-implementation
+status: column-removal-implemented
 branch: main
 updated: 2026-08-14
 ---
@@ -8,13 +8,15 @@ updated: 2026-08-14
 
 ## Working on
 
-Build a reusable structural data-preparation layer for the Pump It Up project
-before further exploratory analysis, missing-value treatment or modelling. The
-layer will remove known superfluous columns, preserve submission identifiers and
-fail when the source data no longer supports an agreed removal.
+Integrate the fixed structural column-removal function into the broader data
+audit before further missing-value treatment or modelling. The function accepts
+one raw feature DataFrame, checks the evidence for three agreed removals and
+returns a new DataFrame with those columns removed.
 
-The immediate implementation starts in [`src/`](../src/). Creating that folder
-was Step 1 and is complete. Step 2 is the first code change.
+The implementation is in [`src/data_preparation.py`](../src/data_preparation.py),
+with its declarative schema and fixed assumptions in
+[`src/raw_feature_column_policy.json`](../src/raw_feature_column_policy.json).
+The next change belongs in the existing data-audit notebook.
 
 ## Course scope established on 14 August 2026
 
@@ -103,7 +105,8 @@ removal.
 
 ## Settled structural policy
 
-Apply the same fixed policy to training and test features:
+Apply the same fixed policy independently to any raw training or test feature
+DataFrame:
 
 | Source column | Treatment | Reason |
 | --- | --- | --- |
@@ -112,10 +115,12 @@ Apply the same fixed policy to training and test features:
 | `payment_type` | Keep | Preferred compact field |
 | `payment` | Drop | One-to-one relabelling of `payment_type` |
 | `recorded_by` | Drop | Constant in both supplied feature files |
-| `id` | Preserve as metadata | Required for joins and competition submissions; exclude from predictors |
+| `id` | Preserve in the returned DataFrame | Required for later joins and competition submissions; exclude from predictors when the modelling workflow separates identifiers |
 
-The 40 source columns therefore produce 36 model predictors. Three source
-features leave the feature matrix, and `id` moves to metadata.
+The column-removal function turns the 40 raw columns into 37 columns, including
+`id`. It performs no identifier separation or modelling transformation. A later
+workflow step will preserve `id` as metadata and pass the other 36 columns to
+the model pipeline as candidate predictors.
 
 ## Pipeline boundary
 
@@ -124,8 +129,8 @@ files on each run. Do not create or maintain cleaned CSV copies.
 
 ```mermaid
 flowchart LR
-    A["Immutable source CSVs"] --> B["Validate schema and fixed invariants"]
-    B --> C["Apply structural column policy"]
+    A["Immutable source CSVs"] --> B["Load raw feature DataFrame"]
+    B --> C["Validate and remove three known redundant columns"]
     C --> D["Separate IDs and target"]
     D --> E["Create reproducible stratified split"]
     E --> F["Explore training partition"]
@@ -144,18 +149,22 @@ reviewed decision.
 
 ## Required safeguards
 
-The structural layer must stop with a clear error if any of these conditions
-fails:
+The column-removal function must stop with a clear error if any of these
+conditions fails:
 
-1. Required columns are missing or the input schema has changed.
-2. `id` contains nulls or duplicates.
-3. `quantity` and `quantity_group` differ, including their missing-value pattern.
-4. A `payment` value does not map to the expected `payment_type` value.
-5. `recorded_by` contains a value other than the agreed constant.
-6. Prepared training and test predictors have different ordered schemas.
+1. Required raw feature columns are missing, unexpected columns appear or a
+   column label is duplicated.
+2. `quantity` and `quantity_group` differ, including their missing-value pattern.
+3. A `payment` value does not map to the expected `payment_type` value.
+4. `recorded_by` contains a value other than the agreed constant.
 
-The preparation functions must preserve row count and row order, and they must
-not mutate caller-owned data frames.
+The function must preserve row count, row order, `id` and the order of all
+retained columns. It must not mutate the caller-owned DataFrame.
+
+Identifier integrity, target alignment and matching training/test predictor
+schemas remain necessary, but they belong to the later workflow that separates
+metadata and constructs the modelling inputs. They are not responsibilities of
+the fixed column-removal function.
 
 ## Fit with the course ten-step plan
 
@@ -183,35 +192,35 @@ version without changing the execution order.
 ## Implementation sequence
 
 1. **Complete:** create [`src/`](../src/) for reusable project code.
-2. **Next:** add `src/data_preparation.py` with loading, schema checks, fixed
-   invariant checks, canonical column selection, separation of identifiers and
-   target, and a preparation report that records each removal.
-3. Add `tests/test_data_preparation.py`. Cover row count and order, lack of input
-   mutation, the 36-predictor contract, matching train/test schemas and deliberate
-   invariant failures.
-4. Update `01-data-audit.ipynb` to call the shared preparation code and display
-   its report instead of copying the removal logic into notebook cells.
-5. Add the learned preprocessing and estimator pipeline in a separate module,
-   such as `src/modelling.py`, after the structural layer passes its tests.
+2. **Complete:** add one public function,
+   `remove_known_redundant_columns(raw_features)`, and keep the fixed raw schema,
+   mappings and removals in `src/raw_feature_column_policy.json`.
+3. **Next:** update `01-data-audit.ipynb` to load the raw CSVs as it does now,
+   call the shared function for training and test features, and display a concise
+   before/after column summary.
+4. In the baseline workflow, validate identifiers, align the target by `id`,
+   separate identifiers from the 36 candidate predictors and create the
+   reproducible stratified split.
+5. Diagnose missing values and outliers using only the training partition, then
+   add learned preprocessing and estimators when the notebook approach is stable.
 6. Realign the Stage 1 README and notebooks with the ten course headings once the
    executable workflow exists.
 
-Use the repository's current Python environment. Inspect the available test and
-packaging tools before adding configuration or dependencies. If the environment
-lacks a suitable test runner, agree the smallest project setup before installing
-one.
+Use the repository's current `.venv`. Formal automated tests are low priority
+for this known, local data set. Continue using focused smoke checks against both
+raw feature files; add a test suite later if the reusable code grows or begins
+serving less controlled inputs.
 
-## Acceptance criteria for Step 2
+## Acceptance criteria for fixed column removal
 
-- One function or small set of functions prepares either feature data set using
-  the same policy.
-- Calling the preparation code twice with the same input gives the same ordered
-  result.
-- The result contains 36 predictors plus a separately returned `id` series.
-- Training and test predictors share the same ordered columns.
-- The code reports why it removed each column.
-- A changed duplicate relationship or constant column causes a useful failure.
-- The code learns no statistics from training, validation or test values.
+- Exactly one public function accepts either raw feature DataFrame.
+- Calling it twice with the same input gives the same ordered result.
+- The result contains 37 columns, including `id`, and removes only
+  `quantity_group`, `payment` and `recorded_by`.
+- The caller-owned DataFrame is unchanged.
+- A changed duplicate, mapping or constant relationship causes a useful failure.
+- The function loads no files, handles no labels or submission data and learns
+  no statistics from training or test values.
 
 ## Decisions deferred
 
@@ -226,7 +235,8 @@ work can proceed without them.
 
 ## Resume point
 
-Start with Step 2. Inspect the two audit notebooks for current loading conventions,
-then implement the smallest `data_preparation.py` interface that satisfies the
-safeguards and acceptance criteria above. Keep the first change limited to the
-structural layer and its focused tests.
+Start with Step 3. Update `01-data-audit.ipynb` to import and call
+`remove_known_redundant_columns` for the two raw feature DataFrames. Keep CSV
+loading in the notebook, retain `id` in the returned frames and show the three
+removed columns explicitly. Do not introduce missing-value treatment, encoding,
+identifier separation or modelling in that change.
