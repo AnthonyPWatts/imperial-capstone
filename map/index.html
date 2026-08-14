@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A map of the Pump It Up training locations, coloured by status_group."
+    />
+    <title>Pump It Up — water status map</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260814-7" />
+
+    <script defer src="tanzania-boundary.js?v=20260814-1"></script>
+    <script defer src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+    <script defer src="https://unpkg.com/papaparse@5.4.0/papaparse.min.js"></script>
+    <script defer src="app.js?v=20260814-7"></script>
+  </head>
+  <body>
+    <main class="map-shell" data-map-detail="quiet">
+      <div id="map" aria-label="Map of Tanzanian water points by operating status"></div>
+      <div class="map-vignette" aria-hidden="true"></div>
+
+      <section class="map-toolbar glass-panel" aria-labelledby="legend-title">
+        <h2 id="legend-title" class="visually-hidden">Status group filters</h2>
+
+        <div class="toolbar-metrics">
+          <div class="metric" title="Wells currently visible on the map">
+            <strong id="visible-count">—</strong>
+            <span>visible</span>
+          </div>
+          <div class="metric metric-muted" title="Rows excluded because their coordinates are missing">
+            <strong id="excluded-count">—</strong>
+            <span>excluded</span>
+          </div>
+        </div>
+
+        <span class="toolbar-divider" aria-hidden="true"></span>
+
+        <div class="legend-items" role="group" aria-label="Status groups">
+          <button class="legend-item" type="button" data-status="functional" aria-pressed="true">
+            <span class="legend-dot legend-dot-functional" aria-hidden="true"></span>
+            <span class="legend-label">Functional</span>
+            <span class="legend-count" data-count-for="functional">—</span>
+          </button>
+          <button
+            class="legend-item"
+            type="button"
+            data-status="functional needs repair"
+            aria-pressed="true"
+          >
+            <span class="legend-dot legend-dot-repair" aria-hidden="true"></span>
+            <span class="legend-label">Needs repair</span>
+            <span class="legend-count" data-count-for="functional needs repair">—</span>
+          </button>
+          <button class="legend-item" type="button" data-status="non functional" aria-pressed="true">
+            <span class="legend-dot legend-dot-non-functional" aria-hidden="true"></span>
+            <span class="legend-label">Non-functional</span>
+            <span class="legend-count" data-count-for="non functional">—</span>
+          </button>
+        </div>
+
+        <span id="filter-summary" class="filter-summary" title="Status groups shown">3/3</span>
+
+        <span class="toolbar-divider" aria-hidden="true"></span>
+
+        <label class="region-filter">
+          <span>Region</span>
+          <select id="region-filter" disabled>
+            <option value="">All regions</option>
+          </select>
+        </label>
+
+        <span class="toolbar-divider" aria-hidden="true"></span>
+
+        <button id="map-detail-toggle" class="map-detail-toggle" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m12 3 8 4-8 4-8-4 8-4Z" />
+            <path d="m4 12 8 4 8-4M4 17l8 4 8-4" />
+          </svg>
+          <span>Map</span>
+          <strong id="map-detail-label">Quiet</strong>
+        </button>
+      </section>
+
+      <section id="load-overlay" class="load-overlay" aria-live="polite">
+        <div class="load-card glass-panel">
+          <div id="loader-mark" class="loader-mark" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <p class="load-kicker">Building the map</p>
+          <h2 id="load-title">Reading training labels…</h2>
+          <p id="load-message">The raw files are joined locally; only coordinates, status and region reach the map.</p>
+          <div id="load-progress" class="load-progress" aria-hidden="true"><span></span></div>
+
+          <form id="file-fallback" class="file-fallback" hidden>
+            <p>The expected local files were not available. Select the two original training CSVs instead.</p>
+            <label class="file-picker">
+              <span>Training set values</span>
+              <input id="values-file" type="file" accept=".csv,text/csv" required />
+            </label>
+            <label class="file-picker">
+              <span>Training set labels</span>
+              <input id="labels-file" type="file" accept=".csv,text/csv" required />
+            </label>
+            <button id="plot-files" type="submit">Plot selected files</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
