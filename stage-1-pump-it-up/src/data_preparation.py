@@ -10,6 +10,10 @@ from pathlib import Path as _Path
 
 import pandas as _pd
 
+from source_data_validation import (
+    validate_raw_feature_schema as _validate_raw_feature_schema,
+)
+
 
 # This is policy, not configuration that should vary by environment. Keeping the
 # long schema and fixed decisions in JSON makes them easy to inspect while this
@@ -18,7 +22,6 @@ import pandas as _pd
 _POLICY_FILE = _Path(__file__).with_name("raw_feature_column_policy.json")
 _POLICY = _json.loads(_POLICY_FILE.read_text(encoding="utf-8"))
 
-_EXPECTED_COLUMNS = tuple(_POLICY["expected_columns"])
 _COLUMNS_TO_REMOVE = _POLICY["columns_to_remove"]
 _PAYMENT_MAPPING = _POLICY["payment_mapping"]
 _RECORDED_BY_VALUE = _POLICY["recorded_by_value"]
@@ -35,7 +38,7 @@ def remove_known_redundant_columns(
     ``id`` column and does not mutate the supplied DataFrame.
     """
 
-    _validate_raw_schema(raw_features)
+    _validate_raw_feature_schema(raw_features)
     _validate_quantity_duplicate(raw_features)
     _validate_payment_mapping(raw_features)
     _validate_recorded_by(raw_features)
@@ -44,29 +47,6 @@ def remove_known_redundant_columns(
     # explicit copy makes the ownership boundary unambiguous to my C# head: the
     # caller can edit the result without editing the DataFrame passed in here.
     return raw_features.drop(columns=_COLUMNS_TO_REMOVE).copy(deep=True)
-
-
-def _validate_raw_schema(raw_features: _pd.DataFrame) -> None:
-    if not isinstance(raw_features, _pd.DataFrame):
-        raise TypeError("raw_features must be a pandas DataFrame.")
-
-    # Pandas permits duplicate column labels, unlike a normal C# object. Reject
-    # them before set comparison could hide the problem.
-    duplicated = raw_features.columns[
-        raw_features.columns.duplicated()
-    ].tolist()
-    if duplicated:
-        raise ValueError(f"raw_features has duplicate columns: {duplicated!r}.")
-
-    actual_columns = set(raw_features.columns)
-    expected_columns = set(_EXPECTED_COLUMNS)
-    missing = sorted(expected_columns - actual_columns)
-    unexpected = sorted(actual_columns - expected_columns)
-    if missing or unexpected:
-        raise ValueError(
-            "raw_features does not match the expected schema; "
-            f"missing={missing!r}, unexpected={unexpected!r}."
-        )
 
 
 def _validate_quantity_duplicate(raw_features: _pd.DataFrame) -> None:

@@ -1,5 +1,5 @@
 ---
-status: column-removal-implemented
+status: ready-for-baseline-split
 branch: main
 updated: 2026-08-14
 ---
@@ -8,15 +8,23 @@ updated: 2026-08-14
 
 ## Working on
 
-Integrate the fixed structural column-removal function into the broader data
-audit before further missing-value treatment or modelling. The function accepts
-one raw feature DataFrame, checks the evidence for three agreed removals and
-returns a new DataFrame with those columns removed.
+Begin the baseline workflow by validating identifiers, aligning the target,
+separating metadata from candidate predictors and creating a reproducible
+stratified split. Deeper missing-value analysis and every learned transform must
+use the training partition rather than the full labelled data.
 
-The implementation is in [`src/data_preparation.py`](../src/data_preparation.py),
-with its declarative schema and fixed assumptions in
+The fixed column-removal implementation is in
+[`src/data_preparation.py`](../src/data_preparation.py), with its declarative
+schema and assumptions in
 [`src/raw_feature_column_policy.json`](../src/raw_feature_column_policy.json).
-The next change belongs in the existing data-audit notebook.
+`01-data-audit.ipynb` now applies it independently to both raw feature frames and
+shows the 40 to 37 column change without altering the source DataFrames.
+
+The notebook's reusable structure and identifier checks now live in
+[`src/source_data_validation.py`](../src/source_data_validation.py). The notebook
+keeps file loading, progress messages and one-off exploration; the module owns
+only the reusable validations for raw feature schema, label-frame structure and
+matching IDs. No stateful manager classes are needed for these operations.
 
 ## Course scope established on 14 August 2026
 
@@ -195,10 +203,11 @@ version without changing the execution order.
 2. **Complete:** add one public function,
    `remove_known_redundant_columns(raw_features)`, and keep the fixed raw schema,
    mappings and removals in `src/raw_feature_column_policy.json`.
-3. **Next:** update `01-data-audit.ipynb` to load the raw CSVs as it does now,
-   call the shared function for training and test features, and display a concise
-   before/after column summary.
-4. In the baseline workflow, validate identifiers, align the target by `id`,
+3. **Complete:** update `01-data-audit.ipynb` to load the raw CSVs as it does now,
+   import the shared source-data validators, call the fixed column-removal
+   function for training and test features, and display a concise before/after
+   column summary.
+4. **Next:** in the baseline workflow, validate identifiers, align the target by `id`,
    separate identifiers from the 36 candidate predictors and create the
    reproducible stratified split.
 5. Diagnose missing values and outliers using only the training partition, then
@@ -235,8 +244,8 @@ work can proceed without them.
 
 ## Resume point
 
-Start with Step 3. Update `01-data-audit.ipynb` to import and call
-`remove_known_redundant_columns` for the two raw feature DataFrames. Keep CSV
-loading in the notebook, retain `id` in the returned frames and show the three
-removed columns explicitly. Do not introduce missing-value treatment, encoding,
-identifier separation or modelling in that change.
+Start with Step 4 in the baseline workflow. Reuse the structurally reduced
+training frame, validate and align `TrainingSetLabels.csv` by `id`, preserve the
+identifiers separately and create a reproducible stratified train/validation
+split over the 36 candidate predictors and `status_group`. Do not fit imputation,
+encoding, resampling or a model until that split exists.
