@@ -37,3 +37,28 @@ test rows.
   `functional` class.
 - Scores are rounded leaderboard aggregates; they do not disclose individual
   test labels or necessarily describe an unscored/private subset.
+
+## 2026-08-15: early audit-led tree experiments
+
+These submissions turned the settled structural audit findings into three
+temporary full-data experiments before the formal modelling workflow. The
+reproducible notebook and experiment notes are in
+[`2026-08-15-early-experiments/`](2026-08-15-early-experiments/).
+
+| Submission | Public score | Difference from strongest base |
+| --- | ---: | ---: |
+| Extra Trees | 0.8050 | — |
+| Histogram gradient boosting | 0.7968 | -0.0082 |
+| Equal-weight soft-vote ensemble | **0.8170** | **+0.0120** |
+
+- Source commit: the commit adding this experiment and log entry.
+- Private leaderboard scores: not available.
+- Both candidate models fitted the complete supplied labelled data; no local
+  train/validation split or performance estimate was retained.
+- The ensemble improved on Extra Trees by 1.20 percentage points and histogram
+  gradient boosting by 2.02 percentage points.
+- The ensemble score is 27.09 percentage points above the earlier 0.5461
+  constant-`functional` public baseline.
+- These public results are an informal experiment only. Formal partitioning,
+  candidate comparison and interpretation remain part of the later modelling
+  workflow.
