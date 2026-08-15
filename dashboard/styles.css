@@ -25,7 +25,7 @@
 }
 
 html {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 body {
@@ -49,6 +49,9 @@ code {
   z-index: 10;
   top: 0.5rem;
   left: 0.5rem;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
   padding: 0.5rem 0.7rem;
   color: white;
   background: #111;
@@ -73,20 +76,37 @@ code {
 
 .topbar h1 {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 1.125rem;
   line-height: 1.25;
 }
 
 .topbar p {
   margin: 0.15rem 0 0;
   color: #c8ced5;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .topbar a {
   color: #dcecff;
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   white-space: nowrap;
+}
+
+.capstone-brand,
+.capstone-nav-links a,
+.topbar > a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+}
+
+.capstone-brand strong {
+  font-size: 0.875rem;
+}
+
+.capstone-brand span,
+.capstone-nav-links a {
+  font-size: 0.75rem;
 }
 
 main {
@@ -120,7 +140,7 @@ main {
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 0.35rem;
-  font-size: 0.78rem;
+  font-size: 0.8125rem;
 }
 
 .summary-label span {
@@ -151,14 +171,14 @@ main {
 
 .current-summary span {
   color: var(--muted);
-  font-size: 0.67rem;
+  font-size: 0.75rem;
   font-weight: 650;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .current-summary strong {
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   line-height: 1.25;
 }
 
@@ -193,7 +213,7 @@ main {
 dt {
   margin-bottom: 0.15rem;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 650;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -218,7 +238,7 @@ dd {
 
 .metric dd > small {
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 500;
 }
 
@@ -247,6 +267,7 @@ dd {
 
 .dashboard-grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 0.75rem;
 }
 
@@ -263,13 +284,13 @@ dd {
 
 .panel-heading h2 {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .panel-heading p {
   margin: 0.1rem 0 0;
   color: var(--muted);
-  font-size: 0.73rem;
+  font-size: 0.8125rem;
 }
 
 .legend {
@@ -284,7 +305,7 @@ dd {
   padding: 0.16rem 0.42rem;
   border: 1px solid currentColor;
   border-radius: 2px;
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
@@ -313,7 +334,7 @@ dd {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.78rem;
+  font-size: 0.875rem;
 }
 
 th,
@@ -327,7 +348,7 @@ td {
 th {
   color: var(--muted);
   background: #f7f8f9;
-  font-size: 0.67rem;
+  font-size: 0.75rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -358,7 +379,7 @@ tbody tr:hover {
   margin-bottom: 0.12rem;
   color: var(--muted);
   font-family: Consolas, "Cascadia Code", monospace;
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -367,7 +388,7 @@ tbody tr:hover {
   display: block;
   margin-top: 0.1rem;
   color: var(--muted);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 400;
 }
 
@@ -395,7 +416,7 @@ tbody tr:hover {
   gap: 0;
   margin: 0;
   padding: 0.35rem 0.8rem 0.35rem 2.5rem;
-  font-size: 0.78rem;
+  font-size: 0.875rem;
 }
 
 .completed-work {
@@ -404,7 +425,7 @@ tbody tr:hover {
   border-bottom: 1px solid var(--border-light);
   color: #315f47;
   background: var(--green-bg);
-  font-size: 0.74rem;
+  font-size: 0.8125rem;
 }
 
 .checklist li {
@@ -422,7 +443,7 @@ tbody tr:hover {
   padding: 0.55rem 0.8rem;
   border-top: 1px solid var(--border-light);
   background: #f7f9fb;
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
 }
 
 .parallel-work {
@@ -430,7 +451,7 @@ tbody tr:hover {
   padding: 0.5rem 0.8rem;
   border-top: 1px solid var(--border-light);
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .parallel-work strong {
@@ -463,7 +484,7 @@ tbody tr:hover {
 }
 
 .decision-list dd {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 500;
 }
 
@@ -497,7 +518,7 @@ tbody tr:hover {
   display: block;
   margin-top: 0.12rem;
   color: var(--muted);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: normal;
 }
@@ -507,7 +528,7 @@ tbody tr:hover {
   align-items: center;
   gap: 0.45rem;
   font-family: Consolas, "Cascadia Code", monospace;
-  font-size: 0.82rem;
+  font-size: 0.875rem;
 }
 
 .submission-list dd span {
@@ -517,7 +538,7 @@ tbody tr:hover {
   color: var(--green);
   background: white;
   font-family: "Segoe UI", Aptos, system-ui, sans-serif;
-  font-size: 0.58rem;
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -550,7 +571,7 @@ tbody tr:hover {
 
 .benchmark-list dt {
   margin: 0;
-  font-size: 0.66rem;
+  font-size: 0.8125rem;
   letter-spacing: normal;
   text-transform: none;
 }
@@ -558,7 +579,7 @@ tbody tr:hover {
 .benchmark-list dd {
   flex: none;
   font-family: Consolas, "Cascadia Code", monospace;
-  font-size: 0.78rem;
+  font-size: 0.875rem;
 }
 
 .benchmark-list .target-benchmark {
@@ -586,7 +607,7 @@ tbody tr:hover {
   justify-content: space-between;
   color: var(--muted);
   font-family: Consolas, "Cascadia Code", monospace;
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   text-align: right;
 }
 
@@ -630,7 +651,7 @@ tbody tr:hover {
   left: 0;
   color: var(--text);
   font-family: Consolas, "Cascadia Code", monospace;
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 650;
   white-space: nowrap;
 }
@@ -639,7 +660,7 @@ tbody tr:hover {
   display: block;
   margin-top: 0.3rem;
   color: var(--muted);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   white-space: nowrap;
 }
 
@@ -656,7 +677,7 @@ tbody tr:hover {
   align-items: start;
   padding: 0.6rem 0.8rem;
   border-bottom: 1px solid var(--border-light);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .risk-list li:last-child {
@@ -747,8 +768,13 @@ tbody tr:hover {
 }
 
 @media (max-width: 720px) {
-  html {
-    font-size: 14px;
+  .capstone-nav {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+
+  .capstone-nav-links {
+    width: 100%;
   }
 
   .topbar {
@@ -776,7 +802,7 @@ tbody tr:hover {
   }
 
   .support-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .support-grid > .panel,
@@ -786,6 +812,88 @@ tbody tr:hover {
 
   .checklist {
     grid-template-columns: 1fr;
+  }
+
+  .table-wrap {
+    overflow: visible;
+  }
+
+  table {
+    font-size: 1rem;
+  }
+
+  thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  thead tr,
+  thead th {
+    display: block;
+    width: 1px !important;
+    max-width: 1px;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+  }
+
+  tbody {
+    display: block;
+  }
+
+  tbody tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.45rem 0.75rem;
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  td {
+    padding: 0;
+    border: 0;
+  }
+
+  td:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  td:nth-child(3) {
+    grid-column: 1;
+    font-size: 0.875rem;
+  }
+
+  td:nth-child(3)::before {
+    content: "Progress ";
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  td:nth-child(4) {
+    grid-column: 1 / -1;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  .risk-list li {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .risk-list li > p {
+    grid-column: 1 / -1;
   }
 
   .facts dl {
