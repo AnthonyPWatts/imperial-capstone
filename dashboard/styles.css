@@ -247,9 +247,7 @@ dd {
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: minmax(620px, 1.55fr) minmax(390px, 0.75fr);
   gap: 0.75rem;
-  align-items: start;
 }
 
 .panel-heading {
@@ -356,8 +354,8 @@ tbody tr:hover {
 }
 
 .track-type {
-  display: inline-block;
-  width: 5.3rem;
+  display: block;
+  margin-bottom: 0.12rem;
   color: var(--muted);
   font-family: Consolas, "Cascadia Code", monospace;
   font-size: 0.66rem;
@@ -373,14 +371,27 @@ tbody tr:hover {
   font-weight: 400;
 }
 
-.side-column {
+.support-grid {
   display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 0.75rem;
+}
+
+.support-grid > .panel {
+  grid-column: span 4;
+}
+
+.support-grid > .decision-panel {
+  grid-column: span 5;
+}
+
+.support-grid > .risks-panel {
+  grid-column: span 7;
 }
 
 .checklist {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0;
   margin: 0;
   padding: 0.35rem 0.8rem 0.35rem 2.5rem;
@@ -712,16 +723,21 @@ tbody tr:hover {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .side-column {
+  .support-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .now-panel {
-    grid-row: span 2;
+  .support-grid > .panel,
+  .support-grid > .decision-panel {
+    grid-column: auto;
+  }
+
+  .support-grid > .risks-panel {
+    grid-column: 1 / -1;
+  }
+
+  .checklist {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .facts dl {
@@ -759,14 +775,13 @@ tbody tr:hover {
     padding-left: 0;
   }
 
-  .dashboard-grid {
-    display: block;
+  .support-grid {
+    grid-template-columns: 1fr;
   }
 
-  .side-column {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-top: 0.5rem;
+  .support-grid > .panel,
+  .support-grid > .risks-panel {
+    grid-column: auto;
   }
 
   .checklist {

@@ -6,7 +6,7 @@
   <meta name="description" content="Pump It Up competition plan and progress.">
   <title>Pump It Up — status</title>
   <link rel="stylesheet" href="../assets/site-shell.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=20260815-course-workflow">
   <script defer src="../assets/status-loader.js"></script>
 </head>
 <body>
@@ -50,11 +50,28 @@
     </section>
 
     <div class="dashboard-grid">
+      <section class="panel now-panel" aria-labelledby="now-title">
+        <header class="panel-heading">
+          <div><h2 id="now-title">Now</h2><p>Freeze the preprocessing and evaluation foundations before comparing models.</p></div>
+          <span class="state active">Steps 4, 6 + 7</span>
+        </header>
+        <p class="completed-work"><strong>Recorded:</strong> training shares 54.31% / 7.27% / 38.42%; public constant scores are close enough to show no material prior shift.</p>
+        <ol class="checklist">
+          <li>Run the committed source-frame validations from a clean kernel and retain the output.</li>
+          <li>Separate <code>id</code> and <code>status_group</code>; expose the 36 candidate predictors.</li>
+          <li>Choose and record the split proportion and random seed.</li>
+          <li>Create the reproducible stratified train/validation split.</li>
+          <li>Record split class shares, dummy accuracy and one imbalance-aware metric.</li>
+        </ol>
+        <p class="parallel-work"><strong>In parallel:</strong> turn the completed breadth-first predictor audit into explicit treatment decisions; no more submissions are available today.</p>
+        <p class="gate"><strong>Done when:</strong> target audit = 4 / 4 and the repeatable split and local dummy score are recorded.</p>
+      </section>
+
       <section class="panel plan-panel" aria-labelledby="plan-title">
         <header class="panel-heading">
           <div>
-            <h2 id="plan-title">Plan</h2>
-            <p>Concurrent tracks. Foundation exploration: ≈10 hours minimum; deep dives extra.</p>
+            <h2 id="plan-title">Course workflow</h2>
+            <p>Ten course steps. Iteration is expected; checkpoints advance only when evidence exists.</p>
           </div>
           <div class="legend" aria-label="Status legend">
             <span class="complete">Done</span><span class="active">Active</span><span class="queued">Queued</span>
@@ -64,92 +81,75 @@
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Track</th><th>Status</th><th>Progress</th><th>Exit evidence</th></tr>
+              <tr><th>Course step</th><th>Status</th><th>Progress</th><th>Evidence or next gate</th></tr>
             </thead>
             <tbody>
               <tr class="row-complete">
-                <td><span class="track-type">Foundation</span><strong>Scope &amp; safeguards</strong></td>
+                <td><span class="track-type">Step 01</span><strong>Define the goal &amp; scope</strong></td>
                 <td><span class="state complete">Done</span></td>
                 <td><strong>3 / 3</strong></td>
-                <td>Problem, metric, rules and data boundary recorded.</td>
-              </tr>
-              <tr class="row-active">
-                <td><span class="track-type">Foundation</span><strong>Target &amp; label audit</strong></td>
-                <td><span class="state active">Active</span></td>
-                <td><strong>2 / 4</strong></td>
-                <td>Class balance and baseline implications recorded; integrity evidence remains.</td>
+                <td>Problem, users, metric, competition rules and data boundary recorded.</td>
               </tr>
               <tr class="row-complete">
-                <td><span class="track-type">Foundation</span><strong>Source &amp; structural validation</strong></td>
+                <td><span class="track-type">Step 02</span><strong>Gather the data</strong></td>
                 <td><span class="state complete">Done</span></td>
                 <td><strong>2 / 2</strong></td>
-                <td>Raw audit and column policy exist; <code>amount_tsh</code> examined in depth.</td>
-              </tr>
-              <tr class="row-complete">
-                <td><span class="track-type">Loop 0</span><strong>Constant-class submissions</strong></td>
-                <td><span class="state complete">Done</span></td>
-                <td><strong>3 / 3</strong></td>
-                <td>All three class baselines recorded; best is <code>functional</code> at 0.5461.</td>
-              </tr>
-              <tr class="row-active">
-                <td><span class="track-type">Evaluation</span><strong>Split &amp; local baseline</strong></td>
-                <td><span class="state active">Active</span></td>
-                <td><strong>0 / 3</strong></td>
-                <td>Aligned labels, repeatable stratified split and local dummy score.</td>
-              </tr>
-              <tr class="row-active">
-                <td><span class="track-type">Coverage</span><strong>Feature review</strong></td>
-                <td><span class="state active">Active</span></td>
-                <td><strong>1 / 36</strong><small class="progress-note">separate metric</small></td>
-                <td>Breadth-first treatment decision per feature; optional deep dives queued.</td>
+                <td>Training features, labels and test inputs are present; source structure and column policy are recorded.</td>
               </tr>
               <tr>
-                <td><span class="track-type">Foundation</span><strong>Dataset-wide exploration</strong></td>
+                <td><span class="track-type">Step 03</span><strong>Explore the data</strong></td>
                 <td><span class="state queued">Queued</span></td>
                 <td><strong>0 / 4</strong></td>
-                <td>Missingness, cardinality, relationships and geographic/date structure summarised.</td>
+                <td>Summarise missingness, cardinality, distributions, relationships and geographic/date structure.</td>
+              </tr>
+              <tr class="row-active">
+                <td><span class="track-type">Step 04</span><strong>Clean &amp; preprocess the data</strong></td>
+                <td><span class="state active">Active</span></td>
+                <td><strong>0 / 3</strong></td>
+                <td>Build fold-safe missing-value, categorical and scaling treatment; compare it in a transparent pipeline.</td>
+              </tr>
+              <tr class="row-active">
+                <td><span class="track-type">Step 05</span><strong>Select &amp; engineer features</strong></td>
+                <td><span class="state active">Active</span></td>
+                <td><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small class="progress-note">audit · separate metric</small></td>
+                <td>Initial predictor audit is organised; turn it into treatment, removal and engineering decisions.</td>
+              </tr>
+              <tr class="row-active">
+                <td><span class="track-type">Step 06</span><strong>Define the ML task</strong></td>
+                <td><span class="state active">Active</span></td>
+                <td><strong>2 / 4</strong></td>
+                <td>Multiclass target, accuracy metric and class balance are recorded; executable label and ID integrity evidence remains.</td>
+              </tr>
+              <tr class="row-active">
+                <td><span class="track-type">Step 07</span><strong>Partition the data</strong></td>
+                <td><span class="state active">Active</span></td>
+                <td><strong>0 / 3</strong></td>
+                <td>Record the split policy and create a repeatable stratified train/validation split with aligned labels.</td>
               </tr>
               <tr>
-                <td><span class="track-type">Loop 1</span><strong>Transparent pipeline</strong></td>
+                <td><span class="track-type">Step 08</span><strong>Select &amp; train candidate methods</strong></td>
                 <td><span class="state queued">Queued</span></td>
                 <td><strong>0 / 3</strong></td>
-                <td>Preprocessing and decision tree compared; beat the 0.5461 floor locally.</td>
+                <td>Start with a transparent model, then train an ensemble contender if the evidence supports it.</td>
+              </tr>
+              <tr class="row-active">
+                <td><span class="track-type">Step 09</span><strong>Evaluate &amp; interpret results</strong></td>
+                <td><span class="state active">Active</span></td>
+                <td><strong>3 / 3</strong><small class="progress-note">public baselines</small></td>
+                <td>Three constant-class baselines are recorded; local dummy and model comparisons begin after Step 7.</td>
               </tr>
               <tr>
-                <td><span class="track-type">Loop 2</span><strong>Ensemble contender</strong></td>
+                <td><span class="track-type">Step 10</span><strong>Deploy &amp; iterate</strong></td>
                 <td><span class="state queued">Queued</span></td>
                 <td><strong>0 / 3</strong></td>
-                <td>Ensemble and CV evidence; close the gap to the provisional 0.8225 target.</td>
-              </tr>
-              <tr>
-                <td><span class="track-type">Loop n</span><strong>Improve, submit, record</strong></td>
-                <td><span class="state queued">Queued</span></td>
-                <td><strong>0 / 3</strong></td>
-                <td>One evidence-led change and score, measured against the 0.8225 target.</td>
+                <td>Submit one evidence-led change, record the score and loop back when later findings change earlier choices.</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <aside class="side-column" aria-label="Current work and constraints">
-        <section class="panel now-panel" aria-labelledby="now-title">
-          <header class="panel-heading">
-            <div><h2 id="now-title">Now</h2><p>Target balance is known; prove integrity and establish local evaluation.</p></div>
-            <span class="state active">Foundation + Evaluation</span>
-          </header>
-          <p class="completed-work"><strong>Recorded:</strong> training shares 54.31% / 7.27% / 38.42%; public constant scores are close enough to show no material prior shift.</p>
-          <ol class="checklist">
-            <li>Run the committed source-frame validations from a clean kernel and retain the output.</li>
-            <li>Separate <code>id</code> and <code>status_group</code>; expose the 36 candidate predictors.</li>
-            <li>Choose and record the split proportion and random seed.</li>
-            <li>Create the reproducible stratified train/validation split.</li>
-            <li>Record split class shares, dummy accuracy and one imbalance-aware metric.</li>
-          </ol>
-          <p class="parallel-work"><strong>In parallel:</strong> continue the breadth-first predictor pass; no more submissions are available today.</p>
-          <p class="gate"><strong>Done when:</strong> target audit = 4 / 4 and the repeatable split and local dummy score are recorded.</p>
-        </section>
-
+      <aside class="support-grid" aria-label="Evidence and controls">
         <section class="panel compact-panel" aria-labelledby="submissions-title">
           <header class="panel-heading"><div><h2 id="submissions-title">Constant-class baselines</h2><p>14 August 2026 · daily allowance exhausted</p></div></header>
           <dl class="submission-list">
@@ -183,7 +183,7 @@
           </div>
         </section>
 
-        <section class="panel compact-panel" aria-labelledby="decisions-title">
+        <section class="panel compact-panel decision-panel" aria-labelledby="decisions-title">
           <header class="panel-heading"><div><h2 id="decisions-title">Decisions</h2></div></header>
           <dl class="decision-list">
             <div><dt>Fixed removals</dt><dd><code>quantity_group</code>, <code>payment</code>, <code>recorded_by</code></dd></div>
@@ -193,7 +193,7 @@
           </dl>
         </section>
 
-        <section class="panel compact-panel" aria-labelledby="risks-title">
+        <section class="panel compact-panel risks-panel" aria-labelledby="risks-title">
           <header class="panel-heading"><div><h2 id="risks-title">Risks</h2><p>Both controls deliberately limit competition effort.</p></div></header>
           <ul class="risk-list">
             <li>

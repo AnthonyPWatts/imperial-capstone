@@ -6,6 +6,11 @@ Up* work:
 - `index.html`: dashboard content and current values;
 - `styles.css`: compact responsive presentation.
 
+The main workflow follows the course's ten-step machine-learning lifecycle.
+Keep the step numbers and intent stable. Project-specific checkpoints and
+evidence belong within those steps rather than replacing them with a second
+process vocabulary.
+
 The dashboard is for personal project control, not portfolio presentation. It
 should answer three questions quickly:
 
@@ -30,7 +35,7 @@ is dated 14 August 2026:
 | Metric | Current value |
 | --- | ---: |
 | Overall plan checkpoints | 10 / 28 |
-| Features fully examined | 1 / 36 (`amount_tsh`) |
+| Features fully examined | 36 / 36 (initial predictor audit organised) |
 | Models evaluated | 0 |
 | DrivenData submissions | 3 |
 | Best leaderboard score | 0.5461 |
@@ -38,16 +43,18 @@ is dated 14 August 2026:
 | Near-term chart ceiling | 0.6000 |
 | Daily submissions used | 3 / 3 UTC |
 
-Three tracks are active concurrently:
+The active work spans several course steps because the process is iterative:
 
-- **Target and label audit (2 / 4):** the training distribution and baseline
+- **Step 4, clean and preprocess:** turn the predictor audit and recorded
+  removals into fold-safe preprocessing.
+- **Step 6, define the task (2 / 4):** the training distribution and baseline
   implications are recorded. Run the committed label-frame and exact ID
   alignment checks from a clean kernel and retain their output.
-
-- **Evaluation:** align labels by `id`, create a reproducible stratified split
+- **Step 7, partition the data:** align labels by `id`, create a reproducible stratified split
   and record a local dummy-classifier score.
-- **Feature coverage:** examine candidate predictors breadth-first, with deep
-  investigation deferred unless modelling evidence justifies it.
+- **Step 5, select and engineer features:** convert the completed breadth-first
+  predictor audit into explicit treatment decisions, with deep investigation
+  deferred unless modelling evidence justifies it.
 
 The target audit, breadth-first predictor coverage and dataset-wide exploration
 represent a rough minimum of ten hours of foundation work. This is planning
@@ -98,20 +105,22 @@ Keep these definitions stable so that the counters remain meaningful.
 
 ### Overall plan checkpoints
 
-The 28 checkpoints exclude feature coverage, which has its own 36-feature
-denominator:
+The 28 checkpoints are grouped under the course lifecycle. Step 5 feature
+coverage has its own 36-feature denominator and is excluded from the overall
+checkpoint total:
 
-| Track | Checkpoints |
+| Course step | Checkpoints |
 | --- | ---: |
-| Scope and safeguards | 3 |
-| Source and structural validation | 2 |
-| Target and label audit | 4 |
-| Dataset-wide exploration | 4 |
-| Loop 0 constant baseline | 3 |
-| Evaluation split and local baseline | 3 |
-| Loop 1 transparent pipeline | 3 |
-| Loop 2 ensemble contender | 3 |
-| Later improvement loop | 3 |
+| 1. Define the goal and scope | 3 |
+| 2. Gather the data | 2 |
+| 3. Explore the data | 4 |
+| 4. Clean and preprocess the data | 3 |
+| 5. Select and engineer features | Separate 36-feature metric |
+| 6. Define the machine-learning task | 4 |
+| 7. Partition the data | 3 |
+| 8. Select and train candidate methods | 3 |
+| 9. Evaluate and interpret results | 3 |
+| 10. Deploy and iterate | 3 |
 | **Total** | **28** |
 
 Increment a track only when its exit evidence exists. Do not award partial
@@ -182,7 +191,8 @@ After a meaningful modelling or submission session:
 1. Update the snapshot date and supported headline values in
    `../project-status.json`.
 2. Keep the fallback values in `index.html` aligned with the status file.
-3. Update the active plan rows and their exit evidence.
+3. Update the course workflow rows and their evidence or next gate without
+   changing the ten step numbers or meanings.
 4. Update submission totals, daily UTC usage and best score together.
 5. Add or update the daily-best chart bar when a day's score is final.
 6. Keep this README's current snapshot aligned with the page.
