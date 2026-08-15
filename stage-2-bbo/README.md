@@ -4,6 +4,9 @@ This is the assessed capstone problem: maximise eight unknown functions using
 only their observed inputs and outputs. The functions range from two to eight
 dimensions. Each course round adds a portal observation to the local dataset.
 
+Browse the [Stage 2 workspace](https://anthonypwatts.github.io/imperial-capstone/stage-2-bbo/)
+or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
+
 ## Intended approach
 
 1. Load and validate the supplied NumPy arrays for all eight functions.

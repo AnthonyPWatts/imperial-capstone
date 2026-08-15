@@ -28,7 +28,8 @@ Those candidate models used the complete labelled data, so the leaderboard
 result does not provide a local validation estimate. The next gate is a frozen
 stratified split with fold-fitted preprocessing, followed by held-out accuracy,
 per-class recall and a confusion matrix. The main evidence is available in the
-[Stage 1 dashboard](dashboard/), [submission log](stage-1-pump-it-up/submissions/README.md),
+[live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
+[submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
 and [data-preparation handoff](stage-1-pump-it-up/reports/data-preparation-next-steps.md).
 
@@ -36,11 +37,17 @@ Stage 2 remains scaffolded while the Module 12 inputs and dates are unavailable.
 
 ## Live project hub
 
-The [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/) and
+The [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/) links to
+both project stages. Open the
 [Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/)
-are published through GitHub Pages. The public site uses only the non-sensitive
-status snapshot committed to this repository. Competition datasets remain
-excluded; the training map asks visitors to select their own local copies.
+or [training label map](https://anthonypwatts.github.io/imperial-capstone/map/).
+The
+[Stage 2 workspace](https://anthonypwatts.github.io/imperial-capstone/stage-2-bbo/)
+remains an empty state until its course inputs arrive.
+
+The repository includes the non-sensitive status snapshot that the public
+pages load. It excludes competition datasets. Visitors select local copies
+through the training map's file pickers.
 
 ## Local project hub
 

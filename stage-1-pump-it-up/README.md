@@ -5,6 +5,10 @@ competition.
 
 Source: <https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/>
 
+Browse the [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/)
+and [training label map](https://anthonypwatts.github.io/imperial-capstone/map/),
+or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
+
 ## Contents
 
 - `instructions/competition-reference.md`: concise brief, data dictionary,

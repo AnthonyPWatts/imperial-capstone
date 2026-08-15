@@ -3,6 +3,9 @@
 This directory contains a static status dashboard for the DrivenData *Pump It
 Up* work:
 
+Browse the [live dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/)
+or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
+
 - `index.html`: dashboard content and current values;
 - `styles.css`: compact responsive presentation.
 
@@ -11,8 +14,8 @@ Keep the step numbers and intent stable. Project-specific checkpoints and
 evidence belong within those steps rather than replacing them with a second
 process vocabulary.
 
-The dashboard is for personal project control, not portfolio presentation. It
-should answer three questions quickly:
+The dashboard supports personal project control rather than portfolio
+presentation. It should answer three questions quickly:
 
 1. What measurable progress has been made?
 2. What is being worked on now?
@@ -28,9 +31,9 @@ keep appending columns; add detailed information to the compact panels below.
 
 ## Current snapshot
 
-The headline values come from `../project-status.json` when the site is served
-locally. The matching HTML values are a readable fallback. The current snapshot
-is dated 15 August 2026:
+The page loads headline values from `../project-status.json` through GitHub
+Pages or the local server. The dashboard uses matching HTML values if the
+status request fails. The current snapshot is dated 15 August 2026:
 
 | Metric | Current value |
 | --- | ---: |

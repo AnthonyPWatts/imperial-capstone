@@ -1,8 +1,14 @@
 # Training label map
 
-This is a deliberately single-purpose page: it plots the Pump It Up training coordinates, colours each point by `status_group`, and filters them by region.
+This single-purpose page plots the Pump It Up training coordinates and colours
+each point by `status_group`. Visitors can filter the points by region.
 
-## Run it
+Open the [live training label map](https://anthonypwatts.github.io/imperial-capstone/map/)
+from the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
+GitHub Pages does not contain the competition CSVs, so select local copies with
+the page's file pickers.
+
+## Run it locally
 
 From the repository root:
 
@@ -12,8 +18,8 @@ python -m http.server 8000
 
 Then open <http://localhost:8000/map/>.
 
-The Capstone Hub at <http://localhost:8000/> provides the shared entry point
-for this map, the status dashboard and both project stages.
+Open the local Capstone Hub at <http://localhost:8000/> as the shared entry
+point for the map, status dashboard and project stages.
 
 The page expects these ignored local files:
 
