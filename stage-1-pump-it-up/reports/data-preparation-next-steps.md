@@ -64,7 +64,7 @@ The notebooks contain the current audit work:
 
 - [`00-overall-data-audit.ipynb`](../notebooks/data-audit/00-overall/00-overall-data-audit.ipynb)
   contains the canonical raw-predictor register and completion checks.
-- [`01-status_group-target-audit.ipynb`](../notebooks/data-audit/00-overall/01-status_group-target-audit.ipynb)
+- [`00-target-label-analysis.ipynb`](../notebooks/data-audit/00-target-label-analysis/00-target-label-analysis.ipynb)
   contains the focused initial target analysis.
 - [`04-amount_tsh-deep-dive.ipynb`](../notebooks/data-audit/01-amount_tsh/04-amount_tsh-deep-dive.ipynb)
   preserves the earlier focused `amount_tsh` analysis alongside its canonical

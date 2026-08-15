@@ -717,7 +717,7 @@ def build_overall_notebook(catalogue):
                 findings, and related-feature analysis.
 
                 `status_group` remains a target rather than a predictor and has a separate
-                target audit in this overall folder.
+                role-named audit at `../00-target-label-analysis/00-target-label-analysis.ipynb`.
                 """,
                 "overall-intro",
             ),
@@ -859,9 +859,14 @@ def build_readme(catalogue):
     lines = [
         "# Pump It Up data audit",
         "",
-        "This directory is the canonical home of the raw predictor audit.",
-        "`00-overall/` contains the target, dataset scope, overall finding/decision register and preserved feature-family",
-        "deep dives. Every raw non-`id` predictor then has a CSV-order-prefixed folder.",
+        "This directory is the canonical home of the data audit.",
+        "",
+        "Start with the role-based project-level analyses:",
+        "",
+        "1. [`00-target-label-analysis/`](00-target-label-analysis/) contains the dedicated target-label analysis. The folder and notebook use the generic modelling role rather than the dataset-specific `status_group` column name.",
+        "2. [`00-overall/`](00-overall/) contains the dataset scope, overall predictor finding/decision register and preserved feature-family deep dives.",
+        "",
+        "Every raw non-`id` predictor then has a CSV-order-prefixed folder.",
         "",
         "Each predictor folder contains:",
         "",

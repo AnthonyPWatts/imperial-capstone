@@ -4,10 +4,12 @@ Use numbered notebooks so the analysis can be followed in order.
 
 ## Data audit
 
-`data-audit/` is the canonical audit area. It contains an overall audit and one
-CSV-order-prefixed folder for every raw non-`id` predictor, including columns
-proposed for structural removal. See [`data-audit/README.md`](data-audit/README.md)
-for the full index.
+`data-audit/` is the canonical audit area. Its dedicated target-label analysis
+is [`data-audit/00-target-label-analysis/00-target-label-analysis.ipynb`](data-audit/00-target-label-analysis/00-target-label-analysis.ipynb),
+named for the column's modelling role rather than the dataset-specific column
+name. The area also contains an overall audit and one CSV-order-prefixed folder
+for every raw non-`id` predictor, including columns proposed for structural
+removal. See [`data-audit/README.md`](data-audit/README.md) for the full index.
 
 Every predictor has the same three-part contract:
 
@@ -16,7 +18,7 @@ Every predictor has the same three-part contract:
 3. `03-<feature>-related-features.ipynb`: nominated relationships and pairwise checks.
 
 Existing broader and feature-family audits are preserved under
-`data-audit/00-overall/`. Rebuild the canonical notebooks with
+`data-audit/00-overall/`. Rebuild the generated canonical notebooks with
 `data-audit/generate_data_audit_notebooks.py`.
 
 ## Modelling sequence
