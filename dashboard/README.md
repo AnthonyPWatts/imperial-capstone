@@ -30,7 +30,7 @@ keep appending columns; add detailed information to the compact panels below.
 
 The headline values come from `../project-status.json` when the site is served
 locally. The matching HTML values are a readable fallback. The current snapshot
-is dated 14 August 2026:
+is dated 15 August 2026:
 
 | Metric | Current value |
 | --- | ---: |
@@ -136,8 +136,9 @@ A feature counts when it has:
 - remaining speculative deep dives clearly separated from the current decision.
 
 This means "sufficiently examined for the present modelling loop", not
-"exhaustively understood". `amount_tsh` is the first feature meeting that
-definition.
+"exhaustively understood". All 36 candidate predictors now meet this
+breadth-first standard and are organised into audit reports; `amount_tsh` also
+has deeper feature-specific analysis.
 
 ### Models evaluated
 
