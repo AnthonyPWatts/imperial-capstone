@@ -1,18 +1,18 @@
 {
   "snapshot": {
-    "date": "2026-08-14",
-    "label": "14 August 2026"
+    "date": "2026-08-15",
+    "label": "15 August 2026"
   },
   "overall": {
     "completed": 10,
     "total": 28,
-    "current": "Finish target integrity + create split"
+    "current": "Freeze split + build preprocessing baseline"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Complete the target-integrity evidence and establish a reproducible local baseline.",
+    "nextCheckpoint": "Freeze the reproducible stratified split and turn the completed predictor audit into fold-safe preprocessing.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -24,9 +24,9 @@
     "dates": "Not recorded"
   },
   "features": {
-    "examined": 1,
+    "examined": 36,
     "total": 36,
-    "current": "amount_tsh"
+    "current": "Initial predictor audit complete"
   },
   "models": {
     "evaluated": 0

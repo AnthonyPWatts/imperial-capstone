@@ -13,6 +13,8 @@ Current modules:
   checks used by the audit notebook.
 - `raw_feature_column_policy.json` contains the fixed schema and evidence-backed
   removal assumptions shared by those modules.
+- `predictor_audit.py` contains the common numeric, categorical, target-support,
+  train/test coverage and hierarchy summaries used by the focused audit notebooks.
 
 File loading, notebook narration, plotting and one-off exploration remain in the
 notebooks until repeated use gives them a clearer reusable boundary.
