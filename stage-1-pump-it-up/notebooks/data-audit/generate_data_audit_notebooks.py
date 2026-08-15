@@ -703,158 +703,6 @@ def build_related_notebook(feature, catalogue):
     return notebook(cells, feature=feature["name"], purpose="related-features")
 
 
-def build_overall_notebook(catalogue):
-    features = catalogue["features"]
-    return notebook(
-        [
-            markdown(
-                """
-                # Overall Pump It Up predictor audit
-
-                This is the index and decision log for the raw predictor audit. Each of
-                the 39 non-`id` raw columns has its own folder and three explicitly named
-                notebooks: standard type-specific breakdown, noteworthy single-feature
-                findings, and related-feature analysis.
-
-                `status_group` remains a target rather than a predictor and has a separate
-                role-named audit at `../00-target-label-analysis/00-target-label-analysis.ipynb`.
-                """,
-                "overall-intro",
-            ),
-            code(
-                f"""
-                import pandas as pd
-                from pathlib import Path
-                from IPython.display import display
-
-                feature_catalogue = pd.DataFrame({features!r})
-                display(feature_catalogue[[
-                    "order",
-                    "name",
-                    "audit_type",
-                    "role",
-                    "disposition",
-                ]])
-                """,
-                "catalogue",
-            ),
-            markdown("## Supplied data scope", "scope-heading"),
-            code(
-                """
-                stage_directory = next(
-                    candidate for candidate in [Path.cwd(), *Path.cwd().parents]
-                    if (candidate / "data" / "TrainingSetValues.csv").is_file()
-                )
-                data_directory = stage_directory / "data"
-                training_features = pd.read_csv(
-                    data_directory / "TrainingSetValues.csv",
-                    keep_default_na=False,
-                )
-                training_labels = pd.read_csv(
-                    data_directory / "TrainingSetLabels.csv",
-                    keep_default_na=False,
-                )
-                test_features = pd.read_csv(
-                    data_directory / "TestSetValues.csv",
-                    keep_default_na=False,
-                )
-
-                dataset_scope = pd.DataFrame({
-                    "training rows": [len(training_features)],
-                    "test rows": [len(test_features)],
-                    "raw feature columns": [training_features.shape[1]],
-                    "raw non-id predictors": [training_features.shape[1] - 1],
-                    "candidate predictors": [feature_catalogue["role"].eq("candidate").sum()],
-                    "structural removals": [
-                        feature_catalogue["role"].eq("structural-removal").sum()
-                    ],
-                    "target classes": [training_labels["status_group"].nunique()],
-                }, index=["supplied competition data"])
-                display(dataset_scope)
-
-                assert list(training_features.columns) == list(test_features.columns)
-                assert training_features.shape[1] - 1 == len(feature_catalogue)
-                """,
-                "dataset-scope",
-            ),
-            markdown("## Coverage and audit contract", "coverage-heading"),
-            code(
-                """
-                coverage = feature_catalogue.groupby(
-                    ["role", "audit_type"],
-                    dropna=False,
-                ).size().rename("predictors").to_frame()
-                display(coverage)
-                assert len(feature_catalogue) == 39
-                assert feature_catalogue["name"].is_unique
-                print("Catalogue coverage: 39 of 39 raw non-id predictors.")
-                """,
-                "coverage",
-            ),
-            markdown(
-                """
-                ## Key findings and provisional decisions
-
-                This register pulls the noteworthy single-feature conclusion back into
-                one reviewable place. The detailed evidence remains in each predictor's
-                `02` notebook and the relationship evidence remains in its `03` notebook.
-                """,
-                "findings-heading",
-            ),
-            code(
-                """
-                key_findings = feature_catalogue.set_index("name")[[
-                    "audit_type",
-                    "role",
-                    "finding",
-                    "decision",
-                    "risk",
-                ]]
-                display(key_findings)
-                """,
-                "key-findings",
-            ),
-            markdown(
-                """
-                ## Structural removals are audited, not skipped
-
-                Removal is a processing decision that needs evidence. The folders for
-                `recorded_by`, `payment`, and `quantity_group` therefore contain the same
-                three-part audit as retained candidates, including the cross-feature proof
-                that supports each removal.
-                """,
-                "removal-heading",
-            ),
-            code(
-                """
-                structural_removals = feature_catalogue.loc[
-                    feature_catalogue["role"].eq("structural-removal"),
-                    ["name", "finding", "decision", "risk"],
-                ]
-                display(structural_removals.set_index("name"))
-                """,
-                "removals",
-            ),
-            markdown(
-                """
-                ## Cross-cutting conclusions
-
-                - Preserve source blanks separately from literal tokens such as `None`,
-                  `unknown` and `0`.
-                - Treat numeric-looking administrative codes as categories.
-                - Compare granular and coarse hierarchy levels by ablation rather than
-                  retaining deterministic parents automatically.
-                - Keep raw sparse names out of the first one-hot baseline.
-                - Recheck geographic and target-rate findings after the split is frozen,
-                  including an LGA/region-grouped robustness check.
-                """,
-                "overall-conclusions",
-            ),
-        ],
-        purpose="overall-data-audit",
-    )
-
-
 def build_readme(catalogue):
     lines = [
         "# Pump It Up data audit",
@@ -864,7 +712,7 @@ def build_readme(catalogue):
         "Start with the role-based project-level analyses:",
         "",
         "1. [`00-target-label-analysis/`](00-target-label-analysis/) contains the dedicated target-label analysis. The folder and notebook use the generic modelling role rather than the dataset-specific `status_group` column name.",
-        "2. [`00-overall/`](00-overall/) contains the dataset scope, overall predictor finding/decision register and preserved feature-family deep dives.",
+        "2. [`00-overall-data-audit.md`](00-overall/00-overall-data-audit.md) is the maintained findings report. Its folder also preserves supporting executable and feature-family audits.",
         "",
         "Every raw non-`id` predictor then has a CSV-order-prefixed folder.",
         "",
@@ -893,7 +741,9 @@ def build_readme(catalogue):
         "## Rebuild",
         "",
         "Run `generate_data_audit_notebooks.py` from the project environment, then",
-        "execute the generated notebooks before treating their recorded outputs as current.",
+        "execute the generated predictor notebooks before treating their recorded outputs as current.",
+        f"The generator rebuilds the {len(catalogue['features']) * 3} predictor notebooks and this index; it does not",
+        "overwrite the maintained overall findings report.",
         "The catalogue in `../../src/predictor_audit_catalogue.json` is the single source",
         "of truth for ordering, audit types, dispositions and related-feature selections.",
         "",
@@ -908,13 +758,7 @@ def write_notebook(path: Path, value):
 
 def main():
     catalogue = load_catalogue()
-    overall_directory = DATA_AUDIT_DIRECTORY / "00-overall"
-    write_notebook(
-        overall_directory / "00-overall-data-audit.ipynb",
-        build_overall_notebook(catalogue),
-    )
-
-    written = 1
+    written = 0
     for feature in catalogue["features"]:
         directory = DATA_AUDIT_DIRECTORY / folder_name(feature)
         write_notebook(
@@ -936,7 +780,10 @@ def main():
         encoding="utf-8",
         newline="\n",
     )
-    print(f"Wrote {written} canonical notebooks for 39 predictors plus the overall audit.")
+    print(
+        f"Wrote {written} canonical notebooks for 39 predictors; "
+        "preserved the maintained overall findings report."
+    )
 
 
 if __name__ == "__main__":

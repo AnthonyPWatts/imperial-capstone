@@ -17,9 +17,12 @@ Every predictor has the same three-part contract:
 2. `02-<feature>-noteworthy-findings.ipynb`: evidence, interpretation and decision.
 3. `03-<feature>-related-features.ipynb`: nominated relationships and pairwise checks.
 
-Existing broader and feature-family audits are preserved under
-`data-audit/00-overall/`. Rebuild the generated canonical notebooks with
-`data-audit/generate_data_audit_notebooks.py`.
+The maintained findings report is
+[`data-audit/00-overall/00-overall-data-audit.md`](data-audit/00-overall/00-overall-data-audit.md).
+Supporting executable and feature-family audits remain under
+`data-audit/00-overall/`. Rebuild the per-predictor notebooks and their index
+with `data-audit/generate_data_audit_notebooks.py`; the generator does not
+overwrite the findings report.
 
 ## Modelling sequence
 

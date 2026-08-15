@@ -5,7 +5,7 @@ This directory is the canonical home of the data audit.
 Start with the role-based project-level analyses:
 
 1. [`00-target-label-analysis/`](00-target-label-analysis/) contains the dedicated target-label analysis. The folder and notebook use the generic modelling role rather than the dataset-specific `status_group` column name.
-2. [`00-overall/`](00-overall/) contains the dataset scope, overall predictor finding/decision register and preserved feature-family deep dives.
+2. [`00-overall-data-audit.md`](00-overall/00-overall-data-audit.md) is the maintained findings report. Its folder also preserves supporting executable and feature-family audits.
 
 Every raw non-`id` predictor then has a CSV-order-prefixed folder.
 
@@ -65,6 +65,8 @@ the evidence for removal is recorded before preprocessing.
 ## Rebuild
 
 Run `generate_data_audit_notebooks.py` from the project environment, then
-execute the generated notebooks before treating their recorded outputs as current.
+execute the generated predictor notebooks before treating their recorded outputs as current.
+The generator rebuilds the 117 predictor notebooks and this index; it does not
+overwrite the maintained overall findings report.
 The catalogue in `../../src/predictor_audit_catalogue.json` is the single source
 of truth for ordering, audit types, dispositions and related-feature selections.

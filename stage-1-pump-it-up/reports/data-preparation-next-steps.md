@@ -60,10 +60,10 @@ project choice.
 
 ## Evidence already collected
 
-The notebooks contain the current audit work:
+The audit area contains the current evidence and findings:
 
-- [`00-overall-data-audit.ipynb`](../notebooks/data-audit/00-overall/00-overall-data-audit.ipynb)
-  contains the canonical raw-predictor register and completion checks.
+- [`00-overall-data-audit.md`](../notebooks/data-audit/00-overall/00-overall-data-audit.md)
+  contains the findings, decisions, risks and full raw-predictor register.
 - [`00-target-label-analysis.ipynb`](../notebooks/data-audit/00-target-label-analysis/00-target-label-analysis.ipynb)
   contains the focused initial target analysis.
 - [`04-amount_tsh-deep-dive.ipynb`](../notebooks/data-audit/01-amount_tsh/04-amount_tsh-deep-dive.ipynb)
