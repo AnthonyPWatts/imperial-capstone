@@ -24,7 +24,10 @@ and submission template.
 
 ## Licence and handling
 
-DrivenData states that the data may be used outside the challenge with
-attribution, but may not be redistributed outside the challenge pages. Do not
-commit these CSVs. The Pump It Up `.gitignore` excludes them while retaining
-this inventory.
+The authenticated download page viewed on 29 July 2026 included attribution
+guidance. The public competition rules checked on 15 August 2026 require
+participants to prevent access by people who have not accepted the rules and
+forbid redistribution unless the competition site grants an exception. This
+repository therefore treats the supplied CSVs as competition-restricted. Do not
+commit them. The Pump It Up `.gitignore` excludes the files while retaining this
+inventory.

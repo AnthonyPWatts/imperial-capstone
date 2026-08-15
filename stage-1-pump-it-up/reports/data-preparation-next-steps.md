@@ -200,26 +200,25 @@ the fixed column-removal function.
 
 ## Fit with the course ten-step plan
 
-The written report can retain the course headings while the implementation uses
-an earlier split to prevent leakage.
+The project uses the canonical course lifecycle while creating the split before
+any learned preprocessing to prevent leakage.
 
 | Course step | Project treatment |
 | ---: | --- |
-| 1. Clarify goals and scope | Define the three-class prediction question, metric and Stage 1 practice scope. |
-| 2. Gather data | Load immutable feature and label files, join labels by `id`, and record provenance. |
-| 3. Explore, scale and preprocess | Audit structure, apply the fixed column policy, then create the stratified split. Scaling waits until a selected method needs it. |
-| 4. Handle missing values and outliers | Diagnose using the training partition. Fit every treatment inside the model pipeline. |
-| 5. Remove irrelevant or unavailable variables | Explain the fixed removals and any later evidence-led removals. The code performs safe structural removals earlier so later work uses one canonical schema. |
-| 6. Encode categorical variables | Fit encoders inside each training fold. Handle unseen validation or test categories. |
-| 7. Create features | Add only features with a stated rationale and validation evidence. |
-| 8. Determine the task | Record multiclass classification as the formal task. |
-| 9. Split the data | Document the split created after structural preparation, including seed and stratification. |
-| 10. Select methods | Start with a transparent baseline, then compare a decision tree and a tree ensemble. |
+| 1. Define the goal and scope | Treat Stage 1 as practice and portfolio work. Predict three waterpoint states and use accuracy as the competition success measure. |
+| 2. Gather the data | Load immutable feature and label files, join labels by `id` and retain provenance. |
+| 3. Explore the data | Use the target analysis, maintained findings report and predictor catalogue to cover structure, distributions, relationships and limitations. |
+| 4. Clean and preprocess the data | Apply the three guarded structural removals. Fit missing-value handling, encoding and any scaling inside the training partition or current fold. |
+| 5. Select and engineer features | Start with 36 candidates. Test provisional date, age, availability, coordinate and category treatments through held-out comparisons and ablations. |
+| 6. Define the machine-learning task | Record multiclass classification, challenge accuracy, class imbalance and the diagnostic measures needed for the minority class. |
+| 7. Partition the data | Freeze a reproducible stratified split and add a grouped geographic sensitivity check. This is the next formal gate. |
+| 8. Select and train candidate methods | Recreate Extra Trees, histogram gradient boosting and their soft vote with fold-fitted preprocessing; include the non-model reference and a transparent baseline. |
+| 9. Evaluate and interpret the results | Compare held-out accuracy, per-class recall and the confusion matrix before using public scores for model selection. |
+| 10. Deploy and iterate | Refit the selected workflow, validate the submission, record its score and return to earlier steps when errors or ablations justify a change. |
 
-The course transcript groups the same work into broader stages: purpose, data,
-exploration and cleaning, feature work, task choice, splitting, method choice,
-application, interpretation and deployment. The report can cross-reference that
-version without changing the execution order.
+The lifecycle remains iterative. Early public submissions reached Steps 8 to 10,
+but they did not complete the partitioning and local-evaluation gates in Steps 7
+and 9.
 
 ## Implementation sequence
 
@@ -238,8 +237,8 @@ version without changing the execution order.
    reproducible stratified split.
 6. Diagnose missing values and outliers using only the training partition, then
    add learned preprocessing and estimators when the notebook approach is stable.
-7. Realign the Stage 1 README and notebooks with the ten course headings once the
-   executable workflow exists.
+7. **Complete:** align the dashboard and supporting documentation with the
+   canonical ten-step lifecycle.
 
 Use the repository's current `.venv`. Formal automated tests are low priority
 for this known, local data set. Continue using focused smoke checks against both
@@ -263,14 +262,14 @@ serving less controlled inputs.
 - Treatment of high-cardinality categorical fields.
 - Geographic and date feature engineering.
 - Removal of hierarchy columns after model comparison.
-- Model selection, tuning ranges and competition submission.
+- Formal model selection, tuning ranges and the next competition submission.
 
 These choices require training-partition evidence. The structural preparation
 work can proceed without them.
 
 ## Resume point
 
-Start with Step 4 in the baseline workflow. Reuse the structurally reduced
+Start with course Step 7, **Partition the data**. Reuse the structurally reduced
 training frame, validate and align `TrainingSetLabels.csv` by `id`, preserve the
 identifiers separately and create a reproducible stratified train/validation
 split over the 36 candidate predictors and `status_group`. Do not fit imputation,

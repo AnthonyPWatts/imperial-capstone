@@ -24,11 +24,19 @@ Supporting executable and feature-family audits remain under
 with `data-audit/generate_data_audit_notebooks.py`; the generator does not
 overwrite the findings report.
 
-## Modelling sequence
+The temporary full-data candidate experiment sits with its generated submission
+records under
+[`../submissions/2026-08-15-early-experiments/`](../submissions/2026-08-15-early-experiments/).
+It does not replace the formal split and evaluation sequence below.
+
+## Planned formal modelling sequence
 
 1. `02-baseline.ipynb`
 2. `03-model-comparison.ipynb`
 3. `04-tuning-and-evaluation.ipynb`
 4. `05-final-model-and-submission.ipynb`
+
+These notebooks will be added as the formal modelling workflow starts. Their
+names describe the intended order rather than files that already exist.
 
 Keep notebooks focused on analysis. Move stable, reusable code into `../src/`.

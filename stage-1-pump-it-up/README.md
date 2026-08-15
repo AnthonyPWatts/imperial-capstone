@@ -18,18 +18,34 @@ Source: <https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-wa
 - `reports/`: concise findings and model interpretation.
 - `submissions/`: notes about submitted models and their scores.
 
-## Initial modelling plan
+## Current position
 
-1. Audit the labels, missing values, suspicious placeholders and geographic or
-   date fields.
-2. Establish a reproducible stratified split and a simple majority-class
-   baseline.
-3. Build a transparent preprocessing pipeline for numeric and categorical
-   features.
-4. Compare a decision tree with a tree ensemble.
-5. Tune only the strongest candidate using cross-validation, then inspect
-   per-class errors and feature importance.
-6. Validate the submission shape, generate predictions and record the result.
+The raw-data audit covers all 39 non-identifier predictors. Three structural
+removals are settled, leaving 36 candidate predictors. Six submissions have
+tested the submission path and two audit-led model families. The best public
+score is `0.8170` from an equal-weight soft-vote ensemble of Extra Trees and
+histogram gradient boosting.
+
+The audit-led candidates fitted the complete labelled data. Their leaderboard
+scores provide experiment evidence, but no local validation estimate or formal
+model comparison. See the [submission log](submissions/README.md), the
+[maintained audit report](notebooks/data-audit/00-overall/00-overall-data-audit.md)
+and the [data-preparation handoff](reports/data-preparation-next-steps.md).
+
+## Next modelling loop
+
+1. Validate and align feature and label identifiers, then freeze a reproducible
+   stratified train/validation split.
+2. Recreate missing-value handling, encoding and feature engineering with every
+   learned treatment fitted inside the training partition.
+3. Compare the majority-class reference, Extra Trees, histogram gradient
+   boosting and their soft vote on the same held-out rows.
+4. Record accuracy, per-class recall and the confusion matrix, with attention to
+   the minority `functional needs repair` class.
+5. Run a geographic sensitivity check and targeted feature-family ablations
+   before selecting a model.
+6. Refit the selected workflow, validate submission shape and record the next
+   DrivenData result with its source commit and evidence.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

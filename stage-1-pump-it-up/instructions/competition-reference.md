@@ -1,6 +1,7 @@
 # Pump It Up: competition reference
 
-Checked against the public DrivenData pages on 29 July 2026.
+The public problem description and rules were checked on 15 August 2026. The
+local download inventory and source-page snapshots date from 29 July 2026.
 
 ## Problem
 
@@ -73,9 +74,11 @@ wording or schema differs from downloaded files.
 
 - Joining means agreeing to DrivenData's competition rules; this must be done by
   the account holder.
-- The data page permits use outside the challenge with attribution, but forbids
-  redistribution outside the challenge pages.
-- Do not publish or commit the supplied data.
+- The public rules restrict data use to the competition unless the competition
+  site grants an exception. They also require participants to prevent access by
+  people who have not accepted the rules.
+- Treat the supplied data as competition-restricted. Do not publish or commit
+  the downloaded files.
 - The public rules prohibit external data for this competition.
 - Winning solutions must be made available under the MIT licence to qualify for
   recognition or any prize offered.

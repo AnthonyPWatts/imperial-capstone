@@ -17,6 +17,23 @@ Stage 1 is a self-contained machine-learning project used to practise the
 course workflow on a real operational problem. Stage 2 follows the course's
 fixed BBO brief and will be developed as each set of observations is released.
 
+## Current position
+
+As of 15 August 2026, Stage 1 has audited all 39 raw predictors, settled three
+structural removals and organised the remaining 36 candidate predictors. Six
+DrivenData submissions have been made. An equal-weight soft vote between Extra
+Trees and histogram gradient boosting has the best public score at `0.8170`.
+
+Those candidate models used the complete labelled data, so the leaderboard
+result does not provide a local validation estimate. The next gate is a frozen
+stratified split with fold-fitted preprocessing, followed by held-out accuracy,
+per-class recall and a confusion matrix. The main evidence is available in the
+[Stage 1 dashboard](dashboard/), [submission log](stage-1-pump-it-up/submissions/README.md),
+[data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
+and [data-preparation handoff](stage-1-pump-it-up/reports/data-preparation-next-steps.md).
+
+Stage 2 remains scaffolded while the Module 12 inputs and dates are unavailable.
+
 ## Local project hub
 
 Run the static site from this directory so that the hub, shared status snapshot
