@@ -157,7 +157,7 @@ main {
 
 .progress span {
   display: block;
-  width: var(--status-progress, 35.71%);
+  width: var(--status-progress, 67.86%);
   height: 100%;
   background: var(--blue);
 }
@@ -412,7 +412,7 @@ tbody tr:hover {
 
 .checklist {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0;
   margin: 0;
   padding: 0.35rem 0.8rem 0.35rem 2.5rem;
@@ -563,9 +563,13 @@ tbody tr:hover {
   border-right: 0;
 }
 
-.benchmark-list > div:last-child {
+.benchmark-list > div:last-child:nth-child(odd) {
   grid-column: 1 / -1;
   border-right: 0;
+  border-bottom: 0;
+}
+
+.benchmark-list > div:nth-last-child(-n + 2) {
   border-bottom: 0;
 }
 
@@ -619,8 +623,8 @@ tbody tr:hover {
   gap: 0.45rem;
   border-left: 1px solid var(--border);
   background:
-    linear-gradient(to bottom, var(--red) 0 1px, transparent 1px),
-    linear-gradient(to bottom, transparent calc(2.7rem - 0.5px), var(--border-light) calc(2.7rem - 0.5px) calc(2.7rem + 0.5px), transparent calc(2.7rem + 0.5px)),
+    linear-gradient(to bottom, transparent calc(0.424rem - 0.5px), var(--red) calc(0.424rem - 0.5px) calc(0.424rem + 0.5px), transparent calc(0.424rem + 0.5px)),
+    linear-gradient(to bottom, transparent calc(2.314rem - 0.5px), var(--border-light) calc(2.314rem - 0.5px) calc(2.314rem + 0.5px), transparent calc(2.314rem + 0.5px)),
     linear-gradient(to bottom, transparent calc(5.4rem - 1px), var(--border-light) calc(5.4rem - 1px) 5.4rem, transparent 5.4rem);
 }
 

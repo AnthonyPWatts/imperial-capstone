@@ -51,7 +51,7 @@ reproducible notebook and experiment notes are in
 | Histogram gradient boosting | 0.7968 | -0.0082 |
 | Equal-weight soft-vote ensemble | **0.8170** | **+0.0120** |
 
-- Source commit: the commit adding this experiment and log entry.
+- Source commit: `68656d6` (`Added early competition submissions`).
 - Private leaderboard scores: not available.
 - Both candidate models fitted the complete supplied labelled data; no local
   train/validation split or performance estimate was retained.

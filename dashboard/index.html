@@ -6,7 +6,7 @@
   <meta name="description" content="Pump It Up competition plan and progress.">
   <title>Pump It Up — status</title>
   <link rel="stylesheet" href="../assets/site-shell.css">
-  <link rel="stylesheet" href="styles.css?v=20260815-readable-workflow">
+  <link rel="stylesheet" href="styles.css?v=20260815-current-results">
   <script defer src="../assets/status-loader.js"></script>
 </head>
 <body>
@@ -36,14 +36,14 @@
   <main id="content">
     <section class="summary" aria-label="Summary">
       <div class="progress-summary">
-        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">10 / 28</span> checkpoints</strong></div>
-        <div class="progress" role="img" data-status-progress-current="overall.completed" data-status-progress-total="overall.total" aria-label="36 per cent complete"><span></span></div>
-        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Freeze split + build preprocessing baseline</strong></div>
+        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">19 / 28</span> checkpoints</strong></div>
+        <div class="progress" role="img" data-status-progress-current="overall.completed" data-status-progress-total="overall.total" aria-label="68 per cent complete"><span></span></div>
+        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Freeze split + establish local validation</strong></div>
       </div>
       <dl class="summary-metrics">
         <div class="metric"><dt>Features fully examined</dt><dd><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small><code data-status-text="features.current">Initial predictor audit organised</code></small></dd></div>
-        <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">3</strong><small>Total</small></dd></div>
-        <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.5461</strong><small>Chump floor</small></dd></div>
+        <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">6</strong><small>Total</small></dd></div>
+        <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8170</strong><small data-status-text="submissions.bestLabel">Soft-vote ensemble</small></dd></div>
         <div class="metric"><dt>Target score</dt><dd><strong data-status-text="benchmarks.targetScore" data-status-format="score">0.8225</strong><small>Provisional</small></dd></div>
         <div class="metric daily-usage"><dt>Used today (UTC)</dt><dd><strong data-status-fraction-current="submissions.usedToday" data-status-fraction-total="submissions.dailyLimit">3 / 3</strong><progress value="3" max="3" data-status-progress-current="submissions.usedToday" data-status-progress-total="submissions.dailyLimit">3 of 3 used</progress></dd></div>
       </dl>
@@ -52,19 +52,19 @@
     <div class="dashboard-grid">
       <section class="panel now-panel" aria-labelledby="now-title">
         <header class="panel-heading">
-          <div><h2 id="now-title">Now</h2><p>Freeze the preprocessing and evaluation foundations before comparing models.</p></div>
-          <span class="state active">Steps 4, 6 + 7</span>
+          <div><h2 id="now-title">Now</h2><p>Turn the promising public result into reproducible local evidence.</p></div>
+          <span class="state active">Steps 4, 6–9</span>
         </header>
-        <p class="completed-work"><strong>Recorded:</strong> training shares 54.31% / 7.27% / 38.42%; public constant scores are close enough to show no material prior shift.</p>
+        <p class="completed-work"><strong>Recorded:</strong> Extra Trees 0.8050, histogram gradient boosting 0.7968 and their soft-vote ensemble 0.8170; none has a local validation score yet.</p>
         <ol class="checklist">
-          <li>Run the committed source-frame validations from a clean kernel and retain the output.</li>
-          <li>Separate <code>id</code> and <code>status_group</code>; expose the 36 candidate predictors.</li>
+          <li>Run and retain the exact feature/label ID-alignment validation.</li>
           <li>Choose and record the split proportion and random seed.</li>
           <li>Create the reproducible stratified train/validation split.</li>
-          <li>Record split class shares, dummy accuracy and one imbalance-aware metric.</li>
+          <li>Record dummy accuracy, per-class recall and the confusion matrix.</li>
+          <li>Refit both candidate pipelines on training folds and compare the soft vote locally.</li>
         </ol>
-        <p class="parallel-work"><strong>In parallel:</strong> turn the completed breadth-first predictor audit into explicit treatment decisions; no more submissions are available today.</p>
-        <p class="gate"><strong>Done when:</strong> target audit = 4 / 4 and the repeatable split and local dummy score are recorded.</p>
+        <p class="parallel-work"><strong>Interpretation:</strong> treat 0.8170 as promising leaderboard evidence, not selection evidence; no more submissions are available today.</p>
+        <p class="gate"><strong>Done when:</strong> target integrity = 4 / 4 and the repeatable split, local baselines and candidate comparison are recorded.</p>
       </section>
 
       <section class="panel plan-panel" aria-labelledby="plan-title">
@@ -96,29 +96,29 @@
                 <td><strong>2 / 2</strong></td>
                 <td>Training features, labels and test inputs are present; source structure and column policy are recorded.</td>
               </tr>
-              <tr>
+              <tr class="row-complete">
                 <td><span class="track-type">Step 03</span><strong>Explore the data</strong></td>
-                <td><span class="state queued">Queued</span></td>
-                <td><strong>0 / 4</strong></td>
-                <td>Summarise missingness, cardinality, distributions, relationships and geographic/date structure.</td>
+                <td><span class="state complete">Done</span></td>
+                <td><strong>4 / 4</strong></td>
+                <td>Maintained overall report and 117 predictor notebooks cover structure, distributions, limitations, relationships and feature families.</td>
               </tr>
               <tr class="row-active">
                 <td><span class="track-type">Step 04</span><strong>Clean &amp; preprocess the data</strong></td>
                 <td><span class="state active">Active</span></td>
-                <td><strong>0 / 3</strong></td>
-                <td>Build fold-safe missing-value, categorical and scaling treatment; compare it in a transparent pipeline.</td>
+                <td><strong>1 / 3</strong></td>
+                <td>Guarded structural cleanup is implemented. Full-data treatments were trialled but do not count as fold-safe preprocessing.</td>
               </tr>
               <tr class="row-active">
                 <td><span class="track-type">Step 05</span><strong>Select &amp; engineer features</strong></td>
                 <td><span class="state active">Active</span></td>
                 <td><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small class="progress-note">audit · separate metric</small></td>
-                <td>Initial predictor audit is organised; turn it into treatment, removal and engineering decisions.</td>
+                <td>All candidates are audited; three removals are settled and date, pump-age, missing-state and coordinate treatments were trialled.</td>
               </tr>
               <tr class="row-active">
                 <td><span class="track-type">Step 06</span><strong>Define the ML task</strong></td>
                 <td><span class="state active">Active</span></td>
-                <td><strong>2 / 4</strong></td>
-                <td>Multiclass target, accuracy metric and class balance are recorded; executable label and ID integrity evidence remains.</td>
+                <td><strong>3 / 4</strong></td>
+                <td>Multiclass task, accuracy, class balance and executable label-frame integrity are recorded; exact feature/label ID alignment remains.</td>
               </tr>
               <tr class="row-active">
                 <td><span class="track-type">Step 07</span><strong>Partition the data</strong></td>
@@ -126,23 +126,23 @@
                 <td><strong>0 / 3</strong></td>
                 <td>Record the split policy and create a repeatable stratified train/validation split with aligned labels.</td>
               </tr>
-              <tr>
+              <tr class="row-active">
                 <td><span class="track-type">Step 08</span><strong>Select &amp; train candidate methods</strong></td>
-                <td><span class="state queued">Queued</span></td>
-                <td><strong>0 / 3</strong></td>
-                <td>Start with a transparent model, then train an ensemble contender if the evidence supports it.</td>
+                <td><span class="state active">Active</span></td>
+                <td><strong>2 / 3</strong></td>
+                <td>Extra Trees and histogram gradient boosting plus a soft vote are reproducible; local validation must decide between them.</td>
               </tr>
               <tr class="row-active">
                 <td><span class="track-type">Step 09</span><strong>Evaluate &amp; interpret results</strong></td>
                 <td><span class="state active">Active</span></td>
-                <td><strong>3 / 3</strong><small class="progress-note">public baselines</small></td>
-                <td>Three constant-class baselines are recorded; local dummy and model comparisons begin after Step 7.</td>
+                <td><strong>2 / 3</strong><small class="progress-note">public evidence</small></td>
+                <td>Constant and candidate leaderboard comparisons are recorded; held-out comparison and interpretation remain.</td>
               </tr>
-              <tr>
+              <tr class="row-active">
                 <td><span class="track-type">Step 10</span><strong>Deploy &amp; iterate</strong></td>
-                <td><span class="state queued">Queued</span></td>
-                <td><strong>0 / 3</strong></td>
-                <td>Submit one evidence-led change, record the score and loop back when later findings change earlier choices.</td>
+                <td><span class="state active">Active</span></td>
+                <td><strong>2 / 3</strong></td>
+                <td>Three audit-led candidate submissions, hashes and scores are recorded; formal model selection and the next evidence-led iteration remain.</td>
               </tr>
             </tbody>
           </table>
@@ -151,18 +151,19 @@
 
       <aside class="support-grid" aria-label="Evidence and controls">
         <section class="panel compact-panel" aria-labelledby="submissions-title">
-          <header class="panel-heading"><div><h2 id="submissions-title">Constant-class baselines</h2><p>14 August 2026 · daily allowance exhausted</p></div></header>
+          <header class="panel-heading"><div><h2 id="submissions-title">Audit-led submissions</h2><p>15 August 2026 · 3 submitted · daily allowance exhausted</p></div></header>
           <dl class="submission-list">
-            <div class="best-submission"><dt><code>functional</code><small>“Any chump can get here” floor</small></dt><dd><strong>0.5461</strong><span>Best</span></dd></div>
-            <div><dt><code>functional needs repair</code></dt><dd><strong>0.0719</strong></dd></div>
-            <div><dt><code>non functional</code></dt><dd><strong>0.3820</strong></dd></div>
+            <div class="best-submission"><dt>Soft-vote ensemble<small>Equal-weight blend</small></dt><dd><strong>0.8170</strong><span>Best</span></dd></div>
+            <div><dt>Extra Trees<small>Audit-led features</small></dt><dd><strong>0.8050</strong></dd></div>
+            <div><dt>Histogram gradient boosting<small>Audit-led features</small></dt><dd><strong>0.7968</strong></dd></div>
           </dl>
         </section>
 
         <section class="panel compact-panel" aria-labelledby="benchmarks-title">
-          <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Current gap to target: 27.64 percentage points</p></div></header>
+          <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Current gap to target: 0.55 percentage points</p></div></header>
           <dl class="benchmark-list">
-            <div><dt>Current best / chump floor</dt><dd>54.61%</dd></div>
+            <div><dt>Current best / soft vote</dt><dd>81.70%</dd></div>
+            <div><dt>Chump floor</dt><dd>54.61%</dd></div>
             <div><dt>“Everyone and their dog”</dt><dd>≈82.10%</dd></div>
             <div><dt>About 2,500 teams</dt><dd>≈82.20%</dd></div>
             <div class="target-benchmark"><dt>Provisional target</dt><dd>82.25%</dd></div>
@@ -171,13 +172,17 @@
         </section>
 
         <section class="panel compact-panel" aria-labelledby="history-title">
-          <header class="panel-heading"><div><h2 id="history-title">Daily best score</h2><p>Near-term ceiling: 60% · provisional target: 82.25%</p></div></header>
-          <div class="score-chart" role="img" aria-label="Daily best score history. 14 August 2026: 54.61 per cent. Near-term ceiling: 60 per cent.">
-            <div class="score-axis" aria-hidden="true"><span>60%</span><span>55%</span><span>50%</span></div>
+          <header class="panel-heading"><div><h2 id="history-title">Daily best score</h2><p>Chart scale: 50–85% · provisional target: 82.25%</p></div></header>
+          <div class="score-chart" role="img" aria-label="Daily best score history. 14 August 2026: 54.61 per cent. 15 August 2026: 81.70 per cent. Provisional target: 82.25 per cent.">
+            <div class="score-axis" aria-hidden="true"><span>85%</span><span>70%</span><span>50%</span></div>
             <div class="score-plot">
               <div class="score-day">
-                <div class="score-bar-zone"><span class="score-bar" style="--score-height: 46.1%"><strong>54.61%</strong></span></div>
+                <div class="score-bar-zone"><span class="score-bar" style="--score-height: 13.17%"><strong>54.61%</strong></span></div>
                 <time datetime="2026-08-14">14 Aug</time>
+              </div>
+              <div class="score-day">
+                <div class="score-bar-zone"><span class="score-bar" style="--score-height: 90.57%"><strong>81.70%</strong></span></div>
+                <time datetime="2026-08-15">15 Aug</time>
               </div>
             </div>
           </div>
@@ -188,8 +193,8 @@
           <dl class="decision-list">
             <div><dt>Fixed removals</dt><dd><code>quantity_group</code>, <code>payment</code>, <code>recorded_by</code></dd></div>
             <div><dt>Preserve</dt><dd><code>id</code> for alignment and submission</dd></div>
-            <div><dt>Defer</dt><dd>Missingness, cardinality, geography and date handling</dd></div>
-            <div><dt>Rule</dt><dd>Learned transforms fit on training rows only</dd></div>
+            <div><dt>Trialled</dt><dd>Missing markers, date parts, pump age and invalid-coordinate masking</dd></div>
+            <div><dt>Rule</dt><dd>Full-data treatments are provisional; refit and compare them inside training folds</dd></div>
           </dl>
         </section>
 
@@ -218,7 +223,7 @@
         <div><dt>Candidate predictors</dt><dd data-status-text="data.candidatePredictors" data-status-format="integer">36</dd></div>
         <div><dt>Target classes</dt><dd data-status-text="data.targetClasses" data-status-format="integer">3</dd></div>
         <div><dt>Metric</dt><dd data-status-text="data.metric">Accuracy</dd></div>
-        <div><dt>Models evaluated</dt><dd data-status-text="models.evaluated" data-status-format="integer">0</dd></div>
+        <div><dt>Locally evaluated</dt><dd data-status-text="models.evaluated" data-status-format="integer">0</dd></div>
       </dl>
     </section>
   </main>

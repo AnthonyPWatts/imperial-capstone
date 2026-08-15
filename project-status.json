@@ -4,15 +4,15 @@
     "label": "15 August 2026"
   },
   "overall": {
-    "completed": 10,
+    "completed": 19,
     "total": 28,
-    "current": "Freeze split + build preprocessing baseline"
+    "current": "Freeze split + establish local validation"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Freeze the reproducible stratified split and turn the completed predictor audit into fold-safe preprocessing.",
+    "nextCheckpoint": "Freeze the reproducible stratified split, then compare the promising public candidates with local evidence.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -31,17 +31,21 @@
     "structuralRemovalsAudited": 3
   },
   "models": {
+    "trainedCandidates": 2,
+    "ensembleCandidates": 1,
     "evaluated": 0
   },
   "submissions": {
-    "total": 3,
+    "total": 6,
     "usedToday": 3,
     "dailyLimit": 3,
-    "bestScore": 0.5461
+    "bestScore": 0.817,
+    "bestLabel": "Soft-vote ensemble",
+    "latestDate": "2026-08-15"
   },
   "benchmarks": {
     "targetScore": 0.8225,
-    "nearTermCeiling": 0.6
+    "nearTermCeiling": 0.85
   },
   "data": {
     "trainingRows": 59400,

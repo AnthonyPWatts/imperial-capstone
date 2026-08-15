@@ -34,56 +34,65 @@ is dated 15 August 2026:
 
 | Metric | Current value |
 | --- | ---: |
-| Overall plan checkpoints | 10 / 28 |
+| Overall plan checkpoints | 19 / 28 |
 | Features fully examined | 36 / 36 (initial predictor audit organised) |
-| Models evaluated | 0 |
-| DrivenData submissions | 3 |
-| Best leaderboard score | 0.5461 |
+| Locally evaluated models | 0 |
+| Candidate methods trained | 2, plus one soft-vote ensemble |
+| DrivenData submissions | 6 |
+| Best leaderboard score | 0.8170 |
 | Provisional target score | 0.8225 |
-| Near-term chart ceiling | 0.6000 |
+| Chart ceiling | 0.8500 |
 | Daily submissions used | 3 / 3 UTC |
 
-The active work spans several course steps because the process is iterative:
+The current task is to turn the promising public result into reproducible local
+evidence. The process remains iterative, so work has reached later steps without
+making the partitioning and evaluation gates disappear:
 
-- **Step 4, clean and preprocess:** turn the predictor audit and recorded
-  removals into fold-safe preprocessing.
-- **Step 6, define the task (2 / 4):** the training distribution and baseline
-  implications are recorded. Run the committed label-frame and exact ID
-  alignment checks from a clean kernel and retain their output.
-- **Step 7, partition the data:** align labels by `id`, create a reproducible stratified split
-  and record a local dummy-classifier score.
-- **Step 5, select and engineer features:** convert the completed breadth-first
-  predictor audit into explicit treatment decisions, with deep investigation
-  deferred unless modelling evidence justifies it.
+- **Step 3, explore the data (4 / 4):** the maintained overall findings report,
+  predictor catalogue and 117 per-predictor notebooks cover structure,
+  distributions, limitations, relationships and feature families.
+- **Step 4, clean and preprocess (1 / 3):** guarded structural cleanup is
+  implemented. The temporary full-data experiment tried missing markers,
+  imputation, encoding, date parts, pump age and coordinate masking, but those
+  learned treatments do not count as fold-safe evidence.
+- **Step 6, define the task (3 / 4):** multiclass classification, accuracy,
+  class balance and the executed label-frame integrity check are recorded.
+  Exact feature/label ID alignment remains.
+- **Step 7, partition the data (0 / 3):** choose the split policy, create the
+  reproducible stratified split and record its local non-model baseline.
+- **Step 8, select and train candidates (2 / 3):** Extra Trees and histogram
+  gradient boosting, plus their soft vote, are reproducible. Local validation
+  must decide between them.
+- **Step 9, evaluate and interpret (2 / 3):** constant and candidate public
+  comparisons are recorded. Held-out comparison, per-class recall and the
+  confusion matrix remain.
+- **Step 10, deploy and iterate (2 / 3):** the candidate submissions, hashes and
+  scores are recorded. Formal selection and the next evidence-led iteration
+  remain.
 
-The target audit, breadth-first predictor coverage and dataset-wide exploration
-represent a rough minimum of ten hours of foundation work. This is planning
-context rather than a deadline; feature or relationship deep dives add to it.
+Six submissions have been made across two UTC dates:
 
-Loop 0 is complete. One constant submission was made for each permitted class:
+| Submission | Date | DrivenData score |
+| --- | --- | ---: |
+| All `functional` | 14 August | 0.5461 |
+| All `functional needs repair` | 14 August | 0.0719 |
+| All `non functional` | 14 August | 0.3820 |
+| Extra Trees | 15 August | 0.8050 |
+| Histogram gradient boosting | 15 August | 0.7968 |
+| Equal-weight soft-vote ensemble | 15 August | **0.8170** |
 
-| Constant prediction | DrivenData score |
-| --- | ---: |
-| `functional` | **0.5461** |
-| `functional needs repair` | 0.0719 |
-| `non functional` | 0.3820 |
+The 0.5461 all-`functional` result remains the simple leaderboard floor. The
+0.8170 ensemble is the best public result and sits 0.55 percentage points below
+the provisional 0.8225 target. Both candidate models fitted the complete
+labelled data, so the public results are informal evidence only: there is no
+retained train/validation estimate and the **Models evaluated** counter remains
+zero.
 
-The all-`functional` score is both the current best leaderboard result and the
-"Any chump can get here" floor that subsequent models need to beat. It is the
-best of the three constant-class submissions; the local target audit still
-needs executable label-frame and exact ID-alignment evidence.
-
-The target audit currently awards two checkpoints:
-
-- training shares are recorded as 54.31% `functional`, 7.27% `functional needs
-  repair` and 38.42% `non functional`;
-- the three constant-class public scores are close to those shares and provide
-  no material evidence of class-prior shift.
-
-The two remaining checkpoints are executable label-frame integrity and exact
-feature/label ID alignment evidence. The validators exist in
-`src/source_data_validation.py`, but the refactored notebook cells have not yet
-been rerun and therefore do not count as completed evidence.
+The target-integrity track currently awards three of four checkpoints. The
+training shares, task/metric implications and executable label-frame integrity
+are recorded. Exact feature/label ID alignment is the remaining checkpoint;
+the validator exists in `src/source_data_validation.py` but its evidence has not
+yet been retained in the formal baseline workflow.
 
 Working competition context was supplied manually on 14 August 2026 and has
 not been fetched or independently verified by the dashboard:
@@ -95,9 +104,9 @@ not been fetched or independently verified by the dashboard:
 | Provisional project target | **82.25%** |
 | Reported world record | 82.299% |
 
-The dashboard also includes a compact daily-best chart. Its initial point is
-54.61% on 14 August 2026. The chart uses 60% as a near-term ceiling so early
-movement remains visible; 82.25% remains the actual provisional target.
+The compact daily-best chart records 54.61% on 14 August and 81.70% on 15
+August. Its scale now runs from 50% to 85%, with the 82.25% provisional target
+drawn inside that range.
 
 ## Metric definitions
 
@@ -109,19 +118,19 @@ The 28 checkpoints are grouped under the course lifecycle. Step 5 feature
 coverage has its own 36-feature denominator and is excluded from the overall
 checkpoint total:
 
-| Course step | Checkpoints |
-| --- | ---: |
-| 1. Define the goal and scope | 3 |
-| 2. Gather the data | 2 |
-| 3. Explore the data | 4 |
-| 4. Clean and preprocess the data | 3 |
-| 5. Select and engineer features | Separate 36-feature metric |
-| 6. Define the machine-learning task | 4 |
-| 7. Partition the data | 3 |
-| 8. Select and train candidate methods | 3 |
-| 9. Evaluate and interpret results | 3 |
-| 10. Deploy and iterate | 3 |
-| **Total** | **28** |
+| Course step | Current | Available |
+| --- | ---: | ---: |
+| 1. Define the goal and scope | 3 | 3 |
+| 2. Gather the data | 2 | 2 |
+| 3. Explore the data | 4 | 4 |
+| 4. Clean and preprocess the data | 1 | 3 |
+| 5. Select and engineer features | 36 | Separate 36-feature metric |
+| 6. Define the machine-learning task | 3 | 4 |
+| 7. Partition the data | 0 | 3 |
+| 8. Select and train candidate methods | 2 | 3 |
+| 9. Evaluate and interpret results | 2 | 3 |
+| 10. Deploy and iterate | 2 | 3 |
+| **Overall checkpoint total** | **19** | **28** |
 
 Increment a track only when its exit evidence exists. Do not award partial
 credit for activity alone.
@@ -144,7 +153,9 @@ has deeper feature-specific analysis.
 
 Count a model family once after it has a reproducible local evaluation against
 the agreed split. Hyperparameter variants do not each increase the headline
-counter. Record detailed experiments elsewhere.
+counter. The two trained candidates and their soft vote therefore do not yet
+increase this counter: they were fitted to the full labelled data and compared
+only through public leaderboard scores. Record detailed experiments elsewhere.
 
 ### Submission metrics
 
@@ -157,17 +168,17 @@ counter. Record detailed experiments elsewhere.
 ### Daily best score chart
 
 Add at most one bar per UTC date, using the best leaderboard score known at the
-end of that day. The current chart is deliberately scaled from 50% to 60%.
+end of that day. The current chart is scaled from 50% to 85%.
 Calculate the CSS height as:
 
 ```text
---score-height = (percentage score - 50) × 10%
+--score-height = (percentage score - 50) ÷ 35 × 100%
 ```
 
-For example, 54.61% becomes `46.1%`. If results reach or exceed 60%, change the
-axis and document the new scale rather than allowing bars to overflow. Keep the
-full 82.25% target in the summary and benchmark panel regardless of the chart's
-temporary scale.
+For example, 54.61% becomes `13.17%` and 81.70% becomes `90.57%`. If results
+reach or exceed 85%, change the axis and document the new scale rather than
+allowing bars to overflow. Keep the full 82.25% target in the summary and
+benchmark panel regardless of the chart's temporary scale.
 
 ## Real risks and controls
 
@@ -206,11 +217,14 @@ or notebook output directly.
 
 ## Likely next changes
 
-- Rerun the source-frame validation cells from a clean kernel and retain their
-  output to complete the target-integrity evidence.
+- Run and retain the exact feature/label ID-alignment check to complete the
+  target-integrity evidence.
 - Create the reproducible stratified split and compare the local majority-class
   rate with the 0.5461 all-`functional` leaderboard floor.
-- Start the dataset-wide breadth-first summaries before choosing further
-  feature deep dives.
-- Move the evaluation track forward after the aligned stratified split exists.
-- Increment feature coverage only as features meet the definition above.
+- Refit Extra Trees and histogram gradient boosting using preprocessing learned
+  only from the training fold, then compare both candidates and their soft vote
+  on the same held-out rows.
+- Record accuracy, per-class recall and the confusion matrix before using the
+  0.8170 public score to justify model selection or further submissions.
+- Use local errors and ablations to decide which provisional feature treatments
+  from the temporary full-data experiment deserve to remain.
