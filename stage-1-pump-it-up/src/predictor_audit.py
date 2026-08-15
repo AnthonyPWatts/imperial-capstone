@@ -366,3 +366,133 @@ def cramer_v(table: pd.DataFrame) -> float:
     corrected_columns = columns - ((columns - 1) ** 2) / max(total - 1, 1)
     denominator = min(corrected_columns - 1, corrected_rows - 1)
     return float(np.sqrt(corrected_phi / denominator)) if denominator > 0 else float("nan")
+
+
+def correlation_ratio(categories: pd.Series, values: pd.Series) -> float:
+    """Return eta for a categorical/numeric relationship."""
+
+    working = pd.DataFrame(
+        {
+            "category": analysis_categories(categories),
+            "value": pd.to_numeric(values, errors="coerce"),
+        }
+    ).dropna(subset=["value"])
+    if working.empty or working["category"].nunique() < 2:
+        return float("nan")
+    grand_mean = float(working["value"].mean())
+    groups = working.groupby("category", observed=True)["value"]
+    between = float(
+        sum(len(group) * (float(group.mean()) - grand_mean) ** 2 for _, group in groups)
+    )
+    total = float(((working["value"] - grand_mean) ** 2).sum())
+    return float(np.sqrt(between / total)) if total > 0 else float("nan")
+
+
+def _as_relationship_numeric(series: pd.Series, audit_type: str) -> pd.Series:
+    if audit_type == "date":
+        dates = pd.to_datetime(series, errors="coerce")
+        return dates.map(lambda value: value.toordinal() if pd.notna(value) else np.nan)
+    return pd.to_numeric(series, errors="coerce")
+
+
+def _is_numeric_relationship_type(audit_type: str) -> bool:
+    return audit_type in {"numeric", "coordinate", "year", "date"}
+
+
+def pairwise_relationship_summary(
+    frame: pd.DataFrame,
+    primary: str,
+    related: str,
+    *,
+    primary_type: str,
+    related_type: str,
+) -> dict[str, object]:
+    """Describe a predictor pair using a measure appropriate to their audit types."""
+
+    primary_is_numeric = _is_numeric_relationship_type(primary_type)
+    related_is_numeric = _is_numeric_relationship_type(related_type)
+    common = frame[[primary, related]].copy()
+
+    if primary_is_numeric and related_is_numeric:
+        primary_values = _as_relationship_numeric(common[primary], primary_type)
+        related_values = _as_relationship_numeric(common[related], related_type)
+        valid = primary_values.notna() & related_values.notna()
+        coefficient = primary_values.loc[valid].corr(
+            related_values.loc[valid],
+            method="spearman",
+        )
+        return {
+            "primary": primary,
+            "related": related,
+            "measure": "Spearman correlation",
+            "association": round(float(coefficient), 4) if pd.notna(coefficient) else np.nan,
+            "complete rows": int(valid.sum()),
+            "primary levels": int(primary_values.loc[valid].nunique()),
+            "related levels": int(related_values.loc[valid].nunique()),
+            "forward modal purity (%)": np.nan,
+            "reverse modal purity (%)": np.nan,
+        }
+
+    if not primary_is_numeric and not related_is_numeric:
+        primary_values = analysis_categories(common[primary])
+        related_values = analysis_categories(common[related])
+        table = pd.crosstab(primary_values, related_values, dropna=False)
+        forward_purity = table.max(axis=1).sum() / table.to_numpy().sum() * 100
+        reverse_purity = table.max(axis=0).sum() / table.to_numpy().sum() * 100
+        return {
+            "primary": primary,
+            "related": related,
+            "measure": "bias-corrected Cramer's V",
+            "association": round(cramer_v(table), 4),
+            "complete rows": len(common),
+            "primary levels": int(table.shape[0]),
+            "related levels": int(table.shape[1]),
+            "forward modal purity (%)": round(float(forward_purity), 2),
+            "reverse modal purity (%)": round(float(reverse_purity), 2),
+        }
+
+    if primary_is_numeric:
+        numeric_values = _as_relationship_numeric(common[primary], primary_type)
+        category_values = common[related]
+    else:
+        numeric_values = _as_relationship_numeric(common[related], related_type)
+        category_values = common[primary]
+    valid = numeric_values.notna()
+    return {
+        "primary": primary,
+        "related": related,
+        "measure": "correlation ratio (eta)",
+        "association": round(
+            correlation_ratio(category_values.loc[valid], numeric_values.loc[valid]),
+            4,
+        ),
+        "complete rows": int(valid.sum()),
+        "primary levels": int(common.loc[valid, primary].nunique(dropna=False)),
+        "related levels": int(common.loc[valid, related].nunique(dropna=False)),
+        "forward modal purity (%)": np.nan,
+        "reverse modal purity (%)": np.nan,
+    }
+
+
+def related_feature_summary(
+    frame: pd.DataFrame,
+    primary: str,
+    primary_type: str,
+    related_features: Iterable[Mapping[str, str]],
+    feature_types: Mapping[str, str],
+) -> pd.DataFrame:
+    """Return aligned pairwise diagnostics for a catalogue-defined relationship set."""
+
+    records = []
+    for relationship in related_features:
+        related = relationship["feature"]
+        record = pairwise_relationship_summary(
+            frame,
+            primary,
+            related,
+            primary_type=primary_type,
+            related_type=feature_types[related],
+        )
+        record["relationship rationale"] = relationship["reason"]
+        records.append(record)
+    return pd.DataFrame.from_records(records)

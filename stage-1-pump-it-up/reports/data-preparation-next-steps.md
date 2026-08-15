@@ -1,7 +1,7 @@
 ---
 status: ready-for-baseline-split
 branch: main
-updated: 2026-08-14
+updated: 2026-08-15
 ---
 
 # Stage 1 data preparation: decisions and next steps
@@ -17,8 +17,10 @@ The fixed column-removal implementation is in
 [`src/data_preparation.py`](../src/data_preparation.py), with its declarative
 schema and assumptions in
 [`src/raw_feature_column_policy.json`](../src/raw_feature_column_policy.json).
-`01-data-audit.ipynb` now applies it independently to both raw feature frames and
-shows the 40 to 37 column change without altering the source DataFrames.
+The preserved prior overall audit at
+[`10-prior-overall-data-audit.ipynb`](../notebooks/data-audit/00-overall/supporting-audits/10-prior-overall-data-audit.ipynb)
+applies it independently to both raw feature frames and shows the 40 to 37
+column change without altering the source DataFrames.
 
 The notebook's reusable structure and identifier checks now live in
 [`src/source_data_validation.py`](../src/source_data_validation.py). The notebook
@@ -60,12 +62,15 @@ project choice.
 
 The notebooks contain the current audit work:
 
-- [`01-data-audit.ipynb`](../notebooks/01-data-audit.ipynb) contains the broader
-  data audit.
-- [`01-data-audit-status_group.ipynb`](../notebooks/01-data-audit-status_group.ipynb)
+- [`00-overall-data-audit.ipynb`](../notebooks/data-audit/00-overall/00-overall-data-audit.ipynb)
+  contains the canonical raw-predictor register and completion checks.
+- [`01-status_group-target-audit.ipynb`](../notebooks/data-audit/00-overall/01-status_group-target-audit.ipynb)
   contains the focused initial target analysis.
-- [`01-data-audit-amount_tsh.ipynb`](../notebooks/01-data-audit-amount_tsh.ipynb)
-  contains the focused `amount_tsh` analysis.
+- [`04-amount_tsh-deep-dive.ipynb`](../notebooks/data-audit/01-amount_tsh/04-amount_tsh-deep-dive.ipynb)
+  preserves the earlier focused `amount_tsh` analysis alongside its canonical
+  three-notebook audit.
+- [`data-audit/README.md`](../notebooks/data-audit/README.md) indexes all 39 raw
+  predictors, including the three proposed structural removals.
 
 ### Target label findings
 
@@ -222,16 +227,18 @@ version without changing the execution order.
 2. **Complete:** add one public function,
    `remove_known_redundant_columns(raw_features)`, and keep the fixed raw schema,
    mappings and removals in `src/raw_feature_column_policy.json`.
-3. **Complete:** update `01-data-audit.ipynb` to load the raw CSVs as it does now,
+3. **Complete:** preserve the prior overall audit under `data-audit/00-overall/`,
    import the shared source-data validators, call the fixed column-removal
    function for training and test features, and display a concise before/after
    column summary.
-4. **Next:** in the baseline workflow, validate identifiers, align the target by `id`,
+4. **Complete:** organise all 39 raw predictors into explicit folders with a
+   type-specific breakdown, noteworthy findings and related-feature analysis.
+5. **Next:** in the baseline workflow, validate identifiers, align the target by `id`,
    separate identifiers from the 36 candidate predictors and create the
    reproducible stratified split.
-5. Diagnose missing values and outliers using only the training partition, then
+6. Diagnose missing values and outliers using only the training partition, then
    add learned preprocessing and estimators when the notebook approach is stable.
-6. Realign the Stage 1 README and notebooks with the ten course headings once the
+7. Realign the Stage 1 README and notebooks with the ten course headings once the
    executable workflow exists.
 
 Use the repository's current `.venv`. Formal automated tests are low priority

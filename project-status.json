@@ -26,7 +26,9 @@
   "features": {
     "examined": 36,
     "total": 36,
-    "current": "Initial predictor audit complete"
+    "current": "Initial predictor audit organised",
+    "rawPredictorsAudited": 39,
+    "structuralRemovalsAudited": 3
   },
   "models": {
     "evaluated": 0

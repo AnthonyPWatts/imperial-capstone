@@ -1,0 +1,614 @@
+{
+  "catalogue_version": 1,
+  "notebook_contract": [
+    "01 basic breakdown: repeat the standard descriptive, missingness, cardinality and train/test coverage checks for the feature type.",
+    "02 noteworthy findings: identify supported target relationships, interpret the single-feature evidence and record a provisional decision.",
+    "03 related features: name the relationships worth checking, quantify them with a type-appropriate diagnostic and explain the modelling consequence."
+  ],
+  "features": [
+    {
+      "order": 1,
+      "name": "amount_tsh",
+      "audit_type": "numeric",
+      "role": "candidate",
+      "disposition": "retain with availability and positive-magnitude treatment",
+      "finding": "Zero dominates the supplied values and positive amounts are strongly right-skewed.",
+      "decision": "Keep an amount-recorded indicator and compare raw or transformed positive magnitude inside validation.",
+      "risk": "Zero can mean no recorded amount rather than a genuine measured zero.",
+      "sentinel_values": [0],
+      "related": [
+        {"feature": "payment_type", "reason": "Payment arrangement provides the closest semantic context for a recorded tariff amount."},
+        {"feature": "quantity", "reason": "Water availability may influence whether an amount is charged or recorded."}
+      ]
+    },
+    {
+      "order": 2,
+      "name": "date_recorded",
+      "audit_type": "date",
+      "role": "candidate",
+      "disposition": "derive recording year and month",
+      "finding": "Every supplied date parses, but collection timing is concentrated in survey waves.",
+      "decision": "Derive stable calendar components and avoid one-hot encoding every raw date.",
+      "risk": "Recording time can proxy survey operations and geography rather than waterpoint condition.",
+      "related": [
+        {"feature": "construction_year", "reason": "Together they define waterpoint age at observation."},
+        {"feature": "region", "reason": "Survey waves may have moved through regions at different times."},
+        {"feature": "installer", "reason": "Installer activity and recorded construction cohorts may be time-dependent."}
+      ]
+    },
+    {
+      "order": 3,
+      "name": "funder",
+      "audit_type": "high-cardinality-category",
+      "role": "candidate",
+      "disposition": "retain after conservative normalisation and fold-fitted rare grouping",
+      "finding": "Effective missingness is about 7.5% and a small but material test share uses unseen funders.",
+      "decision": "Keep blank and sentinel states distinct, normalise conservatively and handle unseen levels explicitly.",
+      "risk": "Naive target encoding leaks and unrestricted fuzzy merging can combine different organisations.",
+      "sentinel_tokens": ["0", "None", "unknown", "not known"],
+      "related": [
+        {"feature": "installer", "reason": "Funding and installation organisations are strongly associated but not duplicates."},
+        {"feature": "scheme_name", "reason": "A funder may repeatedly support named schemes."},
+        {"feature": "region", "reason": "Organisation activity is geographically concentrated."}
+      ]
+    },
+    {
+      "order": 4,
+      "name": "gps_height",
+      "audit_type": "numeric",
+      "role": "candidate",
+      "disposition": "retain zero availability and measured elevation separately",
+      "finding": "Zero affects roughly a third of rows and overlaps a broader missing-measurement block.",
+      "decision": "Flag zero, impute it inside folds where necessary and preserve negative measured values initially.",
+      "risk": "Some zeros can be genuine low elevation and the feature is geographically structured.",
+      "sentinel_values": [0],
+      "related": [
+        {"feature": "longitude", "reason": "Elevation is spatially structured and coordinate missingness overlaps height zero."},
+        {"feature": "latitude", "reason": "Elevation is spatially structured and coordinate missingness overlaps height zero."},
+        {"feature": "population", "reason": "Height and population zeros frequently occur in the same measurement block."},
+        {"feature": "construction_year", "reason": "Height and construction-year zeros frequently co-occur."}
+      ]
+    },
+    {
+      "order": 5,
+      "name": "installer",
+      "audit_type": "high-cardinality-category",
+      "role": "candidate",
+      "disposition": "retain after conservative normalisation and fold-fitted rare grouping",
+      "finding": "The field contains case and whitespace fragmentation as well as blank and sentinel values.",
+      "decision": "Normalise case and whitespace, retain separately from funder and map unseen values explicitly.",
+      "risk": "Aliases need a reviewed mapping; fuzzy merging can erase meaningful distinctions.",
+      "sentinel_tokens": ["0", "unknown", "not known", "-", "unknown installer"],
+      "related": [
+        {"feature": "funder", "reason": "Funding and installation organisations are strongly related but not equivalent."},
+        {"feature": "construction_year", "reason": "Installers operate in particular construction cohorts."},
+        {"feature": "scheme_name", "reason": "Installers can be associated with repeated named schemes."}
+      ]
+    },
+    {
+      "order": 6,
+      "name": "longitude",
+      "audit_type": "coordinate",
+      "role": "candidate",
+      "disposition": "retain only as part of a validated coordinate pair",
+      "finding": "Longitude zero participates in the paired missing-location sentinel.",
+      "decision": "Create one coordinate-availability flag and transform longitude and latitude together.",
+      "risk": "Using either coordinate independently breaks location meaning and encourages spatial memorisation.",
+      "sentinel_values": [0],
+      "related": [
+        {"feature": "latitude", "reason": "The two values are one inseparable geographic coordinate."},
+        {"feature": "region", "reason": "Named region should broadly agree with coordinate location."},
+        {"feature": "lga", "reason": "Administrative geography gives a categorical back-off for location."},
+        {"feature": "gps_height", "reason": "Coordinate and height missingness overlap and both describe physical location."}
+      ]
+    },
+    {
+      "order": 7,
+      "name": "latitude",
+      "audit_type": "coordinate",
+      "role": "candidate",
+      "disposition": "retain only as part of a validated coordinate pair",
+      "finding": "Latitude near zero participates in the paired missing-location sentinel.",
+      "decision": "Create one coordinate-availability flag and transform latitude and longitude together.",
+      "risk": "Using either coordinate independently breaks location meaning and encourages spatial memorisation.",
+      "sentinel_values": [-0.00000002],
+      "related": [
+        {"feature": "longitude", "reason": "The two values are one inseparable geographic coordinate."},
+        {"feature": "region", "reason": "Named region should broadly agree with coordinate location."},
+        {"feature": "lga", "reason": "Administrative geography gives a categorical back-off for location."},
+        {"feature": "gps_height", "reason": "Coordinate and height missingness overlap and both describe physical location."}
+      ]
+    },
+    {
+      "order": 8,
+      "name": "wpt_name",
+      "audit_type": "high-cardinality-category",
+      "role": "candidate",
+      "disposition": "exclude raw exact value from the first baseline",
+      "finding": "Most levels are sparse and more than half of test rows use unseen exact names.",
+      "decision": "Exclude raw one-hot names initially; test cross-fitted frequency or text features separately.",
+      "risk": "In-sample lookup performance is dominated by memorisation and geographic proxying.",
+      "sentinel_tokens": ["None", "none", "unknown", "not known"],
+      "related": [
+        {"feature": "subvillage", "reason": "Waterpoint names may repeat within local settlements."},
+        {"feature": "ward", "reason": "Administrative context can disambiguate generic waterpoint names."},
+        {"feature": "scheme_name", "reason": "Waterpoint and scheme names may share project identity."}
+      ]
+    },
+    {
+      "order": 9,
+      "name": "num_private",
+      "audit_type": "numeric",
+      "role": "candidate",
+      "disposition": "retain only as an ablation candidate",
+      "finding": "The undocumented field is almost entirely zero with a small number of extreme positive values.",
+      "decision": "Keep a non-zero flag and magnitude candidate, then test an early omission ablation.",
+      "risk": "Zero has no documented missing-value meaning and positive support is sparse.",
+      "related": [
+        {"feature": "population", "reason": "Both are numeric local-context fields and may share collection behaviour."},
+        {"feature": "public_meeting", "reason": "The undocumented count may relate to local participation or ownership."}
+      ]
+    },
+    {
+      "order": 10,
+      "name": "basin",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain as stable low-cardinality geography",
+      "finding": "Nine complete levels have stable train/test coverage and meaningful target differences.",
+      "decision": "Retain as a categorical feature and compare its contribution with administrative geography.",
+      "risk": "Hydrological and administrative geography overlap without forming a strict hierarchy.",
+      "related": [
+        {"feature": "region", "reason": "Hydrological basins cross administrative regions."},
+        {"feature": "source", "reason": "Water source types differ across hydrological basins."},
+        {"feature": "longitude", "reason": "Basin assignment is spatially structured."},
+        {"feature": "latitude", "reason": "Basin assignment is spatially structured."}
+      ]
+    },
+    {
+      "order": 11,
+      "name": "subvillage",
+      "audit_type": "high-cardinality-category",
+      "role": "candidate",
+      "disposition": "exclude raw one-hot value from the first baseline",
+      "finding": "The field is extremely sparse, has reused names and exposes many test rows to unseen levels.",
+      "decision": "Use only a separately validated hashing or frequency treatment with explicit missingness.",
+      "risk": "Direct encoding encourages local memorisation and poor unseen coverage.",
+      "related": [
+        {"feature": "ward", "reason": "Subvillages sit within wards, although names are reused."},
+        {"feature": "lga", "reason": "LGA context partially disambiguates repeated subvillage names."},
+        {"feature": "wpt_name", "reason": "Waterpoint names can repeat within local settlements."},
+        {"feature": "region", "reason": "Region is the broad administrative back-off."}
+      ]
+    },
+    {
+      "order": 12,
+      "name": "region",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain as interpretable geographic back-off",
+      "finding": "All 21 levels are covered and functional rates differ substantially by region.",
+      "decision": "Retain and add an LGA/region-grouped validation sensitivity check.",
+      "risk": "Random validation can reward geographic memorisation.",
+      "related": [
+        {"feature": "region_code", "reason": "The named and coded fields overlap but are not simple duplicates."},
+        {"feature": "lga", "reason": "Each LGA maps to one region in the supplied data."},
+        {"feature": "basin", "reason": "Hydrological basins cross administrative regions."},
+        {"feature": "longitude", "reason": "Coordinates should broadly agree with named region."},
+        {"feature": "latitude", "reason": "Coordinates should broadly agree with named region."}
+      ]
+    },
+    {
+      "order": 13,
+      "name": "region_code",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "cast to category and compare with named region",
+      "finding": "The numeric-looking code has categorical meaning and is not a one-to-one copy of region.",
+      "decision": "Treat as unordered and compare region, code and their combination by validation.",
+      "risk": "Scaling or distance-based treatment would impose a false ordering.",
+      "related": [
+        {"feature": "region", "reason": "The code is an alternative but non-identical regional representation."},
+        {"feature": "district_code", "reason": "The pair forms a more useful administrative composite."},
+        {"feature": "lga", "reason": "LGA mappings expose code reuse and anomalies."}
+      ]
+    },
+    {
+      "order": 14,
+      "name": "district_code",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "cast to category and combine with region context",
+      "finding": "The integer code is reused across regions and zero is not universally missing.",
+      "decision": "Treat as categorical and prefer a region-code/district-code composite if retained.",
+      "risk": "The same raw code does not identify one national district.",
+      "related": [
+        {"feature": "region_code", "reason": "Region context disambiguates the reused district label."},
+        {"feature": "lga", "reason": "LGA gives a named administrative comparison."},
+        {"feature": "ward", "reason": "Ward is the finer administrative level."}
+      ]
+    },
+    {
+      "order": 15,
+      "name": "lga",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain with explicit unseen handling",
+      "finding": "All 125 training levels are covered in test and each maps to one region.",
+      "decision": "Retain and compare with the coarser region representation.",
+      "risk": "Strong geographic target differences require grouped robustness checks.",
+      "related": [
+        {"feature": "region", "reason": "LGA maps deterministically to region in the supplied data."},
+        {"feature": "ward", "reason": "LGA context disambiguates reused ward names."},
+        {"feature": "region_code", "reason": "Code relationships expose small administrative anomalies."},
+        {"feature": "district_code", "reason": "Named and coded district representations overlap."}
+      ]
+    },
+    {
+      "order": 16,
+      "name": "ward",
+      "audit_type": "high-cardinality-category",
+      "role": "candidate",
+      "disposition": "retain with LGA context and fold-fitted rare grouping",
+      "finding": "Raw unseen exposure is small, but many ward names are reused and low-frequency.",
+      "decision": "Prefer an LGA/ward composite or encoder with explicit rare and unseen handling.",
+      "risk": "Raw ward names can be ambiguous outside their administrative context.",
+      "related": [
+        {"feature": "lga", "reason": "LGA context disambiguates reused ward names."},
+        {"feature": "subvillage", "reason": "Subvillages are the finer named location."},
+        {"feature": "region", "reason": "Region provides a broad back-off."},
+        {"feature": "longitude", "reason": "Coordinates provide an independent location representation."}
+      ]
+    },
+    {
+      "order": 17,
+      "name": "population",
+      "audit_type": "numeric",
+      "role": "candidate",
+      "disposition": "retain zero, one and positive magnitude as distinct states",
+      "finding": "Zero and one are large special spikes; positive values are strongly right-skewed.",
+      "decision": "Keep zero and one flags plus a raw or log1p magnitude candidate.",
+      "risk": "Zero is probably often missing while one may be a recorded placeholder or real small population.",
+      "sentinel_values": [0],
+      "related": [
+        {"feature": "gps_height", "reason": "Population and height zeros frequently occur in one measurement block."},
+        {"feature": "region", "reason": "Population distribution varies geographically."},
+        {"feature": "lga", "reason": "Local administrative context may explain population scale."}
+      ]
+    },
+    {
+      "order": 18,
+      "name": "public_meeting",
+      "audit_type": "binary",
+      "role": "candidate",
+      "disposition": "retain true, false and blank as distinct states",
+      "finding": "About 5.6% of training values are blank and blanks differ from false.",
+      "decision": "Encode three explicit states rather than mode-imputing blank to true.",
+      "risk": "Missingness may reflect the survey process rather than pump condition.",
+      "related": [
+        {"feature": "permit", "reason": "Both are nullable administrative booleans."},
+        {"feature": "management", "reason": "Meeting status may reflect the management arrangement."},
+        {"feature": "scheme_management", "reason": "Scheme governance may affect whether meetings occur."}
+      ]
+    },
+    {
+      "order": 19,
+      "name": "recorded_by",
+      "audit_type": "constant",
+      "role": "structural-removal",
+      "disposition": "remove before modelling",
+      "finding": "Every supplied row contains the same recording organisation.",
+      "decision": "Remove because a constant column cannot separate outcomes in this dataset.",
+      "risk": "The removal assumption must be revalidated if a future source introduces another recorder.",
+      "related": [
+        {"feature": "date_recorded", "reason": "Recorder identity belongs to the data-collection process represented by recording date."}
+      ]
+    },
+    {
+      "order": 20,
+      "name": "scheme_management",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain and ablate against management",
+      "finding": "The field has source blanks and strongly overlaps management without being equivalent.",
+      "decision": "Keep blank explicit and compare its incremental value with management.",
+      "risk": "Parallel management fields may mostly add redundancy.",
+      "sentinel_tokens": ["None"],
+      "related": [
+        {"feature": "management", "reason": "Both describe management using overlapping labels."},
+        {"feature": "scheme_name", "reason": "Named schemes have imperfect management mappings."},
+        {"feature": "management_group", "reason": "This is the broader management concept."}
+      ]
+    },
+    {
+      "order": 21,
+      "name": "scheme_name",
+      "audit_type": "high-cardinality-category",
+      "role": "candidate",
+      "disposition": "exclude raw one-hot value from the first baseline",
+      "finding": "Nearly half the source values are blank and the recorded names are high-cardinality and inconsistent with scheme management.",
+      "decision": "Preserve blank and literal sentinels separately; test only fold-fitted high-cardinality treatments.",
+      "risk": "Scheme identity can memorise projects and geography.",
+      "sentinel_tokens": ["None", "none", "no scheme", "not known"],
+      "related": [
+        {"feature": "scheme_management", "reason": "Scheme names map imperfectly to the management label."},
+        {"feature": "management", "reason": "Management gives a complete lower-cardinality alternative."},
+        {"feature": "funder", "reason": "Funders may repeatedly support named schemes."},
+        {"feature": "installer", "reason": "Installers may repeatedly construct named schemes."}
+      ]
+    },
+    {
+      "order": 22,
+      "name": "permit",
+      "audit_type": "binary",
+      "role": "candidate",
+      "disposition": "retain true, false and blank as distinct states",
+      "finding": "About 5.1% of training values are blank and blanks are independent of most public-meeting blanks.",
+      "decision": "Encode three explicit states independently of public_meeting.",
+      "risk": "Permit status may proxy administration and geography.",
+      "related": [
+        {"feature": "public_meeting", "reason": "Both are nullable administrative booleans."},
+        {"feature": "region", "reason": "Permit practice may vary geographically."},
+        {"feature": "management", "reason": "Management arrangement may influence permitting."}
+      ]
+    },
+    {
+      "order": 23,
+      "name": "construction_year",
+      "audit_type": "year",
+      "role": "candidate",
+      "disposition": "derive valid pump age and retain unknown-year state",
+      "finding": "Year zero affects about a third of rows and a small number of derived ages are negative.",
+      "decision": "Keep unknown and inconsistent flags plus valid pump age or construction cohort.",
+      "risk": "Age is missing for many rows and is confounded with technology and geography.",
+      "sentinel_values": [0],
+      "related": [
+        {"feature": "date_recorded", "reason": "Together they define waterpoint age at observation."},
+        {"feature": "installer", "reason": "Installers operate in particular construction cohorts."},
+        {"feature": "extraction_type", "reason": "Extraction technology changes across construction cohorts."},
+        {"feature": "gps_height", "reason": "Year and height zeros frequently share one measurement block."}
+      ]
+    },
+    {
+      "order": 24,
+      "name": "extraction_type",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain as the granular extraction representation",
+      "finding": "Eighteen levels map deterministically to two coarser hierarchy levels.",
+      "decision": "Start with the granular type and compare a coarse alternative by ablation.",
+      "risk": "Keeping every hierarchy level adds deterministic redundancy.",
+      "related": [
+        {"feature": "extraction_type_group", "reason": "This is the deterministic intermediate parent."},
+        {"feature": "extraction_type_class", "reason": "This is the deterministic broad parent."},
+        {"feature": "waterpoint_type", "reason": "Extraction mechanism and waterpoint form are physically related."},
+        {"feature": "source", "reason": "Extraction mechanism depends on the water source."}
+      ]
+    },
+    {
+      "order": 25,
+      "name": "extraction_type_group",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "strong redundancy candidate",
+      "finding": "The intermediate group is deterministic from extraction_type and retains nearly the same descriptive association.",
+      "decision": "Compare it against the granular type; do not keep both automatically.",
+      "risk": "The coarser grouping may generalise better even though it loses detail.",
+      "related": [
+        {"feature": "extraction_type", "reason": "The granular child deterministically identifies this group."},
+        {"feature": "extraction_type_class", "reason": "This group deterministically maps to the broad class."}
+      ]
+    },
+    {
+      "order": 26,
+      "name": "extraction_type_class",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "coarse ablation candidate",
+      "finding": "Seven broad classes are deterministically derived from the finer extraction hierarchy.",
+      "decision": "Use as a compact alternative or back-off, not an automatic extra feature.",
+      "risk": "Coarsening can hide useful method-level differences.",
+      "related": [
+        {"feature": "extraction_type", "reason": "The granular child deterministically identifies the class."},
+        {"feature": "extraction_type_group", "reason": "The intermediate group deterministically identifies the class."}
+      ]
+    },
+    {
+      "order": 27,
+      "name": "management",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain as the granular management representation",
+      "finding": "Twelve complete levels map deterministically to five management groups.",
+      "decision": "Use as the initial management feature and compare scheme_management incrementally.",
+      "risk": "Some sparse levels may require grouping.",
+      "related": [
+        {"feature": "management_group", "reason": "This is the deterministic coarse parent."},
+        {"feature": "scheme_management", "reason": "This overlapping management field is not equivalent."},
+        {"feature": "scheme_name", "reason": "Scheme identity may proxy the management arrangement."}
+      ]
+    },
+    {
+      "order": 28,
+      "name": "management_group",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "likely redundant beside management",
+      "finding": "Five coarse groups are deterministically derived from management and retain much less descriptive association.",
+      "decision": "Prefer management and keep this as a coarse ablation candidate.",
+      "risk": "The coarse feature may still generalise better for rare management levels.",
+      "related": [
+        {"feature": "management", "reason": "The granular child deterministically identifies this group."},
+        {"feature": "scheme_management", "reason": "Scheme management overlaps the broader management concept."}
+      ]
+    },
+    {
+      "order": 29,
+      "name": "payment",
+      "audit_type": "category",
+      "role": "structural-removal",
+      "disposition": "remove before modelling",
+      "finding": "The field is a fixed verbose relabelling of payment_type in both supplied feature sets.",
+      "decision": "Remove payment and retain the canonical payment_type representation.",
+      "risk": "The fixed mapping must be revalidated against any future source schema.",
+      "related": [
+        {"feature": "payment_type", "reason": "The two fields contain the same information under a fixed label map."},
+        {"feature": "amount_tsh", "reason": "Payment arrangement provides context for the recorded amount."}
+      ]
+    },
+    {
+      "order": 30,
+      "name": "payment_type",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain as the canonical payment representation",
+      "finding": "Seven fully covered levels include informative unknown and other states.",
+      "decision": "Retain as nominal and do not reintroduce the removed payment alias.",
+      "risk": "Payment patterns may proxy local administration and income.",
+      "sentinel_tokens": ["unknown"],
+      "related": [
+        {"feature": "payment", "reason": "Payment is a fixed verbose relabelling of this field."},
+        {"feature": "amount_tsh", "reason": "Payment arrangement provides context for a recorded tariff amount."},
+        {"feature": "management", "reason": "Management arrangements may determine payment policy."}
+      ]
+    },
+    {
+      "order": 31,
+      "name": "water_quality",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain as granular water-quality representation",
+      "finding": "Eight levels map deterministically to quality_group and preserve important within-group differences.",
+      "decision": "Retain granular quality with rare handling and compare the coarse parent by ablation.",
+      "risk": "The unknown state may reflect data quality as much as water quality.",
+      "sentinel_tokens": ["unknown"],
+      "related": [
+        {"feature": "quality_group", "reason": "This is the deterministic coarse parent."},
+        {"feature": "source", "reason": "Water source influences observed quality."},
+        {"feature": "quantity", "reason": "Water quality and availability jointly describe service state."}
+      ]
+    },
+    {
+      "order": 32,
+      "name": "quality_group",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "likely redundant beside water_quality",
+      "finding": "Six coarse groups are deterministic from water_quality and hide useful granular distinctions.",
+      "decision": "Prefer water_quality and keep this only as a coarse ablation candidate.",
+      "risk": "The coarser feature may generalise better for rare quality values.",
+      "sentinel_tokens": ["unknown"],
+      "related": [
+        {"feature": "water_quality", "reason": "The granular child deterministically identifies this group."},
+        {"feature": "source_class", "reason": "Broad source and quality groups may capture related physical context."}
+      ]
+    },
+    {
+      "order": 33,
+      "name": "quantity",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain as the canonical water-quantity representation",
+      "finding": "Five fully covered nominal levels include a strong dry state and an explicit unknown state.",
+      "decision": "Retain as nominal and do not reintroduce the duplicate quantity_group.",
+      "risk": "The strong dry association is predictive but should not be interpreted causally.",
+      "sentinel_tokens": ["unknown"],
+      "related": [
+        {"feature": "quantity_group", "reason": "The two fields are exact duplicates in the supplied data."},
+        {"feature": "source", "reason": "Source type influences water availability."},
+        {"feature": "waterpoint_type", "reason": "Waterpoint form and availability describe related service characteristics."},
+        {"feature": "amount_tsh", "reason": "Availability may influence whether an amount is charged or recorded."}
+      ]
+    },
+    {
+      "order": 34,
+      "name": "quantity_group",
+      "audit_type": "category",
+      "role": "structural-removal",
+      "disposition": "remove before modelling",
+      "finding": "The field is an exact duplicate of quantity in every supplied training and test row.",
+      "decision": "Remove quantity_group and retain quantity as the canonical field.",
+      "risk": "The equality must be revalidated if a future source schema changes.",
+      "sentinel_tokens": ["unknown"],
+      "related": [
+        {"feature": "quantity", "reason": "The two fields are exact duplicates in the supplied data."}
+      ]
+    },
+    {
+      "order": 35,
+      "name": "source",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain as granular source representation",
+      "finding": "Ten fully covered levels map deterministically upward and preserve differences hidden by broader types.",
+      "decision": "Retain source and compare source_type as a lower-cardinality alternative.",
+      "risk": "Keeping every source hierarchy level adds deterministic redundancy.",
+      "sentinel_tokens": ["unknown"],
+      "related": [
+        {"feature": "source_type", "reason": "This is the deterministic intermediate parent."},
+        {"feature": "source_class", "reason": "This is the deterministic broad parent."},
+        {"feature": "basin", "reason": "Hydrological basin shapes available water sources."},
+        {"feature": "extraction_type", "reason": "Extraction mechanism depends on source."}
+      ]
+    },
+    {
+      "order": 36,
+      "name": "source_type",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "lower-cardinality ablation candidate",
+      "finding": "Seven intermediate types are deterministic from source and remove useful within-type detail.",
+      "decision": "Use only as an alternative to source, not automatically alongside it.",
+      "risk": "The coarser representation may generalise better despite losing detail.",
+      "related": [
+        {"feature": "source", "reason": "The granular child deterministically identifies this type."},
+        {"feature": "source_class", "reason": "This type deterministically identifies the broad class."}
+      ]
+    },
+    {
+      "order": 37,
+      "name": "source_class",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "likely redundant coarse source representation",
+      "finding": "Three broad classes are deterministic from the finer source hierarchy and have weak descriptive association.",
+      "decision": "Omit from the first granular baseline and retain as a coarse ablation.",
+      "risk": "Coarsening may help simple models but discards substantial source detail.",
+      "related": [
+        {"feature": "source", "reason": "The granular child deterministically identifies this class."},
+        {"feature": "source_type", "reason": "The intermediate type deterministically identifies this class."},
+        {"feature": "quality_group", "reason": "Broad source and quality classes capture related physical context."}
+      ]
+    },
+    {
+      "order": 38,
+      "name": "waterpoint_type",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "retain as granular waterpoint representation",
+      "finding": "Seven levels map deterministically to a coarser group and preserve standpipe distinctions.",
+      "decision": "Retain with infrequent handling and compare the coarse group by ablation.",
+      "risk": "The rare dam level is too sparse for a stable standalone interpretation.",
+      "related": [
+        {"feature": "waterpoint_type_group", "reason": "This is the deterministic coarse parent."},
+        {"feature": "extraction_type", "reason": "Waterpoint form and extraction mechanism are physically related."},
+        {"feature": "source", "reason": "Waterpoint form depends on the underlying water source."},
+        {"feature": "quantity", "reason": "Waterpoint form and availability describe related service characteristics."}
+      ]
+    },
+    {
+      "order": 39,
+      "name": "waterpoint_type_group",
+      "audit_type": "category",
+      "role": "candidate",
+      "disposition": "likely redundant beside waterpoint_type",
+      "finding": "Six coarse groups are deterministic from waterpoint_type and hide single-versus-multiple standpipe differences.",
+      "decision": "Prefer waterpoint_type and keep this as a coarse ablation candidate.",
+      "risk": "The grouped feature may generalise better for rare granular values.",
+      "related": [
+        {"feature": "waterpoint_type", "reason": "The granular child deterministically identifies this group."},
+        {"feature": "extraction_type_class", "reason": "Broad extraction and waterpoint classes capture related physical design."}
+      ]
+    }
+  ]
+}

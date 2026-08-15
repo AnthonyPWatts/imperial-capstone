@@ -12,7 +12,8 @@ Source: <https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-wa
 - `instructions/source-pages/`: dated offline copies of the public competition
   pages.
 - `data/`: competition data downloaded after joining.
-- `notebooks/`: numbered analysis and modelling notebooks.
+- `notebooks/`: numbered modelling notebooks and the per-predictor
+  `data-audit/` hierarchy.
 - `src/`: reusable loading, preprocessing, modelling and evaluation code.
 - `reports/`: concise findings and model interpretation.
 - `submissions/`: notes about submitted models and their scores.
