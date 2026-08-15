@@ -8,7 +8,7 @@
 
   const integerFormatter = new Intl.NumberFormat("en-GB");
 
-  fetch(statusUrl)
+  fetch(statusUrl, { cache: "no-store" })
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Project status request failed with ${response.status}.`);
