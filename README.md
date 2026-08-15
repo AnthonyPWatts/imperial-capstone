@@ -7,11 +7,11 @@ Certificate in Machine Learning and Artificial Intelligence.
 
 | Area | Purpose |
 | --- | --- |
-| [`index.html`](index.html) | Local Capstone Hub joining the project stages and working tools |
+| [`index.html`](index.html) | Static Capstone Hub joining the project stages and working tools |
 | [`stage-1-pump-it-up/`](stage-1-pump-it-up/) | Applied multiclass classification using the DrivenData *Pump It Up* competition |
 | [`stage-2-bbo/`](stage-2-bbo/) | The assessed black-box optimisation (BBO) capstone covering eight unknown functions |
 | [`dashboard/`](dashboard/) | Static plan and progress dashboard for the Stage 1 competition |
-| [`map/`](map/) | Local-only interactive map of the Stage 1 training labels |
+| [`map/`](map/) | Browser-side interactive map using locally selected Stage 1 training labels |
 
 Stage 1 is a self-contained machine-learning project used to practise the
 course workflow on a real operational problem. Stage 2 follows the course's
@@ -33,6 +33,14 @@ per-class recall and a confusion matrix. The main evidence is available in the
 and [data-preparation handoff](stage-1-pump-it-up/reports/data-preparation-next-steps.md).
 
 Stage 2 remains scaffolded while the Module 12 inputs and dates are unavailable.
+
+## Live project hub
+
+The [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/) and
+[Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/)
+are published through GitHub Pages. The public site uses only the non-sensitive
+status snapshot committed to this repository. Competition datasets remain
+excluded; the training map asks visitors to select their own local copies.
 
 ## Local project hub
 
