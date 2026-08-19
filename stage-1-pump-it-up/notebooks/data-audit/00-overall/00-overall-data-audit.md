@@ -1,6 +1,6 @@
 ---
 status: current
-updated: 2026-08-15
+updated: 2026-08-19
 scope: supplied Pump It Up training and test data
 ---
 
@@ -14,6 +14,7 @@ The three structural removals are settled for the supplied schema. All other fea
 
 - [Executive summary](#executive-summary)
 - [Audit scope](#audit-scope)
+- [Structural missingness](#structural-missingness)
 - [Target label](#target-label)
 - [Structural removals](#structural-removals)
 - [Cross-cutting findings](#cross-cutting-findings)
@@ -28,6 +29,7 @@ The three structural removals are settled for the supplied schema. All other fea
 - The supplied data contains 59,400 labelled training rows, 14,850 test rows, an identifier and 39 raw predictors. Training and test use the same predictor schema.
 - The target contains three complete classes. An always-`functional` prediction reaches 54.31% accuracy, while the majority class is 7.47 times the size of the smallest class.
 - Three predictors have direct structural evidence for removal: `recorded_by` is constant, `payment` is a fixed relabelling of `payment_type`, and `quantity_group` duplicates `quantity` row for row.
+- Source blanks occupy 1.94% of training predictor cells and affect 53.18% of training rows. Test rates are almost identical, so there is no material structural-missingness shift between the supplied frames.
 - Many apparent values encode missingness or collection state. Examples include zero coordinates, zero construction year, blank booleans and literal tokens such as `None`, `unknown` and `0`. The preparation pipeline must preserve those states until training-partition evidence supports a treatment.
 - Geography carries strong signal and strong leakage risk. Random validation may reward local memorisation, so the project needs an LGA or region-grouped sensitivity check alongside the main stratified split.
 - Several categorical families form deterministic hierarchies. The baseline should choose a sensible granular representation, then compare coarser alternatives by ablation instead of retaining every level automatically.
@@ -61,6 +63,31 @@ The catalogue covers every raw non-identifier predictor:
 | Constant | 1 |
 
 Each predictor has a basic breakdown, a noteworthy-findings notebook and a related-features notebook. The [predictor index](../README.md) links to all 39 folders.
+
+## Structural missingness
+
+The raw CSVs are loaded with `keep_default_na=False` so that blank source cells remain distinguishable from pandas nulls. Structural missingness combines those two representations but deliberately excludes semantic sentinels such as numeric zero and literal `unknown` values.
+
+| Frame | Cells | Structural missing cells | Missing cells (%) | Rows affected | Affected rows (%) | Mean missing cells per affected row | Maximum in one row |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Training | 2,376,000 | 46,094 | 1.94% | 31,587 | 53.18% | 1.459 | 6 |
+| Test | 594,000 | 11,464 | 1.93% | 7,906 | 53.24% | 1.450 | 6 |
+
+The affected-row mean is the interpretable form of “total missing cells divided by rows containing missing values”. It is useful only alongside the counts and percentages above: a low cell rate can still touch many rows.
+
+Seven source columns contain structural missingness:
+
+| Predictor | Training | Test | Test minus training |
+|---|---:|---:|---:|
+| `scheme_name` | 47.42% | 47.76% | +0.34 pp |
+| `scheme_management` | 6.53% | 6.53% | 0.00 pp |
+| `installer` | 6.15% | 5.91% | -0.24 pp |
+| `funder` | 6.12% | 5.85% | -0.27 pp |
+| `public_meeting` | 5.61% | 5.53% | -0.08 pp |
+| `permit` | 5.14% | 4.96% | -0.18 pp |
+| `subvillage` | 0.62% | 0.67% | +0.05 pp |
+
+The close training/test rates are reassuring, but they do not settle how any feature should be treated. The focused audits separately examine blank-state meaning, numeric sentinels, literal placeholder tokens and invalid feature combinations. The [structural missingness audit](supporting-audits/05-structural-missingness-audit.ipynb) contains the executable evidence and uses the reusable summaries in [`predictor_audit.py`](../../../src/predictor_audit.py).
 
 ## Target label
 
@@ -270,6 +297,7 @@ These decisions need training-partition or cross-validation evidence. The struct
 ## Evidence map
 
 - [Data inventory and checksums](../../../data/README.md)
+- [Structural missingness audit](supporting-audits/05-structural-missingness-audit.ipynb)
 - [Target-label analysis](../00-target-label-analysis/00-target-label-analysis.ipynb)
 - [Predictor audit index](../README.md)
 - [Predictor catalogue](../../../src/predictor_audit_catalogue.json)

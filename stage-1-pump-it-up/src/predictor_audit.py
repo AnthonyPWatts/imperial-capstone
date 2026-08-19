@@ -45,6 +45,110 @@ def source_blank_mask(series: pd.Series) -> pd.Series:
     return series.astype("string").str.strip().eq("").fillna(False)
 
 
+def column_missingness_summary(
+    frames: Mapping[str, pd.DataFrame],
+) -> pd.DataFrame:
+    """Summarise explicit nulls and source blanks by frame and feature.
+
+    Structural missingness combines pandas null values with empty or
+    whitespace-only source strings. It deliberately excludes semantic
+    sentinels such as numeric zero or the string ``"unknown"`` because their
+    meaning depends on the feature being audited.
+    """
+
+    _validate_named_frames(frames)
+    records: list[dict[str, object]] = []
+
+    for frame_name, frame in frames.items():
+        rows = len(frame)
+        for feature in frame.columns:
+            values = frame[feature]
+            explicit_missing = values.isna()
+            source_blanks = source_blank_mask(values)
+            structural_missing = explicit_missing | source_blanks
+            structural_missing_count = int(structural_missing.sum())
+
+            records.append(
+                {
+                    "feature": feature,
+                    "frame": frame_name,
+                    "dtype": str(values.dtype),
+                    "rows": rows,
+                    "explicit missing": int(explicit_missing.sum()),
+                    "explicit missing (%)": _percentage(
+                        int(explicit_missing.sum()), rows
+                    ),
+                    "source blank": int(source_blanks.sum()),
+                    "source blank (%)": _percentage(int(source_blanks.sum()), rows),
+                    "structural missing": structural_missing_count,
+                    "structural missing (%)": _percentage(
+                        structural_missing_count, rows
+                    ),
+                    "non-missing unique": int(
+                        values.mask(structural_missing).nunique(dropna=True)
+                    ),
+                }
+            )
+
+    return pd.DataFrame.from_records(records).set_index(["feature", "frame"])
+
+
+def frame_missingness_summary(
+    frames: Mapping[str, pd.DataFrame],
+) -> pd.DataFrame:
+    """Summarise structural missing cells and affected rows in named frames."""
+
+    _validate_named_frames(frames)
+    records: list[dict[str, object]] = []
+
+    for frame_name, frame in frames.items():
+        explicit_missing = frame.isna()
+        source_blanks = pd.DataFrame(
+            {
+                feature: source_blank_mask(frame[feature])
+                for feature in frame.columns
+            },
+            index=frame.index,
+        )
+        structural_missing = explicit_missing | source_blanks
+        missing_by_row = structural_missing.sum(axis=1)
+        affected_rows = missing_by_row.gt(0)
+        affected_row_count = int(affected_rows.sum())
+        structural_missing_count = int(structural_missing.to_numpy().sum())
+        total_cells = int(frame.size)
+
+        records.append(
+            {
+                "frame": frame_name,
+                "rows": len(frame),
+                "columns": len(frame.columns),
+                "cells": total_cells,
+                "explicit missing cells": int(explicit_missing.to_numpy().sum()),
+                "source blank cells": int(source_blanks.to_numpy().sum()),
+                "structural missing cells": structural_missing_count,
+                "structural missing cells (%)": _percentage(
+                    structural_missing_count, total_cells
+                ),
+                "rows with structural missing": affected_row_count,
+                "rows with structural missing (%)": _percentage(
+                    affected_row_count, len(frame)
+                ),
+                "mean missing cells per affected row": round(
+                    float(missing_by_row.loc[affected_rows].mean())
+                    if affected_row_count
+                    else 0.0,
+                    3,
+                ),
+                "maximum missing cells in one row": (
+                    int(missing_by_row.max()) if len(missing_by_row) else 0
+                ),
+                "complete rows": len(frame) - affected_row_count,
+            }
+        )
+
+    return pd.DataFrame.from_records(records).set_index("frame")
+
+
 def analysis_categories(
     series: pd.Series,
     sentinel_tokens: Iterable[str] = DEFAULT_SENTINEL_TOKENS,
@@ -57,6 +161,33 @@ def analysis_categories(
     if collapse_sentinels:
         normalised = normalised.mask(sentinel_mask(series, sentinel_tokens))
     return normalised.fillna(MISSING_CATEGORY)
+
+
+def _validate_named_frames(frames: Mapping[str, pd.DataFrame]) -> None:
+    if not isinstance(frames, Mapping):
+        raise TypeError(
+            f"frames must be a mapping, not {type(frames).__name__}."
+        )
+    if not frames:
+        raise ValueError("frames must contain at least one named DataFrame.")
+
+    for frame_name, frame in frames.items():
+        if not isinstance(frame_name, str) or not frame_name.strip():
+            raise ValueError("Each frame name must be a non-blank string.")
+        if not isinstance(frame, pd.DataFrame):
+            raise TypeError(
+                f"frames[{frame_name!r}] must be a pandas DataFrame, "
+                f"not {type(frame).__name__}."
+            )
+        duplicated = frame.columns[frame.columns.duplicated()].unique().tolist()
+        if duplicated:
+            raise ValueError(
+                f"frames[{frame_name!r}] contains duplicate columns: {duplicated!r}."
+            )
+
+
+def _percentage(numerator: int, denominator: int) -> float:
+    return round(numerator / denominator * 100, 2) if denominator else 0.0
 
 
 def categorical_summary(

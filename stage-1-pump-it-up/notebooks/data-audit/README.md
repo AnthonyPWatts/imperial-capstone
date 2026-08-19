@@ -6,6 +6,7 @@ Start with the role-based project-level analyses:
 
 1. [`00-target-label-analysis/`](00-target-label-analysis/) contains the dedicated target-label analysis. The folder and notebook use the generic modelling role rather than the dataset-specific `status_group` column name.
 2. [`00-overall-data-audit.md`](00-overall/00-overall-data-audit.md) is the maintained findings report. Its folder also preserves supporting executable and feature-family audits.
+3. [`05-structural-missingness-audit.ipynb`](00-overall/supporting-audits/05-structural-missingness-audit.ipynb) provides the reusable frame-level and column-level structural missingness overview used by the maintained report.
 
 Every raw non-`id` predictor then has a CSV-order-prefixed folder.
 
