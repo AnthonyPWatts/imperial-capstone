@@ -15,6 +15,9 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# Local gstack runtime state and generated reports
+/.gstack/
+
 # Stage 2 observations are supplied through the course portal and should stay local
 stage-2-bbo/data/*
 !stage-2-bbo/data/README.md
