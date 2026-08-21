@@ -35,8 +35,8 @@ class PreprocessingSmokeTest:
     categorical_coverage: _pd.DataFrame
 
 
-def make_initial_preprocessor() -> _Pipeline:
-    """Build deterministic engineering plus fold-fitted learned transforms."""
+def make_initial_preprocessor(*, sparse_output: bool = True) -> _Pipeline:
+    """Build fold-fitted transforms with sparse or dense equivalent values."""
 
     numeric_pipeline = _Pipeline(
         steps=[
@@ -49,7 +49,7 @@ def make_initial_preprocessor() -> _Pipeline:
     categorical_encoder = _OneHotEncoder(
         handle_unknown="infrequent_if_exist",
         min_frequency=RARE_CATEGORY_MINIMUM,
-        sparse_output=True,
+        sparse_output=sparse_output,
     )
     column_preprocessing = _ColumnTransformer(
         transformers=[
@@ -57,7 +57,7 @@ def make_initial_preprocessor() -> _Pipeline:
             ("categorical", categorical_encoder, list(CATEGORICAL_FEATURES)),
         ],
         remainder="drop",
-        sparse_threshold=1.0,
+        sparse_threshold=1.0 if sparse_output else 0.0,
         verbose_feature_names_out=False,
     )
     return _Pipeline(

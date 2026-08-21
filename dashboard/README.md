@@ -37,28 +37,28 @@ status request fails. The current snapshot is dated 21 August 2026:
 
 | Metric | Current value |
 | --- | ---: |
-| Overall plan checkpoints | 24 / 28 |
-| Features fully examined | 36 / 36 (initial 29-feature policy smoke-tested) |
-| Locally evaluated models | 0 |
-| Candidate methods trained | 2, plus one soft-vote ensemble |
+| Overall plan checkpoints | 25 / 28 |
+| Features fully examined | 36 / 36 (initial 29-feature policy evaluated) |
+| Locally evaluated models | 3 |
+| Candidate methods trained | 3, plus one soft-vote ensemble |
 | DrivenData submissions | 6 |
 | Best leaderboard score | 0.8170 |
 | Provisional target score | 0.8225 |
 | Chart ceiling | 0.8500 |
 | Daily submissions used | 0 / 3 UTC |
 
-The current task is to compare the first fold-safe feature model with the
-cross-validated majority reference. The process remains iterative, so earlier
-full-data submissions remain useful experiment history without replacing local
-model-selection evidence:
+The current task is to evaluate the equal-weight soft vote between fold-safe
+Extra Trees and histogram gradient boosting. The process remains iterative, so
+earlier full-data submissions remain useful experiment history without
+replacing local model-selection evidence:
 
 - **Step 3, explore the data (4 / 4):** the maintained overall findings report,
   predictor catalogue and 117 per-predictor notebooks cover structure,
   distributions, limitations, relationships and feature families.
-- **Step 4, clean and preprocess (2 / 3):** guarded structural cleanup and an
-  initial fold-fitted preprocessing pipeline are implemented. Fold 1 transforms
-  29 engineered predictors into 301 finite sparse columns without using local
-  test or competition rows.
+- **Step 4, clean and preprocess (3 / 3):** guarded structural cleanup and the
+  initial fold-fitted preprocessing pipeline are implemented. The complete
+  pipeline has run independently across all five development folds without
+  using local test or competition rows.
 - **Step 5, select and engineer features (36 / 36 audited):** the initial policy
   uses elapsed recording time, valid pump age and explicit missing-state flags.
   High-cardinality fields and alternative hierarchy levels remain deferred for
@@ -71,10 +71,12 @@ model-selection evidence:
   five-fold majority reference is 54.31% accuracy.
 - **Step 8, select and train candidates (2 / 3):** Extra Trees and histogram
   gradient boosting, plus their soft vote, remain reproducible full-data trials.
-  A constrained decision tree is the first fold-safe local candidate.
-- **Step 9, evaluate and interpret (2 / 3):** public comparisons and the local
-  majority reference are recorded. The reference has 100% `functional` recall
-  and zero recall for both other classes; feature-model comparison remains.
+  The constrained tree and both model families now have fold-safe local
+  evaluations; the previously successful equal-weight blend is next.
+- **Step 9, evaluate and interpret (2 / 3):** histogram boosting leads accuracy
+  at 80.21% and takes about three minutes for five folds. Extra Trees reaches
+  78.84%, takes about 18 minutes and leads repair recall at 39.40%; the soft vote
+  and model selection remain.
 - **Step 10, deploy and iterate (2 / 3):** the candidate submissions, hashes and
   scores are recorded. Formal selection and the next evidence-led iteration
   remain.
@@ -93,10 +95,14 @@ Six submissions have been made across two UTC dates:
 The 0.5461 all-`functional` result remains the simple public leaderboard floor;
 the frozen development folds produce a separate 0.5431 local majority
 reference. The 0.8170 ensemble is the best public result and sits 0.55
-percentage points below the provisional 0.8225 target. Both feature-based
-candidate models fitted the complete labelled data, so the public results are
-informal evidence only. No feature-based model has a retained local evaluation,
-and the **Models evaluated** counter therefore remains zero.
+percentage points below the provisional 0.8225 target. Both earlier
+feature-based candidate models fitted the complete labelled data, so those
+public results are informal evidence only. The constrained decision tree now
+has a retained five-fold local evaluation. Extra Trees also has five-fold local
+evidence: 78.84% mean accuracy, 39.40% repair recall and 78.24% non-functional
+recall. Histogram boosting leads mean accuracy at 80.21%, with 28.69% repair
+recall, and completes the folds in 179.5 seconds. These three model families
+raise the **Models evaluated** counter to three.
 
 The target-integrity track now awards all four checkpoints. Training shares,
 task and metric implications, label-frame integrity and exact feature/label ID
@@ -131,14 +137,14 @@ checkpoint total:
 | 1. Define the goal and scope | 3 | 3 |
 | 2. Gather the data | 2 | 2 |
 | 3. Explore the data | 4 | 4 |
-| 4. Clean and preprocess the data | 2 | 3 |
+| 4. Clean and preprocess the data | 3 | 3 |
 | 5. Select and engineer features | 36 | Separate 36-feature metric |
 | 6. Define the machine-learning task | 4 | 4 |
 | 7. Partition the data | 3 | 3 |
 | 8. Select and train candidate methods | 2 | 3 |
 | 9. Evaluate and interpret results | 2 | 3 |
 | 10. Deploy and iterate | 2 | 3 |
-| **Overall checkpoint total** | **24** | **28** |
+| **Overall checkpoint total** | **25** | **28** |
 
 Increment a track only when its exit evidence exists. Do not award partial
 credit for activity alone.
@@ -162,10 +168,14 @@ has deeper feature-specific analysis.
 Count a model family once after it has a reproducible local evaluation against
 the agreed development folds or untouched local test set. Hyperparameter
 variants do not each increase the headline counter. The two trained candidates
-and their soft vote therefore do not yet increase this counter: they were fitted
-to the full labelled data and compared only through public leaderboard scores.
+from the earlier full-data trial and their soft vote therefore do not yet
+increase this counter: they were fitted to the full labelled data and compared
+only through public leaderboard scores.
 The cross-validated majority reference is a non-model benchmark, so it also
-does not increase the counter. Record detailed experiments elsewhere.
+does not increase the counter. The constrained decision tree has now been
+evaluated across all five agreed development folds, as has Extra Trees, so the
+counter is two. Histogram gradient boosting has now completed the same local
+evaluation, so the counter is three. Record detailed experiments elsewhere.
 
 ### Submission metrics
 
@@ -227,11 +237,10 @@ or notebook output directly.
 
 ## Likely next changes
 
-- Combine the initial fold-fitted preprocessor and a constrained decision tree
-  in one scikit-learn pipeline.
-- Evaluate that complete pipeline across all five frozen development folds.
-- Compare accuracy, per-class recall and the aggregate confusion matrix with the
-  54.31% majority reference.
+- Retain aligned out-of-fold probabilities for Extra Trees and histogram
+  boosting, then evaluate their equal-weight soft vote.
+- Compare accuracy, per-class recall and the additional forest cost with the
+  80.21% histogram boosting leader.
 - Use local errors and controlled ablations to decide whether high-cardinality
   fields, hierarchy alternatives or another candidate method deserve promotion.
 - Keep the local test and competition rows untouched until development-fold

@@ -33,24 +33,25 @@ histogram gradient boosting.
 The audit-led candidates fitted the complete labelled data. Their leaderboard
 scores provide experiment evidence, but no local validation estimate or formal
 model comparison. The formal baseline now reserves a stratified 20% local test
-set and fixes five validation folds across the remaining development data; no
-feature-based model has yet been evaluated on them. The majority-class reference
-averages 54.31% validation accuracy, with 100% recall for `functional` and zero
-recall for both other classes. The initial 29-feature policy and its fold-fitted
-preprocessor now pass a one-fold smoke test, producing a finite 301-column sparse
-matrix without touching the local test or competition rows. See the
+set and fixes five validation folds across the remaining development data. A
+constrained decision tree using the initial 29-feature policy averages 74.98%
+accuracy across those folds, compared with 54.31% for the majority reference.
+Extra Trees improves mean accuracy to 78.84%, repair-class recall from 15.17%
+to 39.40% and non-functional recall from 63.96% to 78.24%. Its five-fold run
+took about 18 minutes. Histogram gradient boosting raises mean accuracy to
+80.21% and completes the same folds in about three minutes, but repair recall
+falls to 28.69%. The local test and competition rows remain untouched. See the
 [submission log](submissions/README.md), the [maintained audit report](notebooks/data-audit/00-overall/00-overall-data-audit.md)
 and the [data-preparation handoff](reports/data-preparation-next-steps.md).
 
 ## Next modelling loop
 
-1. Wrap the fold-fitted preprocessor and a constrained decision tree in one
-   pipeline, then evaluate it across all five frozen development folds.
-2. Compare later feature-based models, followed by Extra Trees, histogram
-   gradient boosting and their soft vote, with the majority-class reference
-   across the same frozen development folds.
-3. Record accuracy, per-class recall and the confusion matrix, with attention to
-   the minority `functional needs repair` class.
+1. Retain out-of-fold probabilities for Extra Trees and histogram boosting,
+   then evaluate their equal-weight soft vote across the frozen folds.
+2. Compare the blend with the 80.21% boosting leader using accuracy, per-class
+   recall and the additional cost of refitting Extra Trees.
+3. Decide whether to select a workflow or test class weighting, a more
+   economical forest or a targeted feature-family ablation.
 4. Run a geographic sensitivity check and targeted feature-family ablations
    before selecting a model.
 5. Evaluate the selected workflow once on the untouched local test set.

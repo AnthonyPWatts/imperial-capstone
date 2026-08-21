@@ -18,7 +18,12 @@ Current modules:
   calendar fields, and exposes it as a scikit-learn transformer.
 - `model_preprocessing.py` combines that transformer with fold-fitted numeric
   imputation, missing indicators, rare-category handling and one-hot encoding;
-  its first-fold smoke check never accesses local test or competition rows.
+  it can return identical sparse or dense feature values, and its first-fold
+  smoke check never accesses local test or competition rows.
+- `model_evaluation.py` combines the initial preprocessor with the constrained
+  decision tree, Extra Trees or histogram gradient boosting, evaluates each
+  complete pipeline across all five frozen development folds and returns
+  metrics, timing diagnostics and confusion matrices.
 - `modelling_data.py` exposes a small `ModellingData` record plus preparation
   and summary functions for the validated pre-split original data and the
   separate competition-scoring data.

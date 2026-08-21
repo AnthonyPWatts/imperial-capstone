@@ -26,11 +26,15 @@ Trees and histogram gradient boosting has the best public score at `0.8170`.
 
 Those candidate models used the complete labelled data, so the leaderboard
 result does not provide a local validation estimate. A stratified 20% local
-test set and five development folds are now frozen. The initial 29-feature
-policy and fold-fitted preprocessing have passed a one-fold smoke test. The next
-gate is local cross-validation of the first feature-based model against the
-established 54.31% majority reference, followed eventually by one held-out test
-evaluation. The main evidence is available in the
+test set and five development folds are now frozen. A constrained decision tree
+using the initial 29-feature policy averages 74.98% accuracy across those folds,
+20.67 percentage points above the majority reference. Extra Trees improves mean
+accuracy to 78.84% and repair-class recall from 15.17% to 39.40%, making it the
+strongest repair detector. Histogram gradient boosting leads overall accuracy
+at 80.21% and completes five folds in about three minutes, roughly six times
+faster than Extra Trees. The next gate is a fold-safe soft vote between those
+two candidates; the local test set remains untouched until model selection. The
+main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)

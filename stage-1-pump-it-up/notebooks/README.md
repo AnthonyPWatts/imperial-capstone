@@ -37,9 +37,9 @@ It does not replace the formal split and evaluation sequence below.
    stratified development folds plus the cross-validated majority-class
    reference.
 2. [`03-model-comparison.ipynb`](03-model-comparison.ipynb): initial 29-feature
-   policy and a one-fold smoke test of deterministic engineering, fold-fitted
-   numeric imputation, rare-category handling and one-hot encoding; the first
-   decision-tree comparison is next.
+   policy and fold-fitted preprocessing, with a constrained decision tree and
+   both earlier model families evaluated across all five frozen development
+   folds. Histogram boosting leads accuracy at 80.21%; their soft vote is next.
 3. `04-tuning-and-evaluation.ipynb`
 4. `05-final-model-and-submission.ipynb`
 

@@ -1,18 +1,19 @@
 ---
-status: preprocessing-smoke-tested
+status: three-feature-models-evaluated
 branch: main
-updated: 2026-08-20
+updated: 2026-08-21
 ---
 
 # Stage 1 data preparation: decisions and next steps
 
 ## Working on
 
-Compare the first feature-based model with the established 54.31%
-majority-class reference. The initial 29-feature policy and fold-fitted
-preprocessor have passed a one-fold smoke test. The stratified 20% local test
-set remains untouched until model selection is complete, and every learned
-transform must fit inside the current development fold.
+Evaluate the equal-weight soft vote between fold-safe Extra Trees and histogram
+gradient boosting. Boosting leads mean accuracy at 80.21% and completes five
+folds in about three minutes; Extra Trees reaches 78.84%, takes about 18 minutes
+and detects more repairable pumps. The stratified 20% local test set remains
+untouched until model selection is complete, and every learned transform must
+fit inside the current development fold.
 
 The initial date treatment replaces `date_recorded` with
 `days_since_recorded`, measured from the fixed 2015-02-02 competition-era
@@ -247,9 +248,18 @@ and 9.
 7. **Complete:** define the initial 29-feature policy and smoke-test fold-fitted
    median imputation, missing indicators, rare-category handling and one-hot
    encoding on one frozen development fold.
-8. **Next:** wrap the preprocessor and a constrained decision tree in one
-   pipeline, then compare it with the majority reference across all five folds.
-9. **Complete:** align the dashboard and supporting documentation with the
+8. **Complete:** evaluate the initial preprocessor and constrained decision
+   tree across all five frozen development folds, recording 74.98% mean
+   accuracy and per-class confusion evidence.
+9. **Complete:** evaluate fold-safe Extra Trees with the same initial feature
+   policy, recording 78.84% mean accuracy and much stronger minority-class
+   recall than the constrained tree.
+10. **Complete:** evaluate histogram gradient boosting with the same feature
+   values, frozen folds and explicit elapsed-time evidence, recording 80.21%
+   mean accuracy in about three minutes.
+11. **Next:** retain out-of-fold probabilities and evaluate the equal-weight
+   Extra Trees and histogram boosting soft vote.
+12. **Complete:** align the dashboard and supporting documentation with the
    canonical ten-step lifecycle.
 
 Use the repository's current `.venv`. Formal automated tests are low priority
@@ -282,7 +292,8 @@ work can proceed without them.
 ## Resume point
 
 Continue course Step 8, **Select and train candidate methods**, in
-`03-model-comparison.ipynb`. Wrap `initial_preprocessor` and a constrained
-decision tree in one scikit-learn pipeline, evaluate it across the five frozen
-development folds and compare it with the established majority reference. Do
-not inspect the local test set or competition data during model development.
+`03-model-comparison.ipynb`. Retain aligned out-of-fold probabilities for Extra
+Trees and histogram boosting, then evaluate their equal-weight soft vote across
+the five frozen development folds. Compare it with the 80.21% boosting leader
+and record the additional forest cost. Do not inspect the local test set or
+competition data during model development.
