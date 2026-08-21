@@ -98,12 +98,29 @@ def fit_selected_workflow_for_competition(
 ) -> CompetitionPrediction:
     """Refit on every labelled row and classify the competition rows."""
 
-    _validate_submission_template(modelling_data, submission_template)
     probabilities, component_seconds = _fit_and_predict_components(
         modelling_data.X_original,
         modelling_data.y_original,
         modelling_data.X_competition,
     )
+    return build_competition_prediction(
+        modelling_data,
+        submission_template,
+        probabilities,
+        component_seconds,
+    )
+
+
+def build_competition_prediction(
+    modelling_data: ModellingData,
+    submission_template: _pd.DataFrame,
+    probabilities: _np.ndarray,
+    component_seconds: _pd.Series,
+) -> CompetitionPrediction:
+    """Validate probabilities and construct a competition prediction record."""
+
+    _validate_submission_template(modelling_data, submission_template)
+    validate_probabilities(probabilities, len(modelling_data.X_competition))
     submission = submission_template.loc[:, ["id"]].copy()
     submission["status_group"] = _probabilities_to_labels(probabilities)
     _validate_submission(modelling_data, submission)
@@ -162,22 +179,24 @@ def _fit_and_predict_components(
         started = _time.perf_counter()
         pipeline.fit(X_training, y_training)
         probability_values.append(
-            _ordered_probabilities(pipeline, X_prediction)
+            ordered_probabilities(pipeline, X_prediction)
         )
         elapsed_values[name] = _time.perf_counter() - started
 
     blended_probabilities = _np.mean(probability_values, axis=0)
-    _validate_probabilities(blended_probabilities, len(X_prediction))
+    validate_probabilities(blended_probabilities, len(X_prediction))
     return blended_probabilities, _pd.Series(
         elapsed_values,
         name="fit and predict seconds",
     )
 
 
-def _ordered_probabilities(
+def ordered_probabilities(
     pipeline: _Pipeline,
     X_prediction: _pd.DataFrame,
 ) -> _np.ndarray:
+    """Return class probabilities in the competition label order."""
+
     classifier = pipeline.named_steps["classifier"]
     return (
         _pd.DataFrame(
@@ -193,7 +212,9 @@ def _probabilities_to_labels(probabilities: _np.ndarray) -> _np.ndarray:
     return _np.asarray(CLASS_LABELS)[probabilities.argmax(axis=1)]
 
 
-def _validate_probabilities(probabilities: _np.ndarray, expected_rows: int) -> None:
+def validate_probabilities(probabilities: _np.ndarray, expected_rows: int) -> None:
+    """Validate a complete, finite multiclass probability matrix."""
+
     expected_shape = (expected_rows, len(CLASS_LABELS))
     if probabilities.shape != expected_shape:
         raise ValueError(

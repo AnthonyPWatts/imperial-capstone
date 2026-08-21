@@ -85,3 +85,23 @@ test.
 - Private leaderboard score: not available.
 - Submission status: **submitted on 21 August 2026**.
 - Source commit: `3340744` (`Added broad classifier screening and submission candidate`).
+
+## 2026-08-21: bounded blend calibration produced no submission
+
+Two fixed probability weights and a nested calibrated stack were compared with
+the recreated equal-weight Random Forest and histogram-boosting incumbent. A
+challenger had to improve mean development-fold accuracy and win at least three
+of the five frozen folds.
+
+| Candidate | Mean accuracy | Change | Fold wins |
+| --- | ---: | ---: | ---: |
+| Equal-weight incumbent | 81.402% | — | — |
+| 40% Random Forest + 60% boosting | 81.425% | +0.023 pp | 2/5 |
+| 60% Random Forest + 40% boosting | 81.271% | -0.130 pp | 0/5 |
+| Calibrated stack | 81.406% | +0.004 pp | 2/5 |
+
+None passed the gate, so no CSV was generated and no leaderboard submission was
+made. The result supports retaining the simple equal vote and moving the next
+submission experiment to an independent feature or model hypothesis. See
+[`2026-08-21-blend-calibration/`](2026-08-21-blend-calibration/) for the full
+runtime caveat and notebook link.

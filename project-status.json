@@ -4,8 +4,8 @@
     "label": "21 August 2026"
   },
   "overall": {
-    "completed": 28,
-    "total": 28,
+    "completed": 29,
+    "total": 29,
     "current": "Investigate target-class structure and grouped geographic robustness"
   },
   "stage1": {
@@ -32,8 +32,8 @@
   },
   "models": {
     "trainedCandidates": 7,
-    "ensembleCandidates": 5,
-    "evaluated": 12
+    "ensembleCandidates": 8,
+    "evaluated": 15
   },
   "submissions": {
     "total": 7,

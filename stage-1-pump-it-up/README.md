@@ -45,6 +45,12 @@ then been refitted on all 59,400 labelled rows. The structurally validated
 [submission log](submissions/README.md), the [maintained audit report](notebooks/data-audit/00-overall/00-overall-data-audit.md)
 and the [data-preparation handoff](reports/data-preparation-next-steps.md).
 
+A bounded follow-up compared 40:60 component weights and a nested calibrated
+stack with the equal vote. None improved the mean in at least three of the five
+frozen folds, so no further submission was generated. The next challenger
+should therefore change the feature evidence or model family rather than tune
+the incumbent blend more finely.
+
 ## Next modelling loop
 
 1. Extend the target audit from integrity and class balance into class meaning,

@@ -25,10 +25,16 @@ Current modules:
   Gaussian naïve Bayes, KNN, Extra Trees, histogram boosting and Random Forest
   across the frozen development folds. It returns metrics, timing diagnostics,
   aligned out-of-fold probabilities, confusion matrices, pairwise diversity and
-  equal-weight soft votes over two or more components.
+  fixed-weight soft votes over two or more components. It also exposes a nested
+  forest-plus-boosting stack whose regularised combiner is fitted from inner
+  out-of-fold probabilities separately inside every outer fold.
+- `blend_submission.py` refits a development-selected fixed-weight vote or
+  calibrated stack on all labelled rows and hands its probabilities to the
+  shared validated competition-prediction builder.
 - `final_model.py` freezes the selected Random Forest and histogram-boosting
   vote, performs its one-time local-test evaluation, refits both components on
-  all labelled original rows and validates the competition submission.
+  all labelled original rows and validates the competition submission. Its
+  public prediction builder is reused by later submission challengers.
 - `modelling_data.py` exposes a small `ModellingData` record plus preparation
   and summary functions for the validated pre-split original data and the
   separate competition-scoring data.

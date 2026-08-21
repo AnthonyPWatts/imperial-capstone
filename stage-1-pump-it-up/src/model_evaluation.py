@@ -13,11 +13,13 @@ from sklearn.ensemble import (
     HistGradientBoostingClassifier as _HistGradientBoostingClassifier,
 )
 from sklearn.ensemble import RandomForestClassifier as _RandomForestClassifier
+from sklearn.ensemble import StackingClassifier as _StackingClassifier
 from sklearn.linear_model import LogisticRegression as _LogisticRegression
 from sklearn.metrics import accuracy_score as _accuracy_score
 from sklearn.metrics import confusion_matrix as _confusion_matrix
 from sklearn.metrics import recall_score as _recall_score
 from sklearn.model_selection import PredefinedSplit as _PredefinedSplit
+from sklearn.model_selection import StratifiedKFold as _StratifiedKFold
 from sklearn.naive_bayes import GaussianNB as _GaussianNB
 from sklearn.neighbors import KNeighborsClassifier as _KNeighborsClassifier
 from sklearn.pipeline import Pipeline as _Pipeline
@@ -55,6 +57,11 @@ RANDOM_FOREST_ESTIMATORS = 300
 RANDOM_FOREST_MAX_FEATURES = "sqrt"
 RANDOM_FOREST_MIN_SAMPLES_LEAF = 1
 RANDOM_FOREST_SEED = 20260821
+
+CALIBRATED_STACK_INNER_FOLDS = 4
+CALIBRATED_STACK_C = 1.0
+CALIBRATED_STACK_MAX_ITERATIONS = 500
+CALIBRATED_STACK_SEED = 20260821
 
 _CLASS_LABELS = (
     "functional",
@@ -182,6 +189,45 @@ def make_random_forest_pipeline() -> _Pipeline:
         random_state=RANDOM_FOREST_SEED,
     )
     return _make_pipeline(classifier)
+
+
+def make_calibrated_stack_pipeline() -> _Pipeline:
+    """Return a leakage-safe probability stack over the selected components.
+
+    Each component owns its preprocessing pipeline. ``StackingClassifier``
+    creates inner out-of-fold probabilities on the current outer-training
+    rows before fitting the regularised multinomial combiner, then refits both
+    components on all outer-training rows. The frozen outer validation fold is
+    therefore absent from every learned part of that fold's stack.
+    """
+
+    inner_cross_validation = _StratifiedKFold(
+        n_splits=CALIBRATED_STACK_INNER_FOLDS,
+        shuffle=True,
+        random_state=CALIBRATED_STACK_SEED,
+    )
+    combiner = _LogisticRegression(
+        C=CALIBRATED_STACK_C,
+        solver="lbfgs",
+        max_iter=CALIBRATED_STACK_MAX_ITERATIONS,
+        class_weight=None,
+        random_state=CALIBRATED_STACK_SEED,
+    )
+    classifier = _StackingClassifier(
+        estimators=[
+            ("random_forest", make_random_forest_pipeline()),
+            (
+                "histogram_boosting",
+                make_initial_histogram_boosting_pipeline(),
+            ),
+        ],
+        final_estimator=combiner,
+        cv=inner_cross_validation,
+        stack_method="predict_proba",
+        passthrough=False,
+        n_jobs=None,
+    )
+    return _Pipeline(steps=[("classifier", classifier)])
 
 
 def summarise_classifier_screen() -> _pd.DataFrame:
@@ -454,6 +500,22 @@ def evaluate_random_forest(
     )
 
 
+def evaluate_calibrated_stack(
+    partitioned_data: PartitionedData,
+    cross_validation: _PredefinedSplit,
+) -> CandidateEvaluation:
+    """Evaluate the nested, cross-fitted forest-plus-boosting stack."""
+
+    return _evaluate_candidate(
+        model_name="calibrated stack",
+        partitioned_data=partitioned_data,
+        cross_validation=cross_validation,
+        pipeline_factory=make_calibrated_stack_pipeline,
+        diagnostics_factory=_calibrated_stack_diagnostics,
+        record_elapsed=True,
+    )
+
+
 def evaluate_equal_weight_soft_vote(
     partitioned_data: PartitionedData,
     cross_validation: _PredefinedSplit,
@@ -461,6 +523,27 @@ def evaluate_equal_weight_soft_vote(
     model_name: str = "soft vote",
 ) -> CandidateEvaluation:
     """Average aligned out-of-fold probabilities from two or more candidates."""
+
+    if len(component_evaluations) < 2:
+        raise ValueError("A soft vote requires at least two component models.")
+    component_weight = 1.0 / len(component_evaluations)
+    return evaluate_weighted_soft_vote(
+        partitioned_data,
+        cross_validation,
+        *component_evaluations,
+        weights=[component_weight] * len(component_evaluations),
+        model_name=model_name,
+    )
+
+
+def evaluate_weighted_soft_vote(
+    partitioned_data: PartitionedData,
+    cross_validation: _PredefinedSplit,
+    *component_evaluations: CandidateEvaluation,
+    weights: list[float] | tuple[float, ...],
+    model_name: str,
+) -> CandidateEvaluation:
+    """Combine aligned out-of-fold probabilities with fixed weights."""
 
     if len(component_evaluations) < 2:
         raise ValueError("A soft vote requires at least two component models.")
@@ -488,14 +571,26 @@ def evaluate_equal_weight_soft_vote(
                 f"Misaligned out-of-fold rows for {evaluation.model_name}."
             )
 
-    blended_probabilities = _np.mean(
-        [
-            evaluation.out_of_fold_probabilities.to_numpy()
-            for evaluation in component_evaluations
-        ],
+    weight_values = _np.asarray(weights, dtype="float64")
+    if weight_values.shape != (len(component_evaluations),):
+        raise ValueError(
+            "Soft-vote weights must match the number of components."
+        )
+    if not _np.isfinite(weight_values).all() or (weight_values < 0).any():
+        raise ValueError("Soft-vote weights must be finite and non-negative.")
+    if not _np.isclose(weight_values.sum(), 1.0):
+        raise ValueError("Soft-vote weights must sum to one.")
+
+    blended_probabilities = _np.average(
+        _np.stack(
+            [
+                evaluation.out_of_fold_probabilities.to_numpy()
+                for evaluation in component_evaluations
+            ]
+        ),
         axis=0,
+        weights=weight_values,
     )
-    component_weight = 1.0 / len(component_evaluations)
     timed_components = all(
         "total_seconds" in evaluation.diagnostics
         for evaluation in component_evaluations
@@ -505,8 +600,12 @@ def evaluate_equal_weight_soft_vote(
         row: dict[str, int | float] = {
             "validation_fold": fold_number,
             **{
-                f"{evaluation.model_name} weight": component_weight
-                for evaluation in component_evaluations
+                f"{evaluation.model_name} weight": weight
+                for evaluation, weight in zip(
+                    component_evaluations,
+                    weight_values,
+                    strict=True,
+                )
             },
         }
         if timed_components:
@@ -829,6 +928,19 @@ def _random_forest_diagnostics(
     pipeline: _Pipeline,
 ) -> dict[str, int | float]:
     return _forest_diagnostics(pipeline)
+
+
+def _calibrated_stack_diagnostics(
+    pipeline: _Pipeline,
+) -> dict[str, int | float]:
+    classifier = pipeline.named_steps["classifier"]
+    combiner = classifier.final_estimator_
+    return {
+        "inner_folds": CALIBRATED_STACK_INNER_FOLDS,
+        "meta_features": combiner.coef_.shape[1],
+        "combiner_iterations": int(combiner.n_iter_.max()),
+        "coefficient_l2_norm": float(_np.linalg.norm(combiner.coef_)),
+    }
 
 
 def _forest_diagnostics(pipeline: _Pipeline) -> dict[str, int | float]:

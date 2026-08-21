@@ -45,6 +45,10 @@ It does not replace the formal split and evaluation sequence below.
 4. [`05-final-model-and-submission.ipynb`](05-final-model-and-submission.ipynb):
    frozen selection, one-time 80.82% local-test result, full-data refit and the
    validated competition candidate.
+5. [`06-blend-calibration-and-submission.ipynb`](06-blend-calibration-and-submission.ipynb):
+   two bounded component weights and a genuinely nested calibrated stack. None
+   passed the mean-plus-three-fold gate, so no candidate was generated and the
+   local test remained unopened.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

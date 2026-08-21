@@ -43,6 +43,10 @@ investigations. The main evidence is available in the
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
 and [data-preparation handoff](stage-1-pump-it-up/reports/data-preparation-next-steps.md).
 
+A subsequent bounded blend comparison retained the equal vote: neither fixed
+40:60 alternative nor a nested calibrated stack improved at least three of the
+five development folds, so it consumed no additional submission slot.
+
 Stage 2 remains scaffolded while the Module 12 inputs and dates are unavailable.
 
 ## Live project hub
@@ -58,6 +62,19 @@ remains an empty state until its course inputs arrive.
 The repository includes the non-sensitive status snapshot that the public
 pages load. It excludes competition datasets. Visitors select local copies
 through the training map's file pickers.
+
+## Modelling environment
+
+Create a project-local environment and install the recorded notebook and
+scikit-learn runtime before executing Stage 1 analyses:
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+The competition CSV files must already be present under
+`stage-1-pump-it-up/data/`; they remain excluded from Git.
 
 ## Local project hub
 
