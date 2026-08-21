@@ -128,7 +128,7 @@ not been fetched or independently verified by the dashboard:
 | Achieved by approximately 2,500 teams | approximately 82.20% |
 | Achieved provisional target | ~~82.25%~~ |
 | Stretch target | **82.60%** |
-| Reported world record | 82.299% |
+| Reported world record | 82.99% |
 
 The compact daily-best chart records 54.61% on 14 August, 81.70% on 15 August
 and 82.41% on 21 August. Its scale runs from 50% to 85%, with the 82.60% stretch
