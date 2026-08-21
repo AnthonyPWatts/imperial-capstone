@@ -105,3 +105,24 @@ made. The result supports retaining the simple equal vote and moving the next
 submission experiment to an independent feature or model hypothesis. See
 [`2026-08-21-blend-calibration/`](2026-08-21-blend-calibration/) for the full
 runtime caveat and notebook link.
+
+## 2026-08-21: XGBoost component challengers generated
+
+A frozen-feature model-family screen evaluated CatBoost, XGBoost and LightGBM
+standalones and compared each directly with the Random Forest and
+histogram-boosting members of the incumbent. The reserved local test remained
+unopened. No new standalone beat the incumbent, but replacing histogram
+boosting with XGBoost produced five gate-passing combinations.
+
+| Candidate | Mean accuracy | Change | Fold wins | Worst fold change |
+| --- | ---: | ---: | ---: | ---: |
+| 60% depth-8 XGBoost + 40% Random Forest | **81.555%** | **+0.154 pp** | 4/5 | -0.042 pp |
+| 60% conservative depth-11 XGBoost + 40% Random Forest | 81.511% | +0.109 pp | 4/5 | -0.032 pp |
+
+Both were refitted on all labelled rows and structurally validated against the
+14,850-row competition template. Their OOF predictions disagree by 1.307% and
+their competition predictions by 1.205%, satisfying the second-candidate
+diversity requirement. Public and private leaderboard scores are not yet
+available. See
+[`2026-08-21-model-family-screen/`](2026-08-21-model-family-screen/) for the
+complete gate, stability result, prediction shares and hashes.

@@ -46,19 +46,22 @@ then been refitted on all 59,400 labelled rows. The structurally validated
 and the [data-preparation handoff](reports/data-preparation-next-steps.md).
 
 A bounded follow-up compared 40:60 component weights and a nested calibrated
-stack with the equal vote. None improved the mean in at least three of the five
-frozen folds, so no further submission was generated. The next challenger
-should therefore change the feature evidence or model family rather than tune
-the incumbent blend more finely.
+stack with the equal vote; none passed its gate. A subsequent frozen-feature
+model-family screen found that XGBoost is a better partner for Random Forest
+than the incumbent histogram booster. The leading 60% depth-8 XGBoost and 40%
+Random Forest vote reaches 81.555% across the current-runtime development folds,
+up 0.154 percentage points from the recreated incumbent. Two structurally
+validated, materially different competition candidates are ready locally and
+have not yet been submitted.
 
 ## Next modelling loop
 
-1. Extend the target audit from integrity and class balance into class meaning,
-   pairwise separability and possible ordinal or hierarchical structure.
-2. Define grouped geographic sensitivity without changing the frozen
-   membership or selected feature policy.
-3. Use out-of-fold errors to decide whether class weighting, target structure
-   or a targeted feature-family ablation deserves the next comparison.
+1. Record the leaderboard outcomes of the two validated XGBoost and Random
+   Forest candidates without using the first result to select the second.
+2. Resume the separate evidence-led feature-family plan on a fixed accepted
+   model recipe.
+3. Extend the target audit into pairwise separability and hierarchical class
+   structure if later error analysis supports it.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

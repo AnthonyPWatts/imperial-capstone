@@ -17,6 +17,8 @@ Thumbs.db
 
 # Local gstack runtime state and generated reports
 /.gstack/
+/.runtime/
+/catboost_info/
 
 # Stage 2 observations are supplied through the course portal and should stay local
 stage-2-bbo/data/*

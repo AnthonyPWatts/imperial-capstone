@@ -615,7 +615,7 @@ def evaluate_weighted_soft_vote(
             )
         diagnostic_rows.append(row)
 
-    return _build_candidate_evaluation(
+    return build_candidate_evaluation(
         model_name=model_name,
         partitioned_data=partitioned_data,
         cross_validation=cross_validation,
@@ -782,7 +782,7 @@ def _evaluate_candidate(
             {"validation_fold": fold_number, **diagnostics}
         )
 
-    return _build_candidate_evaluation(
+    return build_candidate_evaluation(
         model_name=model_name,
         partitioned_data=partitioned_data,
         cross_validation=cross_validation,
@@ -791,7 +791,7 @@ def _evaluate_candidate(
     )
 
 
-def _build_candidate_evaluation(
+def build_candidate_evaluation(
     *,
     model_name: str,
     partitioned_data: PartitionedData,
@@ -799,6 +799,8 @@ def _build_candidate_evaluation(
     probability_values: _np.ndarray,
     diagnostic_rows: list[dict[str, int | float]],
 ) -> CandidateEvaluation:
+    """Build and validate fold metrics from aligned OOF probabilities."""
+
     metric_rows = []
     aggregate_confusion = _np.zeros(
         (len(_CLASS_LABELS), len(_CLASS_LABELS)),
