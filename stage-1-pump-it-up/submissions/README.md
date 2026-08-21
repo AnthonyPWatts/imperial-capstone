@@ -129,3 +129,27 @@ independently preselected second candidate scored **0.8240**, only 0.0001 behind
 the first. Private leaderboard scores are not available. See
 [`2026-08-21-model-family-screen/`](2026-08-21-model-family-screen/) for the
 complete gate, stability result, prediction shares and hashes.
+
+## 2026-08-21: oversampled replays generated, not submitted
+
+The exact three recipes above were refitted after random replication of only
+`functional needs repair`. Full oversampling raised that class to the
+`non functional` count; adaptive follow-ups first retained 80% of the added
+replicas, then fixed the final repair count at 2.5× its natural count.
+
+| Training regime | Local-test accuracy range | Repair recall range | Competition repair share |
+| --- | ---: | ---: | ---: |
+| Original | 80.70–80.85% | 32.56–32.79% | 3.75–3.95% |
+| Full oversampling | 79.00–79.28% | 52.61–54.92% | 9.69–10.26% |
+| 80% of added replicas | 79.34–79.42% | 51.10–52.61% | 9.14–9.35% |
+| 2.5× final repair count | 80.08–80.33% | 43.45–44.50% | 6.91–7.10% |
+
+This establishes a repeatable minority-recall intervention, not an accuracy
+improvement. The follow-up levels were proposed after observing earlier replays
+and are therefore exploratory rather than independent local-test confirmations.
+The 2.5× level is now frozen as the final multiplier examined in this session.
+Nine validated CSVs were generated, but none was uploaded. See the
+[`full replay`](2026-08-21-oversampled-replay/) and
+[`80%-replica replay`](2026-08-21-oversampled-replay-80/),
+[`2.5× replay`](2026-08-21-oversampled-replay-250x/) and
+[`09-oversampled-submission-replay.ipynb`](../notebooks/09-oversampled-submission-replay.ipynb).

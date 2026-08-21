@@ -3,6 +3,14 @@
 The current structural data-preparation decisions and implementation handoff are
 in [`data-preparation-next-steps.md`](data-preparation-next-steps.md).
 
+The target's source history, collection-time meaning and competing nominal,
+ordinal and hierarchical interpretations are in
+[`training-label-provenance-and-semantics.md`](training-label-provenance-and-semantics.md).
+
+The frozen 2.5× oversampling candidate's calibration, disagreement and
+repair-error trade-offs are in
+[`probability-reliability-and-edge-cases.md`](probability-reliability-and-edge-cases.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

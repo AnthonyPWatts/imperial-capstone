@@ -40,8 +40,10 @@ It does not replace the formal split and evaluation sequence below.
    policy and fold-fitted preprocessing, with seven classifier families and a
    bounded equal-weight ensemble round. Random Forest plus histogram boosting
    leads the development folds at 81.37%.
-3. `04-target-structure-and-robustness.ipynb`: planned next-round work on class
-   meaning, pairwise separability and grouped geographic sensitivity.
+3. [`04-target-structure-and-robustness.ipynb`](04-target-structure-and-robustness.ipynb):
+   provenance and collection-time meaning of the target, competing nominal,
+   ordinal and two-stage interpretations, exact-predictor conflicts, and a
+   frozen-fold constrained-tree probe of both binary hierarchies.
 4. [`05-final-model-and-submission.ipynb`](05-final-model-and-submission.ipynb):
    frozen selection, one-time 80.82% local-test result, full-data refit and the
    validated competition candidate.
@@ -54,6 +56,18 @@ It does not replace the formal split and evaluation sequence below.
    feature policy, including direct pairings with each incumbent component, a
    stricter second-wave gate, seed stability and selection of up to two
    materially different candidates.
+7. [`08-minority-class-oversampling.ipynb`](08-minority-class-oversampling.ipynb):
+   fold-safe comparison of the unbalanced Random Forest, balanced class weights
+   and traceable random oversampling, plus reproducible local development and
+   fold-specific oversampled-data artefacts.
+8. [`09-oversampled-submission-replay.ipynb`](09-oversampled-submission-replay.ipynb):
+   exact replay of the three 21 August submission recipes under full,
+   80%-replica and final 2.5× oversampling, comparing labelled local-test
+   metrics and unlabelled competition prediction shares without uploading any.
+9. [`10-probability-reliability-and-edge-cases.ipynb`](10-probability-reliability-and-edge-cases.ipynb):
+   no-refit diagnosis of confidence reliability, classwise probabilities,
+   winning margins, component disagreement and repair-related edge groups after
+   freezing the 2.5× multiplier.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

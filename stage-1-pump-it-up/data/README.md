@@ -22,6 +22,14 @@ and submission template.
 | `non functional` | 22,824 | 38.4% |
 | `functional needs repair` | 4,317 | 7.3% |
 
+## Derived local artefacts
+
+Notebook 08 writes the reproducible oversampling experiment to the ignored
+`derived/08-minority-class-oversampling/` directory. Its `manifest.json`
+records the frozen-partition fingerprints, seeds, class counts, source lineage,
+file sizes and SHA-256 values. The combined development-training variant must
+not be used for cross-validation; use the five fold-specific variants instead.
+
 ## Licence and handling
 
 The authenticated download page viewed on 29 July 2026 included attribution

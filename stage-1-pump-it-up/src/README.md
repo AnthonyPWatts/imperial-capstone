@@ -45,6 +45,19 @@ Current modules:
 - `modelling_data.py` exposes a small `ModellingData` record plus preparation
   and summary functions for the validated pre-split original data and the
   separate competition-scoring data.
+- `oversampling.py` creates traceable random-oversampling variants from one
+  training partition at a time, compares baseline, balanced-weight and
+  oversampled Random Forest recipes on frozen folds, and writes compressed
+  development/fold artefacts with seeds, source lineage and checksums.
+- `oversampled_submission_replay.py` freezes the three 21 August recipe weights
+  and XGBoost iteration counts, fits their unique components once per training
+  regime, and reports nominal/class-aware metrics plus submission class shares.
+- `ordinal_target.py` constructs coherent cumulative-threshold probabilities,
+  applies explicit two-cut-off decisions, selects cut-offs on a disjoint
+  calibration partition and reports order-aware error diagnostics.
+- `probability_diagnostics.py` separates hard-label balance from probability
+  reliability, computes log-loss/Brier/calibration summaries, and identifies
+  low-margin, disagreement and repair-related edge groups without refitting.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

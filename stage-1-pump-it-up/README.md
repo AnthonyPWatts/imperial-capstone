@@ -55,12 +55,40 @@ Two structurally validated, materially different competition candidates were
 generated locally. The leading candidate scored 0.8241 publicly; the second
 was preselected without using that result and scored 0.8240.
 
+The completed target-structure investigation traces the 74,250 competition
+rows to a strong but explicitly inferential match with the cleaned February
+2014 Tanzanian Water Point Mapping release. It retains flat nominal prediction
+for competition scoring: a constrained-tree operational hierarchy improved
+repair recall from 15.2% to 24.0%, but slightly reduced accuracy from 75.0% to
+74.8%. A proper cumulative-threshold ordinal probe reduced severe two-step
+errors but not nominal accuracy; 28.8% of its independent cumulative estimates
+crossed before coherence correction, and nested cut-off tuning still trailed
+flat multiclass.
+
+The separate imbalance experiment raised Random Forest repair recall
+from 36.9% to 44.7% with random oversampling and to 50.0% with balanced class
+weights on development folds. A later exact replay of the three 21 August
+recipes did open the labelled local test: full oversampling gained 20.0–22.4
+points of repair recall but lost 1.4–1.8 points of accuracy. Retaining 80% of
+the added replicas recovered a little accuracy. Six validated competition
+CSVs were generated for possible later experiments; none was uploaded. A final
+2.5× minority-count point brought competition repair predictions to 6.91–7.10%
+and reduced the XGBoost blends' local accuracy cost to 0.40–0.43 points while
+retaining a 10.9–11.9-point repair-recall gain. Probability diagnostics show
+that its raw repair probabilities are optimistic despite the balanced hard
+labels. The multiplier is frozen and three additional validated CSVs were
+generated without upload. Compressed data and generated CSVs remain ignored
+local artefacts.
+
 ## Next modelling loop
 
 1. Resume the separate evidence-led feature-family plan on a fixed accepted
    model recipe.
-2. Extend the target audit into pairwise separability and hierarchical class
-   structure if later error analysis supports it.
+2. If one later upload slot is reserved for a minority-recall experiment, use
+   the 2.5× replay as an explicitly exploratory candidate; do not claim
+   an expected accuracy gain from the local-test evidence.
+3. Retain the operational hierarchy as a named candidate for decision-focused
+   work; do not replace the competition's flat target silently.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,
