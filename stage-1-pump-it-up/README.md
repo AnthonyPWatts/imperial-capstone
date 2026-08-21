@@ -108,11 +108,19 @@ grouped worst-fold limit. The existing numeric representation therefore remains
 selected. See the
 [numeric-feature report](reports/numeric-state-and-imputation-screen.md).
 
+The management hierarchy screen compared nine alternatives to the accepted
+`management` plus `scheme_management` representation. None passed the gate.
+Management-only was the best challenger at 81.637%, just 0.013 points above
+baseline while removing twelve transformed columns; the difference is too
+small for accuracy promotion, so it remains a named parsimony candidate. Coarse
+groups, composites and disagreement states were weaker. See the
+[management hierarchy report](reports/management-hierarchy-screen.md).
+
 ## Next modelling loop
 
-1. Retain the accepted feature policy and move the fixed-model plan to bounded
-   categorical hierarchy ablations, beginning with `management`,
-   `scheme_management` and `management_group`.
+1. Retain the accepted feature policy and continue bounded categorical
+   hierarchy ablations with `extraction_type`, `extraction_type_group` and
+   `extraction_type_class`, followed by source, quality and waterpoint families.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. If one later upload slot is reserved for a minority-recall experiment, use

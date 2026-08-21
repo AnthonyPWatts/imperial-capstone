@@ -38,7 +38,7 @@ status request fails. The current snapshot is dated 21 August 2026:
 | Metric | Current value |
 | --- | ---: |
 | Overall plan checkpoints | 29 / 29 |
-| Features fully examined | 36 / 36 (numeric screen retained the initial 29-feature policy) |
+| Features fully examined | 36 / 36 (management screen retained the initial 29-feature policy) |
 | Locally evaluated models | 20 |
 | Candidate methods trained | 10, plus ten ensemble workflows |
 | DrivenData submissions | 9 |
@@ -48,10 +48,10 @@ status request fails. The current snapshot is dated 21 August 2026:
 | Chart ceiling | 0.8500 |
 | Daily submissions used | 3 / 3 UTC |
 
-The current task is beginning categorical hierarchy ablations with the accepted
-XGBoost and Random Forest recipe. The numeric screen retained the current policy
-after all eleven state, removal and imputation alternatives trailed its primary
-baseline. The process remains
+The current task is continuing physical categorical hierarchy ablations with
+the accepted XGBoost and Random Forest recipe. The management screen retained
+the current policy after management-only improved just 0.013 points, well below
+the primary gate. The process remains
 iterative, so leaderboard feedback does not replace retained local
 model-selection evidence:
 
@@ -64,7 +64,7 @@ model-selection evidence:
   using local test or competition rows.
 - **Step 5, select and engineer features (36 / 36 audited):** the initial policy
   uses elapsed recording time, valid pump age and explicit missing-state flags.
-  The `funder`/`installer` and numeric loops are complete; alternative
+  The organisation, numeric and management loops are complete; physical
   categorical hierarchy levels remain controlled ablations.
 - **Step 6, define the task (4 / 4):** multiclass classification, accuracy,
   class balance, label integrity and exact feature/label ID alignment are
@@ -248,8 +248,8 @@ or notebook output directly.
 
 ## Likely next changes
 
-- Begin management-family hierarchy ablations with the accepted XGBoost and
+- Begin extraction-type hierarchy ablations with the accepted XGBoost and
   Random Forest recipe held fixed.
 - Retain the accepted geography policy and the LGA-disjoint transfer warning.
-- Retain the numeric screen's rejection; do not tune more imputations, bins or
-  monotonic transforms against the same frozen folds.
+- Retain the management screen's rejection; treat management-only as a future
+  non-inferiority candidate rather than an accuracy promotion.

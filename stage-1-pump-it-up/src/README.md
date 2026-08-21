@@ -33,6 +33,10 @@ Current modules:
   fallbacks that retain the original missing-state flags.
 - `numeric_evaluation.py` evaluates those numeric policies with the accepted
   recipe and supports the two bounded no-refit cross-policy component votes.
+- `management_features.py` declares deterministic policies for management,
+  scheme management, the coarse group and their bounded joint representations.
+- `management_evaluation.py` evaluates those management-family policies with
+  the accepted XGBoost/Random Forest recipe and unchanged promotion gate.
 - `model_preprocessing.py` combines that transformer with fold-fitted numeric
   imputation, missing indicators, rare-category handling and one-hot encoding;
   it can return identical sparse or dense feature values, optionally standardises

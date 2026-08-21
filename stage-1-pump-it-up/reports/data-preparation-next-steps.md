@@ -38,6 +38,12 @@ imputation improved a separate LGA-disjoint sensitivity but not the primary
 comparison. See
 [`numeric-state-and-imputation-screen.md`](numeric-state-and-imputation-screen.md).
 
+The first categorical hierarchy loop is complete. Nine management-family
+alternatives compared the complete management source, incomplete scheme source,
+deterministic group and bounded joint states. None passed the promotion gate;
+management-only remains a parsimony candidate rather than an accuracy change.
+See [`management-hierarchy-screen.md`](management-hierarchy-screen.md).
+
 The fixed column-removal implementation is in
 [`src/data_preparation.py`](../src/data_preparation.py), with its declarative
 schema and assumptions in
@@ -330,9 +336,8 @@ work can proceed without them.
 
 ## Resume point
 
-Continue the next **Deploy and iterate** loop with categorical hierarchy
-ablations, beginning with `management`, `scheme_management` and
-`management_group`, under the accepted XGBoost and Random Forest recipe. The
-geography, organisation and numeric families are recorded and frozen. Public
-scores remain external feedback rather than a replacement for local
-model-selection evidence.
+Continue the next **Deploy and iterate** loop with extraction-type hierarchy
+ablations under the accepted XGBoost and Random Forest recipe, followed by the
+source, quality and waterpoint families. The geography, organisation, numeric
+and management families are recorded and frozen. Public scores remain external
+feedback rather than a replacement for local model-selection evidence.

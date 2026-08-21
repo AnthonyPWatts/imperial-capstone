@@ -80,6 +80,9 @@ It does not replace the formal split and evaluation sequence below.
     no-refit presentation of numeric sentinel, state, removal and fold-fitted
     geographic-imputation policies, bounded component crossing and the closest
     challenger's LGA-disjoint sensitivity.
+13. [`14-management-hierarchy.ipynb`](14-management-hierarchy.ipynb): no-refit
+    comparison of management, scheme management, their deterministic group and
+    bounded joint or relationship representations.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

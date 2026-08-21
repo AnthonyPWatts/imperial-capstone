@@ -6,13 +6,13 @@
   "overall": {
     "completed": 29,
     "total": 29,
-    "current": "Begin categorical hierarchy ablations with the accepted model recipe"
+    "current": "Continue physical categorical hierarchy ablations with the accepted model recipe"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Begin management-family categorical hierarchy ablations.",
+    "nextCheckpoint": "Begin extraction-type hierarchy ablations.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -26,7 +26,7 @@
   "features": {
     "examined": 36,
     "total": 36,
-    "current": "Numeric screen retained the initial 29-feature policy",
+    "current": "Management screen retained the initial 29-feature policy",
     "rawPredictorsAudited": 39,
     "structuralRemovalsAudited": 3
   },
