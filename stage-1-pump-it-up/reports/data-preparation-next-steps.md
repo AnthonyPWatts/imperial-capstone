@@ -8,10 +8,9 @@ updated: 2026-08-21
 
 ## Working on
 
-Extend the target audit into class meaning and possible ordinal or hierarchical
-structure, then run grouped geographic sensitivity. The selected Random Forest
-and histogram-boosting vote led development-fold accuracy at 81.37%, recorded
-80.82% on the one-time local test and scored `0.8223` on the public leaderboard
+Continue bounded data-focused feature-family loops with the accepted 55%
+XGBoost and 45% Random Forest recipe. The accepted vote reaches 81.625% across
+the frozen development folds and scored `0.8241` on the public leaderboard
 after both components were refitted on all 59,400 labelled original rows.
 
 The initial date treatment replaces `date_recorded` with
@@ -24,6 +23,13 @@ the frozen-fold gate. The current coordinate pair plus named geography remains
 selected. Fold-fitted hierarchical coordinate-centroid imputation improved a
 separate LGA-disjoint sensitivity but not the primary comparison. See
 [`geography-feature-family-and-robustness.md`](geography-feature-family-and-robustness.md).
+
+The following high-cardinality loop is also complete. Ten fold-fitted
+rare-grouping and frequency treatments introduced `funder` and `installer`
+separately and together; none passed the frozen-fold promotion gate. Funder
+frequency was the only challenger above baseline, by 0.032 percentage points,
+but won only two folds. See
+[`funder-installer-high-cardinality-screen.md`](funder-installer-high-cardinality-screen.md).
 
 The fixed column-removal implementation is in
 [`src/data_preparation.py`](../src/data_preparation.py), with its declarative
@@ -303,8 +309,9 @@ serving less controlled inputs.
 
 ## Decisions deferred
 
-- Alternative missing-value representations and imputation strategies.
-- Treatment of high-cardinality categorical fields.
+- Alternative numeric missing-value representations and imputation strategies.
+- Treatment of the remaining sparse name fields; the bounded `funder` and
+  `installer` loop is complete.
 - Ablation of the elapsed-date feature; the separate geography family is complete.
 - Removal of hierarchy columns after model comparison.
 - Tuning ranges, target-class structure and grouped geographic sensitivity.
@@ -315,8 +322,8 @@ work can proceed without them.
 
 ## Resume point
 
-Continue the next **Deploy and iterate** loop with conservative fold-fitted
-`funder` and `installer` treatments under the accepted XGBoost and Random Forest
-recipe. The geography family and grouped-LGA sensitivity are recorded and
-frozen. Public scores remain external feedback rather than a replacement for
-local model-selection evidence.
+Continue the next **Deploy and iterate** loop with numeric state-plus-magnitude
+treatments for `amount_tsh`, `population`, `gps_height` and `num_private` under
+the accepted XGBoost and Random Forest recipe. The geography and organisation
+families are recorded and frozen. Public scores remain external feedback rather
+than a replacement for local model-selection evidence.

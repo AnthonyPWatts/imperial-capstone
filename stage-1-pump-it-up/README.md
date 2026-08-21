@@ -90,10 +90,20 @@ five folds, but absolute accuracy fell to 72.26% and repair recall to 2.99%.
 This records material geographic-transfer risk without reopening the local test.
 See the [geography robustness report](reports/geography-feature-family-and-robustness.md).
 
+The next fixed-model screen introduced `funder` and `installer` separately and
+together through fold-fitted rare grouping and frequency. None of ten
+challengers passed the frozen-fold gate. Funder frequency was the only result
+above baseline at 81.656%, a 0.032-point gain with only two fold wins; installer
+and identity-bearing representations were weaker. An LGA-disjoint sensitivity
+improved 0.250 points but breached the worst-fold limit and reduced repair
+recall, so it did not reopen the primary decision. See the
+[high-cardinality report](reports/funder-installer-high-cardinality-screen.md).
+
 ## Next modelling loop
 
-1. Retain the accepted geography policy and move the fixed-model feature-family
-   plan to conservative fold-fitted treatments of `funder` and `installer`.
+1. Retain the accepted feature policy and move the fixed-model plan to numeric
+   state-plus-magnitude treatments for `amount_tsh`, `population`, `gps_height`
+   and `num_private`.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. If one later upload slot is reserved for a minority-recall experiment, use

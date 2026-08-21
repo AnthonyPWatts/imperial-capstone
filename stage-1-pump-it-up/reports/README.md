@@ -15,6 +15,10 @@ The fixed-model geography ablations, paired-coordinate validity rule,
 fold-fitted centroid imputation and LGA-disjoint sensitivity evidence are in
 [`geography-feature-family-and-robustness.md`](geography-feature-family-and-robustness.md).
 
+The fixed-model `funder` and `installer` rare-grouping and frequency ablations,
+including the bounded LGA-disjoint sensitivity, are in
+[`funder-installer-high-cardinality-screen.md`](funder-installer-high-cardinality-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

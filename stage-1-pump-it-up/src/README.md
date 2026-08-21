@@ -23,6 +23,11 @@ Current modules:
 - `geography_evaluation.py` evaluates those policies with the accepted
   XGBoost/Random Forest recipe, applies the pre-declared promotion gate and
   creates LGA-disjoint development folds for a separate transfer sensitivity.
+- `high_cardinality_features.py` declares conservative `funder` and `installer`
+  policies, preserves distinct missing and sentinel states, and fits rare or
+  frequency mappings only from the current training partition.
+- `high_cardinality_evaluation.py` evaluates those organisation policies with
+  the accepted XGBoost/Random Forest recipe and the unchanged promotion gate.
 - `model_preprocessing.py` combines that transformer with fold-fitted numeric
   imputation, missing indicators, rare-category handling and one-hot encoding;
   it can return identical sparse or dense feature values, optionally standardises

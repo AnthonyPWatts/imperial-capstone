@@ -72,6 +72,10 @@ It does not replace the formal split and evaluation sequence below.
     fixed-model coordinate and administrative ablations, paired-coordinate
     validity, fold-fitted hierarchical centroid imputation, bounded component
     crossing and an LGA-disjoint transfer sensitivity.
+11. [`12-funder-installer-high-cardinality.ipynb`](12-funder-installer-high-cardinality.ipynb):
+    no-refit presentation of the fold-fitted rare-grouping and frequency screen
+    for `funder` and `installer`, plus the best challenger's LGA-disjoint
+    sensitivity and retained-feature decision.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments
