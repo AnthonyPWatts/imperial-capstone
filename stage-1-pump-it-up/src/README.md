@@ -31,10 +31,10 @@ Current modules:
 - `blend_submission.py` refits a development-selected fixed-weight vote or
   calibrated stack on all labelled rows and hands its probabilities to the
   shared validated competition-prediction builder.
-- `gpu_model_evaluation.py` runs the bounded CatBoost, XGBoost and LightGBM
-  family screen on the frozen folds and feature policy. It selects each tree
-  count on an inner split before refitting and scoring the untouched outer
-  validation fold.
+- `gpu_model_evaluation.py` runs the bounded CatBoost, XGBoost, LightGBM and
+  bagged-tree family screens on the frozen folds and feature policy. It selects
+  boosting tree counts on an inner split before refitting and scoring the
+  untouched outer validation fold; fixed-size forests remain fold-fitted.
 - `model_screen_submission.py` selects gate-passing model combinations,
   requires a materially different second candidate, refits shared members only
   once and builds validated competition predictions.

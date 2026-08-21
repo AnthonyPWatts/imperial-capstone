@@ -13,6 +13,8 @@ from lightgbm import LGBMClassifier as _LGBMClassifier
 from lightgbm import log_evaluation as _lgb_log_evaluation
 import numpy as _np
 import pandas as _pd
+from sklearn.ensemble import ExtraTreesClassifier as _ExtraTreesClassifier
+from sklearn.ensemble import RandomForestClassifier as _RandomForestClassifier
 from sklearn.model_selection import train_test_split as _train_test_split
 from xgboost import XGBClassifier as _XGBClassifier
 
@@ -36,6 +38,7 @@ CLASS_TO_INTEGER = {
 CATBOOST_FAMILY = "CatBoost GPU"
 XGBOOST_FAMILY = "XGBoost GPU"
 LIGHTGBM_FAMILY = "LightGBM CPU"
+SKLEARN_TREE_FAMILY = "sklearn bagged trees CPU"
 FROZEN_FEATURE_POLICY = "initial 29-feature policy"
 
 INNER_STOP_FRACTION = 0.10
@@ -111,6 +114,97 @@ XGBOOST_VARIANTS: dict[str, dict[str, int | float | str]] = {
         "subsample": 0.90,
         "colsample_bytree": 0.90,
     },
+    "depth 6 broad": {
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "min_child_weight": 2,
+        "gamma": 0.0,
+        "reg_lambda": 2.0,
+        "reg_alpha": 0.0,
+        "subsample": 0.90,
+        "colsample_bytree": 0.95,
+    },
+    "depth 7": {
+        "learning_rate": 0.045,
+        "max_depth": 7,
+        "min_child_weight": 3,
+        "gamma": 0.0,
+        "reg_lambda": 2.0,
+        "reg_alpha": 0.0,
+        "subsample": 0.90,
+        "colsample_bytree": 0.90,
+    },
+    "depth 9 regularised": {
+        "learning_rate": 0.035,
+        "max_depth": 9,
+        "min_child_weight": 5,
+        "gamma": 0.01,
+        "reg_lambda": 3.0,
+        "reg_alpha": 0.02,
+        "subsample": 0.90,
+        "colsample_bytree": 0.90,
+    },
+    "depth 8 max bin 512": {
+        "learning_rate": 0.04,
+        "max_depth": 8,
+        "min_child_weight": 3,
+        "gamma": 0.0,
+        "reg_lambda": 2.0,
+        "reg_alpha": 0.0,
+        "subsample": 0.90,
+        "colsample_bytree": 0.90,
+        "max_bin": 512,
+    },
+    "depth 8 full rows": {
+        "learning_rate": 0.04,
+        "max_depth": 8,
+        "min_child_weight": 3,
+        "gamma": 0.0,
+        "reg_lambda": 2.0,
+        "reg_alpha": 0.0,
+        "subsample": 1.0,
+        "colsample_bytree": 0.90,
+    },
+    "depth 8 child 1": {
+        "learning_rate": 0.04,
+        "max_depth": 8,
+        "min_child_weight": 1,
+        "gamma": 0.0,
+        "reg_lambda": 2.0,
+        "reg_alpha": 0.0,
+        "subsample": 0.90,
+        "colsample_bytree": 0.90,
+    },
+    "depth 8 child 5": {
+        "learning_rate": 0.04,
+        "max_depth": 8,
+        "min_child_weight": 5,
+        "gamma": 0.0,
+        "reg_lambda": 2.0,
+        "reg_alpha": 0.0,
+        "subsample": 0.90,
+        "colsample_bytree": 0.90,
+    },
+    "depth 8 columns 0.75": {
+        "learning_rate": 0.04,
+        "max_depth": 8,
+        "min_child_weight": 3,
+        "gamma": 0.0,
+        "reg_lambda": 2.0,
+        "reg_alpha": 0.0,
+        "subsample": 0.90,
+        "colsample_bytree": 0.75,
+    },
+    "depth 8 rows 0.80": {
+        "learning_rate": 0.04,
+        "max_depth": 8,
+        "min_child_weight": 3,
+        "gamma": 0.0,
+        "reg_lambda": 2.0,
+        "reg_alpha": 0.0,
+        "subsample": 0.80,
+        "colsample_bytree": 0.90,
+    },
 }
 
 LIGHTGBM_VARIANTS: dict[str, dict[str, int | float]] = {
@@ -131,6 +225,71 @@ LIGHTGBM_VARIANTS: dict[str, dict[str, int | float]] = {
         "colsample_bytree": 0.85,
         "reg_lambda": 4.0,
         "reg_alpha": 0.05,
+    },
+    "leaves 31": {
+        "learning_rate": 0.035,
+        "num_leaves": 31,
+        "min_child_samples": 20,
+        "subsample": 0.90,
+        "colsample_bytree": 0.95,
+        "reg_lambda": 2.0,
+        "reg_alpha": 0.0,
+    },
+    "leaves 63 bagged": {
+        "learning_rate": 0.03,
+        "num_leaves": 63,
+        "min_child_samples": 20,
+        "subsample": 0.80,
+        "subsample_freq": 1,
+        "colsample_bytree": 0.90,
+        "reg_lambda": 2.0,
+        "reg_alpha": 0.0,
+    },
+    "leaves 127 bagged": {
+        "learning_rate": 0.025,
+        "num_leaves": 127,
+        "min_child_samples": 30,
+        "subsample": 0.80,
+        "subsample_freq": 1,
+        "colsample_bytree": 0.85,
+        "reg_lambda": 4.0,
+        "reg_alpha": 0.05,
+    },
+    "leaves 255 conservative": {
+        "learning_rate": 0.02,
+        "num_leaves": 255,
+        "min_child_samples": 40,
+        "subsample": 0.90,
+        "colsample_bytree": 0.80,
+        "reg_lambda": 6.0,
+        "reg_alpha": 0.10,
+    },
+}
+
+SKLEARN_TREE_VARIANTS: dict[str, dict[str, int | float | str]] = {
+    "Extra Trees leaf 1": {
+        "kind": "extra_trees",
+        "n_estimators": 500,
+        "max_features": 0.70,
+        "min_samples_leaf": 1,
+    },
+    "Extra Trees leaf 2": {
+        "kind": "extra_trees",
+        "n_estimators": 500,
+        "max_features": 0.70,
+        "min_samples_leaf": 2,
+    },
+    "Random Forest features 0.3": {
+        "kind": "random_forest",
+        "n_estimators": 500,
+        "max_features": 0.30,
+        "min_samples_leaf": 1,
+    },
+    "Random Forest features 0.3 leaf 2": {
+        "kind": "random_forest",
+        "n_estimators": 500,
+        "max_features": 0.30,
+        "min_samples_leaf": 2,
     },
 }
 
@@ -194,6 +353,24 @@ def make_lightgbm_spec(
     return GpuCandidateSpec(
         name=f"LightGBM {variant} [current one-hot]",
         family=LIGHTGBM_FAMILY,
+        variant=variant,
+        feature_policy=FROZEN_FEATURE_POLICY,
+        seed=seed,
+    )
+
+
+def make_sklearn_tree_spec(
+    *,
+    variant: str,
+    seed: int = INNER_STOP_SEED,
+) -> GpuCandidateSpec:
+    """Return a fixed bagged-tree specification for the CPU screen."""
+
+    if variant not in SKLEARN_TREE_VARIANTS:
+        raise ValueError(f"Unknown sklearn tree variant: {variant!r}.")
+    return GpuCandidateSpec(
+        name=f"{variant} [current one-hot]",
+        family=SKLEARN_TREE_FAMILY,
         variant=variant,
         feature_policy=FROZEN_FEATURE_POLICY,
         seed=seed,
@@ -308,8 +485,14 @@ def fit_gpu_candidate_probabilities(
             y_encoded,
             callbacks=[_lgb_log_evaluation(period=0)],
         )
+    elif spec.family == SKLEARN_TREE_FAMILY:
+        preprocessor = make_initial_preprocessor(sparse_output=True)
+        X_fit = preprocessor.fit_transform(X_training)
+        X_predict = preprocessor.transform(X_prediction)
+        model = _make_sklearn_tree_model(spec, iterations=iterations)
+        model.fit(X_fit, y_encoded)
     else:
-        raise ValueError(f"Unknown GPU family: {spec.family!r}.")
+        raise ValueError(f"Unknown model family: {spec.family!r}.")
 
     probabilities = _ordered_encoded_probabilities(model, X_predict)
     return probabilities, _time.perf_counter() - started
@@ -332,6 +515,14 @@ def _fit_outer_fold(
     *,
     fold_number: int,
 ) -> tuple[_np.ndarray, dict[str, int | float]]:
+    if spec.family == SKLEARN_TREE_FAMILY:
+        return _fit_fixed_sklearn_tree_fold(
+            spec,
+            X_training,
+            y_training,
+            X_validation,
+        )
+
     positions = _np.arange(len(y_training))
     fit_positions, stop_positions = _train_test_split(
         positions,
@@ -465,6 +656,31 @@ def _fit_outer_fold(
     }
 
 
+def _fit_fixed_sklearn_tree_fold(
+    spec: GpuCandidateSpec,
+    X_training: _pd.DataFrame,
+    y_training: _pd.Series,
+    X_validation: _pd.DataFrame,
+) -> tuple[_np.ndarray, dict[str, int | float]]:
+    """Fit one fixed bagged-tree candidate without an early-stop split."""
+
+    started = _time.perf_counter()
+    preprocessor = make_initial_preprocessor(sparse_output=True)
+    X_fit = preprocessor.fit_transform(X_training)
+    X_predict = preprocessor.transform(X_validation)
+    iterations = int(SKLEARN_TREE_VARIANTS[spec.variant]["n_estimators"])
+    model = _make_sklearn_tree_model(spec, iterations=iterations)
+    model.fit(X_fit, _encode_target(y_training))
+    probabilities = _ordered_encoded_probabilities(model, X_predict)
+    return probabilities, {
+        "selected_iterations": iterations,
+        "inner_fit_rows": len(y_training),
+        "inner_stop_rows": 0,
+        "stopping_seconds": 0.0,
+        "refit_predict_seconds": _time.perf_counter() - started,
+    }
+
+
 def _make_catboost_model(
     spec: GpuCandidateSpec,
     *,
@@ -542,6 +758,28 @@ def _make_lightgbm_model(
         verbosity=-1,
         **LIGHTGBM_VARIANTS[spec.variant],
     )
+
+
+def _make_sklearn_tree_model(
+    spec: GpuCandidateSpec,
+    *,
+    iterations: int,
+) -> _ExtraTreesClassifier | _RandomForestClassifier:
+    parameters = SKLEARN_TREE_VARIANTS[spec.variant]
+    common = {
+        "n_estimators": iterations,
+        "criterion": "gini",
+        "max_features": parameters["max_features"],
+        "min_samples_leaf": parameters["min_samples_leaf"],
+        "class_weight": None,
+        "n_jobs": 6,
+        "random_state": spec.seed,
+    }
+    if parameters["kind"] == "extra_trees":
+        return _ExtraTreesClassifier(bootstrap=False, **common)
+    if parameters["kind"] == "random_forest":
+        return _RandomForestClassifier(bootstrap=True, **common)
+    raise ValueError(f"Unknown sklearn tree kind: {parameters['kind']!r}.")
 
 
 def _encode_target(target: _pd.Series) -> _np.ndarray:

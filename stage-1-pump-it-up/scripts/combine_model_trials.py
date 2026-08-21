@@ -23,6 +23,7 @@ if str(SRC_DIR) not in sys.path:
 from data_partitioning import make_cross_validation, partition_modelling_data
 from gpu_model_evaluation import CATBOOST_FAMILY, LIGHTGBM_FAMILY
 from gpu_model_evaluation import INNER_STOP_SEED
+from gpu_model_evaluation import SKLEARN_TREE_FAMILY
 from gpu_model_evaluation import XGBOOST_FAMILY
 from model_evaluation import CandidateEvaluation
 from model_evaluation import evaluate_equal_weight_soft_vote
@@ -34,6 +35,10 @@ MEAN_GAIN_GATE = 0.001
 FOLD_WIN_GATE = 3
 WORST_FOLD_GATE = -0.0025
 REPAIR_RECALL_LOSS_GATE = -0.02
+SECOND_WAVE_MEAN_GAIN_GATE = 0.0005
+CURRENT_LEADER_NAME = (
+    "60% XGBoost depth 8 [current one-hot] + 40% Random Forest"
+)
 
 
 def main() -> None:
@@ -43,6 +48,7 @@ def main() -> None:
         catboost_trials,
         xgboost_trials,
         lightgbm_trials,
+        sklearn_tree_trials,
     ) = _load_trials()
     partitioned_data, cross_validation = _load_partition()
     evaluations: dict[str, CandidateEvaluation] = {
@@ -54,6 +60,10 @@ def main() -> None:
         **{evaluation.model_name: evaluation for _, evaluation in catboost_trials},
         **{evaluation.model_name: evaluation for _, evaluation in xgboost_trials},
         **{evaluation.model_name: evaluation for _, evaluation in lightgbm_trials},
+        **{
+            evaluation.model_name: evaluation
+            for _, evaluation in sklearn_tree_trials
+        },
     }
     recipes = {
         name: ((name, 1.0),)
@@ -66,9 +76,24 @@ def main() -> None:
     ]
     best_xgb = _best(base_xgboost_trials)
     best_lgb = _best(lightgbm_trials)
-    new_trials = catboost_trials + xgboost_trials + lightgbm_trials
+    new_trials = (
+        catboost_trials
+        + xgboost_trials
+        + lightgbm_trials
+        + sklearn_tree_trials
+    )
     for _, evaluation in new_trials:
         for component_label, component in incumbent_components.items():
+            weights = (0.40, 0.50, 0.60)
+            if (
+                component_label == "Random Forest"
+                and any(
+                    spec.family == XGBOOST_FAMILY
+                    and candidate.model_name == evaluation.model_name
+                    for spec, candidate in xgboost_trials
+                )
+            ):
+                weights = (0.40, 0.50, 0.55, 0.60, 0.65, 0.70)
             _add_pair_grid(
                 evaluations,
                 recipes,
@@ -78,8 +103,94 @@ def main() -> None:
                 component,
                 left_label=evaluation.model_name,
                 right_label=component_label,
-                left_weights=(0.40, 0.50, 0.60),
+                left_weights=weights,
             )
+    selected_depth8 = next(
+        (
+            evaluation
+            for spec, evaluation in base_xgboost_trials
+            if spec.variant == "depth 8"
+        ),
+        None,
+    )
+    for _, tree_evaluation in sklearn_tree_trials:
+        for _, xgb_evaluation in base_xgboost_trials:
+            _add_pair_grid(
+                evaluations,
+                recipes,
+                partitioned_data,
+                cross_validation,
+                tree_evaluation,
+                xgb_evaluation,
+                left_label=tree_evaluation.model_name,
+                right_label=xgb_evaluation.model_name,
+                left_weights=(0.20, 0.30, 0.40, 0.50),
+            )
+        if selected_depth8 is not None:
+            random_forest = incumbent_components["Random Forest"]
+            for tree_weight, forest_weight in (
+                (0.10, 0.35),
+                (0.15, 0.35),
+                (0.20, 0.30),
+                (0.20, 0.35),
+            ):
+                xgb_weight = 1.0 - tree_weight - forest_weight
+                _add_weighted_recipe(
+                    evaluations,
+                    recipes,
+                    partitioned_data,
+                    cross_validation,
+                    components=(
+                        selected_depth8,
+                        random_forest,
+                        tree_evaluation,
+                    ),
+                    weights=(xgb_weight, forest_weight, tree_weight),
+                    model_name=(
+                        f"{xgb_weight:.0%} XGBoost depth 8 + "
+                        f"{forest_weight:.0%} Random Forest + "
+                        f"{tree_weight:.0%} {tree_evaluation.model_name}"
+                    ),
+                )
+    for _, lgb_evaluation in lightgbm_trials:
+        for _, xgb_evaluation in base_xgboost_trials:
+            _add_pair_grid(
+                evaluations,
+                recipes,
+                partitioned_data,
+                cross_validation,
+                lgb_evaluation,
+                xgb_evaluation,
+                left_label=lgb_evaluation.model_name,
+                right_label=xgb_evaluation.model_name,
+                left_weights=(0.20, 0.30, 0.40),
+            )
+        if selected_depth8 is not None:
+            random_forest = incumbent_components["Random Forest"]
+            for lgb_weight, forest_weight in (
+                (0.10, 0.35),
+                (0.15, 0.35),
+                (0.20, 0.30),
+                (0.20, 0.35),
+            ):
+                xgb_weight = 1.0 - lgb_weight - forest_weight
+                _add_weighted_recipe(
+                    evaluations,
+                    recipes,
+                    partitioned_data,
+                    cross_validation,
+                    components=(
+                        selected_depth8,
+                        random_forest,
+                        lgb_evaluation,
+                    ),
+                    weights=(xgb_weight, forest_weight, lgb_weight),
+                    model_name=(
+                        f"{xgb_weight:.0%} XGBoost depth 8 + "
+                        f"{forest_weight:.0%} Random Forest + "
+                        f"{lgb_weight:.0%} {lgb_evaluation.model_name}"
+                    ),
+                )
     if best_cat is not None:
         _add_pair_grid(
             evaluations,
@@ -227,20 +338,64 @@ def main() -> None:
                 component,
                 left_label=name,
                 right_label=component_label,
-                left_weights=(0.40, 0.50, 0.60),
+                left_weights=(0.40, 0.50, 0.55, 0.60, 0.65, 0.70),
             )
-    if len(base_xgboost_trials) >= 2:
+    initial_variants = {
+        "depth 8",
+        "depth 11 conservative",
+        "lossguide 64",
+    }
+    second_wave_variants = {
+        "depth 6 broad",
+        "depth 7",
+        "depth 9 regularised",
+        "depth 8 max bin 512",
+        "depth 8 full rows",
+        "depth 8 child 1",
+        "depth 8 child 5",
+        "depth 8 columns 0.75",
+        "depth 8 rows 0.80",
+    }
+    xgb_bag_groups = (
+        (
+            "equal XGBoost variant bag",
+            [
+                trial
+                for trial in base_xgboost_trials
+                if trial[0].variant in initial_variants
+            ],
+        ),
+        (
+            "equal second-wave XGBoost variant bag",
+            [
+                trial
+                for trial in base_xgboost_trials
+                if trial[0].variant in second_wave_variants
+            ],
+        ),
+        (
+            "equal XGBoost depth 6/7/8 local bag",
+            [
+                trial
+                for trial in base_xgboost_trials
+                if trial[0].variant in {"depth 6 broad", "depth 7", "depth 8"}
+            ],
+        ),
+    )
+    for bag_name, trials in xgb_bag_groups:
+        if len(trials) < 2:
+            continue
         xgb_bag = evaluate_equal_weight_soft_vote(
             partitioned_data,
             cross_validation,
-            *(evaluation for _, evaluation in base_xgboost_trials),
-            model_name="equal XGBoost variant bag",
+            *(evaluation for _, evaluation in trials),
+            model_name=bag_name,
         )
         evaluations[xgb_bag.model_name] = xgb_bag
-        equal_weight = 1 / len(base_xgboost_trials)
+        equal_weight = 1 / len(trials)
         recipes[xgb_bag.model_name] = tuple(
             (evaluation.model_name, equal_weight)
-            for _, evaluation in base_xgboost_trials
+            for _, evaluation in trials
         )
         for component_label, component in incumbent_components.items():
             _add_pair_grid(
@@ -250,12 +405,19 @@ def main() -> None:
                 cross_validation,
                 xgb_bag,
                 component,
-                left_label="XGBoost variant bag",
+                left_label=bag_name.removeprefix("equal "),
                 right_label=component_label,
-                left_weights=(0.40, 0.50, 0.60),
+                left_weights=(
+                    (0.40, 0.50, 0.55, 0.60, 0.65, 0.70)
+                    if component_label == "Random Forest"
+                    else (0.40, 0.50, 0.60)
+                ),
             )
 
-    summary = _summarise(evaluations, incumbent)
+    if CURRENT_LEADER_NAME not in evaluations:
+        raise KeyError(f"Current leader is missing: {CURRENT_LEADER_NAME!r}.")
+    current_leader = evaluations[CURRENT_LEADER_NAME]
+    summary = _summarise(evaluations, incumbent, current_leader)
     summary.to_csv(RUNTIME_DIR / "combination-summary.csv")
     joblib.dump(
         {
@@ -263,6 +425,7 @@ def main() -> None:
             "recipes": recipes,
             "summary": summary,
             "incumbent_name": incumbent.model_name,
+            "current_leader_name": current_leader.model_name,
         },
         RUNTIME_DIR / "combination-screen.joblib",
     )
@@ -272,6 +435,10 @@ def main() -> None:
         "worst fold >= -0.25 pp, repair recall loss <= 2 pp."
     )
     print(f"Passing trials: {int(summary['passes_gate'].sum())}")
+    print(
+        "Second-wave leader gate-passers: "
+        f"{int(summary['beats_current_leader_gate'].sum())}"
+    )
 
 
 def _load_trials():
@@ -280,6 +447,7 @@ def _load_trials():
     catboost_trials = []
     xgboost_trials = []
     lightgbm_trials = []
+    sklearn_tree_trials = []
     for path in sorted(RUNTIME_DIR.glob("*.joblib")):
         if path.name == "combination-screen.joblib":
             continue
@@ -295,6 +463,8 @@ def _load_trials():
             xgboost_trials.append((spec, evaluation))
         elif spec.family == LIGHTGBM_FAMILY:
             lightgbm_trials.append((spec, evaluation))
+        elif spec.family == SKLEARN_TREE_FAMILY:
+            sklearn_tree_trials.append((spec, evaluation))
     if incumbent is None:
         raise FileNotFoundError("The persisted incumbent OOF trial is missing.")
     if not incumbent_components:
@@ -305,6 +475,7 @@ def _load_trials():
         catboost_trials,
         xgboost_trials,
         lightgbm_trials,
+        sklearn_tree_trials,
     )
 
 
@@ -360,6 +531,30 @@ def _add_pair_grid(
         )
 
 
+def _add_weighted_recipe(
+    evaluations,
+    recipes,
+    partitioned_data,
+    cross_validation,
+    *,
+    components,
+    weights,
+    model_name,
+):
+    evaluation = evaluate_weighted_soft_vote(
+        partitioned_data,
+        cross_validation,
+        *components,
+        weights=weights,
+        model_name=model_name,
+    )
+    evaluations[model_name] = evaluation
+    recipes[model_name] = tuple(
+        (component.model_name, weight)
+        for component, weight in zip(components, weights, strict=True)
+    )
+
+
 def _group_seed_bags(
     trials,
     *,
@@ -389,13 +584,19 @@ def _group_seed_bags(
     return bags
 
 
-def _summarise(evaluations, incumbent):
+def _summarise(evaluations, incumbent, current_leader):
     incumbent_accuracy = incumbent.fold_metrics["accuracy"]
     incumbent_repair = incumbent.metric_summary.loc[
         "recall: functional needs repair",
         "mean",
     ]
     incumbent_predictions = _predictions(incumbent)
+    leader_accuracy = current_leader.fold_metrics["accuracy"]
+    leader_repair = current_leader.metric_summary.loc[
+        "recall: functional needs repair",
+        "mean",
+    ]
+    leader_predictions = _predictions(current_leader)
     rows = []
     for name, evaluation in evaluations.items():
         fold_accuracy = evaluation.fold_metrics["accuracy"]
@@ -408,7 +609,14 @@ def _summarise(evaluations, incumbent):
         ]
         repair_change = repair_recall - incumbent_repair
         disagreement = np.mean(_predictions(evaluation) != incumbent_predictions)
+        leader_fold_change = fold_accuracy - leader_accuracy
+        leader_gain = mean_accuracy - leader_accuracy.mean()
+        leader_repair_change = repair_recall - leader_repair
+        leader_disagreement = np.mean(
+            _predictions(evaluation) != leader_predictions
+        )
         is_incumbent = name == incumbent.model_name
+        is_current_leader = name == current_leader.model_name
         is_single_seed_diagnostic = (
             " seed " in name and " seed bag" not in name
         )
@@ -419,6 +627,14 @@ def _summarise(evaluations, incumbent):
             and int(fold_change.gt(0).sum()) >= FOLD_WIN_GATE
             and float(fold_change.min()) >= WORST_FOLD_GATE
             and repair_change >= REPAIR_RECALL_LOSS_GATE
+        )
+        beats_current_leader = (
+            not is_current_leader
+            and not is_single_seed_diagnostic
+            and leader_gain >= SECOND_WAVE_MEAN_GAIN_GATE
+            and int(leader_fold_change.gt(0).sum()) >= FOLD_WIN_GATE
+            and float(leader_fold_change.min()) >= WORST_FOLD_GATE
+            and leader_repair_change >= REPAIR_RECALL_LOSS_GATE
         )
         rows.append(
             {
@@ -434,8 +650,18 @@ def _summarise(evaluations, incumbent):
                     "mean",
                 ],
                 "incumbent_disagreement": disagreement,
+                "current_leader_gain": leader_gain,
+                "current_leader_fold_wins": int(
+                    leader_fold_change.gt(0).sum()
+                ),
+                "current_leader_worst_fold_change": float(
+                    leader_fold_change.min()
+                ),
+                "current_leader_repair_recall_change": leader_repair_change,
+                "current_leader_disagreement": leader_disagreement,
                 "selection_eligible": not is_single_seed_diagnostic,
                 "passes_gate": passes,
+                "beats_current_leader_gate": beats_current_leader,
             }
         )
     return (

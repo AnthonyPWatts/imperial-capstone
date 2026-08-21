@@ -19,10 +19,12 @@ if str(SRC_DIR) not in sys.path:
 from gpu_model_evaluation import FROZEN_FEATURE_POLICY
 from gpu_model_evaluation import make_catboost_spec
 from gpu_model_evaluation import make_lightgbm_spec
+from gpu_model_evaluation import make_sklearn_tree_spec
 from gpu_model_evaluation import make_xgboost_spec
 from gpu_model_evaluation import median_selected_iterations
 from gpu_model_evaluation import with_seed
 from model_screen_submission import select_submission_candidate_names
+from model_screen_submission import _expanded_component_names
 
 
 class GpuModelScreenTests(unittest.TestCase):
@@ -31,6 +33,7 @@ class GpuModelScreenTests(unittest.TestCase):
             make_catboost_spec(variant="d8"),
             make_xgboost_spec(variant="depth 8"),
             make_lightgbm_spec(variant="leaves 63"),
+            make_sklearn_tree_spec(variant="Extra Trees leaf 1"),
         ]
 
         self.assertTrue(
@@ -92,6 +95,24 @@ class GpuModelScreenTests(unittest.TestCase):
         }
 
         self.assertEqual(select_submission_candidate_names(screen), [])
+
+    def test_nested_bag_recipe_expands_to_refittable_leaf_models(self) -> None:
+        names = _expanded_component_names(
+            (("bag", 0.6), ("Random Forest", 0.4)),
+            incumbent_name="incumbent",
+            component_names={
+                "Random Forest": "Random Forest",
+                "histogram boosting": "histogram boosting",
+            },
+            recipes={
+                "bag": (("depth 6", 0.5), ("depth 8", 0.5)),
+                "depth 6": (("depth 6", 1.0),),
+                "depth 8": (("depth 8", 1.0),),
+                "Random Forest": (("Random Forest", 1.0),),
+            },
+        )
+
+        self.assertEqual(names, ["depth 6", "depth 8", "Random Forest"])
 
     @staticmethod
     def _evaluation(predictions: list[int]) -> SimpleNamespace:

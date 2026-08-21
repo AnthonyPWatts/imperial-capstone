@@ -23,9 +23,11 @@ if str(SRC_DIR) not in sys.path:
 
 from data_partitioning import make_cross_validation, partition_modelling_data
 from gpu_model_evaluation import CATBOOST_VARIANTS, LIGHTGBM_VARIANTS
+from gpu_model_evaluation import SKLEARN_TREE_VARIANTS
 from gpu_model_evaluation import XGBOOST_VARIANTS
 from gpu_model_evaluation import evaluate_gpu_candidate
 from gpu_model_evaluation import make_catboost_spec, make_lightgbm_spec
+from gpu_model_evaluation import make_sklearn_tree_spec
 from gpu_model_evaluation import make_xgboost_spec
 from gpu_model_evaluation import with_seed
 from model_evaluation import evaluate_equal_weight_soft_vote
@@ -71,6 +73,16 @@ def main() -> None:
         components = None
     elif args.family == "lightgbm":
         spec = make_lightgbm_spec(variant=args.variant)
+        if args.seed != 20260821:
+            spec = with_seed(spec, seed=args.seed)
+        evaluation = evaluate_gpu_candidate(
+            spec,
+            partitioned_data,
+            cross_validation,
+        )
+        components = None
+    elif args.family == "sklearn-tree":
+        spec = make_sklearn_tree_spec(variant=args.variant)
         if args.seed != 20260821:
             spec = with_seed(spec, seed=args.seed)
         evaluation = evaluate_gpu_candidate(
@@ -150,7 +162,13 @@ def _parse_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "family",
-        choices=("catboost", "xgboost", "lightgbm", "incumbent"),
+        choices=(
+            "catboost",
+            "xgboost",
+            "lightgbm",
+            "sklearn-tree",
+            "incumbent",
+        ),
     )
     parser.add_argument("variant", nargs="?", default="")
     parser.add_argument("--seed", type=int, default=20260821)
@@ -170,6 +188,14 @@ def _parse_arguments() -> argparse.Namespace:
         parser.error(
             "LightGBM variant must be one of: "
             + ", ".join(LIGHTGBM_VARIANTS)
+        )
+    if (
+        args.family == "sklearn-tree"
+        and args.variant not in SKLEARN_TREE_VARIANTS
+    ):
+        parser.error(
+            "sklearn tree variant must be one of: "
+            + ", ".join(SKLEARN_TREE_VARIANTS)
         )
     if args.family == "incumbent" and args.variant:
         parser.error("The incumbent trial does not take a variant.")

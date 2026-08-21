@@ -50,9 +50,10 @@ It does not replace the formal split and evaluation sequence below.
    passed the mean-plus-three-fold gate, so no candidate was generated and the
    local test remained unopened.
 6. [`07-model-family-screen-and-submissions.ipynb`](07-model-family-screen-and-submissions.ipynb):
-   bounded CatBoost, XGBoost and LightGBM trials on the unchanged feature
-   policy, including direct pairings with each incumbent component, seed
-   stability and selection of up to two materially different candidates.
+   bounded CatBoost, XGBoost, LightGBM and bagged-tree trials on the unchanged
+   feature policy, including direct pairings with each incumbent component, a
+   stricter second-wave gate, seed stability and selection of up to two
+   materially different candidates.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

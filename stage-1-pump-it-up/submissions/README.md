@@ -116,13 +116,16 @@ boosting with XGBoost produced five gate-passing combinations.
 
 | Candidate | Mean accuracy | Change | Fold wins | Worst fold change |
 | --- | ---: | ---: | ---: | ---: |
-| 60% depth-8 XGBoost + 40% Random Forest | **81.555%** | **+0.154 pp** | 4/5 | -0.042 pp |
-| 60% conservative depth-11 XGBoost + 40% Random Forest | 81.511% | +0.109 pp | 4/5 | -0.032 pp |
+| 55% child-weight-1 depth-8 XGBoost + 45% Random Forest | **81.625%** | **+0.223 pp** | 4/5 | -0.021 pp |
+| 60% equal depth-6/7/8 XGBoost bag + 40% Random Forest | 81.595% | +0.194 pp | 5/5 | +0.021 pp |
 
 Both were refitted on all labelled rows and structurally validated against the
-14,850-row competition template. Their OOF predictions disagree by 1.307% and
-their competition predictions by 1.205%, satisfying the second-candidate
-diversity requirement. Public and private leaderboard scores are not yet
-available. See
+14,850-row competition template. Their OOF predictions disagree by 1.172% and
+their competition predictions by 1.192%, satisfying the second-candidate
+diversity requirement. Additional seeds reproduce the leading XGBoost
+hyperparameter effect. The first candidate scored **0.8241** publicly, a new
+project best and an improvement of 0.0018 over the prior 0.8223 leader. The
+independently preselected second candidate scored **0.8240**, only 0.0001 behind
+the first. Private leaderboard scores are not available. See
 [`2026-08-21-model-family-screen/`](2026-08-21-model-family-screen/) for the
 complete gate, stability result, prediction shares and hashes.

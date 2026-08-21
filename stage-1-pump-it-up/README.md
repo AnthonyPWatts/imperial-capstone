@@ -25,10 +25,10 @@ or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capston
 ## Current position
 
 The raw-data audit covers all 39 non-identifier predictors. Three structural
-removals are settled, leaving 36 candidate predictors. Seven submissions have
+removals are settled, leaving 36 candidate predictors. Nine submissions have
 tested the submission path and the audit-led modelling workflow. The best
-public score is `0.8223` from the selected equal-weight soft-vote ensemble of
-Random Forest and histogram gradient boosting, up from the previous `0.8170`.
+public score is `0.8241` from the selected child-weight-1 XGBoost and Random
+Forest vote, up from the previous `0.8223`.
 
 The formal workflow reserves a stratified 20% local test and fixes five
 development folds. It compares seven classifier families: a constrained tree,
@@ -48,19 +48,18 @@ and the [data-preparation handoff](reports/data-preparation-next-steps.md).
 A bounded follow-up compared 40:60 component weights and a nested calibrated
 stack with the equal vote; none passed its gate. A subsequent frozen-feature
 model-family screen found that XGBoost is a better partner for Random Forest
-than the incumbent histogram booster. The leading 60% depth-8 XGBoost and 40%
-Random Forest vote reaches 81.555% across the current-runtime development folds,
-up 0.154 percentage points from the recreated incumbent. Two structurally
-validated, materially different competition candidates are ready locally and
-have not yet been submitted.
+than the incumbent histogram booster. The leading 55% child-weight-1 depth-8
+XGBoost and 45% Random Forest vote reaches 81.625% across the current-runtime
+development folds, up 0.223 percentage points from the recreated incumbent.
+Two structurally validated, materially different competition candidates were
+generated locally. The leading candidate scored 0.8241 publicly; the second
+was preselected without using that result and scored 0.8240.
 
 ## Next modelling loop
 
-1. Record the leaderboard outcomes of the two validated XGBoost and Random
-   Forest candidates without using the first result to select the second.
-2. Resume the separate evidence-led feature-family plan on a fixed accepted
+1. Resume the separate evidence-led feature-family plan on a fixed accepted
    model recipe.
-3. Extend the target audit into pairwise separability and hierarchical class
+2. Extend the target audit into pairwise separability and hierarchical class
    structure if later error analysis supports it.
 
 The practical question is how well maintenance data can distinguish functional,

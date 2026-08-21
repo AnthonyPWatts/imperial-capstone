@@ -114,6 +114,17 @@ def fit_selected_screen_candidates(
                 modelling_data,
             )
             seconds[component_name] = elapsed
+        elif (
+            component_name in recipes
+            and recipes[component_name] != ((component_name, 1.0),)
+        ):
+            values = _np.sum(
+                [
+                    weight * resolve(nested_component)
+                    for nested_component, weight in recipes[component_name]
+                ],
+                axis=0,
+            )
         else:
             payload = trial_payloads[component_name]
             spec = payload["spec"]
@@ -146,6 +157,7 @@ def fit_selected_screen_candidates(
             recipe,
             incumbent_name=incumbent_name,
             component_names=component_names,
+            recipes=recipes,
         )
         candidates.append(
             ScreenCompetitionCandidate(
@@ -195,9 +207,10 @@ def _expanded_component_names(
     *,
     incumbent_name: str,
     component_names: dict[str, str],
+    recipes: dict,
 ) -> list[str]:
     names = []
-    for component, _ in recipe:
+    def expand(component: str) -> None:
         if component == incumbent_name:
             names.extend(
                 [
@@ -205,8 +218,17 @@ def _expanded_component_names(
                     component_names["histogram boosting"],
                 ]
             )
+        elif (
+            component in recipes
+            and recipes[component] != ((component, 1.0),)
+        ):
+            for nested_component, _ in recipes[component]:
+                expand(nested_component)
         else:
             names.append(component)
+
+    for component, _ in recipe:
+        expand(component)
     return list(dict.fromkeys(names))
 
 
