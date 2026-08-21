@@ -19,7 +19,7 @@ fixed BBO brief and will be developed as each set of observations is released.
 
 ## Current position
 
-As of 20 August 2026, Stage 1 has audited all 39 raw predictors, settled three
+As of 21 August 2026, Stage 1 has audited all 39 raw predictors, settled three
 structural removals and organised the remaining 36 candidate predictors. Six
 DrivenData submissions have been made. An equal-weight soft vote between Extra
 Trees and histogram gradient boosting has the best public score at `0.8170`.

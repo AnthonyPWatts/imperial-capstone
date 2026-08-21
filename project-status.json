@@ -1,10 +1,10 @@
 {
   "snapshot": {
-    "date": "2026-08-20",
-    "label": "20 August 2026"
+    "date": "2026-08-21",
+    "label": "21 August 2026"
   },
   "overall": {
-    "completed": 22,
+    "completed": 24,
     "total": 28,
     "current": "Compare the first decision tree across frozen folds"
   },
@@ -37,7 +37,7 @@
   },
   "submissions": {
     "total": 6,
-    "usedToday": 3,
+    "usedToday": 0,
     "dailyLimit": 3,
     "bestScore": 0.817,
     "bestLabel": "Soft-vote ensemble",

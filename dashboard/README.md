@@ -33,42 +33,48 @@ keep appending columns; add detailed information to the compact panels below.
 
 The page loads headline values from `../project-status.json` through GitHub
 Pages or the local server. The dashboard uses matching HTML values if the
-status request fails. The current snapshot is dated 15 August 2026:
+status request fails. The current snapshot is dated 21 August 2026:
 
 | Metric | Current value |
 | --- | ---: |
-| Overall plan checkpoints | 19 / 28 |
-| Features fully examined | 36 / 36 (initial predictor audit organised) |
+| Overall plan checkpoints | 24 / 28 |
+| Features fully examined | 36 / 36 (initial 29-feature policy smoke-tested) |
 | Locally evaluated models | 0 |
 | Candidate methods trained | 2, plus one soft-vote ensemble |
 | DrivenData submissions | 6 |
 | Best leaderboard score | 0.8170 |
 | Provisional target score | 0.8225 |
 | Chart ceiling | 0.8500 |
-| Daily submissions used | 3 / 3 UTC |
+| Daily submissions used | 0 / 3 UTC |
 
-The current task is to turn the promising public result into reproducible local
-evidence. The process remains iterative, so work has reached later steps without
-making the partitioning and evaluation gates disappear:
+The current task is to compare the first fold-safe feature model with the
+cross-validated majority reference. The process remains iterative, so earlier
+full-data submissions remain useful experiment history without replacing local
+model-selection evidence:
 
 - **Step 3, explore the data (4 / 4):** the maintained overall findings report,
   predictor catalogue and 117 per-predictor notebooks cover structure,
   distributions, limitations, relationships and feature families.
-- **Step 4, clean and preprocess (1 / 3):** guarded structural cleanup is
-  implemented. The temporary full-data experiment tried missing markers,
-  imputation, encoding, date parts, pump age and coordinate masking, but those
-  learned treatments do not count as fold-safe evidence.
-- **Step 6, define the task (3 / 4):** multiclass classification, accuracy,
-  class balance and the executed label-frame integrity check are recorded.
-  Exact feature/label ID alignment remains.
-- **Step 7, partition the data (0 / 3):** choose the split policy, create the
-  reproducible stratified split and record its local non-model baseline.
+- **Step 4, clean and preprocess (2 / 3):** guarded structural cleanup and an
+  initial fold-fitted preprocessing pipeline are implemented. Fold 1 transforms
+  29 engineered predictors into 301 finite sparse columns without using local
+  test or competition rows.
+- **Step 5, select and engineer features (36 / 36 audited):** the initial policy
+  uses elapsed recording time, valid pump age and explicit missing-state flags.
+  High-cardinality fields and alternative hierarchy levels remain deferred for
+  controlled ablations.
+- **Step 6, define the task (4 / 4):** multiclass classification, accuracy,
+  class balance, label integrity and exact feature/label ID alignment are
+  recorded.
+- **Step 7, partition the data (3 / 3):** a stratified 20% local test set and
+  five development folds are frozen with recorded seeds and fingerprints. The
+  five-fold majority reference is 54.31% accuracy.
 - **Step 8, select and train candidates (2 / 3):** Extra Trees and histogram
-  gradient boosting, plus their soft vote, are reproducible. Local validation
-  must decide between them.
-- **Step 9, evaluate and interpret (2 / 3):** constant and candidate public
-  comparisons are recorded. Held-out comparison, per-class recall and the
-  confusion matrix remain.
+  gradient boosting, plus their soft vote, remain reproducible full-data trials.
+  A constrained decision tree is the first fold-safe local candidate.
+- **Step 9, evaluate and interpret (2 / 3):** public comparisons and the local
+  majority reference are recorded. The reference has 100% `functional` recall
+  and zero recall for both other classes; feature-model comparison remains.
 - **Step 10, deploy and iterate (2 / 3):** the candidate submissions, hashes and
   scores are recorded. Formal selection and the next evidence-led iteration
   remain.
@@ -84,18 +90,17 @@ Six submissions have been made across two UTC dates:
 | Histogram gradient boosting | 15 August | 0.7968 |
 | Equal-weight soft-vote ensemble | 15 August | **0.8170** |
 
-The 0.5461 all-`functional` result remains the simple leaderboard floor. The
-0.8170 ensemble is the best public result and sits 0.55 percentage points below
-the provisional 0.8225 target. Both candidate models fitted the complete
-labelled data, so the public results are informal evidence only: there is no
-retained train/validation estimate and the **Models evaluated** counter remains
-zero.
+The 0.5461 all-`functional` result remains the simple public leaderboard floor;
+the frozen development folds produce a separate 0.5431 local majority
+reference. The 0.8170 ensemble is the best public result and sits 0.55
+percentage points below the provisional 0.8225 target. Both feature-based
+candidate models fitted the complete labelled data, so the public results are
+informal evidence only. No feature-based model has a retained local evaluation,
+and the **Models evaluated** counter therefore remains zero.
 
-The target-integrity track currently awards three of four checkpoints. The
-training shares, task/metric implications and executable label-frame integrity
-are recorded. Exact feature/label ID alignment is the remaining checkpoint;
-the validator exists in `src/source_data_validation.py` but its evidence has not
-yet been retained in the formal baseline workflow.
+The target-integrity track now awards all four checkpoints. Training shares,
+task and metric implications, label-frame integrity and exact feature/label ID
+alignment are retained in the formal baseline workflow.
 
 Working competition context was supplied manually on 14 August 2026 and has
 not been fetched or independently verified by the dashboard:
@@ -126,14 +131,14 @@ checkpoint total:
 | 1. Define the goal and scope | 3 | 3 |
 | 2. Gather the data | 2 | 2 |
 | 3. Explore the data | 4 | 4 |
-| 4. Clean and preprocess the data | 1 | 3 |
+| 4. Clean and preprocess the data | 2 | 3 |
 | 5. Select and engineer features | 36 | Separate 36-feature metric |
-| 6. Define the machine-learning task | 3 | 4 |
-| 7. Partition the data | 0 | 3 |
+| 6. Define the machine-learning task | 4 | 4 |
+| 7. Partition the data | 3 | 3 |
 | 8. Select and train candidate methods | 2 | 3 |
 | 9. Evaluate and interpret results | 2 | 3 |
 | 10. Deploy and iterate | 2 | 3 |
-| **Overall checkpoint total** | **19** | **28** |
+| **Overall checkpoint total** | **24** | **28** |
 
 Increment a track only when its exit evidence exists. Do not award partial
 credit for activity alone.
@@ -155,10 +160,12 @@ has deeper feature-specific analysis.
 ### Models evaluated
 
 Count a model family once after it has a reproducible local evaluation against
-the agreed split. Hyperparameter variants do not each increase the headline
-counter. The two trained candidates and their soft vote therefore do not yet
-increase this counter: they were fitted to the full labelled data and compared
-only through public leaderboard scores. Record detailed experiments elsewhere.
+the agreed development folds or untouched local test set. Hyperparameter
+variants do not each increase the headline counter. The two trained candidates
+and their soft vote therefore do not yet increase this counter: they were fitted
+to the full labelled data and compared only through public leaderboard scores.
+The cross-validated majority reference is a non-model benchmark, so it also
+does not increase the counter. Record detailed experiments elsewhere.
 
 ### Submission metrics
 
@@ -220,14 +227,12 @@ or notebook output directly.
 
 ## Likely next changes
 
-- Run and retain the exact feature/label ID-alignment check to complete the
-  target-integrity evidence.
-- Create the reproducible stratified split and compare the local majority-class
-  rate with the 0.5461 all-`functional` leaderboard floor.
-- Refit Extra Trees and histogram gradient boosting using preprocessing learned
-  only from the training fold, then compare both candidates and their soft vote
-  on the same held-out rows.
-- Record accuracy, per-class recall and the confusion matrix before using the
-  0.8170 public score to justify model selection or further submissions.
-- Use local errors and ablations to decide which provisional feature treatments
-  from the temporary full-data experiment deserve to remain.
+- Combine the initial fold-fitted preprocessor and a constrained decision tree
+  in one scikit-learn pipeline.
+- Evaluate that complete pipeline across all five frozen development folds.
+- Compare accuracy, per-class recall and the aggregate confusion matrix with the
+  54.31% majority reference.
+- Use local errors and controlled ablations to decide whether high-cardinality
+  fields, hierarchy alternatives or another candidate method deserve promotion.
+- Keep the local test and competition rows untouched until development-fold
+  model selection is complete.
