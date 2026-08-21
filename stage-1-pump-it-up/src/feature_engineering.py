@@ -14,6 +14,12 @@ from sklearn.utils.validation import check_is_fitted as _check_is_fitted
 # provides a fixed competition-era reference without using the current date.
 COMPETITION_REFERENCE_DATE = _pd.Timestamp("2015-02-02")
 
+# The supplied missing-location sentinel is (0, -2e-08), not exactly (0, 0).
+# A paired Tanzania envelope rejects that sentinel and nearby implausible
+# coordinates without discarding legitimate northern sites around latitude -1.
+TANZANIA_LONGITUDE_BOUNDS = (28.0, 42.0)
+TANZANIA_LATITUDE_BOUNDS = (-13.0, 0.0)
+
 EXPECTED_SOURCE_FEATURES = (
     "amount_tsh",
     "date_recorded",
@@ -176,11 +182,7 @@ def engineer_initial_features(X: _pd.DataFrame) -> _pd.DataFrame:
 
     longitude = _pd.to_numeric(X["longitude"], errors="coerce")
     latitude = _pd.to_numeric(X["latitude"], errors="coerce")
-    coordinates_missing = (
-        longitude.isna()
-        | latitude.isna()
-        | longitude.abs().le(1e-6)
-    )
+    coordinates_missing = ~valid_tanzania_coordinates(longitude, latitude)
 
     gps_height = _pd.to_numeric(X["gps_height"], errors="coerce")
     gps_height_missing = gps_height.isna() | gps_height.eq(0)
@@ -213,6 +215,23 @@ def engineer_initial_features(X: _pd.DataFrame) -> _pd.DataFrame:
         )
 
     return engineered.loc[:, MODEL_FEATURES]
+
+
+def valid_tanzania_coordinates(
+    longitude: _pd.Series,
+    latitude: _pd.Series,
+) -> _pd.Series:
+    """Return rows whose paired coordinates fall inside a safe domain envelope."""
+
+    numeric_longitude = _pd.to_numeric(longitude, errors="coerce")
+    numeric_latitude = _pd.to_numeric(latitude, errors="coerce")
+    return numeric_longitude.between(
+        *TANZANIA_LONGITUDE_BOUNDS,
+        inclusive="both",
+    ) & numeric_latitude.between(
+        *TANZANIA_LATITUDE_BOUNDS,
+        inclusive="both",
+    )
 
 
 def summarise_initial_feature_policy() -> _pd.DataFrame:

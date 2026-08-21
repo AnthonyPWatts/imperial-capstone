@@ -68,6 +68,10 @@ It does not replace the formal split and evaluation sequence below.
    no-refit diagnosis of confidence reliability, classwise probabilities,
    winning margins, component disagreement and repair-related edge groups after
    freezing the 2.5× multiplier.
+10. [`11-geography-feature-family-and-robustness.ipynb`](11-geography-feature-family-and-robustness.ipynb):
+    fixed-model coordinate and administrative ablations, paired-coordinate
+    validity, fold-fitted hierarchical centroid imputation, bounded component
+    crossing and an LGA-disjoint transfer sensitivity.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

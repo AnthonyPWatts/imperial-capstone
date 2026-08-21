@@ -15,7 +15,14 @@ Current modules:
   records non-sensitive membership fingerprints.
 - `feature_engineering.py` applies the deterministic initial feature policy,
   including elapsed days from a fixed competition-era date rather than raw
-  calendar fields, and exposes it as a scikit-learn transformer.
+  calendar fields, validates paired coordinates against a conservative
+  Tanzania envelope and exposes the policy as a scikit-learn transformer.
+- `geography_features.py` declares the bounded geography feature-family screen,
+  including coordinate and administrative ablations, composites, fixed grids
+  and fold-fitted hierarchical coordinate-centroid imputation.
+- `geography_evaluation.py` evaluates those policies with the accepted
+  XGBoost/Random Forest recipe, applies the pre-declared promotion gate and
+  creates LGA-disjoint development folds for a separate transfer sensitivity.
 - `model_preprocessing.py` combines that transformer with fold-fitted numeric
   imputation, missing indicators, rare-category handling and one-hot encoding;
   it can return identical sparse or dense feature values, optionally standardises
@@ -34,7 +41,9 @@ Current modules:
 - `gpu_model_evaluation.py` runs the bounded CatBoost, XGBoost, LightGBM and
   bagged-tree family screens on the frozen folds and feature policy. It selects
   boosting tree counts on an inner split before refitting and scoring the
-  untouched outer validation fold; fixed-size forests remain fold-fitted.
+  untouched outer validation fold; fixed-size forests remain fold-fitted. Its
+  optional preprocessor factory lets controlled feature-family screens retain
+  the same nested tree-count selection contract.
 - `model_screen_submission.py` selects gate-passing model combinations,
   requires a materially different second candidate, refits shared members only
   once and builds validated competition predictions.

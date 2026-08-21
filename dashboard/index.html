@@ -6,7 +6,7 @@
   <meta name="description" content="Pump It Up competition plan and progress.">
   <title>Pump It Up — status</title>
   <link rel="stylesheet" href="../assets/site-shell.css">
-  <link rel="stylesheet" href="styles.css?v=20260821-status-review">
+  <link rel="stylesheet" href="styles.css?v=20260821-xgboost-results">
   <script defer src="../assets/status-loader.js?v=20260815-no-store"></script>
 </head>
 <body>
@@ -36,34 +36,34 @@
   <main id="content">
     <section class="summary" aria-label="Summary">
       <div class="progress-summary">
-        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">28 / 28</span> checkpoints</strong></div>
+        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">29 / 29</span> checkpoints</strong></div>
         <div class="progress" role="img" data-status-progress-current="overall.completed" data-status-progress-total="overall.total" aria-label="100 per cent complete"><span></span></div>
-        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Investigate target-class structure and grouped geographic robustness</strong></div>
+        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Begin conservative funder and installer feature-family ablations with the accepted model recipe</strong></div>
       </div>
       <dl class="summary-metrics">
-        <div class="metric"><dt>Features fully examined</dt><dd><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small><code data-status-text="features.current">Initial 29-feature policy selected</code></small></dd></div>
-        <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">7</strong><small>Total</small></dd></div>
-        <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8223</strong><small data-status-text="submissions.bestLabel">Forest + boosting vote</small></dd></div>
-        <div class="metric"><dt>Target score</dt><dd><strong data-status-text="benchmarks.targetScore" data-status-format="score">0.8225</strong><small>Provisional</small></dd></div>
-        <div class="metric daily-usage"><dt>Used today (UTC)</dt><dd><strong data-status-fraction-current="submissions.usedToday" data-status-fraction-total="submissions.dailyLimit">1 / 3</strong><progress value="1" max="3" data-status-progress-current="submissions.usedToday" data-status-progress-total="submissions.dailyLimit">1 of 3 used</progress></dd></div>
+        <div class="metric"><dt>Features fully examined</dt><dd><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small><code data-status-text="features.current">Geography screen retained the initial 29-feature policy</code></small></dd></div>
+        <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">9</strong><small>Total</small></dd></div>
+        <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8241</strong><small data-status-text="submissions.bestLabel">XGBoost + Random Forest vote</small></dd></div>
+        <div class="metric"><dt>Target score</dt><dd><strong data-status-text="benchmarks.targetScore" data-status-format="score">0.8260</strong><small>Stretch</small></dd></div>
+        <div class="metric daily-usage"><dt>Used today (UTC)</dt><dd><strong data-status-fraction-current="submissions.usedToday" data-status-fraction-total="submissions.dailyLimit">3 / 3</strong><progress value="3" max="3" data-status-progress-current="submissions.usedToday" data-status-progress-total="submissions.dailyLimit">3 of 3 used</progress></dd></div>
       </dl>
     </section>
 
     <div class="dashboard-grid">
       <section class="panel now-panel" aria-labelledby="now-title">
         <header class="panel-heading">
-          <div><h2 id="now-title">Now</h2><p>Investigate target structure and geographic robustness using retained local evidence.</p></div>
-          <span class="state active">Step 10</span>
+          <div><h2 id="now-title">Now</h2><p>Move the accepted model recipe from completed geography evidence into conservative organisation-feature ablations.</p></div>
+          <span class="state active">Step 5 · iterate</span>
         </header>
-        <p class="completed-work"><strong>Recorded:</strong> Random Forest plus histogram boosting scored 82.23% publicly, after leading development folds at 81.37% and recording 80.82% on the one-time local test.</p>
+        <p class="completed-work"><strong>Recorded:</strong> the accepted vote scored 82.41% publicly; twelve geography alternatives failed the frozen-fold gate, while centroid imputation improved 4/5 LGA-disjoint sensitivity folds.</p>
         <ol class="checklist">
-          <li>Extend the target audit into class meaning and pairwise separability.</li>
-          <li>Assess whether an ordinal or hierarchical target treatment is justified.</li>
-          <li>Define grouped geographic sensitivity without changing frozen membership.</li>
-          <li>Use out-of-fold errors to choose the next bounded comparison.</li>
+          <li>Keep the frozen folds, accepted geography and XGBoost/Random Forest recipe fixed.</li>
+          <li>Test conservative fold-fitted <code>funder</code> and <code>installer</code> treatments separately.</li>
+          <li>Keep the 9.5-point LGA-disjoint accuracy drop visible as a transfer warning.</li>
+          <li>Reserve leaderboard use for candidates promoted by out-of-fold evidence.</li>
         </ol>
         <p class="parallel-work"><strong>Boundary:</strong> the public score is external feedback, not a replacement for the retained cross-validation and local-test evidence.</p>
-        <p class="gate"><strong>Next gate:</strong> a development-only analysis identifies a justified target or robustness experiment.</p>
+        <p class="gate"><strong>Next gate:</strong> a feature-family ablation improves the accepted recipe across the frozen development folds.</p>
       </section>
 
       <section class="panel plan-panel" aria-labelledby="plan-title">
@@ -111,7 +111,7 @@
                 <td><span class="track-type">Step 05</span><strong>Select &amp; engineer features</strong></td>
                 <td><span class="state active">Active</span></td>
                 <td><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small class="progress-note">audit · separate metric</small></td>
-                <td>All candidates are audited; the initial 29-feature policy keeps elapsed date, pump age and missing-state treatments while deferring high-cardinality fields and hierarchy alternatives.</td>
+                <td>All candidates are audited; twelve geography alternatives failed the primary gate, so the initial 29-feature policy remains fixed while organisation fields move into bounded ablation.</td>
               </tr>
               <tr class="row-complete">
                 <td><span class="track-type">Step 06</span><strong>Define the ML task</strong></td>
@@ -129,19 +129,19 @@
                 <td><span class="track-type">Step 08</span><strong>Select &amp; train candidate methods</strong></td>
                 <td><span class="state complete">Done</span></td>
                 <td><strong>3 / 3</strong></td>
-                <td>Seven classifier families and five bounded soft-vote combinations are reproducibly evaluated on the frozen development folds.</td>
+                <td>Ten classifier families and ten bounded, calibrated or bagged ensemble workflows are reproducibly evaluated on the frozen development folds.</td>
               </tr>
               <tr class="row-complete">
                 <td><span class="track-type">Step 09</span><strong>Evaluate &amp; interpret results</strong></td>
                 <td><span class="state complete">Done</span></td>
-                <td><strong>3 / 3</strong><small class="progress-note">reference + 12 workflows</small></td>
-                <td>The selected forest-plus-boosting vote leads development folds at 81.37% and records 80.82% on the one-time local test.</td>
+                <td><strong>3 / 3</strong><small class="progress-note">reference + 20 workflows</small></td>
+                <td>The leading XGBoost-plus-forest vote reaches 81.625% on development folds and improves the public best to 82.41% without reopening the local test.</td>
               </tr>
               <tr class="row-complete">
                 <td><span class="track-type">Step 10</span><strong>Deploy &amp; iterate</strong></td>
                 <td><span class="state complete">Done</span></td>
                 <td><strong>3 / 3</strong></td>
-                <td>The selected workflow was refitted on all labelled rows; its validated submission scored 82.23% publicly.</td>
+                <td>Two independently selected workflows were refitted on all labelled rows; their validated submissions scored 82.41% and 82.40% publicly.</td>
               </tr>
             </tbody>
           </table>
@@ -150,9 +150,11 @@
 
       <aside class="support-grid" aria-label="Evidence and controls">
         <section class="panel compact-panel" aria-labelledby="submissions-title">
-          <header class="panel-heading"><div><h2 id="submissions-title">Audit-led submissions</h2><p>Latest: 21 August 2026 · 1 submitted on that UTC date</p></div></header>
+          <header class="panel-heading"><div><h2 id="submissions-title">Audit-led submissions</h2><p>Latest: 21 August 2026 · 3 submitted on that UTC date</p></div></header>
           <dl class="submission-list">
-            <div class="best-submission"><dt>Forest + boosting vote<small>Equal-weight blend</small></dt><dd><strong>0.8223</strong><span>Best</span></dd></div>
+            <div class="best-submission"><dt>XGBoost + Random Forest<small>55% / 45% vote</small></dt><dd><strong>0.8241</strong><span>Best</span></dd></div>
+            <div><dt>XGBoost depth bag + Random Forest<small>60% / 40% vote</small></dt><dd><strong>0.8240</strong></dd></div>
+            <div><dt>Forest + boosting vote<small>Earlier equal-weight blend</small></dt><dd><strong>0.8223</strong></dd></div>
             <div><dt>Extra Trees + boosting vote<small>Earlier equal-weight blend</small></dt><dd><strong>0.8170</strong></dd></div>
             <div><dt>Extra Trees<small>Audit-led features</small></dt><dd><strong>0.8050</strong></dd></div>
             <div><dt>Histogram gradient boosting<small>Audit-led features</small></dt><dd><strong>0.7968</strong></dd></div>
@@ -160,11 +162,13 @@
         </section>
 
         <section class="panel compact-panel" aria-labelledby="benchmarks-title">
-          <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Current gap to target: 0.02 percentage points</p></div></header>
+          <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Current gap to target: 0.19 percentage points</p></div></header>
           <dl class="benchmark-list">
-            <div><dt>Current public best / selected vote</dt><dd>82.23%</dd></div>
-            <div><dt>Selected vote / development CV</dt><dd>81.37%</dd></div>
-            <div><dt>Selected vote / local test</dt><dd>80.82%</dd></div>
+            <div><dt>Current public best / selected vote</dt><dd>82.41%</dd></div>
+            <div><dt>Second XGBoost / forest vote</dt><dd>82.40%</dd></div>
+            <div><dt>Leading vote / development CV</dt><dd>81.625%</dd></div>
+            <div><dt>Earlier selected vote / development CV</dt><dd>81.37%</dd></div>
+            <div><dt>Earlier selected vote / local test</dt><dd>80.82%</dd></div>
             <div><dt>Local Random Forest</dt><dd>80.59%</dd></div>
             <div><dt>Earlier public soft vote</dt><dd>81.70%</dd></div>
             <div><dt>Old local soft vote</dt><dd>80.83%</dd></div>
@@ -175,14 +179,15 @@
             <div><dt>Public all-functional score</dt><dd>54.61%</dd></div>
             <div><dt>“Everyone and their dog”</dt><dd>≈82.10%</dd></div>
             <div><dt>About 2,500 teams</dt><dd>≈82.20%</dd></div>
-            <div class="target-benchmark"><dt>Provisional target</dt><dd>82.25%</dd></div>
+            <div class="achieved-benchmark"><dt>Provisional target · achieved</dt><dd>82.25%</dd></div>
+            <div class="target-benchmark"><dt>Stretch target</dt><dd>82.60%</dd></div>
             <div><dt>World record</dt><dd>82.299%</dd></div>
           </dl>
         </section>
 
         <section class="panel compact-panel" aria-labelledby="history-title">
-          <header class="panel-heading"><div><h2 id="history-title">Daily best score</h2><p>Chart scale: 50–85% · provisional target: 82.25%</p></div></header>
-          <div class="score-chart" role="img" aria-label="Daily best score history. 14 August 2026: 54.61 per cent. 15 August 2026: 81.70 per cent. 21 August 2026: 82.23 per cent. Provisional target: 82.25 per cent.">
+          <header class="panel-heading"><div><h2 id="history-title">Daily best score</h2><p>Chart scale: 50–85% · stretch target: 82.60%</p></div></header>
+          <div class="score-chart" role="img" aria-label="Daily best score history. 14 August 2026: 54.61 per cent. 15 August 2026: 81.70 per cent. 21 August 2026: 82.41 per cent. Stretch target: 82.60 per cent.">
             <div class="score-axis" aria-hidden="true"><span>85%</span><span>70%</span><span>50%</span></div>
             <div class="score-plot">
               <div class="score-day">
@@ -194,7 +199,7 @@
                 <time datetime="2026-08-15">15 Aug</time>
               </div>
               <div class="score-day">
-                <div class="score-bar-zone"><span class="score-bar" style="--score-height: 92.09%"><strong>82.23%</strong></span></div>
+                <div class="score-bar-zone"><span class="score-bar" style="--score-height: 92.60%"><strong>82.41%</strong></span></div>
                 <time datetime="2026-08-21">21 Aug</time>
               </div>
             </div>
@@ -207,8 +212,8 @@
             <div><dt>Fixed removals</dt><dd><code>quantity_group</code>, <code>payment</code>, <code>recorded_by</code></dd></div>
             <div><dt>Preserve</dt><dd><code>id</code> for alignment and submission</dd></div>
             <div><dt>Initial policy</dt><dd>29 features; elapsed recording date, pump age and explicit missing-state flags</dd></div>
-            <div><dt>Accuracy leader</dt><dd>Random Forest + boosting · 81.37% · about 5.4 component minutes</dd></div>
-            <div><dt>Local test</dt><dd>Selected vote · 80.82% accuracy · one-time confirmation</dd></div>
+            <div><dt>Accuracy leader</dt><dd>55% XGBoost + 45% Random Forest · 81.625% development CV</dd></div>
+            <div><dt>Local test</dt><dd>Earlier forest + boosting vote · 80.82% · one-time confirmation</dd></div>
             <div><dt>Repair leader</dt><dd>Extra Trees · 39.40% recall · about 18 minutes</dd></div>
             <div><dt>Deferred</dt><dd>High-cardinality names and alternative category hierarchy levels</dd></div>
             <div><dt>Rule</dt><dd>Fit imputation, rare grouping, encoding and models inside each development fold</dd></div>
@@ -240,7 +245,7 @@
         <div><dt>Candidate predictors</dt><dd data-status-text="data.candidatePredictors" data-status-format="integer">36</dd></div>
         <div><dt>Target classes</dt><dd data-status-text="data.targetClasses" data-status-format="integer">3</dd></div>
         <div><dt>Metric</dt><dd data-status-text="data.metric">Accuracy</dd></div>
-        <div><dt>Locally evaluated</dt><dd data-status-text="models.evaluated" data-status-format="integer">12</dd></div>
+        <div><dt>Locally evaluated</dt><dd data-status-text="models.evaluated" data-status-format="integer">20</dd></div>
       </dl>
     </section>
   </main>

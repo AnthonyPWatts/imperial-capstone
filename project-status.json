@@ -6,13 +6,13 @@
   "overall": {
     "completed": 29,
     "total": 29,
-    "current": "Investigate target-class structure and grouped geographic robustness"
+    "current": "Begin conservative funder and installer feature-family ablations with the accepted model recipe"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Investigate target-class structure and grouped geographic robustness.",
+    "nextCheckpoint": "Begin conservative fold-fitted funder and installer feature-family ablations.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -26,25 +26,26 @@
   "features": {
     "examined": 36,
     "total": 36,
-    "current": "Initial 29-feature policy selected",
+    "current": "Geography screen retained the initial 29-feature policy",
     "rawPredictorsAudited": 39,
     "structuralRemovalsAudited": 3
   },
   "models": {
-    "trainedCandidates": 7,
-    "ensembleCandidates": 8,
-    "evaluated": 15
+    "trainedCandidates": 10,
+    "ensembleCandidates": 10,
+    "evaluated": 20
   },
   "submissions": {
-    "total": 7,
-    "usedToday": 1,
+    "total": 9,
+    "usedToday": 3,
     "dailyLimit": 3,
-    "bestScore": 0.8223,
-    "bestLabel": "Forest + boosting vote",
+    "bestScore": 0.8241,
+    "bestLabel": "XGBoost + Random Forest vote",
     "latestDate": "2026-08-21"
   },
   "benchmarks": {
-    "targetScore": 0.8225,
+    "achievedTargetScore": 0.8225,
+    "targetScore": 0.826,
     "nearTermCeiling": 0.85
   },
   "data": {

@@ -37,19 +37,24 @@ status request fails. The current snapshot is dated 21 August 2026:
 
 | Metric | Current value |
 | --- | ---: |
-| Overall plan checkpoints | 28 / 28 |
-| Features fully examined | 36 / 36 (initial 29-feature policy selected) |
-| Locally evaluated models | 12 |
-| Candidate methods trained | 7, plus five soft-vote ensembles |
-| DrivenData submissions | 7 |
-| Best leaderboard score | 0.8223 |
-| Provisional target score | 0.8225 |
+| Overall plan checkpoints | 29 / 29 |
+| Features fully examined | 36 / 36 (geography screen retained the initial 29-feature policy) |
+| Locally evaluated models | 20 |
+| Candidate methods trained | 10, plus ten ensemble workflows |
+| DrivenData submissions | 9 |
+| Best leaderboard score | 0.8241 |
+| Achieved provisional target | ~~0.8225~~ |
+| Stretch target score | 0.8260 |
 | Chart ceiling | 0.8500 |
-| Daily submissions used | 1 / 3 UTC |
+| Daily submissions used | 3 / 3 UTC |
 
-The current task is investigating target-class structure and grouped geographic
-robustness. The process remains iterative, so leaderboard feedback does not
-replace retained local model-selection evidence:
+The current task is beginning conservative `funder` and `installer`
+feature-family ablations with the accepted XGBoost and Random Forest recipe.
+The geography screen retained the current policy after twelve alternatives
+failed its primary gate; centroid imputation separately improved four of five
+LGA-disjoint sensitivity folds. The process remains
+iterative, so leaderboard feedback does not replace retained local
+model-selection evidence:
 
 - **Step 3, explore the data (4 / 4):** the maintained overall findings report,
   predictor catalogue and 117 per-predictor notebooks cover structure,
@@ -68,16 +73,17 @@ replace retained local model-selection evidence:
 - **Step 7, partition the data (3 / 3):** a stratified 20% local test set and
   five development folds are frozen with recorded seeds and fingerprints. The
   five-fold majority reference is 54.31% accuracy.
-- **Step 8, select and train candidates (3 / 3):** seven classifier families
-  and five bounded equal-weight votes have reproducible fold-safe evaluations.
-- **Step 9, evaluate and interpret (3 / 3):** Random Forest leads the single
-  models at 80.59%. Its vote with histogram boosting leads development folds at
-  81.37% and records 80.82% on the one-time local test.
-- **Step 10, deploy and iterate (3 / 3):** both selected components were
-  refitted on all labelled rows, the validated candidate CSV was uploaded and
-  its `0.8223` public score is recorded.
+- **Step 8, select and train candidates (3 / 3):** ten classifier families and
+  ten bounded, calibrated or bagged ensemble workflows have reproducible
+  fold-safe evaluations.
+- **Step 9, evaluate and interpret (3 / 3):** the leading 55% XGBoost and 45%
+  Random Forest vote reaches 81.625% on the frozen development folds. The
+  reserved local test was not reopened during this model-family screen.
+- **Step 10, deploy and iterate (3 / 3):** two independently selected XGBoost
+  and Random Forest workflows were refitted on all labelled rows; their
+  validated submissions scored `0.8241` and `0.8240` publicly.
 
-Seven submissions have been made across three UTC dates:
+Nine submissions have been made across three UTC dates:
 
 | Submission | Date | DrivenData score |
 | --- | --- | ---: |
@@ -87,19 +93,27 @@ Seven submissions have been made across three UTC dates:
 | Extra Trees | 15 August | 0.8050 |
 | Histogram gradient boosting | 15 August | 0.7968 |
 | Equal-weight Extra Trees and boosting vote | 15 August | 0.8170 |
-| Equal-weight Random Forest and boosting vote | 21 August | **0.8223** |
+| Equal-weight Random Forest and boosting vote | 21 August | 0.8223 |
+| 55% XGBoost and 45% Random Forest vote | 21 August | **0.8241** |
+| 60% XGBoost depth bag and 40% Random Forest vote | 21 August | 0.8240 |
 
 The 0.5461 all-`functional` result remains the simple public leaderboard floor;
 the frozen development folds produce a separate 0.5431 local majority
-reference. The Random Forest and histogram-boosting vote now leads the public
-results at `0.8223`, an absolute improvement of `0.0053` over the earlier Extra
-Trees and boosting vote. Formal comparison covers seven single-model families.
-Random Forest leads those at 80.59% mean accuracy. Its equal-weight vote with
-histogram boosting leads the bounded ensemble round at 81.37%, including 34.28%
-repair recall and 78.03% non-functional recall. The same frozen workflow records
-80.82% on the one-time local test, with 32.10% repair recall and 77.81%
-non-functional recall. Seven single models and five soft-vote workflows raise
-the **Models evaluated** counter to twelve.
+reference. The 55% XGBoost and 45% Random Forest vote now leads the public
+results at `0.8241`, an absolute improvement of `0.0018` over the preceding
+Random Forest and histogram-boosting vote. Its independently preselected
+depth-bag alternative scored `0.8240`. The two candidates disagree on 1.172%
+of out-of-fold labels and 1.192% of competition labels.
+
+Formal comparison now covers ten single-model families. Random Forest remains
+the strongest family from the earlier broad comparison at 80.59%; the new
+XGBoost screen supplies the better ensemble component. The leading XGBoost and
+Random Forest vote reaches 81.625% on the frozen development folds, including
+34.859% repair recall. The earlier forest and histogram-boosting vote remains
+the last workflow assessed on the one-time local test, where it recorded 80.82%
+accuracy, 32.10% repair recall and 77.81% non-functional recall. Ten single
+models and ten ensemble workflows raise the **Models evaluated** counter to
+twenty.
 
 The target-integrity track now awards all four checkpoints. Training shares,
 task and metric implications, label-frame integrity and exact feature/label ID
@@ -112,12 +126,14 @@ not been fetched or independently verified by the dashboard:
 | --- | ---: |
 | Widely achieved ("everyone and their dog") | approximately 82.10% |
 | Achieved by approximately 2,500 teams | approximately 82.20% |
-| Provisional project target | **82.25%** |
+| Achieved provisional target | ~~82.25%~~ |
+| Stretch target | **82.60%** |
 | Reported world record | 82.299% |
 
 The compact daily-best chart records 54.61% on 14 August, 81.70% on 15 August
-and 82.23% on 21 August. Its scale runs from 50% to 85%, with the 82.25%
-provisional target drawn inside that range.
+and 82.41% on 21 August. Its scale runs from 50% to 85%, with the 82.60% stretch
+target drawn inside that range. The achieved 82.25% provisional target remains
+visible as a struck-through benchmark row.
 
 ## Metric definitions
 
@@ -125,7 +141,7 @@ Keep these definitions stable so that the counters remain meaningful.
 
 ### Overall plan checkpoints
 
-The 28 checkpoints are grouped under the course lifecycle. Step 5 feature
+The 29 checkpoints are grouped under the course lifecycle. Step 5 feature
 coverage has its own 36-feature denominator and is excluded from the overall
 checkpoint total:
 
@@ -141,7 +157,7 @@ checkpoint total:
 | 8. Select and train candidate methods | 3 | 3 |
 | 9. Evaluate and interpret results | 3 | 3 |
 | 10. Deploy and iterate | 3 | 3 |
-| **Overall checkpoint total** | **28** | **28** |
+| **Overall checkpoint total** | **29** | **29** |
 
 Increment a track only when its exit evidence exists. Do not award partial
 credit for activity alone.
@@ -166,9 +182,10 @@ Count each materially distinct model family or declared ensemble workflow once
 after it has a reproducible local evaluation against the agreed development
 folds or local test. Hyperparameter variants do not each increase the headline
 counter. The cross-validated majority reference is a non-model benchmark and
-does not increase it. The seven single-model families are the constrained tree,
-logistic regression, Gaussian naïve Bayes, KNN, Extra Trees, histogram boosting
-and Random Forest. Five declared soft votes bring the counter to twelve. Record
+does not increase it. The ten single-model families are the constrained tree,
+logistic regression, Gaussian naïve Bayes, KNN, Extra Trees, histogram boosting,
+Random Forest, CatBoost, XGBoost and LightGBM. Ten declared soft-vote,
+calibrated-stack and bagged-vote workflows bring the counter to twenty. Record
 detailed experiments elsewhere.
 
 ### Submission metrics
@@ -189,11 +206,11 @@ Calculate the CSS height as:
 --score-height = (percentage score - 50) ÷ 35 × 100%
 ```
 
-For example, 54.61% becomes `13.17%`, 81.70% becomes `90.57%` and 82.23%
-becomes `92.09%`. If results reach or exceed 85%, change the axis and document
-the new scale rather than allowing bars to overflow. Keep the full 82.25%
-target in the summary and benchmark panel regardless of the chart's temporary
-scale.
+For example, 54.61% becomes `13.17%`, 81.70% becomes `90.57%` and 82.41%
+becomes `92.60%`. If results reach or exceed 85%, change the axis and document
+the new scale rather than allowing bars to overflow. Keep the full 82.60%
+stretch target in the summary and benchmark panel regardless of the chart's
+temporary scale.
 
 ## Real risks and controls
 
@@ -232,9 +249,8 @@ or notebook output directly.
 
 ## Likely next changes
 
-- Extend the target-label audit into semantics, pairwise separability and
-  possible ordinal or hierarchical formulations.
-- Define grouped geographic sensitivity without changing the selected feature
-  policy; begin with the lower-cost booster before repeating a full ensemble.
-- Use out-of-fold errors and controlled ablations to decide whether class
-  weighting, target structure or a feature-family change deserves promotion.
+- Begin conservative fold-fitted `funder` and `installer` treatments with the
+  accepted XGBoost and Random Forest recipe held fixed.
+- Retain the accepted geography policy and the LGA-disjoint transfer warning.
+- Compare each promoted organisation challenger with both accepted components
+  and the complete vote.

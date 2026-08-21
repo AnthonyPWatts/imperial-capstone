@@ -11,6 +11,10 @@ The frozen 2.5× oversampling candidate's calibration, disagreement and
 repair-error trade-offs are in
 [`probability-reliability-and-edge-cases.md`](probability-reliability-and-edge-cases.md).
 
+The fixed-model geography ablations, paired-coordinate validity rule,
+fold-fitted centroid imputation and LGA-disjoint sensitivity evidence are in
+[`geography-feature-family-and-robustness.md`](geography-feature-family-and-robustness.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

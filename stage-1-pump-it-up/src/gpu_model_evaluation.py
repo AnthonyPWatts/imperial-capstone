@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass as _dataclass
 from dataclasses import replace as _replace
 import time as _time
+from typing import Callable as _Callable
 from typing import Mapping as _Mapping
 
 from catboost import CatBoostClassifier as _CatBoostClassifier
@@ -391,6 +392,8 @@ def evaluate_gpu_candidate(
     spec: GpuCandidateSpec,
     partitioned_data: PartitionedData,
     cross_validation: object,
+    *,
+    preprocessor_factory: _Callable[[], object] = make_initial_preprocessor,
 ) -> CandidateEvaluation:
     """Select tree counts inside outer training, then score each outer fold."""
 
@@ -413,6 +416,7 @@ def evaluate_gpu_candidate(
             y_training,
             X_validation,
             fold_number=fold_number,
+            preprocessor_factory=preprocessor_factory,
         )
         probability_values[validation_positions] = probabilities
         fold_diagnostics["total_seconds"] = _time.perf_counter() - fold_started
@@ -442,6 +446,7 @@ def fit_gpu_candidate_probabilities(
     X_prediction: _pd.DataFrame,
     *,
     iterations: int,
+    preprocessor_factory: _Callable[[], object] = make_initial_preprocessor,
 ) -> tuple[_np.ndarray, float]:
     """Fit one fixed-iteration GPU candidate and return ordered probabilities."""
 
@@ -463,7 +468,7 @@ def fit_gpu_candidate_probabilities(
         )
         model.fit(X_fit, y_encoded, cat_features=list(categorical), verbose=False)
     elif spec.family == XGBOOST_FAMILY:
-        preprocessor = make_initial_preprocessor(sparse_output=True)
+        preprocessor = preprocessor_factory()
         X_fit = preprocessor.fit_transform(X_training)
         X_predict = preprocessor.transform(X_prediction)
         model = _make_xgboost_model(
@@ -473,7 +478,7 @@ def fit_gpu_candidate_probabilities(
         )
         model.fit(X_fit, y_encoded, verbose=False)
     elif spec.family == LIGHTGBM_FAMILY:
-        preprocessor = make_initial_preprocessor(sparse_output=True)
+        preprocessor = preprocessor_factory()
         X_fit = preprocessor.fit_transform(X_training)
         X_predict = preprocessor.transform(X_prediction)
         model = _make_lightgbm_model(
@@ -486,7 +491,7 @@ def fit_gpu_candidate_probabilities(
             callbacks=[_lgb_log_evaluation(period=0)],
         )
     elif spec.family == SKLEARN_TREE_FAMILY:
-        preprocessor = make_initial_preprocessor(sparse_output=True)
+        preprocessor = preprocessor_factory()
         X_fit = preprocessor.fit_transform(X_training)
         X_predict = preprocessor.transform(X_prediction)
         model = _make_sklearn_tree_model(spec, iterations=iterations)
@@ -514,6 +519,7 @@ def _fit_outer_fold(
     X_validation: _pd.DataFrame,
     *,
     fold_number: int,
+    preprocessor_factory: _Callable[[], object],
 ) -> tuple[_np.ndarray, dict[str, int | float]]:
     if spec.family == SKLEARN_TREE_FAMILY:
         return _fit_fixed_sklearn_tree_fold(
@@ -521,6 +527,7 @@ def _fit_outer_fold(
             X_training,
             y_training,
             X_validation,
+            preprocessor_factory=preprocessor_factory,
         )
 
     positions = _np.arange(len(y_training))
@@ -559,7 +566,7 @@ def _fit_outer_fold(
         )
         selected_iterations = int(stopping_model.get_best_iteration()) + 1
     elif spec.family == XGBOOST_FAMILY:
-        stopping_preprocessor = make_initial_preprocessor(sparse_output=True)
+        stopping_preprocessor = preprocessor_factory()
         X_inner_fit = stopping_preprocessor.fit_transform(X_inner_fit)
         X_inner_stop = stopping_preprocessor.transform(X_inner_stop)
         stopping_model = _make_xgboost_model(
@@ -575,7 +582,7 @@ def _fit_outer_fold(
         )
         selected_iterations = int(stopping_model.best_iteration) + 1
     elif spec.family == LIGHTGBM_FAMILY:
-        stopping_preprocessor = make_initial_preprocessor(sparse_output=True)
+        stopping_preprocessor = preprocessor_factory()
         X_inner_fit = stopping_preprocessor.fit_transform(X_inner_fit)
         X_inner_stop = stopping_preprocessor.transform(X_inner_stop)
         stopping_model = _make_lightgbm_model(
@@ -623,7 +630,7 @@ def _fit_outer_fold(
             verbose=False,
         )
     elif spec.family == XGBOOST_FAMILY:
-        refit_preprocessor = make_initial_preprocessor(sparse_output=True)
+        refit_preprocessor = preprocessor_factory()
         X_outer_training = refit_preprocessor.fit_transform(X_training)
         X_validation = refit_preprocessor.transform(X_validation)
         model = _make_xgboost_model(
@@ -633,7 +640,7 @@ def _fit_outer_fold(
         )
         model.fit(X_outer_training, y_outer_training, verbose=False)
     else:
-        refit_preprocessor = make_initial_preprocessor(sparse_output=True)
+        refit_preprocessor = preprocessor_factory()
         X_outer_training = refit_preprocessor.fit_transform(X_training)
         X_validation = refit_preprocessor.transform(X_validation)
         model = _make_lightgbm_model(
@@ -661,11 +668,13 @@ def _fit_fixed_sklearn_tree_fold(
     X_training: _pd.DataFrame,
     y_training: _pd.Series,
     X_validation: _pd.DataFrame,
+    *,
+    preprocessor_factory: _Callable[[], object],
 ) -> tuple[_np.ndarray, dict[str, int | float]]:
     """Fit one fixed bagged-tree candidate without an early-stop split."""
 
     started = _time.perf_counter()
-    preprocessor = make_initial_preprocessor(sparse_output=True)
+    preprocessor = preprocessor_factory()
     X_fit = preprocessor.fit_transform(X_training)
     X_predict = preprocessor.transform(X_validation)
     iterations = int(SKLEARN_TREE_VARIANTS[spec.variant]["n_estimators"])

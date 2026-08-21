@@ -20,32 +20,39 @@ fixed BBO brief and will be developed as each set of observations is released.
 ## Current position
 
 As of 21 August 2026, Stage 1 has audited all 39 raw predictors, settled three
-structural removals and organised the remaining 36 candidate predictors. Seven
-DrivenData submissions have been made. The latest, an equal-weight soft vote
-between Random Forest and histogram gradient boosting, set a new best public
-score of `0.8223`, improving on the earlier `0.8170` result.
+structural removals and organised the remaining 36 candidate predictors. Nine
+DrivenData submissions have been made. The best is a 55% XGBoost and 45%
+Random Forest vote at `0.8241`; an independently preselected XGBoost depth-bag
+alternative followed at `0.8240`.
 
 The formal workflow freezes a stratified 20% local test and five development
-folds, then compares seven classifier families and five simple probability
-ensembles with fold-fitted preprocessing. Random Forest is the strongest single
-model at 80.59% mean accuracy. Its equal-weight vote with histogram gradient
-boosting leads at 81.37%, ahead of the formally recreated Extra Trees and
-boosting vote at 80.83%. The selected workflow records 80.82% on the one-time
-local test, with 32.10% repair recall and 77.81% non-functional recall.
+folds, then compares ten classifier families and ten bounded ensemble workflows
+with fold-fitted preprocessing. Random Forest is the strongest single model in
+the earlier broad comparison at 80.59% mean accuracy. The leading XGBoost and
+Random Forest vote reaches 81.625% on the frozen development folds. The earlier
+forest and histogram-boosting vote remains the last workflow assessed on the
+one-time local test, where it recorded 80.82% accuracy, 32.10% repair recall and
+77.81% non-functional recall.
 
-Both components were refitted on all 59,400 labelled rows. Their validated
-14,850-row competition submission scored `0.8223` on the public leaderboard.
-Target-class semantics and possible ordinal or hierarchical structure,
-together with grouped geographic sensitivity, are the next modelling
-investigations. The main evidence is available in the
+The accepted XGBoost and Random Forest workflows were refitted on all 59,400
+labelled rows. Their validated 14,850-row competition submissions scored
+`0.8241` and `0.8240` on the public leaderboard. A subsequent fixed-model
+geography screen retained the accepted feature policy: none of twelve
+alternatives passed the frozen-fold gate. Hierarchical coordinate-centroid
+imputation improved 4/5 LGA-disjoint folds but exposed a roughly 9.5-point
+accuracy drop under that harder geographic-transfer design. Conservative
+`funder` and `installer` treatments are the next feature-family loop. The main
+evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
-and [data-preparation handoff](stage-1-pump-it-up/reports/data-preparation-next-steps.md).
+and [geography robustness report](stage-1-pump-it-up/reports/geography-feature-family-and-robustness.md).
 
-A subsequent bounded blend comparison retained the equal vote: neither fixed
+A bounded blend comparison retained the earlier equal vote: neither fixed
 40:60 alternative nor a nested calibrated stack improved at least three of the
-five development folds, so it consumed no additional submission slot.
+five development folds. The subsequent frozen-feature family screen found
+XGBoost to be a better Random Forest partner than histogram boosting, producing
+the two new public results without reopening the reserved local test.
 
 Stage 2 remains scaffolded while the Module 12 inputs and dates are unavailable.
 

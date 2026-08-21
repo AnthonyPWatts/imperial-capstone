@@ -18,6 +18,13 @@ The initial date treatment replaces `date_recorded` with
 `days_since_recorded`, measured from the fixed 2015-02-02 competition-era
 reference. It does not derive separate year, month or day fields.
 
+The later geography feature-family loop is now complete. Twelve alternatives
+were compared with the accepted XGBoost and Random Forest recipe; none passed
+the frozen-fold gate. The current coordinate pair plus named geography remains
+selected. Fold-fitted hierarchical coordinate-centroid imputation improved a
+separate LGA-disjoint sensitivity but not the primary comparison. See
+[`geography-feature-family-and-robustness.md`](geography-feature-family-and-robustness.md).
+
 The fixed column-removal implementation is in
 [`src/data_preparation.py`](../src/data_preparation.py), with its declarative
 schema and assumptions in
@@ -298,7 +305,7 @@ serving less controlled inputs.
 
 - Alternative missing-value representations and imputation strategies.
 - Treatment of high-cardinality categorical fields.
-- Geographic feature engineering and ablation of the elapsed-date feature.
+- Ablation of the elapsed-date feature; the separate geography family is complete.
 - Removal of hierarchy columns after model comparison.
 - Tuning ranges, target-class structure and grouped geographic sensitivity.
 - Private leaderboard evidence for the submitted candidate.
@@ -308,9 +315,8 @@ work can proceed without them.
 
 ## Resume point
 
-Continue the next **Deploy and iterate** loop by extending the target-label
-audit into semantics, pairwise separability and hierarchical or ordinal
-formulations using development-only out-of-fold evidence. The recorded `0.8223`
-public score remains external feedback rather than a replacement for local
-model-selection evidence. Grouped geographic sensitivity remains the parallel
-robustness check.
+Continue the next **Deploy and iterate** loop with conservative fold-fitted
+`funder` and `installer` treatments under the accepted XGBoost and Random Forest
+recipe. The geography family and grouped-LGA sensitivity are recorded and
+frozen. Public scores remain external feedback rather than a replacement for
+local model-selection evidence.

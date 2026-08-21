@@ -605,6 +605,19 @@ tbody tr:hover {
   font-weight: 750;
 }
 
+.benchmark-list .achieved-benchmark {
+  color: var(--green);
+  background: var(--green-bg);
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+
+.benchmark-list .achieved-benchmark dt,
+.benchmark-list .achieved-benchmark dd {
+  color: var(--green);
+  font-weight: 700;
+}
+
 .score-chart {
   display: grid;
   grid-template-columns: 2.5rem 1fr;
@@ -631,7 +644,7 @@ tbody tr:hover {
   gap: 0.45rem;
   border-left: 1px solid var(--border);
   background:
-    linear-gradient(to bottom, transparent calc(0.424rem - 0.5px), var(--red) calc(0.424rem - 0.5px) calc(0.424rem + 0.5px), transparent calc(0.424rem + 0.5px)),
+    linear-gradient(to bottom, transparent calc(0.370rem - 0.5px), var(--red) calc(0.370rem - 0.5px) calc(0.370rem + 0.5px), transparent calc(0.370rem + 0.5px)),
     linear-gradient(to bottom, transparent calc(2.314rem - 0.5px), var(--border-light) calc(2.314rem - 0.5px) calc(2.314rem + 0.5px), transparent calc(2.314rem + 0.5px)),
     linear-gradient(to bottom, transparent calc(5.4rem - 1px), var(--border-light) calc(5.4rem - 1px) 5.4rem, transparent 5.4rem);
 }

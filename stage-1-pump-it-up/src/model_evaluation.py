@@ -175,7 +175,10 @@ def make_gaussian_naive_bayes_pipeline() -> _Pipeline:
     )
 
 
-def make_random_forest_pipeline() -> _Pipeline:
+def make_random_forest_pipeline(
+    *,
+    preprocessor_factory: _Callable[..., _Pipeline] = make_initial_preprocessor,
+) -> _Pipeline:
     """Return initial preprocessing and a conventional Random Forest."""
 
     classifier = _RandomForestClassifier(
@@ -188,7 +191,10 @@ def make_random_forest_pipeline() -> _Pipeline:
         n_jobs=-1,
         random_state=RANDOM_FOREST_SEED,
     )
-    return _make_pipeline(classifier)
+    return _make_pipeline(
+        classifier,
+        preprocessor_factory=preprocessor_factory,
+    )
 
 
 def make_calibrated_stack_pipeline() -> _Pipeline:
@@ -487,14 +493,19 @@ def evaluate_gaussian_naive_bayes(
 def evaluate_random_forest(
     partitioned_data: PartitionedData,
     cross_validation: _PredefinedSplit,
+    *,
+    preprocessor_factory: _Callable[..., _Pipeline] = make_initial_preprocessor,
+    model_name: str = "Random Forest",
 ) -> CandidateEvaluation:
     """Fit and score a conventional Random Forest on every fold."""
 
     return _evaluate_candidate(
-        model_name="Random Forest",
+        model_name=model_name,
         partitioned_data=partitioned_data,
         cross_validation=cross_validation,
-        pipeline_factory=make_random_forest_pipeline,
+        pipeline_factory=lambda: make_random_forest_pipeline(
+            preprocessor_factory=preprocessor_factory,
+        ),
         diagnostics_factory=_random_forest_diagnostics,
         record_elapsed=True,
     )
@@ -713,12 +724,13 @@ def _make_pipeline(
     *,
     sparse_output: bool = True,
     scale_numeric: bool = False,
+    preprocessor_factory: _Callable[..., _Pipeline] = make_initial_preprocessor,
 ) -> _Pipeline:
     return _Pipeline(
         steps=[
             (
                 "preprocessing",
-                make_initial_preprocessor(
+                preprocessor_factory(
                     sparse_output=sparse_output,
                     scale_numeric=scale_numeric,
                 ),

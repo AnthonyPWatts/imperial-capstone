@@ -80,14 +80,26 @@ labels. The multiplier is frozen and three additional validated CSVs were
 generated without upload. Compressed data and generated CSVs remain ignored
 local artefacts.
 
+The fixed-model geography screen compared twelve alternatives with the accepted
+representation. None passed the frozen-fold gate: removing coordinates cost
+0.734 percentage points, removing named geography cost 0.299 points, and the
+best challenger was fold-fitted hierarchical coordinate-centroid imputation at
+81.566%, 0.059 points below the accepted vote. On deliberately harder
+LGA-disjoint folds, centroid imputation improved 0.161 points and won four of
+five folds, but absolute accuracy fell to 72.26% and repair recall to 2.99%.
+This records material geographic-transfer risk without reopening the local test.
+See the [geography robustness report](reports/geography-feature-family-and-robustness.md).
+
 ## Next modelling loop
 
-1. Resume the separate evidence-led feature-family plan on a fixed accepted
-   model recipe.
-2. If one later upload slot is reserved for a minority-recall experiment, use
+1. Retain the accepted geography policy and move the fixed-model feature-family
+   plan to conservative fold-fitted treatments of `funder` and `installer`.
+2. Keep the LGA-disjoint result as a robustness warning; do not replace the
+   competition-aligned frozen-fold selection metric silently.
+3. If one later upload slot is reserved for a minority-recall experiment, use
    the 2.5× replay as an explicitly exploratory candidate; do not claim
    an expected accuracy gain from the local-test evidence.
-3. Retain the operational hierarchy as a named candidate for decision-focused
+4. Retain the operational hierarchy as a named candidate for decision-focused
    work; do not replace the competition's flat target silently.
 
 The practical question is how well maintenance data can distinguish functional,
