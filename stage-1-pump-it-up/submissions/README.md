@@ -63,7 +63,7 @@ reproducible notebook and experiment notes are in
   candidate comparison and interpretation remain part of the later modelling
   workflow.
 
-## 2026-08-21: forest-plus-boosting candidate prepared
+## 2026-08-21: forest-plus-boosting candidate submitted
 
 Formal model comparison screened seven classifier families and five bounded
 equal-weight probability votes. Random Forest plus histogram gradient boosting
@@ -80,7 +80,8 @@ test.
 - Prediction shares are 60.59% `functional`, 3.82% `functional needs repair`
   and 35.58% `non functional`.
 - Candidate SHA-256: `995f2eebda763a42ceca42db1915f10f7ccb494090bbeda0be48bd07f6fa18aa`.
-- The generated CSV remains local and is excluded from Git.
-- Submission status: **ready, not yet uploaded**.
-- Public and private leaderboard scores: not available.
-- Source commit: record before upload.
+- Public leaderboard score: **0.8223**, a new project best and an absolute
+  improvement of `0.0053` over the earlier Extra Trees and boosting vote.
+- Private leaderboard score: not available.
+- Submission status: **submitted on 21 August 2026**.
+- Source commit: `3340744` (`Added broad classifier screening and submission candidate`).

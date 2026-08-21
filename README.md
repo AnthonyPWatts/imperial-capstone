@@ -20,9 +20,10 @@ fixed BBO brief and will be developed as each set of observations is released.
 ## Current position
 
 As of 21 August 2026, Stage 1 has audited all 39 raw predictors, settled three
-structural removals and organised the remaining 36 candidate predictors. Six
-DrivenData submissions have been made. An equal-weight soft vote between Extra
-Trees and histogram gradient boosting has the best public score at `0.8170`.
+structural removals and organised the remaining 36 candidate predictors. Seven
+DrivenData submissions have been made. The latest, an equal-weight soft vote
+between Random Forest and histogram gradient boosting, set a new best public
+score of `0.8223`, improving on the earlier `0.8170` result.
 
 The formal workflow freezes a stratified 20% local test and five development
 folds, then compares seven classifier families and five simple probability
@@ -32,11 +33,11 @@ boosting leads at 81.37%, ahead of the formally recreated Extra Trees and
 boosting vote at 80.83%. The selected workflow records 80.82% on the one-time
 local test, with 32.10% repair recall and 77.81% non-functional recall.
 
-Both components have been refitted on all 59,400 labelled rows and a validated
-14,850-row competition submission is ready. Its public score remains unknown
-until upload. Target-class semantics and possible ordinal or hierarchical
-structure, together with grouped geographic sensitivity, are the next
-modelling investigations. The main evidence is available in the
+Both components were refitted on all 59,400 labelled rows. Their validated
+14,850-row competition submission scored `0.8223` on the public leaderboard.
+Target-class semantics and possible ordinal or hierarchical structure,
+together with grouped geographic sensitivity, are the next modelling
+investigations. The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)

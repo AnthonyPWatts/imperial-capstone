@@ -25,10 +25,10 @@ or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capston
 ## Current position
 
 The raw-data audit covers all 39 non-identifier predictors. Three structural
-removals are settled, leaving 36 candidate predictors. Six submissions have
-tested the submission path and two audit-led model families. The best public
-score is `0.8170` from an equal-weight soft-vote ensemble of Extra Trees and
-histogram gradient boosting.
+removals are settled, leaving 36 candidate predictors. Seven submissions have
+tested the submission path and the audit-led modelling workflow. The best
+public score is `0.8223` from the selected equal-weight soft-vote ensemble of
+Random Forest and histogram gradient boosting, up from the previous `0.8170`.
 
 The formal workflow reserves a stratified 20% local test and fixes five
 development folds. It compares seven classifier families: a constrained tree,
@@ -40,21 +40,18 @@ non-functional recall.
 
 The selected vote records 80.82% accuracy on the one-time local test, including
 32.10% repair recall and 77.81% non-functional recall. Both components have
-then been refitted on all 59,400 labelled rows. A structurally validated
-14,850-row competition CSV is ready for upload; its public score is not yet
-known. See the
+then been refitted on all 59,400 labelled rows. The structurally validated
+14,850-row competition CSV scored `0.8223` on the public leaderboard. See the
 [submission log](submissions/README.md), the [maintained audit report](notebooks/data-audit/00-overall/00-overall-data-audit.md)
 and the [data-preparation handoff](reports/data-preparation-next-steps.md).
 
 ## Next modelling loop
 
-1. Upload the prepared forest-plus-boosting candidate and record its public
-   score with the source commit.
-2. Extend the target audit from integrity and class balance into class meaning,
+1. Extend the target audit from integrity and class balance into class meaning,
    pairwise separability and possible ordinal or hierarchical structure.
-3. Define grouped geographic sensitivity without changing the frozen
+2. Define grouped geographic sensitivity without changing the frozen
    membership or selected feature policy.
-4. Use out-of-fold errors to decide whether class weighting, target structure
+3. Use out-of-fold errors to decide whether class weighting, target structure
    or a targeted feature-family ablation deserves the next comparison.
 
 The practical question is how well maintenance data can distinguish functional,

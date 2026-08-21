@@ -4,15 +4,15 @@
     "label": "21 August 2026"
   },
   "overall": {
-    "completed": 27,
+    "completed": 28,
     "total": 28,
-    "current": "Upload and record the forest-plus-boosting candidate"
+    "current": "Investigate target-class structure and grouped geographic robustness"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Record the candidate's public score, then investigate target-class structure and grouped geographic robustness.",
+    "nextCheckpoint": "Investigate target-class structure and grouped geographic robustness.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -36,12 +36,12 @@
     "evaluated": 12
   },
   "submissions": {
-    "total": 6,
-    "usedToday": 0,
+    "total": 7,
+    "usedToday": 1,
     "dailyLimit": 3,
-    "bestScore": 0.817,
-    "bestLabel": "Soft-vote ensemble",
-    "latestDate": "2026-08-15"
+    "bestScore": 0.8223,
+    "bestLabel": "Forest + boosting vote",
+    "latestDate": "2026-08-21"
   },
   "benchmarks": {
     "targetScore": 0.8225,

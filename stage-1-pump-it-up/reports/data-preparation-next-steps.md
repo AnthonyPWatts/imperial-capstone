@@ -1,5 +1,5 @@
 ---
-status: candidate-submission-ready
+status: candidate-submitted
 branch: main
 updated: 2026-08-21
 ---
@@ -8,13 +8,11 @@ updated: 2026-08-21
 
 ## Working on
 
-Upload and record the prepared Random Forest and histogram-boosting candidate.
-Their equal-weight vote leads development-fold accuracy at 81.37% and records
-80.82% on the one-time local test. Both components have been refitted on all
-59,400 labelled original rows; the validated 14,850-row competition CSV is
-ready. After recording its public score, extend the target audit into class
-meaning and possible ordinal or hierarchical structure, then run grouped
-geographic sensitivity.
+Extend the target audit into class meaning and possible ordinal or hierarchical
+structure, then run grouped geographic sensitivity. The selected Random Forest
+and histogram-boosting vote led development-fold accuracy at 81.37%, recorded
+80.82% on the one-time local test and scored `0.8223` on the public leaderboard
+after both components were refitted on all 59,400 labelled original rows.
 
 The initial date treatment replaces `date_recorded` with
 `days_since_recorded`, measured from the fixed 2015-02-02 competition-era
@@ -229,7 +227,7 @@ any learned preprocessing to prevent leakage.
 | 7. Partition the data | Complete: reserve a reproducible stratified 20% local test set and freeze five development folds. Add a grouped geographic sensitivity check later. |
 | 8. Select and train candidate methods | Compare seven classifier families and five bounded soft-vote combinations with fold-fitted preprocessing. |
 | 9. Evaluate and interpret the results | Select the Random Forest and histogram-boosting vote at 81.37%, then confirm 80.82% once on the local test. |
-| 10. Deploy and iterate | Complete the full-data refit and submission validation; upload and record its public score, then return to target structure and geographic robustness. |
+| 10. Deploy and iterate | Complete the full-data refit and submission validation, record the `0.8223` public score, then return to target structure and geographic robustness. |
 
 The lifecycle remains iterative. Early public submissions reached Steps 8 to 10,
 but they did not complete the partitioning and local-evaluation gates in Steps 7
@@ -274,10 +272,11 @@ and 9.
    equal-weight Random Forest and boosting vote at 81.37%.
 14. **Complete:** confirm 80.82% accuracy once on the local test, refit on all
    labelled rows and validate the competition submission.
-15. **Next:** upload and record the candidate, then investigate target-class
-   structure and grouped geographic robustness.
+15. **Complete:** upload the candidate and record its `0.8223` public score.
 16. **Complete:** align the dashboard and supporting documentation with the
    canonical ten-step lifecycle.
+17. **Next:** investigate target-class structure and grouped geographic
+   robustness.
 
 Use the repository's current `.venv`. Formal automated tests are low priority
 for this known, local data set. Continue using focused smoke checks against both
@@ -302,16 +301,16 @@ serving less controlled inputs.
 - Geographic feature engineering and ablation of the elapsed-date feature.
 - Removal of hierarchy columns after model comparison.
 - Tuning ranges, target-class structure and grouped geographic sensitivity.
-- Public leaderboard evidence for the prepared candidate.
+- Private leaderboard evidence for the submitted candidate.
 
 These choices require training-partition evidence. The structural preparation
 work can proceed without them.
 
 ## Resume point
 
-Continue course Step 10, **Deploy and iterate**. Upload the candidate generated
-by `05-final-model-and-submission.ipynb` and record its public score without
-using that score to disguise the retained local evidence. Then extend the
-target-label audit into semantics, pairwise separability and hierarchical or
-ordinal formulations using development-only out-of-fold evidence. Grouped
-geographic sensitivity remains the parallel robustness check.
+Continue the next **Deploy and iterate** loop by extending the target-label
+audit into semantics, pairwise separability and hierarchical or ordinal
+formulations using development-only out-of-fold evidence. The recorded `0.8223`
+public score remains external feedback rather than a replacement for local
+model-selection evidence. Grouped geographic sensitivity remains the parallel
+robustness check.

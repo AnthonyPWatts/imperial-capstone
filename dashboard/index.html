@@ -36,34 +36,34 @@
   <main id="content">
     <section class="summary" aria-label="Summary">
       <div class="progress-summary">
-        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">27 / 28</span> checkpoints</strong></div>
-        <div class="progress" role="img" data-status-progress-current="overall.completed" data-status-progress-total="overall.total" aria-label="96 per cent complete"><span></span></div>
-        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Upload and record the forest-plus-boosting candidate</strong></div>
+        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">28 / 28</span> checkpoints</strong></div>
+        <div class="progress" role="img" data-status-progress-current="overall.completed" data-status-progress-total="overall.total" aria-label="100 per cent complete"><span></span></div>
+        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Investigate target-class structure and grouped geographic robustness</strong></div>
       </div>
       <dl class="summary-metrics">
         <div class="metric"><dt>Features fully examined</dt><dd><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small><code data-status-text="features.current">Initial 29-feature policy selected</code></small></dd></div>
-        <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">6</strong><small>Total</small></dd></div>
-        <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8170</strong><small data-status-text="submissions.bestLabel">Soft-vote ensemble</small></dd></div>
+        <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">7</strong><small>Total</small></dd></div>
+        <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8223</strong><small data-status-text="submissions.bestLabel">Forest + boosting vote</small></dd></div>
         <div class="metric"><dt>Target score</dt><dd><strong data-status-text="benchmarks.targetScore" data-status-format="score">0.8225</strong><small>Provisional</small></dd></div>
-        <div class="metric daily-usage"><dt>Used today (UTC)</dt><dd><strong data-status-fraction-current="submissions.usedToday" data-status-fraction-total="submissions.dailyLimit">0 / 3</strong><progress value="0" max="3" data-status-progress-current="submissions.usedToday" data-status-progress-total="submissions.dailyLimit">0 of 3 used</progress></dd></div>
+        <div class="metric daily-usage"><dt>Used today (UTC)</dt><dd><strong data-status-fraction-current="submissions.usedToday" data-status-fraction-total="submissions.dailyLimit">1 / 3</strong><progress value="1" max="3" data-status-progress-current="submissions.usedToday" data-status-progress-total="submissions.dailyLimit">1 of 3 used</progress></dd></div>
       </dl>
     </section>
 
     <div class="dashboard-grid">
       <section class="panel now-panel" aria-labelledby="now-title">
         <header class="panel-heading">
-          <div><h2 id="now-title">Now</h2><p>Upload the validated candidate and record evidence without replacing local results.</p></div>
+          <div><h2 id="now-title">Now</h2><p>Investigate target structure and geographic robustness using retained local evidence.</p></div>
           <span class="state active">Step 10</span>
         </header>
-        <p class="completed-work"><strong>Recorded:</strong> Random Forest plus histogram boosting leads at 81.37% across development folds and confirms 80.82% on the one-time local test.</p>
+        <p class="completed-work"><strong>Recorded:</strong> Random Forest plus histogram boosting scored 82.23% publicly, after leading development folds at 81.37% and recording 80.82% on the one-time local test.</p>
         <ol class="checklist">
-          <li>Upload the validated 14,850-row forest-plus-boosting CSV.</li>
-          <li>Record its public score, source commit and comparison with local evidence.</li>
-          <li>Update the submission log and daily-best chart only after a score exists.</li>
-          <li>Move next to target-class structure and grouped geographic robustness.</li>
+          <li>Extend the target audit into class meaning and pairwise separability.</li>
+          <li>Assess whether an ordinal or hierarchical target treatment is justified.</li>
+          <li>Define grouped geographic sensitivity without changing frozen membership.</li>
+          <li>Use out-of-fold errors to choose the next bounded comparison.</li>
         </ol>
         <p class="parallel-work"><strong>Boundary:</strong> the public score is external feedback, not a replacement for the retained cross-validation and local-test evidence.</p>
-        <p class="gate"><strong>Done when:</strong> the candidate score and evidence-led conclusion are recorded.</p>
+        <p class="gate"><strong>Next gate:</strong> a development-only analysis identifies a justified target or robustness experiment.</p>
       </section>
 
       <section class="panel plan-panel" aria-labelledby="plan-title">
@@ -137,11 +137,11 @@
                 <td><strong>3 / 3</strong><small class="progress-note">reference + 12 workflows</small></td>
                 <td>The selected forest-plus-boosting vote leads development folds at 81.37% and records 80.82% on the one-time local test.</td>
               </tr>
-              <tr class="row-active">
+              <tr class="row-complete">
                 <td><span class="track-type">Step 10</span><strong>Deploy &amp; iterate</strong></td>
-                <td><span class="state active">Active</span></td>
-                <td><strong>2 / 3</strong></td>
-                <td>The selected workflow is refitted on all labelled rows and its validated candidate CSV is ready; upload and score recording remain.</td>
+                <td><span class="state complete">Done</span></td>
+                <td><strong>3 / 3</strong></td>
+                <td>The selected workflow was refitted on all labelled rows; its validated submission scored 82.23% publicly.</td>
               </tr>
             </tbody>
           </table>
@@ -150,21 +150,23 @@
 
       <aside class="support-grid" aria-label="Evidence and controls">
         <section class="panel compact-panel" aria-labelledby="submissions-title">
-          <header class="panel-heading"><div><h2 id="submissions-title">Audit-led submissions</h2><p>15 August 2026 · 3 submitted on that UTC date</p></div></header>
+          <header class="panel-heading"><div><h2 id="submissions-title">Audit-led submissions</h2><p>Latest: 21 August 2026 · 1 submitted on that UTC date</p></div></header>
           <dl class="submission-list">
-            <div class="best-submission"><dt>Soft-vote ensemble<small>Equal-weight blend</small></dt><dd><strong>0.8170</strong><span>Best</span></dd></div>
+            <div class="best-submission"><dt>Forest + boosting vote<small>Equal-weight blend</small></dt><dd><strong>0.8223</strong><span>Best</span></dd></div>
+            <div><dt>Extra Trees + boosting vote<small>Earlier equal-weight blend</small></dt><dd><strong>0.8170</strong></dd></div>
             <div><dt>Extra Trees<small>Audit-led features</small></dt><dd><strong>0.8050</strong></dd></div>
             <div><dt>Histogram gradient boosting<small>Audit-led features</small></dt><dd><strong>0.7968</strong></dd></div>
           </dl>
         </section>
 
         <section class="panel compact-panel" aria-labelledby="benchmarks-title">
-          <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Current gap to target: 0.55 percentage points</p></div></header>
+          <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Current gap to target: 0.02 percentage points</p></div></header>
           <dl class="benchmark-list">
-            <div><dt>Current public best / old soft vote</dt><dd>81.70%</dd></div>
+            <div><dt>Current public best / selected vote</dt><dd>82.23%</dd></div>
             <div><dt>Selected vote / development CV</dt><dd>81.37%</dd></div>
             <div><dt>Selected vote / local test</dt><dd>80.82%</dd></div>
             <div><dt>Local Random Forest</dt><dd>80.59%</dd></div>
+            <div><dt>Earlier public soft vote</dt><dd>81.70%</dd></div>
             <div><dt>Old local soft vote</dt><dd>80.83%</dd></div>
             <div><dt>Local histogram boosting</dt><dd>80.21%</dd></div>
             <div><dt>Local Extra Trees</dt><dd>78.84%</dd></div>
@@ -180,7 +182,7 @@
 
         <section class="panel compact-panel" aria-labelledby="history-title">
           <header class="panel-heading"><div><h2 id="history-title">Daily best score</h2><p>Chart scale: 50–85% · provisional target: 82.25%</p></div></header>
-          <div class="score-chart" role="img" aria-label="Daily best score history. 14 August 2026: 54.61 per cent. 15 August 2026: 81.70 per cent. Provisional target: 82.25 per cent.">
+          <div class="score-chart" role="img" aria-label="Daily best score history. 14 August 2026: 54.61 per cent. 15 August 2026: 81.70 per cent. 21 August 2026: 82.23 per cent. Provisional target: 82.25 per cent.">
             <div class="score-axis" aria-hidden="true"><span>85%</span><span>70%</span><span>50%</span></div>
             <div class="score-plot">
               <div class="score-day">
@@ -190,6 +192,10 @@
               <div class="score-day">
                 <div class="score-bar-zone"><span class="score-bar" style="--score-height: 90.57%"><strong>81.70%</strong></span></div>
                 <time datetime="2026-08-15">15 Aug</time>
+              </div>
+              <div class="score-day">
+                <div class="score-bar-zone"><span class="score-bar" style="--score-height: 92.09%"><strong>82.23%</strong></span></div>
+                <time datetime="2026-08-21">21 Aug</time>
               </div>
             </div>
           </div>
