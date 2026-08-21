@@ -1,17 +1,22 @@
 ---
-status: ready-for-baseline-split
+status: preprocessing-smoke-tested
 branch: main
-updated: 2026-08-15
+updated: 2026-08-20
 ---
 
 # Stage 1 data preparation: decisions and next steps
 
 ## Working on
 
-Begin the baseline workflow by validating identifiers, aligning the target,
-separating metadata from candidate predictors and creating a reproducible
-stratified split. Deeper missing-value analysis and every learned transform must
-use the training partition rather than the full labelled data.
+Compare the first feature-based model with the established 54.31%
+majority-class reference. The initial 29-feature policy and fold-fitted
+preprocessor have passed a one-fold smoke test. The stratified 20% local test
+set remains untouched until model selection is complete, and every learned
+transform must fit inside the current development fold.
+
+The initial date treatment replaces `date_recorded` with
+`days_since_recorded`, measured from the fixed 2015-02-02 competition-era
+reference. It does not derive separate year, month or day fields.
 
 The fixed column-removal implementation is in
 [`src/data_preparation.py`](../src/data_preparation.py), with its declarative
@@ -84,10 +89,11 @@ and contains exactly the three documented classes:
 | `non functional` | 22,824 | 38.42% |
 
 An always-`functional` non-model would achieve 54.31% accuracy. The majority
-class is 7.47 times the size of `functional needs repair`. Use a stratified
-train/validation split, retain challenge accuracy as the primary comparison
-measure and inspect the confusion matrix and per-class recall during diagnosis.
-Do not apply oversampling or calculate class weights before the split.
+class is 7.47 times the size of `functional needs repair`. Preserve stratification
+in the local test set and development folds, retain challenge accuracy as the
+primary comparison measure and inspect the confusion matrix and per-class recall
+during diagnosis. Do not apply oversampling or calculate class weights before
+local partitioning.
 
 The duplicate-column audit covered both feature files:
 
@@ -211,7 +217,7 @@ any learned preprocessing to prevent leakage.
 | 4. Clean and preprocess the data | Apply the three guarded structural removals. Fit missing-value handling, encoding and any scaling inside the training partition or current fold. |
 | 5. Select and engineer features | Start with 36 candidates. Test provisional date, age, availability, coordinate and category treatments through held-out comparisons and ablations. |
 | 6. Define the machine-learning task | Record multiclass classification, challenge accuracy, class imbalance and the diagnostic measures needed for the minority class. |
-| 7. Partition the data | Freeze a reproducible stratified split and add a grouped geographic sensitivity check. This is the next formal gate. |
+| 7. Partition the data | Complete: reserve a reproducible stratified 20% local test set and freeze five development folds. Add a grouped geographic sensitivity check later. |
 | 8. Select and train candidate methods | Recreate Extra Trees, histogram gradient boosting and their soft vote with fold-fitted preprocessing; include the non-model reference and a transparent baseline. |
 | 9. Evaluate and interpret the results | Compare held-out accuracy, per-class recall and the confusion matrix before using public scores for model selection. |
 | 10. Deploy and iterate | Refit the selected workflow, validate the submission, record its score and return to earlier steps when errors or ablations justify a change. |
@@ -232,12 +238,18 @@ and 9.
    column summary.
 4. **Complete:** organise all 39 raw predictors into explicit folders with a
    type-specific breakdown, noteworthy findings and related-feature analysis.
-5. **Next:** in the baseline workflow, validate identifiers, align the target by `id`,
-   separate identifiers from the 36 candidate predictors and create the
-   reproducible stratified split.
-6. Diagnose missing values and outliers using only the training partition, then
-   add learned preprocessing and estimators when the notebook approach is stable.
-7. **Complete:** align the dashboard and supporting documentation with the
+5. **Complete:** build the validated 36-predictor modelling handoff, reserve the
+   20% local test set and freeze five stratified development folds with recorded
+   seeds and membership fingerprints.
+6. **Complete:** establish the majority-class reference across the five frozen
+   development folds: 54.31% mean accuracy, 100% `functional` recall and zero
+   recall for the other two classes.
+7. **Complete:** define the initial 29-feature policy and smoke-test fold-fitted
+   median imputation, missing indicators, rare-category handling and one-hot
+   encoding on one frozen development fold.
+8. **Next:** wrap the preprocessor and a constrained decision tree in one
+   pipeline, then compare it with the majority reference across all five folds.
+9. **Complete:** align the dashboard and supporting documentation with the
    canonical ten-step lifecycle.
 
 Use the repository's current `.venv`. Formal automated tests are low priority
@@ -258,9 +270,9 @@ serving less controlled inputs.
 
 ## Decisions deferred
 
-- Missing-value representation and imputation strategy.
+- Alternative missing-value representations and imputation strategies.
 - Treatment of high-cardinality categorical fields.
-- Geographic and date feature engineering.
+- Geographic feature engineering and ablation of the elapsed-date feature.
 - Removal of hierarchy columns after model comparison.
 - Formal model selection, tuning ranges and the next competition submission.
 
@@ -269,8 +281,8 @@ work can proceed without them.
 
 ## Resume point
 
-Start with course Step 7, **Partition the data**. Reuse the structurally reduced
-training frame, validate and align `TrainingSetLabels.csv` by `id`, preserve the
-identifiers separately and create a reproducible stratified train/validation
-split over the 36 candidate predictors and `status_group`. Do not fit imputation,
-encoding, resampling or a model until that split exists.
+Continue course Step 8, **Select and train candidate methods**, in
+`03-model-comparison.ipynb`. Wrap `initial_preprocessor` and a constrained
+decision tree in one scikit-learn pipeline, evaluate it across the five frozen
+development folds and compare it with the established majority reference. Do
+not inspect the local test set or competition data during model development.

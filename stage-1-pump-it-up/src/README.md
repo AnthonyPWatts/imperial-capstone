@@ -6,8 +6,22 @@ shared state or a lifetime of its own.
 
 Current modules:
 
+- `baseline_evaluation.py` evaluates the majority-class reference across the
+  frozen development folds without exposing the local test or competition rows.
 - `data_preparation.py` exposes `remove_known_redundant_columns` for the single
   fixed 40-to-37 column-removal step.
+- `data_partitioning.py` freezes the stratified local test membership and five
+  development cross-validation folds, exposes them as a scikit-learn split and
+  records non-sensitive membership fingerprints.
+- `feature_engineering.py` applies the deterministic initial feature policy,
+  including elapsed days from a fixed competition-era date rather than raw
+  calendar fields, and exposes it as a scikit-learn transformer.
+- `model_preprocessing.py` combines that transformer with fold-fitted numeric
+  imputation, missing indicators, rare-category handling and one-hot encoding;
+  its first-fold smoke check never accesses local test or competition rows.
+- `modelling_data.py` exposes a small `ModellingData` record plus preparation
+  and summary functions for the validated pre-split original data and the
+  separate competition-scoring data.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

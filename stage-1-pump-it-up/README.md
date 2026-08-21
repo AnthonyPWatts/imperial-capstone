@@ -32,22 +32,28 @@ histogram gradient boosting.
 
 The audit-led candidates fitted the complete labelled data. Their leaderboard
 scores provide experiment evidence, but no local validation estimate or formal
-model comparison. See the [submission log](submissions/README.md), the
-[maintained audit report](notebooks/data-audit/00-overall/00-overall-data-audit.md)
+model comparison. The formal baseline now reserves a stratified 20% local test
+set and fixes five validation folds across the remaining development data; no
+feature-based model has yet been evaluated on them. The majority-class reference
+averages 54.31% validation accuracy, with 100% recall for `functional` and zero
+recall for both other classes. The initial 29-feature policy and its fold-fitted
+preprocessor now pass a one-fold smoke test, producing a finite 301-column sparse
+matrix without touching the local test or competition rows. See the
+[submission log](submissions/README.md), the [maintained audit report](notebooks/data-audit/00-overall/00-overall-data-audit.md)
 and the [data-preparation handoff](reports/data-preparation-next-steps.md).
 
 ## Next modelling loop
 
-1. Validate and align feature and label identifiers, then freeze a reproducible
-   stratified train/validation split.
-2. Recreate missing-value handling, encoding and feature engineering with every
-   learned treatment fitted inside the training partition.
-3. Compare the majority-class reference, Extra Trees, histogram gradient
-   boosting and their soft vote on the same held-out rows.
-4. Record accuracy, per-class recall and the confusion matrix, with attention to
+1. Wrap the fold-fitted preprocessor and a constrained decision tree in one
+   pipeline, then evaluate it across all five frozen development folds.
+2. Compare later feature-based models, followed by Extra Trees, histogram
+   gradient boosting and their soft vote, with the majority-class reference
+   across the same frozen development folds.
+3. Record accuracy, per-class recall and the confusion matrix, with attention to
    the minority `functional needs repair` class.
-5. Run a geographic sensitivity check and targeted feature-family ablations
+4. Run a geographic sensitivity check and targeted feature-family ablations
    before selecting a model.
+5. Evaluate the selected workflow once on the untouched local test set.
 6. Refit the selected workflow, validate submission shape and record the next
    DrivenData result with its source commit and evidence.
 

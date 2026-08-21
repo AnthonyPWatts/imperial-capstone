@@ -1,18 +1,18 @@
 {
   "snapshot": {
-    "date": "2026-08-15",
-    "label": "15 August 2026"
+    "date": "2026-08-20",
+    "label": "20 August 2026"
   },
   "overall": {
-    "completed": 19,
+    "completed": 22,
     "total": 28,
-    "current": "Freeze split + establish local validation"
+    "current": "Compare the first decision tree across frozen folds"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Freeze the reproducible stratified split, then compare the promising public candidates with local evidence.",
+    "nextCheckpoint": "Compare the first feature-based model with the 54.31% majority reference across the frozen development folds.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -26,7 +26,7 @@
   "features": {
     "examined": 36,
     "total": 36,
-    "current": "Initial predictor audit organised",
+    "current": "Initial 29-feature policy smoke-tested",
     "rawPredictorsAudited": 39,
     "structuralRemovalsAudited": 3
   },

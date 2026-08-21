@@ -1,6 +1,6 @@
 ---
 status: current
-updated: 2026-08-19
+updated: 2026-08-20
 scope: supplied Pump It Up training and test data
 ---
 
@@ -191,7 +191,7 @@ The following tables bring every catalogue decision into one readable register. 
 | Predictor | Finding and provisional treatment | Main risk |
 |---|---|---|
 | `amount_tsh` | **Finding:** Zero dominates the supplied values and positive amounts are strongly right-skewed.<br>**Treatment:** Keep an amount-recorded indicator and compare raw or transformed positive magnitude inside validation. | Zero can mean no recorded amount rather than a genuine measured zero. |
-| `date_recorded` | **Finding:** Every supplied date parses, but collection timing is concentrated in survey waves.<br>**Treatment:** Derive stable calendar components and avoid one-hot encoding every raw date. | Recording time can proxy survey operations and geography rather than waterpoint condition. |
+| `date_recorded` | **Finding:** Every supplied date parses, but collection timing is concentrated in survey waves.<br>**Treatment:** Replace the raw date with `days_since_recorded` from the fixed 2015-02-02 competition-era reference; do not derive separate calendar components. | Recording time can proxy survey operations and geography rather than waterpoint condition. |
 | `gps_height` | **Finding:** Zero affects roughly a third of rows and overlaps a broader missing-measurement block.<br>**Treatment:** Flag zero, impute it inside folds where necessary and preserve negative measured values initially. | Some zeros can be genuine low elevation and the feature is geographically structured. |
 | `num_private` | **Finding:** The undocumented field is almost entirely zero with a small number of extreme positive values.<br>**Treatment:** Keep a non-zero flag and magnitude candidate, then test an early omission ablation. | Zero has no documented missing-value meaning and positive support is sparse. |
 | `population` | **Finding:** Zero and one are large special spikes; positive values are strongly right-skewed.<br>**Treatment:** Keep zero and one flags plus a raw or `log1p` magnitude candidate. | Zero is probably often missing while one may be a recorded placeholder or real small population. |
@@ -250,7 +250,7 @@ The following tables bring every catalogue decision into one readable register. 
 | Relationship | Question for validation | Planned comparison |
 |---|---|---|
 | `longitude` and `latitude` | Does the pair add value beyond named geography without overfitting local coordinates? | Coordinates available or unavailable; raw or transformed pair; named geography only. |
-| `date_recorded` and `construction_year` | Does valid pump age outperform separate raw years? | Calendar components, construction cohort, valid age and unknown-age flags. |
+| `date_recorded` and `construction_year` | Does valid pump age add value beyond elapsed recording time? | `days_since_recorded`, valid pump age, unknown-age flags and an elapsed-date ablation. |
 | `funder` and `installer` | Does each organisation add independent signal after conservative normalisation? | Each alone, both together and rare-grouped variants. |
 | `region`, `lga` and `ward` | Which level balances signal, interpretability and unseen handling? | Coarse, granular and grouped-validation results. |
 | `management`, `management_group` and `scheme_management` | Does the parallel scheme field add value beyond the main management label? | Granular management, coarse management and incremental scheme management. |
@@ -284,10 +284,10 @@ No cleaned CSV should become a second source of truth. Each run should recreate 
 
 ## Decisions deferred until after the split
 
-- The exact missing-value representation and imputation strategy.
+- Alternative missing-value representations and imputation strategies.
 - Rare-category thresholds and treatment of unseen values.
 - Frequency, hashing, text or target-informed treatment for high-cardinality fields.
-- Geographic and date feature engineering.
+- Geographic feature engineering and ablation of the elapsed-date feature.
 - Choice between granular and coarse categorical hierarchy levels.
 - Removal of weak candidates such as `num_private`.
 - Model selection, class weighting, resampling and tuning ranges.

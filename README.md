@@ -19,15 +19,18 @@ fixed BBO brief and will be developed as each set of observations is released.
 
 ## Current position
 
-As of 15 August 2026, Stage 1 has audited all 39 raw predictors, settled three
+As of 20 August 2026, Stage 1 has audited all 39 raw predictors, settled three
 structural removals and organised the remaining 36 candidate predictors. Six
 DrivenData submissions have been made. An equal-weight soft vote between Extra
 Trees and histogram gradient boosting has the best public score at `0.8170`.
 
 Those candidate models used the complete labelled data, so the leaderboard
-result does not provide a local validation estimate. The next gate is a frozen
-stratified split with fold-fitted preprocessing, followed by held-out accuracy,
-per-class recall and a confusion matrix. The main evidence is available in the
+result does not provide a local validation estimate. A stratified 20% local
+test set and five development folds are now frozen. The initial 29-feature
+policy and fold-fitted preprocessing have passed a one-fold smoke test. The next
+gate is local cross-validation of the first feature-based model against the
+established 54.31% majority reference, followed eventually by one held-out test
+evaluation. The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)

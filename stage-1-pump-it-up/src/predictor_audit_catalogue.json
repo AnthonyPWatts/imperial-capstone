@@ -1,5 +1,5 @@
 {
-  "catalogue_version": 1,
+  "catalogue_version": 2,
   "notebook_contract": [
     "01 basic breakdown: repeat the standard descriptive, missingness, cardinality and train/test coverage checks for the feature type.",
     "02 noteworthy findings: identify supported target relationships, interpret the single-feature evidence and record a provisional decision.",
@@ -26,9 +26,12 @@
       "name": "date_recorded",
       "audit_type": "date",
       "role": "candidate",
-      "disposition": "derive recording year and month",
+      "disposition": "replace with elapsed days from a fixed competition-era reference",
       "finding": "Every supplied date parses, but collection timing is concentrated in survey waves.",
-      "decision": "Derive stable calendar components and avoid one-hot encoding every raw date.",
+      "decision": "Replace the raw date with days_since_recorded from 2015-02-02; do not derive separate calendar components.",
+      "reference_date": "2015-02-02",
+      "reference_basis": "Earliest surviving official DrivenData Pump It Up community post; not asserted as a verified launch timestamp.",
+      "reference_evidence": "https://community.drivendata.org/t/about-the-pump-it-up-data-mining-the-water-table-category/63",
       "risk": "Recording time can proxy survey operations and geography rather than waterpoint condition.",
       "related": [
         {"feature": "construction_year", "reason": "Together they define waterpoint age at observation."},

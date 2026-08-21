@@ -29,14 +29,22 @@ records under
 [`../submissions/2026-08-15-early-experiments/`](../submissions/2026-08-15-early-experiments/).
 It does not replace the formal split and evaluation sequence below.
 
-## Planned formal modelling sequence
+## Formal modelling sequence
 
-1. `02-baseline.ipynb`
-2. `03-model-comparison.ipynb`
+1. [`02-baseline.ipynb`](02-baseline.ipynb): validated 59,400-row,
+   36-predictor original modelling-frame handoff, kept separate from the
+   unlabelled competition data, with a frozen 20% local test set and five
+   stratified development folds plus the cross-validated majority-class
+   reference.
+2. [`03-model-comparison.ipynb`](03-model-comparison.ipynb): initial 29-feature
+   policy and a one-fold smoke test of deterministic engineering, fold-fitted
+   numeric imputation, rare-category handling and one-hot encoding; the first
+   decision-tree comparison is next.
 3. `04-tuning-and-evaluation.ipynb`
 4. `05-final-model-and-submission.ipynb`
 
-These notebooks will be added as the formal modelling workflow starts. Their
-names describe the intended order rather than files that already exist.
+The later notebooks will be added as the formal modelling workflow
+progresses. Their names describe the intended order rather than files that
+already exist.
 
 Keep notebooks focused on analysis. Move stable, reusable code into `../src/`.
