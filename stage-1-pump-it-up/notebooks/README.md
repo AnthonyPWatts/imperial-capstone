@@ -76,6 +76,10 @@ It does not replace the formal split and evaluation sequence below.
     no-refit presentation of the fold-fitted rare-grouping and frequency screen
     for `funder` and `installer`, plus the best challenger's LGA-disjoint
     sensitivity and retained-feature decision.
+12. [`13-numeric-state-and-imputation.ipynb`](13-numeric-state-and-imputation.ipynb):
+    no-refit presentation of numeric sentinel, state, removal and fold-fitted
+    geographic-imputation policies, bounded component crossing and the closest
+    challenger's LGA-disjoint sensitivity.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

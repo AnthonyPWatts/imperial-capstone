@@ -44,12 +44,14 @@ accuracy drop under that harder geographic-transfer design. The subsequent
 fold-fitted `funder` and `installer` screen also retained the policy: none of
 ten rare-grouped or frequency challengers passed the gate. Funder frequency
 was only 0.032 points above baseline and won two of five folds. Numeric
-state-plus-magnitude treatments are the next data-focused loop. The main
+state and imputation treatments subsequently left the accepted policy
+unchanged: all eleven challengers trailed the 81.625% baseline. Categorical
+hierarchy ablation is the next data-focused loop. The main
 evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
-and [organisation-feature report](stage-1-pump-it-up/reports/funder-installer-high-cardinality-screen.md).
+and [numeric-feature report](stage-1-pump-it-up/reports/numeric-state-and-imputation-screen.md).
 
 A bounded blend comparison retained the earlier equal vote: neither fixed
 40:60 alternative nor a nested calibrated stack improved at least three of the

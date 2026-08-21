@@ -19,6 +19,10 @@ The fixed-model `funder` and `installer` rare-grouping and frequency ablations,
 including the bounded LGA-disjoint sensitivity, are in
 [`funder-installer-high-cardinality-screen.md`](funder-installer-high-cardinality-screen.md).
 
+The fixed-model numeric state, removal and imputation ablations for amount,
+height, population and `num_private` are in
+[`numeric-state-and-imputation-screen.md`](numeric-state-and-imputation-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

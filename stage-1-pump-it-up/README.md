@@ -99,11 +99,20 @@ improved 0.250 points but breached the worst-fold limit and reduced repair
 recall, so it did not reopen the primary decision. See the
 [high-cardinality report](reports/funder-installer-high-cardinality-screen.md).
 
+The numeric state and imputation screen then compared eleven challengers for
+amount, height, population and `num_private`. Every complete vote trailed the
+accepted 81.625% recipe; the closest was fold-fitted geographic population
+imputation at 81.591%. That treatment improved a separate LGA-disjoint mean by
+0.128 points and won four folds, but failed the primary comparison and the
+grouped worst-fold limit. The existing numeric representation therefore remains
+selected. See the
+[numeric-feature report](reports/numeric-state-and-imputation-screen.md).
+
 ## Next modelling loop
 
-1. Retain the accepted feature policy and move the fixed-model plan to numeric
-   state-plus-magnitude treatments for `amount_tsh`, `population`, `gps_height`
-   and `num_private`.
+1. Retain the accepted feature policy and move the fixed-model plan to bounded
+   categorical hierarchy ablations, beginning with `management`,
+   `scheme_management` and `management_group`.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. If one later upload slot is reserved for a minority-recall experiment, use

@@ -28,6 +28,11 @@ Current modules:
   frequency mappings only from the current training partition.
 - `high_cardinality_evaluation.py` evaluates those organisation policies with
   the accepted XGBoost/Random Forest recipe and the unchanged promotion gate.
+- `numeric_features.py` declares bounded amount, height, population and
+  `num_private` policies, including fold-fitted LGA, region and global median
+  fallbacks that retain the original missing-state flags.
+- `numeric_evaluation.py` evaluates those numeric policies with the accepted
+  recipe and supports the two bounded no-refit cross-policy component votes.
 - `model_preprocessing.py` combines that transformer with fold-fitted numeric
   imputation, missing indicators, rare-category handling and one-hot encoding;
   it can return identical sparse or dense feature values, optionally standardises

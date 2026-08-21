@@ -38,7 +38,7 @@ status request fails. The current snapshot is dated 21 August 2026:
 | Metric | Current value |
 | --- | ---: |
 | Overall plan checkpoints | 29 / 29 |
-| Features fully examined | 36 / 36 (organisation screen retained the initial 29-feature policy) |
+| Features fully examined | 36 / 36 (numeric screen retained the initial 29-feature policy) |
 | Locally evaluated models | 20 |
 | Candidate methods trained | 10, plus ten ensemble workflows |
 | DrivenData submissions | 9 |
@@ -48,11 +48,10 @@ status request fails. The current snapshot is dated 21 August 2026:
 | Chart ceiling | 0.8500 |
 | Daily submissions used | 3 / 3 UTC |
 
-The current task is beginning numeric state-plus-magnitude feature-family
-ablations with the accepted XGBoost and Random Forest recipe. The organisation
-screen retained the current policy after ten fold-fitted `funder` and
-`installer` alternatives failed its primary gate; funder frequency was only
-0.032 points above baseline. The process remains
+The current task is beginning categorical hierarchy ablations with the accepted
+XGBoost and Random Forest recipe. The numeric screen retained the current policy
+after all eleven state, removal and imputation alternatives trailed its primary
+baseline. The process remains
 iterative, so leaderboard feedback does not replace retained local
 model-selection evidence:
 
@@ -65,8 +64,8 @@ model-selection evidence:
   using local test or competition rows.
 - **Step 5, select and engineer features (36 / 36 audited):** the initial policy
   uses elapsed recording time, valid pump age and explicit missing-state flags.
-  The `funder`/`installer` high-cardinality loop is complete; numeric sentinel
-  and alternative hierarchy treatments remain controlled ablations.
+  The `funder`/`installer` and numeric loops are complete; alternative
+  categorical hierarchy levels remain controlled ablations.
 - **Step 6, define the task (4 / 4):** multiclass classification, accuracy,
   class balance, label integrity and exact feature/label ID alignment are
   recorded.
@@ -249,8 +248,8 @@ or notebook output directly.
 
 ## Likely next changes
 
-- Begin fold-fitted numeric state-plus-magnitude treatments with the accepted
-  XGBoost and Random Forest recipe held fixed.
+- Begin management-family hierarchy ablations with the accepted XGBoost and
+  Random Forest recipe held fixed.
 - Retain the accepted geography policy and the LGA-disjoint transfer warning.
-- Retain the organisation screen's rejection; do not tune more rare thresholds
-  or aliases against the same frozen folds.
+- Retain the numeric screen's rejection; do not tune more imputations, bins or
+  monotonic transforms against the same frozen folds.

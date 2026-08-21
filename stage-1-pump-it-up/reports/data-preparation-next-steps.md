@@ -31,6 +31,13 @@ frequency was the only challenger above baseline, by 0.032 percentage points,
 but won only two folds. See
 [`funder-installer-high-cardinality-screen.md`](funder-installer-high-cardinality-screen.md).
 
+The numeric state and imputation loop is also complete. Eleven challengers
+tested amount, height, population and `num_private` under the accepted model
+recipe; every vote trailed the baseline. Fold-fitted geographic population
+imputation improved a separate LGA-disjoint sensitivity but not the primary
+comparison. See
+[`numeric-state-and-imputation-screen.md`](numeric-state-and-imputation-screen.md).
+
 The fixed column-removal implementation is in
 [`src/data_preparation.py`](../src/data_preparation.py), with its declarative
 schema and assumptions in
@@ -309,7 +316,8 @@ serving less controlled inputs.
 
 ## Decisions deferred
 
-- Alternative numeric missing-value representations and imputation strategies.
+- Alternative numeric missing-value representations and imputation strategies
+  are complete for amount, height, population and `num_private`.
 - Treatment of the remaining sparse name fields; the bounded `funder` and
   `installer` loop is complete.
 - Ablation of the elapsed-date feature; the separate geography family is complete.
@@ -322,8 +330,9 @@ work can proceed without them.
 
 ## Resume point
 
-Continue the next **Deploy and iterate** loop with numeric state-plus-magnitude
-treatments for `amount_tsh`, `population`, `gps_height` and `num_private` under
-the accepted XGBoost and Random Forest recipe. The geography and organisation
-families are recorded and frozen. Public scores remain external feedback rather
-than a replacement for local model-selection evidence.
+Continue the next **Deploy and iterate** loop with categorical hierarchy
+ablations, beginning with `management`, `scheme_management` and
+`management_group`, under the accepted XGBoost and Random Forest recipe. The
+geography, organisation and numeric families are recorded and frozen. Public
+scores remain external feedback rather than a replacement for local
+model-selection evidence.
