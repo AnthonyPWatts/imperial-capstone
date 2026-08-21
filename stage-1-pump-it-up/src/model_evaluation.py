@@ -12,10 +12,14 @@ from sklearn.ensemble import ExtraTreesClassifier as _ExtraTreesClassifier
 from sklearn.ensemble import (
     HistGradientBoostingClassifier as _HistGradientBoostingClassifier,
 )
+from sklearn.ensemble import RandomForestClassifier as _RandomForestClassifier
+from sklearn.linear_model import LogisticRegression as _LogisticRegression
 from sklearn.metrics import accuracy_score as _accuracy_score
 from sklearn.metrics import confusion_matrix as _confusion_matrix
 from sklearn.metrics import recall_score as _recall_score
 from sklearn.model_selection import PredefinedSplit as _PredefinedSplit
+from sklearn.naive_bayes import GaussianNB as _GaussianNB
+from sklearn.neighbors import KNeighborsClassifier as _KNeighborsClassifier
 from sklearn.pipeline import Pipeline as _Pipeline
 from sklearn.tree import DecisionTreeClassifier as _DecisionTreeClassifier
 
@@ -40,6 +44,18 @@ HISTOGRAM_BOOSTING_L2_REGULARIZATION = 1.0
 HISTOGRAM_BOOSTING_MAX_FEATURES = 0.8
 HISTOGRAM_BOOSTING_SEED = 20260815
 
+LOGISTIC_REGRESSION_C = 1.0
+LOGISTIC_REGRESSION_MAX_ITERATIONS = 500
+
+K_NEAREST_NEIGHBOURS = 25
+
+GAUSSIAN_NAIVE_BAYES_VAR_SMOOTHING = 1e-9
+
+RANDOM_FOREST_ESTIMATORS = 300
+RANDOM_FOREST_MAX_FEATURES = "sqrt"
+RANDOM_FOREST_MIN_SAMPLES_LEAF = 1
+RANDOM_FOREST_SEED = 20260821
+
 _CLASS_LABELS = (
     "functional",
     "functional needs repair",
@@ -59,9 +75,11 @@ class CandidateEvaluation:
     """Cross-validated metrics and diagnostics for one candidate method."""
 
     model_name: str
+    cross_validation_fingerprint: str
     fold_metrics: _pd.DataFrame
     metric_summary: _pd.DataFrame
     diagnostics: _pd.DataFrame
+    out_of_fold_probabilities: _pd.DataFrame
     confusion_counts: _pd.DataFrame
     confusion_recall: _pd.DataFrame
 
@@ -110,6 +128,98 @@ def make_initial_histogram_boosting_pipeline() -> _Pipeline:
         random_state=HISTOGRAM_BOOSTING_SEED,
     )
     return _make_pipeline(classifier, sparse_output=False)
+
+
+def make_logistic_regression_pipeline() -> _Pipeline:
+    """Return scaled preprocessing and a regularised linear classifier."""
+
+    classifier = _LogisticRegression(
+        C=LOGISTIC_REGRESSION_C,
+        solver="lbfgs",
+        max_iter=LOGISTIC_REGRESSION_MAX_ITERATIONS,
+        class_weight=None,
+    )
+    return _make_pipeline(classifier, scale_numeric=True)
+
+
+def make_k_nearest_neighbours_pipeline() -> _Pipeline:
+    """Return scaled preprocessing and a brute-force KNN classifier."""
+
+    classifier = _KNeighborsClassifier(
+        n_neighbors=K_NEAREST_NEIGHBOURS,
+        weights="distance",
+        metric="minkowski",
+        p=2,
+        n_jobs=-1,
+    )
+    return _make_pipeline(classifier, scale_numeric=True)
+
+
+def make_gaussian_naive_bayes_pipeline() -> _Pipeline:
+    """Return dense scaled preprocessing and Gaussian naïve Bayes."""
+
+    classifier = _GaussianNB(
+        var_smoothing=GAUSSIAN_NAIVE_BAYES_VAR_SMOOTHING,
+    )
+    return _make_pipeline(
+        classifier,
+        sparse_output=False,
+        scale_numeric=True,
+    )
+
+
+def make_random_forest_pipeline() -> _Pipeline:
+    """Return initial preprocessing and a conventional Random Forest."""
+
+    classifier = _RandomForestClassifier(
+        n_estimators=RANDOM_FOREST_ESTIMATORS,
+        criterion="gini",
+        max_features=RANDOM_FOREST_MAX_FEATURES,
+        min_samples_leaf=RANDOM_FOREST_MIN_SAMPLES_LEAF,
+        bootstrap=True,
+        class_weight=None,
+        n_jobs=-1,
+        random_state=RANDOM_FOREST_SEED,
+    )
+    return _make_pipeline(classifier)
+
+
+def summarise_classifier_screen() -> _pd.DataFrame:
+    """Return the deliberately varied methods in the broad first screen."""
+
+    rows = [
+        {
+            "method": "logistic regression",
+            "family": "linear",
+            "key_setting": f"L2 regularisation, C={LOGISTIC_REGRESSION_C}",
+            "reason": "Test whether mostly additive effects are sufficient",
+        },
+        {
+            "method": "KNN",
+            "family": "neighbour",
+            "key_setting": (
+                f"k={K_NEAREST_NEIGHBOURS}, distance weighted, scaled numeric"
+            ),
+            "reason": "Show the effect of a local distance-based method",
+        },
+        {
+            "method": "Gaussian naïve Bayes",
+            "family": "probabilistic",
+            "key_setting": (
+                f"var_smoothing={GAUSSIAN_NAIVE_BAYES_VAR_SMOOTHING:g}"
+            ),
+            "reason": "Test a fast model with strong independence assumptions",
+        },
+        {
+            "method": "Random Forest",
+            "family": "bagged trees",
+            "key_setting": (
+                f"{RANDOM_FOREST_ESTIMATORS} trees, sqrt feature sampling"
+            ),
+            "reason": "Compare conventional bagging with Extra Trees",
+        },
+    ]
+    return _pd.DataFrame(rows).set_index("method")
 
 
 def summarise_initial_decision_tree() -> _pd.DataFrame:
@@ -249,6 +359,8 @@ def evaluate_initial_decision_tree(
 def evaluate_initial_extra_trees(
     partitioned_data: PartitionedData,
     cross_validation: _PredefinedSplit,
+    *,
+    record_elapsed: bool = False,
 ) -> CandidateEvaluation:
     """Fit and score the prior Extra Trees setup on every development fold."""
 
@@ -258,6 +370,7 @@ def evaluate_initial_extra_trees(
         cross_validation=cross_validation,
         pipeline_factory=make_initial_extra_trees_pipeline,
         diagnostics_factory=_extra_trees_diagnostics,
+        record_elapsed=record_elapsed,
     )
 
 
@@ -274,6 +387,141 @@ def evaluate_initial_histogram_boosting(
         pipeline_factory=make_initial_histogram_boosting_pipeline,
         diagnostics_factory=_histogram_boosting_diagnostics,
         record_elapsed=True,
+    )
+
+
+def evaluate_logistic_regression(
+    partitioned_data: PartitionedData,
+    cross_validation: _PredefinedSplit,
+) -> CandidateEvaluation:
+    """Fit and score regularised logistic regression on every fold."""
+
+    return _evaluate_candidate(
+        model_name="logistic regression",
+        partitioned_data=partitioned_data,
+        cross_validation=cross_validation,
+        pipeline_factory=make_logistic_regression_pipeline,
+        diagnostics_factory=_logistic_regression_diagnostics,
+        record_elapsed=True,
+    )
+
+
+def evaluate_k_nearest_neighbours(
+    partitioned_data: PartitionedData,
+    cross_validation: _PredefinedSplit,
+) -> CandidateEvaluation:
+    """Fit and score scaled KNN on every development fold."""
+
+    return _evaluate_candidate(
+        model_name="KNN",
+        partitioned_data=partitioned_data,
+        cross_validation=cross_validation,
+        pipeline_factory=make_k_nearest_neighbours_pipeline,
+        diagnostics_factory=_k_nearest_neighbours_diagnostics,
+        record_elapsed=True,
+    )
+
+
+def evaluate_gaussian_naive_bayes(
+    partitioned_data: PartitionedData,
+    cross_validation: _PredefinedSplit,
+) -> CandidateEvaluation:
+    """Fit and score Gaussian naïve Bayes on every development fold."""
+
+    return _evaluate_candidate(
+        model_name="Gaussian naïve Bayes",
+        partitioned_data=partitioned_data,
+        cross_validation=cross_validation,
+        pipeline_factory=make_gaussian_naive_bayes_pipeline,
+        diagnostics_factory=_gaussian_naive_bayes_diagnostics,
+        record_elapsed=True,
+    )
+
+
+def evaluate_random_forest(
+    partitioned_data: PartitionedData,
+    cross_validation: _PredefinedSplit,
+) -> CandidateEvaluation:
+    """Fit and score a conventional Random Forest on every fold."""
+
+    return _evaluate_candidate(
+        model_name="Random Forest",
+        partitioned_data=partitioned_data,
+        cross_validation=cross_validation,
+        pipeline_factory=make_random_forest_pipeline,
+        diagnostics_factory=_random_forest_diagnostics,
+        record_elapsed=True,
+    )
+
+
+def evaluate_equal_weight_soft_vote(
+    partitioned_data: PartitionedData,
+    cross_validation: _PredefinedSplit,
+    *component_evaluations: CandidateEvaluation,
+    model_name: str = "soft vote",
+) -> CandidateEvaluation:
+    """Average aligned out-of-fold probabilities from two or more candidates."""
+
+    if len(component_evaluations) < 2:
+        raise ValueError("A soft vote requires at least two component models.")
+    component_names = [
+        evaluation.model_name for evaluation in component_evaluations
+    ]
+    if len(component_names) != len(set(component_names)):
+        raise ValueError("Soft-vote component names must be unique.")
+    for evaluation in component_evaluations:
+        if (
+            evaluation.cross_validation_fingerprint
+            != partitioned_data.cross_validation_fingerprint
+        ):
+            raise ValueError(
+                f"Mismatched cross-validation design for {evaluation.model_name}."
+            )
+        if tuple(evaluation.out_of_fold_probabilities.columns) != _CLASS_LABELS:
+            raise ValueError(
+                f"Unexpected probability columns for {evaluation.model_name}."
+            )
+        if not evaluation.out_of_fold_probabilities.index.equals(
+            partitioned_data.y_development.index
+        ):
+            raise ValueError(
+                f"Misaligned out-of-fold rows for {evaluation.model_name}."
+            )
+
+    blended_probabilities = _np.mean(
+        [
+            evaluation.out_of_fold_probabilities.to_numpy()
+            for evaluation in component_evaluations
+        ],
+        axis=0,
+    )
+    component_weight = 1.0 / len(component_evaluations)
+    timed_components = all(
+        "total_seconds" in evaluation.diagnostics
+        for evaluation in component_evaluations
+    )
+    diagnostic_rows = []
+    for fold_number in range(1, CROSS_VALIDATION_FOLDS + 1):
+        row: dict[str, int | float] = {
+            "validation_fold": fold_number,
+            **{
+                f"{evaluation.model_name} weight": component_weight
+                for evaluation in component_evaluations
+            },
+        }
+        if timed_components:
+            row["component_seconds"] = sum(
+                evaluation.diagnostics.loc[fold_number, "total_seconds"]
+                for evaluation in component_evaluations
+            )
+        diagnostic_rows.append(row)
+
+    return _build_candidate_evaluation(
+        model_name=model_name,
+        partitioned_data=partitioned_data,
+        cross_validation=cross_validation,
+        probability_values=blended_probabilities,
+        diagnostic_rows=diagnostic_rows,
     )
 
 
@@ -321,16 +569,60 @@ def compare_with_majority_reference(
     return comparison
 
 
+def compare_candidate_diversity(
+    partitioned_data: PartitionedData,
+    *candidate_evaluations: CandidateEvaluation,
+) -> _pd.DataFrame:
+    """Compare pairwise errors from aligned out-of-fold predictions."""
+
+    prediction_columns = {}
+    class_labels = _np.asarray(_CLASS_LABELS)
+    for evaluation in candidate_evaluations:
+        _validate_candidate_evaluation(partitioned_data, evaluation)
+        prediction_columns[evaluation.model_name] = class_labels[
+            evaluation.out_of_fold_probabilities.to_numpy().argmax(axis=1)
+        ]
+
+    predictions = _pd.DataFrame(
+        prediction_columns,
+        index=partitioned_data.y_development.index,
+    )
+    actual = partitioned_data.y_development
+    rows = []
+    model_names = list(predictions.columns)
+    for left_position, left_name in enumerate(model_names):
+        for right_name in model_names[left_position + 1 :]:
+            left_correct = predictions[left_name].eq(actual)
+            right_correct = predictions[right_name].eq(actual)
+            rows.append(
+                {
+                    "left_model": left_name,
+                    "right_model": right_name,
+                    "disagreement": predictions[left_name]
+                    .ne(predictions[right_name])
+                    .mean(),
+                    "left_only_correct": (left_correct & ~right_correct).mean(),
+                    "right_only_correct": (~left_correct & right_correct).mean(),
+                    "both_wrong": (~left_correct & ~right_correct).mean(),
+                }
+            )
+    return _pd.DataFrame(rows).set_index(["left_model", "right_model"])
+
+
 def _make_pipeline(
     classifier: object,
     *,
     sparse_output: bool = True,
+    scale_numeric: bool = False,
 ) -> _Pipeline:
     return _Pipeline(
         steps=[
             (
                 "preprocessing",
-                make_initial_preprocessor(sparse_output=sparse_output),
+                make_initial_preprocessor(
+                    sparse_output=sparse_output,
+                    scale_numeric=scale_numeric,
+                ),
             ),
             ("classifier", classifier),
         ]
@@ -346,11 +638,10 @@ def _evaluate_candidate(
     diagnostics_factory: _Callable[[_Pipeline], dict[str, int | float]],
     record_elapsed: bool = False,
 ) -> CandidateEvaluation:
-    metric_rows = []
     diagnostic_rows = []
-    aggregate_confusion = _np.zeros(
-        (len(_CLASS_LABELS), len(_CLASS_LABELS)),
-        dtype="int64",
+    probability_values = _np.full(
+        (len(partitioned_data.y_development), len(_CLASS_LABELS)),
+        fill_value=_np.nan,
     )
 
     for fold_number, (training_positions, validation_positions) in enumerate(
@@ -360,7 +651,6 @@ def _evaluate_candidate(
         X_training = partitioned_data.X_development.iloc[training_positions]
         y_training = partitioned_data.y_development.iloc[training_positions]
         X_validation = partitioned_data.X_development.iloc[validation_positions]
-        y_validation = partitioned_data.y_development.iloc[validation_positions]
 
         fold_started = _time.perf_counter()
         pipeline = pipeline_factory()
@@ -368,10 +658,63 @@ def _evaluate_candidate(
         pipeline.fit(X_training, y_training)
         fit_seconds = _time.perf_counter() - fit_started
         predict_started = _time.perf_counter()
-        predictions = pipeline.predict(X_validation)
+        classifier = pipeline.named_steps["classifier"]
+        fold_probabilities = _pd.DataFrame(
+            pipeline.predict_proba(X_validation),
+            columns=classifier.classes_,
+        ).loc[:, list(_CLASS_LABELS)]
         predict_seconds = _time.perf_counter() - predict_started
         total_seconds = _time.perf_counter() - fold_started
+        probability_values[validation_positions] = fold_probabilities.to_numpy()
+        diagnostics = diagnostics_factory(pipeline)
+        if record_elapsed:
+            diagnostics.update(
+                {
+                    "fit_seconds": fit_seconds,
+                    "predict_seconds": predict_seconds,
+                    "total_seconds": total_seconds,
+                }
+            )
+            print(
+                f"Completed {model_name} fold {fold_number}/"
+                f"{CROSS_VALIDATION_FOLDS} in {total_seconds:.1f} seconds."
+            )
+        diagnostic_rows.append(
+            {"validation_fold": fold_number, **diagnostics}
+        )
 
+    return _build_candidate_evaluation(
+        model_name=model_name,
+        partitioned_data=partitioned_data,
+        cross_validation=cross_validation,
+        probability_values=probability_values,
+        diagnostic_rows=diagnostic_rows,
+    )
+
+
+def _build_candidate_evaluation(
+    *,
+    model_name: str,
+    partitioned_data: PartitionedData,
+    cross_validation: _PredefinedSplit,
+    probability_values: _np.ndarray,
+    diagnostic_rows: list[dict[str, int | float]],
+) -> CandidateEvaluation:
+    metric_rows = []
+    aggregate_confusion = _np.zeros(
+        (len(_CLASS_LABELS), len(_CLASS_LABELS)),
+        dtype="int64",
+    )
+    class_labels = _np.asarray(_CLASS_LABELS)
+
+    for fold_number, (_, validation_positions) in enumerate(
+        cross_validation.split(),
+        start=1,
+    ):
+        y_validation = partitioned_data.y_development.iloc[validation_positions]
+        predictions = class_labels[
+            probability_values[validation_positions].argmax(axis=1)
+        ]
         recalls = _recall_score(
             y_validation,
             predictions,
@@ -389,22 +732,6 @@ def _evaluate_candidate(
                 },
             }
         )
-        diagnostics = diagnostics_factory(pipeline)
-        if record_elapsed:
-            diagnostics.update(
-                {
-                    "fit_seconds": fit_seconds,
-                    "predict_seconds": predict_seconds,
-                    "total_seconds": total_seconds,
-                }
-            )
-            print(
-                f"Completed {model_name} fold {fold_number}/"
-                f"{CROSS_VALIDATION_FOLDS} in {total_seconds:.1f} seconds."
-            )
-        diagnostic_rows.append(
-            {"validation_fold": fold_number, **diagnostics}
-        )
         aggregate_confusion += _confusion_matrix(
             y_validation,
             predictions,
@@ -417,6 +744,11 @@ def _evaluate_candidate(
     ).transpose()
     metric_summary.index.name = "metric"
     diagnostics = _pd.DataFrame(diagnostic_rows).set_index("validation_fold")
+    out_of_fold_probabilities = _pd.DataFrame(
+        probability_values,
+        index=partitioned_data.y_development.index.copy(),
+        columns=_pd.Index(_CLASS_LABELS, name="predicted_class"),
+    )
     confusion_counts = _confusion_frame(aggregate_confusion)
     confusion_recall = confusion_counts.div(
         confusion_counts.sum(axis="columns"),
@@ -425,9 +757,13 @@ def _evaluate_candidate(
 
     evaluation = CandidateEvaluation(
         model_name=model_name,
+        cross_validation_fingerprint=(
+            partitioned_data.cross_validation_fingerprint
+        ),
         fold_metrics=fold_metrics,
         metric_summary=metric_summary,
         diagnostics=diagnostics,
+        out_of_fold_probabilities=out_of_fold_probabilities,
         confusion_counts=confusion_counts,
         confusion_recall=confusion_recall,
     )
@@ -444,6 +780,58 @@ def _decision_tree_diagnostics(pipeline: _Pipeline) -> dict[str, int | float]:
 
 
 def _extra_trees_diagnostics(pipeline: _Pipeline) -> dict[str, int | float]:
+    return _forest_diagnostics(pipeline)
+
+
+def _histogram_boosting_diagnostics(
+    pipeline: _Pipeline,
+) -> dict[str, int | float]:
+    classifier = pipeline.named_steps["classifier"]
+    return {
+        "iterations": classifier.n_iter_,
+        "trees_per_iteration": classifier.n_trees_per_iteration_,
+        "total_trees": classifier.n_iter_ * classifier.n_trees_per_iteration_,
+    }
+
+
+def _logistic_regression_diagnostics(
+    pipeline: _Pipeline,
+) -> dict[str, int | float]:
+    classifier = pipeline.named_steps["classifier"]
+    return {
+        "iterations": int(classifier.n_iter_.max()),
+        "features": classifier.coef_.shape[1],
+        "coefficient_l2_norm": float(_np.linalg.norm(classifier.coef_)),
+    }
+
+
+def _k_nearest_neighbours_diagnostics(
+    pipeline: _Pipeline,
+) -> dict[str, int | float]:
+    classifier = pipeline.named_steps["classifier"]
+    return {
+        "neighbours": classifier.n_neighbors,
+        "training_rows": classifier.n_samples_fit_,
+    }
+
+
+def _gaussian_naive_bayes_diagnostics(
+    pipeline: _Pipeline,
+) -> dict[str, int | float]:
+    classifier = pipeline.named_steps["classifier"]
+    return {
+        "features": classifier.theta_.shape[1],
+        "var_smoothing": classifier.var_smoothing,
+    }
+
+
+def _random_forest_diagnostics(
+    pipeline: _Pipeline,
+) -> dict[str, int | float]:
+    return _forest_diagnostics(pipeline)
+
+
+def _forest_diagnostics(pipeline: _Pipeline) -> dict[str, int | float]:
     classifier = pipeline.named_steps["classifier"]
     depths = _np.array(
         [estimator.get_depth() for estimator in classifier.estimators_]
@@ -456,17 +844,6 @@ def _extra_trees_diagnostics(pipeline: _Pipeline) -> dict[str, int | float]:
         "mean_depth": depths.mean(),
         "maximum_depth": depths.max(),
         "mean_leaves": leaves.mean(),
-    }
-
-
-def _histogram_boosting_diagnostics(
-    pipeline: _Pipeline,
-) -> dict[str, int | float]:
-    classifier = pipeline.named_steps["classifier"]
-    return {
-        "iterations": classifier.n_iter_,
-        "trees_per_iteration": classifier.n_trees_per_iteration_,
-        "total_trees": classifier.n_iter_ * classifier.n_trees_per_iteration_,
     }
 
 
@@ -488,6 +865,24 @@ def _validate_candidate_evaluation(
         raise ValueError("Candidate fold metrics contain non-finite values.")
     if not _np.isfinite(evaluation.diagnostics.to_numpy()).all():
         raise ValueError("Candidate diagnostics contain non-finite values.")
+    if (
+        evaluation.cross_validation_fingerprint
+        != partitioned_data.cross_validation_fingerprint
+    ):
+        raise ValueError("Candidate evaluation uses the wrong cross-validation design.")
+    if tuple(evaluation.out_of_fold_probabilities.columns) != _CLASS_LABELS:
+        raise ValueError("Candidate probability columns do not match class labels.")
+    if not evaluation.out_of_fold_probabilities.index.equals(
+        partitioned_data.y_development.index
+    ):
+        raise ValueError("Candidate probability rows do not match development rows.")
+    probability_values = evaluation.out_of_fold_probabilities.to_numpy()
+    if not _np.isfinite(probability_values).all():
+        raise ValueError("Candidate probabilities contain non-finite values.")
+    if not _np.allclose(probability_values.sum(axis=1), 1.0):
+        raise ValueError("Candidate probabilities do not sum to one by row.")
+    if (probability_values < 0).any() or (probability_values > 1).any():
+        raise ValueError("Candidate probabilities fall outside zero to one.")
     if int(evaluation.confusion_counts.to_numpy().sum()) != len(
         partitioned_data.y_development
     ):

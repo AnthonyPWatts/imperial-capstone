@@ -24,17 +24,19 @@ structural removals and organised the remaining 36 candidate predictors. Six
 DrivenData submissions have been made. An equal-weight soft vote between Extra
 Trees and histogram gradient boosting has the best public score at `0.8170`.
 
-Those candidate models used the complete labelled data, so the leaderboard
-result does not provide a local validation estimate. A stratified 20% local
-test set and five development folds are now frozen. A constrained decision tree
-using the initial 29-feature policy averages 74.98% accuracy across those folds,
-20.67 percentage points above the majority reference. Extra Trees improves mean
-accuracy to 78.84% and repair-class recall from 15.17% to 39.40%, making it the
-strongest repair detector. Histogram gradient boosting leads overall accuracy
-at 80.21% and completes five folds in about three minutes, roughly six times
-faster than Extra Trees. The next gate is a fold-safe soft vote between those
-two candidates; the local test set remains untouched until model selection. The
-main evidence is available in the
+The formal workflow freezes a stratified 20% local test and five development
+folds, then compares seven classifier families and five simple probability
+ensembles with fold-fitted preprocessing. Random Forest is the strongest single
+model at 80.59% mean accuracy. Its equal-weight vote with histogram gradient
+boosting leads at 81.37%, ahead of the formally recreated Extra Trees and
+boosting vote at 80.83%. The selected workflow records 80.82% on the one-time
+local test, with 32.10% repair recall and 77.81% non-functional recall.
+
+Both components have been refitted on all 59,400 labelled rows and a validated
+14,850-row competition submission is ready. Its public score remains unknown
+until upload. Target-class semantics and possible ordinal or hierarchical
+structure, together with grouped geographic sensitivity, are the next
+modelling investigations. The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)

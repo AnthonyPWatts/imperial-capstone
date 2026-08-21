@@ -4,15 +4,15 @@
     "label": "21 August 2026"
   },
   "overall": {
-    "completed": 25,
+    "completed": 27,
     "total": 28,
-    "current": "Evaluate the fold-safe Extra Trees and boosting soft vote"
+    "current": "Upload and record the forest-plus-boosting candidate"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Test whether the Extra Trees and boosting soft vote improves on 80.21% local accuracy.",
+    "nextCheckpoint": "Record the candidate's public score, then investigate target-class structure and grouped geographic robustness.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -26,14 +26,14 @@
   "features": {
     "examined": 36,
     "total": 36,
-    "current": "Initial 29-feature policy evaluated",
+    "current": "Initial 29-feature policy selected",
     "rawPredictorsAudited": 39,
     "structuralRemovalsAudited": 3
   },
   "models": {
-    "trainedCandidates": 3,
-    "ensembleCandidates": 1,
-    "evaluated": 3
+    "trainedCandidates": 7,
+    "ensembleCandidates": 5,
+    "evaluated": 12
   },
   "submissions": {
     "total": 6,

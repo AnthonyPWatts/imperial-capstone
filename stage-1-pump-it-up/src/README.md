@@ -18,12 +18,17 @@ Current modules:
   calendar fields, and exposes it as a scikit-learn transformer.
 - `model_preprocessing.py` combines that transformer with fold-fitted numeric
   imputation, missing indicators, rare-category handling and one-hot encoding;
-  it can return identical sparse or dense feature values, and its first-fold
+  it can return identical sparse or dense feature values, optionally standardises
+  numeric values inside each fold for scale-sensitive methods, and its first-fold
   smoke check never accesses local test or competition rows.
-- `model_evaluation.py` combines the initial preprocessor with the constrained
-  decision tree, Extra Trees or histogram gradient boosting, evaluates each
-  complete pipeline across all five frozen development folds and returns
-  metrics, timing diagnostics and confusion matrices.
+- `model_evaluation.py` evaluates the constrained tree, logistic regression,
+  Gaussian naïve Bayes, KNN, Extra Trees, histogram boosting and Random Forest
+  across the frozen development folds. It returns metrics, timing diagnostics,
+  aligned out-of-fold probabilities, confusion matrices, pairwise diversity and
+  equal-weight soft votes over two or more components.
+- `final_model.py` freezes the selected Random Forest and histogram-boosting
+  vote, performs its one-time local-test evaluation, refits both components on
+  all labelled original rows and validates the competition submission.
 - `modelling_data.py` exposes a small `ModellingData` record plus preparation
   and summary functions for the validated pre-split original data and the
   separate competition-scoring data.

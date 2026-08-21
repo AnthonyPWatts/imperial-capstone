@@ -21,3 +21,6 @@ Thumbs.db
 # Stage 2 observations are supplied through the course portal and should stay local
 stage-2-bbo/data/*
 !stage-2-bbo/data/README.md
+
+# Competition prediction rows stay local; retain notebooks and submission notes
+stage-1-pump-it-up/submissions/**/*.csv

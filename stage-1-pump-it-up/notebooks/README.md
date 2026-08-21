@@ -37,14 +37,17 @@ It does not replace the formal split and evaluation sequence below.
    stratified development folds plus the cross-validated majority-class
    reference.
 2. [`03-model-comparison.ipynb`](03-model-comparison.ipynb): initial 29-feature
-   policy and fold-fitted preprocessing, with a constrained decision tree and
-   both earlier model families evaluated across all five frozen development
-   folds. Histogram boosting leads accuracy at 80.21%; their soft vote is next.
-3. `04-tuning-and-evaluation.ipynb`
-4. `05-final-model-and-submission.ipynb`
+   policy and fold-fitted preprocessing, with seven classifier families and a
+   bounded equal-weight ensemble round. Random Forest plus histogram boosting
+   leads the development folds at 81.37%.
+3. `04-target-structure-and-robustness.ipynb`: planned next-round work on class
+   meaning, pairwise separability and grouped geographic sensitivity.
+4. [`05-final-model-and-submission.ipynb`](05-final-model-and-submission.ipynb):
+   frozen selection, one-time 80.82% local-test result, full-data refit and the
+   validated competition candidate.
 
-The later notebooks will be added as the formal modelling workflow
-progresses. Their names describe the intended order rather than files that
-already exist.
+Notebook 05 was completed before the next-round Notebook 04 so today's selected
+candidate could be submitted without conflating later robustness experiments
+with the frozen selection.
 
 Keep notebooks focused on analysis. Move stable, reusable code into `../src/`.

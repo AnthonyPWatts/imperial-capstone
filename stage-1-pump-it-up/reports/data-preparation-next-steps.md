@@ -1,5 +1,5 @@
 ---
-status: three-feature-models-evaluated
+status: candidate-submission-ready
 branch: main
 updated: 2026-08-21
 ---
@@ -8,12 +8,13 @@ updated: 2026-08-21
 
 ## Working on
 
-Evaluate the equal-weight soft vote between fold-safe Extra Trees and histogram
-gradient boosting. Boosting leads mean accuracy at 80.21% and completes five
-folds in about three minutes; Extra Trees reaches 78.84%, takes about 18 minutes
-and detects more repairable pumps. The stratified 20% local test set remains
-untouched until model selection is complete, and every learned transform must
-fit inside the current development fold.
+Upload and record the prepared Random Forest and histogram-boosting candidate.
+Their equal-weight vote leads development-fold accuracy at 81.37% and records
+80.82% on the one-time local test. Both components have been refitted on all
+59,400 labelled original rows; the validated 14,850-row competition CSV is
+ready. After recording its public score, extend the target audit into class
+meaning and possible ordinal or hierarchical structure, then run grouped
+geographic sensitivity.
 
 The initial date treatment replaces `date_recorded` with
 `days_since_recorded`, measured from the fixed 2015-02-02 competition-era
@@ -88,6 +89,13 @@ and contains exactly the three documented classes:
 | `functional` | 32,259 | 54.31% |
 | `functional needs repair` | 4,317 | 7.27% |
 | `non functional` | 22,824 | 38.42% |
+
+The archived official problem page defines both `functional` classes as
+operational, separated by whether repairs are needed; `non functional` means
+not operational. This supplies direct semantic support for testing an
+operational/not-operational classifier followed by a repair/no-repair classifier
+inside the operational branch. Ordinal severity remains a separate hypothesis
+rather than an assumption.
 
 An always-`functional` non-model would achieve 54.31% accuracy. The majority
 class is 7.47 times the size of `functional needs repair`. Preserve stratification
@@ -219,9 +227,9 @@ any learned preprocessing to prevent leakage.
 | 5. Select and engineer features | Start with 36 candidates. Test provisional date, age, availability, coordinate and category treatments through held-out comparisons and ablations. |
 | 6. Define the machine-learning task | Record multiclass classification, challenge accuracy, class imbalance and the diagnostic measures needed for the minority class. |
 | 7. Partition the data | Complete: reserve a reproducible stratified 20% local test set and freeze five development folds. Add a grouped geographic sensitivity check later. |
-| 8. Select and train candidate methods | Recreate Extra Trees, histogram gradient boosting and their soft vote with fold-fitted preprocessing; include the non-model reference and a transparent baseline. |
-| 9. Evaluate and interpret the results | Compare held-out accuracy, per-class recall and the confusion matrix before using public scores for model selection. |
-| 10. Deploy and iterate | Refit the selected workflow, validate the submission, record its score and return to earlier steps when errors or ablations justify a change. |
+| 8. Select and train candidate methods | Compare seven classifier families and five bounded soft-vote combinations with fold-fitted preprocessing. |
+| 9. Evaluate and interpret the results | Select the Random Forest and histogram-boosting vote at 81.37%, then confirm 80.82% once on the local test. |
+| 10. Deploy and iterate | Complete the full-data refit and submission validation; upload and record its public score, then return to target structure and geographic robustness. |
 
 The lifecycle remains iterative. Early public submissions reached Steps 8 to 10,
 but they did not complete the partitioning and local-evaluation gates in Steps 7
@@ -257,9 +265,18 @@ and 9.
 10. **Complete:** evaluate histogram gradient boosting with the same feature
    values, frozen folds and explicit elapsed-time evidence, recording 80.21%
    mean accuracy in about three minutes.
-11. **Next:** retain out-of-fold probabilities and evaluate the equal-weight
-   Extra Trees and histogram boosting soft vote.
-12. **Complete:** align the dashboard and supporting documentation with the
+11. **Complete:** retain aligned out-of-fold probabilities and evaluate the
+   equal-weight Extra Trees and histogram boosting soft vote, recording 80.83%
+   mean accuracy.
+12. **Complete:** screen logistic regression, Gaussian naïve Bayes, KNN and
+   Random Forest; Random Forest leads the single models at 80.59%.
+13. **Complete:** compare a bounded set of simple ensembles and select the
+   equal-weight Random Forest and boosting vote at 81.37%.
+14. **Complete:** confirm 80.82% accuracy once on the local test, refit on all
+   labelled rows and validate the competition submission.
+15. **Next:** upload and record the candidate, then investigate target-class
+   structure and grouped geographic robustness.
+16. **Complete:** align the dashboard and supporting documentation with the
    canonical ten-step lifecycle.
 
 Use the repository's current `.venv`. Formal automated tests are low priority
@@ -284,16 +301,17 @@ serving less controlled inputs.
 - Treatment of high-cardinality categorical fields.
 - Geographic feature engineering and ablation of the elapsed-date feature.
 - Removal of hierarchy columns after model comparison.
-- Formal model selection, tuning ranges and the next competition submission.
+- Tuning ranges, target-class structure and grouped geographic sensitivity.
+- Public leaderboard evidence for the prepared candidate.
 
 These choices require training-partition evidence. The structural preparation
 work can proceed without them.
 
 ## Resume point
 
-Continue course Step 8, **Select and train candidate methods**, in
-`03-model-comparison.ipynb`. Retain aligned out-of-fold probabilities for Extra
-Trees and histogram boosting, then evaluate their equal-weight soft vote across
-the five frozen development folds. Compare it with the 80.21% boosting leader
-and record the additional forest cost. Do not inspect the local test set or
-competition data during model development.
+Continue course Step 10, **Deploy and iterate**. Upload the candidate generated
+by `05-final-model-and-submission.ipynb` and record its public score without
+using that score to disguise the retained local evidence. Then extend the
+target-label audit into semantics, pairwise separability and hierarchical or
+ordinal formulations using development-only out-of-fold evidence. Grouped
+geographic sensitivity remains the parallel robustness check.

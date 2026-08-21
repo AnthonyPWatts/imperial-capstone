@@ -36,12 +36,12 @@
   <main id="content">
     <section class="summary" aria-label="Summary">
       <div class="progress-summary">
-        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">25 / 28</span> checkpoints</strong></div>
-        <div class="progress" role="img" data-status-progress-current="overall.completed" data-status-progress-total="overall.total" aria-label="89 per cent complete"><span></span></div>
-        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Evaluate the fold-safe Extra Trees and boosting soft vote</strong></div>
+        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">27 / 28</span> checkpoints</strong></div>
+        <div class="progress" role="img" data-status-progress-current="overall.completed" data-status-progress-total="overall.total" aria-label="96 per cent complete"><span></span></div>
+        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Upload and record the forest-plus-boosting candidate</strong></div>
       </div>
       <dl class="summary-metrics">
-        <div class="metric"><dt>Features fully examined</dt><dd><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small><code data-status-text="features.current">Initial 29-feature policy evaluated</code></small></dd></div>
+        <div class="metric"><dt>Features fully examined</dt><dd><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small><code data-status-text="features.current">Initial 29-feature policy selected</code></small></dd></div>
         <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">6</strong><small>Total</small></dd></div>
         <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8170</strong><small data-status-text="submissions.bestLabel">Soft-vote ensemble</small></dd></div>
         <div class="metric"><dt>Target score</dt><dd><strong data-status-text="benchmarks.targetScore" data-status-format="score">0.8225</strong><small>Provisional</small></dd></div>
@@ -52,19 +52,18 @@
     <div class="dashboard-grid">
       <section class="panel now-panel" aria-labelledby="now-title">
         <header class="panel-heading">
-          <div><h2 id="now-title">Now</h2><p>Test whether the two strongest candidates complement each other.</p></div>
-          <span class="state active">Steps 5, 8–9</span>
+          <div><h2 id="now-title">Now</h2><p>Upload the validated candidate and record evidence without replacing local results.</p></div>
+          <span class="state active">Step 10</span>
         </header>
-        <p class="completed-work"><strong>Recorded:</strong> boosting leads accuracy at 80.21% and takes about three minutes; Extra Trees reaches 78.84%, takes about 18 minutes and leads repair recall at 39.40%.</p>
+        <p class="completed-work"><strong>Recorded:</strong> Random Forest plus histogram boosting leads at 81.37% across development folds and confirms 80.82% on the one-time local test.</p>
         <ol class="checklist">
-          <li>Retain aligned out-of-fold class probabilities for both candidates.</li>
-          <li>Average their probabilities with the same equal-weight rule as the early experiment.</li>
-          <li>Evaluate the blend on the unchanged five validation folds.</li>
-          <li>Compare accuracy and class recall with the 80.21% boosting leader.</li>
-          <li>Record the additional forest cost and decide whether the blend earns it.</li>
+          <li>Upload the validated 14,850-row forest-plus-boosting CSV.</li>
+          <li>Record its public score, source commit and comparison with local evidence.</li>
+          <li>Update the submission log and daily-best chart only after a score exists.</li>
+          <li>Move next to target-class structure and grouped geographic robustness.</li>
         </ol>
-        <p class="parallel-work"><strong>Boundary:</strong> keep the local test set and competition rows untouched until development-fold model selection is complete.</p>
-        <p class="gate"><strong>Done when:</strong> the local soft vote either beats 80.21% or is explicitly rejected with retained evidence.</p>
+        <p class="parallel-work"><strong>Boundary:</strong> the public score is external feedback, not a replacement for the retained cross-validation and local-test evidence.</p>
+        <p class="gate"><strong>Done when:</strong> the candidate score and evidence-led conclusion are recorded.</p>
       </section>
 
       <section class="panel plan-panel" aria-labelledby="plan-title">
@@ -126,23 +125,23 @@
                 <td><strong>3 / 3</strong></td>
                 <td>A stratified 20% local test set and five development folds are frozen with seeds and fingerprints; the majority reference is recorded.</td>
               </tr>
-              <tr class="row-active">
+              <tr class="row-complete">
                 <td><span class="track-type">Step 08</span><strong>Select &amp; train candidate methods</strong></td>
-                <td><span class="state active">Active</span></td>
-                <td><strong>2 / 3</strong></td>
-                <td>The tree, Extra Trees and histogram boosting are evaluated fold-safely; their previously successful soft vote is next.</td>
+                <td><span class="state complete">Done</span></td>
+                <td><strong>3 / 3</strong></td>
+                <td>Seven classifier families and five bounded soft-vote combinations are reproducibly evaluated on the frozen development folds.</td>
               </tr>
-              <tr class="row-active">
+              <tr class="row-complete">
                 <td><span class="track-type">Step 09</span><strong>Evaluate &amp; interpret results</strong></td>
-                <td><span class="state active">Active</span></td>
-                <td><strong>2 / 3</strong><small class="progress-note">reference + 3 models</small></td>
-                <td>Boosting leads accuracy at 80.21%; Extra Trees leads repair recall at 39.40%. The soft vote and model selection remain.</td>
+                <td><span class="state complete">Done</span></td>
+                <td><strong>3 / 3</strong><small class="progress-note">reference + 12 workflows</small></td>
+                <td>The selected forest-plus-boosting vote leads development folds at 81.37% and records 80.82% on the one-time local test.</td>
               </tr>
               <tr class="row-active">
                 <td><span class="track-type">Step 10</span><strong>Deploy &amp; iterate</strong></td>
                 <td><span class="state active">Active</span></td>
                 <td><strong>2 / 3</strong></td>
-                <td>Three audit-led candidate submissions, hashes and scores are recorded; formal model selection and the next evidence-led iteration remain.</td>
+                <td>The selected workflow is refitted on all labelled rows and its validated candidate CSV is ready; upload and score recording remain.</td>
               </tr>
             </tbody>
           </table>
@@ -162,7 +161,11 @@
         <section class="panel compact-panel" aria-labelledby="benchmarks-title">
           <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Current gap to target: 0.55 percentage points</p></div></header>
           <dl class="benchmark-list">
-            <div><dt>Current best / soft vote</dt><dd>81.70%</dd></div>
+            <div><dt>Current public best / old soft vote</dt><dd>81.70%</dd></div>
+            <div><dt>Selected vote / development CV</dt><dd>81.37%</dd></div>
+            <div><dt>Selected vote / local test</dt><dd>80.82%</dd></div>
+            <div><dt>Local Random Forest</dt><dd>80.59%</dd></div>
+            <div><dt>Old local soft vote</dt><dd>80.83%</dd></div>
             <div><dt>Local histogram boosting</dt><dd>80.21%</dd></div>
             <div><dt>Local Extra Trees</dt><dd>78.84%</dd></div>
             <div><dt>Local decision tree</dt><dd>74.98%</dd></div>
@@ -198,7 +201,8 @@
             <div><dt>Fixed removals</dt><dd><code>quantity_group</code>, <code>payment</code>, <code>recorded_by</code></dd></div>
             <div><dt>Preserve</dt><dd><code>id</code> for alignment and submission</dd></div>
             <div><dt>Initial policy</dt><dd>29 features; elapsed recording date, pump age and explicit missing-state flags</dd></div>
-            <div><dt>Accuracy leader</dt><dd>Histogram boosting · 80.21% · about 3 minutes</dd></div>
+            <div><dt>Accuracy leader</dt><dd>Random Forest + boosting · 81.37% · about 5.4 component minutes</dd></div>
+            <div><dt>Local test</dt><dd>Selected vote · 80.82% accuracy · one-time confirmation</dd></div>
             <div><dt>Repair leader</dt><dd>Extra Trees · 39.40% recall · about 18 minutes</dd></div>
             <div><dt>Deferred</dt><dd>High-cardinality names and alternative category hierarchy levels</dd></div>
             <div><dt>Rule</dt><dd>Fit imputation, rare grouping, encoding and models inside each development fold</dd></div>
@@ -230,7 +234,7 @@
         <div><dt>Candidate predictors</dt><dd data-status-text="data.candidatePredictors" data-status-format="integer">36</dd></div>
         <div><dt>Target classes</dt><dd data-status-text="data.targetClasses" data-status-format="integer">3</dd></div>
         <div><dt>Metric</dt><dd data-status-text="data.metric">Accuracy</dd></div>
-        <div><dt>Locally evaluated</dt><dd data-status-text="models.evaluated" data-status-format="integer">3</dd></div>
+        <div><dt>Locally evaluated</dt><dd data-status-text="models.evaluated" data-status-format="integer">12</dd></div>
       </dl>
     </section>
   </main>

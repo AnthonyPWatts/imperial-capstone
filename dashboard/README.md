@@ -37,20 +37,19 @@ status request fails. The current snapshot is dated 21 August 2026:
 
 | Metric | Current value |
 | --- | ---: |
-| Overall plan checkpoints | 25 / 28 |
-| Features fully examined | 36 / 36 (initial 29-feature policy evaluated) |
-| Locally evaluated models | 3 |
-| Candidate methods trained | 3, plus one soft-vote ensemble |
+| Overall plan checkpoints | 27 / 28 |
+| Features fully examined | 36 / 36 (initial 29-feature policy selected) |
+| Locally evaluated models | 12 |
+| Candidate methods trained | 7, plus five soft-vote ensembles |
 | DrivenData submissions | 6 |
 | Best leaderboard score | 0.8170 |
 | Provisional target score | 0.8225 |
 | Chart ceiling | 0.8500 |
 | Daily submissions used | 0 / 3 UTC |
 
-The current task is to evaluate the equal-weight soft vote between fold-safe
-Extra Trees and histogram gradient boosting. The process remains iterative, so
-earlier full-data submissions remain useful experiment history without
-replacing local model-selection evidence:
+The current task is uploading and recording the validated Random Forest and
+histogram-boosting candidate. The process remains iterative, so leaderboard
+feedback will not replace retained local model-selection evidence:
 
 - **Step 3, explore the data (4 / 4):** the maintained overall findings report,
   predictor catalogue and 117 per-predictor notebooks cover structure,
@@ -69,17 +68,14 @@ replacing local model-selection evidence:
 - **Step 7, partition the data (3 / 3):** a stratified 20% local test set and
   five development folds are frozen with recorded seeds and fingerprints. The
   five-fold majority reference is 54.31% accuracy.
-- **Step 8, select and train candidates (2 / 3):** Extra Trees and histogram
-  gradient boosting, plus their soft vote, remain reproducible full-data trials.
-  The constrained tree and both model families now have fold-safe local
-  evaluations; the previously successful equal-weight blend is next.
-- **Step 9, evaluate and interpret (2 / 3):** histogram boosting leads accuracy
-  at 80.21% and takes about three minutes for five folds. Extra Trees reaches
-  78.84%, takes about 18 minutes and leads repair recall at 39.40%; the soft vote
-  and model selection remain.
-- **Step 10, deploy and iterate (2 / 3):** the candidate submissions, hashes and
-  scores are recorded. Formal selection and the next evidence-led iteration
-  remain.
+- **Step 8, select and train candidates (3 / 3):** seven classifier families
+  and five bounded equal-weight votes have reproducible fold-safe evaluations.
+- **Step 9, evaluate and interpret (3 / 3):** Random Forest leads the single
+  models at 80.59%. Its vote with histogram boosting leads development folds at
+  81.37% and records 80.82% on the one-time local test.
+- **Step 10, deploy and iterate (2 / 3):** both selected components are refitted
+  on all labelled rows and the validated candidate CSV is ready. Upload and
+  public-score recording remain.
 
 Six submissions have been made across two UTC dates:
 
@@ -94,15 +90,14 @@ Six submissions have been made across two UTC dates:
 
 The 0.5461 all-`functional` result remains the simple public leaderboard floor;
 the frozen development folds produce a separate 0.5431 local majority
-reference. The 0.8170 ensemble is the best public result and sits 0.55
-percentage points below the provisional 0.8225 target. Both earlier
-feature-based candidate models fitted the complete labelled data, so those
-public results are informal evidence only. The constrained decision tree now
-has a retained five-fold local evaluation. Extra Trees also has five-fold local
-evidence: 78.84% mean accuracy, 39.40% repair recall and 78.24% non-functional
-recall. Histogram boosting leads mean accuracy at 80.21%, with 28.69% repair
-recall, and completes the folds in 179.5 seconds. These three model families
-raise the **Models evaluated** counter to three.
+reference. The old 0.8170 Extra Trees and boosting ensemble remains the best
+public result until today's candidate is uploaded. Formal comparison now covers
+seven single-model families. Random Forest leads those at 80.59% mean accuracy.
+Its equal-weight vote with histogram boosting leads the bounded ensemble round
+at 81.37%, including 34.28% repair recall and 78.03% non-functional recall. The
+same frozen workflow records 80.82% on the one-time local test, with 32.10%
+repair recall and 77.81% non-functional recall. Seven single models and five
+soft-vote workflows raise the **Models evaluated** counter to twelve.
 
 The target-integrity track now awards all four checkpoints. Training shares,
 task and metric implications, label-frame integrity and exact feature/label ID
@@ -141,10 +136,10 @@ checkpoint total:
 | 5. Select and engineer features | 36 | Separate 36-feature metric |
 | 6. Define the machine-learning task | 4 | 4 |
 | 7. Partition the data | 3 | 3 |
-| 8. Select and train candidate methods | 2 | 3 |
-| 9. Evaluate and interpret results | 2 | 3 |
+| 8. Select and train candidate methods | 3 | 3 |
+| 9. Evaluate and interpret results | 3 | 3 |
 | 10. Deploy and iterate | 2 | 3 |
-| **Overall checkpoint total** | **25** | **28** |
+| **Overall checkpoint total** | **27** | **28** |
 
 Increment a track only when its exit evidence exists. Do not award partial
 credit for activity alone.
@@ -165,17 +160,14 @@ has deeper feature-specific analysis.
 
 ### Models evaluated
 
-Count a model family once after it has a reproducible local evaluation against
-the agreed development folds or untouched local test set. Hyperparameter
-variants do not each increase the headline counter. The two trained candidates
-from the earlier full-data trial and their soft vote therefore do not yet
-increase this counter: they were fitted to the full labelled data and compared
-only through public leaderboard scores.
-The cross-validated majority reference is a non-model benchmark, so it also
-does not increase the counter. The constrained decision tree has now been
-evaluated across all five agreed development folds, as has Extra Trees, so the
-counter is two. Histogram gradient boosting has now completed the same local
-evaluation, so the counter is three. Record detailed experiments elsewhere.
+Count each materially distinct model family or declared ensemble workflow once
+after it has a reproducible local evaluation against the agreed development
+folds or local test. Hyperparameter variants do not each increase the headline
+counter. The cross-validated majority reference is a non-model benchmark and
+does not increase it. The seven single-model families are the constrained tree,
+logistic regression, Gaussian naïve Bayes, KNN, Extra Trees, histogram boosting
+and Random Forest. Five declared soft votes bring the counter to twelve. Record
+detailed experiments elsewhere.
 
 ### Submission metrics
 
@@ -237,11 +229,11 @@ or notebook output directly.
 
 ## Likely next changes
 
-- Retain aligned out-of-fold probabilities for Extra Trees and histogram
-  boosting, then evaluate their equal-weight soft vote.
-- Compare accuracy, per-class recall and the additional forest cost with the
-  80.21% histogram boosting leader.
-- Use local errors and controlled ablations to decide whether high-cardinality
-  fields, hierarchy alternatives or another candidate method deserve promotion.
-- Keep the local test and competition rows untouched until development-fold
-  model selection is complete.
+- Upload the validated forest-plus-boosting candidate and record its public
+  score without replacing the cross-validation or local-test evidence.
+- Extend the target-label audit into semantics, pairwise separability and
+  possible ordinal or hierarchical formulations.
+- Define grouped geographic sensitivity without changing the selected feature
+  policy; begin with the lower-cost booster before repeating a full ensemble.
+- Use out-of-fold errors and controlled ablations to decide whether class
+  weighting, target structure or a feature-family change deserves promotion.

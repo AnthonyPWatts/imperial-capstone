@@ -16,6 +16,19 @@ multiclass tabular classification problem with three target values:
 The practical aim is to help identify which waterpoints work, which need
 repair, and which do not work.
 
+The official problem page defines the classes more precisely:
+
+| Label | Meaning |
+| --- | --- |
+| `functional` | Operational; no repairs needed |
+| `functional needs repair` | Operational; repairs needed |
+| `non functional` | Not operational |
+
+This wording supports a possible hierarchical formulation: classify whether a
+waterpoint is operational, then distinguish repair-needed from fully functional
+among operational waterpoints. Treat that as a hypothesis to validate rather
+than changing the competition's flat three-class accuracy objective silently.
+
 ## Files and submission
 
 The competition data is available only after joining. The expected submission

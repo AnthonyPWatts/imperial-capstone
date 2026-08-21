@@ -11,6 +11,7 @@ from sklearn.compose import ColumnTransformer as _ColumnTransformer
 from sklearn.impute import SimpleImputer as _SimpleImputer
 from sklearn.pipeline import Pipeline as _Pipeline
 from sklearn.preprocessing import OneHotEncoder as _OneHotEncoder
+from sklearn.preprocessing import StandardScaler as _StandardScaler
 
 from data_partitioning import PartitionedData
 from feature_engineering import (
@@ -35,17 +36,22 @@ class PreprocessingSmokeTest:
     categorical_coverage: _pd.DataFrame
 
 
-def make_initial_preprocessor(*, sparse_output: bool = True) -> _Pipeline:
-    """Build fold-fitted transforms with sparse or dense equivalent values."""
+def make_initial_preprocessor(
+    *,
+    sparse_output: bool = True,
+    scale_numeric: bool = False,
+) -> _Pipeline:
+    """Build fold-fitted transforms with optional numeric standardisation."""
 
-    numeric_pipeline = _Pipeline(
-        steps=[
-            (
-                "median_imputation",
-                _SimpleImputer(strategy="median", add_indicator=True),
-            ),
-        ]
-    )
+    numeric_steps = [
+        (
+            "median_imputation",
+            _SimpleImputer(strategy="median", add_indicator=True),
+        ),
+    ]
+    if scale_numeric:
+        numeric_steps.append(("standardisation", _StandardScaler()))
+    numeric_pipeline = _Pipeline(steps=numeric_steps)
     categorical_encoder = _OneHotEncoder(
         handle_unknown="infrequent_if_exist",
         min_frequency=RARE_CATEGORY_MINIMUM,
