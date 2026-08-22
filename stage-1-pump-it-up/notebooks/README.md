@@ -106,6 +106,9 @@ It does not replace the formal split and evaluation sequence below.
     accepted out-of-fold and competition class probabilities retained as
     three-way row memberships, with calibration, ambiguity and repair-boundary
     diagnostics and the outlier-filtering hand-off.
+21. [`22-outlier-filtering.ipynb`](22-outlier-filtering.ipynb): bounded
+    training-only physical, duplicate-conflict and Isolation Forest filters,
+    unchanged validation scoring, class-removal audits and component crosses.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

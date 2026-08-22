@@ -74,7 +74,11 @@ OOF probabilities remain well aligned with the observed class shares and have
 membership is 7.178%, although only 3.953% of rows receive repair as their hard
 prediction. This creates a useful uncertainty artefact without another model
 selection loop. The next bounded experiment is fold-fitted, training-only
-outlier filtering. The main evidence is available in the
+outlier filtering. That screen subsequently retained every row: strict
+duplicate cleaning reached 81.566%, while the two class-blind Isolation Forest
+policies lost on every fold. The next distinct loop is leakage-safe,
+cross-fitted target encoding of deferred high-cardinality fields. The main
+evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
@@ -83,6 +87,7 @@ and [expanded-voter](stage-1-pump-it-up/reports/expanded-ensemble-voter-screen.m
 and [binary-reduction](stage-1-pump-it-up/reports/binary-reduction-screen.md)
 and [fuzzy-membership](stage-1-pump-it-up/reports/fuzzy-target-membership-screen.md)
 and [class-membership](stage-1-pump-it-up/reports/class-membership-probabilities.md)
+and [outlier-filtering](stage-1-pump-it-up/reports/outlier-filtering-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

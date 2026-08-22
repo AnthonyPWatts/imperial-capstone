@@ -107,6 +107,10 @@ Current modules:
   low-margin, disagreement and repair-related edge groups without refitting. It
   also validates and exports row-level three-class membership tables with
   confidence, runner-up, margin, entropy and ambiguity fields.
+- `outlier_filtering_evaluation.py` fits bounded physical, exact-duplicate and
+  class-blind multivariate filters only on each outer-training partition,
+  audits class-specific removal and refits the accepted components while every
+  original validation row remains in scoring.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

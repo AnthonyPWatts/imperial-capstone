@@ -54,6 +54,10 @@ The accepted ensemble's row-level development and competition probabilities,
 their calibration and ambiguity cohorts, and the next outlier-filtering loop
 are in [`class-membership-probabilities.md`](class-membership-probabilities.md).
 
+The fold-fitted physical, duplicate-conflict and Isolation Forest training-row
+filters, class-removal audit and fixed component crosses are in
+[`outlier-filtering-screen.md`](outlier-filtering-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

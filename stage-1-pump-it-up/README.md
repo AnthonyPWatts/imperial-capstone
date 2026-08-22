@@ -186,13 +186,20 @@ only 3.953% receive repair as their hard prediction: 1,323 rows retain at least
 three-membership table is an analysis artefact, not a submission. See the
 [class-membership report](reports/class-membership-probabilities.md).
 
+A bounded training-only outlier screen then compared physical contradictions,
+strict accepted-feature duplicate conflicts and class-blind Isolation Forest
+removal at 0.5% and 1.0%. Every validation row remained in scoring. The strict
+duplicate rule was closest at 81.566%, 0.059 points below baseline; Isolation
+Forest lost on every fold. Eight fixed component crosses also trailed, with a
+best result of 81.572%. Hard or unusual rows are therefore retained. See the
+[outlier-filtering report](reports/outlier-filtering-screen.md).
+
 ## Next modelling loop
 
-1. Run one bounded outlier-filtering screen next. Learn every filter from each
-   outer training partition, remove rows only from that training partition, and
-   score the original untouched validation rows. Start with physically invalid
-   numeric states and one conservative multivariate-support rule; do not tune a
-   long menu of detectors on the same five folds.
+1. Run one smoothed multiclass target-encoding screen over a conservative,
+   predeclared set of deferred high-cardinality fields. Cross-fit encodings for
+   every outer-training row and use only full outer-training mappings for its
+   validation fold; never copy a row's own label into its features.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
@@ -209,6 +216,9 @@ three-membership table is an analysis artefact, not a submission. See the
 8. Use the retained probability memberships to describe uncertainty and inspect
    edge cases, but do not call an uncertain row an outlier merely because its
    winning margin is small.
+9. Stop broad outlier removal for the accepted representation. The difficult
+   rows are part of the inference population, and every tested filter reduced
+   unchanged-fold accuracy.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,
