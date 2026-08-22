@@ -17,6 +17,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from gpu_model_evaluation import FROZEN_FEATURE_POLICY
+from gpu_model_evaluation import fit_gpu_candidate_probabilities
 from gpu_model_evaluation import make_catboost_spec
 from gpu_model_evaluation import make_lightgbm_spec
 from gpu_model_evaluation import make_sklearn_tree_spec
@@ -113,6 +114,45 @@ class GpuModelScreenTests(unittest.TestCase):
         )
 
         self.assertEqual(names, ["depth 6", "depth 8", "Random Forest"])
+
+    def test_full_refit_passes_target_to_supervised_preprocessing(self) -> None:
+        recorded_targets = []
+
+        class RecordingPreprocessor:
+            def fit_transform(self, X, y=None):
+                recorded_targets.append(np.asarray(y).copy())
+                return X.to_numpy(dtype="float64")
+
+            def transform(self, X):
+                return X.to_numpy(dtype="float64")
+
+        X_training = pd.DataFrame(
+            {"feature": np.arange(30, dtype="float64")}
+        )
+        y_training = pd.Series(
+            [
+                "functional",
+                "functional needs repair",
+                "non functional",
+            ]
+            * 10
+        )
+
+        probabilities, _ = fit_gpu_candidate_probabilities(
+            make_sklearn_tree_spec(variant="Extra Trees leaf 1"),
+            X_training,
+            y_training,
+            X_training.iloc[:3],
+            iterations=4,
+            preprocessor_factory=RecordingPreprocessor,
+        )
+
+        self.assertEqual(len(recorded_targets), 1)
+        np.testing.assert_array_equal(
+            recorded_targets[0],
+            np.tile(np.arange(3), 10),
+        )
+        self.assertEqual(probabilities.shape, (3, 3))
 
     @staticmethod
     def _evaluation(predictions: list[int]) -> SimpleNamespace:

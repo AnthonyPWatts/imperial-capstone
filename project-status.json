@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 35,
-    "total": 35,
-    "current": "Training-only outlier filtering retained every row"
+    "completed": 36,
+    "total": 36,
+    "current": "Cross-fitted identity target encoding retained the accepted policy"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Evaluate one cross-fitted high-cardinality multiclass target-encoding policy.",
+    "nextCheckpoint": "Evaluate cross-fitted local spatial class-rate features.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

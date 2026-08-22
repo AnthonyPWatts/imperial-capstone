@@ -469,7 +469,7 @@ def fit_gpu_candidate_probabilities(
         model.fit(X_fit, y_encoded, cat_features=list(categorical), verbose=False)
     elif spec.family == XGBOOST_FAMILY:
         preprocessor = preprocessor_factory()
-        X_fit = preprocessor.fit_transform(X_training)
+        X_fit = preprocessor.fit_transform(X_training, y_encoded)
         X_predict = preprocessor.transform(X_prediction)
         model = _make_xgboost_model(
             spec,
@@ -479,7 +479,7 @@ def fit_gpu_candidate_probabilities(
         model.fit(X_fit, y_encoded, verbose=False)
     elif spec.family == LIGHTGBM_FAMILY:
         preprocessor = preprocessor_factory()
-        X_fit = preprocessor.fit_transform(X_training)
+        X_fit = preprocessor.fit_transform(X_training, y_encoded)
         X_predict = preprocessor.transform(X_prediction)
         model = _make_lightgbm_model(
             spec,
@@ -492,7 +492,7 @@ def fit_gpu_candidate_probabilities(
         )
     elif spec.family == SKLEARN_TREE_FAMILY:
         preprocessor = preprocessor_factory()
-        X_fit = preprocessor.fit_transform(X_training)
+        X_fit = preprocessor.fit_transform(X_training, y_encoded)
         X_predict = preprocessor.transform(X_prediction)
         model = _make_sklearn_tree_model(spec, iterations=iterations)
         model.fit(X_fit, y_encoded)
@@ -567,7 +567,10 @@ def _fit_outer_fold(
         selected_iterations = int(stopping_model.get_best_iteration()) + 1
     elif spec.family == XGBOOST_FAMILY:
         stopping_preprocessor = preprocessor_factory()
-        X_inner_fit = stopping_preprocessor.fit_transform(X_inner_fit)
+        X_inner_fit = stopping_preprocessor.fit_transform(
+            X_inner_fit,
+            y_inner_fit,
+        )
         X_inner_stop = stopping_preprocessor.transform(X_inner_stop)
         stopping_model = _make_xgboost_model(
             spec,
@@ -583,7 +586,10 @@ def _fit_outer_fold(
         selected_iterations = int(stopping_model.best_iteration) + 1
     elif spec.family == LIGHTGBM_FAMILY:
         stopping_preprocessor = preprocessor_factory()
-        X_inner_fit = stopping_preprocessor.fit_transform(X_inner_fit)
+        X_inner_fit = stopping_preprocessor.fit_transform(
+            X_inner_fit,
+            y_inner_fit,
+        )
         X_inner_stop = stopping_preprocessor.transform(X_inner_stop)
         stopping_model = _make_lightgbm_model(
             spec,
@@ -631,7 +637,10 @@ def _fit_outer_fold(
         )
     elif spec.family == XGBOOST_FAMILY:
         refit_preprocessor = preprocessor_factory()
-        X_outer_training = refit_preprocessor.fit_transform(X_training)
+        X_outer_training = refit_preprocessor.fit_transform(
+            X_training,
+            y_outer_training,
+        )
         X_validation = refit_preprocessor.transform(X_validation)
         model = _make_xgboost_model(
             spec,
@@ -641,7 +650,10 @@ def _fit_outer_fold(
         model.fit(X_outer_training, y_outer_training, verbose=False)
     else:
         refit_preprocessor = preprocessor_factory()
-        X_outer_training = refit_preprocessor.fit_transform(X_training)
+        X_outer_training = refit_preprocessor.fit_transform(
+            X_training,
+            y_outer_training,
+        )
         X_validation = refit_preprocessor.transform(X_validation)
         model = _make_lightgbm_model(
             spec,
@@ -675,11 +687,12 @@ def _fit_fixed_sklearn_tree_fold(
 
     started = _time.perf_counter()
     preprocessor = preprocessor_factory()
-    X_fit = preprocessor.fit_transform(X_training)
+    y_encoded = _encode_target(y_training)
+    X_fit = preprocessor.fit_transform(X_training, y_encoded)
     X_predict = preprocessor.transform(X_validation)
     iterations = int(SKLEARN_TREE_VARIANTS[spec.variant]["n_estimators"])
     model = _make_sklearn_tree_model(spec, iterations=iterations)
-    model.fit(X_fit, _encode_target(y_training))
+    model.fit(X_fit, y_encoded)
     probabilities = _ordered_encoded_probabilities(model, X_predict)
     return probabilities, {
         "selected_iterations": iterations,

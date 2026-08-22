@@ -109,6 +109,9 @@ It does not replace the formal split and evaluation sequence below.
 21. [`22-outlier-filtering.ipynb`](22-outlier-filtering.ipynb): bounded
     training-only physical, duplicate-conflict and Isolation Forest filters,
     unchanged validation scoring, class-removal audits and component crosses.
+22. [`23-cross-fitted-target-encoding.ipynb`](23-cross-fitted-target-encoding.ipynb):
+    inner-cross-fitted multiclass identity encodings, complete accepted-model
+    refits, fixed component crosses and a bounded low-weight contribution curve.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

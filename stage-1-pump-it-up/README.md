@@ -194,12 +194,20 @@ Forest lost on every fold. Eight fixed component crosses also trailed, with a
 best result of 81.572%. Hard or unusual rows are therefore retained. See the
 [outlier-filtering report](reports/outlier-filtering-screen.md).
 
+A leakage-safe target-encoding screen then represented five deferred location,
+scheme and organisation identities as inner-cross-fitted class rates. All three
+complete votes were weaker; organisation identity was closest at 81.111%.
+Organisation-aware XGBoost did add a small complementary signal: a bounded 20%
+contribution reached 81.673%, up 0.048 points with four fold wins, but below the
+promotion threshold. No prediction was generated. See the
+[target-encoding report](reports/cross-fitted-target-encoding-screen.md).
+
 ## Next modelling loop
 
-1. Run one smoothed multiclass target-encoding screen over a conservative,
-   predeclared set of deferred high-cardinality fields. Cross-fit encodings for
-   every outer-training row and use only full outer-training mappings for its
-   validation fold; never copy a row's own label into its features.
+1. Evaluate one cross-fitted local spatial class-rate representation. Build
+   outer-training features from inner-training neighbours, build validation
+   features from outer-training neighbours, exclude self-neighbours and use an
+   explicit prior fallback for invalid coordinates.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
@@ -219,6 +227,9 @@ best result of 81.572%. Hard or unusual rows are therefore retained. See the
 9. Stop broad outlier removal for the accepted representation. The difficult
    rows are part of the inference population, and every tested filter reduced
    unchanged-fold accuracy.
+10. Stop category-wide target-encoding and weight grids. The complete policies
+    are substantially weaker; their best bounded low-weight contribution gains
+    only 0.048 points.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

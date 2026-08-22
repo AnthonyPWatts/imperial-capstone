@@ -58,6 +58,10 @@ The fold-fitted physical, duplicate-conflict and Isolation Forest training-row
 filters, class-removal audit and fixed component crosses are in
 [`outlier-filtering-screen.md`](outlier-filtering-screen.md).
 
+The leakage-safe location, scheme and organisation identity encodings,
+component crosses and bounded organisation-XGBoost contribution curve are in
+[`cross-fitted-target-encoding-screen.md`](cross-fitted-target-encoding-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.
