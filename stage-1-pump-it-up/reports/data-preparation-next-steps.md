@@ -1,7 +1,7 @@
 ---
 status: candidate-submitted
 branch: main
-updated: 2026-08-21
+updated: 2026-08-22
 ---
 
 # Stage 1 data preparation: decisions and next steps
@@ -43,6 +43,12 @@ alternatives compared the complete management source, incomplete scheme source,
 deterministic group and bounded joint states. None passed the promotion gate;
 management-only remains a parsimony candidate rather than an accuracy change.
 See [`management-hierarchy-screen.md`](management-hierarchy-screen.md).
+
+A bounded candidate-method interlude compared seven scaled one-hot MLPs and 84
+fixed blends. The best standalone ANN reached 78.590%; the closest blend reached
+81.616%, still below the accepted vote. ANN architecture and blend-weight
+tuning is stopped on these folds. See
+[`ann-candidate-screen.md`](ann-candidate-screen.md).
 
 The fixed column-removal implementation is in
 [`src/data_preparation.py`](../src/data_preparation.py), with its declarative
@@ -339,5 +345,6 @@ work can proceed without them.
 Continue the next **Deploy and iterate** loop with extraction-type hierarchy
 ablations under the accepted XGBoost and Random Forest recipe, followed by the
 source, quality and waterpoint families. The geography, organisation, numeric
-and management families are recorded and frozen. Public scores remain external
-feedback rather than a replacement for local model-selection evidence.
+and management families are recorded and frozen. The bounded MLP screen is also
+closed without promotion. Public scores remain external feedback rather than a
+replacement for local model-selection evidence.

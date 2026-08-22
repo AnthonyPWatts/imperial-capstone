@@ -33,14 +33,14 @@ keep appending columns; add detailed information to the compact panels below.
 
 The page loads headline values from `../project-status.json` through GitHub
 Pages or the local server. The dashboard uses matching HTML values if the
-status request fails. The current snapshot is dated 21 August 2026:
+status request fails. The current snapshot is dated 22 August 2026:
 
 | Metric | Current value |
 | --- | ---: |
 | Overall plan checkpoints | 29 / 29 |
-| Features fully examined | 36 / 36 (management screen retained the initial 29-feature policy) |
-| Locally evaluated models | 20 |
-| Candidate methods trained | 10, plus ten ensemble workflows |
+| Features fully examined | 36 / 36 (ANN screen retained the accepted tree ensemble) |
+| Locally evaluated models | 21 |
+| Candidate methods trained | 11, plus ten ensemble workflows |
 | DrivenData submissions | 9 |
 | Best leaderboard score | 0.8241 |
 | Achieved provisional target | ~~0.8225~~ |
@@ -48,10 +48,10 @@ status request fails. The current snapshot is dated 21 August 2026:
 | Chart ceiling | 0.8500 |
 | Daily submissions used | 3 / 3 UTC |
 
-The current task is continuing physical categorical hierarchy ablations with
-the accepted XGBoost and Random Forest recipe. The management screen retained
-the current policy after management-only improved just 0.013 points, well below
-the primary gate. The process remains
+The current task is beginning extraction-type hierarchy ablations with the
+accepted XGBoost and Random Forest recipe. A bounded seven-configuration MLP
+screen retained that recipe: the best standalone reached 78.590% and the
+closest of 84 fixed blends reached 81.616%, below baseline. The process remains
 iterative, so leaderboard feedback does not replace retained local
 model-selection evidence:
 
@@ -72,9 +72,9 @@ model-selection evidence:
 - **Step 7, partition the data (3 / 3):** a stratified 20% local test set and
   five development folds are frozen with recorded seeds and fingerprints. The
   five-fold majority reference is 54.31% accuracy.
-- **Step 8, select and train candidates (3 / 3):** ten classifier families and
-  ten bounded, calibrated or bagged ensemble workflows have reproducible
-  fold-safe evaluations.
+- **Step 8, select and train candidates (3 / 3):** eleven classifier families
+  and ten bounded, calibrated or bagged ensemble workflows have reproducible
+  fold-safe evaluations; the ANN family has seven fixed configurations.
 - **Step 9, evaluate and interpret (3 / 3):** the leading 55% XGBoost and 45%
   Random Forest vote reaches 81.625% on the frozen development folds. The
   reserved local test was not reopened during this model-family screen.
@@ -104,15 +104,16 @@ Random Forest and histogram-boosting vote. Its independently preselected
 depth-bag alternative scored `0.8240`. The two candidates disagree on 1.172%
 of out-of-fold labels and 1.192% of competition labels.
 
-Formal comparison now covers ten single-model families. Random Forest remains
+Formal comparison now covers eleven single-model families. Random Forest remains
 the strongest family from the earlier broad comparison at 80.59%; the new
 XGBoost screen supplies the better ensemble component. The leading XGBoost and
 Random Forest vote reaches 81.625% on the frozen development folds, including
 34.859% repair recall. The earlier forest and histogram-boosting vote remains
 the last workflow assessed on the one-time local test, where it recorded 80.82%
-accuracy, 32.10% repair recall and 77.81% non-functional recall. Ten single
-models and ten ensemble workflows raise the **Models evaluated** counter to
-twenty.
+accuracy, 32.10% repair recall and 77.81% non-functional recall. Eleven
+single-model families and ten ensemble workflows raise the **Models evaluated**
+counter to twenty-one. The seven ANN configurations and 84 no-refit blends are
+reported as variants and therefore increase the headline family count only once.
 
 The target-integrity track now awards all four checkpoints. Training shares,
 task and metric implications, label-frame integrity and exact feature/label ID
@@ -181,10 +182,11 @@ Count each materially distinct model family or declared ensemble workflow once
 after it has a reproducible local evaluation against the agreed development
 folds or local test. Hyperparameter variants do not each increase the headline
 counter. The cross-validated majority reference is a non-model benchmark and
-does not increase it. The ten single-model families are the constrained tree,
+does not increase it. The eleven single-model families are the constrained tree,
 logistic regression, Gaussian naïve Bayes, KNN, Extra Trees, histogram boosting,
-Random Forest, CatBoost, XGBoost and LightGBM. Ten declared soft-vote,
-calibrated-stack and bagged-vote workflows bring the counter to twenty. Record
+Random Forest, CatBoost, XGBoost, LightGBM and multilayer perceptron. Ten
+declared soft-vote, calibrated-stack and bagged-vote workflows bring the counter
+to twenty-one. Record
 detailed experiments elsewhere.
 
 ### Submission metrics

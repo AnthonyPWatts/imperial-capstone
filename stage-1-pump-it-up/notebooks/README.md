@@ -83,6 +83,9 @@ It does not replace the formal split and evaluation sequence below.
 13. [`14-management-hierarchy.ipynb`](14-management-hierarchy.ipynb): no-refit
     comparison of management, scheme management, their deterministic group and
     bounded joint or relationship representations.
+14. [`15-ann-candidate-screen.ipynb`](15-ann-candidate-screen.ipynb): no-refit
+    presentation of seven fold-safe scaled one-hot MLPs, their audited
+    organisation representations, error diversity and fixed probability blends.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

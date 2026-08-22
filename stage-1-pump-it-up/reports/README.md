@@ -27,6 +27,10 @@ The fixed-model management, scheme-management and deterministic-group
 hierarchy ablations are in
 [`management-hierarchy-screen.md`](management-hierarchy-screen.md).
 
+The bounded scaled one-hot multilayer-perceptron architecture, organisation
+representation and probability-blend screen is in
+[`ann-candidate-screen.md`](ann-candidate-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

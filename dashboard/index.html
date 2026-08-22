@@ -28,7 +28,7 @@
   <header class="topbar">
     <div>
       <h1>Pump It Up — competition status</h1>
-      <p>Static snapshot · <span data-status-text="snapshot.label">21 August 2026</span> · no competition data loaded</p>
+      <p>Static snapshot · <span data-status-text="snapshot.label">22 August 2026</span> · no competition data loaded</p>
     </div>
     <a href="../stage-1-pump-it-up/README.md">Project README</a>
   </header>
@@ -38,10 +38,10 @@
       <div class="progress-summary">
         <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">29 / 29</span> checkpoints</strong></div>
         <div class="progress" role="img" data-status-progress-current="overall.completed" data-status-progress-total="overall.total" aria-label="100 per cent complete"><span></span></div>
-        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Continue physical categorical hierarchy ablations with the accepted model recipe</strong></div>
+        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Begin extraction-type hierarchy ablations with the accepted model recipe</strong></div>
       </div>
       <dl class="summary-metrics">
-        <div class="metric"><dt>Features fully examined</dt><dd><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small><code data-status-text="features.current">Management screen retained the initial 29-feature policy</code></small></dd></div>
+        <div class="metric"><dt>Features fully examined</dt><dd><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small><code data-status-text="features.current">ANN screen retained the accepted tree ensemble</code></small></dd></div>
         <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">9</strong><small>Total</small></dd></div>
         <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8241</strong><small data-status-text="submissions.bestLabel">XGBoost + Random Forest vote</small></dd></div>
         <div class="metric"><dt>Target score</dt><dd><strong data-status-text="benchmarks.targetScore" data-status-format="score">0.8260</strong><small>Stretch</small></dd></div>
@@ -52,10 +52,10 @@
     <div class="dashboard-grid">
       <section class="panel now-panel" aria-labelledby="now-title">
         <header class="panel-heading">
-          <div><h2 id="now-title">Now</h2><p>Continue the accepted model recipe from completed management evidence into physical categorical hierarchies.</p></div>
+          <div><h2 id="now-title">Now</h2><p>Resume physical categorical hierarchies after closing the bounded ANN candidate-method loop.</p></div>
           <span class="state active">Step 5 · iterate</span>
         </header>
-        <p class="completed-work"><strong>Recorded:</strong> the accepted vote scored 82.41% publicly; management-only was 0.013 points above baseline, well below the promotion threshold.</p>
+        <p class="completed-work"><strong>Recorded:</strong> the best MLP reached 78.590% standalone; the closest fixed blend reached 81.616%, still below the accepted 81.625% vote.</p>
         <ol class="checklist">
           <li>Keep the frozen folds, accepted feature policy and XGBoost/Random Forest recipe fixed.</li>
           <li>Compare <code>extraction_type</code>, <code>extraction_type_group</code> and <code>extraction_type_class</code> without retaining redundant levels automatically.</li>
@@ -129,13 +129,13 @@
                 <td><span class="track-type">Step 08</span><strong>Select &amp; train candidate methods</strong></td>
                 <td><span class="state complete">Done</span></td>
                 <td><strong>3 / 3</strong></td>
-                <td>Ten classifier families and ten bounded, calibrated or bagged ensemble workflows are reproducibly evaluated on the frozen development folds.</td>
+                <td>Eleven classifier families are reproducibly evaluated; seven bounded MLP configurations and 84 no-refit ANN blends produced no promotion.</td>
               </tr>
               <tr class="row-complete">
                 <td><span class="track-type">Step 09</span><strong>Evaluate &amp; interpret results</strong></td>
                 <td><span class="state complete">Done</span></td>
                 <td><strong>3 / 3</strong><small class="progress-note">reference + 20 workflows</small></td>
-                <td>The leading XGBoost-plus-forest vote reaches 81.625% on development folds and improves the public best to 82.41% without reopening the local test.</td>
+                <td>The leading XGBoost-plus-forest vote remains at 81.625%; the closest ANN blend reached 81.616% without reopening the local test.</td>
               </tr>
               <tr class="row-complete">
                 <td><span class="track-type">Step 10</span><strong>Deploy &amp; iterate</strong></td>
@@ -215,7 +215,7 @@
             <div><dt>Accuracy leader</dt><dd>55% XGBoost + 45% Random Forest · 81.625% development CV</dd></div>
             <div><dt>Local test</dt><dd>Earlier forest + boosting vote · 80.82% · one-time confirmation</dd></div>
             <div><dt>Repair leader</dt><dd>Extra Trees · 39.40% recall · about 18 minutes</dd></div>
-            <div><dt>Deferred</dt><dd>High-cardinality names and alternative category hierarchy levels</dd></div>
+            <div><dt>ANN decision</dt><dd>Scaled one-hot MLPs stopped; best standalone 78.590%</dd></div>
             <div><dt>Rule</dt><dd>Fit imputation, rare grouping, encoding and models inside each development fold</dd></div>
           </dl>
         </section>
@@ -245,7 +245,7 @@
         <div><dt>Candidate predictors</dt><dd data-status-text="data.candidatePredictors" data-status-format="integer">36</dd></div>
         <div><dt>Target classes</dt><dd data-status-text="data.targetClasses" data-status-format="integer">3</dd></div>
         <div><dt>Metric</dt><dd data-status-text="data.metric">Accuracy</dd></div>
-        <div><dt>Locally evaluated</dt><dd data-status-text="models.evaluated" data-status-format="integer">20</dd></div>
+        <div><dt>Locally evaluated</dt><dd data-status-text="models.evaluated" data-status-format="integer">21</dd></div>
       </dl>
     </section>
   </main>

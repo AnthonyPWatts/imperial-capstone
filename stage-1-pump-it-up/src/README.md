@@ -37,6 +37,9 @@ Current modules:
   scheme management, the coarse group and their bounded joint representations.
 - `management_evaluation.py` evaluates those management-family policies with
   the accepted XGBoost/Random Forest recipe and unchanged promotion gate.
+- `ann_evaluation.py` evaluates bounded scaled one-hot multilayer perceptrons
+  on the frozen folds, reuses audited organisation-feature policies and tests
+  fixed low-weight probability blends against the accepted ensemble.
 - `model_preprocessing.py` combines that transformer with fold-fitted numeric
   imputation, missing indicators, rare-category handling and one-hot encoding;
   it can return identical sparse or dense feature values, optionally standardises

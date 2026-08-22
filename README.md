@@ -19,14 +19,14 @@ fixed BBO brief and will be developed as each set of observations is released.
 
 ## Current position
 
-As of 21 August 2026, Stage 1 has audited all 39 raw predictors, settled three
+As of 22 August 2026, Stage 1 has audited all 39 raw predictors, settled three
 structural removals and organised the remaining 36 candidate predictors. Nine
 DrivenData submissions have been made. The best is a 55% XGBoost and 45%
 Random Forest vote at `0.8241`; an independently preselected XGBoost depth-bag
 alternative followed at `0.8240`.
 
 The formal workflow freezes a stratified 20% local test and five development
-folds, then compares ten classifier families and ten bounded ensemble workflows
+folds, then compares eleven classifier families and ten bounded ensemble workflows
 with fold-fitted preprocessing. Random Forest is the strongest single model in
 the earlier broad comparison at 80.59% mean accuracy. The leading XGBoost and
 Random Forest vote reaches 81.625% on the frozen development folds. The earlier
@@ -48,12 +48,14 @@ state and imputation treatments subsequently left the accepted policy
 unchanged: all eleven challengers trailed the 81.625% baseline. Categorical
 hierarchy ablation has now retained the management pair as well; management-only
 was just 0.013 points higher, below the promotion threshold. Extraction type is
-the next data-focused loop. The main
+the next data-focused loop. A bounded seven-configuration MLP screen also
+retained the accepted tree ensemble: its best standalone reached 78.590%, and
+the closest of 84 fixed blends reached 81.616%, just below baseline. The main
 evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
-and [management hierarchy report](stage-1-pump-it-up/reports/management-hierarchy-screen.md).
+and [ANN screen report](stage-1-pump-it-up/reports/ann-candidate-screen.md).
 
 A bounded blend comparison retained the earlier equal vote: neither fixed
 40:60 alternative nor a nested calibrated stack improved at least three of the

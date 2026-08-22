@@ -116,6 +116,13 @@ small for accuracy promotion, so it remains a named parsimony candidate. Coarse
 groups, composites and disagreement states were weaker. See the
 [management hierarchy report](reports/management-hierarchy-screen.md).
 
+A bounded neural-network screen compared seven scaled one-hot MLP
+configurations and 84 fixed probability blends without reopening the local
+test. The strongest standalone ANN reached 78.590%; its genuine error diversity
+was insufficient to improve the accepted ensemble, and the closest blend
+reached 81.616%. Conventional one-hot MLP tuning is therefore stopped on these
+folds. See the [ANN screen report](reports/ann-candidate-screen.md).
+
 ## Next modelling loop
 
 1. Retain the accepted feature policy and continue bounded categorical

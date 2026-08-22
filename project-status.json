@@ -1,12 +1,12 @@
 {
   "snapshot": {
-    "date": "2026-08-21",
-    "label": "21 August 2026"
+    "date": "2026-08-22",
+    "label": "22 August 2026"
   },
   "overall": {
     "completed": 29,
     "total": 29,
-    "current": "Continue physical categorical hierarchy ablations with the accepted model recipe"
+    "current": "Begin extraction-type hierarchy ablations with the accepted model recipe"
   },
   "stage1": {
     "state": "Active",
@@ -26,14 +26,14 @@
   "features": {
     "examined": 36,
     "total": 36,
-    "current": "Management screen retained the initial 29-feature policy",
+    "current": "ANN screen retained the accepted tree ensemble",
     "rawPredictorsAudited": 39,
     "structuralRemovalsAudited": 3
   },
   "models": {
-    "trainedCandidates": 10,
+    "trainedCandidates": 11,
     "ensembleCandidates": 10,
-    "evaluated": 20
+    "evaluated": 21
   },
   "submissions": {
     "total": 9,
