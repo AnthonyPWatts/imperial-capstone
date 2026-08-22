@@ -176,6 +176,9 @@ Current modules:
 - `regional_interaction_evaluation.py` adds one shared region-by-extraction,
   source and waterpoint interaction layer to the accepted global models and
   complete-identity CatBoost without fitting isolated regional experts.
+- `source_identity_confirmation.py` refits the public-leading source-plus-class
+  components on development, reuses the frozen identity probabilities and
+  builds the two fixed local-test recipes used for submission ordering.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

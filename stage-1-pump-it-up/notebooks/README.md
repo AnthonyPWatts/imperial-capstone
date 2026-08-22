@@ -180,6 +180,9 @@ It does not replace the formal split and evaluation sequence below.
 47. [`48-regional-interactions.ipynb`](48-regional-interactions.ipynb): three
     fixed region-by-physical composites evaluated across all promoted model
     families without splitting the training sample.
+48. [`49-source-identity-local-comparison.ipynb`](49-source-identity-local-comparison.ipynb):
+    controlled local-test ordering of the public-leading source policy, its
+    fixed identity cross and the already-prepared identity candidate.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

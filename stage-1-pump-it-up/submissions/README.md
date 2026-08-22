@@ -203,3 +203,11 @@ The file remains **prepared, not uploaded** because the recorded daily
 allowance is already 3/3. See
 [`2026-08-22-catboost-identities/`](2026-08-22-catboost-identities/) for the
 recipe, validation manifest and prediction transitions.
+
+An apples-to-apples local check later refitted the exact source-plus-class
+components behind the 0.8246 public leader. Source plus class scored 80.833%
+locally; adding the identity component reached 81.010%, while the already-
+prepared original-feature identity candidate remained best at 81.086%. No
+additional CSV was generated. The prepared identity candidate is therefore the
+first entry when the allowance resets; see
+[`source-identity-local-comparison.md`](../reports/source-identity-local-comparison.md).

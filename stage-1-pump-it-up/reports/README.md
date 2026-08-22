@@ -151,6 +151,10 @@ The shared region-by-extraction, source and waterpoint interaction layer across
 all promoted component families is in
 [`regional-interaction-screen.md`](regional-interaction-screen.md).
 
+The apples-to-apples local-test ordering of the public-leading source policy,
+its identity cross and the ready identity candidate is in
+[`source-identity-local-comparison.md`](source-identity-local-comparison.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.
