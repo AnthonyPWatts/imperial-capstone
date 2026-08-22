@@ -179,6 +179,10 @@ The constrained centred-log multinomial combiner over all six archive
 component memberships is in
 [`probability-stack-screen.md`](probability-stack-screen.md).
 
+The two cumulative accepted-spec XGBoost boundaries, coherence projection and
+fixed archive crosses are in
+[`ordinal-xgboost-screen.md`](ordinal-xgboost-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

@@ -4,9 +4,9 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 61,
-    "total": 61,
-    "current": "Probability-stack branch closed; two candidates remain queued"
+    "completed": 62,
+    "total": 62,
+    "current": "Cumulative XGBoost branch closed; two candidates remain queued"
   },
   "stage1": {
     "state": "Active",

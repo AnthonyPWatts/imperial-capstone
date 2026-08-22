@@ -200,6 +200,9 @@ It does not replace the formal split and evaluation sequence below.
     promoted/archive crosses.
 54. [`55-probability-stack.ipynb`](55-probability-stack.ipynb): one constrained
     centred-log multinomial combiner over all six archive memberships.
+55. [`56-ordinal-xgboost.ipynb`](56-ordinal-xgboost.ipynb): two cumulative
+    accepted-spec XGBoost boundaries, deterministic coherence projection and
+    fixed archive substitution/bag comparisons.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

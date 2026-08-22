@@ -72,7 +72,7 @@ def evaluate_one_vs_rest_xgboost(
             "validation_rows": len(validation_positions),
         }
         for class_position, class_label in enumerate(CLASS_LABELS):
-            positive, selected_iterations = _fit_binary_class_fold(
+            positive, selected_iterations = fit_binary_xgboost_fold(
                 X_training,
                 y_training.eq(class_label).astype("int8"),
                 X_validation,
@@ -105,7 +105,7 @@ def evaluate_one_vs_rest_xgboost(
     return OneVsRestTrial(evaluation=evaluation, class_labels=CLASS_LABELS)
 
 
-def _fit_binary_class_fold(
+def fit_binary_xgboost_fold(
     X_training: _pd.DataFrame,
     y_training: _pd.Series,
     X_validation: _pd.DataFrame,
@@ -113,7 +113,7 @@ def _fit_binary_class_fold(
     split_seed: int,
 ) -> tuple[_np.ndarray, int]:
     if set(y_training.unique()) != {0, 1}:
-        raise ValueError("Every OvR boundary requires positive and negative rows.")
+        raise ValueError("Every binary boundary requires positive and negative rows.")
     positions = _np.arange(len(y_training))
     fit_positions, stop_positions = _train_test_split(
         positions,

@@ -358,6 +358,13 @@ frequency forest by 0.217 points, but its best fixed vote reaches 81.782% and
 its archive-synthesis substitution is weaker than the inductive version. See
 the [transductive count report](reports/transductive-frequency-forest-screen.md).
 
+Two cumulative accepted-spec XGBoost boundaries then encoded repair as the
+middle state. Standalone accuracy exactly matches multiclass XGBoost at
+81.014%; their equal boundary bag nudges the archive synthesis to 81.804%, only
+five extra development rows and far below the promotion gate. The ordinal
+branch stops without local or competition use. See the
+[cumulative XGBoost report](reports/ordinal-xgboost-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
@@ -391,6 +398,9 @@ the [transductive count report](reports/transductive-frequency-forest-screen.md)
     feature vote loses 0.629 points.
 13. Stop transductive category-count mixing. Supplied inference covariates
     strengthen the standalone count forest, but not the selected ensemble.
+14. Stop cumulative-boundary tuning. The untuned ordinal decomposition is
+    diverse but not stronger, and its five-row archive gain is too small to
+    justify thresholds, class weights or another submission candidate.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,
