@@ -378,6 +378,12 @@ falls to 81.858%. The architecture is retained as the strongest research
 near-miss without selecting the fortunate seed or opening local test. See the
 [archived deep-XGBoost report](reports/archived-deep-xgboost-screen.md).
 
+Fold-fitted distance to the nearest and 10th-nearest training waterpoints then
+tested target-free isolation and settlement density. They weaken deep XGBoost
+to 81.296% and its archive substitution to 81.818%, closing neighbour-rank,
+radius and clustering follow-ups. See the
+[spatial-density report](reports/spatial-density-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
@@ -419,6 +425,8 @@ near-miss without selecting the fortunate seed or opening local test. See the
 16. Retain archived depth-17 XGBoost as the strongest unconfirmed near-miss.
     Do not select its best seed, expand the seed count or tune depth and rounds
     against the reused folds.
+17. Stop waterpoint-density variants. Fold-safe nearest-neighbour distances
+    make substantial but less accurate changes to the strongest deep model.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

@@ -209,6 +209,9 @@ It does not replace the formal split and evaluation sequence below.
 57. [`58-archived-deep-xgboost.ipynb`](58-archived-deep-xgboost.ipynb): fixed
     depth-17, 600-tree XGBoost over top-common identities, archive crosses and
     a bounded three-seed variance check.
+58. [`59-spatial-density.ipynb`](59-spatial-density.ipynb): self-excluding
+    fold-fitted nearest-neighbour waterpoint distances in archived deep
+    XGBoost and one fixed archive substitution.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

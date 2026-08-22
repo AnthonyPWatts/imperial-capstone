@@ -24,6 +24,7 @@ from gpu_model_evaluation import make_xgboost_spec
 from model_evaluation import CandidateEvaluation
 from model_evaluation import build_candidate_evaluation
 from model_preprocessing import make_initial_preprocessor
+from spatial_density_features import SpatialDensityTransformer
 
 
 TOP_COMMON_VALUES = 50
@@ -135,6 +136,18 @@ def make_top_common_identity_preprocessor() -> _FeatureUnion:
     )
 
 
+def make_top_common_spatial_density_preprocessor() -> _FeatureUnion:
+    """Combine accepted, common-identity and waterpoint-density features."""
+
+    return _FeatureUnion(
+        transformer_list=[
+            ("accepted", make_initial_preprocessor()),
+            ("top_common_identity", TopCommonIdentityEncoder()),
+            ("spatial_density", SpatialDensityTransformer()),
+        ]
+    )
+
+
 def evaluate_top_common_identity_xgboost(
     partitioned_data: PartitionedData,
     cross_validation: object,
@@ -176,16 +189,19 @@ def evaluate_archived_deep_xgboost(
     cross_validation: object,
     *,
     seed: int,
+    preprocessor_factory: object = make_top_common_identity_preprocessor,
+    representation_name: str = "top-50 deferred identities",
+    feature_policy: str = "accepted_plus_top_50_deferred_identities",
 ) -> CandidateEvaluation:
     """Fit the archived depth-17, 600-tree specification on every fold."""
 
     spec = _replace(
         make_xgboost_spec(variant="archived depth 17", seed=seed),
         name=(
-            "XGBoost archived depth 17 [top-50 deferred identities; "
+            f"XGBoost archived depth 17 [{representation_name}; "
             f"seed {seed}]"
         ),
-        feature_policy="accepted_plus_top_50_deferred_identities",
+        feature_policy=feature_policy,
     )
     probability_values = _np.full(
         (len(partitioned_data.y_development), len(CLASS_LABELS)),
@@ -203,7 +219,7 @@ def evaluate_archived_deep_xgboost(
             partitioned_data.y_development.iloc[training_positions],
             partitioned_data.X_development.iloc[validation_positions],
             iterations=ARCHIVED_DEPTH_17_ITERATIONS,
-            preprocessor_factory=make_top_common_identity_preprocessor,
+            preprocessor_factory=preprocessor_factory,
         )
         probability_values[validation_positions] = probabilities
         diagnostics.append(
