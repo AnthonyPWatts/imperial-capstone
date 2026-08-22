@@ -177,6 +177,9 @@ It does not replace the formal split and evaluation sequence below.
 46. [`47-recording-batch-catboost.ipynb`](47-recording-batch-catboost.ipynb):
     exact recording date as one well-supported native CatBoost batch category,
     with direct and archive-synthesis substitutions.
+47. [`48-regional-interactions.ipynb`](48-regional-interactions.ipynb): three
+    fixed region-by-physical composites evaluated across all promoted model
+    families without splitting the training sample.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

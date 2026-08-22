@@ -147,6 +147,10 @@ The archive-motivated exact recording-date CatBoost, fold-support audit and
 fixed direct/archive-synthesis votes are in
 [`recording-batch-catboost-screen.md`](recording-batch-catboost-screen.md).
 
+The shared region-by-extraction, source and waterpoint interaction layer across
+all promoted component families is in
+[`regional-interaction-screen.md`](regional-interaction-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

@@ -173,6 +173,9 @@ Current modules:
   partition before refitting the accepted tree components.
 - `recording_batch_catboost_evaluation.py` appends the exact recording date as
   one native survey-batch category to the complete-identity CatBoost candidate.
+- `regional_interaction_evaluation.py` adds one shared region-by-extraction,
+  source and waterpoint interaction layer to the accepted global models and
+  complete-identity CatBoost without fitting isolated regional experts.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

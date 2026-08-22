@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 53,
-    "total": 53,
-    "current": "Exact recording batches added only a small ensemble gain"
+    "completed": 54,
+    "total": 54,
+    "current": "Shared regional interactions added only a small CatBoost gain"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Test one shared region-by-physical interaction layer without splitting the training sample.",
+    "nextCheckpoint": "Prepare tomorrow's submission order and investigate only materially distinct model representations.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
