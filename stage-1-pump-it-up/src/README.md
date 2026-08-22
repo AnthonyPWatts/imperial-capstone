@@ -165,6 +165,9 @@ Current modules:
 - `spatial_height_imputation_evaluation.py` reconstructs unavailable GPS height
   from a fold-fitted haversine index over ten nearby measured points, preserves
   the missingness flag and refits the accepted tree components.
+- `transductive_frequency_forest_evaluation.py` learns target-free occurrence
+  support from a fixed development-plus-competition covariate universe and
+  evaluates one compact Random Forest without using inference labels.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

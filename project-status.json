@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 50,
-    "total": 50,
-    "current": "Archive-derived synthesis gained 0.053 points on all five folds"
+    "completed": 51,
+    "total": 51,
+    "current": "Transductive counts strengthened one forest but not the ensemble"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Require a genuinely new signal or data source before more ensemble work.",
+    "nextCheckpoint": "Audit remaining supplied-data signals; external data is prohibited by the competition rules.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

@@ -352,6 +352,12 @@ It still misses the promotion gate, and adding the strongest earlier pump-age
 near-miss weakens it. Broad near-miss accumulation therefore stops. See the
 [external synthesis report](reports/external-representation-synthesis.md).
 
+The archived count method's transductive detail was then reproduced using only
+development and supplied competition covariates. It improves the compact
+frequency forest by 0.217 points, but its best fixed vote reaches 81.782% and
+its archive-synthesis substitution is weaker than the inductive version. See
+the [transductive count report](reports/transductive-frequency-forest-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
@@ -383,6 +389,8 @@ near-miss weakens it. Broad near-miss accumulation therefore stops. See the
 12. Stop local spatial outcome features and neighbour grids. Their information
     is already largely represented by accepted geography, and the complete
     feature vote loses 0.629 points.
+13. Stop transductive category-count mixing. Supplied inference covariates
+    strengthen the standalone count forest, but not the selected ensemble.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

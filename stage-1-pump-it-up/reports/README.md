@@ -135,6 +135,10 @@ The one-time equal synthesis of the two archive-derived representation votes
 and the closing pump-age follow-up are in
 [`external-representation-synthesis.md`](external-representation-synthesis.md).
 
+The target-free fixed-universe category counts, rare-boundary audit and
+transductive frequency-forest votes are in
+[`transductive-frequency-forest-screen.md`](transductive-frequency-forest-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

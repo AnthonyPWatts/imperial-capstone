@@ -168,6 +168,9 @@ It does not replace the formal split and evaluation sequence below.
 43. [`44-external-representation-synthesis.ipynb`](44-external-representation-synthesis.ipynb):
     one no-refit equal average of the two archive-derived candidate votes and a
     closing orthogonal pump-age synthesis check.
+44. [`45-transductive-frequency-forest.ipynb`](45-transductive-frequency-forest.ipynb):
+    fixed-universe target-free category support from development and supplied
+    competition covariates, one forest refit and unchanged ensemble weights.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments
