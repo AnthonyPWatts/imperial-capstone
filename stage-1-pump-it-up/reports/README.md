@@ -105,6 +105,9 @@ The six fold-fitted deferred-identity occurrence counts are in
 The fixed pump-age cohort across the global trees and identity CatBoost is in
 [`pump-age-cohort-screen.md`](pump-age-cohort-screen.md).
 
+The one-extra-seed complete-identity CatBoost variance test is in
+[`catboost-identity-seed-bag.md`](catboost-identity-seed-bag.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

@@ -42,6 +42,7 @@ PHYSICAL_BACKOFF_FEATURES = tuple(
     f"{source}_backoff" for source in PHYSICAL_BACKOFF_SOURCES
 )
 AGE_COHORT_IDENTITY_FEATURE = "pump_age_cohort"
+IDENTITY_BAG_SECOND_SEED = 20260822
 
 
 @_dataclass(frozen=True)
@@ -93,6 +94,45 @@ def evaluate_complete_identity_catboost(
         catboost_feature_engineer=(
             engineer_complete_identity_catboost_features
         ),
+    )
+    first_training_positions, _ = next(cross_validation.split())
+    engineered, categorical = engineer_complete_identity_catboost_features(
+        partitioned_data.X_development.iloc[first_training_positions]
+    )
+    return CatBoostIdentityTrial(
+        evaluation=evaluation,
+        engineered_features=engineered.shape[1],
+        categorical_features=len(categorical),
+    )
+
+
+def make_seeded_complete_identity_catboost_spec(
+    seed: int = IDENTITY_BAG_SECOND_SEED,
+):
+    """Return the unchanged identity specification with an explicit seed."""
+
+    if seed <= 0:
+        raise ValueError("Identity CatBoost seed must be positive.")
+    return _replace(
+        make_catboost_spec(variant="d8", seed=seed),
+        name=f"CatBoost d8 [complete deferred identities, seed {seed}]",
+        feature_policy="accepted plus six deferred identities",
+    )
+
+
+def evaluate_seeded_complete_identity_catboost(
+    partitioned_data: PartitionedData,
+    cross_validation: object,
+    *,
+    seed: int = IDENTITY_BAG_SECOND_SEED,
+) -> CatBoostIdentityTrial:
+    """Evaluate one extra seed for equal averaging with the promoted voter."""
+
+    evaluation = evaluate_gpu_candidate(
+        make_seeded_complete_identity_catboost_spec(seed),
+        partitioned_data,
+        cross_validation,
+        catboost_feature_engineer=engineer_complete_identity_catboost_features,
     )
     first_training_positions, _ = next(cross_validation.split())
     engineered, categorical = engineer_complete_identity_catboost_features(

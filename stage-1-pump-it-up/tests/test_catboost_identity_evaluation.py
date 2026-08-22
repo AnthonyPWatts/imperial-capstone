@@ -21,6 +21,7 @@ from catboost_identity_evaluation import PHYSICAL_BACKOFF_FEATURES
 from catboost_identity_evaluation import engineer_complete_identity_catboost_features
 from catboost_identity_evaluation import engineer_age_cohort_identity_catboost_features
 from catboost_identity_evaluation import engineer_context_identity_catboost_features
+from catboost_identity_evaluation import make_seeded_complete_identity_catboost_spec
 from catboost_identity_evaluation import (
     engineer_hierarchy_backoff_identity_catboost_features,
 )
@@ -96,6 +97,16 @@ class CatBoostIdentityEvaluationTests(unittest.TestCase):
 
         self.assertEqual(categorical[-1], AGE_COHORT_IDENTITY_FEATURE)
         self.assertEqual(engineered.loc[0, AGE_COHORT_IDENTITY_FEATURE], "11-20")
+
+    def test_second_seed_is_explicit_without_changing_the_variant(self) -> None:
+        spec = make_seeded_complete_identity_catboost_spec(20260822)
+
+        self.assertEqual(spec.seed, 20260822)
+        self.assertEqual(spec.variant, "d8")
+        self.assertIn("seed 20260822", spec.name)
+
+        with self.assertRaisesRegex(ValueError, "must be positive"):
+            make_seeded_complete_identity_catboost_spec(0)
 
 
 def _source_frame() -> pd.DataFrame:

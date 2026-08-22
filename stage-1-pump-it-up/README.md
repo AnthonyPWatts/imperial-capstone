@@ -294,12 +294,18 @@ component weakened and the gain missed the promotion gate. Cut points and
 weights remain untuned. See the
 [pump-age report](reports/pump-age-cohort-screen.md).
 
+One additional complete-identity CatBoost seed then tested variance reduction
+inside the fixed 20% identity allocation. Although the two CatBoost models
+disagreed on 4.06% of rows, their equal seed bag lowered the promoted vote to
+81.719% with one fold win. Seed expansion is stopped. See the
+[identity seed-bag report](reports/catboost-identity-seed-bag.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate one additional fixed seed for the complete-identity CatBoost and
-   average it equally inside the existing 20% CatBoost allocation.
+2. Evaluate one complete-identity CatBoost with all seven supplied physical
+   hierarchy back-offs; retain the same depth and 20% ensemble allocation.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
