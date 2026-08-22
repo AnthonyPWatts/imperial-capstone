@@ -62,6 +62,10 @@ The leakage-safe location, scheme and organisation identity encodings,
 component crosses and bounded organisation-XGBoost contribution curve are in
 [`cross-fitted-target-encoding-screen.md`](cross-fitted-target-encoding-screen.md).
 
+The ten-neighbour cross-fitted spatial class rates, direct voter, full feature
+refits and component crosses are in
+[`cross-fitted-spatial-outcome-screen.md`](cross-fitted-spatial-outcome-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

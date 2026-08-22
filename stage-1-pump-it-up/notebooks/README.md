@@ -112,6 +112,9 @@ It does not replace the formal split and evaluation sequence below.
 22. [`23-cross-fitted-target-encoding.ipynb`](23-cross-fitted-target-encoding.ipynb):
     inner-cross-fitted multiclass identity encodings, complete accepted-model
     refits, fixed component crosses and a bounded low-weight contribution curve.
+23. [`24-cross-fitted-spatial-outcomes.ipynb`](24-cross-fitted-spatial-outcomes.ipynb):
+    inner-cross-fitted neighbour class rates and radius, invalid-coordinate
+    fallback, direct spatial voting and accepted-component refits.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

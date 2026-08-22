@@ -117,6 +117,11 @@ Current modules:
 - `target_encoding_evaluation.py` refits the accepted components under the
   location, organisation and combined target-encoding policies and applies the
   unchanged selection gate.
+- `spatial_outcome_features.py` creates inner-cross-fitted local class rates
+  and neighbour radius from a training-only haversine Ball Tree, with class-
+  prior fallback for invalid coordinates and no self-neighbours.
+- `spatial_outcome_evaluation.py` compares the fixed spatial feature policy,
+  its direct probability voter and component crosses with the accepted vote.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

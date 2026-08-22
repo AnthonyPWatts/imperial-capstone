@@ -81,7 +81,10 @@ cross-fitted target encoding of deferred high-cardinality fields. That screen
 also retained the accepted policy: its best complete vote reached 81.111%.
 A 20% organisation-aware XGBoost contribution gained 0.048 points, below the
 promotion threshold. The next experiment moves to cross-fitted local spatial
-class rates. The main evidence is available in the
+class rates. That screen also stopped: the feature vote fell to 80.995%, while
+the direct spatial voter was flat and damaged repair recall. The next distinct
+model strategy is ordered native-categorical learning over the complete
+deferred identity set. The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
@@ -92,6 +95,7 @@ and [fuzzy-membership](stage-1-pump-it-up/reports/fuzzy-target-membership-screen
 and [class-membership](stage-1-pump-it-up/reports/class-membership-probabilities.md)
 and [outlier-filtering](stage-1-pump-it-up/reports/outlier-filtering-screen.md)
 and [target-encoding](stage-1-pump-it-up/reports/cross-fitted-target-encoding-screen.md)
+and [spatial-outcome](stage-1-pump-it-up/reports/cross-fitted-spatial-outcome-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

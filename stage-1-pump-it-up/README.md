@@ -202,12 +202,18 @@ contribution reached 81.673%, up 0.048 points with four fold wins, but below the
 promotion threshold. No prediction was generated. See the
 [target-encoding report](reports/cross-fitted-target-encoding-screen.md).
 
+Cross-fitted local spatial rates then used ten nearby training pumps, smoothing
+20 and a great-circle radius. The direct 15% voter was effectively flat at
+81.623% but lost 2.635 points of repair recall. Adding the rates as features was
+clearly worse at 80.995%, and both component crosses trailed. Spatial outcome
+aggregation is therefore stopped. See the
+[spatial-outcome report](reports/cross-fitted-spatial-outcome-screen.md).
+
 ## Next modelling loop
 
-1. Evaluate one cross-fitted local spatial class-rate representation. Build
-   outer-training features from inner-training neighbours, build validation
-   features from outer-training neighbours, exclude self-neighbours and use an
-   explicit prior fallback for invalid coordinates.
+1. Evaluate one ordered native-categorical CatBoost policy containing the full
+   deferred identity set. Keep ordered target statistics inside CatBoost,
+   preserve outer-fold isolation and avoid a parameter grid.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
@@ -230,6 +236,9 @@ promotion threshold. No prediction was generated. See the
 10. Stop category-wide target-encoding and weight grids. The complete policies
     are substantially weaker; their best bounded low-weight contribution gains
     only 0.048 points.
+11. Stop local spatial outcome features and neighbour grids. Their information
+    is already largely represented by accepted geography, and the complete
+    feature vote loses 0.629 points.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,
