@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 51,
-    "total": 51,
-    "current": "Transductive counts strengthened one forest but not the ensemble"
+    "completed": 52,
+    "total": 52,
+    "current": "Learned amount reconstruction did not improve the ensemble"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Audit remaining supplied-data signals; external data is prohibited by the competition rules.",
+    "nextCheckpoint": "Test genuinely different target-free representations; avoid further near-miss blend tuning.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

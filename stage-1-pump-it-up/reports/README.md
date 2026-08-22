@@ -139,6 +139,10 @@ The target-free fixed-universe category counts, rare-boundary audit and
 transductive frequency-forest votes are in
 [`transductive-frequency-forest-screen.md`](transductive-frequency-forest-screen.md).
 
+The fold-fitted spatial-height plus log-amount reconstruction, accepted-tree
+refits and fixed representation votes are in
+[`learned-numeric-imputation-screen.md`](learned-numeric-imputation-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

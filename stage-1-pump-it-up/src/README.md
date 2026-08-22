@@ -168,6 +168,9 @@ Current modules:
 - `transductive_frequency_forest_evaluation.py` learns target-free occurrence
   support from a fixed development-plus-competition covariate universe and
   evaluates one compact Random Forest without using inference labels.
+- `learned_numeric_imputation_evaluation.py` reconstructs unavailable height
+  spatially, then fits a target-free log-amount regressor inside each training
+  partition before refitting the accepted tree components.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.
