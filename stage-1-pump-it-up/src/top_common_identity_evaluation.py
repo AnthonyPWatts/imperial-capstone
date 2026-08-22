@@ -11,10 +11,16 @@ import pandas as _pd
 from scipy import sparse as _sparse
 from sklearn.base import BaseEstimator as _BaseEstimator
 from sklearn.base import TransformerMixin as _TransformerMixin
+from sklearn.compose import ColumnTransformer as _ColumnTransformer
 from sklearn.pipeline import FeatureUnion as _FeatureUnion
+from sklearn.pipeline import Pipeline as _Pipeline
 from sklearn.utils.validation import check_is_fitted as _check_is_fitted
 
 from data_partitioning import CROSS_VALIDATION_FOLDS, PartitionedData
+from categorical_frequency_forest_evaluation import (
+    CategoricalFrequencyFeatureEngineer,
+)
+from categorical_frequency_forest_evaluation import FREQUENCY_FEATURES
 from feature_engineering import DEFERRED_HIGH_CARDINALITY_FEATURES
 from feature_engineering import EXPECTED_SOURCE_FEATURES
 from gpu_model_evaluation import CLASS_LABELS
@@ -144,6 +150,33 @@ def make_top_common_spatial_density_preprocessor() -> _FeatureUnion:
             ("accepted", make_initial_preprocessor()),
             ("top_common_identity", TopCommonIdentityEncoder()),
             ("spatial_density", SpatialDensityTransformer()),
+        ]
+    )
+
+
+def make_top_common_occurrence_preprocessor() -> _FeatureUnion:
+    """Append all categorical occurrence counts to accepted/common identity."""
+
+    occurrence_counts = _Pipeline(
+        steps=[
+            ("feature_engineering", CategoricalFrequencyFeatureEngineer()),
+            (
+                "count_selection",
+                _ColumnTransformer(
+                    transformers=[
+                        ("occurrence_counts", "passthrough", list(FREQUENCY_FEATURES))
+                    ],
+                    remainder="drop",
+                    verbose_feature_names_out=False,
+                ),
+            ),
+        ]
+    )
+    return _FeatureUnion(
+        transformer_list=[
+            ("accepted", make_initial_preprocessor()),
+            ("top_common_identity", TopCommonIdentityEncoder()),
+            ("categorical_occurrence", occurrence_counts),
         ]
     )
 

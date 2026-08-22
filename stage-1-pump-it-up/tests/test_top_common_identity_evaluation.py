@@ -18,6 +18,7 @@ if str(SRC_DIR) not in sys.path:
 from feature_engineering import DEFERRED_HIGH_CARDINALITY_FEATURES
 from feature_engineering import EXPECTED_SOURCE_FEATURES
 from top_common_identity_evaluation import TopCommonIdentityEncoder
+from top_common_identity_evaluation import make_top_common_occurrence_preprocessor
 
 
 class TopCommonIdentityEvaluationTests(unittest.TestCase):
@@ -70,6 +71,20 @@ class TopCommonIdentityEvaluationTests(unittest.TestCase):
         encoder = TopCommonIdentityEncoder(top_k=2).fit(training)
 
         self.assertEqual(encoder.selected_values_["funder"], ("a", "m"))
+
+    def test_combined_occurrence_preprocessor_is_finite(self) -> None:
+        training = _source_frame(60)
+
+        preprocessor = make_top_common_occurrence_preprocessor()
+        transformed = preprocessor.fit_transform(training)
+
+        self.assertEqual(transformed.shape[0], len(training))
+        self.assertEqual(
+            transformed.shape[1],
+            len(preprocessor.get_feature_names_out()),
+        )
+        values = transformed.data if hasattr(transformed, "data") else transformed
+        self.assertTrue(np.isfinite(values).all())
 
 
 def _source_frame(rows: int) -> pd.DataFrame:

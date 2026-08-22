@@ -384,6 +384,12 @@ to 81.296% and its archive substitution to 81.818%, closing neighbour-rank,
 radius and clustering follow-ups. See the
 [spatial-density report](reports/spatial-density-screen.md).
 
+The final bounded cross added fold-fitted support counts for all 29 categorical
+fields to the top-common-identity deep model. It weakens the component to
+81.305% and the fixed archive substitution to 81.787%, closing support
+threshold and per-field follow-ups. See the
+[deep occurrence-support report](reports/deep-occurrence-xgboost-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
@@ -427,6 +433,9 @@ radius and clustering follow-ups. See the
     against the reused folds.
 17. Stop waterpoint-density variants. Fold-safe nearest-neighbour distances
     make substantial but less accurate changes to the strongest deep model.
+18. Stop occurrence-support/deep-XGBoost crosses. The combined representation
+    is diverse but weaker, and its fixed archive substitution does not improve
+    the incumbent.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

@@ -212,6 +212,9 @@ It does not replace the formal split and evaluation sequence below.
 58. [`59-spatial-density.ipynb`](59-spatial-density.ipynb): self-excluding
     fold-fitted nearest-neighbour waterpoint distances in archived deep
     XGBoost and one fixed archive substitution.
+59. [`60-deep-occurrence-xgboost.ipynb`](60-deep-occurrence-xgboost.ipynb):
+    all-categorical fold-fitted occurrence support combined with top-common
+    identities in archived deep XGBoost and one fixed archive substitution.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

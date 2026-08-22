@@ -195,6 +195,10 @@ The self-excluding fold-fitted nearest and 10th-nearest waterpoint distances,
 deep-XGBoost refit and archive substitution are in
 [`spatial-density-screen.md`](spatial-density-screen.md).
 
+The all-categorical occurrence-support cross with top-common identities in
+archived deep XGBoost and its fixed archive substitution are in
+[`deep-occurrence-xgboost-screen.md`](deep-occurrence-xgboost-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.
