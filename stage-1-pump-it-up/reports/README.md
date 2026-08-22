@@ -82,6 +82,9 @@ The fixed source-plus-class identity cross and diversity-motivated depth-7
 CatBoost result are in
 [`catboost-identity-follow-up-screen.md`](catboost-identity-follow-up-screen.md).
 
+The fixed deferred-name character TF-IDF logistic and its 5% ensemble
+contribution are in [`deferred-name-text-screen.md`](deferred-name-text-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

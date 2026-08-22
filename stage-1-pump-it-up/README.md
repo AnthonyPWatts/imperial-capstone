@@ -248,13 +248,20 @@ CatBoost substitution reached 81.7319%, 0.0084 points below. Neither justified
 another local-test use. See the
 [identity follow-up report](reports/catboost-identity-follow-up-screen.md).
 
+A distinct text candidate then represented all six deferred names with 60,000
+fold-fitted character 3–5 grams alongside the accepted features. It reached
+75.619% standalone, and its fixed 5% contribution lowered the promoted vote to
+81.705%, with only one fold win and lower repair recall. The text branch stops
+without vectoriser or weight tuning. See the
+[name-text report](reports/deferred-name-text-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate one fold-safe character n-gram model over the deferred organisation,
-   pump and scheme names. Use one fixed vocabulary/regularisation policy and one
-   low ensemble contribution to test generalisation across unseen exact names.
+2. Evaluate one complete-identity CatBoost member with the four deterministic
+   physical parent categories as explicit native back-off layers. Preserve the
+   promoted 20% contribution and do not screen parent subsets.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

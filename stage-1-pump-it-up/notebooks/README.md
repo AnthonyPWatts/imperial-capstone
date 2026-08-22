@@ -128,6 +128,9 @@ It does not replace the formal split and evaluation sequence below.
 27. [`28-catboost-identity-follow-ups.ipynb`](28-catboost-identity-follow-ups.ipynb):
     cached source-plus-class component cross and one diversity-motivated
     depth-7 complete-identity CatBoost substitution.
+28. [`29-deferred-name-text.ipynb`](29-deferred-name-text.ipynb): fold-fitted
+    character TF-IDF over all six deferred names, one regularised logistic model
+    and one fixed low-weight contribution to the promoted vote.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

@@ -96,6 +96,8 @@ the next no-refit test crosses the identity voter with the strongest existing
 physical representation. That cross gained only 0.006 points and a depth-7
 identity substitution also trailed, closing those fine-tuning branches. The
 next distinct representation is fold-safe character n-grams over sparse names.
+That text model also reduced the ensemble result. The next bounded test gives
+the identity CatBoost explicit physical hierarchy back-off categories.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -112,6 +114,7 @@ and [CatBoost identity](stage-1-pump-it-up/reports/catboost-deferred-identity-sc
 and [identity confirmation](stage-1-pump-it-up/reports/catboost-identity-confirmation.md)
 and [identity context](stage-1-pump-it-up/reports/catboost-identity-context-screen.md)
 and [identity follow-ups](stage-1-pump-it-up/reports/catboost-identity-follow-up-screen.md)
+and [name text](stage-1-pump-it-up/reports/deferred-name-text-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

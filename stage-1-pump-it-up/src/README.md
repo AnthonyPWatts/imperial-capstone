@@ -132,6 +132,9 @@ Current modules:
   complete-identity recipes from development to local test, scores unchanged
   three-class labels, reports paired hard-prediction changes and builds both
   validated full-data competition records from shared components.
+- `name_text_evaluation.py` builds one fold-fitted accepted-plus-character-
+  TF-IDF logistic model over the six deferred names and returns aligned OOF
+  probabilities for a fixed low-weight voter test.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

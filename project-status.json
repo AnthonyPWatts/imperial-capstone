@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 42,
-    "total": 42,
-    "current": "Physical crossing and depth-7 CatBoost did not improve the identity lead"
+    "completed": 43,
+    "total": 43,
+    "current": "Character n-grams over deferred names reduced ensemble accuracy"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Evaluate a fold-safe character n-gram voter over the deferred name fields.",
+    "nextCheckpoint": "Evaluate one identity-CatBoost member with explicit physical hierarchy back-off categories.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
