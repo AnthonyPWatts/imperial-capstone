@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 import unittest
 
+import numpy as np
 import pandas as pd
 
 
@@ -17,6 +18,10 @@ if str(SRC_DIR) not in sys.path:
 from categorical_frequency_forest_evaluation import FREQUENCY_FEATURES
 from categorical_frequency_forest_evaluation import FREQUENCY_SOURCE_FEATURES
 from categorical_frequency_forest_evaluation import CategoricalFrequencyFeatureEngineer
+from categorical_frequency_forest_evaluation import RADIAL_DISTANCE_FEATURE
+from categorical_frequency_forest_evaluation import (
+    RadialCategoricalFrequencyFeatureEngineer,
+)
 from feature_engineering import EXPECTED_SOURCE_FEATURES
 
 
@@ -54,6 +59,18 @@ class CategoricalFrequencyForestEvaluationTests(unittest.TestCase):
         CategoricalFrequencyFeatureEngineer().fit_transform(training)
 
         pd.testing.assert_frame_equal(training, original)
+
+    def test_radial_distance_is_finite_only_for_valid_coordinates(self) -> None:
+        training = _source_frame(["Alpha"] * 5)
+        training.loc[1, ["longitude", "latitude"]] = [0.0, -2e-08]
+
+        transformed = (
+            RadialCategoricalFrequencyFeatureEngineer().fit_transform(training)
+        )
+
+        self.assertTrue(np.isfinite(transformed.loc[0, RADIAL_DISTANCE_FEATURE]))
+        self.assertGreater(transformed.loc[0, RADIAL_DISTANCE_FEATURE], 3_000.0)
+        self.assertTrue(pd.isna(transformed.loc[1, RADIAL_DISTANCE_FEATURE]))
 
 
 def _source_frame(names: list[str]) -> pd.DataFrame:

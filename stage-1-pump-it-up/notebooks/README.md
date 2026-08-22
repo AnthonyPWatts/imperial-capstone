@@ -186,6 +186,9 @@ It does not replace the formal split and evaluation sequence below.
 49. [`50-archive-synthesis-confirmation.ipynb`](50-archive-synthesis-confirmation.ipynb):
     fixed six-component synthesis confirmation on the used local test and its
     validated full-labelled-data competition candidate.
+50. [`51-radial-frequency-forest.ipynb`](51-radial-frequency-forest.ipynb):
+    archived origin-distance completion of the occurrence-count forest and its
+    fixed archive substitutions.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

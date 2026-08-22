@@ -159,6 +159,10 @@ The local confirmation, paired uncertainty and validated full-data file for the
 fixed six-component archive-derived synthesis are in
 [`archive-synthesis-confirmation.md`](archive-synthesis-confirmation.md).
 
+The official-archive origin-distance completion of the occurrence-count forest
+and its fixed archive substitutions are in
+[`radial-frequency-forest-screen.md`](radial-frequency-forest-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

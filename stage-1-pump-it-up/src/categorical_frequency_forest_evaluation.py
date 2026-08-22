@@ -20,6 +20,7 @@ from feature_engineering import DEFERRED_HIGH_CARDINALITY_FEATURES
 from feature_engineering import DEFERRED_HIERARCHY_FEATURES
 from feature_engineering import NUMERIC_FEATURES
 from feature_engineering import engineer_initial_features
+from feature_engineering import valid_tanzania_coordinates
 from model_evaluation import CandidateEvaluation
 from model_evaluation import evaluate_random_forest
 from target_encoding_features import normalise_identity
@@ -39,6 +40,13 @@ FREQUENCY_FEATURES = tuple(
     f"{source}_occurrence_count" for source in FREQUENCY_SOURCE_FEATURES
 )
 FREQUENCY_MODEL_FEATURES = (*NUMERIC_FEATURES, *FREQUENCY_FEATURES)
+RADIAL_DISTANCE_FEATURE = "distance_from_origin_km"
+RADIAL_FREQUENCY_MODEL_FEATURES = (
+    *NUMERIC_FEATURES,
+    RADIAL_DISTANCE_FEATURE,
+    *FREQUENCY_FEATURES,
+)
+EARTH_RADIUS_KM = 6371.0088
 
 
 @_dataclass(frozen=True)
@@ -98,6 +106,47 @@ class CategoricalFrequencyFeatureEngineer(_BaseEstimator, _TransformerMixin):
         return self.feature_names_out_.copy()
 
 
+class RadialCategoricalFrequencyFeatureEngineer(
+    CategoricalFrequencyFeatureEngineer
+):
+    """Add the archived geodesic origin distance to occurrence counts."""
+
+    def fit(
+        self,
+        X: _pd.DataFrame,
+        y: object = None,
+    ) -> "RadialCategoricalFrequencyFeatureEngineer":
+        super().fit(X, y)
+        self.feature_names_out_ = _np.asarray(
+            RADIAL_FREQUENCY_MODEL_FEATURES,
+            dtype=object,
+        )
+        return self
+
+    def transform(self, X: _pd.DataFrame) -> _pd.DataFrame:
+        _check_is_fitted(self, "frequency_maps_")
+        engineered = super().transform(X)
+        longitude = _pd.to_numeric(X["longitude"], errors="coerce")
+        latitude = _pd.to_numeric(X["latitude"], errors="coerce")
+        valid = valid_tanzania_coordinates(longitude, latitude)
+        longitude_radians = _np.radians(longitude.where(valid))
+        latitude_radians = _np.radians(latitude.where(valid))
+        haversine = (
+            _np.sin(latitude_radians / 2.0) ** 2
+            + _np.cos(latitude_radians)
+            * _np.sin(longitude_radians / 2.0) ** 2
+        ).clip(lower=0.0, upper=1.0)
+        distance = 2.0 * EARTH_RADIUS_KM * _np.arcsin(_np.sqrt(haversine))
+        engineered.insert(
+            len(NUMERIC_FEATURES),
+            RADIAL_DISTANCE_FEATURE,
+            distance,
+        )
+        if tuple(engineered.columns) != RADIAL_FREQUENCY_MODEL_FEATURES:
+            raise ValueError("Radial frequency feature order changed.")
+        return engineered
+
+
 def make_categorical_frequency_preprocessor(
     *,
     sparse_output: bool = True,
@@ -137,6 +186,45 @@ def make_categorical_frequency_preprocessor(
     )
 
 
+def make_radial_categorical_frequency_preprocessor(
+    *,
+    sparse_output: bool = True,
+    scale_numeric: bool = False,
+) -> _Pipeline:
+    """Build the archived count representation plus geodesic distance."""
+
+    del sparse_output
+    numeric_steps: list[tuple[str, object]] = [
+        (
+            "median_imputation",
+            _SimpleImputer(strategy="median", add_indicator=True),
+        )
+    ]
+    if scale_numeric:
+        numeric_steps.append(("standardisation", _StandardScaler()))
+    columns = _ColumnTransformer(
+        transformers=[
+            (
+                "numeric",
+                _Pipeline(steps=numeric_steps),
+                list(RADIAL_FREQUENCY_MODEL_FEATURES),
+            ),
+        ],
+        remainder="drop",
+        sparse_threshold=0.0,
+        verbose_feature_names_out=False,
+    )
+    return _Pipeline(
+        steps=[
+            (
+                "feature_engineering",
+                RadialCategoricalFrequencyFeatureEngineer(),
+            ),
+            ("column_preprocessing", columns),
+        ]
+    )
+
+
 def evaluate_categorical_frequency_forest(
     partitioned_data: PartitionedData,
     cross_validation: object,
@@ -159,5 +247,33 @@ def evaluate_categorical_frequency_forest(
     return CategoricalFrequencyForestTrial(
         random_forest=random_forest,
         engineered_features=len(FREQUENCY_MODEL_FEATURES),
+        transformed_features_fold_1=transformed.shape[1],
+    )
+
+
+def evaluate_radial_categorical_frequency_forest(
+    partitioned_data: PartitionedData,
+    cross_validation: object,
+) -> CategoricalFrequencyForestTrial:
+    """Evaluate the fixed archive count forest with radial distance."""
+
+    random_forest = evaluate_random_forest(
+        partitioned_data,
+        cross_validation,
+        preprocessor_factory=make_radial_categorical_frequency_preprocessor,
+        model_name=(
+            "Random Forest [categorical occurrence counts plus origin distance]"
+        ),
+    )
+    training_positions, _ = next(cross_validation.split())
+    X_training = partitioned_data.X_development.iloc[training_positions]
+    preprocessor = make_radial_categorical_frequency_preprocessor()
+    transformed = preprocessor.fit_transform(
+        X_training,
+        partitioned_data.y_development.iloc[training_positions],
+    )
+    return CategoricalFrequencyForestTrial(
+        random_forest=random_forest,
+        engineered_features=len(RADIAL_FREQUENCY_MODEL_FEATURES),
         transformed_features_fold_1=transformed.shape[1],
     )
