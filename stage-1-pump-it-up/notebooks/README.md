@@ -206,6 +206,9 @@ It does not replace the formal split and evaluation sequence below.
 56. [`57-top-common-identities.ipynb`](57-top-common-identities.ipynb): fixed
     top-50 indicators for all six deferred identities in accepted XGBoost and
     their archive substitution/bag comparisons.
+57. [`58-archived-deep-xgboost.ipynb`](58-archived-deep-xgboost.ipynb): fixed
+    depth-17, 600-tree XGBoost over top-common identities, archive crosses and
+    a bounded three-seed variance check.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass as _dataclass
 from dataclasses import replace as _replace
+import time as _time
 
 import numpy as _np
 import pandas as _pd
@@ -13,16 +14,20 @@ from sklearn.base import TransformerMixin as _TransformerMixin
 from sklearn.pipeline import FeatureUnion as _FeatureUnion
 from sklearn.utils.validation import check_is_fitted as _check_is_fitted
 
-from data_partitioning import PartitionedData
+from data_partitioning import CROSS_VALIDATION_FOLDS, PartitionedData
 from feature_engineering import DEFERRED_HIGH_CARDINALITY_FEATURES
 from feature_engineering import EXPECTED_SOURCE_FEATURES
+from gpu_model_evaluation import CLASS_LABELS
 from gpu_model_evaluation import evaluate_gpu_candidate
+from gpu_model_evaluation import fit_gpu_candidate_probabilities
 from gpu_model_evaluation import make_xgboost_spec
 from model_evaluation import CandidateEvaluation
+from model_evaluation import build_candidate_evaluation
 from model_preprocessing import make_initial_preprocessor
 
 
 TOP_COMMON_VALUES = 50
+ARCHIVED_DEPTH_17_ITERATIONS = 600
 MISSING_IDENTITY = "__missing__"
 
 
@@ -163,6 +168,67 @@ def evaluate_top_common_identity_xgboost(
             identity_matrix.getnnz(axis=1).sum()
             / (len(X_training) * len(DEFERRED_HIGH_CARDINALITY_FEATURES))
         ),
+    )
+
+
+def evaluate_archived_deep_xgboost(
+    partitioned_data: PartitionedData,
+    cross_validation: object,
+    *,
+    seed: int,
+) -> CandidateEvaluation:
+    """Fit the archived depth-17, 600-tree specification on every fold."""
+
+    spec = _replace(
+        make_xgboost_spec(variant="archived depth 17", seed=seed),
+        name=(
+            "XGBoost archived depth 17 [top-50 deferred identities; "
+            f"seed {seed}]"
+        ),
+        feature_policy="accepted_plus_top_50_deferred_identities",
+    )
+    probability_values = _np.full(
+        (len(partitioned_data.y_development), len(CLASS_LABELS)),
+        fill_value=_np.nan,
+    )
+    diagnostics = []
+    for fold_number, (training_positions, validation_positions) in enumerate(
+        cross_validation.split(),
+        start=1,
+    ):
+        started = _time.perf_counter()
+        probabilities, fit_seconds = fit_gpu_candidate_probabilities(
+            spec,
+            partitioned_data.X_development.iloc[training_positions],
+            partitioned_data.y_development.iloc[training_positions],
+            partitioned_data.X_development.iloc[validation_positions],
+            iterations=ARCHIVED_DEPTH_17_ITERATIONS,
+            preprocessor_factory=make_top_common_identity_preprocessor,
+        )
+        probability_values[validation_positions] = probabilities
+        diagnostics.append(
+            {
+                "validation_fold": fold_number,
+                "selected_iterations": ARCHIVED_DEPTH_17_ITERATIONS,
+                "inner_fit_rows": len(training_positions),
+                "inner_stop_rows": 0,
+                "stopping_seconds": 0.0,
+                "refit_predict_seconds": fit_seconds,
+                "total_seconds": _time.perf_counter() - started,
+            }
+        )
+        print(
+            f"Completed {spec.name} fold {fold_number}/"
+            f"{CROSS_VALIDATION_FOLDS} in "
+            f"{diagnostics[-1]['total_seconds']:.1f} seconds.",
+            flush=True,
+        )
+    return build_candidate_evaluation(
+        model_name=spec.name,
+        partitioned_data=partitioned_data,
+        cross_validation=cross_validation,
+        probability_values=probability_values,
+        diagnostic_rows=diagnostics,
     )
 
 

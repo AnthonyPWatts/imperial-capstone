@@ -371,6 +371,13 @@ indicators for each of the six deferred identities. They strengthen XGBoost to
 extra development rows and below the promotion gate. See the
 [top-common identity report](reports/top-common-identity-screen.md).
 
+The same archived solution's fixed depth-17, 600-tree XGBoost then strengthens
+the top-common component to 81.471%. Direct archive substitution reaches
+81.877%, only eight rows below the promotion gate; an equal three-seed bag
+falls to 81.858%. The architecture is retained as the strongest research
+near-miss without selecting the fortunate seed or opening local test. See the
+[archived deep-XGBoost report](reports/archived-deep-xgboost-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
@@ -409,6 +416,9 @@ extra development rows and below the promotion gate. See the
     justify thresholds, class weights or another submission candidate.
 15. Retain top-common identities as positive representation evidence, but do
     not tune common-value counts or weights around their ten-row archive gain.
+16. Retain archived depth-17 XGBoost as the strongest unconfirmed near-miss.
+    Do not select its best seed, expand the seed count or tune depth and rounds
+    against the reused folds.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

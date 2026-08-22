@@ -187,6 +187,10 @@ The official-archive-inspired top-50 indicators for all six deferred identity
 fields and their fixed XGBoost/archive comparisons are in
 [`top-common-identity-screen.md`](top-common-identity-screen.md).
 
+The archived depth-17, 600-tree XGBoost specification, three-seed variance
+check and fixed archive crosses are in
+[`archived-deep-xgboost-screen.md`](archived-deep-xgboost-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

@@ -103,6 +103,16 @@ XGBOOST_VARIANTS: dict[str, dict[str, int | float | str]] = {
         "subsample": 0.90,
         "colsample_bytree": 0.85,
     },
+    "archived depth 17": {
+        "learning_rate": 0.02,
+        "max_depth": 17,
+        "min_child_weight": 1,
+        "gamma": 0.0,
+        "reg_lambda": 1.0,
+        "reg_alpha": 0.0,
+        "subsample": 0.80,
+        "colsample_bytree": 0.50,
+    },
     "lossguide 64": {
         "learning_rate": 0.04,
         "grow_policy": "lossguide",

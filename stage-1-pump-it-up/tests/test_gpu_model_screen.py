@@ -17,6 +17,7 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from gpu_model_evaluation import FROZEN_FEATURE_POLICY
+from gpu_model_evaluation import XGBOOST_VARIANTS
 from gpu_model_evaluation import fit_gpu_candidate_probabilities
 from gpu_model_evaluation import make_catboost_spec
 from gpu_model_evaluation import make_lightgbm_spec
@@ -29,6 +30,21 @@ from model_screen_submission import _expanded_component_names
 
 
 class GpuModelScreenTests(unittest.TestCase):
+    def test_archived_depth_17_specification_is_fixed(self) -> None:
+        self.assertEqual(
+            XGBOOST_VARIANTS["archived depth 17"],
+            {
+                "learning_rate": 0.02,
+                "max_depth": 17,
+                "min_child_weight": 1,
+                "gamma": 0.0,
+                "reg_lambda": 1.0,
+                "reg_alpha": 0.0,
+                "subsample": 0.80,
+                "colsample_bytree": 0.50,
+            },
+        )
+
     def test_all_families_retain_the_frozen_feature_policy(self) -> None:
         specs = [
             make_catboost_spec(variant="d8"),
