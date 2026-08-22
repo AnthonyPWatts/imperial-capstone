@@ -81,7 +81,9 @@ Current modules:
   boosting tree counts on an inner split before refitting and scoring the
   untouched outer validation fold; fixed-size forests remain fold-fitted. Its
   optional preprocessor factory lets controlled feature-family screens retain
-  the same nested tree-count selection contract.
+  the same nested tree-count selection contract, while its optional CatBoost
+  feature callback supports audited native-categorical representations without
+  changing earlier candidates.
 - `model_screen_submission.py` selects gate-passing model combinations,
   requires a materially different second candidate, refits shared members only
   once and builds validated competition predictions.
@@ -122,6 +124,9 @@ Current modules:
   prior fallback for invalid coordinates and no self-neighbours.
 - `spatial_outcome_evaluation.py` compares the fixed spatial feature policy,
   its direct probability voter and component crosses with the accepted vote.
+- `catboost_identity_evaluation.py` adds all six deferred identity fields as
+  conservatively normalised native CatBoost categoricals and evaluates the one
+  fixed depth-8 candidate on the frozen folds.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

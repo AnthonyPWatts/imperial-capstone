@@ -115,6 +115,10 @@ It does not replace the formal split and evaluation sequence below.
 23. [`24-cross-fitted-spatial-outcomes.ipynb`](24-cross-fitted-spatial-outcomes.ipynb):
     inner-cross-fitted neighbour class rates and radius, invalid-coordinate
     fallback, direct spatial voting and accepted-component refits.
+24. [`25-catboost-deferred-identities.ipynb`](25-catboost-deferred-identities.ipynb):
+    one fixed depth-8 native-categorical CatBoost representation over all six
+    deferred identities, bounded low-weight contributions and the first new
+    promotion-gate pass.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

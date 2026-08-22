@@ -209,11 +209,20 @@ clearly worse at 80.995%, and both component crosses trailed. Spatial outcome
 aggregation is therefore stopped. See the
 [spatial-outcome report](reports/cross-fitted-spatial-outcome-screen.md).
 
+One fixed native-categorical CatBoost candidate then restored all six deferred
+identity fields. The complete-identity model improved CatBoost standalone by
+0.339 points, and a 20% contribution to the accepted ensemble reached 81.740%:
++0.116 points, four fold wins, worst-fold change -0.084 points and repair-recall
+change -0.926 points. This is the first new candidate to pass the established
+promotion gate. Its frozen 44% XGBoost / 36% Random Forest / 20% CatBoost recipe
+now moves to one confirmation on the already-reserved local test. See the
+[CatBoost identity report](reports/catboost-deferred-identity-screen.md).
+
 ## Next modelling loop
 
-1. Evaluate one ordered native-categorical CatBoost policy containing the full
-   deferred identity set. Keep ordered target statistics inside CatBoost,
-   preserve outer-fold isolation and avoid a parameter grid.
+1. Confirm the frozen 44:36:20 complete-identity CatBoost recipe once on the
+   already-reserved local test. Do not change its weights, fields or settings
+   in response to that confirmation result.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

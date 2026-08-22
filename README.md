@@ -84,7 +84,10 @@ promotion threshold. The next experiment moves to cross-fitted local spatial
 class rates. That screen also stopped: the feature vote fell to 80.995%, while
 the direct spatial voter was flat and damaged repair recall. The next distinct
 model strategy is ordered native-categorical learning over the complete
-deferred identity set. The main evidence is available in the
+deferred identity set. That fixed CatBoost representation produced the first
+new promotion-gate pass: a 20% contribution reached 81.740%, up 0.116 points
+with four fold wins. The frozen 44:36:20 recipe now moves to one reserved-local-
+test confirmation. The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
@@ -96,6 +99,7 @@ and [class-membership](stage-1-pump-it-up/reports/class-membership-probabilities
 and [outlier-filtering](stage-1-pump-it-up/reports/outlier-filtering-screen.md)
 and [target-encoding](stage-1-pump-it-up/reports/cross-fitted-target-encoding-screen.md)
 and [spatial-outcome](stage-1-pump-it-up/reports/cross-fitted-spatial-outcome-screen.md)
+and [CatBoost identity](stage-1-pump-it-up/reports/catboost-deferred-identity-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

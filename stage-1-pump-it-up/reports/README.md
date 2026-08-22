@@ -66,6 +66,10 @@ The ten-neighbour cross-fitted spatial class rates, direct voter, full feature
 refits and component crosses are in
 [`cross-fitted-spatial-outcome-screen.md`](cross-fitted-spatial-outcome-screen.md).
 
+The ordered native-categorical CatBoost screen over all six deferred identity
+fields and its gate-passing 20% ensemble contribution are in
+[`catboost-deferred-identity-screen.md`](catboost-deferred-identity-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

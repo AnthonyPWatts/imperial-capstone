@@ -394,6 +394,11 @@ def evaluate_gpu_candidate(
     cross_validation: object,
     *,
     preprocessor_factory: _Callable[[], object] = make_initial_preprocessor,
+    catboost_feature_engineer: _Callable[
+        [_pd.DataFrame],
+        tuple[_pd.DataFrame, tuple[str, ...]],
+    ]
+    | None = None,
 ) -> CandidateEvaluation:
     """Select tree counts inside outer training, then score each outer fold."""
 
@@ -417,6 +422,7 @@ def evaluate_gpu_candidate(
             X_validation,
             fold_number=fold_number,
             preprocessor_factory=preprocessor_factory,
+            catboost_feature_engineer=catboost_feature_engineer,
         )
         probability_values[validation_positions] = probabilities
         fold_diagnostics["total_seconds"] = _time.perf_counter() - fold_started
@@ -447,6 +453,11 @@ def fit_gpu_candidate_probabilities(
     *,
     iterations: int,
     preprocessor_factory: _Callable[[], object] = make_initial_preprocessor,
+    catboost_feature_engineer: _Callable[
+        [_pd.DataFrame],
+        tuple[_pd.DataFrame, tuple[str, ...]],
+    ]
+    | None = None,
 ) -> tuple[_np.ndarray, float]:
     """Fit one fixed-iteration GPU candidate and return ordered probabilities."""
 
@@ -455,10 +466,11 @@ def fit_gpu_candidate_probabilities(
     started = _time.perf_counter()
     y_encoded = _encode_target(y_training)
     if spec.family == CATBOOST_FAMILY:
-        X_fit, categorical = _engineer_catboost_features(X_training)
-        X_predict, prediction_categorical = _engineer_catboost_features(
-            X_prediction
+        feature_engineer = (
+            catboost_feature_engineer or _engineer_catboost_features
         )
+        X_fit, categorical = feature_engineer(X_training)
+        X_predict, prediction_categorical = feature_engineer(X_prediction)
         if categorical != prediction_categorical:
             raise ValueError("CatBoost category columns changed at prediction time.")
         model = _make_catboost_model(
@@ -520,6 +532,11 @@ def _fit_outer_fold(
     *,
     fold_number: int,
     preprocessor_factory: _Callable[[], object],
+    catboost_feature_engineer: _Callable[
+        [_pd.DataFrame],
+        tuple[_pd.DataFrame, tuple[str, ...]],
+    ]
+    | None,
 ) -> tuple[_np.ndarray, dict[str, int | float]]:
     if spec.family == SKLEARN_TREE_FAMILY:
         return _fit_fixed_sklearn_tree_fold(
@@ -545,10 +562,11 @@ def _fit_outer_fold(
 
     stopping_started = _time.perf_counter()
     if spec.family == CATBOOST_FAMILY:
-        X_inner_fit, categorical = _engineer_catboost_features(X_inner_fit)
-        X_inner_stop, stop_categorical = _engineer_catboost_features(
-            X_inner_stop
+        feature_engineer = (
+            catboost_feature_engineer or _engineer_catboost_features
         )
+        X_inner_fit, categorical = feature_engineer(X_inner_fit)
+        X_inner_stop, stop_categorical = feature_engineer(X_inner_stop)
         if categorical != stop_categorical:
             raise ValueError("CatBoost category columns changed inside a fold.")
         stopping_model = _make_catboost_model(
@@ -618,10 +636,11 @@ def _fit_outer_fold(
 
     refit_started = _time.perf_counter()
     if spec.family == CATBOOST_FAMILY:
-        X_outer_training, categorical = _engineer_catboost_features(X_training)
-        X_validation, validation_categorical = _engineer_catboost_features(
-            X_validation
+        feature_engineer = (
+            catboost_feature_engineer or _engineer_catboost_features
         )
+        X_outer_training, categorical = feature_engineer(X_training)
+        X_validation, validation_categorical = feature_engineer(X_validation)
         if categorical != validation_categorical:
             raise ValueError("CatBoost category columns changed across outer data.")
         model = _make_catboost_model(
