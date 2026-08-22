@@ -120,6 +120,9 @@ in [`one-vs-rest-xgboost-screen.md`](one-vs-rest-xgboost-screen.md).
 The complete-identity one-vs-rest CatBoost boundaries, runtime and boundary
 bags are in [`one-vs-rest-catboost-screen.md`](one-vs-rest-catboost-screen.md).
 
+The no-refit component hard-majority rule with promoted soft tie-break is in
+[`hard-majority-decision-screen.md`](hard-majority-decision-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

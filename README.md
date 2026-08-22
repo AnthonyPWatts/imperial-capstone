@@ -118,7 +118,8 @@ structure test learned three independent one-vs-rest XGBoost boundaries. Their
 fixed boundary bag gained only 0.019 points; native identity CatBoost receives
 the final independent-boundary check. Its boundary bag gained 0.036 points at
 high compute cost and also missed promotion; a no-refit hard-majority combiner
-is the next bounded ensemble rule.
+then lost 0.206 points on every fold. Further work now requires a genuinely new
+representation or data source rather than another local combiner.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -147,6 +148,7 @@ and [full hierarchy](stage-1-pump-it-up/reports/catboost-identity-full-hierarchy
 and [identity hash](stage-1-pump-it-up/reports/identity-hash-screen.md)
 and [one-vs-rest XGBoost](stage-1-pump-it-up/reports/one-vs-rest-xgboost-screen.md)
 and [one-vs-rest CatBoost](stage-1-pump-it-up/reports/one-vs-rest-catboost-screen.md)
+and [hard majority](stage-1-pump-it-up/reports/hard-majority-decision-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

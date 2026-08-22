@@ -326,12 +326,18 @@ at about 28.9 fold-minutes of compute. Combining both XGBoost and CatBoost OvR
 bags did not add their gains. Task decomposition is closed. See the
 [OvR CatBoost report](reports/one-vs-rest-catboost-screen.md).
 
+A no-refit hard-majority rule then selected any two-component agreement and
+used the promoted soft vote only for the 160 all-disagree rows. It fell to
+81.534% and lost on every fold, confirming that component probability magnitude
+matters. See the
+[hard-majority report](reports/hard-majority-decision-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate component hard-majority decisions with the promoted soft vote only
-   as the deterministic tie-break when all three components disagree.
+2. Audit credible external evidence for a genuinely new representation or data
+   source before spending further compute on the saturated local feature space.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
