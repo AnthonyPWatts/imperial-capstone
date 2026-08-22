@@ -97,7 +97,9 @@ physical representation. That cross gained only 0.006 points and a depth-7
 identity substitution also trailed, closing those fine-tuning branches. The
 next distinct representation is fold-safe character n-grams over sparse names.
 That text model also reduced the ensemble result. The next bounded test gives
-the identity CatBoost explicit physical hierarchy back-off categories.
+the identity CatBoost explicit physical hierarchy back-off categories. Those
+parents added only three aggregate development wins, so the next distinct test
+is fold-safe high-confidence transductive pseudo-labelling.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -115,6 +117,7 @@ and [identity confirmation](stage-1-pump-it-up/reports/catboost-identity-confirm
 and [identity context](stage-1-pump-it-up/reports/catboost-identity-context-screen.md)
 and [identity follow-ups](stage-1-pump-it-up/reports/catboost-identity-follow-up-screen.md)
 and [name text](stage-1-pump-it-up/reports/deferred-name-text-screen.md)
+and [physical back-offs](stage-1-pump-it-up/reports/catboost-identity-physical-backoff-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

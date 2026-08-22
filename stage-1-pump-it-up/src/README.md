@@ -127,7 +127,8 @@ Current modules:
 - `catboost_identity_evaluation.py` adds all six deferred identity fields as
   conservatively normalised native CatBoost categoricals, optionally adds the
   three predeclared supported context pairs and evaluates the fixed depth-8 or
-  single diversity-motivated depth-7 representation on the frozen folds.
+  single diversity-motivated depth-7 representation on the frozen folds. It
+  also supports the single all-physical-parent back-off representation.
 - `catboost_identity_confirmation.py` refits the accepted and preselected
   complete-identity recipes from development to local test, scores unchanged
   three-class labels, reports paired hard-prediction changes and builds both

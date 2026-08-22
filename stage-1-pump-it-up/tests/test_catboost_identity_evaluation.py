@@ -16,8 +16,12 @@ if str(SRC_DIR) not in sys.path:
 
 from catboost_identity_evaluation import DEFERRED_IDENTITY_FEATURES
 from catboost_identity_evaluation import CONTEXT_IDENTITY_FEATURES
+from catboost_identity_evaluation import PHYSICAL_BACKOFF_FEATURES
 from catboost_identity_evaluation import engineer_complete_identity_catboost_features
 from catboost_identity_evaluation import engineer_context_identity_catboost_features
+from catboost_identity_evaluation import (
+    engineer_hierarchy_backoff_identity_catboost_features,
+)
 from feature_engineering import CATEGORICAL_FEATURES
 from feature_engineering import EXPECTED_SOURCE_FEATURES
 
@@ -64,6 +68,21 @@ class CatBoostIdentityEvaluationTests(unittest.TestCase):
         self.assertEqual(
             engineered.loc[0, "funder_installer_context_identity"],
             "government::dwe",
+        )
+
+    def test_physical_backoffs_add_all_four_deterministic_parents(self) -> None:
+        frame = _source_frame()
+
+        engineered, categorical = (
+            engineer_hierarchy_backoff_identity_catboost_features(frame)
+        )
+
+        self.assertEqual(categorical[-4:], PHYSICAL_BACKOFF_FEATURES)
+        self.assertTrue(
+            all(
+                engineered.loc[0, feature] == "value"
+                for feature in PHYSICAL_BACKOFF_FEATURES
+            )
         )
 
 

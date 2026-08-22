@@ -85,6 +85,9 @@ CatBoost result are in
 The fixed deferred-name character TF-IDF logistic and its 5% ensemble
 contribution are in [`deferred-name-text-screen.md`](deferred-name-text-screen.md).
 
+The all-parent physical-backoff identity CatBoost and unchanged 20% voter are
+in [`catboost-identity-physical-backoff-screen.md`](catboost-identity-physical-backoff-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

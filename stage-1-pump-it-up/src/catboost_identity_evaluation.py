@@ -32,6 +32,15 @@ CONTEXT_IDENTITY_FEATURES = (
     "lga_scheme_context_identity",
     "funder_installer_context_identity",
 )
+PHYSICAL_BACKOFF_SOURCES = (
+    "extraction_type_class",
+    "source_class",
+    "quality_group",
+    "waterpoint_type_group",
+)
+PHYSICAL_BACKOFF_FEATURES = tuple(
+    f"{source}_backoff" for source in PHYSICAL_BACKOFF_SOURCES
+)
 
 
 @_dataclass(frozen=True)
@@ -117,6 +126,59 @@ def evaluate_depth7_complete_identity_catboost(
     first_training_positions, _ = next(cross_validation.split())
     engineered, categorical = engineer_complete_identity_catboost_features(
         partitioned_data.X_development.iloc[first_training_positions]
+    )
+    return CatBoostIdentityTrial(
+        evaluation=evaluation,
+        engineered_features=engineered.shape[1],
+        categorical_features=len(categorical),
+    )
+
+
+def engineer_hierarchy_backoff_identity_catboost_features(
+    X: _pd.DataFrame,
+) -> tuple[_pd.DataFrame, tuple[str, ...]]:
+    """Add all four deterministic physical parents as native back-off fields."""
+
+    engineered, categorical = engineer_complete_identity_catboost_features(X)
+    for source, feature in zip(
+        PHYSICAL_BACKOFF_SOURCES,
+        PHYSICAL_BACKOFF_FEATURES,
+        strict=True,
+    ):
+        engineered[feature] = normalise_identity(X[source]).astype(str)
+    if tuple(engineered.columns[-len(PHYSICAL_BACKOFF_FEATURES) :]) != (
+        PHYSICAL_BACKOFF_FEATURES
+    ):
+        raise ValueError("Physical-backoff CatBoost feature order changed.")
+    return engineered, (*categorical, *PHYSICAL_BACKOFF_FEATURES)
+
+
+def evaluate_hierarchy_backoff_identity_catboost(
+    partitioned_data: PartitionedData,
+    cross_validation: object,
+) -> CatBoostIdentityTrial:
+    """Evaluate one identity CatBoost with all physical parent back-offs."""
+
+    spec = _replace(
+        make_catboost_spec(variant="d8"),
+        name="CatBoost d8 [identity plus physical back-offs]",
+        feature_policy=(
+            "accepted plus six deferred identities and four physical parents"
+        ),
+    )
+    evaluation = evaluate_gpu_candidate(
+        spec,
+        partitioned_data,
+        cross_validation,
+        catboost_feature_engineer=(
+            engineer_hierarchy_backoff_identity_catboost_features
+        ),
+    )
+    first_training_positions, _ = next(cross_validation.split())
+    engineered, categorical = (
+        engineer_hierarchy_backoff_identity_catboost_features(
+            partitioned_data.X_development.iloc[first_training_positions]
+        )
     )
     return CatBoostIdentityTrial(
         evaluation=evaluation,

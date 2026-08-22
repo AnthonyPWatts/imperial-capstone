@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 43,
-    "total": 43,
-    "current": "Character n-grams over deferred names reduced ensemble accuracy"
+    "completed": 44,
+    "total": 44,
+    "current": "Physical back-off layers added only three development-row wins"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Evaluate one identity-CatBoost member with explicit physical hierarchy back-off categories.",
+    "nextCheckpoint": "Evaluate one fold-safe high-confidence transductive pseudo-labelling policy.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

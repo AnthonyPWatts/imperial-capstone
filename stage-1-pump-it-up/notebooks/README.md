@@ -131,6 +131,9 @@ It does not replace the formal split and evaluation sequence below.
 28. [`29-deferred-name-text.ipynb`](29-deferred-name-text.ipynb): fold-fitted
     character TF-IDF over all six deferred names, one regularised logistic model
     and one fixed low-weight contribution to the promoted vote.
+29. [`30-catboost-identity-physical-backoffs.ipynb`](30-catboost-identity-physical-backoffs.ipynb):
+    one complete-identity CatBoost augmented with all four deterministic
+    physical parents as native back-off layers at the unchanged 20% weight.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

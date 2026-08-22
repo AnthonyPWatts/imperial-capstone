@@ -255,13 +255,19 @@ fold-fitted character 3–5 grams alongside the accepted features. It reached
 without vectoriser or weight tuning. See the
 [name-text report](reports/deferred-name-text-screen.md).
 
+Adding extraction class, source class, quality group and waterpoint group only
+to the identity CatBoost then reached 81.7466% at the unchanged 20% weight: a
+three-row, 0.0063-point gain with two fold wins. The specialist itself weakened,
+so parent subsets are not screened. See the
+[physical-backoff report](reports/catboost-identity-physical-backoff-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate one complete-identity CatBoost member with the four deterministic
-   physical parent categories as explicit native back-off layers. Preserve the
-   promoted 20% contribution and do not screen parent subsets.
+2. Evaluate one transductive pseudo-labelling policy. Inside each outer fold,
+   use only the outer-training teacher to label a small fixed high-confidence
+   subset of competition rows before refitting and scoring untouched validation.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
