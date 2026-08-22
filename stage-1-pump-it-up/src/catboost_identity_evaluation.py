@@ -41,6 +41,7 @@ PHYSICAL_BACKOFF_SOURCES = (
 PHYSICAL_BACKOFF_FEATURES = tuple(
     f"{source}_backoff" for source in PHYSICAL_BACKOFF_SOURCES
 )
+AGE_COHORT_IDENTITY_FEATURE = "pump_age_cohort"
 
 
 @_dataclass(frozen=True)
@@ -95,6 +96,49 @@ def evaluate_complete_identity_catboost(
     )
     first_training_positions, _ = next(cross_validation.split())
     engineered, categorical = engineer_complete_identity_catboost_features(
+        partitioned_data.X_development.iloc[first_training_positions]
+    )
+    return CatBoostIdentityTrial(
+        evaluation=evaluation,
+        engineered_features=engineered.shape[1],
+        categorical_features=len(categorical),
+    )
+
+
+def engineer_age_cohort_identity_catboost_features(
+    X: _pd.DataFrame,
+) -> tuple[_pd.DataFrame, tuple[str, ...]]:
+    """Add the fixed pump-age cohort to the complete identity representation."""
+
+    from age_cohort_evaluation import engineer_age_cohort_features
+
+    engineered, categorical = engineer_complete_identity_catboost_features(X)
+    cohort = engineer_age_cohort_features(X)[AGE_COHORT_IDENTITY_FEATURE]
+    engineered[AGE_COHORT_IDENTITY_FEATURE] = cohort.astype(str)
+    if engineered.columns[-1] != AGE_COHORT_IDENTITY_FEATURE:
+        raise ValueError("Age-cohort CatBoost feature order changed.")
+    return engineered, (*categorical, AGE_COHORT_IDENTITY_FEATURE)
+
+
+def evaluate_age_cohort_identity_catboost(
+    partitioned_data: PartitionedData,
+    cross_validation: object,
+) -> CatBoostIdentityTrial:
+    """Evaluate depth-8 identity CatBoost with the fixed pump-age cohort."""
+
+    spec = _replace(
+        make_catboost_spec(variant="d8"),
+        name="CatBoost d8 [complete identities plus pump-age cohort]",
+        feature_policy="accepted plus six identities and pump-age cohort",
+    )
+    evaluation = evaluate_gpu_candidate(
+        spec,
+        partitioned_data,
+        cross_validation,
+        catboost_feature_engineer=engineer_age_cohort_identity_catboost_features,
+    )
+    first_training_positions, _ = next(cross_validation.split())
+    engineered, categorical = engineer_age_cohort_identity_catboost_features(
         partitioned_data.X_development.iloc[first_training_positions]
     )
     return CatBoostIdentityTrial(

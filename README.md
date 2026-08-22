@@ -107,7 +107,9 @@ rows. The next unexplored audited family is explicit recording-time categories.
 Those categories also weakened both tree families. The next unresolved audit
 recommendation was fold-fitted frequency for all six deferred identities. That
 fixed policy also weakened the promoted vote, so the next distinct feature test
-uses broad construction-vintage cohorts alongside continuous pump age.
+used broad construction-vintage cohorts alongside continuous pump age. That
+reached 81.8035% but missed promotion; the next bounded variance-reduction test
+adds one fixed seed inside the successful identity CatBoost voter.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -130,6 +132,7 @@ and [pseudo-labelling](stage-1-pump-it-up/reports/transductive-pseudo-labelling-
 and [confident filtering](stage-1-pump-it-up/reports/confident-label-filtering-screen.md)
 and [recording time](stage-1-pump-it-up/reports/recording-time-feature-screen.md)
 and [identity frequency](stage-1-pump-it-up/reports/identity-frequency-screen.md)
+and [pump age](stage-1-pump-it-up/reports/pump-age-cohort-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

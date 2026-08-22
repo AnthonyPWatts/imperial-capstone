@@ -15,9 +15,11 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from catboost_identity_evaluation import DEFERRED_IDENTITY_FEATURES
+from catboost_identity_evaluation import AGE_COHORT_IDENTITY_FEATURE
 from catboost_identity_evaluation import CONTEXT_IDENTITY_FEATURES
 from catboost_identity_evaluation import PHYSICAL_BACKOFF_FEATURES
 from catboost_identity_evaluation import engineer_complete_identity_catboost_features
+from catboost_identity_evaluation import engineer_age_cohort_identity_catboost_features
 from catboost_identity_evaluation import engineer_context_identity_catboost_features
 from catboost_identity_evaluation import (
     engineer_hierarchy_backoff_identity_catboost_features,
@@ -84,6 +86,16 @@ class CatBoostIdentityEvaluationTests(unittest.TestCase):
                 for feature in PHYSICAL_BACKOFF_FEATURES
             )
         )
+
+    def test_age_cohort_is_a_native_category_after_all_identities(self) -> None:
+        frame = _source_frame()
+
+        engineered, categorical = engineer_age_cohort_identity_catboost_features(
+            frame
+        )
+
+        self.assertEqual(categorical[-1], AGE_COHORT_IDENTITY_FEATURE)
+        self.assertEqual(engineered.loc[0, AGE_COHORT_IDENTITY_FEATURE], "11-20")
 
 
 def _source_frame() -> pd.DataFrame:

@@ -287,12 +287,19 @@ Random Forest component but damaged XGBoost; the promoted identity vote fell to
 without frequency subsets or weight tuning. See the
 [identity-frequency report](reports/identity-frequency-screen.md).
 
+A fixed pump-age cohort then supplemented continuous age in the global trees,
+the identity CatBoost and all three components. The all-component vote reached
+81.804%, a stable 0.063-point gain with three fold wins, but every individual
+component weakened and the gain missed the promotion gate. Cut points and
+weights remain untuned. See the
+[pump-age report](reports/pump-age-cohort-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate one fixed construction-vintage policy alongside continuous pump
-   age; use broad, predeclared cohorts rather than screening cut points.
+2. Evaluate one additional fixed seed for the complete-identity CatBoost and
+   average it equally inside the existing 20% CatBoost allocation.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

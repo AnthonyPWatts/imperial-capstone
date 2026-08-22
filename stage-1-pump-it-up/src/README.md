@@ -145,6 +145,10 @@ Current modules:
 - `temporal_feature_evaluation.py` adds explicit recording year, month and
   year-month categories beside accepted elapsed days and evaluates the accepted
   XGBoost and Random Forest specifications on frozen folds.
+- `identity_frequency_evaluation.py` adds six fold-fitted numeric log occurrence
+  counts without target statistics or raw identity one-hot columns.
+- `age_cohort_evaluation.py` adds one fixed categorical pump-age cohort beside
+  accepted continuous age and evaluates the accepted tree specifications.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

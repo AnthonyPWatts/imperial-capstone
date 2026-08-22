@@ -99,6 +99,12 @@ class-removal audit are in
 The fixed recording year, month and year-month categories beside elapsed days
 are in [`recording-time-feature-screen.md`](recording-time-feature-screen.md).
 
+The six fold-fitted deferred-identity occurrence counts are in
+[`identity-frequency-screen.md`](identity-frequency-screen.md).
+
+The fixed pump-age cohort across the global trees and identity CatBoost is in
+[`pump-age-cohort-screen.md`](pump-age-cohort-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.
