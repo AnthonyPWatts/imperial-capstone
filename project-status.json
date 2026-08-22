@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 47,
-    "total": 47,
-    "current": "Hard component majority lost 0.206 points on every fold"
+    "completed": 48,
+    "total": 48,
+    "current": "All-categorical frequency forest bag gained only 0.025 points"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Audit external evidence for a genuinely new representation or data source.",
+    "nextCheckpoint": "Continue the official-solution audit beyond categorical occurrence counts.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

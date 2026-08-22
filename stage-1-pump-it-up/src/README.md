@@ -159,6 +159,9 @@ Current modules:
   task to complete native identities with depth-8 CatBoost.
 - `decision_combiner_evaluation.py` evaluates component hard consensus with the
   promoted soft vote as the deterministic all-disagree fallback.
+- `categorical_frequency_forest_evaluation.py` replaces all 29 categorical and
+  exact-date values with fold-fitted occurrence support, merges rare and unseen
+  levels, and evaluates one compact Random Forest representation.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

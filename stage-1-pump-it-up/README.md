@@ -332,12 +332,19 @@ used the promoted soft vote only for the 160 all-disagree rows. It fell to
 matters. See the
 [hard-majority report](reports/hard-majority-decision-screen.md).
 
+The official solution archive then motivated a compact Random Forest that
+replaced all 29 categorical/date fields with fold-fitted occurrence support.
+Its hard predictions differed from the accepted forest on 6.46% of rows, but
+an equal within-family representation bag gained only 0.025 points, reaching
+81.766%. The count threshold and blend are not tuned. See the
+[categorical-frequency report](reports/categorical-frequency-forest-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Audit credible external evidence for a genuinely new representation or data
-   source before spending further compute on the saturated local feature space.
+2. Continue the official-solution evidence audit for a genuinely new mechanism
+   or data source; do not tune the near-miss frequency-forest blend.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

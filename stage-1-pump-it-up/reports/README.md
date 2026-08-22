@@ -123,6 +123,10 @@ bags are in [`one-vs-rest-catboost-screen.md`](one-vs-rest-catboost-screen.md).
 The no-refit component hard-majority rule with promoted soft tie-break is in
 [`hard-majority-decision-screen.md`](hard-majority-decision-screen.md).
 
+The official-archive-inspired all-categorical occurrence-count Random Forest
+and equal within-family representation bag are in
+[`categorical-frequency-forest-screen.md`](categorical-frequency-forest-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

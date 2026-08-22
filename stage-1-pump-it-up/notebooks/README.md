@@ -143,6 +143,25 @@ It does not replace the formal split and evaluation sequence below.
 32. [`33-recording-time-features.ipynb`](33-recording-time-features.ipynb):
     one fixed recording year, month and year-month policy beside elapsed days,
     with accepted XGBoost and Random Forest refits.
+33. [`34-identity-frequencies.ipynb`](34-identity-frequencies.ipynb): six
+    fold-fitted deferred-identity occurrence counts beside accepted features.
+34. [`35-pump-age-cohorts.ipynb`](35-pump-age-cohorts.ipynb): one fixed
+    categorical age cohort tested across all promoted components.
+35. [`36-catboost-identity-seed-bag.ipynb`](36-catboost-identity-seed-bag.ipynb):
+    one additional fixed CatBoost seed and an equal within-component seed bag.
+36. [`37-catboost-identity-full-hierarchy.ipynb`](37-catboost-identity-full-hierarchy.ipynb):
+    all seven supplied physical parents added to native identity CatBoost.
+37. [`38-identity-hashing.ipynb`](38-identity-hashing.ipynb): one fixed 4,096-
+    column target-free hash block for the six deferred identities.
+38. [`39-one-vs-rest-xgboost.ipynb`](39-one-vs-rest-xgboost.ipynb): independent
+    binary XGBoost class boundaries and one equal boundary bag.
+39. [`40-one-vs-rest-catboost.ipynb`](40-one-vs-rest-catboost.ipynb): independent
+    native-identity CatBoost class boundaries and fixed boundary bags.
+40. [`41-hard-majority-decisions.ipynb`](41-hard-majority-decisions.ipynb): one
+    deterministic hard-consensus rule with the promoted soft-vote tie-break.
+41. [`42-categorical-frequency-forest.ipynb`](42-categorical-frequency-forest.ipynb):
+    all categorical/date levels replaced by fold-fitted occurrence support in a
+    compact Random Forest and equal representation bag.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments
