@@ -153,6 +153,8 @@ Current modules:
   block for the six deferred identities to accepted sparse preprocessing.
 - `age_cohort_evaluation.py` adds one fixed categorical pump-age cohort beside
   accepted continuous age and evaluates the accepted tree specifications.
+- `one_vs_rest_evaluation.py` fits three independent binary XGBoost boundaries
+  inside each outer fold and normalises them to three-class memberships.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

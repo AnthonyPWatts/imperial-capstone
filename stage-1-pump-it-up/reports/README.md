@@ -114,6 +114,9 @@ The all-seven-field physical-hierarchy identity CatBoost is in
 The fixed target-free shared hash space for all six deferred identities is in
 [`identity-hash-screen.md`](identity-hash-screen.md).
 
+The independent one-vs-rest XGBoost boundaries and fixed equal boundary bag are
+in [`one-vs-rest-xgboost-screen.md`](one-vs-rest-xgboost-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

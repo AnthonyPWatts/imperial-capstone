@@ -114,7 +114,9 @@ bag weakened the vote, so the next representation test supplies every physical
 hierarchy back-off to the native-categorical identity model. That model also
 weakened, leaving target-free identity hashing as the remaining audited sparse-
 name representation. Hashing also weakened XGBoost; the next distinct task-
-structure test learns three independent one-vs-rest class boundaries.
+structure test learned three independent one-vs-rest XGBoost boundaries. Their
+fixed boundary bag gained only 0.019 points; native identity CatBoost receives
+the final independent-boundary check.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -141,6 +143,7 @@ and [pump age](stage-1-pump-it-up/reports/pump-age-cohort-screen.md)
 and [identity seed bag](stage-1-pump-it-up/reports/catboost-identity-seed-bag.md)
 and [full hierarchy](stage-1-pump-it-up/reports/catboost-identity-full-hierarchy.md)
 and [identity hash](stage-1-pump-it-up/reports/identity-hash-screen.md)
+and [one-vs-rest XGBoost](stage-1-pump-it-up/reports/one-vs-rest-xgboost-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

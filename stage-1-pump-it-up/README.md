@@ -312,12 +312,19 @@ substitution fell to 81.578% with one fold win. Hash dimensions are not tuned,
 and the sparse-name representation branch closes. See the
 [identity-hash report](reports/identity-hash-screen.md).
 
+Three independent one-vs-rest XGBoost boundaries then improved standalone
+XGBoost to 81.082%, but direct ensemble substitution weakened. A single equal
+multiclass/OvR boundary bag reached 81.759% with three fold wins and no losing
+fold, only 0.019 points above the promoted recipe. The XGBoost OvR branch closes
+without weights or thresholds. See the
+[one-vs-rest report](reports/one-vs-rest-xgboost-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate one-vs-rest XGBoost with three independent binary class boundaries,
-   normalised back to three memberships before the unchanged ensemble test.
+2. Evaluate the same independent one-vs-rest task with native complete-identity
+   CatBoost before closing task-structure alternatives.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

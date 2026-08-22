@@ -6,13 +6,13 @@
   "overall": {
     "completed": 47,
     "total": 47,
-    "current": "Target-free identity hashing reduced XGBoost and the promoted vote"
+    "current": "One-vs-rest XGBoost improved standalone but not the promoted vote"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Evaluate three independent one-vs-rest XGBoost class boundaries.",
+    "nextCheckpoint": "Evaluate one-vs-rest boundaries for complete-identity CatBoost.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
