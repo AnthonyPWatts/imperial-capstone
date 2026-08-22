@@ -189,6 +189,9 @@ It does not replace the formal split and evaluation sequence below.
 50. [`51-radial-frequency-forest.ipynb`](51-radial-frequency-forest.ipynb):
     archived origin-distance completion of the occurrence-count forest and its
     fixed archive substitutions.
+51. [`52-physical-state-interactions.ipynb`](52-physical-state-interactions.ipynb):
+    fixed quantity-by-extraction, source and waterpoint CatBoost composites and
+    their promoted/archive substitutions.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

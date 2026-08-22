@@ -177,6 +177,8 @@ Current modules:
 - `regional_interaction_evaluation.py` adds one shared region-by-extraction,
   source and waterpoint interaction layer to the accepted global models and
   complete-identity CatBoost without fitting isolated regional experts.
+- `physical_state_interaction_evaluation.py` adds fixed quantity-by-extraction,
+  source and waterpoint composites to complete-identity CatBoost.
 - `source_identity_confirmation.py` refits the public-leading source-plus-class
   components on development, reuses the frozen identity probabilities and
   builds the two fixed local-test recipes used for submission ordering.

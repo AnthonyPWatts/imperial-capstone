@@ -163,6 +163,10 @@ The official-archive origin-distance completion of the occurrence-count forest
 and its fixed archive substitutions are in
 [`radial-frequency-forest-screen.md`](radial-frequency-forest-screen.md).
 
+The fixed quantity-by-extraction, source and waterpoint native CatBoost layer
+and its archive substitutions are in
+[`physical-state-interaction-screen.md`](physical-state-interaction-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.
