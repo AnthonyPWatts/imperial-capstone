@@ -198,6 +198,8 @@ It does not replace the formal split and evaluation sequence below.
 53. [`54-radial-random-forest.ipynb`](54-radial-random-forest.ipynb): shared
     radial distance in the accepted one-hot Random Forest and its fixed
     promoted/archive crosses.
+54. [`55-probability-stack.ipynb`](55-probability-stack.ipynb): one constrained
+    centred-log multinomial combiner over all six archive memberships.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

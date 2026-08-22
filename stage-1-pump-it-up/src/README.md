@@ -169,6 +169,8 @@ Current modules:
   distance from `(0, 0)` used by archived-representation experiments.
 - `radial_random_forest_evaluation.py` adds that radial distance to the accepted
   one-hot Random Forest without changing its other features or settings.
+- `probability_stack_evaluation.py` creates centred log-membership meta-features
+  and evaluates one regularised cross-fitted multinomial combiner.
 - `spatial_height_imputation_evaluation.py` reconstructs unavailable GPS height
   from a fold-fitted haversine index over ten nearby measured points, preserves
   the missingness flag and refits the accepted tree components.

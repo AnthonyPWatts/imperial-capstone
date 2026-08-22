@@ -175,6 +175,10 @@ The shared radial-distance feature in the stronger accepted one-hot Random
 Forest and its fixed promoted/archive crosses are in
 [`radial-random-forest-screen.md`](radial-random-forest-screen.md).
 
+The constrained centred-log multinomial combiner over all six archive
+component memberships is in
+[`probability-stack-screen.md`](probability-stack-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.
