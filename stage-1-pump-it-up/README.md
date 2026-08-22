@@ -339,12 +339,19 @@ an equal within-family representation bag gained only 0.025 points, reaching
 81.766%. The count threshold and blend are not tuned. See the
 [categorical-frequency report](reports/categorical-frequency-forest-screen.md).
 
+A second archived solution motivated learned reconstruction of missing GPS
+height. One fold-fitted ten-neighbour coordinate treatment strengthened both
+tree components slightly; equal averaging of original and imputed
+representations reached 81.768%, a 0.027-point gain with four fold wins. The
+effect remains below the promotion gate. See the
+[spatial-height report](reports/spatial-height-imputation-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Continue the official-solution evidence audit for a genuinely new mechanism
-   or data source; do not tune the near-miss frequency-forest blend.
+2. Test whether the two independent archive-derived representation bags
+   compound once; do not tune their thresholds, neighbour counts or weights.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

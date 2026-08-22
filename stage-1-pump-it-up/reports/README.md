@@ -127,6 +127,10 @@ The official-archive-inspired all-categorical occurrence-count Random Forest
 and equal within-family representation bag are in
 [`categorical-frequency-forest-screen.md`](categorical-frequency-forest-screen.md).
 
+The fixed ten-neighbour GPS-height reconstruction, accepted-component refits
+and equal original/imputed representation bag are in
+[`spatial-height-imputation-screen.md`](spatial-height-imputation-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

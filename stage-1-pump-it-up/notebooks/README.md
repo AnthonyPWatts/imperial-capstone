@@ -162,6 +162,9 @@ It does not replace the formal split and evaluation sequence below.
 41. [`42-categorical-frequency-forest.ipynb`](42-categorical-frequency-forest.ipynb):
     all categorical/date levels replaced by fold-fitted occurrence support in a
     compact Random Forest and equal representation bag.
+42. [`43-spatial-height-imputation.ipynb`](43-spatial-height-imputation.ipynb):
+    fixed ten-neighbour coordinate reconstruction for unavailable GPS height,
+    accepted component refits and one equal original/imputed representation bag.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

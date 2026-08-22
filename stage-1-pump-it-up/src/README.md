@@ -162,6 +162,9 @@ Current modules:
 - `categorical_frequency_forest_evaluation.py` replaces all 29 categorical and
   exact-date values with fold-fitted occurrence support, merges rare and unseen
   levels, and evaluates one compact Random Forest representation.
+- `spatial_height_imputation_evaluation.py` reconstructs unavailable GPS height
+  from a fold-fitted haversine index over ten nearby measured points, preserves
+  the missingness flag and refits the accepted tree components.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.
