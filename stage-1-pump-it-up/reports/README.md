@@ -88,6 +88,10 @@ contribution are in [`deferred-name-text-screen.md`](deferred-name-text-screen.m
 The all-parent physical-backoff identity CatBoost and unchanged 20% voter are
 in [`catboost-identity-physical-backoff-screen.md`](catboost-identity-physical-backoff-screen.md).
 
+The fixed 98%-confidence outer-fold teacher/student XGBoost and pseudo-label
+class audit are in
+[`transductive-pseudo-labelling-screen.md`](transductive-pseudo-labelling-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

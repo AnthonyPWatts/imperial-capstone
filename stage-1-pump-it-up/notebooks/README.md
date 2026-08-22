@@ -134,6 +134,9 @@ It does not replace the formal split and evaluation sequence below.
 29. [`30-catboost-identity-physical-backoffs.ipynb`](30-catboost-identity-physical-backoffs.ipynb):
     one complete-identity CatBoost augmented with all four deterministic
     physical parents as native back-off layers at the unchanged 20% weight.
+30. [`31-transductive-pseudo-labelling.ipynb`](31-transductive-pseudo-labelling.ipynb):
+    fold-safe teacher/student XGBoost over a fixed 98%-confidence subset of
+    unlabelled competition rows, with original validation left untouched.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

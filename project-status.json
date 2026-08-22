@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 44,
-    "total": 44,
-    "current": "Physical back-off layers added only three development-row wins"
+    "completed": 45,
+    "total": 45,
+    "current": "High-confidence transductive pseudo-labelling reduced accuracy"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Evaluate one fold-safe high-confidence transductive pseudo-labelling policy.",
+    "nextCheckpoint": "Evaluate nested confident-disagreement filtering for likely label errors.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

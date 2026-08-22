@@ -100,6 +100,8 @@ That text model also reduced the ensemble result. The next bounded test gives
 the identity CatBoost explicit physical hierarchy back-off categories. Those
 parents added only three aggregate development wins, so the next distinct test
 is fold-safe high-confidence transductive pseudo-labelling.
+That self-training policy also reduced accuracy. The next bounded outlier loop
+targets likely label errors using strictly nested confident disagreement.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -118,6 +120,7 @@ and [identity context](stage-1-pump-it-up/reports/catboost-identity-context-scre
 and [identity follow-ups](stage-1-pump-it-up/reports/catboost-identity-follow-up-screen.md)
 and [name text](stage-1-pump-it-up/reports/deferred-name-text-screen.md)
 and [physical back-offs](stage-1-pump-it-up/reports/catboost-identity-physical-backoff-screen.md)
+and [pseudo-labelling](stage-1-pump-it-up/reports/transductive-pseudo-labelling-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

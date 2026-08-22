@@ -136,6 +136,9 @@ Current modules:
 - `name_text_evaluation.py` builds one fold-fitted accepted-plus-character-
   TF-IDF logistic model over the six deferred names and returns aligned OOF
   probabilities for a fixed low-weight voter test.
+- `transductive_pseudo_labelling.py` fits an outer-training XGBoost teacher,
+  appends only competition rows crossing the fixed 98% confidence threshold,
+  refits the student and scores the untouched outer validation fold.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

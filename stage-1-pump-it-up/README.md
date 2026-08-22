@@ -261,13 +261,19 @@ three-row, 0.0063-point gain with two fold wins. The specialist itself weakened,
 so parent subsets are not screened. See the
 [physical-backoff report](reports/catboost-identity-physical-backoff-screen.md).
 
+A transductive XGBoost teacher then added 2,394–2,740 competition rows per fold
+at a fixed 98% confidence threshold before student refitting. No selected row
+was labelled repair. Student XGBoost weakened by 0.088 points and the promoted
+vote fell to 81.730%, despite three fold wins. Threshold tuning is stopped. See
+the [pseudo-labelling report](reports/transductive-pseudo-labelling-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate one transductive pseudo-labelling policy. Inside each outer fold,
-   use only the outer-training teacher to label a small fixed high-confidence
-   subset of competition rows before refitting and scoring untouched validation.
+2. Evaluate one nested confident-disagreement filter for likely label errors.
+   Generate removal evidence only from inner out-of-fold teacher predictions
+   within each outer-training partition; keep every validation row in scoring.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
