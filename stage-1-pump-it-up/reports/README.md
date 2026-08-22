@@ -117,6 +117,9 @@ The fixed target-free shared hash space for all six deferred identities is in
 The independent one-vs-rest XGBoost boundaries and fixed equal boundary bag are
 in [`one-vs-rest-xgboost-screen.md`](one-vs-rest-xgboost-screen.md).
 
+The complete-identity one-vs-rest CatBoost boundaries, runtime and boundary
+bags are in [`one-vs-rest-catboost-screen.md`](one-vs-rest-catboost-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

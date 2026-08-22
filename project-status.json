@@ -6,13 +6,13 @@
   "overall": {
     "completed": 47,
     "total": 47,
-    "current": "One-vs-rest XGBoost improved standalone but not the promoted vote"
+    "current": "One-vs-rest identity CatBoost gained 0.036 points at high cost"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Evaluate one-vs-rest boundaries for complete-identity CatBoost.",
+    "nextCheckpoint": "Evaluate component hard-majority with the soft vote as tie-break.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

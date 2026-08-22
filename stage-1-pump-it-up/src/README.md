@@ -155,6 +155,8 @@ Current modules:
   accepted continuous age and evaluates the accepted tree specifications.
 - `one_vs_rest_evaluation.py` fits three independent binary XGBoost boundaries
   inside each outer fold and normalises them to three-class memberships.
+- `one_vs_rest_catboost_evaluation.py` applies the same independent-boundary
+  task to complete native identities with depth-8 CatBoost.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

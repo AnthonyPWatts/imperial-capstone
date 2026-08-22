@@ -319,12 +319,19 @@ fold, only 0.019 points above the promoted recipe. The XGBoost OvR branch closes
 without weights or thresholds. See the
 [one-vs-rest report](reports/one-vs-rest-xgboost-screen.md).
 
+Complete-identity CatBoost then received the same independent-boundary task.
+OvR raised standalone CatBoost to 81.130%; an equal CatBoost boundary bag raised
+the promoted vote to 81.776% with four fold wins, but gained only 0.036 points
+at about 28.9 fold-minutes of compute. Combining both XGBoost and CatBoost OvR
+bags did not add their gains. Task decomposition is closed. See the
+[OvR CatBoost report](reports/one-vs-rest-catboost-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate the same independent one-vs-rest task with native complete-identity
-   CatBoost before closing task-structure alternatives.
+2. Evaluate component hard-majority decisions with the promoted soft vote only
+   as the deterministic tie-break when all three components disagree.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

@@ -116,7 +116,9 @@ weakened, leaving target-free identity hashing as the remaining audited sparse-
 name representation. Hashing also weakened XGBoost; the next distinct task-
 structure test learned three independent one-vs-rest XGBoost boundaries. Their
 fixed boundary bag gained only 0.019 points; native identity CatBoost receives
-the final independent-boundary check.
+the final independent-boundary check. Its boundary bag gained 0.036 points at
+high compute cost and also missed promotion; a no-refit hard-majority combiner
+is the next bounded ensemble rule.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -144,6 +146,7 @@ and [identity seed bag](stage-1-pump-it-up/reports/catboost-identity-seed-bag.md
 and [full hierarchy](stage-1-pump-it-up/reports/catboost-identity-full-hierarchy.md)
 and [identity hash](stage-1-pump-it-up/reports/identity-hash-screen.md)
 and [one-vs-rest XGBoost](stage-1-pump-it-up/reports/one-vs-rest-xgboost-screen.md)
+and [one-vs-rest CatBoost](stage-1-pump-it-up/reports/one-vs-rest-catboost-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed
