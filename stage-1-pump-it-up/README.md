@@ -280,36 +280,42 @@ Forest weakened, and the promoted vote fell to 81.711% with two fold wins. The
 continuous elapsed feature is retained without further calendar bins. See the
 [recording-time report](reports/recording-time-feature-screen.md).
 
+Six fold-fitted log occurrence counts then represented support for funder,
+installer, waterpoint name, subvillage, ward and scheme name. They improved the
+Random Forest component but damaged XGBoost; the promoted identity vote fell to
+81.585% with one fold win. The native identity representation is retained
+without frequency subsets or weight tuning. See the
+[identity-frequency report](reports/identity-frequency-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate fold-fitted log occurrence frequencies for all six deferred
-   identities. Add numeric frequency only—no target statistics or raw one-hot
-   identity—and use one fixed XGBoost/Random Forest policy.
-2. Keep the LGA-disjoint result as a robustness warning; do not replace the
+2. Evaluate one fixed construction-vintage policy alongside continuous pump
+   age; use broad, predeclared cohorts rather than screening cut points.
+3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
-3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
+4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
    do not start another oversampling loop or claim an expected accuracy gain.
-4. Retain the operational hierarchy as a named candidate for decision-focused
+5. Retain the operational hierarchy as a named candidate for decision-focused
    work; do not replace the competition's flat target silently.
-5. Stop both isolated regional classifiers and extra-voter weight grids unless
+6. Stop both isolated regional classifiers and extra-voter weight grids unless
    a genuinely new representation, data source or operational objective appears.
-6. Retain all three target classes for competition modelling; the binary-only
+7. Retain all three target classes for competition modelling; the binary-only
    rebuild improves its narrower decision but loses 1.538 development points
    once repair cases are scored.
-7. Retain crisp labels; stop global triangular-overlap tuning unless row-level
+8. Retain crisp labels; stop global triangular-overlap tuning unless row-level
    uncertainty evidence becomes available.
-8. Use the retained probability memberships to describe uncertainty and inspect
+9. Use the retained probability memberships to describe uncertainty and inspect
    edge cases, but do not call an uncertain row an outlier merely because its
    winning margin is small.
-9. Stop broad outlier removal for the accepted representation. The difficult
+10. Stop broad outlier removal for the accepted representation. The difficult
    rows are part of the inference population, and every tested filter reduced
    unchanged-fold accuracy.
-10. Stop category-wide target-encoding and weight grids. The complete policies
+11. Stop category-wide target-encoding and weight grids. The complete policies
     are substantially weaker; their best bounded low-weight contribution gains
     only 0.048 points.
-11. Stop local spatial outcome features and neighbour grids. Their information
+12. Stop local spatial outcome features and neighbour grids. Their information
     is already largely represented by accepted geography, and the complete
     feature vote loses 0.629 points.
 

@@ -105,7 +105,9 @@ targets likely label errors using strictly nested confident disagreement.
 That filter also reduced accuracy, reinforcing the decision to retain hard
 rows. The next unexplored audited family is explicit recording-time categories.
 Those categories also weakened both tree families. The next unresolved audit
-recommendation is fold-fitted frequency for all six deferred identities.
+recommendation was fold-fitted frequency for all six deferred identities. That
+fixed policy also weakened the promoted vote, so the next distinct feature test
+uses broad construction-vintage cohorts alongside continuous pump age.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -127,6 +129,7 @@ and [physical back-offs](stage-1-pump-it-up/reports/catboost-identity-physical-b
 and [pseudo-labelling](stage-1-pump-it-up/reports/transductive-pseudo-labelling-screen.md)
 and [confident filtering](stage-1-pump-it-up/reports/confident-label-filtering-screen.md)
 and [recording time](stage-1-pump-it-up/reports/recording-time-feature-screen.md)
+and [identity frequency](stage-1-pump-it-up/reports/identity-frequency-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed
