@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 38,
-    "total": 38,
-    "current": "Complete-identity CatBoost produced the first new promotion-gate pass"
+    "completed": 39,
+    "total": 39,
+    "current": "Frozen identity-CatBoost recipe gained 0.387 points on the local test"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Confirm the frozen 44:36:20 identity-CatBoost recipe once on the reserved local test.",
+    "nextCheckpoint": "Refit the frozen identity-CatBoost recipe on all labelled rows and validate a competition candidate.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

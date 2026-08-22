@@ -218,11 +218,20 @@ promotion gate. Its frozen 44% XGBoost / 36% Random Forest / 20% CatBoost recipe
 now moves to one confirmation on the already-reserved local test. See the
 [CatBoost identity report](reports/catboost-deferred-identity-screen.md).
 
+That frozen recipe then confirmed on the 11,880-row local test at 81.086%,
+against 80.699% for the identically refitted accepted ensemble: +0.387 points
+and 46 net additional correct classifications. Log loss and Brier score also
+improved. Functional recall gained 0.806 points, repair recall lost 0.695 points
+and non-functional recall was unchanged. The recipe now advances unchanged to
+a full-labelled-data competition refit; the local test will not be used for
+weight tuning. See the
+[confirmation report](reports/catboost-identity-confirmation.md).
+
 ## Next modelling loop
 
-1. Confirm the frozen 44:36:20 complete-identity CatBoost recipe once on the
-   already-reserved local test. Do not change its weights, fields or settings
-   in response to that confirmation result.
+1. Refit the frozen 44:36:20 complete-identity CatBoost recipe on all 59,400
+   labelled rows and generate a validated competition candidate. Do not tune
+   from its prediction shares or upload while the recorded daily limit is 3/3.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

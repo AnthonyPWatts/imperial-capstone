@@ -70,6 +70,10 @@ The ordered native-categorical CatBoost screen over all six deferred identity
 fields and its gate-passing 20% ensemble contribution are in
 [`catboost-deferred-identity-screen.md`](catboost-deferred-identity-screen.md).
 
+The frozen recipe's one-time local-test result, paired changes and full-data
+refit decision are in
+[`catboost-identity-confirmation.md`](catboost-identity-confirmation.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

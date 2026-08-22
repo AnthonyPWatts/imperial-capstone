@@ -127,6 +127,9 @@ Current modules:
 - `catboost_identity_evaluation.py` adds all six deferred identity fields as
   conservatively normalised native CatBoost categoricals and evaluates the one
   fixed depth-8 candidate on the frozen folds.
+- `catboost_identity_confirmation.py` refits the accepted and preselected
+  complete-identity recipes from development to local test, scores unchanged
+  three-class labels and reports paired hard-prediction changes.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

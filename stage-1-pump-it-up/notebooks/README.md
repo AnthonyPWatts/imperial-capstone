@@ -119,6 +119,9 @@ It does not replace the formal split and evaluation sequence below.
     one fixed depth-8 native-categorical CatBoost representation over all six
     deferred identities, bounded low-weight contributions and the first new
     promotion-gate pass.
+25. [`26-catboost-identity-confirmation.ipynb`](26-catboost-identity-confirmation.ipynb):
+    frozen development-to-local-test refit, paired accuracy changes, probability
+    quality and promotion to a full-labelled-data competition refit.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments
