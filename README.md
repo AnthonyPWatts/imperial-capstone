@@ -88,8 +88,10 @@ deferred identity set. That fixed CatBoost representation produced the first
 new promotion-gate pass: a 20% contribution reached 81.740%, up 0.116 points
 with four fold wins. The frozen 44:36:20 recipe then confirmed at 81.086% on the
 local test, 0.387 points above the identically refitted accepted ensemble, and
-now moves unchanged to a full-data competition refit. The main evidence is
-available in the
+its validated full-data competition file is now prepared but not uploaded. It
+changes 1.576% of accepted predictions. The next bounded experiment asks
+whether fixed geographic context can disambiguate the native identity fields.
+The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)

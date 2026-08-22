@@ -129,7 +129,8 @@ Current modules:
   fixed depth-8 candidate on the frozen folds.
 - `catboost_identity_confirmation.py` refits the accepted and preselected
   complete-identity recipes from development to local test, scores unchanged
-  three-class labels and reports paired hard-prediction changes.
+  three-class labels, reports paired hard-prediction changes and builds both
+  validated full-data competition records from shared components.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

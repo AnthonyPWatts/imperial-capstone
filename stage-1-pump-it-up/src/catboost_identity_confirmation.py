@@ -21,6 +21,8 @@ from catboost_identity_evaluation import (
 )
 from data_partitioning import PartitionedData
 from final_model import CLASS_LABELS
+from final_model import CompetitionPrediction
+from final_model import build_competition_prediction
 from final_model import ordered_probabilities
 from final_model import validate_probabilities
 from gpu_model_evaluation import fit_gpu_candidate_probabilities
@@ -29,6 +31,7 @@ from gpu_model_evaluation import make_xgboost_spec
 from gpu_model_evaluation import median_selected_iterations
 from model_evaluation import CandidateEvaluation
 from model_evaluation import make_random_forest_pipeline
+from modelling_data import ModellingData
 
 
 ACCEPTED_WEIGHTS = (0.55, 0.45)
@@ -151,6 +154,42 @@ def blend_frozen_identity_recipes(
     return {
         "accepted_55_45": accepted,
         "identity_candidate_44_36_20": candidate,
+    }
+
+
+def build_frozen_identity_competition_predictions(
+    modelling_data: ModellingData,
+    submission_template: _pd.DataFrame,
+    components: dict[str, _np.ndarray],
+    component_seconds: _pd.Series,
+) -> dict[str, CompetitionPrediction]:
+    """Build validated accepted and identity-candidate competition records."""
+
+    recipes = blend_frozen_identity_recipes(components)
+    required_seconds = {
+        "XGBoost",
+        "Random Forest",
+        "complete-identity CatBoost",
+    }
+    missing_seconds = required_seconds.difference(component_seconds.index)
+    if missing_seconds:
+        raise KeyError(
+            f"Missing component timings: {sorted(missing_seconds)!r}."
+        )
+    accepted_seconds = component_seconds.loc[["XGBoost", "Random Forest"]]
+    return {
+        "accepted_55_45": build_competition_prediction(
+            modelling_data,
+            submission_template,
+            recipes["accepted_55_45"],
+            accepted_seconds,
+        ),
+        "identity_candidate_44_36_20": build_competition_prediction(
+            modelling_data,
+            submission_template,
+            recipes["identity_candidate_44_36_20"],
+            component_seconds,
+        ),
     }
 
 

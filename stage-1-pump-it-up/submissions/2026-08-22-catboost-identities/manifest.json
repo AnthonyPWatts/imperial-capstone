@@ -1,0 +1,37 @@
+{
+  "date": "2026-08-22",
+  "status": "prepared_not_uploaded",
+  "selection": {
+    "development_accuracy": 0.8174031986531987,
+    "development_change": 0.0011574074074073293,
+    "fold_wins": 4,
+    "local_test_accuracy": 0.8108585858585858,
+    "local_test_change": 0.003872053872053916
+  },
+  "weights": {
+    "xgboost": 0.44,
+    "random_forest": 0.36,
+    "complete_identity_catboost": 0.2
+  },
+  "iterations": {
+    "xgboost": 1014,
+    "complete_identity_catboost": 2173
+  },
+  "accepted_reconstruction_exact": true,
+  "competition_prediction_disagreement": 0.01575757575757576,
+  "competition_class_shares": {
+    "functional": 0.6078787878787879,
+    "functional needs repair": 0.03622895622895623,
+    "non functional": 0.35589225589225587
+  },
+  "fit_and_predict_seconds": {
+    "XGBoost": 8.555733900007908,
+    "Random Forest": 31.714019699997152,
+    "complete-identity CatBoost": 22.04005940000934
+  },
+  "csv": "01-44-xgboost-depth-8-child-1-36-random-forest-20-catboost-complete-identities.csv",
+  "rows": 14850,
+  "unique_ids": 14850,
+  "sha256": "76cf24053f136d89262b23b626c932e2f5b609ca197e16d2cb7e4b46897bb006",
+  "daily_submission_allowance": "3/3 already used; do not upload"
+}

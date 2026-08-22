@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 39,
-    "total": 39,
-    "current": "Frozen identity-CatBoost recipe gained 0.387 points on the local test"
+    "completed": 40,
+    "total": 40,
+    "current": "Validated identity-CatBoost competition candidate prepared, not uploaded"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Refit the frozen identity-CatBoost recipe on all labelled rows and validate a competition candidate.",
+    "nextCheckpoint": "Evaluate one context-qualified native-identity CatBoost representation on frozen folds.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

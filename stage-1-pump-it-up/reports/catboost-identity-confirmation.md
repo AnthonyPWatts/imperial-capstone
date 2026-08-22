@@ -53,13 +53,16 @@ points and non-functional recall is unchanged. That repair change remains
 inside the predeclared two-point guardrail, but it is a real trade-off rather
 than a free improvement.
 
-## Refit contract
+## Full-data candidate
 
-The next action is mechanical: refit the three frozen components on all 59,400
-labelled rows, using the same median tree counts, and create a validated
-14,850-row competition CSV. Retain the accepted candidate alongside it for
-comparison. Do not use competition prediction shares to retune weights and do
-not upload while the recorded 22 August allowance remains 3/3.
+The frozen components were refitted or reused from their already-validated
+full-data cache over all 59,400 labelled rows. The resulting 14,850-row
+competition CSV has unique IDs in template order, valid labels and SHA-256
+`76cf24053f136d89262b23b626c932e2f5b609ca197e16d2cb7e4b46897bb006`.
+It disagrees with the accepted submission on 1.576% of rows and predicts 60.788%
+functional, 3.623% repair and 35.589% non-functional. These shares were recorded,
+not used to retune the recipe. The file remains unuploaded while the recorded
+22 August allowance is 3/3.
 
 ## Reproduction
 

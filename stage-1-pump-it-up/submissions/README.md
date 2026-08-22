@@ -188,3 +188,18 @@ minority-recall intervention rather than an accuracy improvement: its public
 score was 0.0066 below the corresponding unoversampled bag, consistent with
 the 0.43-point local-test accuracy cost. See the
 [`daily slate`](2026-08-22-daily-slate/) for the exact files and hashes.
+
+## 2026-08-22: complete-identity CatBoost candidate prepared
+
+A fixed 20% depth-8 CatBoost contribution over all six deferred identity fields
+passed the development gate and confirmed on the reserved local test. The
+44:36:20 XGBoost, Random Forest and CatBoost recipe improved development
+accuracy by 0.116 points and local-test accuracy by 0.387 points. Its validated
+14,850-row competition file disagrees with the accepted 55:45 submission on
+1.576% of rows and has SHA-256
+`76cf24053f136d89262b23b626c932e2f5b609ca197e16d2cb7e4b46897bb006`.
+
+The file remains **prepared, not uploaded** because the recorded daily
+allowance is already 3/3. See
+[`2026-08-22-catboost-identities/`](2026-08-22-catboost-identities/) for the
+recipe, validation manifest and prediction transitions.

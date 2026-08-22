@@ -227,11 +227,20 @@ a full-labelled-data competition refit; the local test will not be used for
 weight tuning. See the
 [confirmation report](reports/catboost-identity-confirmation.md).
 
+The unchanged full-data refit produced a validated 14,850-row competition file
+with 60.788% functional, 3.623% repair and 35.589% non-functional predictions.
+It differs from the accepted submission on 1.576% of rows and exactly recreates
+the accepted file from its shared components. The new candidate is recorded but
+not uploaded because the 22 August allowance is already 3/3. See the
+[candidate record](submissions/2026-08-22-catboost-identities/README.md).
+
 ## Next modelling loop
 
-1. Refit the frozen 44:36:20 complete-identity CatBoost recipe on all 59,400
-   labelled rows and generate a validated competition candidate. Do not tune
-   from its prediction shares or upload while the recorded daily limit is 3/3.
+1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
+   available submission allowance; do not tune from its prediction shares.
+2. Evaluate one context-qualified native-identity CatBoost representation,
+   adding fixed geographic context to ambiguous pump and organisation names
+   without opening a parameter grid.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
