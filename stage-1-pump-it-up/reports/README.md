@@ -171,6 +171,10 @@ The faithful 1,000-tree, five-feature-per-split completion of the archived
 radial occurrence-count forest is in
 [`exact-archive-frequency-forest-screen.md`](exact-archive-frequency-forest-screen.md).
 
+The shared radial-distance feature in the stronger accepted one-hot Random
+Forest and its fixed promoted/archive crosses are in
+[`radial-random-forest-screen.md`](radial-random-forest-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

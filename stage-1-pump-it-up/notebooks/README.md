@@ -195,6 +195,9 @@ It does not replace the formal split and evaluation sequence below.
 52. [`53-exact-archive-frequency-forest.ipynb`](53-exact-archive-frequency-forest.ipynb):
     faithful adapted 1,000-tree, five-feature-per-split completion of the
     archived radial occurrence-count forest.
+53. [`54-radial-random-forest.ipynb`](54-radial-random-forest.ipynb): shared
+    radial distance in the accepted one-hot Random Forest and its fixed
+    promoted/archive crosses.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

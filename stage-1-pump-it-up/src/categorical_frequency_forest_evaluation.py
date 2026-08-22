@@ -20,9 +20,11 @@ from feature_engineering import DEFERRED_HIGH_CARDINALITY_FEATURES
 from feature_engineering import DEFERRED_HIERARCHY_FEATURES
 from feature_engineering import NUMERIC_FEATURES
 from feature_engineering import engineer_initial_features
-from feature_engineering import valid_tanzania_coordinates
 from model_evaluation import CandidateEvaluation
 from model_evaluation import evaluate_random_forest
+from radial_distance_features import EARTH_RADIUS_KM
+from radial_distance_features import RADIAL_DISTANCE_FEATURE
+from radial_distance_features import geodesic_origin_distance_km
 from target_encoding_features import normalise_identity
 
 
@@ -40,13 +42,11 @@ FREQUENCY_FEATURES = tuple(
     f"{source}_occurrence_count" for source in FREQUENCY_SOURCE_FEATURES
 )
 FREQUENCY_MODEL_FEATURES = (*NUMERIC_FEATURES, *FREQUENCY_FEATURES)
-RADIAL_DISTANCE_FEATURE = "distance_from_origin_km"
 RADIAL_FREQUENCY_MODEL_FEATURES = (
     *NUMERIC_FEATURES,
     RADIAL_DISTANCE_FEATURE,
     *FREQUENCY_FEATURES,
 )
-EARTH_RADIUS_KM = 6371.0088
 ARCHIVE_FOREST_ESTIMATORS = 1000
 ARCHIVE_FOREST_MAX_FEATURES = 5
 
@@ -128,21 +128,10 @@ class RadialCategoricalFrequencyFeatureEngineer(
     def transform(self, X: _pd.DataFrame) -> _pd.DataFrame:
         _check_is_fitted(self, "frequency_maps_")
         engineered = super().transform(X)
-        longitude = _pd.to_numeric(X["longitude"], errors="coerce")
-        latitude = _pd.to_numeric(X["latitude"], errors="coerce")
-        valid = valid_tanzania_coordinates(longitude, latitude)
-        longitude_radians = _np.radians(longitude.where(valid))
-        latitude_radians = _np.radians(latitude.where(valid))
-        haversine = (
-            _np.sin(latitude_radians / 2.0) ** 2
-            + _np.cos(latitude_radians)
-            * _np.sin(longitude_radians / 2.0) ** 2
-        ).clip(lower=0.0, upper=1.0)
-        distance = 2.0 * EARTH_RADIUS_KM * _np.arcsin(_np.sqrt(haversine))
         engineered.insert(
             len(NUMERIC_FEATURES),
             RADIAL_DISTANCE_FEATURE,
-            distance,
+            geodesic_origin_distance_km(X),
         )
         if tuple(engineered.columns) != RADIAL_FREQUENCY_MODEL_FEATURES:
             raise ValueError("Radial frequency feature order changed.")
