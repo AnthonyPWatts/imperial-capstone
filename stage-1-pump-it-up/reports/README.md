@@ -92,6 +92,10 @@ The fixed 98%-confidence outer-fold teacher/student XGBoost and pseudo-label
 class audit are in
 [`transductive-pseudo-labelling-screen.md`](transductive-pseudo-labelling-screen.md).
 
+The nested 90% alternative/5% observed-label disagreement filter and its
+class-removal audit are in
+[`confident-label-filtering-screen.md`](confident-label-filtering-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

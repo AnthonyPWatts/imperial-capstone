@@ -267,13 +267,20 @@ was labelled repair. Student XGBoost weakened by 0.088 points and the promoted
 vote fell to 81.730%, despite three fold wins. Threshold tuning is stopped. See
 the [pseudo-labelling report](reports/transductive-pseudo-labelling-screen.md).
 
+The strongest model-based outlier test then generated removal evidence through
+three inner OOF teachers inside every outer fold. It removed 1.12–1.44% of
+training rows at fixed 90% alternative and 5% observed-label probabilities,
+but filtered XGBoost weakened and the promoted vote fell to 81.684%. Difficult
+rows are retained; outlier removal is now closed. See the
+[confident-filter report](reports/confident-label-filtering-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate one nested confident-disagreement filter for likely label errors.
-   Generate removal evidence only from inner out-of-fold teacher predictions
-   within each outer-training partition; keep every validation row in scoring.
+2. Evaluate explicit recording year, recording month and year-month categories
+   alongside the accepted elapsed-day feature. Use one fixed temporal policy
+   across XGBoost and Random Forest before considering the CatBoost member.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

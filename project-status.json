@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 45,
-    "total": 45,
-    "current": "High-confidence transductive pseudo-labelling reduced accuracy"
+    "completed": 46,
+    "total": 46,
+    "current": "Nested confident-disagreement filtering removed valid hard cases"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Evaluate nested confident-disagreement filtering for likely label errors.",
+    "nextCheckpoint": "Evaluate explicit recording year, month and year-month features on frozen folds.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

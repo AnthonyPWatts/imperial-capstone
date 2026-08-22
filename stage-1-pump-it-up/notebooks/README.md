@@ -137,6 +137,9 @@ It does not replace the formal split and evaluation sequence below.
 30. [`31-transductive-pseudo-labelling.ipynb`](31-transductive-pseudo-labelling.ipynb):
     fold-safe teacher/student XGBoost over a fixed 98%-confidence subset of
     unlabelled competition rows, with original validation left untouched.
+31. [`32-confident-label-filtering.ipynb`](32-confident-label-filtering.ipynb):
+    three-way inner-OOF XGBoost disagreement filtering inside each outer fold,
+    class-removal audit and untouched validation scoring.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments
