@@ -35,6 +35,25 @@ The extraction, source, quality and waterpoint deterministic hierarchy
 ablations and bounded component crosses are in
 [`physical-categorical-hierarchy-screen.md`](physical-categorical-hierarchy-screen.md).
 
+The fold-safe regional-prior, hard-routing and partially pooled local-expert
+evidence is in
+[`regional-specialisation-and-layering.md`](regional-specialisation-and-layering.md).
+
+The bounded no-refit CatBoost, LightGBM and MLP third-voter comparisons are in
+[`expanded-ensemble-voter-screen.md`](expanded-ensemble-voter-screen.md).
+
+The broad binary functional/non-functional rebuild, scored against unchanged
+three-class targets after removing repair rows only from training partitions,
+is in [`binary-reduction-screen.md`](binary-reduction-screen.md).
+
+The triangular fuzzy target-membership refits, fixed-vote reconstruction and
+one-fuzzy-component crosses are in
+[`fuzzy-target-membership-screen.md`](fuzzy-target-membership-screen.md).
+
+The accepted ensemble's row-level development and competition probabilities,
+their calibration and ambiguity cohorts, and the next outlier-filtering loop
+are in [`class-membership-probabilities.md`](class-membership-probabilities.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

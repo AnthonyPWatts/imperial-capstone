@@ -57,12 +57,33 @@ at 81.635%, but its +0.011-point change won only two folds. Its exploratory
 full-data submission nevertheless scored `0.8246`, with the waterpoint-XGBoost
 and source-forest cross at `0.8244`. A frozen 2.5× repair-oversampled bag scored
 `0.8174`, confirming the expected accuracy penalty without prompting another
-oversampling loop. The main
-evidence is available in the
+oversampling loop. Independent follow-ups then retained the global two-voter
+recipe: the fixed 80:20 global/regional-expert blend lost 0.156 development
+points, while the closest CatBoost, LightGBM or MLP third-voter addition lost
+0.023 points. A subsequent full binary-reduction rebuild improved conditional
+functional/non-functional accuracy by 1.073 points, but forced repair recall to
+zero and reduced full development accuracy by 1.538 points to 80.086%. Its
+79.992% result on the already-used local test confirmed the trade-off; no
+competition prediction was generated. Triangular fuzzy memberships were also
+unhelpful: the closest fuzzy-XGBoost/hard-forest cross reached 81.534%, 0.090
+points below baseline with zero fold wins. The local test remained closed.
+The accepted ensemble's ordinary class probabilities were then retained as
+row-level memberships rather than changing the training labels. Its development
+OOF probabilities remain well aligned with the observed class shares and have
+0.708% top-label expected calibration error. On competition data, mean repair
+membership is 7.178%, although only 3.953% of rows receive repair as their hard
+prediction. This creates a useful uncertainty artefact without another model
+selection loop. The next bounded experiment is fold-fitted, training-only
+outlier filtering. The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
-and [physical hierarchy report](stage-1-pump-it-up/reports/physical-categorical-hierarchy-screen.md).
+and [regional](stage-1-pump-it-up/reports/regional-specialisation-and-layering.md)
+and [expanded-voter](stage-1-pump-it-up/reports/expanded-ensemble-voter-screen.md)
+and [binary-reduction](stage-1-pump-it-up/reports/binary-reduction-screen.md)
+and [fuzzy-membership](stage-1-pump-it-up/reports/fuzzy-target-membership-screen.md)
+and [class-membership](stage-1-pump-it-up/reports/class-membership-probabilities.md)
+reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed
 40:60 alternative nor a nested calibrated stack improved at least three of the

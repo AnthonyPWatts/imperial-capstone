@@ -46,6 +46,21 @@ Current modules:
 - `physical_hierarchy_evaluation.py` evaluates those policies with the accepted
   vote, applies separate accuracy and parsimony gates and supports bounded
   no-refit crosses of policy-specific model components.
+- `regional_specialisation_evaluation.py` fits one shared-spec Random Forest
+  per sufficiently supported region inside each outer fold, provides an
+  explicit global fallback, evaluates hard and partially pooled routing, and
+  diagnoses fold-fitted regional-prior corrections.
+- `expanded_ensemble_evaluation.py` evaluates three fixed low-weight third
+  voters around the accepted 55:45 ensemble from aligned OOF probabilities,
+  including strength, diversity and probability-quality diagnostics.
+- `binary_reduction_evaluation.py` removes repair cases only from each current
+  training partition, evaluates eleven binary model families and fixed soft
+  votes against the unchanged three-class target, and refits a frozen binary
+  recipe for an explicitly labelled local-test comparison.
+- `fuzzy_target_evaluation.py` converts triangular adjacent memberships into
+  source-mass-preserving weighted training observations, refits the accepted
+  XGBoost and Random Forest components on frozen folds, and evaluates complete
+  fuzzy votes plus one-fuzzy-component crosses against crisp labels.
 - `model_preprocessing.py` combines that transformer with fold-fitted numeric
   imputation, missing indicators, rare-category handling and one-hot encoding;
   it can return identical sparse or dense feature values, optionally standardises
@@ -89,7 +104,9 @@ Current modules:
   calibration partition and reports order-aware error diagnostics.
 - `probability_diagnostics.py` separates hard-label balance from probability
   reliability, computes log-loss/Brier/calibration summaries, and identifies
-  low-margin, disagreement and repair-related edge groups without refitting.
+  low-margin, disagreement and repair-related edge groups without refitting. It
+  also validates and exports row-level three-class membership tables with
+  confidence, runner-up, margin, entropy and ambiguity fields.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

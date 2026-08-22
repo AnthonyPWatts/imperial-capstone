@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 29,
-    "total": 29,
-    "current": "Review the new 0.8246 public leader and choose the next bounded data loop"
+    "completed": 34,
+    "total": 34,
+    "current": "Accepted class probabilities exported as row-level three-class memberships"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Choose between remaining sparse-name and physical-interaction screens without reopening oversampling.",
+    "nextCheckpoint": "Run a bounded fold-fitted training-only outlier-filtering screen.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

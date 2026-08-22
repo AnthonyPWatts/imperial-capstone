@@ -37,7 +37,7 @@ WORST_FOLD_GATE = -0.0025
 REPAIR_RECALL_LOSS_GATE = -0.02
 SECOND_WAVE_MEAN_GAIN_GATE = 0.0005
 CURRENT_LEADER_NAME = (
-    "60% XGBoost depth 8 [current one-hot] + 40% Random Forest"
+    "55% XGBoost depth 8 child 1 [current one-hot] + 45% Random Forest"
 )
 
 

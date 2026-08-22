@@ -89,6 +89,23 @@ It does not replace the formal split and evaluation sequence below.
 15. [`16-physical-categorical-hierarchies.ipynb`](16-physical-categorical-hierarchies.ipynb):
     no-refit presentation of extraction, source, quality and waterpoint
     hierarchy ablations, parsimony evidence and bounded component crosses.
+16. [`17-regional-specialisation.ipynb`](17-regional-specialisation.ipynb):
+    presentation of regional-prior diagnostics, fold-fitted regional Random
+    Forest routing, explicit fallback and the fixed partially pooled candidate.
+17. [`18-expanded-ensemble-voters.ipynb`](18-expanded-ensemble-voters.ipynb):
+    no-refit presentation of bounded CatBoost, LightGBM and MLP additions to the
+    accepted two-voter ensemble, including diversity and probability quality.
+18. [`19-binary-reduction.ipynb`](19-binary-reduction.ipynb): fold-safe removal
+    of repair cases from training, a rebuilt eleven-family binary screen, nine
+    fixed votes and assessment against unchanged three-class development and
+    local-test labels.
+19. [`20-fuzzy-target-membership.ipynb`](20-fuzzy-target-membership.ipynb):
+    fold-safe triangular soft memberships at four fixed overlaps, accepted-
+    component refits, one-fuzzy-component crosses and crisp-label evaluation.
+20. [`21-class-membership-probabilities.ipynb`](21-class-membership-probabilities.ipynb):
+    accepted out-of-fold and competition class probabilities retained as
+    three-way row memberships, with calibration, ambiguity and repair-boundary
+    diagnostics and the outlier-filtering hand-off.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

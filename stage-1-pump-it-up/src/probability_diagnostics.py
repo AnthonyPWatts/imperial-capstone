@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from itertools import combinations as _combinations
+from pathlib import Path as _Path
 
 import numpy as _np
 import pandas as _pd
@@ -16,6 +17,9 @@ CLASS_LABELS = (
     "non functional",
 )
 REPAIR_LABEL = "functional needs repair"
+CLOSE_MEMBERSHIP_MARGIN = 0.10
+NO_MAJORITY_CONFIDENCE = 0.50
+SUBSTANTIAL_SECOND_MEMBERSHIP = 0.25
 
 
 def probability_quality_summary(
@@ -230,6 +234,160 @@ def edge_case_table(
     return _pd.DataFrame(rows).set_index("group")
 
 
+def class_membership_table(
+    identifiers: _pd.Series | _np.ndarray,
+    probabilities: _pd.DataFrame | _np.ndarray,
+    *,
+    actual: _pd.Series | _np.ndarray | None = None,
+) -> _pd.DataFrame:
+    """Build a row-level three-class membership table without discarding mass."""
+
+    ids = _pd.Series(identifiers).reset_index(drop=True)
+    if ids.empty or ids.isna().any() or ids.duplicated().any():
+        raise ValueError("Membership identifiers must be complete and unique.")
+    values = _validated_probability_matrix(probabilities, len(ids))
+    winning_positions = values.argmax(axis=1)
+    runner_values = values.copy()
+    runner_values[_np.arange(len(values)), winning_positions] = -1.0
+    runner_positions = runner_values.argmax(axis=1)
+    confidence = values[_np.arange(len(values)), winning_positions]
+    runner_membership = values[_np.arange(len(values)), runner_positions]
+    log_values = _np.zeros_like(values)
+    _np.log(values, out=log_values, where=values > 0)
+    normalised_entropy = -_np.sum(values * log_values, axis=1) / _np.log(
+        len(CLASS_LABELS)
+    )
+
+    table = _pd.DataFrame({"id": ids})
+    for position, label in enumerate(CLASS_LABELS):
+        table[f"membership_{_column_label(label)}"] = values[:, position]
+    table["predicted_class"] = _np.asarray(CLASS_LABELS)[winning_positions]
+    table["confidence"] = confidence
+    table["runner_up_class"] = _np.asarray(CLASS_LABELS)[runner_positions]
+    table["runner_up_membership"] = runner_membership
+    table["winning_margin"] = confidence - runner_membership
+    table["normalised_entropy"] = normalised_entropy
+    table["no_majority_membership"] = confidence < NO_MAJORITY_CONFIDENCE
+    table["close_membership"] = (
+        table["winning_margin"] < CLOSE_MEMBERSHIP_MARGIN
+    )
+    table["substantial_second_membership"] = (
+        runner_membership >= SUBSTANTIAL_SECOND_MEMBERSHIP
+    )
+    if actual is not None:
+        target = _np.asarray(actual, dtype=object)
+        if len(target) != len(table) or not set(target).issubset(CLASS_LABELS):
+            raise ValueError("Membership actual labels are missing or invalid.")
+        table["actual_class"] = target
+        table["correct"] = table["predicted_class"].to_numpy() == target
+    return table
+
+
+def class_membership_summary(table: _pd.DataFrame) -> _pd.DataFrame:
+    """Summarise average and winning membership for each target class."""
+
+    _validate_membership_table(table)
+    rows = []
+    has_actual = "actual_class" in table
+    for label in CLASS_LABELS:
+        membership = table[f"membership_{_column_label(label)}"]
+        row = {
+            "class": label,
+            "mean_membership": float(membership.mean()),
+            "predicted_share": float(table["predicted_class"].eq(label).mean()),
+            "membership_at_least_25_share": float((membership >= 0.25).mean()),
+            "membership_at_least_50_share": float((membership >= 0.50).mean()),
+        }
+        if has_actual:
+            actual = table["actual_class"].eq(label)
+            row["actual_share"] = float(actual.mean())
+            row["mean_membership_when_actual"] = float(
+                membership[actual].mean()
+            )
+        rows.append(row)
+    return _pd.DataFrame(rows).set_index("class")
+
+
+def membership_ambiguity_summary(table: _pd.DataFrame) -> _pd.Series:
+    """Summarise confidence, entropy and explicitly defined ambiguity groups."""
+
+    _validate_membership_table(table)
+    result: dict[str, int | float] = {
+        "rows": len(table),
+        "mean_confidence": float(table["confidence"].mean()),
+        "mean_winning_margin": float(table["winning_margin"].mean()),
+        "mean_normalised_entropy": float(table["normalised_entropy"].mean()),
+        "no_majority_rows": int(table["no_majority_membership"].sum()),
+        "no_majority_share": float(table["no_majority_membership"].mean()),
+        "close_membership_rows": int(table["close_membership"].sum()),
+        "close_membership_share": float(table["close_membership"].mean()),
+        "substantial_second_rows": int(
+            table["substantial_second_membership"].sum()
+        ),
+        "substantial_second_share": float(
+            table["substantial_second_membership"].mean()
+        ),
+    }
+    if "correct" in table:
+        result["accuracy"] = float(table["correct"].mean())
+        for group in (
+            "no_majority_membership",
+            "close_membership",
+            "substantial_second_membership",
+        ):
+            mask = table[group]
+            result[f"{group}_accuracy"] = float(
+                _np.nan if not mask.any() else table.loc[mask, "correct"].mean()
+            )
+    return _pd.Series(result, name="value")
+
+
+def top_two_membership_summary(table: _pd.DataFrame) -> _pd.DataFrame:
+    """Summarise the directed winning and runner-up class boundaries."""
+
+    _validate_membership_table(table)
+    aggregations: dict[str, tuple[str, str]] = {
+        "rows": ("id", "size"),
+        "mean_confidence": ("confidence", "mean"),
+        "mean_runner_up_membership": ("runner_up_membership", "mean"),
+        "mean_winning_margin": ("winning_margin", "mean"),
+        "mean_normalised_entropy": ("normalised_entropy", "mean"),
+    }
+    if "correct" in table:
+        aggregations["accuracy"] = ("correct", "mean")
+    summary = table.groupby(
+        ["predicted_class", "runner_up_class"],
+        observed=True,
+        sort=False,
+    ).agg(**aggregations)
+    summary["share"] = summary["rows"] / len(table)
+    return summary.sort_values("rows", ascending=False)
+
+
+def write_class_membership_table(
+    table: _pd.DataFrame,
+    destination: str | _Path,
+) -> _Path:
+    """Write or verify a membership CSV without overwriting different data."""
+
+    _validate_membership_table(table)
+    path = _Path(destination).resolve()
+    if not path.parent.is_dir():
+        raise FileNotFoundError(
+            f"Membership output directory is missing: {path.parent}."
+        )
+    if path.exists():
+        existing = _pd.read_csv(path)
+        _assert_membership_frames_match(existing, table.reset_index(drop=True))
+        return path
+    table.to_csv(path, index=False, float_format="%.10f")
+    _assert_membership_frames_match(
+        _pd.read_csv(path),
+        table.reset_index(drop=True),
+    )
+    return path
+
+
 def _reliability_frame(
     confidence: _np.ndarray,
     observed: _np.ndarray,
@@ -264,17 +422,73 @@ def _validated_inputs(
     probabilities: _np.ndarray,
 ) -> tuple[_np.ndarray, _np.ndarray]:
     target = _np.asarray(y_true, dtype=object)
+    values = _validated_probability_matrix(probabilities, len(target))
+    if len(target) == 0 or not set(target).issubset(CLASS_LABELS):
+        raise ValueError("Target contains no rows or unknown classes.")
+    return target, values
+
+
+def _validated_probability_matrix(
+    probabilities: _pd.DataFrame | _np.ndarray,
+    expected_rows: int,
+) -> _np.ndarray:
     values = _np.asarray(probabilities, dtype="float64")
-    if values.shape != (len(target), len(CLASS_LABELS)):
-        raise ValueError("Probability matrix shape does not match the target.")
+    if values.shape != (expected_rows, len(CLASS_LABELS)):
+        raise ValueError("Probability matrix shape does not match expected rows.")
     if not _np.isfinite(values).all() or (values < 0).any() or (values > 1).any():
         raise ValueError("Probability matrix contains invalid values.")
     if not _np.allclose(values.sum(axis=1), 1.0):
         raise ValueError("Probability rows must sum to one.")
-    if len(target) == 0 or not set(target).issubset(CLASS_LABELS):
-        raise ValueError("Target contains no rows or unknown classes.")
-    # XGBoost float32 values can leave row sums a few machine units from one.
-    # Normalise after the contract check so strict scoring functions do not
-    # warn about harmless representation error.
-    values = values / values.sum(axis=1, keepdims=True)
-    return target, values
+    return values / values.sum(axis=1, keepdims=True)
+
+
+def _validate_membership_table(table: _pd.DataFrame) -> None:
+    required = {
+        "id",
+        *(f"membership_{_column_label(label)}" for label in CLASS_LABELS),
+        "predicted_class",
+        "confidence",
+        "runner_up_class",
+        "runner_up_membership",
+        "winning_margin",
+        "normalised_entropy",
+        "no_majority_membership",
+        "close_membership",
+        "substantial_second_membership",
+    }
+    missing = required - set(table.columns)
+    if missing:
+        raise ValueError(f"Membership table is missing columns: {sorted(missing)!r}.")
+    if table.empty or table["id"].isna().any() or table["id"].duplicated().any():
+        raise ValueError("Membership table identifiers must be complete and unique.")
+    probability_columns = [
+        f"membership_{_column_label(label)}" for label in CLASS_LABELS
+    ]
+    _validated_probability_matrix(table[probability_columns], len(table))
+
+
+def _assert_membership_frames_match(
+    actual: _pd.DataFrame,
+    expected: _pd.DataFrame,
+) -> None:
+    if list(actual.columns) != list(expected.columns) or len(actual) != len(expected):
+        raise FileExistsError("Existing membership CSV has a different shape.")
+    for column in expected.columns:
+        if _pd.api.types.is_numeric_dtype(expected[column]):
+            if not _np.allclose(
+                actual[column].to_numpy(dtype="float64"),
+                expected[column].to_numpy(dtype="float64"),
+                equal_nan=True,
+                atol=1e-9,
+            ):
+                raise FileExistsError(
+                    f"Existing membership CSV differs in {column!r}."
+                )
+        elif not actual[column].astype(str).equals(expected[column].astype(str)):
+            raise FileExistsError(
+                f"Existing membership CSV differs in {column!r}."
+            )
+
+
+def _column_label(label: str) -> str:
+    return label.replace(" ", "_")

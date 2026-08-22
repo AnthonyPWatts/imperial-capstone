@@ -140,17 +140,75 @@ source-class Random Forest scored 0.8244. These external results do not
 retrospectively change the frozen-fold feature decision, because both candidates
 won only two folds and failed the promotion gate.
 
+A fold-safe regional-specialisation screen then tested whether the striking
+regional class mixes justified separate classifiers. Hard-routed regional
+Random Forests fell to 80.505%, and the only selection-eligible 80% global / 20%
+regional blend reached 81.469%, 0.156 points below the accepted vote with zero
+fold wins. Regional-prior corrections were also worse. The existing global
+trees already reproduce regional repair rates closely while retaining national
+pooling. See the
+[regional-specialisation report](reports/regional-specialisation-and-layering.md).
+
+An independent no-refit ensemble screen added low fixed contributions from
+CatBoost, bagged LightGBM and the most diverse MLP while preserving the accepted
+55:45 ratio in the remaining weight. All three reduced accuracy. The 5% MLP
+addition was closest at 81.601%, 0.023 points below baseline. Each slightly
+improved log loss and Brier score, but none improved the competition metric or
+passed the gate. See the
+[expanded-voter report](reports/expanded-ensemble-voter-screen.md).
+
+A full binary-reduction rebuild then removed every repair case from each
+training partition while retaining all three classes for validation. Eleven
+standalone families and nine fixed votes were assessed. The selected equal
+Random-Forest/LightGBM binary vote improved conditional functional-versus-non-
+functional accuracy by 1.073 points, but its forced zero repair recall reduced
+full development accuracy from 81.625% to 80.086%. It reached 79.992% on the
+already-used local test, 0.833 points below the earlier three-class workflow.
+No competition prediction was generated. See the
+[binary-reduction report](reports/binary-reduction-screen.md).
+
+A bounded fuzzy-target screen then assigned row-normalised membership to each
+observed condition and its immediate neighbours at four fixed overlap widths.
+Fuzzy XGBoost improved slightly as a standalone component, but fuzzy Random
+Forest deteriorated. The closest component cross—2.5% fuzzy XGBoost plus the
+hard-label forest—reached 81.534%, 0.090 points below baseline with zero fold
+wins. Fully fuzzy votes were weaker. No candidate passed the gate, so the local
+test remained closed and no competition prediction was generated. See the
+[fuzzy-membership report](reports/fuzzy-target-membership-screen.md).
+
+The accepted ensemble's existing `predict_proba()` output was then treated as
+row-level class membership, without retraining or softening the target. On the
+development folds it retains 81.625% accuracy and 0.708% top-label expected
+calibration error. Mean predicted membership closely matches every observed
+class share. For the competition rows, mean repair membership is 7.178%, but
+only 3.953% receive repair as their hard prediction: 1,323 rows retain at least
+25% repair membership, compared with 587 hard repair predictions. The validated
+three-membership table is an analysis artefact, not a submission. See the
+[class-membership report](reports/class-membership-probabilities.md).
+
 ## Next modelling loop
 
-1. Retain the accepted granular hierarchy features. Choose the next materially
-   different bounded data loop between remaining sparse name fields and a small
-   predeclared set of physical interactions.
+1. Run one bounded outlier-filtering screen next. Learn every filter from each
+   outer training partition, remove rows only from that training partition, and
+   score the original untouched validation rows. Start with physically invalid
+   numeric states and one conservative multivariate-support rule; do not tune a
+   long menu of detectors on the same five folds.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
    do not start another oversampling loop or claim an expected accuracy gain.
 4. Retain the operational hierarchy as a named candidate for decision-focused
    work; do not replace the competition's flat target silently.
+5. Stop both isolated regional classifiers and extra-voter weight grids unless
+   a genuinely new representation, data source or operational objective appears.
+6. Retain all three target classes for competition modelling; the binary-only
+   rebuild improves its narrower decision but loses 1.538 development points
+   once repair cases are scored.
+7. Retain crisp labels; stop global triangular-overlap tuning unless row-level
+   uncertainty evidence becomes available.
+8. Use the retained probability memberships to describe uncertainty and inspect
+   edge cases, but do not call an uncertain row an outlier merely because its
+   winning margin is small.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,
