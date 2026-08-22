@@ -111,7 +111,9 @@ used broad construction-vintage cohorts alongside continuous pump age. That
 reached 81.8035% but missed promotion; the next bounded variance-reduction test
 added one fixed seed inside the successful identity CatBoost voter. The seed
 bag weakened the vote, so the next representation test supplies every physical
-hierarchy back-off to the native-categorical identity model.
+hierarchy back-off to the native-categorical identity model. That model also
+weakened, leaving target-free identity hashing as the remaining audited sparse-
+name representation.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -136,6 +138,7 @@ and [recording time](stage-1-pump-it-up/reports/recording-time-feature-screen.md
 and [identity frequency](stage-1-pump-it-up/reports/identity-frequency-screen.md)
 and [pump age](stage-1-pump-it-up/reports/pump-age-cohort-screen.md)
 and [identity seed bag](stage-1-pump-it-up/reports/catboost-identity-seed-bag.md)
+and [full hierarchy](stage-1-pump-it-up/reports/catboost-identity-full-hierarchy.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

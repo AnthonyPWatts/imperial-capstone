@@ -17,10 +17,12 @@ if str(SRC_DIR) not in sys.path:
 from catboost_identity_evaluation import DEFERRED_IDENTITY_FEATURES
 from catboost_identity_evaluation import AGE_COHORT_IDENTITY_FEATURE
 from catboost_identity_evaluation import CONTEXT_IDENTITY_FEATURES
+from catboost_identity_evaluation import FULL_HIERARCHY_BACKOFF_FEATURES
 from catboost_identity_evaluation import PHYSICAL_BACKOFF_FEATURES
 from catboost_identity_evaluation import engineer_complete_identity_catboost_features
 from catboost_identity_evaluation import engineer_age_cohort_identity_catboost_features
 from catboost_identity_evaluation import engineer_context_identity_catboost_features
+from catboost_identity_evaluation import engineer_full_hierarchy_identity_catboost_features
 from catboost_identity_evaluation import make_seeded_complete_identity_catboost_spec
 from catboost_identity_evaluation import (
     engineer_hierarchy_backoff_identity_catboost_features,
@@ -107,6 +109,21 @@ class CatBoostIdentityEvaluationTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "must be positive"):
             make_seeded_complete_identity_catboost_spec(0)
+
+    def test_full_hierarchy_adds_all_seven_supplied_backoffs(self) -> None:
+        frame = _source_frame()
+
+        engineered, categorical = engineer_full_hierarchy_identity_catboost_features(
+            frame
+        )
+
+        self.assertEqual(categorical[-7:], FULL_HIERARCHY_BACKOFF_FEATURES)
+        self.assertTrue(
+            all(
+                engineered.loc[0, feature] == "value"
+                for feature in FULL_HIERARCHY_BACKOFF_FEATURES
+            )
+        )
 
 
 def _source_frame() -> pd.DataFrame:

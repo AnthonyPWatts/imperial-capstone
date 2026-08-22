@@ -300,12 +300,18 @@ disagreed on 4.06% of rows, their equal seed bag lowered the promoted vote to
 81.719% with one fold win. Seed expansion is stopped. See the
 [identity seed-bag report](reports/catboost-identity-seed-bag.md).
 
+The complete physical-hierarchy check then added all seven supplied parent and
+intermediate fields to native identity CatBoost. Standalone CatBoost weakened,
+and the unchanged 20% vote fell to 81.726% with two fold wins. This closes
+hierarchy back-off subsets. See the
+[full-hierarchy report](reports/catboost-identity-full-hierarchy.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate one complete-identity CatBoost with all seven supplied physical
-   hierarchy back-offs; retain the same depth and 20% ensemble allocation.
+2. Evaluate one target-free shared hash space for the six sparse identity
+   fields in XGBoost, retaining the promoted Forest and CatBoost unchanged.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

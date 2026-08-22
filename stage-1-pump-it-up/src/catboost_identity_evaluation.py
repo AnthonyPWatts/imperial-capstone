@@ -9,6 +9,7 @@ import pandas as _pd
 
 from data_partitioning import PartitionedData
 from feature_engineering import CATEGORICAL_FEATURES
+from feature_engineering import DEFERRED_HIERARCHY_FEATURES
 from feature_engineering import engineer_initial_features
 from gpu_model_evaluation import evaluate_gpu_candidate
 from gpu_model_evaluation import make_catboost_spec
@@ -40,6 +41,10 @@ PHYSICAL_BACKOFF_SOURCES = (
 )
 PHYSICAL_BACKOFF_FEATURES = tuple(
     f"{source}_backoff" for source in PHYSICAL_BACKOFF_SOURCES
+)
+FULL_HIERARCHY_BACKOFF_SOURCES = DEFERRED_HIERARCHY_FEATURES
+FULL_HIERARCHY_BACKOFF_FEATURES = tuple(
+    f"{source}_full_backoff" for source in FULL_HIERARCHY_BACKOFF_SOURCES
 )
 AGE_COHORT_IDENTITY_FEATURE = "pump_age_cohort"
 IDENTITY_BAG_SECOND_SEED = 20260822
@@ -263,6 +268,55 @@ def evaluate_hierarchy_backoff_identity_catboost(
         engineer_hierarchy_backoff_identity_catboost_features(
             partitioned_data.X_development.iloc[first_training_positions]
         )
+    )
+    return CatBoostIdentityTrial(
+        evaluation=evaluation,
+        engineered_features=engineered.shape[1],
+        categorical_features=len(categorical),
+    )
+
+
+def engineer_full_hierarchy_identity_catboost_features(
+    X: _pd.DataFrame,
+) -> tuple[_pd.DataFrame, tuple[str, ...]]:
+    """Add all seven supplied physical hierarchy back-off fields."""
+
+    engineered, categorical = engineer_complete_identity_catboost_features(X)
+    for source, feature in zip(
+        FULL_HIERARCHY_BACKOFF_SOURCES,
+        FULL_HIERARCHY_BACKOFF_FEATURES,
+        strict=True,
+    ):
+        engineered[feature] = normalise_identity(X[source]).astype(str)
+    if tuple(engineered.columns[-len(FULL_HIERARCHY_BACKOFF_FEATURES) :]) != (
+        FULL_HIERARCHY_BACKOFF_FEATURES
+    ):
+        raise ValueError("Full-hierarchy CatBoost feature order changed.")
+    return engineered, (*categorical, *FULL_HIERARCHY_BACKOFF_FEATURES)
+
+
+def evaluate_full_hierarchy_identity_catboost(
+    partitioned_data: PartitionedData,
+    cross_validation: object,
+) -> CatBoostIdentityTrial:
+    """Evaluate identity CatBoost with every supplied hierarchy back-off."""
+
+    spec = _replace(
+        make_catboost_spec(variant="d8"),
+        name="CatBoost d8 [identity plus full physical hierarchy]",
+        feature_policy=(
+            "accepted plus six deferred identities and seven hierarchy back-offs"
+        ),
+    )
+    evaluation = evaluate_gpu_candidate(
+        spec,
+        partitioned_data,
+        cross_validation,
+        catboost_feature_engineer=engineer_full_hierarchy_identity_catboost_features,
+    )
+    first_training_positions, _ = next(cross_validation.split())
+    engineered, categorical = engineer_full_hierarchy_identity_catboost_features(
+        partitioned_data.X_development.iloc[first_training_positions]
     )
     return CatBoostIdentityTrial(
         evaluation=evaluation,

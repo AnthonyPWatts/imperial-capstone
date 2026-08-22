@@ -108,6 +108,9 @@ The fixed pump-age cohort across the global trees and identity CatBoost is in
 The one-extra-seed complete-identity CatBoost variance test is in
 [`catboost-identity-seed-bag.md`](catboost-identity-seed-bag.md).
 
+The all-seven-field physical-hierarchy identity CatBoost is in
+[`catboost-identity-full-hierarchy.md`](catboost-identity-full-hierarchy.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.
