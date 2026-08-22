@@ -365,6 +365,12 @@ five extra development rows and far below the promotion gate. The ordinal
 branch stops without local or competition use. See the
 [cumulative XGBoost report](reports/ordinal-xgboost-screen.md).
 
+The archived 0.8264 solution then motivated 50 fold-fitted common-value
+indicators for each of the six deferred identities. They strengthen XGBoost to
+81.088%, but the equal archive representation bag reaches only 81.814%: ten
+extra development rows and below the promotion gate. See the
+[top-common identity report](reports/top-common-identity-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
@@ -401,6 +407,8 @@ branch stops without local or competition use. See the
 14. Stop cumulative-boundary tuning. The untuned ordinal decomposition is
     diverse but not stronger, and its five-row archive gain is too small to
     justify thresholds, class weights or another submission candidate.
+15. Retain top-common identities as positive representation evidence, but do
+    not tune common-value counts or weights around their ten-row archive gain.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

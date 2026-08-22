@@ -203,6 +203,9 @@ It does not replace the formal split and evaluation sequence below.
 55. [`56-ordinal-xgboost.ipynb`](56-ordinal-xgboost.ipynb): two cumulative
     accepted-spec XGBoost boundaries, deterministic coherence projection and
     fixed archive substitution/bag comparisons.
+56. [`57-top-common-identities.ipynb`](57-top-common-identities.ipynb): fixed
+    top-50 indicators for all six deferred identities in accepted XGBoost and
+    their archive substitution/bag comparisons.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments
