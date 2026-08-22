@@ -6,13 +6,13 @@
   "overall": {
     "completed": 47,
     "total": 47,
-    "current": "All seven physical back-offs reduced the identity vote"
+    "current": "Target-free identity hashing reduced XGBoost and the promoted vote"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Evaluate one fixed target-free hash space for all six sparse identities.",
+    "nextCheckpoint": "Evaluate three independent one-vs-rest XGBoost class boundaries.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

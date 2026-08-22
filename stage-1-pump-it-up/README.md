@@ -306,12 +306,18 @@ and the unchanged 20% vote fell to 81.726% with two fold wins. This closes
 hierarchy back-off subsets. See the
 [full-hierarchy report](reports/catboost-identity-full-hierarchy.md).
 
+A target-free 4,096-column hash block then represented all six sparse identities
+for XGBoost. Hashed XGBoost weakened by 0.343 points and its promoted-vote
+substitution fell to 81.578% with one fold win. Hash dimensions are not tuned,
+and the sparse-name representation branch closes. See the
+[identity-hash report](reports/identity-hash-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate one target-free shared hash space for the six sparse identity
-   fields in XGBoost, retaining the promoted Forest and CatBoost unchanged.
+2. Evaluate one-vs-rest XGBoost with three independent binary class boundaries,
+   normalised back to three memberships before the unchanged ensemble test.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

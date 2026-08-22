@@ -111,6 +111,9 @@ The one-extra-seed complete-identity CatBoost variance test is in
 The all-seven-field physical-hierarchy identity CatBoost is in
 [`catboost-identity-full-hierarchy.md`](catboost-identity-full-hierarchy.md).
 
+The fixed target-free shared hash space for all six deferred identities is in
+[`identity-hash-screen.md`](identity-hash-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

@@ -149,6 +149,8 @@ Current modules:
   XGBoost and Random Forest specifications on frozen folds.
 - `identity_frequency_evaluation.py` adds six fold-fitted numeric log occurrence
   counts without target statistics or raw identity one-hot columns.
+- `identity_hash_evaluation.py` appends one target-free non-negative shared hash
+  block for the six deferred identities to accepted sparse preprocessing.
 - `age_cohort_evaluation.py` adds one fixed categorical pump-age cohort beside
   accepted continuous age and evaluates the accepted tree specifications.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,

@@ -113,7 +113,8 @@ added one fixed seed inside the successful identity CatBoost voter. The seed
 bag weakened the vote, so the next representation test supplies every physical
 hierarchy back-off to the native-categorical identity model. That model also
 weakened, leaving target-free identity hashing as the remaining audited sparse-
-name representation.
+name representation. Hashing also weakened XGBoost; the next distinct task-
+structure test learns three independent one-vs-rest class boundaries.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -139,6 +140,7 @@ and [identity frequency](stage-1-pump-it-up/reports/identity-frequency-screen.md
 and [pump age](stage-1-pump-it-up/reports/pump-age-cohort-screen.md)
 and [identity seed bag](stage-1-pump-it-up/reports/catboost-identity-seed-bag.md)
 and [full hierarchy](stage-1-pump-it-up/reports/catboost-identity-full-hierarchy.md)
+and [identity hash](stage-1-pump-it-up/reports/identity-hash-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed
