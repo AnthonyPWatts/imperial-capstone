@@ -96,6 +96,9 @@ The nested 90% alternative/5% observed-label disagreement filter and its
 class-removal audit are in
 [`confident-label-filtering-screen.md`](confident-label-filtering-screen.md).
 
+The fixed recording year, month and year-month categories beside elapsed days
+are in [`recording-time-feature-screen.md`](recording-time-feature-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

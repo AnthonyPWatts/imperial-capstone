@@ -104,6 +104,8 @@ That self-training policy also reduced accuracy. The next bounded outlier loop
 targets likely label errors using strictly nested confident disagreement.
 That filter also reduced accuracy, reinforcing the decision to retain hard
 rows. The next unexplored audited family is explicit recording-time categories.
+Those categories also weakened both tree families. The next unresolved audit
+recommendation is fold-fitted frequency for all six deferred identities.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -124,6 +126,7 @@ and [name text](stage-1-pump-it-up/reports/deferred-name-text-screen.md)
 and [physical back-offs](stage-1-pump-it-up/reports/catboost-identity-physical-backoff-screen.md)
 and [pseudo-labelling](stage-1-pump-it-up/reports/transductive-pseudo-labelling-screen.md)
 and [confident filtering](stage-1-pump-it-up/reports/confident-label-filtering-screen.md)
+and [recording time](stage-1-pump-it-up/reports/recording-time-feature-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

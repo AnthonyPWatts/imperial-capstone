@@ -142,6 +142,9 @@ Current modules:
 - `confident_label_filtering.py` generates three-way inner out-of-fold teacher
   probabilities inside every outer-training fold, removes only fixed extreme
   label disagreements and keeps every outer-validation row in scoring.
+- `temporal_feature_evaluation.py` adds explicit recording year, month and
+  year-month categories beside accepted elapsed days and evaluates the accepted
+  XGBoost and Random Forest specifications on frozen folds.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

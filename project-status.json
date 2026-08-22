@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 46,
-    "total": 46,
-    "current": "Nested confident-disagreement filtering removed valid hard cases"
+    "completed": 47,
+    "total": 47,
+    "current": "Explicit recording-time categories weakened both tree families"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Evaluate explicit recording year, month and year-month features on frozen folds.",
+    "nextCheckpoint": "Evaluate fold-fitted occurrence frequencies for all six deferred identities.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

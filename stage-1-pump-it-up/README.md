@@ -274,13 +274,19 @@ but filtered XGBoost weakened and the promoted vote fell to 81.684%. Difficult
 rows are retained; outlier removal is now closed. See the
 [confident-filter report](reports/confident-label-filtering-screen.md).
 
+The previously untested recording-time audit recommendation then added year,
+month and year-month categories beside elapsed days. Both XGBoost and Random
+Forest weakened, and the promoted vote fell to 81.711% with two fold wins. The
+continuous elapsed feature is retained without further calendar bins. See the
+[recording-time report](reports/recording-time-feature-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate explicit recording year, recording month and year-month categories
-   alongside the accepted elapsed-day feature. Use one fixed temporal policy
-   across XGBoost and Random Forest before considering the CatBoost member.
+2. Evaluate fold-fitted log occurrence frequencies for all six deferred
+   identities. Add numeric frequency only—no target statistics or raw one-hot
+   identity—and use one fixed XGBoost/Random Forest policy.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

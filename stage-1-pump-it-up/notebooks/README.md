@@ -140,6 +140,9 @@ It does not replace the formal split and evaluation sequence below.
 31. [`32-confident-label-filtering.ipynb`](32-confident-label-filtering.ipynb):
     three-way inner-OOF XGBoost disagreement filtering inside each outer fold,
     class-removal audit and untouched validation scoring.
+32. [`33-recording-time-features.ipynb`](33-recording-time-features.ipynb):
+    one fixed recording year, month and year-month policy beside elapsed days,
+    with accepted XGBoost and Random Forest refits.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments
