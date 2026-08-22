@@ -125,6 +125,9 @@ It does not replace the formal split and evaluation sequence below.
 26. [`27-catboost-identity-context.ipynb`](27-catboost-identity-context.ipynb):
     pre-fit composite-support audit, one context-qualified native CatBoost and
     fixed-weight comparison with the promoted complete-identity recipe.
+27. [`28-catboost-identity-follow-ups.ipynb`](28-catboost-identity-follow-ups.ipynb):
+    cached source-plus-class component cross and one diversity-motivated
+    depth-7 complete-identity CatBoost substitution.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

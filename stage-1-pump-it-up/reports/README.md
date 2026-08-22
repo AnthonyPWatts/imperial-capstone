@@ -78,6 +78,10 @@ The fixed LGA, scheme and organisation context-pair audit and tied CatBoost
 result are in
 [`catboost-identity-context-screen.md`](catboost-identity-context-screen.md).
 
+The fixed source-plus-class identity cross and diversity-motivated depth-7
+CatBoost result are in
+[`catboost-identity-follow-up-screen.md`](catboost-identity-follow-up-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

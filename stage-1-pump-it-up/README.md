@@ -241,13 +241,20 @@ repair recall by another 0.463 points. Explicit context construction is stopped
 without reopening the local test. See the
 [identity-context report](reports/catboost-identity-context-screen.md).
 
+Two final identity-vote follow-ups also stopped. Crossing the identity CatBoost
+with source-plus-class XGBoost and Random Forest reached 81.7466%, only 0.0063
+points above the promoted recipe despite four fold wins. A depth-7 identity
+CatBoost substitution reached 81.7319%, 0.0084 points below. Neither justified
+another local-test use. See the
+[identity follow-up report](reports/catboost-identity-follow-up-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Cross the promoted complete-identity CatBoost with the strongest already-
-   evaluated physical representation at the same fixed 20% contribution. This
-   is a cached probability test, not another weight grid.
+2. Evaluate one fold-safe character n-gram model over the deferred organisation,
+   pump and scheme names. Use one fixed vocabulary/regularisation policy and one
+   low ensemble contribution to test generalisation across unseen exact names.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

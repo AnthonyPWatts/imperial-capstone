@@ -95,6 +95,36 @@ def evaluate_complete_identity_catboost(
     )
 
 
+def evaluate_depth7_complete_identity_catboost(
+    partitioned_data: PartitionedData,
+    cross_validation: object,
+) -> CatBoostIdentityTrial:
+    """Evaluate the one diversity-motivated depth-7 identity candidate."""
+
+    spec = _replace(
+        make_catboost_spec(variant="d7"),
+        name="CatBoost d7 [complete deferred identities]",
+        feature_policy="accepted plus six deferred identities",
+    )
+    evaluation = evaluate_gpu_candidate(
+        spec,
+        partitioned_data,
+        cross_validation,
+        catboost_feature_engineer=(
+            engineer_complete_identity_catboost_features
+        ),
+    )
+    first_training_positions, _ = next(cross_validation.split())
+    engineered, categorical = engineer_complete_identity_catboost_features(
+        partitioned_data.X_development.iloc[first_training_positions]
+    )
+    return CatBoostIdentityTrial(
+        evaluation=evaluation,
+        engineered_features=engineered.shape[1],
+        categorical_features=len(categorical),
+    )
+
+
 def engineer_context_identity_catboost_features(
     X: _pd.DataFrame,
 ) -> tuple[_pd.DataFrame, tuple[str, ...]]:

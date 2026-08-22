@@ -93,7 +93,9 @@ changes 1.576% of accepted predictions. The next bounded experiment asks
 whether fixed geographic context can disambiguate the native identity fields.
 That context check subsequently tied the promoted vote exactly and was stopped;
 the next no-refit test crosses the identity voter with the strongest existing
-physical representation.
+physical representation. That cross gained only 0.006 points and a depth-7
+identity substitution also trailed, closing those fine-tuning branches. The
+next distinct representation is fold-safe character n-grams over sparse names.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -109,6 +111,7 @@ and [spatial-outcome](stage-1-pump-it-up/reports/cross-fitted-spatial-outcome-sc
 and [CatBoost identity](stage-1-pump-it-up/reports/catboost-deferred-identity-screen.md)
 and [identity confirmation](stage-1-pump-it-up/reports/catboost-identity-confirmation.md)
 and [identity context](stage-1-pump-it-up/reports/catboost-identity-context-screen.md)
+and [identity follow-ups](stage-1-pump-it-up/reports/catboost-identity-follow-up-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed
