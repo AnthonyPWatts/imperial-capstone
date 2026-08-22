@@ -27,6 +27,11 @@ DEFERRED_IDENTITY_SOURCES = (
 DEFERRED_IDENTITY_FEATURES = tuple(
     f"{feature}_identity" for feature in DEFERRED_IDENTITY_SOURCES
 )
+CONTEXT_IDENTITY_FEATURES = (
+    "lga_ward_context_identity",
+    "lga_scheme_context_identity",
+    "funder_installer_context_identity",
+)
 
 
 @_dataclass(frozen=True)
@@ -81,6 +86,67 @@ def evaluate_complete_identity_catboost(
     )
     first_training_positions, _ = next(cross_validation.split())
     engineered, categorical = engineer_complete_identity_catboost_features(
+        partitioned_data.X_development.iloc[first_training_positions]
+    )
+    return CatBoostIdentityTrial(
+        evaluation=evaluation,
+        engineered_features=engineered.shape[1],
+        categorical_features=len(categorical),
+    )
+
+
+def engineer_context_identity_catboost_features(
+    X: _pd.DataFrame,
+) -> tuple[_pd.DataFrame, tuple[str, ...]]:
+    """Add three supported context-qualified identities to the complete set."""
+
+    engineered, categorical = engineer_complete_identity_catboost_features(X)
+    normalised = {
+        column: normalise_identity(X[column])
+        for column in ("lga", "ward", "scheme_name", "funder", "installer")
+    }
+    engineered["lga_ward_context_identity"] = normalised["lga"].str.cat(
+        normalised["ward"],
+        sep="::",
+    )
+    engineered["lga_scheme_context_identity"] = normalised["lga"].str.cat(
+        normalised["scheme_name"],
+        sep="::",
+    )
+    engineered["funder_installer_context_identity"] = normalised[
+        "funder"
+    ].str.cat(
+        normalised["installer"],
+        sep="::",
+    )
+    if tuple(engineered.columns[-len(CONTEXT_IDENTITY_FEATURES) :]) != (
+        CONTEXT_IDENTITY_FEATURES
+    ):
+        raise ValueError("Context-qualified CatBoost identity order changed.")
+    return engineered, (*categorical, *CONTEXT_IDENTITY_FEATURES)
+
+
+def evaluate_context_identity_catboost(
+    partitioned_data: PartitionedData,
+    cross_validation: object,
+) -> CatBoostIdentityTrial:
+    """Evaluate one depth-8 CatBoost with supported identity composites."""
+
+    spec = _replace(
+        make_catboost_spec(variant="d8"),
+        name="CatBoost d8 [context-qualified deferred identities]",
+        feature_policy=(
+            "accepted plus six deferred identities and three context pairs"
+        ),
+    )
+    evaluation = evaluate_gpu_candidate(
+        spec,
+        partitioned_data,
+        cross_validation,
+        catboost_feature_engineer=engineer_context_identity_catboost_features,
+    )
+    first_training_positions, _ = next(cross_validation.split())
+    engineered, categorical = engineer_context_identity_catboost_features(
         partitioned_data.X_development.iloc[first_training_positions]
     )
     return CatBoostIdentityTrial(

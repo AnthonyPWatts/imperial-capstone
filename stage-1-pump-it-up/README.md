@@ -234,13 +234,20 @@ the accepted file from its shared components. The new candidate is recorded but
 not uploaded because the 22 August allowance is already 3/3. See the
 [candidate record](submissions/2026-08-22-catboost-identities/README.md).
 
+A final native-identity representation check added only three well-supported
+context pairs: LGA×ward, LGA×scheme and funder×installer. Its fixed 20% vote
+tied the promoted recipe exactly at 81.7403%, won only two folds and reduced
+repair recall by another 0.463 points. Explicit context construction is stopped
+without reopening the local test. See the
+[identity-context report](reports/catboost-identity-context-screen.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Evaluate one context-qualified native-identity CatBoost representation,
-   adding fixed geographic context to ambiguous pump and organisation names
-   without opening a parameter grid.
+2. Cross the promoted complete-identity CatBoost with the strongest already-
+   evaluated physical representation at the same fixed 20% contribution. This
+   is a cached probability test, not another weight grid.
 2. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 3. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

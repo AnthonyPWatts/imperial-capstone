@@ -91,6 +91,9 @@ local test, 0.387 points above the identically refitted accepted ensemble, and
 its validated full-data competition file is now prepared but not uploaded. It
 changes 1.576% of accepted predictions. The next bounded experiment asks
 whether fixed geographic context can disambiguate the native identity fields.
+That context check subsequently tied the promoted vote exactly and was stopped;
+the next no-refit test crosses the identity voter with the strongest existing
+physical representation.
 The main evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
@@ -105,6 +108,7 @@ and [target-encoding](stage-1-pump-it-up/reports/cross-fitted-target-encoding-sc
 and [spatial-outcome](stage-1-pump-it-up/reports/cross-fitted-spatial-outcome-screen.md)
 and [CatBoost identity](stage-1-pump-it-up/reports/catboost-deferred-identity-screen.md)
 and [identity confirmation](stage-1-pump-it-up/reports/catboost-identity-confirmation.md)
+and [identity context](stage-1-pump-it-up/reports/catboost-identity-context-screen.md)
 reports.
 
 A bounded blend comparison retained the earlier equal vote: neither fixed

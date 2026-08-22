@@ -125,8 +125,9 @@ Current modules:
 - `spatial_outcome_evaluation.py` compares the fixed spatial feature policy,
   its direct probability voter and component crosses with the accepted vote.
 - `catboost_identity_evaluation.py` adds all six deferred identity fields as
-  conservatively normalised native CatBoost categoricals and evaluates the one
-  fixed depth-8 candidate on the frozen folds.
+  conservatively normalised native CatBoost categoricals, optionally adds the
+  three predeclared supported context pairs and evaluates each fixed depth-8
+  representation on the frozen folds.
 - `catboost_identity_confirmation.py` refits the accepted and preselected
   complete-identity recipes from development to local test, scores unchanged
   three-class labels, reports paired hard-prediction changes and builds both

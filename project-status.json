@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 40,
-    "total": 40,
-    "current": "Validated identity-CatBoost competition candidate prepared, not uploaded"
+    "completed": 41,
+    "total": 41,
+    "current": "Explicit CatBoost identity contexts tied the promoted recipe and were stopped"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Evaluate one context-qualified native-identity CatBoost representation on frozen folds.",
+    "nextCheckpoint": "Cross the promoted identity CatBoost with the strongest existing physical representation at its fixed weight.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

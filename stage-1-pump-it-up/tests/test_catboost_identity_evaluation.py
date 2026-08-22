@@ -15,7 +15,9 @@ if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
 from catboost_identity_evaluation import DEFERRED_IDENTITY_FEATURES
+from catboost_identity_evaluation import CONTEXT_IDENTITY_FEATURES
 from catboost_identity_evaluation import engineer_complete_identity_catboost_features
+from catboost_identity_evaluation import engineer_context_identity_catboost_features
 from feature_engineering import CATEGORICAL_FEATURES
 from feature_engineering import EXPECTED_SOURCE_FEATURES
 
@@ -41,6 +43,27 @@ class CatBoostIdentityEvaluationTests(unittest.TestCase):
                 str(engineered[column].dtype) in {"object", "str"}
                 for column in categorical
             )
+        )
+
+    def test_context_identities_use_only_predeclared_supported_pairs(self) -> None:
+        frame = _source_frame()
+
+        engineered, categorical = engineer_context_identity_catboost_features(
+            frame
+        )
+
+        self.assertEqual(categorical[-3:], CONTEXT_IDENTITY_FEATURES)
+        self.assertEqual(
+            engineered.loc[0, "lga_ward_context_identity"],
+            "misenyi::value",
+        )
+        self.assertEqual(
+            engineered.loc[0, "lga_scheme_context_identity"],
+            "misenyi::scheme",
+        )
+        self.assertEqual(
+            engineered.loc[0, "funder_installer_context_identity"],
+            "government::dwe",
         )
 
 

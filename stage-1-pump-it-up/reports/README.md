@@ -74,6 +74,10 @@ The frozen recipe's one-time local-test result, paired changes and full-data
 refit decision are in
 [`catboost-identity-confirmation.md`](catboost-identity-confirmation.md).
 
+The fixed LGA, scheme and organisation context-pair audit and tied CatBoost
+result are in
+[`catboost-identity-context-screen.md`](catboost-identity-context-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

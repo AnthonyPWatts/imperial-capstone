@@ -122,6 +122,9 @@ It does not replace the formal split and evaluation sequence below.
 25. [`26-catboost-identity-confirmation.ipynb`](26-catboost-identity-confirmation.ipynb):
     frozen development-to-local-test refit, paired accuracy changes, probability
     quality and promotion to a full-labelled-data competition refit.
+26. [`27-catboost-identity-context.ipynb`](27-catboost-identity-context.ipynb):
+    pre-fit composite-support audit, one context-qualified native CatBoost and
+    fixed-weight comparison with the promoted complete-identity recipe.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments
