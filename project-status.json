@@ -6,13 +6,13 @@
   "overall": {
     "completed": 29,
     "total": 29,
-    "current": "Begin extraction-type hierarchy ablations with the accepted model recipe"
+    "current": "Review the new 0.8246 public leader and choose the next bounded data loop"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Begin extraction-type hierarchy ablations.",
+    "nextCheckpoint": "Choose between remaining sparse-name and physical-interaction screens without reopening oversampling.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -26,7 +26,7 @@
   "features": {
     "examined": 36,
     "total": 36,
-    "current": "ANN screen retained the accepted tree ensemble",
+    "current": "Physical hierarchy screens retained the granular features",
     "rawPredictorsAudited": 39,
     "structuralRemovalsAudited": 3
   },
@@ -36,12 +36,12 @@
     "evaluated": 21
   },
   "submissions": {
-    "total": 9,
+    "total": 12,
     "usedToday": 3,
     "dailyLimit": 3,
-    "bestScore": 0.8241,
-    "bestLabel": "XGBoost + Random Forest vote",
-    "latestDate": "2026-08-21"
+    "bestScore": 0.8246,
+    "bestLabel": "Source plus class XGBoost + Random Forest vote",
+    "latestDate": "2026-08-22"
   },
   "benchmarks": {
     "achievedTargetScore": 0.8225,

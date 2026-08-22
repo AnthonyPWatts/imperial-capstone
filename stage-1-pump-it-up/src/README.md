@@ -40,6 +40,12 @@ Current modules:
 - `ann_evaluation.py` evaluates bounded scaled one-hot multilayer perceptrons
   on the frozen folds, reuses audited organisation-feature policies and tests
   fixed low-weight probability blends against the accepted ensemble.
+- `physical_hierarchy_features.py` declares the bounded extraction, source,
+  quality and waterpoint hierarchy policies while preserving the exact accepted
+  frame for each family's baseline.
+- `physical_hierarchy_evaluation.py` evaluates those policies with the accepted
+  vote, applies separate accuracy and parsimony gates and supports bounded
+  no-refit crosses of policy-specific model components.
 - `model_preprocessing.py` combines that transformer with fold-fitted numeric
   imputation, missing indicators, rare-category handling and one-hot encoding;
   it can return identical sparse or dense feature values, optionally standardises

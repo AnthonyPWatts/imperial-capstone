@@ -1,0 +1,97 @@
+{
+  "date": "2026-08-22",
+  "status": "partially_submitted",
+  "local_test_opened": false,
+  "selection_note": "Exploratory hierarchy recipes; none passed the predeclared promotion gate.",
+  "entries": [
+    {
+      "rank": 1,
+      "key": "source-plus-class",
+      "label": "Source plus source class",
+      "status": "submitted",
+      "exploratory": true,
+      "xgboost_policy": "source:source_plus_class",
+      "random_forest_policy": "source:source_plus_class",
+      "weights": {
+        "xgboost": 0.55,
+        "random_forest": 0.45
+      },
+      "xgboost_iterations": 1024,
+      "competition_class_shares": {
+        "functional": 0.6029629629629629,
+        "functional needs repair": 0.03932659932659933,
+        "non functional": 0.3577104377104377
+      },
+      "fit_and_predict_seconds": {
+        "xgboost:source:source_plus_class": 8.534773199993651,
+        "random_forest:source:source_plus_class": 32.58279670000047
+      },
+      "csv": "01-source-plus-class.csv",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "public_score": 0.8246,
+      "sha256": "95569ad19bec46c94089207db06d4bb240fc27c3ccb40d308aff39535ecdbbf8"
+    },
+    {
+      "rank": 2,
+      "key": "waterpoint-both-levels",
+      "label": "Waterpoint type plus group",
+      "status": "prepared_not_uploaded",
+      "exploratory": true,
+      "xgboost_policy": "waterpoint:both_levels",
+      "random_forest_policy": "waterpoint:both_levels",
+      "weights": {
+        "xgboost": 0.55,
+        "random_forest": 0.45
+      },
+      "xgboost_iterations": 1031,
+      "competition_class_shares": {
+        "functional": 0.6032323232323232,
+        "functional needs repair": 0.03973063973063973,
+        "non functional": 0.35703703703703704
+      },
+      "fit_and_predict_seconds": {
+        "xgboost:waterpoint:both_levels": 8.779793000001519,
+        "random_forest:waterpoint:both_levels": 32.329681499999424
+      },
+      "csv": "02-waterpoint-both-levels.csv",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "public_score": null,
+      "sha256": "74daa161b5f1f9d8e2dff72808664158f166d21a3745959c74a7649935e98baa"
+    },
+    {
+      "rank": 3,
+      "key": "waterpoint-xgb-source-rf",
+      "label": "Waterpoint-aware XGBoost plus source-class Random Forest",
+      "status": "submitted",
+      "exploratory": true,
+      "xgboost_policy": "waterpoint:both_levels",
+      "random_forest_policy": "source:source_plus_class",
+      "weights": {
+        "xgboost": 0.55,
+        "random_forest": 0.45
+      },
+      "xgboost_iterations": 1031,
+      "competition_class_shares": {
+        "functional": 0.6035016835016835,
+        "functional needs repair": 0.03973063973063973,
+        "non functional": 0.3567676767676768
+      },
+      "fit_and_predict_seconds": {
+        "xgboost:waterpoint:both_levels": 8.779793000001519,
+        "random_forest:source:source_plus_class": 32.58279670000047
+      },
+      "csv": "03-waterpoint-xgb-source-rf.csv",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "public_score": 0.8244,
+      "sha256": "7457d578fbe59e46cabbe3de2b3bd92590829b4077180548e959ea354e32ced3"
+    }
+  ],
+  "competition_prediction_disagreement": {
+    "source-plus-class__vs__waterpoint-both-levels": 0.010707070707070707,
+    "source-plus-class__vs__waterpoint-xgb-source-rf": 0.006195286195286196,
+    "waterpoint-both-levels__vs__waterpoint-xgb-source-rf": 0.00787878787878788
+  }
+}

@@ -38,20 +38,20 @@ status request fails. The current snapshot is dated 22 August 2026:
 | Metric | Current value |
 | --- | ---: |
 | Overall plan checkpoints | 29 / 29 |
-| Features fully examined | 36 / 36 (ANN screen retained the accepted tree ensemble) |
+| Features fully examined | 36 / 36 (physical hierarchy screens retained granular features) |
 | Locally evaluated models | 21 |
 | Candidate methods trained | 11, plus ten ensemble workflows |
-| DrivenData submissions | 9 |
-| Best leaderboard score | 0.8241 |
+| DrivenData submissions | 12 |
+| Best leaderboard score | 0.8246 |
 | Achieved provisional target | ~~0.8225~~ |
 | Stretch target score | 0.8260 |
 | Chart ceiling | 0.8500 |
 | Daily submissions used | 3 / 3 UTC |
 
-The current task is beginning extraction-type hierarchy ablations with the
-accepted XGBoost and Random Forest recipe. A bounded seven-configuration MLP
-screen retained that recipe: the best standalone reached 78.590% and the
-closest of 84 fixed blends reached 81.616%, below baseline. The process remains
+The current task is choosing the next materially different data loop after the
+extraction, source, quality and waterpoint hierarchy screens retained the
+granular features. Source plus class reached 81.635%, but its +0.011-point gain
+won only two folds and failed the promotion gate. The process remains
 iterative, so leaderboard feedback does not replace retained local
 model-selection evidence:
 
@@ -64,8 +64,8 @@ model-selection evidence:
   using local test or competition rows.
 - **Step 5, select and engineer features (36 / 36 audited):** the initial policy
   uses elapsed recording time, valid pump age and explicit missing-state flags.
-  The organisation, numeric and management loops are complete; physical
-  categorical hierarchy levels remain controlled ablations.
+  The organisation, numeric, management and physical hierarchy loops are
+  complete; extraction group-only remains a named parsimony candidate.
 - **Step 6, define the task (4 / 4):** multiclass classification, accuracy,
   class balance, label integrity and exact feature/label ID alignment are
   recorded.
@@ -78,11 +78,11 @@ model-selection evidence:
 - **Step 9, evaluate and interpret (3 / 3):** the leading 55% XGBoost and 45%
   Random Forest vote reaches 81.625% on the frozen development folds. The
   reserved local test was not reopened during this model-family screen.
-- **Step 10, deploy and iterate (3 / 3):** two independently selected XGBoost
-  and Random Forest workflows were refitted on all labelled rows; their
-  validated submissions scored `0.8241` and `0.8240` publicly.
+- **Step 10, deploy and iterate (3 / 3):** the two exploratory hierarchy
+  submissions scored `0.8246` and `0.8244`; the frozen 2.5× oversampled bag
+  scored `0.8174`.
 
-Nine submissions have been made across three UTC dates:
+Twelve submissions have been made across four UTC dates:
 
 | Submission | Date | DrivenData score |
 | --- | --- | ---: |
@@ -95,14 +95,16 @@ Nine submissions have been made across three UTC dates:
 | Equal-weight Random Forest and boosting vote | 21 August | 0.8223 |
 | 55% XGBoost and 45% Random Forest vote | 21 August | **0.8241** |
 | 60% XGBoost depth bag and 40% Random Forest vote | 21 August | 0.8240 |
+| Source-plus-class XGBoost and Random Forest vote | 22 August | **0.8246** |
+| Waterpoint-XGBoost and source-class Random Forest vote | 22 August | 0.8244 |
+| 2.5× repair-oversampled XGBoost depth bag | 22 August | 0.8174 |
 
 The 0.5461 all-`functional` result remains the simple public leaderboard floor;
 the frozen development folds produce a separate 0.5431 local majority
-reference. The 55% XGBoost and 45% Random Forest vote now leads the public
-results at `0.8241`, an absolute improvement of `0.0018` over the preceding
-Random Forest and histogram-boosting vote. Its independently preselected
-depth-bag alternative scored `0.8240`. The two candidates disagree on 1.172%
-of out-of-fold labels and 1.192% of competition labels.
+reference. Source plus source class now leads the public results at `0.8246`,
+0.0005 above the previous leader. The cross-policy hybrid scored `0.8244`.
+The 2.5× oversampled bag scored `0.8174`, 0.0066 below its unoversampled
+counterpart and consistent with the measured local-test accuracy cost.
 
 Formal comparison now covers eleven single-model families. Random Forest remains
 the strongest family from the earlier broad comparison at 80.59%; the new
@@ -130,10 +132,10 @@ not been fetched or independently verified by the dashboard:
 | Stretch target | **82.60%** |
 | Reported world record | 82.99% |
 
-The compact daily-best chart records 54.61% on 14 August, 81.70% on 15 August
-and 82.41% on 21 August. Its scale runs from 50% to 85%, with the 82.60% stretch
-target drawn inside that range. The achieved 82.25% provisional target remains
-visible as a struck-through benchmark row.
+The compact daily-best chart records 54.61% on 14 August, 81.70% on 15 August,
+82.41% on 21 August and 82.46% on 22 August. Its scale runs from 50% to 85%,
+with the 82.60% stretch target drawn inside that range. The achieved 82.25%
+provisional target remains visible as a struck-through benchmark row.
 
 ## Metric definitions
 
@@ -207,8 +209,8 @@ Calculate the CSS height as:
 --score-height = (percentage score - 50) ÷ 35 × 100%
 ```
 
-For example, 54.61% becomes `13.17%`, 81.70% becomes `90.57%` and 82.41%
-becomes `92.60%`. If results reach or exceed 85%, change the axis and document
+For example, 54.61% becomes `13.17%`, 81.70% becomes `90.57%`, 82.41%
+becomes `92.60%` and 82.46% becomes `92.74%`. If results reach or exceed 85%, change the axis and document
 the new scale rather than allowing bars to overflow. Keep the full 82.60%
 stretch target in the summary and benchmark panel regardless of the chart's
 temporary scale.
@@ -250,8 +252,8 @@ or notebook output directly.
 
 ## Likely next changes
 
-- Begin extraction-type hierarchy ablations with the accepted XGBoost and
-  Random Forest recipe held fixed.
+- Choose the next bounded data loop between remaining sparse names and a small
+  predeclared set of physical interactions.
 - Retain the accepted geography policy and the LGA-disjoint transfer warning.
-- Retain the management screen's rejection; treat management-only as a future
-  non-inferiority candidate rather than an accuracy promotion.
+- Retain granular physical hierarchy features; treat extraction group-only as
+  a future non-inferiority candidate rather than an accuracy promotion.

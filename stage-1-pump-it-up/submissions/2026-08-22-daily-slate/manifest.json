@@ -1,0 +1,38 @@
+{
+  "date": "2026-08-22",
+  "status": "submitted",
+  "new_oversampling_run": false,
+  "local_test_reopened": false,
+  "entries": [
+    {
+      "order": 1,
+      "key": "source-plus-class",
+      "role": "best hierarchy mean",
+      "csv": "../2026-08-22-physical-hierarchies/01-source-plus-class.csv",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "public_score": 0.8246,
+      "sha256": "95569ad19bec46c94089207db06d4bb240fc27c3ccb40d308aff39535ecdbbf8"
+    },
+    {
+      "order": 2,
+      "key": "waterpoint-xgb-source-rf",
+      "role": "best hierarchy component cross",
+      "csv": "../2026-08-22-physical-hierarchies/03-waterpoint-xgb-source-rf.csv",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "public_score": 0.8244,
+      "sha256": "7457d578fbe59e46cabbe3de2b3bd92590829b4077180548e959ea354e32ced3"
+    },
+    {
+      "order": 3,
+      "key": "repair-250x-xgboost-bag",
+      "role": "frozen minority-recall experiment",
+      "csv": "../2026-08-21-oversampled-replay-250x/03-60-xgboost-depth-6-7-8-local-bag-40-random-forest-oversampled.csv",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "public_score": 0.8174,
+      "sha256": "7f113c60c272db2e08ed12f9051637f6b448790af5359f85fa0857bfcc17a53f"
+    }
+  ]
+}

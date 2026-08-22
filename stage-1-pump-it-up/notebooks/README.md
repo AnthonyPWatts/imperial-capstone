@@ -86,6 +86,9 @@ It does not replace the formal split and evaluation sequence below.
 14. [`15-ann-candidate-screen.ipynb`](15-ann-candidate-screen.ipynb): no-refit
     presentation of seven fold-safe scaled one-hot MLPs, their audited
     organisation representations, error diversity and fixed probability blends.
+15. [`16-physical-categorical-hierarchies.ipynb`](16-physical-categorical-hierarchies.ipynb):
+    no-refit presentation of extraction, source, quality and waterpoint
+    hierarchy ablations, parsimony evidence and bounded component crosses.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

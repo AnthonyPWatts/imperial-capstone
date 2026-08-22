@@ -20,10 +20,10 @@ fixed BBO brief and will be developed as each set of observations is released.
 ## Current position
 
 As of 22 August 2026, Stage 1 has audited all 39 raw predictors, settled three
-structural removals and organised the remaining 36 candidate predictors. Nine
-DrivenData submissions have been made. The best is a 55% XGBoost and 45%
-Random Forest vote at `0.8241`; an independently preselected XGBoost depth-bag
-alternative followed at `0.8240`.
+structural removals and organised the remaining 36 candidate predictors.
+Twelve DrivenData submissions have been made. The best is the source-plus-class
+55% XGBoost and 45% Random Forest vote at `0.8246`; its cross-policy hybrid
+followed at `0.8244`.
 
 The formal workflow freezes a stratified 20% local test and five development
 folds, then compares eleven classifier families and ten bounded ensemble workflows
@@ -46,16 +46,23 @@ ten rare-grouped or frequency challengers passed the gate. Funder frequency
 was only 0.032 points above baseline and won two of five folds. Numeric
 state and imputation treatments subsequently left the accepted policy
 unchanged: all eleven challengers trailed the 81.625% baseline. Categorical
-hierarchy ablation has now retained the management pair as well; management-only
-was just 0.013 points higher, below the promotion threshold. Extraction type is
-the next data-focused loop. A bounded seven-configuration MLP screen also
+hierarchy ablation retained the management pair as well; management-only was
+just 0.013 points higher, below the promotion threshold. A bounded
+seven-configuration MLP screen also
 retained the accepted tree ensemble: its best standalone reached 78.590%, and
-the closest of 84 fixed blends reached 81.616%, just below baseline. The main
+the closest of 84 fixed blends reached 81.616%, just below baseline. The four
+physical hierarchy screens subsequently retained granular extraction, source,
+quality and waterpoint features. Source plus class was the closest challenger
+at 81.635%, but its +0.011-point change won only two folds. Its exploratory
+full-data submission nevertheless scored `0.8246`, with the waterpoint-XGBoost
+and source-forest cross at `0.8244`. A frozen 2.5× repair-oversampled bag scored
+`0.8174`, confirming the expected accuracy penalty without prompting another
+oversampling loop. The main
 evidence is available in the
 [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/),
 [submission log](stage-1-pump-it-up/submissions/README.md),
 [data-audit report](stage-1-pump-it-up/notebooks/data-audit/00-overall/00-overall-data-audit.md)
-and [ANN screen report](stage-1-pump-it-up/reports/ann-candidate-screen.md).
+and [physical hierarchy report](stage-1-pump-it-up/reports/physical-categorical-hierarchy-screen.md).
 
 A bounded blend comparison retained the earlier equal vote: neither fixed
 40:60 alternative nor a nested calibrated stack improved at least three of the

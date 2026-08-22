@@ -50,6 +50,14 @@ fixed blends. The best standalone ANN reached 78.590%; the closest blend reached
 tuning is stopped on these folds. See
 [`ann-candidate-screen.md`](ann-candidate-screen.md).
 
+The remaining deterministic physical hierarchies are now complete. Twenty
+extraction, source, quality and waterpoint challengers plus six no-refit
+component crosses produced no promotion. Source plus class was the strongest
+policy at 81.635%, just 0.011 points above baseline with two fold wins.
+Extraction group-only remains a parsimony candidate; all four granular features
+remain selected for accuracy. See
+[`physical-categorical-hierarchy-screen.md`](physical-categorical-hierarchy-screen.md).
+
 The fixed column-removal implementation is in
 [`src/data_preparation.py`](../src/data_preparation.py), with its declarative
 schema and assumptions in
@@ -342,9 +350,9 @@ work can proceed without them.
 
 ## Resume point
 
-Continue the next **Deploy and iterate** loop with extraction-type hierarchy
-ablations under the accepted XGBoost and Random Forest recipe, followed by the
-source, quality and waterpoint families. The geography, organisation, numeric
-and management families are recorded and frozen. The bounded MLP screen is also
-closed without promotion. Public scores remain external feedback rather than a
-replacement for local model-selection evidence.
+Choose the next **Deploy and iterate** loop between the remaining sparse name
+fields and a small predeclared set of physical interactions. The geography,
+organisation, numeric, management and physical hierarchy families are recorded
+and frozen. The bounded MLP screen is also closed without promotion. Public
+scores remain external feedback rather than a replacement for local
+model-selection evidence.

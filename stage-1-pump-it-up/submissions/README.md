@@ -148,8 +148,43 @@ This establishes a repeatable minority-recall intervention, not an accuracy
 improvement. The follow-up levels were proposed after observing earlier replays
 and are therefore exploratory rather than independent local-test confirmations.
 The 2.5× level is now frozen as the final multiplier examined in this session.
-Nine validated CSVs were generated, but none was uploaded. See the
+Nine validated CSVs were generated, and none was uploaded during the replay
+work. The 2.5× depth-bag candidate was later submitted unchanged as part of the
+22 August slate and scored 0.8174. See the
 [`full replay`](2026-08-21-oversampled-replay/) and
 [`80%-replica replay`](2026-08-21-oversampled-replay-80/),
 [`2.5× replay`](2026-08-21-oversampled-replay-250x/) and
 [`09-oversampled-submission-replay.ipynb`](../notebooks/09-oversampled-submission-replay.ipynb).
+
+## 2026-08-22: physical-hierarchy candidates generated
+
+Three exploratory 55:45 XGBoost and Random Forest entries were refitted on all
+labelled rows: source plus source class, waterpoint type plus group, and a
+waterpoint-aware XGBoost plus source-class Random Forest hybrid. Their frozen-
+fold mean accuracies were 81.635%, 81.627% and 81.629%, respectively, but each
+won only two of five folds and none passed the predeclared promotion gate.
+
+All three 14,850-row CSVs passed template, ID and label validation. Source plus
+class scored **0.8246**, a new project best, and the cross-policy hybrid scored
+**0.8244**. The waterpoint-both candidate remains local; the reserved local
+test was not opened. See
+[`2026-08-22-physical-hierarchies/`](2026-08-22-physical-hierarchies/) for the
+exact recipes, hashes, prediction shares and disagreement.
+
+## 2026-08-22: three-entry daily slate submitted
+
+The final daily slate deliberately combines two hierarchy candidates with one
+already-frozen oversampling candidate instead of spending all three entries on
+closely related hierarchy predictions. The first two are source plus source
+class and the waterpoint-aware XGBoost plus source-class Random Forest hybrid.
+The third is the 2.5× repair-count depth-6/7/8 XGBoost bag, which gave the best
+local-test accuracy and macro F1 within the frozen oversampling replays.
+
+No new oversampling level was fitted or evaluated, and the local test was not
+reopened. Public scores were **0.8246** for source plus class, **0.8244** for
+the cross-policy hybrid and **0.8174** for the oversampled bag. The first is a
+new project best, 0.0005 above the previous leader. Oversampling remains a
+minority-recall intervention rather than an accuracy improvement: its public
+score was 0.0066 below the corresponding unoversampled bag, consistent with
+the 0.43-point local-test accuracy cost. See the
+[`daily slate`](2026-08-22-daily-slate/) for the exact files and hashes.

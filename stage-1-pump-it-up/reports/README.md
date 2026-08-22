@@ -31,6 +31,10 @@ The bounded scaled one-hot multilayer-perceptron architecture, organisation
 representation and probability-blend screen is in
 [`ann-candidate-screen.md`](ann-candidate-screen.md).
 
+The extraction, source, quality and waterpoint deterministic hierarchy
+ablations and bounded component crosses are in
+[`physical-categorical-hierarchy-screen.md`](physical-categorical-hierarchy-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.
