@@ -171,6 +171,8 @@ Current modules:
 - `learned_numeric_imputation_evaluation.py` reconstructs unavailable height
   spatially, then fits a target-free log-amount regressor inside each training
   partition before refitting the accepted tree components.
+- `recording_batch_catboost_evaluation.py` appends the exact recording date as
+  one native survey-batch category to the complete-identity CatBoost candidate.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

@@ -143,6 +143,10 @@ The fold-fitted spatial-height plus log-amount reconstruction, accepted-tree
 refits and fixed representation votes are in
 [`learned-numeric-imputation-screen.md`](learned-numeric-imputation-screen.md).
 
+The archive-motivated exact recording-date CatBoost, fold-support audit and
+fixed direct/archive-synthesis votes are in
+[`recording-batch-catboost-screen.md`](recording-batch-catboost-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

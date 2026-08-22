@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 52,
-    "total": 52,
-    "current": "Learned amount reconstruction did not improve the ensemble"
+    "completed": 53,
+    "total": 53,
+    "current": "Exact recording batches added only a small ensemble gain"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Test genuinely different target-free representations; avoid further near-miss blend tuning.",
+    "nextCheckpoint": "Test one shared region-by-physical interaction layer without splitting the training sample.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

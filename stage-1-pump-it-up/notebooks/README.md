@@ -174,6 +174,9 @@ It does not replace the formal split and evaluation sequence below.
 45. [`46-learned-numeric-imputation.ipynb`](46-learned-numeric-imputation.ipynb):
     fold-fitted spatial height followed by target-free log-amount regression,
     accepted component refits and fixed ensemble substitutions.
+46. [`47-recording-batch-catboost.ipynb`](47-recording-batch-catboost.ipynb):
+    exact recording date as one well-supported native CatBoost batch category,
+    with direct and archive-synthesis substitutions.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments
