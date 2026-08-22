@@ -72,7 +72,9 @@ Current modules:
   aligned out-of-fold probabilities, confusion matrices, pairwise diversity and
   fixed-weight soft votes over two or more components. It also exposes a nested
   forest-plus-boosting stack whose regularised combiner is fitted from inner
-  out-of-fold probabilities separately inside every outer fold.
+  out-of-fold probabilities separately inside every outer fold. The Random
+  Forest factory preserves project defaults while accepting explicit tree-
+  count and feature-sampling overrides for controlled archived reproductions.
 - `blend_submission.py` refits a development-selected fixed-weight vote or
   calibrated stack on all labelled rows and hands its probabilities to the
   shared validated competition-prediction builder.

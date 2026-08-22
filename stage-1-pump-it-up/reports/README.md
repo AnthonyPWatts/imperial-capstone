@@ -167,6 +167,10 @@ The fixed quantity-by-extraction, source and waterpoint native CatBoost layer
 and its archive substitutions are in
 [`physical-state-interaction-screen.md`](physical-state-interaction-screen.md).
 
+The faithful 1,000-tree, five-feature-per-split completion of the archived
+radial occurrence-count forest is in
+[`exact-archive-frequency-forest-screen.md`](exact-archive-frequency-forest-screen.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

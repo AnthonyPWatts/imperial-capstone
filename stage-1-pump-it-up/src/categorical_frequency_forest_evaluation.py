@@ -47,6 +47,8 @@ RADIAL_FREQUENCY_MODEL_FEATURES = (
     *FREQUENCY_FEATURES,
 )
 EARTH_RADIUS_KM = 6371.0088
+ARCHIVE_FOREST_ESTIMATORS = 1000
+ARCHIVE_FOREST_MAX_FEATURES = 5
 
 
 @_dataclass(frozen=True)
@@ -264,6 +266,34 @@ def evaluate_radial_categorical_frequency_forest(
         model_name=(
             "Random Forest [categorical occurrence counts plus origin distance]"
         ),
+    )
+    training_positions, _ = next(cross_validation.split())
+    X_training = partitioned_data.X_development.iloc[training_positions]
+    preprocessor = make_radial_categorical_frequency_preprocessor()
+    transformed = preprocessor.fit_transform(
+        X_training,
+        partitioned_data.y_development.iloc[training_positions],
+    )
+    return CategoricalFrequencyForestTrial(
+        random_forest=random_forest,
+        engineered_features=len(RADIAL_FREQUENCY_MODEL_FEATURES),
+        transformed_features_fold_1=transformed.shape[1],
+    )
+
+
+def evaluate_exact_archive_frequency_forest(
+    partitioned_data: PartitionedData,
+    cross_validation: object,
+) -> CategoricalFrequencyForestTrial:
+    """Evaluate the archived 1,000-tree, five-feature radial forest."""
+
+    random_forest = evaluate_random_forest(
+        partitioned_data,
+        cross_validation,
+        preprocessor_factory=make_radial_categorical_frequency_preprocessor,
+        model_name="Random Forest [exact adapted archive specification]",
+        n_estimators=ARCHIVE_FOREST_ESTIMATORS,
+        max_features=ARCHIVE_FOREST_MAX_FEATURES,
     )
     training_positions, _ = next(cross_validation.split())
     X_training = partitioned_data.X_development.iloc[training_positions]

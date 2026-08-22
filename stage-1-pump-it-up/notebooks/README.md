@@ -192,6 +192,9 @@ It does not replace the formal split and evaluation sequence below.
 51. [`52-physical-state-interactions.ipynb`](52-physical-state-interactions.ipynb):
     fixed quantity-by-extraction, source and waterpoint CatBoost composites and
     their promoted/archive substitutions.
+52. [`53-exact-archive-frequency-forest.ipynb`](53-exact-archive-frequency-forest.ipynb):
+    faithful adapted 1,000-tree, five-feature-per-split completion of the
+    archived radial occurrence-count forest.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

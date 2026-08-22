@@ -178,13 +178,15 @@ def make_gaussian_naive_bayes_pipeline() -> _Pipeline:
 def make_random_forest_pipeline(
     *,
     preprocessor_factory: _Callable[..., _Pipeline] = make_initial_preprocessor,
+    n_estimators: int = RANDOM_FOREST_ESTIMATORS,
+    max_features: str | int | float = RANDOM_FOREST_MAX_FEATURES,
 ) -> _Pipeline:
     """Return initial preprocessing and a conventional Random Forest."""
 
     classifier = _RandomForestClassifier(
-        n_estimators=RANDOM_FOREST_ESTIMATORS,
+        n_estimators=n_estimators,
         criterion="gini",
-        max_features=RANDOM_FOREST_MAX_FEATURES,
+        max_features=max_features,
         min_samples_leaf=RANDOM_FOREST_MIN_SAMPLES_LEAF,
         bootstrap=True,
         class_weight=None,
@@ -496,6 +498,8 @@ def evaluate_random_forest(
     *,
     preprocessor_factory: _Callable[..., _Pipeline] = make_initial_preprocessor,
     model_name: str = "Random Forest",
+    n_estimators: int = RANDOM_FOREST_ESTIMATORS,
+    max_features: str | int | float = RANDOM_FOREST_MAX_FEATURES,
 ) -> CandidateEvaluation:
     """Fit and score a conventional Random Forest on every fold."""
 
@@ -505,6 +509,8 @@ def evaluate_random_forest(
         cross_validation=cross_validation,
         pipeline_factory=lambda: make_random_forest_pipeline(
             preprocessor_factory=preprocessor_factory,
+            n_estimators=n_estimators,
+            max_features=max_features,
         ),
         diagnostics_factory=_random_forest_diagnostics,
         record_elapsed=True,

@@ -22,7 +22,10 @@ from categorical_frequency_forest_evaluation import RADIAL_DISTANCE_FEATURE
 from categorical_frequency_forest_evaluation import (
     RadialCategoricalFrequencyFeatureEngineer,
 )
+from categorical_frequency_forest_evaluation import ARCHIVE_FOREST_ESTIMATORS
+from categorical_frequency_forest_evaluation import ARCHIVE_FOREST_MAX_FEATURES
 from feature_engineering import EXPECTED_SOURCE_FEATURES
+from model_evaluation import make_random_forest_pipeline
 
 
 class CategoricalFrequencyForestEvaluationTests(unittest.TestCase):
@@ -71,6 +74,16 @@ class CategoricalFrequencyForestEvaluationTests(unittest.TestCase):
         self.assertTrue(np.isfinite(transformed.loc[0, RADIAL_DISTANCE_FEATURE]))
         self.assertGreater(transformed.loc[0, RADIAL_DISTANCE_FEATURE], 3_000.0)
         self.assertTrue(pd.isna(transformed.loc[1, RADIAL_DISTANCE_FEATURE]))
+
+    def test_random_forest_factory_accepts_exact_archive_settings(self) -> None:
+        pipeline = make_random_forest_pipeline(
+            n_estimators=ARCHIVE_FOREST_ESTIMATORS,
+            max_features=ARCHIVE_FOREST_MAX_FEATURES,
+        )
+        classifier = pipeline.named_steps["classifier"]
+
+        self.assertEqual(classifier.n_estimators, 1000)
+        self.assertEqual(classifier.max_features, 5)
 
 
 def _source_frame(names: list[str]) -> pd.DataFrame:
