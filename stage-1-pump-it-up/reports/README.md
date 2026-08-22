@@ -155,6 +155,10 @@ The apples-to-apples local-test ordering of the public-leading source policy,
 its identity cross and the ready identity candidate is in
 [`source-identity-local-comparison.md`](source-identity-local-comparison.md).
 
+The local confirmation, paired uncertainty and validated full-data file for the
+fixed six-component archive-derived synthesis are in
+[`archive-synthesis-confirmation.md`](archive-synthesis-confirmation.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

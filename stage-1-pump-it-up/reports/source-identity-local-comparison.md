@@ -2,8 +2,8 @@
 
 ## Decision
 
-Submit the already-prepared original-feature complete-identity candidate first
-when the daily allowance resets. On the previously used 11,880-row local test,
+Retain the already-prepared original-feature complete-identity candidate ahead
+of the weaker source-policy cross. On the previously used 11,880-row local test,
 the public-leading source-plus-class 55:45 recipe scores **80.8333%**. Adding
 the fixed 20% complete-identity CatBoost raises it to **81.0101%**, a **+0.1768
 percentage-point** gain, but the already-prepared identity candidate remains
@@ -54,13 +54,17 @@ cross was known to miss the development promotion threshold. The comparison
 therefore cannot rescue that cross merely because it improves the public-leading
 source baseline locally.
 
-## Tomorrow's order
+## Decision at this checkpoint
 
-1. Upload the prepared 44:36:20 original-feature identity candidate.
-2. Observe its public score before allocating another slot.
-3. Do not submit the source-plus-class/identity cross on current evidence.
-4. Keep the 81.7929% development-only archive synthesis as a research candidate,
-   not a locally confirmed entry.
+1. Keep the prepared 44:36:20 original-feature identity candidate ahead of the
+   source-plus-class/identity cross.
+2. Do not submit the source-plus-class/identity cross on current evidence.
+3. Confirm the 81.7929% development-only archive synthesis separately before
+   finalising tomorrow's overall order.
+
+The subsequent archive-synthesis confirmation did transfer and now places that
+candidate first overall, with this identity candidate second. See
+[`archive-synthesis-confirmation.md`](archive-synthesis-confirmation.md).
 
 ## Reproduction
 

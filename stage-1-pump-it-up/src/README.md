@@ -179,6 +179,9 @@ Current modules:
 - `source_identity_confirmation.py` refits the public-leading source-plus-class
   components on development, reuses the frozen identity probabilities and
   builds the two fixed local-test recipes used for submission ordering.
+- `archive_synthesis_confirmation.py` refits the three uncached spatial and
+  frequency components on development and applies the fixed six-component
+  synthesis to the used local test.
 - `source_data_validation.py` exposes `validate_raw_feature_schema`,
   `validate_label_frame` and `validate_aligned_ids` for the three source-frame
   checks used by the audit notebook.

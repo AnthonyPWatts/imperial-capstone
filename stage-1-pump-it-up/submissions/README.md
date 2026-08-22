@@ -208,6 +208,21 @@ An apples-to-apples local check later refitted the exact source-plus-class
 components behind the 0.8246 public leader. Source plus class scored 80.833%
 locally; adding the identity component reached 81.010%, while the already-
 prepared original-feature identity candidate remained best at 81.086%. No
-additional CSV was generated. The prepared identity candidate is therefore the
-first entry when the allowance resets; see
+additional source/identity CSV was generated. See
 [`source-identity-local-comparison.md`](../reports/source-identity-local-comparison.md).
+
+## 2026-08-22: archive synthesis prepared
+
+The fixed equal synthesis of the categorical-frequency and spatial-height
+representation votes improved all five development folds and reached 81.793%.
+It then scored **81.187%** on the used local test, 0.101 points above the ready
+identity candidate, with better macro F1, repair recall, log loss and Brier
+score. The validated full-data file differs from the identity candidate on
+0.822% of competition rows and has SHA-256
+`46be08ced5e9a3ac3922a33e2aaf657306a08a406829cc69b4d25a5396e6ed0c`.
+
+The archive synthesis is queued first after the allowance resets, followed by
+the complete-identity candidate. The third slot remains unallocated until
+those scores are observed. See
+[`2026-08-22-archive-synthesis/`](2026-08-22-archive-synthesis/) and
+[`archive-synthesis-confirmation.md`](../reports/archive-synthesis-confirmation.md).

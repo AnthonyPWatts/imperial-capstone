@@ -183,6 +183,9 @@ It does not replace the formal split and evaluation sequence below.
 48. [`49-source-identity-local-comparison.ipynb`](49-source-identity-local-comparison.ipynb):
     controlled local-test ordering of the public-leading source policy, its
     fixed identity cross and the already-prepared identity candidate.
+49. [`50-archive-synthesis-confirmation.ipynb`](50-archive-synthesis-confirmation.ipynb):
+    fixed six-component synthesis confirmation on the used local test and its
+    validated full-labelled-data competition candidate.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments

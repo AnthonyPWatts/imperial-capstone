@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-22",
+  "status": "prepared_not_uploaded",
+  "selection": {
+    "development_accuracy": 0.817929292929293,
+    "development_change_vs_ready_identity": 0.0005260942760942,
+    "fold_wins_vs_ready_identity": 5,
+    "local_test_accuracy": 0.8118686868686869,
+    "local_test_change_vs_ready_identity": 0.001010101010101,
+    "local_test_net_additional_correct": 12
+  },
+  "weights": {
+    "xgboost": 0.33,
+    "spatial_xgboost": 0.11,
+    "random_forest": 0.18,
+    "frequency_random_forest": 0.09,
+    "spatial_random_forest": 0.09,
+    "identity_catboost": 0.2
+  },
+  "iterations": {
+    "xgboost": 1014,
+    "spatial_height_xgboost": 1082,
+    "complete_identity_catboost": 2173
+  },
+  "competition_prediction_disagreement_vs_ready_identity": 0.008215488215488216,
+  "competition_class_shares": {
+    "functional": 0.6088215488215488,
+    "functional needs repair": 0.03528619528619529,
+    "non functional": 0.35589225589225587
+  },
+  "fit_and_predict_seconds": {
+    "XGBoost": 8.555733900007908,
+    "spatial-height XGBoost": 9.21473929999047,
+    "Random Forest": 31.714019699997152,
+    "frequency Random Forest": 4.863508999987971,
+    "spatial-height Random Forest": 31.168612699999358,
+    "complete-identity CatBoost": 22.04005940000934
+  },
+  "csv": "01-33-xgboost-11-spatial-xgboost-18-random-forest-09-frequency-forest-09-spatial-forest-20-identity-catboost.csv",
+  "rows": 14850,
+  "unique_ids": 14850,
+  "sha256": "46be08ced5e9a3ac3922a33e2aaf657306a08a406829cc69b4d25a5396e6ed0c",
+  "daily_submission_allowance": "3/3 already used; do not upload"
+}
