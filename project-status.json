@@ -4,15 +4,15 @@
     "label": "22 August 2026"
   },
   "overall": {
-    "completed": 49,
-    "total": 49,
-    "current": "Spatial-height representation bag gained only 0.027 points"
+    "completed": 50,
+    "total": 50,
+    "current": "Archive-derived synthesis gained 0.053 points on all five folds"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Test one equal synthesis of the two archive-derived representation bags.",
+    "nextCheckpoint": "Require a genuinely new signal or data source before more ensemble work.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },

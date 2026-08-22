@@ -346,12 +346,18 @@ representations reached 81.768%, a 0.027-point gain with four fold wins. The
 effect remains below the promotion gate. See the
 [spatial-height report](reports/spatial-height-imputation-screen.md).
 
+Equal averaging of the two complete archive-derived candidate votes then
+reached 81.793%, a 0.053-point gain with positive movement on all five folds.
+It still misses the promotion gate, and adding the strongest earlier pump-age
+near-miss weakens it. Broad near-miss accumulation therefore stops. See the
+[external synthesis report](reports/external-representation-synthesis.md).
+
 ## Next modelling loop
 
 1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
    available submission allowance; do not tune from its prediction shares.
-2. Test whether the two independent archive-derived representation bags
-   compound once; do not tune their thresholds, neighbour counts or weights.
+2. Require a genuinely new signal or data source before more ensemble work; do
+   not tune the archive-synthesis thresholds, neighbour counts or weights.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;

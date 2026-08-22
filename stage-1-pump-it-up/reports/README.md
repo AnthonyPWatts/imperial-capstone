@@ -131,6 +131,10 @@ The fixed ten-neighbour GPS-height reconstruction, accepted-component refits
 and equal original/imputed representation bag are in
 [`spatial-height-imputation-screen.md`](spatial-height-imputation-screen.md).
 
+The one-time equal synthesis of the two archive-derived representation votes
+and the closing pump-age follow-up are in
+[`external-representation-synthesis.md`](external-representation-synthesis.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

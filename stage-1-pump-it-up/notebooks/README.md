@@ -165,6 +165,9 @@ It does not replace the formal split and evaluation sequence below.
 42. [`43-spatial-height-imputation.ipynb`](43-spatial-height-imputation.ipynb):
     fixed ten-neighbour coordinate reconstruction for unavailable GPS height,
     accepted component refits and one equal original/imputed representation bag.
+43. [`44-external-representation-synthesis.ipynb`](44-external-representation-synthesis.ipynb):
+    one no-refit equal average of the two archive-derived candidate votes and a
+    closing orthogonal pump-age synthesis check.
 
 Notebook 05 was completed before the next-round Notebook 04 so today's selected
 candidate could be submitted without conflating later robustness experiments
