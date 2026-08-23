@@ -25,10 +25,10 @@ or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capston
 ## Current position
 
 The raw-data audit covers all 39 non-identifier predictors. Three structural
-removals are settled, leaving 36 candidate predictors. Twelve submissions have
+removals are settled, leaving 36 candidate predictors. Fourteen submissions have
 tested the submission path and the audit-led modelling workflow. The best
-public score is `0.8246` from the source-plus-class child-weight-1 XGBoost and
-Random Forest vote, up from the previous `0.8241`.
+public score is **`0.8288`** from the fixed six-component archive synthesis,
+up from the previous `0.8246` and above the `0.826` project target.
 
 The formal workflow reserves a stratified 20% local test and fixes five
 development folds. It compares seven classifier families: a constrained tree,
@@ -56,6 +56,11 @@ generated locally. The leading candidate scored 0.8241 publicly; the second
 was preselected without using that result and scored 0.8240. Later physical-
 hierarchy submissions raised the public best to 0.8246 for source plus class,
 with a cross-policy component hybrid at 0.8244.
+
+On 23 August, the predeclared archive synthesis and complete-identity vote were
+submitted unchanged. They scored **0.8288** and **0.8259** respectively. Their
+public ordering agrees with both development and local-test evidence, and the
+archive synthesis establishes the current project best.
 
 The completed target-structure investigation traces the 74,250 competition
 rows to a strong but explicitly inferential match with the cleaned February
@@ -392,8 +397,9 @@ threshold and per-field follow-ups. See the
 
 ## Next modelling loop
 
-1. Retain the validated 44:36:20 complete-identity CatBoost file for the next
-   available submission allowance; do not tune from its prediction shares.
+1. Retain the 0.8288 archive synthesis as the public leader and the 0.8259
+   complete-identity vote as corroborating evidence; do not tune from either
+   leaderboard result.
 2. Require a genuinely new signal or data source before more ensemble work; do
    not tune the archive-synthesis thresholds, neighbour counts or weights.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the

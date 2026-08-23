@@ -2,9 +2,9 @@
 
 ## Status
 
-Prepared and validated on 22 August 2026; **not uploaded**. The recorded daily
-submission allowance was already 3/3. The recipe was frozen before its one-time
-local-test confirmation and was not tuned from competition prediction shares.
+Prepared and validated on 22 August 2026, then submitted second on 23 August.
+The recipe was frozen before its one-time local-test confirmation and was not
+tuned from competition prediction shares.
 
 ## Evidence and recipe
 
@@ -33,8 +33,8 @@ contains 14,850 unique IDs in template order. Prediction shares are 60.788%
 It disagrees with the accepted 55:45 submission on 1.576% of rows.
 
 - SHA-256: `76cf24053f136d89262b23b626c932e2f5b609ca197e16d2cb7e4b46897bb006`
-- Status: `prepared_not_uploaded`
-- Public score: not available
+- Status: `submitted_public_scored`
+- Public score: **0.8259**
 
 `manifest.json` records the recipe, evidence, timings, class shares and hash.
 `accepted-to-candidate-transitions.csv` records all label changes.

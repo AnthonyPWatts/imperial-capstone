@@ -199,8 +199,8 @@ accuracy by 0.116 points and local-test accuracy by 0.387 points. Its validated
 1.576% of rows and has SHA-256
 `76cf24053f136d89262b23b626c932e2f5b609ca197e16d2cb7e4b46897bb006`.
 
-The file remains **prepared, not uploaded** because the recorded daily
-allowance is already 3/3. See
+The file was **prepared, not uploaded** while the recorded daily allowance was
+3/3. It was submitted unchanged on 23 August and scored **0.8259**. See
 [`2026-08-22-catboost-identities/`](2026-08-22-catboost-identities/) for the
 recipe, validation manifest and prediction transitions.
 
@@ -221,8 +221,25 @@ score. The validated full-data file differs from the identity candidate on
 0.822% of competition rows and has SHA-256
 `46be08ced5e9a3ac3922a33e2aaf657306a08a406829cc69b4d25a5396e6ed0c`.
 
-The archive synthesis is queued first after the allowance resets, followed by
-the complete-identity candidate. The third slot remains unallocated until
-those scores are observed. See
+The archive synthesis was queued first after the allowance reset, followed by
+the complete-identity candidate. See
 [`2026-08-22-archive-synthesis/`](2026-08-22-archive-synthesis/) and
 [`archive-synthesis-confirmation.md`](../reports/archive-synthesis-confirmation.md).
+
+## 2026-08-23: archive synthesis established a new project best
+
+The two frozen candidates were submitted unchanged and in the predeclared
+order. Archive synthesis scored **0.8288**, improving on the former 0.8246
+leader by 0.0042 and exceeding the 0.826 project target by 0.0028. The
+complete-identity vote scored **0.8259**, itself 0.0013 above the former leader.
+
+| Submission | Development | Local test | Public score | Change vs former leader |
+| --- | ---: | ---: | ---: | ---: |
+| Archive synthesis | 81.7929% | 81.1869% | **0.8288** | **+0.0042** |
+| Complete identity | 81.7403% | 81.0859% | **0.8259** | **+0.0013** |
+
+The public ordering agrees with both development and local evidence. The
+archive margin over complete identity is 0.0029 publicly, compared with 0.0010
+on the local test. Two of three submissions have been used on 23 August; the
+third slot is deliberately held rather than spent on an unconfirmed near-miss.
+Private leaderboard scores are not available.

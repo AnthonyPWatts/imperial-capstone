@@ -1,6 +1,8 @@
 {
   "date": "2026-08-22",
-  "status": "prepared_not_uploaded",
+  "status": "submitted_public_scored",
+  "submission_date": "2026-08-23",
+  "public_score": 0.8288,
   "selection": {
     "development_accuracy": 0.817929292929293,
     "development_change_vs_ready_identity": 0.0005260942760942,
@@ -40,5 +42,5 @@
   "rows": 14850,
   "unique_ids": 14850,
   "sha256": "46be08ced5e9a3ac3922a33e2aaf657306a08a406829cc69b4d25a5396e6ed0c",
-  "daily_submission_allowance": "3/3 already used; do not upload"
+  "daily_submission_allowance": "submitted first on 2026-08-23"
 }

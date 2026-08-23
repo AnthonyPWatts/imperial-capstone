@@ -1,7 +1,7 @@
 # Archive-derived synthesis candidate
 
 This directory records the fixed six-component synthesis prepared on 22 August
-2026 for submission after the daily allowance resets.
+2026 and submitted first on 23 August 2026.
 
 The candidate averages two previously fixed representation votes and therefore
 uses 33% accepted XGBoost, 11% spatial-height XGBoost, 18% accepted Random
@@ -11,8 +11,9 @@ competition predictions.
 
 It reached 81.7929% across the five frozen development folds and 81.1869% on
 the previously used local test. The companion complete-identity candidate
-reached 81.0859% locally. The synthesis is queued first and the identity
-candidate second; neither was uploaded while the 22 August allowance was 3/3.
+reached 81.0859% locally. The synthesis scored **0.8288** publicly, a new
+project best: 0.0042 above the previous 0.8246 leader and 0.0028 above the
+0.826 project target. The complete-identity companion scored 0.8259.
 
 The ignored CSV filename and SHA-256 are recorded in [`manifest.json`](manifest.json).
 Reproduce it from `stage-1-pump-it-up` with:

@@ -1,18 +1,18 @@
 {
   "snapshot": {
-    "date": "2026-08-22",
-    "label": "22 August 2026"
+    "date": "2026-08-23",
+    "label": "23 August 2026"
   },
   "overall": {
-    "completed": 66,
-    "total": 66,
-    "current": "Exploration parked cleanly; two candidates remain queued"
+    "completed": 67,
+    "total": 67,
+    "current": "Archive synthesis scored 0.8288; third daily slot held"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Upload archive synthesis first and complete identity second after the daily allowance resets; hold the third slot for evidence from those scores.",
+    "nextCheckpoint": "Interpret the two confirmed public scores and hold the third slot unless independent evidence supports another candidate.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -36,15 +36,15 @@
     "evaluated": 21
   },
   "submissions": {
-    "total": 12,
-    "usedToday": 3,
+    "total": 14,
+    "usedToday": 2,
     "dailyLimit": 3,
-    "bestScore": 0.8246,
-    "bestLabel": "Source plus class XGBoost + Random Forest vote",
-    "latestDate": "2026-08-22"
+    "bestScore": 0.8288,
+    "bestLabel": "Archive-derived six-component synthesis",
+    "latestDate": "2026-08-23"
   },
   "benchmarks": {
-    "achievedTargetScore": 0.8225,
+    "achievedTargetScore": 0.8288,
     "targetScore": 0.826,
     "nearTermCeiling": 0.85
   },

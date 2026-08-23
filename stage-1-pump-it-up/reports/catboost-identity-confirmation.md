@@ -2,6 +2,10 @@
 
 ## Decision
 
+**Leaderboard outcome, 23 August 2026:** the unchanged candidate scored
+**0.8259**, improving on the former 0.8246 project leader but trailing the
+0.8288 archive synthesis submitted immediately before it.
+
 Promote the frozen 44% XGBoost, 36% Random Forest and 20% complete-identity
 CatBoost recipe to a full-labelled-data competition refit. On the 11,880-row
 reserved local test it reaches **81.086%** accuracy, **+0.387 percentage points**

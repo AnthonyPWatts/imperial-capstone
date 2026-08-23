@@ -2,6 +2,9 @@
 
 ## Decision
 
+**Leaderboard outcome, 23 August 2026:** the unchanged candidate scored
+**0.8288**, establishing a new project best and exceeding the 0.826 target.
+
 Place the fixed archive-derived synthesis first in tomorrow's submission order,
 with the already-prepared complete-identity candidate second. The synthesis
 reaches **81.1869%** on the previously used 11,880-row local test, **+0.1010
@@ -11,8 +14,9 @@ five frozen folds.
 
 The six weights are unchanged from the algebraic average that produced the
 development result. No component, tree count or weight was selected on the
-local test. A validated full-labelled-data competition file has been prepared
-but not uploaded because the 22 August allowance remains 3/3.
+local test. A validated full-labelled-data competition file was prepared but
+not uploaded while the 22 August allowance remained 3/3. It was subsequently
+submitted unchanged on 23 August.
 
 ## Course-aligned lifecycle
 
