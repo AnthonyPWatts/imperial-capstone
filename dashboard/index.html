@@ -6,7 +6,7 @@
   <meta name="description" content="Pump It Up competition plan and progress.">
   <title>Pump It Up — status</title>
   <link rel="stylesheet" href="../assets/site-shell.css">
-  <link rel="stylesheet" href="styles.css?v=20260823-rank-8">
+  <link rel="stylesheet" href="styles.css?v=20260823-rank-2-responsive">
   <script defer src="../assets/status-loader.js?v=20260815-no-store"></script>
 </head>
 <body>
@@ -36,28 +36,28 @@
   <main id="content">
     <section class="summary" aria-label="Summary">
       <div class="progress-summary">
-        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">67 / 67</span> checkpoints</strong></div>
+        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">68 / 68</span> checkpoints</strong></div>
         <div class="progress" role="img" data-status-progress-current="overall.completed" data-status-progress-total="overall.total" aria-label="100 per cent complete"><span></span></div>
-        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Model search concluded at 0.8288 and observed public rank 8</strong></div>
+        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Seed-20260824 deep archive scored 0.8298 and was observed at public rank 2</strong></div>
       </div>
       <dl class="summary-metrics">
         <div class="metric"><dt>Features fully examined</dt><dd><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small><code data-status-text="features.current">Physical hierarchy screens retained the granular features</code></small></dd></div>
-        <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">14</strong><small>Total</small></dd></div>
-        <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8288</strong><small data-status-text="submissions.bestLabel">Archive-derived six-component synthesis</small></dd></div>
+        <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">15</strong><small>Total</small></dd></div>
+        <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8298</strong><small data-status-text="submissions.bestLabel">Deep archive synthesis · seed 20260824</small></dd></div>
         <div class="metric"><dt>Target score</dt><dd><strong data-status-text="benchmarks.targetScore" data-status-format="score">0.8260</strong><small>Stretch</small></dd></div>
-        <div class="metric daily-usage"><dt>Used today (UTC)</dt><dd><strong data-status-fraction-current="submissions.usedToday" data-status-fraction-total="submissions.dailyLimit">2 / 3</strong><progress value="2" max="3" data-status-progress-current="submissions.usedToday" data-status-progress-total="submissions.dailyLimit">2 of 3 used</progress></dd></div>
+        <div class="metric daily-usage"><dt>Used today (UTC)</dt><dd><strong data-status-fraction-current="submissions.usedToday" data-status-fraction-total="submissions.dailyLimit">3 / 3</strong><progress value="3" max="3" data-status-progress-current="submissions.usedToday" data-status-progress-total="submissions.dailyLimit">3 of 3 used</progress></dd></div>
       </dl>
     </section>
 
     <div class="dashboard-grid">
       <section class="panel leaderboard-evidence" aria-labelledby="leaderboard-evidence-title">
         <header class="panel-heading">
-          <div><h2 id="leaderboard-evidence-title">Public leaderboard result</h2><p>Observed 23 August 2026 · rank 8 · score 0.8288</p></div>
+          <div><h2 id="leaderboard-evidence-title">Public leaderboard result</h2><p>Observed 23 August 2026 · rank 2 · score 0.8298 · 0.0001 behind the displayed leader</p></div>
           <a href="https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/">Open live leaderboard</a>
         </header>
         <figure>
           <a href="https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/">
-            <img src="../assets/pump-it-up-public-leaderboard-rank-8.png" width="1761" height="1237" alt="DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 8 with a best public classification rate of 0.8288">
+            <img src="../assets/pump-it-up-public-leaderboard-rank-2.png" width="1620" height="887" alt="DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 2 with a best public classification rate of 0.8298, 0.0001 behind the displayed leader">
           </a>
           <figcaption>The screenshot preserves the observed result; the live leaderboard may move as other participants submit.</figcaption>
         </figure>
@@ -68,14 +68,14 @@
           <div><h2 id="now-title">Now</h2><p>Preserve the selected model and stop adaptive tuning.</p></div>
           <span class="state complete">Search complete</span>
         </header>
-        <p class="completed-work"><strong>Recorded:</strong> archive synthesis scored 0.8288 publicly, exceeded the 0.826 target and was observed at rank 8.</p>
+        <p class="completed-work"><strong>Recorded:</strong> the seed-20260824 deep archive scored 0.8298 publicly, exceeded the 0.826 target and was observed at rank 2.</p>
         <ol class="checklist">
           <li>Preserve the exact validated CSV, manifest, component weights and SHA-256.</li>
           <li>Keep the frozen-development and used-local-test evidence beside the public score.</li>
-          <li>Leave the third daily slot unused; no unconfirmed candidate justifies it.</li>
+          <li>Retain the third-slot submission record and its seed-specific SHA-256.</li>
           <li>Record private-leaderboard performance when it becomes available.</li>
         </ol>
-        <p class="parallel-work"><strong>Boundary:</strong> rank 8 is a time-specific observation; 0.8288 and the validated artefact are the durable evidence.</p>
+        <p class="parallel-work"><strong>Boundary:</strong> rank 2 is a time-specific observation; 0.8298 and the validated artefact are the durable evidence.</p>
         <p class="gate"><strong>Next:</strong> move attention back to assessed course work rather than tune against public feedback.</p>
       </section>
 
@@ -148,13 +148,13 @@
                 <td><span class="track-type">Step 09</span><strong>Evaluate &amp; interpret results</strong></td>
                 <td><span class="state complete">Done</span></td>
                 <td><strong>3 / 3</strong><small class="progress-note">reference + 20 workflows</small></td>
-                <td>Archive synthesis led development at 81.793%, the used local test at 81.187% and the public submissions at 0.8288.</td>
+                <td>The seed-20260824 deep archive led development at 81.898%, the used local test at 81.397% and the public submissions at 0.8298.</td>
               </tr>
               <tr class="row-complete">
                 <td><span class="track-type">Step 10</span><strong>Deploy &amp; iterate</strong></td>
                 <td><span class="state complete">Done</span></td>
                 <td><strong>3 / 3</strong></td>
-                <td>The selected full-data archive synthesis scored 82.88% publicly, exceeded the 82.60% target and was observed at rank 8.</td>
+                <td>The selected seed-20260824 deep archive scored 82.98% publicly, exceeded the 82.60% target and was observed at rank 2.</td>
               </tr>
             </tbody>
           </table>
@@ -163,9 +163,10 @@
 
       <aside class="support-grid" aria-label="Evidence and controls">
         <section class="panel compact-panel" aria-labelledby="submissions-title">
-          <header class="panel-heading"><div><h2 id="submissions-title">Audit-led submissions</h2><p>Latest: 23 August 2026 · 2 submitted on that UTC date</p></div></header>
+          <header class="panel-heading"><div><h2 id="submissions-title">Audit-led submissions</h2><p>Latest: 23 August 2026 · 3 submitted on that UTC date</p></div></header>
           <dl class="submission-list">
-            <div class="best-submission"><dt>Archive synthesis<small>Fixed six-component representation vote</small></dt><dd><strong>0.8288</strong><span>Best</span></dd></div>
+            <div class="best-submission"><dt>Deep archive synthesis<small>Depth-17 top-50 XGBoost · seed 20260824</small></dt><dd><strong>0.8298</strong><span>Best</span></dd></div>
+            <div><dt>Archive synthesis<small>Fixed six-component representation vote</small></dt><dd><strong>0.8288</strong></dd></div>
             <div><dt>Complete identity<small>44% XGBoost / 36% forest / 20% CatBoost</small></dt><dd><strong>0.8259</strong></dd></div>
             <div><dt>Source plus class<small>55% XGBoost / 45% Random Forest</small></dt><dd><strong>0.8246</strong></dd></div>
             <div><dt>Waterpoint XGBoost + source forest<small>Cross-policy 55% / 45% vote</small></dt><dd><strong>0.8244</strong></dd></div>
@@ -180,12 +181,13 @@
         </section>
 
         <section class="panel compact-panel" aria-labelledby="benchmarks-title">
-          <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Target exceeded by 0.28 percentage points</p></div></header>
+          <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Target exceeded by 0.38 percentage points</p></div></header>
           <dl class="benchmark-list">
-            <div><dt>Current public best / archive synthesis</dt><dd>82.88%</dd></div>
+            <div><dt>Current public best / deep archive</dt><dd>82.98%</dd></div>
+            <div><dt>Deep archive / development CV</dt><dd>81.898%</dd></div>
+            <div><dt>Deep archive / local test</dt><dd>81.397%</dd></div>
+            <div><dt>Previous public best / archive synthesis</dt><dd>82.88%</dd></div>
             <div><dt>Complete-identity public score</dt><dd>82.59%</dd></div>
-            <div><dt>Archive synthesis / development CV</dt><dd>81.793%</dd></div>
-            <div><dt>Archive synthesis / local test</dt><dd>81.187%</dd></div>
             <div><dt>Previous public best / source plus class</dt><dd>82.46%</dd></div>
             <div><dt>Oversampled XGBoost depth bag</dt><dd>81.74%</dd></div>
             <div><dt>Leading vote / development CV</dt><dd>81.625%</dd></div>
@@ -203,14 +205,15 @@
             <div><dt>About 2,500 teams</dt><dd>≈82.20%</dd></div>
             <div class="achieved-benchmark"><dt>Provisional target · achieved</dt><dd>82.25%</dd></div>
             <div class="achieved-benchmark"><dt>Stretch target · achieved</dt><dd>82.60%</dd></div>
-            <div><dt>Observed public rank</dt><dd>8</dd></div>
-            <div><dt>World record</dt><dd>82.99%</dd></div>
+            <div><dt>Observed public rank</dt><dd>2</dd></div>
+            <div><dt>Gap to displayed leader</dt><dd>0.01 pp</dd></div>
+            <div><dt>Displayed leader</dt><dd>82.99%</dd></div>
           </dl>
         </section>
 
         <section class="panel compact-panel" aria-labelledby="history-title">
           <header class="panel-heading"><div><h2 id="history-title">Daily best score</h2><p>Chart scale: 50–85% · target: 82.60%</p></div></header>
-          <div class="score-chart" role="img" aria-label="Daily best score history. 14 August 2026: 54.61 per cent. 15 August 2026: 81.70 per cent. 21 August 2026: 82.41 per cent. 22 August 2026: 82.46 per cent. 23 August 2026: 82.88 per cent. Target: 82.60 per cent.">
+          <div class="score-chart" role="img" aria-label="Daily best score history. 14 August 2026: 54.61 per cent. 15 August 2026: 81.70 per cent. 21 August 2026: 82.41 per cent. 22 August 2026: 82.46 per cent. 23 August 2026: 82.98 per cent. Target: 82.60 per cent.">
             <div class="score-axis" aria-hidden="true"><span>85%</span><span>70%</span><span>50%</span></div>
             <div class="score-plot">
               <div class="score-day">
@@ -230,7 +233,7 @@
                 <time datetime="2026-08-22">22 Aug</time>
               </div>
               <div class="score-day">
-                <div class="score-bar-zone"><span class="score-bar" style="--score-height: 93.94%"><strong>82.88%</strong></span></div>
+                <div class="score-bar-zone"><span class="score-bar" style="--score-height: 94.23%"><strong>82.98%</strong></span></div>
                 <time datetime="2026-08-23">23 Aug</time>
               </div>
             </div>
@@ -243,9 +246,9 @@
             <div><dt>Fixed removals</dt><dd><code>quantity_group</code>, <code>payment</code>, <code>recorded_by</code></dd></div>
             <div><dt>Preserve</dt><dd><code>id</code> for alignment and submission</dd></div>
             <div><dt>Initial policy</dt><dd>29 features; elapsed recording date, pump age and explicit missing-state flags</dd></div>
-            <div><dt>Selected model</dt><dd>Six-component archive synthesis · 81.793% development CV</dd></div>
-            <div><dt>Local test</dt><dd>Archive synthesis · 81.187% · used confirmation set</dd></div>
-            <div><dt>Public result</dt><dd>0.8288 · observed rank 8 · target exceeded</dd></div>
+            <div><dt>Selected model</dt><dd>Seed-20260824 deep archive synthesis · 81.898% development CV</dd></div>
+            <div><dt>Local test</dt><dd>Seed-20260824 deep archive · 81.397% · used confirmation set</dd></div>
+            <div><dt>Public result</dt><dd>0.8298 · observed rank 2 · 0.0001 behind the displayed leader</dd></div>
             <div><dt>Repair leader</dt><dd>Extra Trees · 39.40% recall · about 18 minutes</dd></div>
             <div><dt>Hierarchy decision</dt><dd>Retain four granular physical categories; extraction group is parsimony-only</dd></div>
             <div><dt>Rule</dt><dd>Stop adaptive tuning; preserve fold-fitted evidence and exact submitted artefact</dd></div>

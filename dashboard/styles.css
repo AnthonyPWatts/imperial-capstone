@@ -882,6 +882,22 @@ tbody tr:hover {
     grid-template-columns: 1fr;
   }
 
+  .score-chart {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+  }
+
+  .score-plot {
+    min-width: 0;
+    gap: 0.2rem;
+  }
+
+  .score-day {
+    width: auto;
+    min-width: 0;
+    flex: 1 1 0;
+    padding-left: 0.25rem;
+  }
+
   .table-wrap {
     overflow: visible;
   }

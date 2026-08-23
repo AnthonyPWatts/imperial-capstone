@@ -33,27 +33,27 @@ keep appending columns; add detailed information to the compact panels below.
 
 The page loads headline values from `../project-status.json` through GitHub
 Pages or the local server. The dashboard uses matching HTML values if the
-status request fails. The current snapshot is dated 22 August 2026:
+status request fails. The current snapshot is dated 23 August 2026:
 
 | Metric | Current value |
 | --- | ---: |
-| Overall plan checkpoints | 29 / 29 |
+| Overall plan checkpoints | 68 / 68 |
 | Features fully examined | 36 / 36 (physical hierarchy screens retained granular features) |
 | Locally evaluated models | 21 |
 | Candidate methods trained | 11, plus ten ensemble workflows |
-| DrivenData submissions | 12 |
-| Best leaderboard score | 0.8246 |
+| DrivenData submissions | 15 |
+| Best leaderboard score | 0.8298 |
 | Achieved provisional target | ~~0.8225~~ |
 | Stretch target score | 0.8260 |
 | Chart ceiling | 0.8500 |
 | Daily submissions used | 3 / 3 UTC |
 
-The current task is choosing the next materially different data loop after the
-extraction, source, quality and waterpoint hierarchy screens retained the
-granular features. Source plus class reached 81.635%, but its +0.011-point gain
-won only two folds and failed the promotion gate. The process remains
-iterative, so leaderboard feedback does not replace retained local
-model-selection evidence:
+The model search is complete. The final submission replaced only the deep
+XGBoost seed in the already-fixed six-component archive recipe. Seed 20260824
+reached 81.8981% on development, 81.3973% on the used local test and 0.8298 on
+the public leaderboard. It was observed at rank 2, 0.0001 behind the displayed
+leader. The process remains iterative, so this leaderboard result does not
+replace the retained local model-selection evidence:
 
 - **Step 3, explore the data (4 / 4):** the maintained overall findings report,
   predictor catalogue and 117 per-predictor notebooks cover structure,
@@ -75,14 +75,14 @@ model-selection evidence:
 - **Step 8, select and train candidates (3 / 3):** eleven classifier families
   and ten bounded, calibrated or bagged ensemble workflows have reproducible
   fold-safe evaluations; the ANN family has seven fixed configurations.
-- **Step 9, evaluate and interpret (3 / 3):** the leading 55% XGBoost and 45%
-  Random Forest vote reaches 81.625% on the frozen development folds. The
-  reserved local test was not reopened during this model-family screen.
-- **Step 10, deploy and iterate (3 / 3):** the two exploratory hierarchy
-  submissions scored `0.8246` and `0.8244`; the frozen 2.5× oversampled bag
-  scored `0.8174`.
+- **Step 9, evaluate and interpret (3 / 3):** the seed-20260824 deep archive
+  reaches 81.8981% on the frozen development folds and 81.3973% on the used
+  local test. Its small seed advantage was reported with paired uncertainty.
+- **Step 10, deploy and iterate (3 / 3):** the exact 14,850-row seed-20260824
+  artefact scored `0.8298`, exceeded the `0.8260` target and was observed at
+  rank 2 on 23 August 2026.
 
-Twelve submissions have been made across four UTC dates:
+Fifteen submissions have been made across five UTC dates:
 
 | Submission | Date | DrivenData score |
 | --- | --- | ---: |
@@ -98,13 +98,16 @@ Twelve submissions have been made across four UTC dates:
 | Source-plus-class XGBoost and Random Forest vote | 22 August | **0.8246** |
 | Waterpoint-XGBoost and source-class Random Forest vote | 22 August | 0.8244 |
 | 2.5× repair-oversampled XGBoost depth bag | 22 August | 0.8174 |
+| Complete-identity vote | 23 August | 0.8259 |
+| Archive synthesis | 23 August | 0.8288 |
+| Deep archive synthesis, seed 20260824 | 23 August | **0.8298** |
 
 The 0.5461 all-`functional` result remains the simple public leaderboard floor;
 the frozen development folds produce a separate 0.5431 local majority
-reference. Source plus source class now leads the public results at `0.8246`,
-0.0005 above the previous leader. The cross-policy hybrid scored `0.8244`.
-The 2.5× oversampled bag scored `0.8174`, 0.0066 below its unoversampled
-counterpart and consistent with the measured local-test accuracy cost.
+reference. The seed-20260824 deep archive now leads the project at `0.8298`,
+0.0010 above the archive synthesis and 0.0052 above the earlier source-plus-
+class leader. The displayed competition leader scored `0.8299` when the
+project result was observed.
 
 Formal comparison now covers eleven single-model families. Random Forest remains
 the strongest family from the earlier broad comparison at 80.59%; the new
@@ -133,9 +136,10 @@ not been fetched or independently verified by the dashboard:
 | Reported world record | 82.99% |
 
 The compact daily-best chart records 54.61% on 14 August, 81.70% on 15 August,
-82.41% on 21 August and 82.46% on 22 August. Its scale runs from 50% to 85%,
-with the 82.60% stretch target drawn inside that range. The achieved 82.25%
-provisional target remains visible as a struck-through benchmark row.
+82.41% on 21 August, 82.46% on 22 August and 82.98% on 23 August. Its scale
+runs from 50% to 85%, with the 82.60% stretch target drawn inside that range.
+The achieved 82.25% provisional target remains visible as a struck-through
+benchmark row.
 
 ## Metric definitions
 
@@ -143,9 +147,11 @@ Keep these definitions stable so that the counters remain meaningful.
 
 ### Overall plan checkpoints
 
-The 29 checkpoints are grouped under the course lifecycle. Step 5 feature
-coverage has its own 36-feature denominator and is excluded from the overall
-checkpoint total:
+The headline counter is the complete project evidence ledger maintained in
+`../project-status.json`. The smaller progress values shown in the course table
+are coarse exit gates and do not share that denominator. Step 5 feature
+coverage has its own 36-feature denominator and is also excluded from the
+headline counter. Keep these course exit gates stable:
 
 | Course step | Current | Available |
 | --- | ---: | ---: |
@@ -159,7 +165,7 @@ checkpoint total:
 | 8. Select and train candidate methods | 3 | 3 |
 | 9. Evaluate and interpret results | 3 | 3 |
 | 10. Deploy and iterate | 3 | 3 |
-| **Overall checkpoint total** | **29** | **29** |
+| **Course exit-gate total** | **28** | **28** |
 
 Increment a track only when its exit evidence exists. Do not award partial
 credit for activity alone.
@@ -210,10 +216,10 @@ Calculate the CSS height as:
 ```
 
 For example, 54.61% becomes `13.17%`, 81.70% becomes `90.57%`, 82.41%
-becomes `92.60%` and 82.46% becomes `92.74%`. If results reach or exceed 85%, change the axis and document
-the new scale rather than allowing bars to overflow. Keep the full 82.60%
-stretch target in the summary and benchmark panel regardless of the chart's
-temporary scale.
+becomes `92.60%`, 82.46% becomes `92.74%` and 82.98% becomes `94.23%`. If
+results reach or exceed 85%, change the axis and document the new scale rather
+than allowing bars to overflow. Keep the full 82.60% stretch target in the
+summary and benchmark panel regardless of the chart's temporary scale.
 
 ## Real risks and controls
 
@@ -252,8 +258,9 @@ or notebook output directly.
 
 ## Likely next changes
 
-- Choose the next bounded data loop between remaining sparse names and a small
-  predeclared set of physical interactions.
-- Retain the accepted geography policy and the LGA-disjoint transfer warning.
-- Retain granular physical hierarchy features; treat extraction group-only as
-  a future non-inferiority candidate rather than an accuracy promotion.
+- Keep the rank explicitly labelled as an observation, because the live
+  leaderboard can move while the score remains durable evidence.
+- Preserve the exact seed-20260824 artefact, manifest, component recipe and
+  SHA-256 alongside the screenshot.
+- Record the private-leaderboard result when it becomes available; do not
+  reopen adaptive public-leaderboard tuning.
