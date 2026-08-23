@@ -1,6 +1,10 @@
 {
   "date": "2026-08-23",
-  "status": "prepared_not_uploaded",
+  "status": "submitted_public_scored",
+  "submission_date": "2026-08-23",
+  "public_score": 0.8298,
+  "public_rank_observed": 2,
+  "public_rank_observed_date": "2026-08-23",
   "selection": {
     "development_accuracy": 0.8189814814814815,
     "development_change_vs_archive": 0.001052188552188582,
@@ -46,6 +50,6 @@
   "rows": 14850,
   "unique_ids": 14850,
   "sha256": "fe5de9ea46bad2b35226bc97ebdfb743807fb758df1d259e8f8a51609808fee2",
-  "daily_submission_allowance": "2/3 used; candidate held for final slot",
+  "daily_submission_allowance": "submitted third on 2026-08-23",
   "competition_prediction_disagreement_vs_seed_20260822": 0.005050505050505051
 }

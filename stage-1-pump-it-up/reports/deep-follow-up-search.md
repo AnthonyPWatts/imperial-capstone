@@ -2,7 +2,7 @@
 
 ## Decision
 
-Prepare the seed-20260824 deep-archive substitution as the replacement final
+Select the seed-20260824 deep-archive substitution as the replacement final
 submission candidate. It improves the seed-20260822 candidate on both reused
 evidence sets: **81.8981%** versus 81.8771% on development and **81.3973%**
 versus 81.3552% on the local test. This is ten and five net additional correct
@@ -34,7 +34,7 @@ five rows constitute proof.
 | 7. Partition the data | Select on five frozen development folds and confirm fixed candidates on the existing local test. |
 | 8. Select and train candidate methods | Close exact-date, low-weight residual and inner-stopping branches; compare the three already-declared deep seeds. |
 | 9. Evaluate and interpret the results | Require directionally coherent development/local evidence and report paired uncertainty. |
-| 10. Deploy and iterate | Refit seed 20260824 on all 59,400 labels and validate a separate 14,850-row CSV without uploading it. |
+| 10. Deploy and iterate | Refit seed 20260824 on all 59,400 labels, validate a separate 14,850-row CSV, submit it unchanged and record the public result. |
 
 ## Closed branches
 
@@ -43,7 +43,7 @@ five rows constitute proof.
 | Deep XGBoost plus exact recording-batch one-hot | 81.8056% | -0.0715 pp | Not opened | — | Reject |
 | 92.5% deep archive + 2.5% location target-encoded vote + 5% 10 km grid vote | **81.9318%** | +0.0547 pp | 81.3215% | -0.0337 pp | Reject after four-row loss |
 | Inner-stopped deep XGBoost | 81.8497% | -0.0274 pp | Not opened | — | Reject |
-| Deep seed 20260824 | **81.8981%** | **+0.0210 pp** | **81.3973%** | **+0.0421 pp** | Prepare |
+| Deep seed 20260824 | **81.8981%** | **+0.0210 pp** | **81.3973%** | **+0.0421 pp** | Select and submit |
 
 The residual-voter candidate improved every development fold and added 26 net
 correct rows, but changed only 20 local-test decisions and lost four net rows.
@@ -70,7 +70,7 @@ Against the submitted archive synthesis, seed 20260824 adds 50 net correct
 development rows and 25 net correct local-test rows. It wins three development
 folds against that submitted baseline, with a -0.0421-point worst-fold change.
 
-## Prepared competition candidate
+## Competition submission
 
 The validated CSV contains 14,850 unique IDs in template order. It changes 75
 hard predictions (0.5051%) from the seed-20260822 candidate and 226 predictions
@@ -79,7 +79,14 @@ hard predictions (0.5051%) from the seed-20260822 candidate and 226 predictions
 
 - File: `01-deep-archive-seed-20260824.csv`
 - SHA-256: `fe5de9ea46bad2b35226bc97ebdfb743807fb758df1d259e8f8a51609808fee2`
-- Status: prepared, not uploaded
+- Public score: **0.8298**
+- Observed public rank: **2** on 23 August 2026, 0.0001 behind the leader
+- Status: submitted unchanged in the third daily slot
+
+The leaderboard result is directionally consistent with the small development
+and local-test improvements: it adds 0.0010 to the preceding archive
+synthesis's 0.8288 public score. This is final outcome evidence, not a new
+selection signal; no post-result model or weight tuning is justified.
 
 ## Reproduction
 

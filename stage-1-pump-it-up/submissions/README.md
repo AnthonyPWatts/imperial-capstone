@@ -240,8 +240,9 @@ complete-identity vote scored **0.8259**, itself 0.0013 above the former leader.
 
 The public ordering agrees with both development and local evidence. The
 archive margin over complete identity is 0.0029 publicly, compared with 0.0010
-on the local test. Two of three submissions have been used on 23 August; the
-third slot is deliberately held rather than spent on an unconfirmed near-miss.
+on the local test. Two of three submissions had been used on 23 August at this
+checkpoint; the third slot was held rather than spent on an unconfirmed
+near-miss.
 The archive score was observed at public-leaderboard position **8** immediately
 after submission; this time-specific rank may change. Private leaderboard
 scores are not available.
@@ -259,11 +260,12 @@ additional correct rows.
 The validated 14,850-row competition candidate differs from the submitted
 archive on 1.5960% of rows and has SHA-256
 `ef9b4e0fa2c696ae5a203f25cd9b2c4ca4e4e5d83aa4e010595e39af60b7a1d2`.
-It is **prepared, not uploaded**. See
+It was **prepared, not uploaded**, then superseded by the predeclared
+seed-20260824 replacement before submission. See
 [`2026-08-23-deep-archive/`](2026-08-23-deep-archive/) and the
 [`deep-archive confirmation`](../reports/deep-archive-confirmation.md).
 
-## 2026-08-23: seed-20260824 replacement candidate prepared
+## 2026-08-23: seed-20260824 deep-archive synthesis submitted
 
 The strongest of the three seeds declared in the original deep-XGBoost screen
 was confirmed without changing features, depth, tree count or component
@@ -274,6 +276,17 @@ seed-20260822 candidate.
 The validated competition file changes 75 of 14,850 predictions (0.5051%)
 from seed 20260822 and has SHA-256
 `fe5de9ea46bad2b35226bc97ebdfb743807fb758df1d259e8f8a51609808fee2`.
-It replaces the earlier candidate but remains **prepared, not uploaded**. See
+It replaced the earlier candidate and was submitted unchanged in the third
+daily slot. It scored **0.8298** publicly, 0.0010 above the preceding archive
+synthesis and 0.0038 above the project target. The result was observed at
+public-leaderboard position **2**, 0.0001 behind the leader; the live rank may
+change. See
 [`2026-08-23-deep-archive-seed-20260824/`](2026-08-23-deep-archive-seed-20260824/)
 and the [`deep follow-up report`](../reports/deep-follow-up-search.md).
+
+| Submission | Development | Local test | Public score | Observed rank |
+| --- | ---: | ---: | ---: | ---: |
+| Seed-20260824 deep archive | **81.8981%** | **81.3973%** | **0.8298** | **2** |
+
+All three available submissions were therefore used on 23 August, bringing the
+project total to 15. Private-leaderboard performance is not yet available.

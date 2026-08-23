@@ -1,9 +1,11 @@
-# Deep-archive seed-20260824 candidate
+# Deep-archive seed-20260824 submission
 
 ## Status
 
-Prepared and validated on 23 August 2026 for the remaining daily submission
-slot. It has not been uploaded.
+Prepared, validated and submitted unchanged in the remaining daily slot on
+23 August 2026. It scored **0.8298** publicly and was observed at leaderboard
+position **2**, 0.0001 behind the leader. The rank is time-specific and may
+change as other competitors submit.
 
 ## Evidence and recipe
 
@@ -24,7 +26,9 @@ Prediction shares are 60.721% `functional`, 3.643% `functional needs repair`
 and 35.636% `non functional`.
 
 - SHA-256: `fe5de9ea46bad2b35226bc97ebdfb743807fb758df1d259e8f8a51609808fee2`
-- Status: `prepared_not_uploaded`
+- Public score: `0.8298`
+- Observed public rank: `2` on 23 August 2026
+- Status: `submitted_public_scored`
 
 `manifest.json` records the recipe, selection evidence, timings, class shares
 and hash. The generated CSV remains ignored because it contains competition

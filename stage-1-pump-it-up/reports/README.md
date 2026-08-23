@@ -208,7 +208,8 @@ confirmation and final-slot candidate are in
 
 The post-confirmation exact-date, residual-voter, inner-stopping and
 predeclared-seed checks, culminating in the seed-20260824 replacement
-candidate, are in [`deep-follow-up-search.md`](deep-follow-up-search.md).
+submission and its 0.8298 public score, are in
+[`deep-follow-up-search.md`](deep-follow-up-search.md).
 
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings

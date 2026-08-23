@@ -14,6 +14,11 @@ by 0.116 points. Log loss and multiclass Brier score also improve. No seed,
 tree count, feature, component weight or decision threshold changed after the
 local result was observed.
 
+This seed-20260822 file was subsequently superseded before upload by the
+predeclared seed-20260824 replacement, which improved both recorded evidence
+sets and scored 0.8298 publicly. See
+[`deep-follow-up-search.md`](deep-follow-up-search.md).
+
 ## Course-aligned lifecycle
 
 | Step | Application |

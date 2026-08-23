@@ -6,13 +6,13 @@
   "overall": {
     "completed": 68,
     "total": 68,
-    "current": "Seed-20260824 deep-archive candidate prepared after 81.397% local confirmation"
+    "current": "Seed-20260824 deep-archive synthesis scored 0.8298 publicly and reached observed rank 2"
   },
   "stage1": {
-    "state": "Candidate ready",
+    "state": "Model search complete",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Submit the prepared deep-archive candidate in the final daily slot and record its public score.",
+    "nextCheckpoint": "Preserve the frozen result and record private-leaderboard performance when available.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -36,19 +36,19 @@
     "evaluated": 21
   },
   "submissions": {
-    "total": 14,
-    "usedToday": 2,
+    "total": 15,
+    "usedToday": 3,
     "dailyLimit": 3,
-    "bestScore": 0.8288,
-    "bestLabel": "Archive-derived six-component synthesis",
-    "observedPublicRank": 8,
+    "bestScore": 0.8298,
+    "bestLabel": "Deep-archive six-component synthesis, seed 20260824",
+    "observedPublicRank": 2,
     "rankObservedDate": "2026-08-23",
     "latestDate": "2026-08-23",
-    "preparedCandidateLabel": "Deep top-50 XGBoost archive substitution, seed 20260824",
-    "preparedCandidateSha256": "fe5de9ea46bad2b35226bc97ebdfb743807fb758df1d259e8f8a51609808fee2"
+    "latestSubmissionLabel": "Deep-archive six-component synthesis, seed 20260824",
+    "latestSubmissionSha256": "fe5de9ea46bad2b35226bc97ebdfb743807fb758df1d259e8f8a51609808fee2"
   },
   "benchmarks": {
-    "achievedTargetScore": 0.8288,
+    "achievedTargetScore": 0.8298,
     "targetScore": 0.826,
     "nearTermCeiling": 0.85
   },

@@ -25,13 +25,14 @@ or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capston
 ## Current position
 
 The raw-data audit covers all 39 non-identifier predictors. Three structural
-removals are settled, leaving 36 candidate predictors. Fourteen submissions have
+removals are settled, leaving 36 candidate predictors. Fifteen submissions have
 tested the submission path and the audit-led modelling workflow. The best
-public score is **`0.8288`** from the fixed six-component archive synthesis,
-up from the previous `0.8246` and above the `0.826` project target. It was
-observed at public-leaderboard position **8** on 23 August 2026.
+public score is **`0.8298`** from the seed-20260824 deep-archive six-component
+synthesis, up from the previous `0.8288` and above the `0.826` project target.
+It was observed at public-leaderboard position **2**, 0.0001 behind the leader,
+on 23 August 2026.
 
-[![DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 8 with a score of 0.8288](../assets/pump-it-up-public-leaderboard-rank-8.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
+[![DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 2 with a score of 0.8298](../assets/pump-it-up-public-leaderboard-rank-2.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
 
 *Public leaderboard observed on 23 August 2026; the live ranking may change.*
 
@@ -40,7 +41,8 @@ depth-17 top-50 identity XGBoost. A bounded follow-up retained the same 600
 trees and six component weights but changed the primary model to predeclared
 seed 20260824. It reaches **81.8981%** development accuracy and **81.3973%**
 local-test accuracy, ten and five net rows above the seed-20260822 candidate.
-Its validated 14,850-row competition CSV is prepared but not uploaded. See the
+Its validated 14,850-row competition CSV was submitted unchanged in the final
+daily slot and scored **0.8298** publicly. See the
 [deep follow-up report](reports/deep-follow-up-search.md).
 
 The formal workflow reserves a stratified 20% local test and fixes five
@@ -73,7 +75,8 @@ with a cross-policy component hybrid at 0.8244.
 On 23 August, the predeclared archive synthesis and complete-identity vote were
 submitted unchanged. They scored **0.8288** and **0.8259** respectively. Their
 public ordering agrees with both development and local-test evidence, and the
-archive synthesis establishes the current project best.
+archive synthesis established the project best at that point. The later
+seed-20260824 deep substitution raised it to **0.8298**.
 The bounded modelling search is now concluded; see the
 [final evidence audit](reports/model-search-conclusion.md).
 
@@ -250,8 +253,9 @@ weight tuning. See the
 The unchanged full-data refit produced a validated 14,850-row competition file
 with 60.788% functional, 3.623% repair and 35.589% non-functional predictions.
 It differs from the accepted submission on 1.576% of rows and exactly recreates
-the accepted file from its shared components. The new candidate is recorded but
-not uploaded because the 22 August allowance is already 3/3. See the
+the accepted file from its shared components. The new candidate was recorded
+but not uploaded while the 22 August allowance was 3/3; it was submitted
+unchanged on 23 August and scored 0.8259. See the
 [candidate record](submissions/2026-08-22-catboost-identities/README.md).
 
 A final native-identity representation check added only three well-supported
@@ -412,9 +416,9 @@ threshold and per-field follow-ups. See the
 
 ## Next modelling loop
 
-1. Retain the 0.8288 archive synthesis as the public leader and the 0.8259
-   complete-identity vote as corroborating evidence; do not tune from either
-   leaderboard result.
+1. Retain the 0.8298 seed-20260824 deep-archive synthesis as the public leader,
+   with the 0.8288 archive synthesis and 0.8259 complete-identity vote as
+   corroborating evidence; do not tune from any leaderboard result.
 2. Require a genuinely new signal or data source before more ensemble work; do
    not tune the archive-synthesis thresholds, neighbour counts or weights.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
@@ -458,8 +462,9 @@ threshold and per-field follow-ups. See the
     is diverse but weaker, and its fixed archive substitution does not improve
     the incumbent.
 19. Retain fixed 600-tree deep XGBoost. Exact recording batches, mined residual
-    voters and inner stopping did not confirm; predeclared seed 20260824 is the
-    narrow replacement candidate after small development and local-test gains.
+    voters and inner stopping did not confirm; predeclared seed 20260824 became
+    the final submitted replacement after small development and local-test
+    gains, then scored 0.8298 publicly.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

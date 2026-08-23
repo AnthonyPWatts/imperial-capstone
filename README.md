@@ -21,11 +21,11 @@ fixed BBO brief and will be developed as each set of observations is released.
 
 As of 23 August 2026, Stage 1 has audited all 39 raw predictors, settled three
 structural removals and organised the remaining 36 candidate predictors.
-Fourteen DrivenData submissions have been made. The fixed archive synthesis
-scored **`0.8288`**, exceeded the `0.826` project target and was observed at
-public-leaderboard position **8**.
+Fifteen DrivenData submissions have been made. The final seed-20260824
+deep-archive synthesis scored **`0.8298`**, exceeded the `0.826` project target
+and was observed at public-leaderboard position **2**, 0.0001 behind the leader.
 
-[![DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 8 with a score of 0.8288](assets/pump-it-up-public-leaderboard-rank-8.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
+[![DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 2 with a score of 0.8298](assets/pump-it-up-public-leaderboard-rank-2.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
 
 *Public leaderboard observed on 23 August 2026; the live ranking may change.*
 
@@ -91,9 +91,9 @@ model strategy is ordered native-categorical learning over the complete
 deferred identity set. That fixed CatBoost representation produced the first
 new promotion-gate pass: a 20% contribution reached 81.740%, up 0.116 points
 with four fold wins. The frozen 44:36:20 recipe then confirmed at 81.086% on the
-local test, 0.387 points above the identically refitted accepted ensemble, and
-its validated full-data competition file is now prepared but not uploaded. It
-changes 1.576% of accepted predictions. The next bounded experiment asks
+local test, 0.387 points above the identically refitted accepted ensemble. Its
+validated full-data competition file later scored 0.8259 publicly. It changes
+1.576% of accepted predictions. The next bounded experiment asks
 whether fixed geographic context can disambiguate the native identity fields.
 That context check subsequently tied the promoted vote exactly and was stopped;
 the next no-refit test crosses the identity voter with the strongest existing
