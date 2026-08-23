@@ -245,3 +245,35 @@ third slot is deliberately held rather than spent on an unconfirmed near-miss.
 The archive score was observed at public-leaderboard position **8** immediately
 after submission; this time-specific rank may change. Private leaderboard
 scores are not available.
+
+## 2026-08-23: final deep-archive candidate prepared
+
+The deliberately held third slot was reopened for the strongest previously
+recorded near-miss: seed-20260822 depth-17 XGBoost over fixed top-50 identity
+indicators, substituted only into the archive synthesis's 33% primary XGBoost
+allocation. The unchanged recipe reaches **81.8771%** on development and
+**81.3552%** on the used local test, improving the submitted archive by 0.0842
+and 0.1684 percentage points respectively. The local change is 20 net
+additional correct rows.
+
+The validated 14,850-row competition candidate differs from the submitted
+archive on 1.5960% of rows and has SHA-256
+`ef9b4e0fa2c696ae5a203f25cd9b2c4ca4e4e5d83aa4e010595e39af60b7a1d2`.
+It is **prepared, not uploaded**. See
+[`2026-08-23-deep-archive/`](2026-08-23-deep-archive/) and the
+[`deep-archive confirmation`](../reports/deep-archive-confirmation.md).
+
+## 2026-08-23: seed-20260824 replacement candidate prepared
+
+The strongest of the three seeds declared in the original deep-XGBoost screen
+was confirmed without changing features, depth, tree count or component
+weights. Seed 20260824 reaches **81.8981%** on development and **81.3973%** on
+the used local test, adding ten and five net correct rows over the prepared
+seed-20260822 candidate.
+
+The validated competition file changes 75 of 14,850 predictions (0.5051%)
+from seed 20260822 and has SHA-256
+`fe5de9ea46bad2b35226bc97ebdfb743807fb758df1d259e8f8a51609808fee2`.
+It replaces the earlier candidate but remains **prepared, not uploaded**. See
+[`2026-08-23-deep-archive-seed-20260824/`](2026-08-23-deep-archive-seed-20260824/)
+and the [`deep follow-up report`](../reports/deep-follow-up-search.md).

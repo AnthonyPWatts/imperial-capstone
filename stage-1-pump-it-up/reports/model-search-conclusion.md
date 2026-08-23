@@ -2,6 +2,24 @@
 
 ## Decision
 
+**Further 23 August update:** a bounded follow-up replaced the prepared deep
+candidate's seed 20260822 with the already-predeclared seed 20260824. The
+unchanged 600-tree recipe reaches **81.8981%** on development and **81.3973%**
+on the used local test, adding ten and five net correct rows. Exact-date,
+residual-voter and inner-stopping alternatives were rejected. The replacement
+CSV is prepared but not uploaded; see the
+[deep follow-up report](deep-follow-up-search.md).
+
+**Subsequent 23 August update:** the held final submission slot was explicitly
+reopened for the strongest recorded near-miss. The unchanged single-seed
+depth-17 XGBoost archive substitution confirmed at **81.3552%** on the used
+local test, **+0.1684 percentage points** and 20 net correct rows above the
+submitted archive. A validated full-data candidate is now prepared but not
+uploaded. See the
+[deep-archive confirmation](deep-archive-confirmation.md). The conclusion
+below records the earlier stopping decision and why the candidate had
+originally been held.
+
 Conclude the bounded Pump It Up model search with the fixed archive synthesis
 as the selected competition model. It scored **0.8288** publicly, exceeded the
 0.826 project target and was observed at public-leaderboard position **8** on

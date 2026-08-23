@@ -35,6 +35,14 @@ observed at public-leaderboard position **8** on 23 August 2026.
 
 *Public leaderboard observed on 23 August 2026; the live ranking may change.*
 
+The deliberately held third daily slot was subsequently reopened for the
+depth-17 top-50 identity XGBoost. A bounded follow-up retained the same 600
+trees and six component weights but changed the primary model to predeclared
+seed 20260824. It reaches **81.8981%** development accuracy and **81.3973%**
+local-test accuracy, ten and five net rows above the seed-20260822 candidate.
+Its validated 14,850-row competition CSV is prepared but not uploaded. See the
+[deep follow-up report](reports/deep-follow-up-search.md).
+
 The formal workflow reserves a stratified 20% local test and fixes five
 development folds. It compares seven classifier families: a constrained tree,
 logistic regression, Gaussian naïve Bayes, KNN, Extra Trees, histogram gradient
@@ -449,6 +457,9 @@ threshold and per-field follow-ups. See the
 18. Stop occurrence-support/deep-XGBoost crosses. The combined representation
     is diverse but weaker, and its fixed archive substitution does not improve
     the incumbent.
+19. Retain fixed 600-tree deep XGBoost. Exact recording batches, mined residual
+    voters and inner stopping did not confirm; predeclared seed 20260824 is the
+    narrow replacement candidate after small development and local-test gains.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

@@ -202,6 +202,14 @@ archived deep XGBoost and its fixed archive substitution are in
 The final evidence audit, leaderboard outcome and reason for ending adaptive
 model selection are in [`model-search-conclusion.md`](model-search-conclusion.md).
 
+The subsequent explicit reopening, unchanged depth-17 XGBoost local
+confirmation and final-slot candidate are in
+[`deep-archive-confirmation.md`](deep-archive-confirmation.md).
+
+The post-confirmation exact-date, residual-voter, inner-stopping and
+predeclared-seed checks, culminating in the seed-20260824 replacement
+candidate, are in [`deep-follow-up-search.md`](deep-follow-up-search.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

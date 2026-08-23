@@ -1,0 +1,46 @@
+{
+  "date": "2026-08-23",
+  "status": "prepared_not_uploaded",
+  "selection": {
+    "development_accuracy": 0.8187710437710438,
+    "development_change_vs_archive": 0.0008417508417508657,
+    "fold_wins_vs_archive": 3,
+    "worst_fold_change": -0.00021043771043771642,
+    "local_test_accuracy": 0.8135521885521886,
+    "local_test_change_vs_archive": 0.001683501683501731,
+    "local_test_net_additional_correct": 20
+  },
+  "weights": {
+    "deep_xgboost": 0.33,
+    "spatial_xgboost": 0.11,
+    "random_forest": 0.18,
+    "frequency_random_forest": 0.09,
+    "spatial_random_forest": 0.09,
+    "identity_catboost": 0.2
+  },
+  "seed": 20260822,
+  "iterations": {
+    "deep_top_50_xgboost": 600,
+    "spatial_height_xgboost": 1082,
+    "complete_identity_catboost": 2173
+  },
+  "competition_prediction_disagreement_vs_archive": 0.01595959595959596,
+  "competition_class_shares": {
+    "functional": 0.6069360269360269,
+    "functional needs repair": 0.03683501683501683,
+    "non functional": 0.35622895622895623
+  },
+  "fit_and_predict_seconds": {
+    "deep top-50 XGBoost": 23.5869767999975,
+    "spatial-height XGBoost": 9.21473929999047,
+    "Random Forest": 31.714019699997152,
+    "frequency Random Forest": 4.863508999987971,
+    "spatial-height Random Forest": 31.168612699999358,
+    "complete-identity CatBoost": 22.04005940000934
+  },
+  "csv": "01-33-deep-top50-xgboost-11-spatial-xgboost-18-random-forest-09-frequency-forest-09-spatial-forest-20-identity-catboost.csv",
+  "rows": 14850,
+  "unique_ids": 14850,
+  "sha256": "ef9b4e0fa2c696ae5a203f25cd9b2c4ca4e4e5d83aa4e010595e39af60b7a1d2",
+  "daily_submission_allowance": "2/3 used; candidate held for final slot"
+}
