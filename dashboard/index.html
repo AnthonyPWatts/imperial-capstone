@@ -6,7 +6,7 @@
   <meta name="description" content="Pump It Up competition plan and progress.">
   <title>Pump It Up — status</title>
   <link rel="stylesheet" href="../assets/site-shell.css">
-  <link rel="stylesheet" href="styles.css?v=20260821-xgboost-results">
+  <link rel="stylesheet" href="styles.css?v=20260823-rank-8">
   <script defer src="../assets/status-loader.js?v=20260815-no-store"></script>
 </head>
 <body>
@@ -28,7 +28,7 @@
   <header class="topbar">
     <div>
       <h1>Pump It Up — competition status</h1>
-      <p>Static snapshot · <span data-status-text="snapshot.label">22 August 2026</span> · no competition data loaded</p>
+      <p>Static snapshot · <span data-status-text="snapshot.label">23 August 2026</span> · no competition data loaded</p>
     </div>
     <a href="../stage-1-pump-it-up/README.md">Project README</a>
   </header>
@@ -36,34 +36,47 @@
   <main id="content">
     <section class="summary" aria-label="Summary">
       <div class="progress-summary">
-        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">29 / 29</span> checkpoints</strong></div>
+        <div class="summary-label"><span>Overall plan</span><strong><span data-status-fraction-current="overall.completed" data-status-fraction-total="overall.total">67 / 67</span> checkpoints</strong></div>
         <div class="progress" role="img" data-status-progress-current="overall.completed" data-status-progress-total="overall.total" aria-label="100 per cent complete"><span></span></div>
-        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Review the new 0.8246 public leader and choose the next bounded data loop</strong></div>
+        <div class="current-summary"><span>Current</span><strong data-status-text="overall.current">Model search concluded at 0.8288 and observed public rank 8</strong></div>
       </div>
       <dl class="summary-metrics">
         <div class="metric"><dt>Features fully examined</dt><dd><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small><code data-status-text="features.current">Physical hierarchy screens retained the granular features</code></small></dd></div>
-        <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">12</strong><small>Total</small></dd></div>
-        <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8246</strong><small data-status-text="submissions.bestLabel">Source plus class XGBoost + Random Forest vote</small></dd></div>
+        <div class="metric"><dt>DrivenData submissions</dt><dd><strong data-status-text="submissions.total" data-status-format="integer">14</strong><small>Total</small></dd></div>
+        <div class="metric"><dt>Best score</dt><dd><strong data-status-text="submissions.bestScore" data-status-format="score">0.8288</strong><small data-status-text="submissions.bestLabel">Archive-derived six-component synthesis</small></dd></div>
         <div class="metric"><dt>Target score</dt><dd><strong data-status-text="benchmarks.targetScore" data-status-format="score">0.8260</strong><small>Stretch</small></dd></div>
-        <div class="metric daily-usage"><dt>Used today (UTC)</dt><dd><strong data-status-fraction-current="submissions.usedToday" data-status-fraction-total="submissions.dailyLimit">3 / 3</strong><progress value="3" max="3" data-status-progress-current="submissions.usedToday" data-status-progress-total="submissions.dailyLimit">3 of 3 used</progress></dd></div>
+        <div class="metric daily-usage"><dt>Used today (UTC)</dt><dd><strong data-status-fraction-current="submissions.usedToday" data-status-fraction-total="submissions.dailyLimit">2 / 3</strong><progress value="2" max="3" data-status-progress-current="submissions.usedToday" data-status-progress-total="submissions.dailyLimit">2 of 3 used</progress></dd></div>
       </dl>
     </section>
 
     <div class="dashboard-grid">
+      <section class="panel leaderboard-evidence" aria-labelledby="leaderboard-evidence-title">
+        <header class="panel-heading">
+          <div><h2 id="leaderboard-evidence-title">Public leaderboard result</h2><p>Observed 23 August 2026 · rank 8 · score 0.8288</p></div>
+          <a href="https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/">Open live leaderboard</a>
+        </header>
+        <figure>
+          <a href="https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/">
+            <img src="../assets/pump-it-up-public-leaderboard-rank-8.png" width="1761" height="1237" alt="DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 8 with a best public classification rate of 0.8288">
+          </a>
+          <figcaption>The screenshot preserves the observed result; the live leaderboard may move as other participants submit.</figcaption>
+        </figure>
+      </section>
+
       <section class="panel now-panel" aria-labelledby="now-title">
         <header class="panel-heading">
-          <div><h2 id="now-title">Now</h2><p>Review the new public leader, then choose a materially different bounded data loop.</p></div>
-          <span class="state active">Step 5 · iterate</span>
+          <div><h2 id="now-title">Now</h2><p>Preserve the selected model and stop adaptive tuning.</p></div>
+          <span class="state complete">Search complete</span>
         </header>
-        <p class="completed-work"><strong>Recorded:</strong> source plus class scored 0.8246 publicly and the component cross scored 0.8244; the 0.8174 oversampling result confirms its accuracy cost.</p>
+        <p class="completed-work"><strong>Recorded:</strong> archive synthesis scored 0.8288 publicly, exceeded the 0.826 target and was observed at rank 8.</p>
         <ol class="checklist">
-          <li>Keep the frozen folds, accepted feature policy and XGBoost/Random Forest recipe fixed.</li>
-          <li>Choose between a bounded remaining sparse-name screen and a small predeclared set of physical interactions.</li>
-          <li>Keep the 9.5-point LGA-disjoint accuracy drop visible as a transfer warning.</li>
-          <li>Do not reopen oversampling or turn the 0.8246 result into an unbounded hierarchy search.</li>
+          <li>Preserve the exact validated CSV, manifest, component weights and SHA-256.</li>
+          <li>Keep the frozen-development and used-local-test evidence beside the public score.</li>
+          <li>Leave the third daily slot unused; no unconfirmed candidate justifies it.</li>
+          <li>Record private-leaderboard performance when it becomes available.</li>
         </ol>
-        <p class="parallel-work"><strong>Boundary:</strong> the public score is external feedback, not a replacement for the retained cross-validation and local-test evidence.</p>
-        <p class="gate"><strong>Next gate:</strong> define a materially different candidate family before returning to the frozen development folds.</p>
+        <p class="parallel-work"><strong>Boundary:</strong> rank 8 is a time-specific observation; 0.8288 and the validated artefact are the durable evidence.</p>
+        <p class="gate"><strong>Next:</strong> move attention back to assessed course work rather than tune against public feedback.</p>
       </section>
 
       <section class="panel plan-panel" aria-labelledby="plan-title">
@@ -107,11 +120,11 @@
                 <td><strong>3 / 3</strong></td>
                 <td>Guarded cleanup and fold-fitted preprocessing are implemented and have run inside a complete pipeline across all five development folds.</td>
               </tr>
-              <tr class="row-active">
+              <tr class="row-complete">
                 <td><span class="track-type">Step 05</span><strong>Select &amp; engineer features</strong></td>
-                <td><span class="state active">Active</span></td>
+                <td><span class="state complete">Done</span></td>
                 <td><strong data-status-fraction-current="features.examined" data-status-fraction-total="features.total">36 / 36</strong><small class="progress-note">audit · separate metric</small></td>
-                <td>All candidates are audited; twenty physical hierarchy challengers and six component crosses failed promotion, so granular extraction, source, quality and waterpoint features remain selected.</td>
+                <td>All candidates are audited; the final synthesis retains accepted features plus the supported identity, frequency and spatial-height representations.</td>
               </tr>
               <tr class="row-complete">
                 <td><span class="track-type">Step 06</span><strong>Define the ML task</strong></td>
@@ -135,13 +148,13 @@
                 <td><span class="track-type">Step 09</span><strong>Evaluate &amp; interpret results</strong></td>
                 <td><span class="state complete">Done</span></td>
                 <td><strong>3 / 3</strong><small class="progress-note">reference + 20 workflows</small></td>
-                <td>The leading XGBoost-plus-forest vote remains at 81.625%; source plus class reached 81.635% but won only two folds and failed the gate.</td>
+                <td>Archive synthesis led development at 81.793%, the used local test at 81.187% and the public submissions at 0.8288.</td>
               </tr>
               <tr class="row-complete">
                 <td><span class="track-type">Step 10</span><strong>Deploy &amp; iterate</strong></td>
                 <td><span class="state complete">Done</span></td>
                 <td><strong>3 / 3</strong></td>
-                <td>The latest bounded slate scored 82.46%, 82.44% and 81.74%; source plus class is the new public leader.</td>
+                <td>The selected full-data archive synthesis scored 82.88% publicly, exceeded the 82.60% target and was observed at rank 8.</td>
               </tr>
             </tbody>
           </table>
@@ -150,9 +163,11 @@
 
       <aside class="support-grid" aria-label="Evidence and controls">
         <section class="panel compact-panel" aria-labelledby="submissions-title">
-          <header class="panel-heading"><div><h2 id="submissions-title">Audit-led submissions</h2><p>Latest: 22 August 2026 · 3 submitted on that UTC date</p></div></header>
+          <header class="panel-heading"><div><h2 id="submissions-title">Audit-led submissions</h2><p>Latest: 23 August 2026 · 2 submitted on that UTC date</p></div></header>
           <dl class="submission-list">
-            <div class="best-submission"><dt>Source plus class<small>55% XGBoost / 45% Random Forest</small></dt><dd><strong>0.8246</strong><span>Best</span></dd></div>
+            <div class="best-submission"><dt>Archive synthesis<small>Fixed six-component representation vote</small></dt><dd><strong>0.8288</strong><span>Best</span></dd></div>
+            <div><dt>Complete identity<small>44% XGBoost / 36% forest / 20% CatBoost</small></dt><dd><strong>0.8259</strong></dd></div>
+            <div><dt>Source plus class<small>55% XGBoost / 45% Random Forest</small></dt><dd><strong>0.8246</strong></dd></div>
             <div><dt>Waterpoint XGBoost + source forest<small>Cross-policy 55% / 45% vote</small></dt><dd><strong>0.8244</strong></dd></div>
             <div><dt>Oversampled XGBoost depth bag<small>Frozen 2.5× repair count</small></dt><dd><strong>0.8174</strong></dd></div>
             <div><dt>XGBoost + Random Forest<small>Earlier 55% / 45% vote</small></dt><dd><strong>0.8241</strong></dd></div>
@@ -165,10 +180,13 @@
         </section>
 
         <section class="panel compact-panel" aria-labelledby="benchmarks-title">
-          <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Current gap to target: 0.14 percentage points</p></div></header>
+          <header class="panel-heading"><div><h2 id="benchmarks-title">Working score benchmarks</h2><p>Target exceeded by 0.28 percentage points</p></div></header>
           <dl class="benchmark-list">
-            <div><dt>Current public best / source plus class</dt><dd>82.46%</dd></div>
-            <div><dt>Waterpoint-XGBoost / source-forest cross</dt><dd>82.44%</dd></div>
+            <div><dt>Current public best / archive synthesis</dt><dd>82.88%</dd></div>
+            <div><dt>Complete-identity public score</dt><dd>82.59%</dd></div>
+            <div><dt>Archive synthesis / development CV</dt><dd>81.793%</dd></div>
+            <div><dt>Archive synthesis / local test</dt><dd>81.187%</dd></div>
+            <div><dt>Previous public best / source plus class</dt><dd>82.46%</dd></div>
             <div><dt>Oversampled XGBoost depth bag</dt><dd>81.74%</dd></div>
             <div><dt>Leading vote / development CV</dt><dd>81.625%</dd></div>
             <div><dt>Earlier selected vote / development CV</dt><dd>81.37%</dd></div>
@@ -184,14 +202,15 @@
             <div><dt>“Everyone and their dog”</dt><dd>≈82.10%</dd></div>
             <div><dt>About 2,500 teams</dt><dd>≈82.20%</dd></div>
             <div class="achieved-benchmark"><dt>Provisional target · achieved</dt><dd>82.25%</dd></div>
-            <div class="target-benchmark"><dt>Stretch target</dt><dd>82.60%</dd></div>
+            <div class="achieved-benchmark"><dt>Stretch target · achieved</dt><dd>82.60%</dd></div>
+            <div><dt>Observed public rank</dt><dd>8</dd></div>
             <div><dt>World record</dt><dd>82.99%</dd></div>
           </dl>
         </section>
 
         <section class="panel compact-panel" aria-labelledby="history-title">
-          <header class="panel-heading"><div><h2 id="history-title">Daily best score</h2><p>Chart scale: 50–85% · stretch target: 82.60%</p></div></header>
-          <div class="score-chart" role="img" aria-label="Daily best score history. 14 August 2026: 54.61 per cent. 15 August 2026: 81.70 per cent. 21 August 2026: 82.41 per cent. 22 August 2026: 82.46 per cent. Stretch target: 82.60 per cent.">
+          <header class="panel-heading"><div><h2 id="history-title">Daily best score</h2><p>Chart scale: 50–85% · target: 82.60%</p></div></header>
+          <div class="score-chart" role="img" aria-label="Daily best score history. 14 August 2026: 54.61 per cent. 15 August 2026: 81.70 per cent. 21 August 2026: 82.41 per cent. 22 August 2026: 82.46 per cent. 23 August 2026: 82.88 per cent. Target: 82.60 per cent.">
             <div class="score-axis" aria-hidden="true"><span>85%</span><span>70%</span><span>50%</span></div>
             <div class="score-plot">
               <div class="score-day">
@@ -210,6 +229,10 @@
                 <div class="score-bar-zone"><span class="score-bar" style="--score-height: 92.74%"><strong>82.46%</strong></span></div>
                 <time datetime="2026-08-22">22 Aug</time>
               </div>
+              <div class="score-day">
+                <div class="score-bar-zone"><span class="score-bar" style="--score-height: 93.94%"><strong>82.88%</strong></span></div>
+                <time datetime="2026-08-23">23 Aug</time>
+              </div>
             </div>
           </div>
         </section>
@@ -220,11 +243,12 @@
             <div><dt>Fixed removals</dt><dd><code>quantity_group</code>, <code>payment</code>, <code>recorded_by</code></dd></div>
             <div><dt>Preserve</dt><dd><code>id</code> for alignment and submission</dd></div>
             <div><dt>Initial policy</dt><dd>29 features; elapsed recording date, pump age and explicit missing-state flags</dd></div>
-            <div><dt>Accuracy leader</dt><dd>55% XGBoost + 45% Random Forest · 81.625% development CV</dd></div>
-            <div><dt>Local test</dt><dd>Earlier forest + boosting vote · 80.82% · one-time confirmation</dd></div>
+            <div><dt>Selected model</dt><dd>Six-component archive synthesis · 81.793% development CV</dd></div>
+            <div><dt>Local test</dt><dd>Archive synthesis · 81.187% · used confirmation set</dd></div>
+            <div><dt>Public result</dt><dd>0.8288 · observed rank 8 · target exceeded</dd></div>
             <div><dt>Repair leader</dt><dd>Extra Trees · 39.40% recall · about 18 minutes</dd></div>
             <div><dt>Hierarchy decision</dt><dd>Retain four granular physical categories; extraction group is parsimony-only</dd></div>
-            <div><dt>Rule</dt><dd>Fit imputation, rare grouping, encoding and models inside each development fold</dd></div>
+            <div><dt>Rule</dt><dd>Stop adaptive tuning; preserve fold-fitted evidence and exact submitted artefact</dd></div>
           </dl>
         </section>
 

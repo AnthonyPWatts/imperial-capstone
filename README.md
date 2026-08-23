@@ -19,11 +19,15 @@ fixed BBO brief and will be developed as each set of observations is released.
 
 ## Current position
 
-As of 22 August 2026, Stage 1 has audited all 39 raw predictors, settled three
+As of 23 August 2026, Stage 1 has audited all 39 raw predictors, settled three
 structural removals and organised the remaining 36 candidate predictors.
-Twelve DrivenData submissions have been made. The best is the source-plus-class
-55% XGBoost and 45% Random Forest vote at `0.8246`; its cross-policy hybrid
-followed at `0.8244`.
+Fourteen DrivenData submissions have been made. The fixed archive synthesis
+scored **`0.8288`**, exceeded the `0.826` project target and was observed at
+public-leaderboard position **8**.
+
+[![DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 8 with a score of 0.8288](assets/pump-it-up-public-leaderboard-rank-8.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
+
+*Public leaderboard observed on 23 August 2026; the live ranking may change.*
 
 The formal workflow freezes a stratified 20% local test and five development
 folds, then compares eleven classifier families and ten bounded ensemble workflows

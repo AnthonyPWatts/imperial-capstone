@@ -31,6 +31,10 @@ public score is **`0.8288`** from the fixed six-component archive synthesis,
 up from the previous `0.8246` and above the `0.826` project target. It was
 observed at public-leaderboard position **8** on 23 August 2026.
 
+[![DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 8 with a score of 0.8288](../assets/pump-it-up-public-leaderboard-rank-8.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
+
+*Public leaderboard observed on 23 August 2026; the live ranking may change.*
+
 The formal workflow reserves a stratified 20% local test and fixes five
 development folds. It compares seven classifier families: a constrained tree,
 logistic regression, Gaussian naïve Bayes, KNN, Extra Trees, histogram gradient

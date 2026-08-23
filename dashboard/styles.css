@@ -605,6 +605,40 @@ tbody tr:hover {
   font-weight: 750;
 }
 
+.leaderboard-evidence figure {
+  margin: 0;
+  background: #f7f8f9;
+}
+
+.leaderboard-evidence .panel-heading > a {
+  flex: none;
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
+.leaderboard-evidence figure > a {
+  display: block;
+  padding: 0.75rem;
+}
+
+.leaderboard-evidence img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 48rem;
+  margin: 0 auto;
+  object-fit: contain;
+  border: 1px solid var(--border-light);
+  background: white;
+}
+
+.leaderboard-evidence figcaption {
+  padding: 0.55rem 0.8rem;
+  border-top: 1px solid var(--border-light);
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
 .benchmark-list .achieved-benchmark {
   color: var(--green);
   background: var(--green-bg);
@@ -804,6 +838,15 @@ tbody tr:hover {
 
   .topbar {
     align-items: flex-start;
+  }
+
+  .leaderboard-evidence .panel-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .leaderboard-evidence figure > a {
+    padding: 0.35rem;
   }
 
   main {
