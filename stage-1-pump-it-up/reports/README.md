@@ -199,6 +199,9 @@ The all-categorical occurrence-support cross with top-common identities in
 archived deep XGBoost and its fixed archive substitution are in
 [`deep-occurrence-xgboost-screen.md`](deep-occurrence-xgboost-screen.md).
 
+The final evidence audit, leaderboard outcome and reason for ending adaptive
+model selection are in [`model-search-conclusion.md`](model-search-conclusion.md).
+
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings
 that combine evidence across notebooks or experiments.

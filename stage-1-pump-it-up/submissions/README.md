@@ -242,4 +242,6 @@ The public ordering agrees with both development and local evidence. The
 archive margin over complete identity is 0.0029 publicly, compared with 0.0010
 on the local test. Two of three submissions have been used on 23 August; the
 third slot is deliberately held rather than spent on an unconfirmed near-miss.
-Private leaderboard scores are not available.
+The archive score was observed at public-leaderboard position **8** immediately
+after submission; this time-specific rank may change. Private leaderboard
+scores are not available.

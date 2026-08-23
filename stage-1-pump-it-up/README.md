@@ -28,7 +28,8 @@ The raw-data audit covers all 39 non-identifier predictors. Three structural
 removals are settled, leaving 36 candidate predictors. Fourteen submissions have
 tested the submission path and the audit-led modelling workflow. The best
 public score is **`0.8288`** from the fixed six-component archive synthesis,
-up from the previous `0.8246` and above the `0.826` project target.
+up from the previous `0.8246` and above the `0.826` project target. It was
+observed at public-leaderboard position **8** on 23 August 2026.
 
 The formal workflow reserves a stratified 20% local test and fixes five
 development folds. It compares seven classifier families: a constrained tree,
@@ -61,6 +62,8 @@ On 23 August, the predeclared archive synthesis and complete-identity vote were
 submitted unchanged. They scored **0.8288** and **0.8259** respectively. Their
 public ordering agrees with both development and local-test evidence, and the
 archive synthesis establishes the current project best.
+The bounded modelling search is now concluded; see the
+[final evidence audit](reports/model-search-conclusion.md).
 
 The completed target-structure investigation traces the 74,250 competition
 rows to a strong but explicitly inferential match with the cleaned February

@@ -6,13 +6,13 @@
   "overall": {
     "completed": 67,
     "total": 67,
-    "current": "Archive synthesis scored 0.8288; third daily slot held"
+    "current": "Model search concluded at 0.8288 and observed public rank 8"
   },
   "stage1": {
     "state": "Active",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Interpret the two confirmed public scores and hold the third slot unless independent evidence supports another candidate.",
+    "nextCheckpoint": "Preserve the selected archive synthesis and record private-leaderboard performance when available.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -41,6 +41,8 @@
     "dailyLimit": 3,
     "bestScore": 0.8288,
     "bestLabel": "Archive-derived six-component synthesis",
+    "observedPublicRank": 8,
+    "rankObservedDate": "2026-08-23",
     "latestDate": "2026-08-23"
   },
   "benchmarks": {
