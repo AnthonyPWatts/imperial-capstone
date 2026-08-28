@@ -8,3 +8,6 @@ submissions/*.csv
 
 # Retain downloaded reference pages locally; publish the concise reference and links
 instructions/source-pages/*.html
+
+# Publication render, PDF and audit intermediates are local QA output.
+reports/publication/.codex-redesign/

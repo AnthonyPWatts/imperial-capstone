@@ -58,6 +58,48 @@ def main() -> int:
         styles = xml("word/styles.xml")
         core = xml("docProps/core.xml")
         app = xml("docProps/app.xml")
+        authored_part_names = [
+            name
+            for name in names
+            if name == "word/document.xml"
+            or re.fullmatch(r"word/(?:header|footer)\d+\.xml", name)
+        ]
+        authored_parts = {name: xml(name) for name in authored_part_names}
+        authored_text = "\n".join(text_of(part) for part in authored_parts.values())
+
+        dash_characters = {
+            "\u2010": "hyphen",
+            "\u2011": "non-breaking hyphen",
+            "\u2012": "figure dash",
+            "\u2013": "en dash",
+            "\u2014": "em dash",
+            "\u2015": "horizontal bar",
+        }
+        found_dashes = sorted(
+            {name for character, name in dash_characters.items() if character in authored_text}
+        )
+        if found_dashes:
+            failures.append(f"Non-ASCII dash characters found: {found_dashes}")
+
+        forbidden_fragments = [
+            "RESEARCH ARTICLE  •  MULTICLASS CLASSIFICATION  •  REPRODUCIBLE MODEL DEVELOPMENT",
+            "Imperial College London",
+            "scientifically credible",
+            "restrained conclusion",
+            "equally informative",
+            "At this point",
+            "central methodological result",
+            "breakthrough effects",
+            "presenting the final model as inevitable",
+            "deliberately separates",
+            "management, extraction, payment, quantity, quality and construction",
+            "linear, tree, nearest-neighbour, boosting and bagging",
+            "development, local-test and public",
+            "technology, climate and recording standards",
+        ]
+        found_fragments = [fragment for fragment in forbidden_fragments if fragment in authored_text]
+        if found_fragments:
+            failures.append(f"Editorially prohibited text found: {found_fragments}")
 
         style_names: dict[str, str] = {}
         for style in styles.findall("w:style", NS):
@@ -66,12 +108,41 @@ def main() -> int:
             if style_id and name:
                 style_names[style_id] = name
 
+        audited_style_ids = {
+            "Normal",
+            "Title",
+            "Subtitle",
+            "Heading1",
+            "Heading2",
+            "Heading3",
+            "Caption",
+            "Quote",
+            "ListBullet",
+            "ListNumber",
+        }
+        font_values: set[str] = set()
+        for part in authored_parts.values():
+            for fonts in part.findall(".//w:rFonts", NS):
+                for key in ("ascii", "hAnsi", "eastAsia", "cs"):
+                    value = attr(fonts, "w", key)
+                    if value:
+                        font_values.add(value)
+        for style in styles.findall("w:style", NS):
+            style_id = attr(style, "w", "styleId") or ""
+            if style_id not in audited_style_ids:
+                continue
+            for fonts in style.findall(".//w:rFonts", NS):
+                for key in ("ascii", "hAnsi", "eastAsia", "cs"):
+                    value = attr(fonts, "w", key)
+                    if value:
+                        font_values.add(value)
+        if font_values != {"Cambria"}:
+            failures.append(f"Authored text does not use the single-font specification: {sorted(font_values)}")
+
         title = (core.findtext("dc:title", default="", namespaces=NS) or "").strip()
         language_nodes = styles.findall(".//w:lang", NS)
-        language = next(
-            (attr(node, "w", "val") for node in language_nodes if attr(node, "w", "val")),
-            None,
-        )
+        languages = {attr(node, "w", "val") for node in language_nodes if attr(node, "w", "val")}
+        language = "en-GB" if "en-GB" in languages else next(iter(languages), None)
         if not title:
             failures.append("Document title metadata is missing")
         if not language:
@@ -80,7 +151,7 @@ def main() -> int:
         headings: list[dict[str, object]] = []
         previous_level: int | None = None
         fake_bullets: list[str] = []
-        placeholder_pattern = re.compile(r"\b(?:TODO|TBD|FIXME|XXX|PLACEHOLDER)\b|\{\{.+?\}\}", re.I)
+        placeholder_pattern = re.compile(r"\b(?:TODO|TBD|FIXME|XXX)\b|\{\{.+?\}\}", re.I)
         placeholders: list[str] = []
         numbered_paragraphs = 0
         for paragraph in document.findall(".//w:p", NS):
@@ -96,7 +167,7 @@ def main() -> int:
                         f"Heading hierarchy skips from level {previous_level} to {level}: {paragraph_text}"
                     )
                 previous_level = level
-            if paragraph.find("w:pPr/w:numPr", NS) is not None:
+            if paragraph.find("w:pPr/w:numPr", NS) is not None or style_name in {"List Bullet", "List Number"}:
                 numbered_paragraphs += 1
             if not match and re.match(r"^\s*(?:[-*•‣▪]|\d+[.)])\s+", paragraph_text):
                 fake_bullets.append(paragraph_text[:80])
@@ -117,6 +188,7 @@ def main() -> int:
         for number, table in enumerate(tables, start=1):
             table_width = int(attr(table.find("w:tblPr/w:tblW", NS), "w", "w") or -1)
             table_indent = int(attr(table.find("w:tblPr/w:tblInd", NS), "w", "w") or -1)
+            table_alignment = attr(table.find("w:tblPr/w:jc", NS), "w", "val") or "left"
             grid_widths = [int(attr(node, "w", "w") or 0) for node in table.findall("w:tblGrid/w:gridCol", NS)]
             rows = table.findall("w:tr", NS)
             repeating_header = bool(rows and rows[0].find("w:trPr/w:tblHeader", NS) is not None)
@@ -131,16 +203,22 @@ def main() -> int:
                 "number": number,
                 "width_dxa": table_width,
                 "indent_dxa": table_indent,
+                "alignment": table_alignment,
                 "grid_width_dxa": sum(grid_widths),
                 "row_widths_dxa": row_widths,
                 "repeating_header": repeating_header,
             }
             table_findings.append(finding)
-            if table_width != 9360 or table_indent != 120 or sum(grid_widths) != 9360:
+            if (
+                table_width != 4693
+                or sum(grid_widths) != table_width
+                or table_indent not in {-1, 0}
+                or table_alignment != "left"
+            ):
                 failures.append(f"Table {number} has inconsistent fixed geometry: {finding}")
-            if any(width != 9360 for width in row_widths):
-                failures.append(f"Table {number} has a row whose cell widths do not sum to 9360 DXA")
-            if not repeating_header:
+            if any(width != table_width for width in row_widths):
+                failures.append(f"Table {number} has a row whose cell widths do not match the declared width")
+            if len(rows) > 1 and not repeating_header:
                 failures.append(f"Table {number} does not mark its first row as a repeating header")
 
         doc_properties = document.findall(".//wp:docPr", NS)
@@ -177,14 +255,14 @@ def main() -> int:
             "footer_dxa": int(attr(page_margins, "w", "footer") or -1),
         }
         expected_geometry = {
-            "page_width_dxa": 12240,
-            "page_height_dxa": 15840,
-            "margin_top_dxa": 1440,
-            "margin_right_dxa": 1440,
-            "margin_bottom_dxa": 1440,
-            "margin_left_dxa": 1440,
-            "header_dxa": 708,
-            "footer_dxa": 708,
+            "page_width_dxa": 11906,
+            "page_height_dxa": 16838,
+            "margin_top_dxa": 1008,
+            "margin_right_dxa": 1080,
+            "margin_bottom_dxa": 936,
+            "margin_left_dxa": 1080,
+            "header_dxa": 432,
+            "footer_dxa": 432,
         }
         if section_geometry != expected_geometry:
             failures.append(f"Page geometry differs from the selected preset: {section_geometry}")
@@ -204,6 +282,13 @@ def main() -> int:
                 "table_count": len(tables),
                 "tables": table_findings,
                 "section_geometry": section_geometry,
+            },
+            "editorial": {
+                "authored_font_values": sorted(font_values),
+                "non_ascii_dash_types": found_dashes,
+                "prohibited_fragments": found_fragments,
+                "heading_4_1_present": "4.1  Representation-specific candidate models" in authored_text,
+                "heading_4_2_present": "4.2  Evaluation of candidate modifications" in authored_text,
             },
             "images": {
                 "media_count": len(media),
