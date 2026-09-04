@@ -323,7 +323,7 @@ def _fit_final_meta_model(
     local_features: np.ndarray,
     local_target: pd.Series,
 ):
-    features = np.row_stack([oof_features, local_features])
+    features = np.vstack([oof_features, local_features])
     target = np.concatenate([oof_target.to_numpy(), local_target.to_numpy()])
     return _fit_meta_model(features, target)
 

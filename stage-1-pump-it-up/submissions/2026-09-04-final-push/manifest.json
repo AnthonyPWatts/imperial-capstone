@@ -1,0 +1,127 @@
+{
+  "date": "2026-09-04",
+  "status": "prepared_not_uploaded",
+  "incumbent_public_score": 0.8298,
+  "repair_meta": {
+    "model": "standardised logistic regression",
+    "C": 0.1,
+    "threshold": 0.7,
+    "training_classes": [
+      "functional",
+      "functional needs repair"
+    ],
+    "input_features": 26
+  },
+  "repair_history": {
+    "column": "normalised subvillage",
+    "minimum_functional_plus_repair_support": 20,
+    "laplace_smoothed_minimum_repair_rate": 0.4
+  },
+  "entries": [
+    {
+      "order": 1,
+      "key": "repair_meta_plus_history",
+      "csv": "01-repair-meta-070-plus-subvillage-history.csv",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "changed_vs_incumbent": 5,
+      "transitions": {
+        "functional -> functional needs repair": 5
+      },
+      "class_counts": {
+        "functional": 9012,
+        "functional needs repair": 546,
+        "non functional": 5292
+      },
+      "sha256": "b4298966806b42d8d981cae85421741424c0795f16e959033b74906351d2c3b4",
+      "evidence": {
+        "development_accuracy": 0.8190867003367004,
+        "development_change": 0.00010521885521885821,
+        "development_net_correct": 5,
+        "development_repair_recall": 0.3462651997683845,
+        "development_repair_precision": 0.6245430809399478,
+        "development_flips": 16,
+        "fold_wins": 2.0,
+        "worst_fold_change": -0.00010521885521885821,
+        "local_accuracy": 0.8142255892255892,
+        "local_change": 0.0002525252525251709,
+        "local_net_correct": 3,
+        "local_repair_recall": 0.33371958285052145,
+        "local_repair_precision": 0.6037735849056604,
+        "local_flips": 4
+      },
+      "public_score": null,
+      "submission_id": null
+    },
+    {
+      "order": 2,
+      "key": "repair_meta",
+      "csv": "02-repair-meta-070.csv",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "changed_vs_incumbent": 1,
+      "transitions": {
+        "functional -> functional needs repair": 1
+      },
+      "class_counts": {
+        "functional": 9016,
+        "functional needs repair": 542,
+        "non functional": 5292
+      },
+      "sha256": "ab69a722908a5a258e53dad71395d219ad57f94416548919ac98e5618e32ab81",
+      "evidence": {
+        "development_accuracy": 0.819023569023569,
+        "development_change": 4.2087542087454466e-05,
+        "development_net_correct": 2,
+        "development_repair_recall": 0.34510712217718587,
+        "development_repair_precision": 0.6244106862231534,
+        "development_flips": 10,
+        "fold_wins": 2.0,
+        "worst_fold_change": -0.00010521885521885821,
+        "local_accuracy": 0.8141414141414142,
+        "local_change": 0.00016835016835015093,
+        "local_net_correct": 2,
+        "local_repair_recall": 0.3325608342989571,
+        "local_repair_precision": 0.6042105263157894,
+        "local_flips": 2
+      },
+      "public_score": null,
+      "submission_id": null
+    },
+    {
+      "order": 3,
+      "key": "subvillage_history",
+      "csv": "03-subvillage-history.csv",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "changed_vs_incumbent": 4,
+      "transitions": {
+        "functional -> functional needs repair": 4
+      },
+      "class_counts": {
+        "functional": 9013,
+        "functional needs repair": 545,
+        "non functional": 5292
+      },
+      "sha256": "38764f96a15c02e466a960f903608e4b3595ed8ca8ba6ff7172d689a234e34fe",
+      "evidence": {
+        "development_accuracy": 0.8190446127946128,
+        "development_change": 6.313131313129272e-05,
+        "development_net_correct": 3,
+        "development_repair_recall": 0.3445280833815866,
+        "development_repair_precision": 0.6246719160104987,
+        "development_flips": 6,
+        "fold_wins": 2.0,
+        "worst_fold_change": -0.00010521885521885821,
+        "local_accuracy": 0.814057239057239,
+        "local_change": 8.417508417501995e-05,
+        "local_net_correct": 1,
+        "local_repair_recall": 0.3314020857473928,
+        "local_repair_precision": 0.6021052631578947,
+        "local_flips": 2
+      },
+      "public_score": null,
+      "submission_id": null
+    }
+  ]
+}
