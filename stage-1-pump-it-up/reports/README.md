@@ -211,6 +211,10 @@ predeclared-seed checks, culminating in the seed-20260824 replacement
 submission and its 0.8298 public score, are in
 [`deep-follow-up-search.md`](deep-follow-up-search.md).
 
+The leakage-safe history and identity rules that selectively recover
+`functional needs repair` decisions from the final ensemble are in
+[`repair-rule-ensemble-screen.md`](repair-rule-ensemble-screen.md).
+
 The publication-quality, course-aligned account of the complete model journey,
 including the iterative lifecycle, evidence charts, final ensemble and methods
 beyond the core course treatment, is in the
