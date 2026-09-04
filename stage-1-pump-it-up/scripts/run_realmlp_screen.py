@@ -66,9 +66,18 @@ def main() -> None:
     realmlp_oof, fold_diagnostics = _fit_oof(
         partitioned,
         cross_validation,
+        incumbent_oof,
         device=args.device,
         force=args.force,
     )
+    if realmlp_oof is None:
+        _write_futility_result(
+            partitioned,
+            cross_validation,
+            incumbent_oof,
+            fold_diagnostics,
+        )
+        return
     realmlp_local, local_diagnostics = _fit_local(
         partitioned,
         device=args.device,
@@ -148,7 +157,14 @@ def main() -> None:
     print("\n" + json.dumps(result, indent=2), flush=True)
 
 
-def _fit_oof(partitioned, cross_validation, *, device: str, force: bool):
+def _fit_oof(
+    partitioned,
+    cross_validation,
+    incumbent_oof,
+    *,
+    device: str,
+    force: bool,
+):
     probabilities = np.full(
         (len(partitioned.y_development), len(CLASS_LABELS)),
         np.nan,
@@ -215,8 +231,190 @@ def _fit_oof(partitioned, cross_validation, *, device: str, force: bool):
             f"({source}).",
             flush=True,
         )
+        if fold_number == 2 and _fails_two_fold_futility_gate(
+            partitioned,
+            cross_validation,
+            incumbent_oof,
+            probabilities,
+        ):
+            print(
+                "Stopped after two folds: every fixed blend lost rows in "
+                "both folds, so none can reach three fold wins.",
+                flush=True,
+            )
+            return None, pd.DataFrame(diagnostics).set_index("validation_fold")
     validate_probabilities(probabilities, len(partitioned.y_development))
     return probabilities, pd.DataFrame(diagnostics).set_index("validation_fold")
+
+
+def _fails_two_fold_futility_gate(
+    partitioned,
+    cross_validation,
+    incumbent_oof,
+    partial_realmlp_oof,
+):
+    completed = list(cross_validation.split())[:2]
+    for _, validation_positions in completed:
+        if np.isnan(partial_realmlp_oof[validation_positions]).any():
+            return False
+        target = partitioned.y_development.iloc[validation_positions].to_numpy()
+        base = hard_predictions(incumbent_oof[validation_positions])
+        base_correct = int((base == target).sum())
+        for weight in REALMLP_BLEND_WEIGHTS:
+            candidate = hard_predictions(
+                blend_probabilities(
+                    incumbent_oof[validation_positions],
+                    partial_realmlp_oof[validation_positions],
+                    weight,
+                )
+            )
+            if int((candidate == target).sum()) - base_correct >= 0:
+                return False
+    return True
+
+
+def _write_futility_result(
+    partitioned,
+    cross_validation,
+    incumbent_oof,
+    fold_diagnostics,
+):
+    completed_folds = list(fold_diagnostics.index)
+    checkpoints = []
+    validation_positions = []
+    for fold_number, (_, fold_positions) in enumerate(
+        cross_validation.split(),
+        start=1,
+    ):
+        if fold_number not in completed_folds:
+            continue
+        checkpoint = joblib.load(RUNTIME_DIR / f"fold-{fold_number}.joblib")
+        checkpoints.append(checkpoint["probabilities"])
+        validation_positions.append(fold_positions)
+    positions = np.concatenate(validation_positions)
+    realmlp = np.concatenate(checkpoints)
+    incumbent = incumbent_oof[positions]
+    target = partitioned.y_development.iloc[positions].reset_index(drop=True)
+
+    candidates = {"standalone": (1.0, realmlp)}
+    for weight in REALMLP_BLEND_WEIGHTS:
+        candidates[f"blend_{int(weight * 100):02d}"] = (
+            weight,
+            blend_probabilities(incumbent, realmlp, weight),
+        )
+    base_metrics = _metrics(target, incumbent)
+    rows = []
+    transitions = []
+    for key, (weight, probabilities) in candidates.items():
+        metrics = _metrics(target, probabilities)
+        changes = _change_metrics(target, incumbent, probabilities)
+        fold_nets = []
+        offset = 0
+        for fold_probabilities in checkpoints:
+            fold_rows = len(fold_probabilities)
+            fold_target = target.iloc[offset : offset + fold_rows]
+            fold_base = incumbent[offset : offset + fold_rows]
+            if key == "standalone":
+                fold_candidate = fold_probabilities
+            else:
+                fold_candidate = blend_probabilities(
+                    fold_base,
+                    fold_probabilities,
+                    weight,
+                )
+            fold_nets.append(
+                _change_metrics(fold_target, fold_base, fold_candidate)[
+                    "net_correct"
+                ]
+            )
+            offset += fold_rows
+        rows.append(
+            {
+                "candidate": key,
+                "realmlp_weight": weight,
+                "evaluated_rows": len(target),
+                "evaluated_folds": len(completed_folds),
+                "accuracy": metrics["accuracy"],
+                "accuracy_change": metrics["accuracy"]
+                - base_metrics["accuracy"],
+                "net_correct": changes["net_correct"],
+                "fold_wins": sum(net > 0 for net in fold_nets),
+                "fold_1_net_correct": fold_nets[0],
+                "fold_2_net_correct": fold_nets[1],
+                "repair_recall": metrics["repair_recall"],
+                "repair_recall_change": metrics["repair_recall"]
+                - base_metrics["repair_recall"],
+                "repair_precision": metrics["repair_precision"],
+                "changed_rows": changes["changed_rows"],
+                "functional_to_repair": changes["functional_to_repair"],
+                "functional_to_repair_net_correct": changes[
+                    "functional_to_repair_net_correct"
+                ],
+                "repair_to_functional": changes["repair_to_functional"],
+                "repair_to_functional_net_correct": changes[
+                    "repair_to_functional_net_correct"
+                ],
+            }
+        )
+        transitions.append(
+            _transition_frame(
+                "development OOF folds 1-2",
+                key,
+                target,
+                incumbent,
+                probabilities,
+            )
+        )
+    summary = pd.DataFrame(rows).set_index("candidate")
+    transition_frame = pd.concat(transitions, ignore_index=True)
+    summary.to_csv(RUNTIME_DIR / "partial-candidate-summary.csv")
+    transition_frame.to_csv(
+        RUNTIME_DIR / "partial-prediction-transitions.csv",
+        index=False,
+    )
+    result = {
+        "status": "stopped_early_for_futility",
+        "model": REALMLP_MODEL_NAME,
+        "pytabkit_version": "1.7.3",
+        "seed": REALMLP_SEED,
+        "evaluated_folds": completed_folds,
+        "evaluated_rows": len(target),
+        "blend_weights": list(REALMLP_BLEND_WEIGHTS),
+        "stop_rule": (
+            "Every fixed blend lost rows in each of the first two frozen folds; "
+            "therefore no blend could reach three fold wins."
+        ),
+        "local_test_evaluated": False,
+        "competition_candidate": None,
+        "fold_diagnostics": fold_diagnostics.to_dict(orient="index"),
+        "summary": {
+            key: {
+                column: _json_scalar(value)
+                for column, value in row.items()
+            }
+            for key, row in summary.iterrows()
+        },
+    }
+    (RUNTIME_DIR / "result.json").write_text(
+        json.dumps(result, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    joblib.dump(
+        {
+            "cross_validation_fingerprint": (
+                partitioned.cross_validation_fingerprint
+            ),
+            "development_ids": partitioned.development_ids.iloc[
+                positions
+            ].reset_index(drop=True),
+            "incumbent_probabilities": incumbent,
+            "realmlp_probabilities": realmlp,
+        },
+        RUNTIME_DIR / "partial-realmlp-evidence.joblib",
+    )
+    print("\nRealMLP futility result", flush=True)
+    print(_format_summary(summary), flush=True)
+    print("\n" + json.dumps(result, indent=2), flush=True)
 
 
 def _fit_local(partitioned, *, device: str, force: bool):

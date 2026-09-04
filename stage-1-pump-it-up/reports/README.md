@@ -31,6 +31,10 @@ The bounded scaled one-hot multilayer-perceptron architecture, organisation
 representation and probability-blend screen is in
 [`ann-candidate-screen.md`](ann-candidate-screen.md).
 
+The literature-motivated RealMLP-TD native-category screen, its two-fold
+futility boundary and repair-transition evidence are in
+[`realmlp-td-screen.md`](realmlp-td-screen.md).
+
 The extraction, source, quality and waterpoint deterministic hierarchy
 ablations and bounded component crosses are in
 [`physical-categorical-hierarchy-screen.md`](physical-categorical-hierarchy-screen.md).
