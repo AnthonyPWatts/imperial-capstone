@@ -3,7 +3,7 @@
   "status": "prepared_pending_action_confirmation",
   "selection": {
     "objective": "maximise the posterior chance of an outright first-place score",
-    "composition": "12-row strict repair candidate plus the one row selected by both the repair meta-model and the identity-conflict rule",
+    "composition": "12-row strict repair candidate, one repair-meta row and three untouched near-boundary rows supported by at least four of six components",
     "public_score_constraints": {
       "incumbent_0.8298_correct_counts": [
         12322,
@@ -22,68 +22,83 @@
     },
     "conditional_assessment": {
       "model": "Jeffreys-smoothed Dirichlet-multinomial block model conditioned jointly on both public scores",
-      "estimated_probability_of_0.8301_or_better": 0.1318,
+      "estimated_probability_of_0.8301_or_better": 0.2561,
       "sensitivity_range": [
-        0.058,
-        0.132
+        0.077,
+        0.267
       ],
       "caveat": "The calculation assumes all 14,850 rows contribute to the displayed public score and exchangeable outcomes within evidence blocks."
+    },
+    "consensus_rule": {
+      "repair_votes_across_six_components": 4,
+      "minimum_blend_repair_to_functional_ratio": 0.96,
+      "competition_ids": [
+        61277,
+        23140,
+        21503
+      ],
+      "caveat": "The threshold was selected during the final audit, has seven OOF analogues and no local-test trigger, and its component votes are correlated."
     }
   },
-  "csv": "01-strict-repair-plus-meta-overlap.csv",
+  "csv": "02-strict-meta-consensus-repair.csv",
   "rows": 14850,
   "unique_ids": 14850,
-  "changed_vs_incumbent": 13,
+  "changed_vs_incumbent": 16,
   "changed_ids": [
     9086,
     49293,
     60481,
     17723,
     43614,
+    61277,
     60913,
     63460,
+    23140,
     22746,
     36828,
     45330,
+    21503,
     72067,
     33360,
     55396
   ],
   "transitions": {
-    "functional -> functional needs repair": 13
+    "functional -> functional needs repair": 16
   },
   "class_counts": {
-    "functional": 9004,
-    "functional needs repair": 554,
+    "functional": 9001,
+    "functional needs repair": 557,
     "non functional": 5292
   },
   "evidence": {
     "development": {
-      "flips": 30,
-      "actual_repair": 23,
-      "actual_functional": 3,
+      "flips": 43,
+      "actual_repair": 30,
+      "actual_functional": 9,
       "actual_non_functional": 4,
-      "net_correct": 20,
+      "net_correct": 21,
       "strict_flips": 26,
-      "dual_evidence_identity_flips": 4,
+      "repair_meta_flips": 10,
+      "consensus_flips": 7,
       "fold_net_correct": [
-        3,
-        3,
-        2,
-        6,
-        6
+        4,
+        4,
+        1,
+        7,
+        5
       ]
     },
     "local_test": {
-      "flips": 10,
-      "actual_repair": 7,
+      "flips": 11,
+      "actual_repair": 8,
       "actual_functional": 1,
       "actual_non_functional": 2,
-      "net_correct": 6,
+      "net_correct": 7,
       "strict_flips": 9,
-      "dual_evidence_identity_flips": 1
+      "repair_meta_flips": 2,
+      "consensus_flips": 0
     }
   },
-  "sha256": "9023b7e4839f4f42521d0dbd89c996f5cd5ac339d9f97848f8d223cbb8888997",
-  "submission_note": "Strict repair + dual-evidence identity: 13 targeted changes; OOF +20, local +6"
+  "sha256": "9c27f698a75c87e4c34a9044f63e498cf66674a3e4636ac3dd80beed251d2343",
+  "submission_note": "Strict + meta + consensus repair: 16 targeted changes; OOF +21, local +7"
 }

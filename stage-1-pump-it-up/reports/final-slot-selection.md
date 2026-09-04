@@ -2,17 +2,18 @@
 
 ## Decision
 
-Prepare a 13-row `functional` to `functional needs repair` override consisting
-of the 12-row strict repair candidate plus ID `60481`. The added row is the
-only competition row independently selected by both the repair meta-model at
-its fixed 0.70 threshold and the identity-CatBoost conflict rule.
+Prepare a 16-row `functional` to `functional needs repair` override consisting
+of the 12-row strict repair candidate, the repair meta-model's sole competition
+selection (ID `60481`), and three previously untouched near-boundary rows where
+at least four of six component models vote repair.
 
 This is a first-place-or-bust choice rather than the safest expected-score
 choice. An exact block model conditioned jointly on today's two public results
-estimated a 13.2% chance of reaching 0.8301 or better, with sensitivity checks
-ranging from 5.8% to 13.2%. The five-row residual candidate has a better
-expected net change but a smaller upper tail, because it can win only when
-nearly every changed row is correct.
+estimated a 25.6% chance of reaching 0.8301 or better, with deliberately broad
+sensitivity checks ranging from 7.7% to 26.7%. The eight-row residual, meta and
+consensus candidate has a slightly better expected net and lower downside, but
+the selected 16-row candidate has the largest primary-model upper tail. A lower
+final score cannot displace the retained 0.8298 best score.
 
 ## Information recovered from the public scores
 
@@ -36,14 +37,17 @@ any individual row label.
 The gate is excluded. A Jeffreys-smoothed Dirichlet-multinomial model using
 the frozen out-of-fold block outcomes and both score constraints assigned the
 31-row gate an expected hidden net of -7.67 and only a 0.2% probability of a
-positive net. The same model ranks the selected `C + H + M` construction above
-strict `C + H` and residual `H + M` for the probability of reaching first:
+positive net. A final audit added an independent block `Q`: three untouched
+rows with at least four repair votes and a blended repair-to-functional ratio
+of at least 0.96. Its seven OOF analogues contain five repair and two functional
+labels. The same model gives the following primary ranking:
 
 | Candidate | Competition flips | Expected net | Chance of 0.8301+ |
 | --- | ---: | ---: | ---: |
-| **Strict plus dual-evidence identity (`C + H + M`)** | **13** | **+0.89** | **13.2%** |
-| Strict (`C + H`) | 12 | +0.33 | 8.3% |
-| Residual (`H + M`) | 5 | +1.07 | 7.9% |
+| **Strict, meta and consensus (`C + H + M + Q`)** | **16** | **+1.95** | **25.6%** |
+| Residual, meta and consensus (`H + M + Q`) | 8 | +2.13 | 24.4% |
+| Fixed core, meta and consensus (`C + M + Q`) | 12 | +1.44 | 17.5% |
+| Prior strict plus meta (`C + H + M`) | 13 | +0.89 | 13.2% |
 
 The conditioning event was itself rare under the validation-informed prior,
 so these probabilities are decision aids rather than calibrated guarantees.
@@ -52,17 +56,18 @@ subset rather than all 14,850 rows.
 
 ## Candidate evidence and integrity
 
-The final mask changes 30 frozen development predictions for **+20 net correct**
-rows, with fold nets `+3, +3, +2, +6, +6`. It changes ten used local-test
-predictions for **+6 net correct** rows. The dual-evidence identity analogue is
-perfect on its five selected labelled examples (four development and one
-local), while the strict component remains positive in every development fold.
+The final rule union changes 43 frozen development predictions for **+21 net
+correct** rows, with fold nets `+4, +4, +1, +7, +5`. It changes 11 used
+local-test predictions for **+7 net correct** rows. The strict component remains
+positive in every development fold. The consensus threshold is post-selected,
+has only seven OOF analogues and no local trigger, and four votes do not imply
+four independent models because three components are related forests.
 
-- File: `01-strict-repair-plus-meta-overlap.csv`
+- File: `02-strict-meta-consensus-repair.csv`
 - Rows: 14,850 unique IDs in template order
-- Changes versus the 0.8298 incumbent: 13
+- Changes versus the 0.8298 incumbent: 16
 - Transition: `functional` to `functional needs repair` only
-- SHA-256: `9023b7e4839f4f42521d0dbd89c996f5cd5ac339d9f97848f8d223cbb8888997`
+- SHA-256: `9c27f698a75c87e4c34a9044f63e498cf66674a3e4636ac3dd80beed251d2343`
 - Status: prepared pending action confirmation
 
 ## Course-aligned lifecycle

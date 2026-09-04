@@ -322,13 +322,13 @@ submissions had been used at this checkpoint, leaving one final slot. See the
 ## 2026-09-04: final repair candidate prepared
 
 The two public results were decomposed into disjoint prediction blocks and
-conditioned jointly before choosing the last slot. The selected 13-row
-candidate combines the 12 strict repair changes with ID `60481`, the only row
-also selected independently by the repair meta-model and identity-conflict
-rule. It adds 20 net correct development rows with fold nets +3, +3, +2, +6
-and +6, and six net rows on the used local test.
+conditioned jointly before choosing the last slot. The selected 16-row
+candidate combines the 12 strict repair changes with the repair meta-model's
+sole competition row and three previously untouched near-boundary rows backed
+by at least four component votes. It adds 21 net correct development rows with
+fold nets +4, +4, +1, +7 and +5, and seven net rows on the used local test.
 
 The validated candidate has SHA-256
-`9023b7e4839f4f42521d0dbd89c996f5cd5ac339d9f97848f8d223cbb8888997`.
+`9c27f698a75c87e4c34a9044f63e498cf66674a3e4636ac3dd80beed251d2343`.
 It remains prepared pending action confirmation. See the
 [final-slot selection report](../reports/final-slot-selection.md).

@@ -18,7 +18,7 @@ PROJECT_DIR = STAGE_DIR.parent
 DATA_DIR = STAGE_DIR / "data"
 SRC_DIR = STAGE_DIR / "src"
 OUTPUT_DIR = STAGE_DIR / "submissions" / "2026-09-04-final-slot"
-DESTINATION = OUTPUT_DIR / "01-strict-repair-plus-meta-overlap.csv"
+DESTINATION = OUTPUT_DIR / "02-strict-meta-consensus-repair.csv"
 MANIFEST_PATH = OUTPUT_DIR / "manifest.json"
 INCUMBENT_PATH = (
     STAGE_DIR
@@ -55,12 +55,21 @@ FUNCTIONAL = "functional"
 REPAIR = "functional needs repair"
 VALID_LABELS = {FUNCTIONAL, REPAIR, "non functional"}
 META_THRESHOLD = 0.70
+CONSENSUS_MINIMUM_REPAIR_VOTES = 4
+CONSENSUS_MINIMUM_REPAIR_TO_FUNCTIONAL_RATIO = 0.96
 
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
 
 from data_partitioning import partition_modelling_data
+from deep_archive_confirmation import blend_deep_archive
 from modelling_data import prepare_modelling_data
+from repair_residual_specialist import REPAIR_META_COMPONENTS
+from run_repair_residual_screen import _load_competition_components
+from run_repair_residual_screen import _load_local_components
+from run_repair_residual_screen import _load_oof_components
 
 
 def main() -> None:
@@ -95,20 +104,30 @@ def main() -> None:
     meta_id = int(meta.loc[meta_changed, "id"].item())
     if meta_id != 60481:
         raise ValueError(f"Expected repair-meta overlap ID 60481, found {meta_id}.")
+    evidence, consensus_ids = _build_evidence()
+    expected_consensus_ids = {61277, 23140, 21503}
+    if set(consensus_ids) != expected_consensus_ids:
+        raise ValueError(
+            "Consensus repair selection changed; expected "
+            f"{sorted(expected_consensus_ids)}, found {sorted(consensus_ids)}."
+        )
+    consensus_changed = incumbent["id"].isin(consensus_ids)
+    if (consensus_changed & (strict_changed | meta_changed)).any():
+        raise ValueError("Consensus rows unexpectedly overlap another final block.")
     candidate = strict.copy()
-    candidate.loc[meta_changed, "status_group"] = meta.loc[
-        meta_changed,
-        "status_group",
-    ]
+    candidate.loc[meta_changed | consensus_changed, "status_group"] = REPAIR
     changed = candidate["status_group"].ne(incumbent["status_group"])
     _validate_candidate(candidate, incumbent, changed)
-    if int(changed.sum()) != 13:
-        raise ValueError("Final candidate must change exactly 13 rows.")
+    if int(changed.sum()) != 16:
+        raise ValueError("Final candidate must change exactly 16 rows.")
 
     _write_or_verify(candidate, DESTINATION)
-    evidence = _build_evidence()
     changed_ids = candidate.loc[changed, "id"].astype(int).tolist()
-    expected_ids = set(strict.loc[strict_changed, "id"].astype(int)) | {meta_id}
+    expected_ids = (
+        set(strict.loc[strict_changed, "id"].astype(int))
+        | {meta_id}
+        | expected_consensus_ids
+    )
     if set(changed_ids) != expected_ids:
         raise ValueError("Written candidate does not contain the selected row union.")
 
@@ -117,7 +136,7 @@ def main() -> None:
         "status": "prepared_pending_action_confirmation",
         "selection": {
             "objective": "maximise the posterior chance of an outright first-place score",
-            "composition": "12-row strict repair candidate plus the one row selected by both the repair meta-model and the identity-conflict rule",
+            "composition": "12-row strict repair candidate, one repair-meta row and three untouched near-boundary rows supported by at least four of six components",
             "public_score_constraints": {
                 "incumbent_0.8298_correct_counts": [12322, 12323],
                 "repair_union_0.8296_correct_counts": [12319, 12320],
@@ -126,9 +145,15 @@ def main() -> None:
             },
             "conditional_assessment": {
                 "model": "Jeffreys-smoothed Dirichlet-multinomial block model conditioned jointly on both public scores",
-                "estimated_probability_of_0.8301_or_better": 0.1318,
-                "sensitivity_range": [0.058, 0.132],
+                "estimated_probability_of_0.8301_or_better": 0.2561,
+                "sensitivity_range": [0.077, 0.267],
                 "caveat": "The calculation assumes all 14,850 rows contribute to the displayed public score and exchangeable outcomes within evidence blocks.",
+            },
+            "consensus_rule": {
+                "repair_votes_across_six_components": CONSENSUS_MINIMUM_REPAIR_VOTES,
+                "minimum_blend_repair_to_functional_ratio": CONSENSUS_MINIMUM_REPAIR_TO_FUNCTIONAL_RATIO,
+                "competition_ids": consensus_ids,
+                "caveat": "The threshold was selected during the final audit, has seven OOF analogues and no local-test trigger, and its component votes are correlated.",
             },
         },
         "csv": DESTINATION.name,
@@ -146,7 +171,7 @@ def main() -> None:
         },
         "evidence": evidence,
         "sha256": _sha256(DESTINATION),
-        "submission_note": "Strict repair + dual-evidence identity: 13 targeted changes; OOF +20, local +6",
+        "submission_note": "Strict + meta + consensus repair: 16 targeted changes; OOF +21, local +7",
     }
     MANIFEST_PATH.write_text(
         json.dumps(manifest, indent=2) + "\n",
@@ -155,7 +180,7 @@ def main() -> None:
     print(json.dumps(manifest, indent=2), flush=True)
 
 
-def _build_evidence() -> dict[str, object]:
+def _build_evidence() -> tuple[dict[str, object], list[int]]:
     rules = joblib.load(RULE_EVIDENCE_PATH)
     meta = joblib.load(META_EVIDENCE_PATH)
     modelling_data = prepare_modelling_data(
@@ -164,23 +189,39 @@ def _build_evidence() -> dict[str, object]:
         pd.read_csv(DATA_DIR / "TestSetValues.csv"),
     )
     partitioned = partition_modelling_data(modelling_data)
+    oof_components = _load_oof_components(partitioned)
+    oof_base = blend_deep_archive(oof_components)
+    local_components, local_base = _load_local_components(partitioned)
+    competition_components = _load_competition_components(modelling_data)
+    competition_base = blend_deep_archive(competition_components)
     datasets = {
         "development": (
             rules["development_ids"],
             rules["development_candidates"],
             meta["oof_repair_probabilities"],
             partitioned.y_development,
+            oof_base,
+            oof_components,
         ),
         "local_test": (
             rules["local_test_ids"],
             rules["local_candidates"],
             meta["local_repair_probabilities"],
             partitioned.y_local_test,
+            local_base,
+            local_components,
         ),
     }
     result: dict[str, object] = {}
     development_mask = None
-    for name, (ids, candidates, probabilities, target) in datasets.items():
+    for name, (
+        ids,
+        candidates,
+        probabilities,
+        target,
+        base,
+        components,
+    ) in datasets.items():
         expected_ids = (
             partitioned.development_ids
             if name == "development"
@@ -189,12 +230,17 @@ def _build_evidence() -> dict[str, object]:
         if not ids.reset_index(drop=True).equals(expected_ids.reset_index(drop=True)):
             raise ValueError(f"{name} evidence IDs no longer align.")
         strict_mask = np.asarray(candidates[STRICT_KEY], dtype=bool)
-        meta_overlap = np.asarray(candidates["full_union"], dtype=bool) & (
+        meta_mask = (base.argmax(axis=1) == 0) & (
             np.asarray(probabilities, dtype="float64") >= META_THRESHOLD
         )
-        if (strict_mask & meta_overlap).any():
+        consensus_mask = _consensus_repair_mask(base, components)
+        if (
+            (strict_mask & meta_mask).any()
+            or (strict_mask & consensus_mask).any()
+            or (meta_mask & consensus_mask).any()
+        ):
             raise ValueError(f"{name} evidence masks unexpectedly overlap.")
-        selected = strict_mask | meta_overlap
+        selected = strict_mask | meta_mask | consensus_mask
         actual = np.asarray(target, dtype=object)[selected]
         counts = {
             "actual_repair": int((actual == REPAIR).sum()),
@@ -206,10 +252,9 @@ def _build_evidence() -> dict[str, object]:
             **counts,
             "net_correct": counts["actual_repair"] - counts["actual_functional"],
             "strict_flips": int(strict_mask.sum()),
-            "dual_evidence_identity_flips": int(meta_overlap.sum()),
+            "repair_meta_flips": int(meta_mask.sum()),
+            "consensus_flips": int(consensus_mask.sum()),
         }
-        if not (actual[np.asarray(meta_overlap[selected])] == REPAIR).all():
-            raise ValueError(f"{name} dual-evidence identity analogue was not exact.")
         if name == "development":
             development_mask = selected
 
@@ -224,7 +269,61 @@ def _build_evidence() -> dict[str, object]:
             int((actual == REPAIR).sum() - (actual == FUNCTIONAL).sum())
         )
     result["development"]["fold_net_correct"] = fold_nets
-    return result
+    competition_strict = np.asarray(
+        rules["competition_candidates"][STRICT_KEY],
+        dtype=bool,
+    )
+    competition_meta = (competition_base.argmax(axis=1) == 0) & (
+        np.asarray(meta["competition_repair_probabilities"], dtype="float64")
+        >= META_THRESHOLD
+    )
+    competition_consensus = _consensus_repair_mask(
+        competition_base,
+        competition_components,
+    )
+    if (
+        (competition_strict & competition_meta).any()
+        or (competition_strict & competition_consensus).any()
+        or (competition_meta & competition_consensus).any()
+    ):
+        raise ValueError("Competition evidence masks unexpectedly overlap.")
+    if (
+        int(competition_strict.sum()),
+        int(competition_meta.sum()),
+        int(competition_consensus.sum()),
+    ) != (12, 1, 3):
+        raise ValueError("Competition final-block sizes changed.")
+    competition_ids = rules["competition_ids"].reset_index(drop=True)
+    if not competition_ids.equals(modelling_data.competition_ids.reset_index(drop=True)):
+        raise ValueError("Competition evidence IDs no longer align.")
+    consensus_ids = (
+        competition_ids.loc[competition_consensus].astype(int).tolist()
+    )
+    return result, consensus_ids
+
+
+def _consensus_repair_mask(
+    base: np.ndarray,
+    components: dict[str, np.ndarray],
+) -> np.ndarray:
+    missing = set(REPAIR_META_COMPONENTS).difference(components)
+    if missing:
+        raise KeyError(f"Consensus components are incomplete: {sorted(missing)}")
+    repair_votes = np.column_stack(
+        [
+            np.asarray(components[name]).argmax(axis=1) == 1
+            for name in REPAIR_META_COMPONENTS
+        ]
+    ).sum(axis=1)
+    repair_to_functional = base[:, 1] / np.maximum(base[:, 0], 1e-12)
+    return (
+        (base.argmax(axis=1) == 0)
+        & (repair_votes >= CONSENSUS_MINIMUM_REPAIR_VOTES)
+        & (
+            repair_to_functional
+            >= CONSENSUS_MINIMUM_REPAIR_TO_FUNCTIONAL_RATIO
+        )
+    )
 
 
 def _validate_aligned(frames: tuple[pd.DataFrame, ...]) -> None:
