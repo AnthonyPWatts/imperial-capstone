@@ -304,3 +304,17 @@ therefore rejects the full repair-rule union for the hidden competition set
 despite its positive internal evidence. One of three daily submissions had
 been used at this checkpoint; the nested history-only hedge remained local.
 See the [repair-rule report](../reports/repair-rule-ensemble-screen.md).
+
+## 2026-09-04: archive gate plus strict repair core submitted
+
+The repair-preserving archive gate was combined with the disjoint 12-row
+strict repair candidate. The resulting file changed 43 incumbent predictions,
+added 29 net correct rows across the five frozen development folds and added
+eight on the used local test. Its SHA-256 was
+`7f6f1408db020c18f2fb1476ceb897483e8cf4225326c88ec2fda6bc4d39f8ec`.
+
+Submission `321017` scored **0.8293**, seven or eight net rows below the
+0.8298 incumbent after accounting for score rounding. This rejects the
+combined gate-and-repair candidate on the public set. Two of three daily
+submissions had been used at this checkpoint, leaving one final slot. See the
+[deep/archive gate report](../reports/deep-archive-gate-screen.md).

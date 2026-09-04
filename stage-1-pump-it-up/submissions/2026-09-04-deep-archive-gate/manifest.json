@@ -1,6 +1,8 @@
 {
   "date": "2026-09-04",
-  "status": "prepared_not_uploaded",
+  "status": "union_submitted_public_scored",
+  "submission_date": "2026-09-04",
+  "daily_submission_allowance": "two of three used; one remaining",
   "selection": {
     "gate": "cross-fitted logistic archive choice",
     "logistic_C": 1.0,
@@ -86,6 +88,8 @@
     "csv": "02-gate-plus-strict-repair-core.csv",
     "rows": 14850,
     "unique_ids": 14850,
-    "sha256": "7f6f1408db020c18f2fb1476ceb897483e8cf4225326c88ec2fda6bc4d39f8ec"
+    "sha256": "7f6f1408db020c18f2fb1476ceb897483e8cf4225326c88ec2fda6bc4d39f8ec",
+    "public_score": 0.8293,
+    "submission_id": 321017
   }
 }

@@ -2,7 +2,14 @@
 
 ## Decision
 
-Prepare, but do not upload, a selective gate between the submitted
+The preferred gate-plus-repair union was submitted as submission `321017` and
+scored **0.8293**, below both the **0.8298** incumbent and the **0.8296**
+repair-rule union. The hidden-set result rejects the union despite its positive
+development and local-test evidence. Because the gate and strict repair masks
+are disjoint, the score identifies their combined 43-row effect but does not
+identify either component separately.
+
+The experiment prepared a selective gate between the submitted
 seed-20260824 deep archive and the earlier 0.8288 archive synthesis. The fixed
 gate adds **13 net correct rows** on leakage-safe development meta-predictions
 and **3 net correct rows** on the used local test. It changes only 31
@@ -90,7 +97,7 @@ available for attribution:
 - Changes versus incumbent: 43
 - Class counts: 9,027 functional; 554 repair; 5,269 non-functional
 - SHA-256: `7f6f1408db020c18f2fb1476ceb897483e8cf4225326c88ec2fda6bc4d39f8ec`
-- Status: prepared, not uploaded
+- Status: submitted as `321017`; public score **0.8293**
 
 Row-level cross-fitted, local and competition audits are written under
 `.runtime/deep-archive-gate-screen/`. The submission manifest records all
