@@ -290,3 +290,17 @@ and the [`deep follow-up report`](../reports/deep-follow-up-search.md).
 
 All three available submissions were therefore used on 23 August, bringing the
 project total to 15. Private-leaderboard performance is not yet available.
+
+## 2026-09-04: targeted repair-rule union submitted
+
+A six-rule postprocessor changed 22 predictions from `functional` to
+`functional needs repair`. It recovered 23 net rows across the frozen
+development predictions, improving all five folds, and recovered eight net
+rows on the used local test. The validated CSV had SHA-256
+`01c8fa597f57c785009dc89ea2327ba3a43ca0bb3c0e5d7a25386e8f78acbe87`.
+
+Submission `321013` scored **0.8296**, below the 0.8298 incumbent. The result
+therefore rejects the full repair-rule union for the hidden competition set
+despite its positive internal evidence. One of three daily submissions had
+been used at this checkpoint; the nested history-only hedge remained local.
+See the [repair-rule report](../reports/repair-rule-ensemble-screen.md).

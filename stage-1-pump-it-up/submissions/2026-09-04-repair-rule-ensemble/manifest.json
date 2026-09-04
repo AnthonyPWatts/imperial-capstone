@@ -1,6 +1,8 @@
 {
   "date": "2026-09-04",
-  "status": "prepared_not_uploaded",
+  "status": "one_submitted_public_scored",
+  "submission_date": "2026-09-04",
+  "daily_submission_allowance": "one of three used; two remaining",
   "incumbent": {
     "csv": "submissions/2026-08-23-deep-archive-seed-20260824/01-deep-archive-seed-20260824.csv",
     "public_score": 0.8298,
@@ -261,8 +263,8 @@
         "development_fold_wins": 5,
         "development_worst_fold_net_correct": 4
       },
-      "public_score": null,
-      "submission_id": null
+      "public_score": 0.8296,
+      "submission_id": 321013
     },
     {
       "order": 2,

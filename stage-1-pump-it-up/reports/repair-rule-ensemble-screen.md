@@ -67,7 +67,17 @@ History-only is a strict subset of full union; the identity conflict adds eight 
 - `02-repair-rule-history-only.csv` — SHA-256 `53bdf901c2771147d1ff939c0b3e1829d6f696e197fcf81c18108ba4ee9185e5`.
 - `01-repair-rule-full-union.csv` — SHA-256 `01c8fa597f57c785009dc89ea2327ba3a43ca0bb3c0e5d7a25386e8f78acbe87`.
 
-Both files contain 14,850 unique IDs in template order, no missing or invalid labels, and only the intended `functional` to `functional needs repair` transitions. They were generated but not uploaded, and the submission log was not changed.
+Both files contain 14,850 unique IDs in template order, no missing or invalid labels, and only the intended `functional` to `functional needs repair` transitions.
+
+## Public result
+
+The full union was submitted unchanged on 4 September 2026 as submission
+`321013` and scored **0.8296**, below the 0.8298 incumbent. At four-decimal
+score precision, the result is consistent with a loss of roughly two to four
+correct rows. This contradicts the positive fold and local-test evidence and
+shows that the adaptively discovered overrides did not transfer to the hidden
+competition labels. Two daily slots remained after this result; the history-only
+file remained unsubmitted at this checkpoint.
 
 ## Interpretation
 
