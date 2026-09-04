@@ -22,6 +22,7 @@ SRC_DIR = STAGE_DIR / "src"
 RUNTIME_DIR = PROJECT_DIR / ".runtime" / "deep-archive-gate-screen"
 SUBMISSION_DIR = STAGE_DIR / "submissions" / "2026-09-04-deep-archive-gate"
 CANDIDATE_NAME = "01-repair-preserving-archive-gate.csv"
+UNION_CANDIDATE_NAME = "02-gate-plus-strict-repair-core.csv"
 INCUMBENT_PATH = (
     STAGE_DIR
     / "submissions"
@@ -37,6 +38,12 @@ ARCHIVE_PATH = (
         "09-frequency-forest-09-spatial-forest-20-identity-catboost.csv"
     )
 )
+STRICT_REPAIR_PATH = (
+    STAGE_DIR
+    / "submissions"
+    / "2026-09-04-repair-rule-ensemble"
+    / "03-strict-history-core-plus-residual-history.csv"
+)
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
@@ -49,8 +56,10 @@ from deep_archive_gate import build_archive_gate_features
 from deep_archive_gate import make_archive_gate_classifier
 from final_model import CLASS_LABELS
 from final_model import build_competition_prediction
+from final_model import validate_probabilities
 from final_model import write_validated_submission
 from modelling_data import prepare_modelling_data
+from repair_residual_specialist import overlay_repair_probabilities
 
 
 def main() -> None:
@@ -66,6 +75,10 @@ def main() -> None:
     oof_components = _load_oof_components(partitioned)
     local_components = _load_local_components(partitioned)
     competition_components = _load_competition_components(modelling_data)
+    strict_repair_masks = _load_strict_repair_masks(
+        partitioned,
+        modelling_data,
+    )
     oof_archive, oof_deep = build_archive_and_deep_probabilities(
         oof_components
     )
@@ -132,6 +145,21 @@ def main() -> None:
             competition_choice,
         )
     )
+    oof_union = _apply_strict_repair_after_gate(
+        oof_deep,
+        oof_candidate,
+        strict_repair_masks["development"],
+    )
+    local_union = _apply_strict_repair_after_gate(
+        local_deep,
+        local_candidate,
+        strict_repair_masks["local_test"],
+    )
+    competition_union = _apply_strict_repair_after_gate(
+        competition_deep,
+        competition_candidate,
+        strict_repair_masks["competition"],
+    )
 
     summary = _summarise_evidence(
         partitioned,
@@ -143,6 +171,10 @@ def main() -> None:
         local_deep,
         local_candidate,
         local_selected,
+        oof_union,
+        strict_repair_masks["development"],
+        local_union,
+        strict_repair_masks["local_test"],
     )
     summary.to_csv(RUNTIME_DIR / "evidence-summary.csv")
     oof_audit = _build_reversion_audit(
@@ -191,6 +223,34 @@ def main() -> None:
     hard_changes = reloaded["status_group"].ne(incumbent["status_group"])
     if int(hard_changes.sum()) != int(competition_selected.sum()):
         raise ValueError("Archive-gate selection and CSV changes disagree.")
+    union_prediction = build_competition_prediction(
+        modelling_data,
+        template,
+        competition_union,
+        pd.Series(
+            {"archive-choice gate plus strict repair": 0.0},
+            name="seconds",
+        ),
+    )
+    union_destination = write_validated_submission(
+        union_prediction,
+        SUBMISSION_DIR / UNION_CANDIDATE_NAME,
+    )
+    union_reloaded = pd.read_csv(union_destination)
+    union_changes = union_reloaded["status_group"].ne(
+        incumbent["status_group"]
+    )
+    expected_union_changes = competition_selected | strict_repair_masks[
+        "competition"
+    ]
+    if not np.array_equal(union_changes.to_numpy(), expected_union_changes):
+        raise ValueError("Union CSV changes do not match its two fixed masks.")
+    _validate_strict_repair_composition(
+        incumbent,
+        reloaded,
+        union_reloaded,
+        strict_repair_masks["competition"],
+    )
 
     evidence = {
         "development": _evidence_record(
@@ -206,6 +266,31 @@ def main() -> None:
             local_candidate,
             local_selected,
             local_features,
+        ),
+    }
+    union_evidence = {
+        "development": _paired_candidate_evidence(
+            partitioned.y_development,
+            oof_deep,
+            oof_union,
+        ),
+        "local_test": _paired_candidate_evidence(
+            partitioned.y_local_test,
+            local_deep,
+            local_union,
+        ),
+    }
+    overlap_counts = {
+        "development": int(
+            np.sum(oof_selected & strict_repair_masks["development"])
+        ),
+        "local_test": int(
+            np.sum(local_selected & strict_repair_masks["local_test"])
+        ),
+        "competition": int(
+            np.sum(
+                competition_selected & strict_repair_masks["competition"]
+            )
         ),
     }
     manifest = {
@@ -237,6 +322,41 @@ def main() -> None:
         "rows": len(reloaded),
         "unique_ids": int(reloaded["id"].nunique()),
         "sha256": hashlib.sha256(destination.read_bytes()).hexdigest(),
+        "union_candidate": {
+            "composition": (
+                "repair-preserving archive gate plus strict history core "
+                "and residual history"
+            ),
+            "strict_repair_precedence": True,
+            "mask_overlap_counts": overlap_counts,
+            "selection": union_evidence,
+            "competition": {
+                "selected_gate_reversions": int(competition_selected.sum()),
+                "selected_strict_repairs": int(
+                    strict_repair_masks["competition"].sum()
+                ),
+                "changed_vs_incumbent": int(union_changes.sum()),
+                "prediction_share_changed": float(union_changes.mean()),
+                "repair_prediction_change": int(
+                    union_reloaded["status_group"]
+                    .eq("functional needs repair")
+                    .sum()
+                    - incumbent["status_group"]
+                    .eq("functional needs repair")
+                    .sum()
+                ),
+                "class_counts": {
+                    label: int(union_reloaded["status_group"].eq(label).sum())
+                    for label in CLASS_LABELS
+                },
+            },
+            "csv": union_destination.name,
+            "rows": len(union_reloaded),
+            "unique_ids": int(union_reloaded["id"].nunique()),
+            "sha256": hashlib.sha256(
+                union_destination.read_bytes()
+            ).hexdigest(),
+        },
     }
     (SUBMISSION_DIR / "manifest.json").write_text(
         json.dumps(manifest, indent=2) + "\n",
@@ -265,6 +385,7 @@ def main() -> None:
             "oof_selected": oof_selected,
             "local_selected": local_selected,
             "competition_selected": competition_selected,
+            "strict_repair_masks": strict_repair_masks,
         },
         RUNTIME_DIR / "gate-evidence.joblib",
     )
@@ -403,6 +524,77 @@ def _load_competition_components(modelling_data) -> dict[str, np.ndarray]:
     }
 
 
+def _load_strict_repair_masks(partitioned, modelling_data) -> dict[str, np.ndarray]:
+    payload = joblib.load(
+        PROJECT_DIR
+        / ".runtime"
+        / "repair-rule-ensemble"
+        / "repair-rule-evidence.joblib"
+    )
+    expected_ids = {
+        "development_ids": partitioned.development_ids,
+        "local_test_ids": partitioned.local_test_ids,
+        "competition_ids": modelling_data.competition_ids,
+    }
+    for key, expected in expected_ids.items():
+        if not payload[key].reset_index(drop=True).equals(
+            expected.reset_index(drop=True)
+        ):
+            raise ValueError(f"Strict repair payload changed {key!r} order.")
+    candidate_key = "strict_history_core_plus_residual_history"
+    masks = {
+        "development": np.asarray(
+            payload["development_candidates"][candidate_key],
+            dtype=bool,
+        ),
+        "local_test": np.asarray(
+            payload["local_candidates"][candidate_key],
+            dtype=bool,
+        ),
+        "competition": np.asarray(
+            payload["competition_candidates"][candidate_key],
+            dtype=bool,
+        ),
+    }
+    expected_lengths = {
+        "development": len(partitioned.y_development),
+        "local_test": len(partitioned.y_local_test),
+        "competition": len(modelling_data.X_competition),
+    }
+    for key, mask in masks.items():
+        if mask.shape != (expected_lengths[key],):
+            raise ValueError(f"Strict repair {key} mask has the wrong shape.")
+    return masks
+
+
+def _apply_strict_repair_after_gate(
+    deep_probabilities: np.ndarray,
+    gated_probabilities: np.ndarray,
+    strict_repair_mask: np.ndarray,
+) -> np.ndarray:
+    base = np.asarray(deep_probabilities, dtype="float64")
+    gated = np.asarray(gated_probabilities, dtype="float64")
+    mask = np.asarray(strict_repair_mask, dtype=bool)
+    validate_probabilities(base, len(base))
+    validate_probabilities(gated, len(base))
+    if mask.shape != (len(base),):
+        raise ValueError("Strict repair mask has the wrong shape.")
+    repaired, selected = overlay_repair_probabilities(
+        base,
+        np.zeros(len(base), dtype="float64"),
+        threshold=1.0,
+        additional_mask=mask,
+    )
+    if not np.array_equal(selected, mask):
+        raise ValueError("Strict repair mask contains a non-functional base row.")
+    combined = gated.copy()
+    combined[mask] = repaired[mask]
+    validate_probabilities(combined, len(base))
+    if not np.all(combined[mask].argmax(axis=1) == 1):
+        raise ValueError("Strict repair did not take precedence in the union.")
+    return combined
+
+
 def _validate_reconstructions(archive: np.ndarray, deep: np.ndarray) -> None:
     labels = np.asarray(CLASS_LABELS)
     expected_archive = pd.read_csv(ARCHIVE_PATH)
@@ -417,6 +609,33 @@ def _validate_reconstructions(archive: np.ndarray, deep: np.ndarray) -> None:
         expected_deep["status_group"].to_numpy(),
     ):
         raise ValueError("Cached probabilities do not recreate 0.8298 CSV.")
+
+
+def _validate_strict_repair_composition(
+    incumbent: pd.DataFrame,
+    gate: pd.DataFrame,
+    union: pd.DataFrame,
+    strict_repair_mask: np.ndarray,
+) -> None:
+    strict = pd.read_csv(STRICT_REPAIR_PATH)
+    for name, candidate in (("gate", gate), ("union", union), ("strict", strict)):
+        if not candidate["id"].equals(incumbent["id"]):
+            raise ValueError(f"{name.title()} candidate changed incumbent IDs.")
+    strict_changes = strict["status_group"].ne(incumbent["status_group"])
+    if not np.array_equal(strict_changes.to_numpy(), strict_repair_mask):
+        raise ValueError("Committed strict repair CSV and cached mask disagree.")
+    if not strict.loc[
+        strict_repair_mask,
+        "status_group",
+    ].eq("functional needs repair").all():
+        raise ValueError("Strict repair CSV contains a non-repair override.")
+    expected = gate["status_group"].copy()
+    expected.loc[strict_repair_mask] = strict.loc[
+        strict_repair_mask,
+        "status_group",
+    ]
+    if not expected.equals(union["status_group"]):
+        raise ValueError("Union does not apply strict repair after the gate.")
 
 
 def _cross_fitted_choice_probabilities(features, target, folds) -> np.ndarray:
@@ -461,6 +680,10 @@ def _summarise_evidence(
     local_deep,
     local_candidate,
     local_selected,
+    oof_union,
+    oof_strict_repair,
+    local_union,
+    local_strict_repair,
 ) -> pd.DataFrame:
     rows = []
     folds = partitioned.validation_folds.to_numpy()
@@ -483,12 +706,29 @@ def _summarise_evidence(
             local_selected,
             None,
         ),
+        (
+            "development_union",
+            partitioned.y_development,
+            oof_archive,
+            oof_deep,
+            oof_union,
+            oof_selected | oof_strict_repair,
+            folds,
+        ),
+        (
+            "local_test_union",
+            partitioned.y_local_test,
+            local_archive,
+            local_deep,
+            local_union,
+            local_selected | local_strict_repair,
+            None,
+        ),
     ):
         values = target.to_numpy()
         labels = np.asarray(CLASS_LABELS)
         deep_labels = labels[deep.argmax(axis=1)]
         candidate_labels = labels[candidate.argmax(axis=1)]
-        archive_labels = labels[archive.argmax(axis=1)]
         recalls_deep = recall_score(
             values,
             deep_labels,
@@ -524,8 +764,8 @@ def _summarise_evidence(
             "non_functional_recall_change": float(
                 recalls_candidate[2] - recalls_deep[2]
             ),
-            "archive_only_correct_selected": int(
-                np.sum(selected & (archive_labels == values))
+            "candidate_only_correct_selected": int(
+                np.sum(selected & (candidate_labels == values))
             ),
             "deep_only_correct_selected": int(
                 np.sum(selected & (deep_labels == values))
@@ -533,7 +773,7 @@ def _summarise_evidence(
         }
         row["third_class_selected"] = (
             row["selected_reversions"]
-            - row["archive_only_correct_selected"]
+            - row["candidate_only_correct_selected"]
             - row["deep_only_correct_selected"]
         )
         if row_folds is not None:
@@ -567,6 +807,46 @@ def _evidence_record(target, deep, candidate, selected, features) -> dict:
         "third_class_selected": int(selected.sum()) - archive_only - deep_only,
         "deep_accuracy": float(accuracy_score(values, deep_labels)),
         "gated_accuracy": float(accuracy_score(values, candidate_labels)),
+    }
+
+
+def _paired_candidate_evidence(target, deep, candidate) -> dict:
+    labels = np.asarray(CLASS_LABELS)
+    values = target.to_numpy()
+    deep_labels = labels[deep.argmax(axis=1)]
+    candidate_labels = labels[candidate.argmax(axis=1)]
+    changed = candidate_labels != deep_labels
+    candidate_only = int(np.sum(changed & (candidate_labels == values)))
+    deep_only = int(np.sum(changed & (deep_labels == values)))
+    recalls_deep = recall_score(
+        values,
+        deep_labels,
+        labels=list(CLASS_LABELS),
+        average=None,
+        zero_division=0,
+    )
+    recalls_candidate = recall_score(
+        values,
+        candidate_labels,
+        labels=list(CLASS_LABELS),
+        average=None,
+        zero_division=0,
+    )
+    return {
+        "changed_vs_deep": int(changed.sum()),
+        "net_additional_correct": candidate_only - deep_only,
+        "candidate_only_correct": candidate_only,
+        "deep_only_correct": deep_only,
+        "third_class": int(changed.sum()) - candidate_only - deep_only,
+        "deep_accuracy": float(accuracy_score(values, deep_labels)),
+        "candidate_accuracy": float(accuracy_score(values, candidate_labels)),
+        "functional_recall_change": float(
+            recalls_candidate[0] - recalls_deep[0]
+        ),
+        "repair_recall_change": float(recalls_candidate[1] - recalls_deep[1]),
+        "non_functional_recall_change": float(
+            recalls_candidate[2] - recalls_deep[2]
+        ),
     }
 
 

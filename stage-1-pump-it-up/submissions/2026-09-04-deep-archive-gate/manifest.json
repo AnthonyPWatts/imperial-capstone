@@ -36,5 +36,56 @@
   "csv": "01-repair-preserving-archive-gate.csv",
   "rows": 14850,
   "unique_ids": 14850,
-  "sha256": "830d7a39e4b129df2ab67e4730323ba5b7363a7c9bf11e565474e720aca1f7b2"
+  "sha256": "830d7a39e4b129df2ab67e4730323ba5b7363a7c9bf11e565474e720aca1f7b2",
+  "union_candidate": {
+    "composition": "repair-preserving archive gate plus strict history core and residual history",
+    "strict_repair_precedence": true,
+    "mask_overlap_counts": {
+      "development": 0,
+      "local_test": 0,
+      "competition": 0
+    },
+    "selection": {
+      "development": {
+        "changed_vs_deep": 199,
+        "net_additional_correct": 29,
+        "candidate_only_correct": 109,
+        "deep_only_correct": 80,
+        "third_class": 10,
+        "deep_accuracy": 0.8189814814814815,
+        "candidate_accuracy": 0.8195917508417508,
+        "functional_recall_change": 0.002286201418219891,
+        "repair_recall_change": 0.007237984944991338,
+        "non_functional_recall_change": -0.003012213155156318
+      },
+      "local_test": {
+        "changed_vs_deep": 47,
+        "net_additional_correct": 8,
+        "candidate_only_correct": 25,
+        "deep_only_correct": 17,
+        "third_class": 5,
+        "deep_accuracy": 0.813973063973064,
+        "candidate_accuracy": 0.8146464646464646,
+        "functional_recall_change": 0.001239925604463732,
+        "repair_recall_change": 0.008111239860950192,
+        "non_functional_recall_change": -0.0015334063526833974
+      }
+    },
+    "competition": {
+      "selected_gate_reversions": 31,
+      "selected_strict_repairs": 12,
+      "changed_vs_incumbent": 43,
+      "prediction_share_changed": 0.0028956228956228958,
+      "repair_prediction_change": 13,
+      "class_counts": {
+        "functional": 9027,
+        "functional needs repair": 554,
+        "non functional": 5269
+      }
+    },
+    "csv": "02-gate-plus-strict-repair-core.csv",
+    "rows": 14850,
+    "unique_ids": 14850,
+    "sha256": "7f6f1408db020c18f2fb1476ceb897483e8cf4225326c88ec2fda6bc4d39f8ec"
+  }
 }

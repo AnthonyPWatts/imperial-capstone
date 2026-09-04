@@ -9,8 +9,15 @@ and **3 net correct rows** on the used local test. It changes only 31
 competition decisions and never restores an archive decision when the current
 deep model predicts `functional needs repair`.
 
-This is a plausible high-variance submission option, not a strong statistical
-result. Exact paired sign tests are 0.353 on development and 0.736 locally.
+The leading candidate is the disjoint union of that gate and the independently
+selected 12-row strict repair core. It adds **29 development rows**, wins all
+five folds by +2, +4, +7, +10 and +6, and adds **8 local rows**. The union
+changes 43 competition decisions, including 13 net new repair predictions.
+
+The gate by itself is a plausible high-variance option, not a strong
+statistical result. Exact paired sign tests are 0.353 on development and 0.736
+locally. The union's nominal paired values improve to 0.041 and 0.280, but the
+development figure is post-selection evidence rather than an independent test.
 The public deep/archive score difference says the deep model is better overall;
 the gate relies on its component evidence to isolate the minority of rows where
 the archive appears preferable.
@@ -67,13 +74,22 @@ The net prediction-count changes versus the 0.8298 incumbent are +22
 The 31 gate rows are disjoint from the 12-row strict repair candidate on all
 three evidence sets. A simple union therefore adds the effects exactly:
 **+29** development rows with fold nets +2, +4, +7, +10 and +6; **+8** local
-rows; and 43 competition changes. That combined file is intentionally not
-created here so ownership of the independently developed repair candidate
-remains separate.
+rows; and 43 competition changes. It reaches 81.9592% on development and
+81.4646% locally, while raising repair recall by 0.7238 and 0.8111 percentage
+points respectively.
 
 - File: `01-repair-preserving-archive-gate.csv`
 - Rows: 14,850 unique IDs in template order
 - SHA-256: `830d7a39e4b129df2ab67e4730323ba5b7363a7c9bf11e565474e720aca1f7b2`
+- Status: prepared, not uploaded
+
+The preferred union is separately validated so the gate-only candidate remains
+available for attribution:
+
+- File: `02-gate-plus-strict-repair-core.csv`
+- Changes versus incumbent: 43
+- Class counts: 9,027 functional; 554 repair; 5,269 non-functional
+- SHA-256: `7f6f1408db020c18f2fb1476ceb897483e8cf4225326c88ec2fda6bc4d39f8ec`
 - Status: prepared, not uploaded
 
 Row-level cross-fitted, local and competition audits are written under
@@ -100,6 +116,7 @@ selection counts and reconstruction checks.
 Run from the project root:
 
 ```powershell
+.\.venv\Scripts\python.exe .\stage-1-pump-it-up\scripts\run_repair_rule_ensemble.py
 .\.venv\Scripts\python.exe .\stage-1-pump-it-up\scripts\run_deep_archive_gate_screen.py
 .\.venv\Scripts\python.exe -m unittest .\stage-1-pump-it-up\tests\test_deep_archive_gate.py
 ```
