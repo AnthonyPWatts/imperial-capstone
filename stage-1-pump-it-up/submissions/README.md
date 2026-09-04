@@ -318,3 +318,17 @@ Submission `321017` scored **0.8293**, seven or eight net rows below the
 combined gate-and-repair candidate on the public set. Two of three daily
 submissions had been used at this checkpoint, leaving one final slot. See the
 [deep/archive gate report](../reports/deep-archive-gate-screen.md).
+
+## 2026-09-04: final repair candidate prepared
+
+The two public results were decomposed into disjoint prediction blocks and
+conditioned jointly before choosing the last slot. The selected 13-row
+candidate combines the 12 strict repair changes with ID `60481`, the only row
+also selected independently by the repair meta-model and identity-conflict
+rule. It adds 20 net correct development rows with fold nets +3, +3, +2, +6
+and +6, and six net rows on the used local test.
+
+The validated candidate has SHA-256
+`9023b7e4839f4f42521d0dbd89c996f5cd5ac339d9f97848f8d223cbb8888997`.
+It remains prepared pending action confirmation. See the
+[final-slot selection report](../reports/final-slot-selection.md).

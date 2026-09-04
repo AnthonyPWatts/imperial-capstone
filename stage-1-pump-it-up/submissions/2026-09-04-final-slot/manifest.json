@@ -1,0 +1,89 @@
+{
+  "date": "2026-09-04",
+  "status": "prepared_pending_action_confirmation",
+  "selection": {
+    "objective": "maximise the posterior chance of an outright first-place score",
+    "composition": "12-row strict repair candidate plus the one row selected by both the repair meta-model and the identity-conflict rule",
+    "public_score_constraints": {
+      "incumbent_0.8298_correct_counts": [
+        12322,
+        12323
+      ],
+      "repair_union_0.8296_correct_counts": [
+        12319,
+        12320
+      ],
+      "gate_plus_strict_0.8293_correct_counts": [
+        12315
+      ],
+      "first_place_0.8301_correct_counts": [
+        12327
+      ]
+    },
+    "conditional_assessment": {
+      "model": "Jeffreys-smoothed Dirichlet-multinomial block model conditioned jointly on both public scores",
+      "estimated_probability_of_0.8301_or_better": 0.1318,
+      "sensitivity_range": [
+        0.058,
+        0.132
+      ],
+      "caveat": "The calculation assumes all 14,850 rows contribute to the displayed public score and exchangeable outcomes within evidence blocks."
+    }
+  },
+  "csv": "01-strict-repair-plus-meta-overlap.csv",
+  "rows": 14850,
+  "unique_ids": 14850,
+  "changed_vs_incumbent": 13,
+  "changed_ids": [
+    9086,
+    49293,
+    60481,
+    17723,
+    43614,
+    60913,
+    63460,
+    22746,
+    36828,
+    45330,
+    72067,
+    33360,
+    55396
+  ],
+  "transitions": {
+    "functional -> functional needs repair": 13
+  },
+  "class_counts": {
+    "functional": 9004,
+    "functional needs repair": 554,
+    "non functional": 5292
+  },
+  "evidence": {
+    "development": {
+      "flips": 30,
+      "actual_repair": 23,
+      "actual_functional": 3,
+      "actual_non_functional": 4,
+      "net_correct": 20,
+      "strict_flips": 26,
+      "dual_evidence_identity_flips": 4,
+      "fold_net_correct": [
+        3,
+        3,
+        2,
+        6,
+        6
+      ]
+    },
+    "local_test": {
+      "flips": 10,
+      "actual_repair": 7,
+      "actual_functional": 1,
+      "actual_non_functional": 2,
+      "net_correct": 6,
+      "strict_flips": 9,
+      "dual_evidence_identity_flips": 1
+    }
+  },
+  "sha256": "9023b7e4839f4f42521d0dbd89c996f5cd5ac339d9f97848f8d223cbb8888997",
+  "submission_note": "Strict repair + dual-evidence identity: 13 targeted changes; OOF +20, local +6"
+}
