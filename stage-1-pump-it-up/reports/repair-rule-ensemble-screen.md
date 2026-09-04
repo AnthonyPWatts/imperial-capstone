@@ -2,12 +2,13 @@
 
 ## Outcome
 
-The fixed six-rule union recovered **23 net OOF rows** and **8 net local-test rows** by changing 65 and 25 incumbent `functional` decisions respectively to `functional needs repair`. Every development fold improved. The history-only subset retained 17 OOF and 7 local net corrections with fewer competition changes, making it the conservative nested hedge.
+The fixed six-rule union recovered **23 net OOF rows** and **8 net local-test rows** by changing 65 and 25 incumbent `functional` decisions respectively to `functional needs repair`. Every development fold improved. After that union scored 0.8296 publicly, a stricter candidate retained only the four non-scheme history rules and added the independent supported-subvillage history rule.
 
 | Candidate | OOF flips | OOF R/F/N (net) | OOF accuracy | OOF delta | Local flips | Local R/F/N (net) | Local accuracy | Local delta | Competition flips |
 | --- | ---: | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: |
 | full_union | 65 | 39/16/10 (+23) | 0.819465 | +0.000484 | 25 | 14/6/5 (+8) | 0.814646 | +0.000673 | 22 |
 | history_only | 47 | 29/12/6 (+17) | 0.819339 | +0.000358 | 15 | 10/3/2 (+7) | 0.814562 | +0.000589 | 14 |
+| strict_history_core_plus_residual_history | 26 | 19/3/4 (+16) | 0.819318 | +0.000337 | 9 | 6/1/2 (+5) | 0.814394 | +0.000421 | 12 |
 
 The full-union OOF accuracy changes from 0.818981 to 0.819465; local accuracy changes from 0.813973 to 0.814646. Its repair recall moves from 34.34% to 35.47% OOF and from 33.02% to 34.65% locally. The exact McNemar p-values are 0.0027 and 0.1153; this is promising but still a small, adaptively selected override.
 
@@ -62,23 +63,26 @@ The full union changes these 22 IDs:
 
 History-only is a strict subset of full union; the identity conflict adds eight unique competition rows. The grid rule triggers no competition row, and the strict subvillage rule adds no row beyond the LGA-subvillage rule on this test set, although both have independent OOF evidence.
 
+## Post-result strict candidate
+
+The strict history core excludes the weaker `scheme_name_history` and identity-conflict blocks. Its union with the independently defined supported-subvillage history rule changes 12 competition rows, of which eight overlap the submitted full union and four are new. It recovers 16 net OOF rows with fold nets `[3, 3, 1, 4, 5]`, and 5 net local rows.
+
+Exact IDs:
+
+`[9086, 49293, 17723, 43614, 60913, 63460, 22746, 36828, 45330, 72067, 33360, 55396]`
+
 ## Generated candidates
 
 - `02-repair-rule-history-only.csv` — SHA-256 `53bdf901c2771147d1ff939c0b3e1829d6f696e197fcf81c18108ba4ee9185e5`.
 - `01-repair-rule-full-union.csv` — SHA-256 `01c8fa597f57c785009dc89ea2327ba3a43ca0bb3c0e5d7a25386e8f78acbe87`.
+- `03-strict-history-core-plus-residual-history.csv` — SHA-256 `bf6966a5fe3b3a50ed2e3cf58a5d8bed8c219a66ad230281a0a8e985cf380d91`.
 
-Both files contain 14,850 unique IDs in template order, no missing or invalid labels, and only the intended `functional` to `functional needs repair` transitions.
+All files contain 14,850 unique IDs in template order, no missing or invalid labels, and only the intended `functional` to `functional needs repair` transitions.
 
 ## Public result
 
-The full union was submitted unchanged on 4 September 2026 as submission
-`321013` and scored **0.8296**, below the 0.8298 incumbent. At four-decimal
-score precision, the result is consistent with a loss of roughly two to four
-correct rows. This contradicts the positive fold and local-test evidence and
-shows that the adaptively discovered overrides did not transfer to the hidden
-competition labels. Two daily slots remained after this result; the history-only
-file remained unsubmitted at this checkpoint.
+The full union was submitted unchanged on 4 September 2026 as submission `321013` and scored **0.8296**, below the 0.8298 incumbent. If all 14,850 competition rows are scored, four-decimal rounding makes this exactly a loss of two to four correct rows. The evaluator denominator is not disclosed locally, so this does not identify any row label. The history-only and strict candidates remain unsubmitted at this checkpoint.
 
 ## Interpretation
 
-This is a targeted correction rather than a replacement model. The positive direction replicated on all five OOF folds and the held-out local test, but the absolute sample is small and the rules were found through exploratory screening. If allocating a slot to this family, the history-only file is the conservative hedge and the full union is the higher-upside variant; submitting both uses two slots on a highly nested hypothesis, so it should be balanced against an independent model candidate if one is available.
+This is a targeted correction rather than a replacement model. The original positive direction replicated internally but failed to transfer for the complete 22-row union. The 12-row candidate is explicitly post-result and therefore adaptive: its rationale is to retain the strongest internal history block and add four rows from a separately defined rule outside the failed union, not to claim knowledge of hidden row labels.

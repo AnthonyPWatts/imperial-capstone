@@ -47,22 +47,44 @@ from repair_rule_ensemble import IDENTITY_REPAIR_TO_FUNCTIONAL_RATIO
 from repair_rule_ensemble import NON_FUNCTIONAL_LABEL
 from repair_rule_ensemble import REPAIR_HISTORY_RULES
 from repair_rule_ensemble import REPAIR_LABEL
+from repair_rule_ensemble import STRICT_HISTORY_RULE_NAMES
 from repair_rule_ensemble import build_repair_rule_masks
 from repair_rule_ensemble import cross_fit_repair_rule_masks
 from repair_rule_ensemble import overlay_repair_rule_union
 from repair_rule_ensemble import rule_overlap_counts
 from repair_rule_ensemble import selected_rule_names
 from repair_rule_ensemble import summarise_rule_contributions
+from repair_residual_specialist import REPAIR_HISTORY_COLUMN
+from repair_residual_specialist import REPAIR_HISTORY_MINIMUM_RATE
+from repair_residual_specialist import REPAIR_HISTORY_MINIMUM_SUPPORT
+from repair_residual_specialist import repair_history_mask
 
 
+RESIDUAL_HISTORY_RULE_NAME = "residual_supported_subvillage_history"
 CANDIDATES = {
     "full_union": {
         "filename": "01-repair-rule-full-union.csv",
         "rules": FULL_RULE_NAMES,
+        "repair_rule_names": FULL_RULE_NAMES,
+        "include_residual_history": False,
+        "public_score": 0.8296,
+        "submission_id": 321013,
     },
     "history_only": {
         "filename": "02-repair-rule-history-only.csv",
         "rules": HISTORY_RULE_NAMES,
+        "repair_rule_names": HISTORY_RULE_NAMES,
+        "include_residual_history": False,
+        "public_score": None,
+        "submission_id": None,
+    },
+    "strict_history_core_plus_residual_history": {
+        "filename": "03-strict-history-core-plus-residual-history.csv",
+        "rules": (*STRICT_HISTORY_RULE_NAMES, RESIDUAL_HISTORY_RULE_NAME),
+        "repair_rule_names": STRICT_HISTORY_RULE_NAMES,
+        "include_residual_history": True,
+        "public_score": None,
+        "submission_id": None,
     },
 }
 
@@ -106,12 +128,25 @@ def main() -> None:
         competition_base,
         competition_components["identity_catboost"],
     )
+    residual_history_masks = _build_residual_history_masks(
+        modelling_data,
+        partitioned,
+    )
 
-    oof_candidates = _build_candidates(oof_base, oof_masks)
-    local_candidates = _build_candidates(local_base, local_masks)
+    oof_candidates = _build_candidates(
+        oof_base,
+        oof_masks,
+        residual_history_masks["development"],
+    )
+    local_candidates = _build_candidates(
+        local_base,
+        local_masks,
+        residual_history_masks["local"],
+    )
     competition_candidates = _build_candidates(
         competition_base,
         competition_masks,
+        residual_history_masks["competition"],
     )
     candidate_summary = _summarise_candidates(
         partitioned,
@@ -160,6 +195,10 @@ def main() -> None:
         "development_rule_masks": oof_masks,
         "local_rule_masks": local_masks,
         "competition_rule_masks": competition_masks,
+        "residual_history_masks": {
+            name: values.copy()
+            for name, values in residual_history_masks.items()
+        },
         "development_candidates": {
             name: selected.copy()
             for name, (_, selected) in oof_candidates.items()
@@ -356,15 +395,56 @@ def _validate_incumbent_reconstruction(probabilities: np.ndarray) -> None:
         raise ValueError("Cached probabilities do not recreate the 0.8298 CSV.")
 
 
+def _build_residual_history_masks(modelling_data, partitioned) -> dict[str, np.ndarray]:
+    development = np.zeros(len(partitioned.X_development), dtype=bool)
+    folds = partitioned.validation_folds.to_numpy()
+    for fold in sorted(np.unique(folds)):
+        training = folds != fold
+        validation = folds == fold
+        development[validation] = repair_history_mask(
+            partitioned.X_development.iloc[training],
+            partitioned.y_development.iloc[training],
+            partitioned.X_development.iloc[validation],
+        )
+    result = {
+        "development": development,
+        "local": repair_history_mask(
+            partitioned.X_development,
+            partitioned.y_development,
+            partitioned.X_local_test,
+        ),
+        "competition": repair_history_mask(
+            modelling_data.X_original,
+            modelling_data.y_original,
+            modelling_data.X_competition,
+        ),
+    }
+    expected_rows = {
+        "development": len(partitioned.X_development),
+        "local": len(partitioned.X_local_test),
+        "competition": len(modelling_data.X_competition),
+    }
+    for name, values in result.items():
+        if np.asarray(values).shape != (expected_rows[name],):
+            raise ValueError(f"Residual-history {name} mask is misaligned.")
+    return {name: np.asarray(values, dtype=bool) for name, values in result.items()}
+
+
 def _build_candidates(
     base: np.ndarray,
     masks: pd.DataFrame,
+    residual_history: np.ndarray,
 ) -> dict[str, tuple[np.ndarray, np.ndarray]]:
     return {
         name: overlay_repair_rule_union(
             base,
             masks,
-            rule_names=details["rules"],
+            rule_names=details["repair_rule_names"],
+            additional_mask=(
+                residual_history
+                if details["include_residual_history"]
+                else None
+            ),
         )
         for name, details in CANDIDATES.items()
     }
@@ -736,12 +816,17 @@ def _build_result(
                 "key": name,
                 **prediction_records[name],
                 "evidence": evidence,
-                "public_score": None,
-                "submission_id": None,
+                "public_score": CANDIDATES[name]["public_score"],
+                "submission_id": CANDIDATES[name]["submission_id"],
             }
         )
     full_ids = set(prediction_records["full_union"]["changed_ids"])
     history_ids = set(prediction_records["history_only"]["changed_ids"])
+    strict_ids = set(
+        prediction_records[
+            "strict_history_core_plus_residual_history"
+        ]["changed_ids"]
+    )
     union_ids = pd.Series(
         prediction_records["full_union"]["changed_ids"],
         dtype="int64",
@@ -750,7 +835,9 @@ def _build_result(
     union_rule_masks = competition_masks.loc[union_mask].reset_index(drop=True)
     return {
         "date": "2026-09-04",
-        "status": "prepared_not_uploaded",
+        "status": "one_submitted_public_scored",
+        "submission_date": "2026-09-04",
+        "daily_submission_allowance": "one of three used; two remaining",
         "incumbent": {
             "csv": INCUMBENT_PATH.relative_to(STAGE_DIR).as_posix(),
             "public_score": 0.8298,
@@ -780,6 +867,20 @@ def _build_result(
                     IDENTITY_REPAIR_TO_FUNCTIONAL_RATIO
                 ),
             },
+            "residual_history_rule": {
+                "name": RESIDUAL_HISTORY_RULE_NAME,
+                "column": REPAIR_HISTORY_COLUMN,
+                "minimum_functional_plus_repair_support": (
+                    REPAIR_HISTORY_MINIMUM_SUPPORT
+                ),
+                "laplace_smoothed_minimum_repair_rate": (
+                    REPAIR_HISTORY_MINIMUM_RATE
+                ),
+                "history_cross_fit": (
+                    "each development fold used mappings fitted on the other "
+                    "four folds"
+                ),
+            },
         },
         "nested_ladder": {
             "history_only_is_strict_subset_of_full_union": (
@@ -787,6 +888,12 @@ def _build_result(
             ),
             "shared_competition_flips": len(history_ids & full_ids),
             "full_only_competition_flips": len(full_ids - history_ids),
+            "strict_candidate_overlap_with_submitted_full_union": len(
+                strict_ids & full_ids
+            ),
+            "strict_candidate_flips_outside_submitted_full_union": len(
+                strict_ids - full_ids
+            ),
         },
         "competition_per_rule_trigger_ids": {
             rule: union_ids.loc[union_rule_masks[rule]].astype(int).tolist()
@@ -898,11 +1005,19 @@ def _format_report(
 
     full = prediction_records["full_union"]
     history = prediction_records["history_only"]
+    strict = prediction_records["strict_history_core_plus_residual_history"]
+    strict_evidence = summary.loc[
+        "strict_history_core_plus_residual_history"
+    ]
+    strict_fold_nets = [
+        int(strict_evidence[f"fold_{fold}_net_correct"])
+        for fold in range(1, 6)
+    ]
     return f"""# Repair-rule ensemble screen
 
 ## Outcome
 
-The fixed six-rule union recovered **23 net OOF rows** and **8 net local-test rows** by changing 65 and 25 incumbent `functional` decisions respectively to `functional needs repair`. Every development fold improved. The history-only subset retained 17 OOF and 7 local net corrections with fewer competition changes, making it the conservative nested hedge.
+The fixed six-rule union recovered **23 net OOF rows** and **8 net local-test rows** by changing 65 and 25 incumbent `functional` decisions respectively to `functional needs repair`. Every development fold improved. After that union scored 0.8296 publicly, a stricter candidate retained only the four non-scheme history rules and added the independent supported-subvillage history rule.
 
 | Candidate | OOF flips | OOF R/F/N (net) | OOF accuracy | OOF delta | Local flips | Local R/F/N (net) | Local accuracy | Local delta | Competition flips |
 | --- | ---: | --- | ---: | ---: | ---: | --- | ---: | ---: | ---: |
@@ -944,16 +1059,29 @@ The full union changes these {full['changed_vs_incumbent']} IDs:
 
 History-only is a strict subset of full union; the identity conflict adds eight unique competition rows. The grid rule triggers no competition row, and the strict subvillage rule adds no row beyond the LGA-subvillage rule on this test set, although both have independent OOF evidence.
 
+## Post-result strict candidate
+
+The strict history core excludes the weaker `scheme_name_history` and identity-conflict blocks. Its union with the independently defined supported-subvillage history rule changes {strict['changed_vs_incumbent']} competition rows, of which eight overlap the submitted full union and four are new. It recovers {int(strict_evidence['development_net_correct'])} net OOF rows with fold nets `{strict_fold_nets}`, and {int(strict_evidence['local_net_correct'])} net local rows.
+
+Exact IDs:
+
+`{strict['changed_ids']}`
+
 ## Generated candidates
 
 - `{history['csv']}` — SHA-256 `{history['sha256']}`.
 - `{full['csv']}` — SHA-256 `{full['sha256']}`.
+- `{strict['csv']}` — SHA-256 `{strict['sha256']}`.
 
-Both files contain 14,850 unique IDs in template order, no missing or invalid labels, and only the intended `functional` to `functional needs repair` transitions. They were generated but not uploaded, and the submission log was not changed.
+All files contain 14,850 unique IDs in template order, no missing or invalid labels, and only the intended `functional` to `functional needs repair` transitions.
+
+## Public result
+
+The full union was submitted unchanged on 4 September 2026 as submission `321013` and scored **0.8296**, below the 0.8298 incumbent. If all 14,850 competition rows are scored, four-decimal rounding makes this exactly a loss of two to four correct rows. The evaluator denominator is not disclosed locally, so this does not identify any row label. The history-only and strict candidates remain unsubmitted at this checkpoint.
 
 ## Interpretation
 
-This is a targeted correction rather than a replacement model. The positive direction replicated on all five OOF folds and the held-out local test, but the absolute sample is small and the rules were found through exploratory screening. If allocating a slot to this family, the history-only file is the conservative hedge and the full union is the higher-upside variant; submitting both uses two slots on a highly nested hypothesis, so it should be balanced against an independent model candidate if one is available.
+This is a targeted correction rather than a replacement model. The original positive direction replicated internally but failed to transfer for the complete 22-row union. The 12-row candidate is explicitly post-result and therefore adaptive: its rationale is to retain the strongest internal history block and add four rows from a separately defined rule outside the failed union, not to claim knowledge of hidden row labels.
 """
 
 

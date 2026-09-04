@@ -19,6 +19,7 @@ from repair_rule_ensemble import FULL_RULE_NAMES
 from repair_rule_ensemble import HISTORY_RULE_NAMES
 from repair_rule_ensemble import IDENTITY_CONFLICT_RULE
 from repair_rule_ensemble import REPAIR_HISTORY_RULES
+from repair_rule_ensemble import STRICT_HISTORY_RULE_NAMES
 from repair_rule_ensemble import build_repair_rule_masks
 from repair_rule_ensemble import cross_fit_repair_rule_masks
 from repair_rule_ensemble import fit_repair_history_mapping
@@ -61,6 +62,15 @@ class RepairRuleEnsembleTests(unittest.TestCase):
         )
         self.assertEqual(len(FULL_RULE_NAMES), 6)
         self.assertEqual(FULL_RULE_NAMES[-1], IDENTITY_CONFLICT_RULE)
+        self.assertEqual(
+            STRICT_HISTORY_RULE_NAMES,
+            (
+                "grid_005_history",
+                "lga_subvillage_history",
+                "exact_coordinate_name_history",
+                "subvillage_history",
+            ),
+        )
 
     def test_history_mapping_ignores_non_functional_support(self) -> None:
         mapping = fit_repair_history_mapping(
@@ -173,6 +183,38 @@ class RepairRuleEnsembleTests(unittest.TestCase):
             overlaps.loc[HISTORY_RULE_NAMES[0], IDENTITY_CONFLICT_RULE],
             1,
         )
+
+    def test_overlay_combines_external_mask_on_functional_rows_only(self) -> None:
+        probabilities = np.asarray(
+            [
+                [0.60, 0.30, 0.10],
+                [0.55, 0.40, 0.05],
+                [0.10, 0.20, 0.70],
+            ]
+        )
+        masks = pd.DataFrame(False, index=range(3), columns=FULL_RULE_NAMES)
+
+        overlaid, selected = overlay_repair_rule_union(
+            probabilities,
+            masks,
+            rule_names=STRICT_HISTORY_RULE_NAMES,
+            additional_mask=np.asarray([False, True, True]),
+        )
+
+        np.testing.assert_array_equal(selected, [False, True, False])
+        np.testing.assert_allclose(overlaid[1], [0.40, 0.55, 0.05])
+        np.testing.assert_allclose(overlaid[2], probabilities[2])
+
+    def test_overlay_rejects_misaligned_external_mask(self) -> None:
+        probabilities = np.asarray([[0.60, 0.30, 0.10]])
+        masks = pd.DataFrame(False, index=range(1), columns=FULL_RULE_NAMES)
+
+        with self.assertRaisesRegex(ValueError, "wrong shape"):
+            overlay_repair_rule_union(
+                probabilities,
+                masks,
+                additional_mask=np.asarray([True, False]),
+            )
 
 
 def _frame(rows: int) -> pd.DataFrame:

@@ -73,6 +73,9 @@ REPAIR_HISTORY_RULES = (
 )
 
 HISTORY_RULE_NAMES = tuple(rule.name for rule in REPAIR_HISTORY_RULES)
+STRICT_HISTORY_RULE_NAMES = tuple(
+    name for name in HISTORY_RULE_NAMES if name != "scheme_name_history"
+)
 FULL_RULE_NAMES = (*HISTORY_RULE_NAMES, IDENTITY_CONFLICT_RULE)
 
 
@@ -249,8 +252,9 @@ def overlay_repair_rule_union(
     rule_masks: _pd.DataFrame,
     *,
     rule_names: _Sequence[str] = FULL_RULE_NAMES,
+    additional_mask: _np.ndarray | _pd.Series | None = None,
 ) -> tuple[_np.ndarray, _np.ndarray]:
-    """Swap functional and repair memberships for the selected rule union."""
+    """Swap memberships for a rule union and an optional external mask."""
 
     base = _np.asarray(base_probabilities, dtype="float64")
     validate_probabilities(base, len(base))
@@ -261,8 +265,17 @@ def overlay_repair_rule_union(
     unknown = set(selected_names).difference(rule_masks.columns)
     if unknown:
         raise KeyError(f"Unknown repair rules: {sorted(unknown)!r}.")
-    selected = rule_masks.loc[:, list(selected_names)].any(axis=1).to_numpy()
+    selected = (
+        rule_masks.loc[:, list(selected_names)]
+        .any(axis=1)
+        .to_numpy(copy=True)
+    )
     functional_prediction = base.argmax(axis=1) == FUNCTIONAL_POSITION
+    if additional_mask is not None:
+        additional = _np.asarray(additional_mask, dtype=bool)
+        if additional.shape != (len(base),):
+            raise ValueError("The additional repair mask has the wrong shape.")
+        selected |= functional_prediction & additional
     if (selected & ~functional_prediction).any():
         raise ValueError("Repair rules may only select functional predictions.")
 
