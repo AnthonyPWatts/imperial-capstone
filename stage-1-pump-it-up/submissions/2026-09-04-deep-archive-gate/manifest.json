@@ -1,0 +1,40 @@
+{
+  "date": "2026-09-04",
+  "status": "prepared_not_uploaded",
+  "selection": {
+    "gate": "cross-fitted logistic archive choice",
+    "logistic_C": 1.0,
+    "threshold": 0.5,
+    "constraint": "never replace a deep repair prediction",
+    "development": {
+      "archive_deep_disagreements": 804,
+      "selected_reversions": 173,
+      "net_additional_correct": 13,
+      "archive_only_correct_selected": 90,
+      "deep_only_correct_selected": 77,
+      "third_class_selected": 6,
+      "deep_accuracy": 0.8189814814814815,
+      "gated_accuracy": 0.8192550505050505
+    },
+    "local_test": {
+      "archive_deep_disagreements": 181,
+      "selected_reversions": 38,
+      "net_additional_correct": 3,
+      "archive_only_correct_selected": 19,
+      "deep_only_correct_selected": 16,
+      "third_class_selected": 3,
+      "deep_accuracy": 0.813973063973064,
+      "gated_accuracy": 0.8142255892255892
+    }
+  },
+  "competition": {
+    "archive_deep_disagreements": 226,
+    "selected_reversions": 31,
+    "prediction_share_changed": 0.0020875420875420877,
+    "repair_prediction_change": 1
+  },
+  "csv": "01-repair-preserving-archive-gate.csv",
+  "rows": 14850,
+  "unique_ids": 14850,
+  "sha256": "830d7a39e4b129df2ab67e4730323ba5b7363a7c9bf11e565474e720aca1f7b2"
+}
