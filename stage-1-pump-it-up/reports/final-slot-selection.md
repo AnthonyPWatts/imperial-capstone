@@ -2,7 +2,13 @@
 
 ## Decision
 
-Prepare a 16-row `functional` to `functional needs repair` override consisting
+The 16-row candidate was submitted as submission `321023` and scored
+**0.8294**. It did not displace the **0.8298** incumbent, which remained at
+observed rank **3**. If all 14,850 rows contribute to the score, the result is
+five to seven net correct rows below the incumbent. All three daily slots were
+used.
+
+The selected override consisted
 of the 12-row strict repair candidate, the repair meta-model's sole competition
 selection (ID `60481`), and three previously untouched near-boundary rows where
 at least four of six component models vote repair.
@@ -68,7 +74,7 @@ four independent models because three components are related forests.
 - Changes versus the 0.8298 incumbent: 16
 - Transition: `functional` to `functional needs repair` only
 - SHA-256: `9c27f698a75c87e4c34a9044f63e498cf66674a3e4636ac3dd80beed251d2343`
-- Status: prepared pending action confirmation
+- Status: submitted as `321023`; public score **0.8294**
 
 ## Course-aligned lifecycle
 

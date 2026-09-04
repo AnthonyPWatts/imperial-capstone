@@ -57,6 +57,8 @@ VALID_LABELS = {FUNCTIONAL, REPAIR, "non functional"}
 META_THRESHOLD = 0.70
 CONSENSUS_MINIMUM_REPAIR_VOTES = 4
 CONSENSUS_MINIMUM_REPAIR_TO_FUNCTIONAL_RATIO = 0.96
+PUBLIC_SCORE = 0.8294
+SUBMISSION_ID = 321023
 
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
@@ -133,7 +135,9 @@ def main() -> None:
 
     manifest = {
         "date": "2026-09-04",
-        "status": "prepared_pending_action_confirmation",
+        "status": "submitted_public_scored",
+        "submission_date": "2026-09-04",
+        "daily_submission_allowance": "three of three used; none remaining",
         "selection": {
             "objective": "maximise the posterior chance of an outright first-place score",
             "composition": "12-row strict repair candidate, one repair-meta row and three untouched near-boundary rows supported by at least four of six components",
@@ -143,7 +147,7 @@ def main() -> None:
                 "gate_plus_strict_0.8293_correct_counts": [12315],
                 "first_place_0.8301_correct_counts": [12327],
             },
-            "conditional_assessment": {
+            "pre_submission_conditional_assessment": {
                 "model": "Jeffreys-smoothed Dirichlet-multinomial block model conditioned jointly on both public scores",
                 "estimated_probability_of_0.8301_or_better": 0.2561,
                 "sensitivity_range": [0.077, 0.267],
@@ -172,6 +176,11 @@ def main() -> None:
         "evidence": evidence,
         "sha256": _sha256(DESTINATION),
         "submission_note": "Strict + meta + consensus repair: 16 targeted changes; OOF +21, local +7",
+        "public_score": PUBLIC_SCORE,
+        "submission_id": SUBMISSION_ID,
+        "observed_best_score_after_submission": 0.8298,
+        "observed_rank_after_submission": 3,
+        "possible_net_correct_vs_incumbent": [-7, -6, -5],
     }
     MANIFEST_PATH.write_text(
         json.dumps(manifest, indent=2) + "\n",

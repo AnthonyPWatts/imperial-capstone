@@ -1,6 +1,8 @@
 {
   "date": "2026-09-04",
-  "status": "prepared_pending_action_confirmation",
+  "status": "submitted_public_scored",
+  "submission_date": "2026-09-04",
+  "daily_submission_allowance": "three of three used; none remaining",
   "selection": {
     "objective": "maximise the posterior chance of an outright first-place score",
     "composition": "12-row strict repair candidate, one repair-meta row and three untouched near-boundary rows supported by at least four of six components",
@@ -20,7 +22,7 @@
         12327
       ]
     },
-    "conditional_assessment": {
+    "pre_submission_conditional_assessment": {
       "model": "Jeffreys-smoothed Dirichlet-multinomial block model conditioned jointly on both public scores",
       "estimated_probability_of_0.8301_or_better": 0.2561,
       "sensitivity_range": [
@@ -100,5 +102,14 @@
     }
   },
   "sha256": "9c27f698a75c87e4c34a9044f63e498cf66674a3e4636ac3dd80beed251d2343",
-  "submission_note": "Strict + meta + consensus repair: 16 targeted changes; OOF +21, local +7"
+  "submission_note": "Strict + meta + consensus repair: 16 targeted changes; OOF +21, local +7",
+  "public_score": 0.8294,
+  "submission_id": 321023,
+  "observed_best_score_after_submission": 0.8298,
+  "observed_rank_after_submission": 3,
+  "possible_net_correct_vs_incumbent": [
+    -7,
+    -6,
+    -5
+  ]
 }

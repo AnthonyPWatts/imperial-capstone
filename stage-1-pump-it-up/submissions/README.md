@@ -319,7 +319,7 @@ combined gate-and-repair candidate on the public set. Two of three daily
 submissions had been used at this checkpoint, leaving one final slot. See the
 [deep/archive gate report](../reports/deep-archive-gate-screen.md).
 
-## 2026-09-04: final repair candidate prepared
+## 2026-09-04: final repair candidate submitted
 
 The two public results were decomposed into disjoint prediction blocks and
 conditioned jointly before choosing the last slot. The selected 16-row
@@ -330,5 +330,8 @@ fold nets +4, +4, +1, +7 and +5, and seven net rows on the used local test.
 
 The validated candidate has SHA-256
 `9c27f698a75c87e4c34a9044f63e498cf66674a3e4636ac3dd80beed251d2343`.
-It remains prepared pending action confirmation. See the
+Submission `321023` scored **0.8294**, leaving the 0.8298 incumbent at observed
+rank **3**. Under full-row scoring, the candidate lost five to seven net
+correct rows relative to the incumbent. All three daily slots were used; the
+next submission becomes available on 5 September 2026 UTC. See the
 [final-slot selection report](../reports/final-slot-selection.md).
