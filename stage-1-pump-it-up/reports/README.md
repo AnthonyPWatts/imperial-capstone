@@ -1,5 +1,13 @@
 # Reports
 
+The fresh exact-ensemble reconstruction, locked gates and fixed three-candidate
+exploratory submission slate are in
+[`fresh-ensemble-reconstruction-and-submission-slate.md`](fresh-ensemble-reconstruction-and-submission-slate.md).
+
+The fresh full-label diagnosis of validation transfer, population shift and
+the failed row-level repair overrides is in
+[`generalisation-diagnosis.md`](generalisation-diagnosis.md).
+
 The current structural data-preparation decisions and implementation handoff are
 in [`data-preparation-next-steps.md`](data-preparation-next-steps.md).
 

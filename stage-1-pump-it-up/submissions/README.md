@@ -335,3 +335,23 @@ rank **3**. Under full-row scoring, the candidate lost five to seven net
 correct rows relative to the incumbent. All three daily slots were used; the
 next submission becomes available on 5 September 2026 UTC. See the
 [final-slot selection report](../reports/final-slot-selection.md).
+
+## 2026-09-05: fresh-reconstruction portfolio reached rank 1
+
+Fresh all-label cross-validation admitted two fixed 50:50 within-slot bags and
+their predeclared combination. The three files were submitted in the locked
+order below without inspecting a score or adapting the later entries between
+submissions.
+
+| Order | Candidate file | Submission | SHA-256 | Public score |
+| ---: | --- | ---: | --- | ---: |
+| 1 | `01-fresh-catboost-rf-combined-50-50-within-slot-bags.csv` | `321153` | `84454200b1f6182ed7b971163edb824207540f72e27782cec7db5c1d6b4dfb1f` | **0.8302** |
+| 2 | `02-fresh-catboost-identity-grid-50-50-within-slot-bag.csv` | `321154` | `e492c7ca37ec12750809016a44ecf27fedafacda1eecb3e2db7c8e6368fa446b` | **0.8304** |
+| 3 | `03-fresh-rf-current-features-0-3-50-50-within-slot-bag.csv` | `321155` | `d04b4b222f45b8e5285daa730ee2974bd8f921cd6afa1dd05d84dd6925c05fb2` | **0.8303** |
+
+The CatBoost bag established a new project best of **0.8304**, observed at
+public-leaderboard rank **1**. All three daily slots were used, bringing the
+project total to 21 submissions. Private leaderboard scores are not available.
+See the [portfolio manifest](2026-09-05-fresh-reconstruction-portfolio/manifest.json)
+and [fresh reconstruction report](../reports/fresh-ensemble-reconstruction-and-submission-slate.md)
+for the locked evidence, recipes and validation details.

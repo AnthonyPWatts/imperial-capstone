@@ -565,10 +565,10 @@ def add_results(document: Document) -> None:
     start_section(document, 2)
     add_heading(document, "5  Results", 1)
     add_heading(document, "5.1  Candidate progression", 2)
-    add_body(document, "The accepted 55:45 XGBoost-Random Forest vote established 81.6246% development accuracy, 80.8200% local accuracy, and a public score of 0.8241. Identity-aware modelling increased these values to 81.7403%, 81.0859%, and 0.8259. The archived ensemble reached 81.7929% development accuracy, 81.1869% locally, and 0.8288 publicly. A deeper seed-20260822 synthesis improved local performance to 81.3552% but was not submitted. The final seed-20260824 model reached 81.8981% development accuracy and 81.3973% locally.")
+    add_body(document, "The accepted 55:45 XGBoost-Random Forest vote established 81.6246% development accuracy, 80.6987% local accuracy in its exact later refit, and a public score of 0.8241. Identity-aware modelling increased these values to 81.7403%, 81.0859%, and 0.8259. The archived ensemble reached 81.7929% development accuracy, 81.1869% locally, and 0.8288 publicly. A deeper seed-20260822 synthesis improved local performance to 81.3552% but was not submitted. The final seed-20260824 model reached 81.8981% development accuracy and 81.3973% locally.")
     add_body(document, "The frozen competition submission scored 0.8298. This exceeded the 0.826 target by 0.0038 and occupied rank 2 in the leaderboard snapshot observed on 23 August 2026, 0.0001 behind the displayed leader. The result is strong benchmark evidence, but the leaderboard is an adaptively consulted external validation surface rather than an independent scientific test after multiple submissions.")
     add_table(document, ["Candidate", "Dev.", "Local test", "Public", "Decision"], [
-        ("Accepted vote", "81.6246%", "80.8200%", "0.8241", "Reference"),
+        ("Accepted vote", "81.6246%", "80.6987%", "0.8241", "Reference"),
         ("Identity vote", "81.7403%", "81.0859%", "0.8259", "Promoted"),
         ("Archived synthesis", "81.7929%", "81.1869%", "0.8288", "Superseded"),
         ("Deep seed 20260822", "81.8771%", "81.3552%", "N/A", "Local comparison"),

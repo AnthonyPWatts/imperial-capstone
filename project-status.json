@@ -1,18 +1,18 @@
 {
   "snapshot": {
-    "date": "2026-08-23",
-    "label": "23 August 2026"
+    "date": "2026-09-05",
+    "label": "5 September 2026"
   },
   "overall": {
     "completed": 68,
     "total": 68,
-    "current": "Seed-20260824 deep-archive synthesis scored 0.8298 publicly and reached observed rank 2"
+    "current": "Fresh CatBoost identity/spatial-grid bag scored 0.8304 publicly and reached observed rank 1"
   },
   "stage1": {
     "state": "Model search complete",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Preserve the frozen result and record private-leaderboard performance when available.",
+    "nextCheckpoint": "Preserve the locked result; require genuinely fresh evidence before any further model search.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -36,19 +36,19 @@
     "evaluated": 21
   },
   "submissions": {
-    "total": 15,
+    "total": 21,
     "usedToday": 3,
     "dailyLimit": 3,
-    "bestScore": 0.8298,
-    "bestLabel": "Deep-archive six-component synthesis, seed 20260824",
-    "observedPublicRank": 2,
-    "rankObservedDate": "2026-08-23",
-    "latestDate": "2026-08-23",
-    "latestSubmissionLabel": "Deep-archive six-component synthesis, seed 20260824",
-    "latestSubmissionSha256": "fe5de9ea46bad2b35226bc97ebdfb743807fb758df1d259e8f8a51609808fee2"
+    "bestScore": 0.8304,
+    "bestLabel": "Fresh CatBoost identity/spatial-grid within-slot bag",
+    "observedPublicRank": 1,
+    "rankObservedDate": "2026-09-05",
+    "latestDate": "2026-09-05",
+    "latestSubmissionLabel": "Fresh Random Forest max-features 0.3 within-slot bag",
+    "latestSubmissionSha256": "d04b4b222f45b8e5285daa730ee2974bd8f921cd6afa1dd05d84dd6925c05fb2"
   },
   "benchmarks": {
-    "achievedTargetScore": 0.8298,
+    "achievedTargetScore": 0.8304,
     "targetScore": 0.826,
     "nearTermCeiling": 0.85
   },

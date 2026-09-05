@@ -25,24 +25,43 @@ or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capston
 ## Current position
 
 The raw-data audit covers all 39 non-identifier predictors. Three structural
-removals are settled, leaving 36 candidate predictors. Fifteen submissions have
-tested the submission path and the audit-led modelling workflow. The best
-public score is **`0.8298`** from the seed-20260824 deep-archive six-component
-synthesis, up from the previous `0.8288` and above the `0.826` project target.
-It was observed at public-leaderboard position **2**, 0.0001 behind the leader,
-on 23 August 2026.
+removals are settled, leaving 36 candidate predictors. Twenty-one submissions
+have tested the submission path and the audit-led modelling workflow. The best
+public score is **`0.8304`** from the fresh CatBoost identity/spatial-grid
+50:50 bag within the fixed CatBoost slot. Submission `321154` improved the
+previous `0.8298` best by `0.0006` and was observed at public-leaderboard
+position **1** on 5 September 2026.
 
-[![DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 2 with a score of 0.8298](../assets/pump-it-up-public-leaderboard-rank-2.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
+[![Historical DrivenData Pump It Up leaderboard milestone showing anthonypwatts at rank 2 with a score of 0.8298](../assets/pump-it-up-public-leaderboard-rank-2.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
 
-*Public leaderboard observed on 23 August 2026; the live ranking may change.*
+*Historical leaderboard evidence from 23 August 2026. The later rank-1 result
+was observed live on 5 September 2026; rankings may change.*
 
-The deliberately held third daily slot was subsequently reopened for the
-depth-17 top-50 identity XGBoost. A bounded follow-up retained the same 600
-trees and six component weights but changed the primary model to predeclared
-seed 20260824. It reaches **81.8981%** development accuracy and **81.3973%**
-local-test accuracy, ten and five net rows above the seed-20260822 candidate.
-Its validated 14,850-row competition CSV was submitted unchanged in the final
-daily slot and scored **0.8298** publicly. See the
+The 5 September generalisation investigation found no evidence that the base
+model path or competition test population was broken. Formal model ordering
+remained strongly aligned with public ordering, train-versus-competition shift
+was negligible, and the historical local subset was only moderately harder.
+By contrast, all three 4 September row-targeted repair submissions improved
+reused internal evidence and regressed publicly. The working diagnosis is
+adaptive overfit in the micro-postprocessing, which is now stopped. See the
+[generalisation diagnosis](reports/generalisation-diagnosis.md).
+
+One fresh five-fold reconstruction then admitted only two model-level within-
+slot bags and their predeclared combination under a weaker exploratory guard.
+The locked files were submitted without inspecting or adapting to intermediate
+scores and returned **`0.8302`**, **`0.8304`** and **`0.8303`**. All beat the
+incumbent, although their fresh OOF gains were only 9–13 rows and none passed
+the formal promotion gate. See the
+[fresh reconstruction report](reports/fresh-ensemble-reconstruction-and-submission-slate.md)
+and [submission log](submissions/README.md).
+
+At the earlier 23 August checkpoint, the deliberately held third daily slot was
+reopened for the depth-17 top-50 identity XGBoost. A bounded follow-up retained
+the same 600 trees and six component weights but changed the primary model to
+predeclared seed 20260824. It reaches **81.8981%** development accuracy and
+**81.3973%** local-test accuracy, ten and five net rows above the seed-20260822
+candidate. Its validated 14,850-row competition CSV was submitted unchanged in
+the final daily slot and scored **0.8298** publicly. See the
 [deep follow-up report](reports/deep-follow-up-search.md).
 
 The formal workflow reserves a stratified 20% local test and fixes five
@@ -77,7 +96,7 @@ submitted unchanged. They scored **0.8288** and **0.8259** respectively. Their
 public ordering agrees with both development and local-test evidence, and the
 archive synthesis established the project best at that point. The later
 seed-20260824 deep substitution raised it to **0.8298**.
-The bounded modelling search is now concluded; see the
+That bounded modelling phase then concluded; see the
 [final evidence audit](reports/model-search-conclusion.md).
 
 The completed target-structure investigation traces the 74,250 competition
@@ -416,11 +435,13 @@ threshold and per-field follow-ups. See the
 
 ## Next modelling loop
 
-1. Retain the 0.8298 seed-20260824 deep-archive synthesis as the public leader,
-   with the 0.8288 archive synthesis and 0.8259 complete-identity vote as
-   corroborating evidence; do not tune from any leaderboard result.
-2. Require a genuinely new signal or data source before more ensemble work; do
-   not tune the archive-synthesis thresholds, neighbour counts or weights.
+1. Retain the `0.8304` CatBoost identity/spatial-grid within-slot bag as the
+   public leader, while recording that its 13-row fresh-OOF gain passed only the
+   exploratory guard rather than the formal promotion gate.
+2. Require a genuinely new signal or independently motivated representation
+   before more ensemble work. Do not tune the fresh-slate weights, resume
+   row-targeted repair postprocessing or decompose public score movements into
+   hidden row labels.
 3. Keep the LGA-disjoint result as a robustness warning; do not replace the
    competition-aligned frozen-fold selection metric silently.
 4. Treat the 2.5× replay's 0.8174 result as confirmation of the accuracy cost;
@@ -463,8 +484,9 @@ threshold and per-field follow-ups. See the
     the incumbent.
 19. Retain fixed 600-tree deep XGBoost. Exact recording batches, mined residual
     voters and inner stopping did not confirm; predeclared seed 20260824 became
-    the final submitted replacement after small development and local-test
-    gains, then scored 0.8298 publicly.
+    the previous public incumbent at `0.8298`. The later `0.8304` improvement
+    came from a fresh, bounded CatBoost representation bag rather than another
+    deep-XGBoost seed or parameter search.
 
 The practical question is how well maintenance data can distinguish functional,
 repairable and non-functional water pumps. Class imbalance, missing values,

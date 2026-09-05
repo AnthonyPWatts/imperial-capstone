@@ -4,9 +4,11 @@
 
 The 16-row candidate was submitted as submission `321023` and scored
 **0.8294**. It did not displace the **0.8298** incumbent, which remained at
-observed rank **3**. If all 14,850 rows contribute to the score, the result is
-five to seven net correct rows below the incumbent. All three daily slots were
-used.
+observed rank **3**. All three daily slots were used. The score establishes the
+ordering, but not an exact net row count: the
+[local competition reference](../instructions/competition-reference.md#files-and-submission)
+requires one submitted prediction per test row and defines classification rate,
+but does not say that the public leaderboard evaluates all 14,850 rows.
 
 The selected override consisted
 of the 12-row strict repair candidate, the repair meta-model's sole competition
@@ -21,10 +23,11 @@ consensus candidate has a slightly better expected net and lower downside, but
 the selected 16-row candidate has the largest primary-model upper tail. A lower
 final score cannot displace the retained 0.8298 best score.
 
-## Information recovered from the public scores
+## Conditional full-denominator arithmetic
 
-Assuming the displayed score is ordinary accuracy over all 14,850 competition
-rows, four-decimal rounding gives the following exact possibilities:
+The following was the arithmetic used for the historical decision. It is exact
+only under the unsupported assumption that the displayed public score is
+ordinary accuracy over all 14,850 competition rows:
 
 | Submission | Public score | Possible correct rows | Net versus incumbent |
 | --- | ---: | ---: | ---: |
@@ -33,7 +36,8 @@ rows, four-decimal rounding gives the following exact possibilities:
 | 43-row gate plus strict repair | 0.8293 | exactly 12,315 | -8 or -7 |
 | Outright-first threshold | 0.8301 | exactly 12,327 | needs +5 or +4 |
 
-The repair union decomposes into strict core `C`, weaker history `W` and
+Under that hypothetical denominator, the repair union decomposes into strict
+core `C`, weaker history `W` and
 identity `I`; its hidden net is therefore `C + W + I ∈ {-4, -3, -2}`. The
 second candidate decomposes into archive gate `G`, the shared strict core `C`
 and new residual history `H`; its net is `G + C + H ∈ {-8, -7}`. Cancelling
@@ -56,9 +60,10 @@ labels. The same model gives the following primary ranking:
 | Prior strict plus meta (`C + H + M`) | 13 | +0.89 | 13.2% |
 
 The conditioning event was itself rare under the validation-informed prior,
-so these probabilities are decision aids rather than calibrated guarantees.
-They also cease to be exact if the public leaderboard scores an undisclosed
-subset rather than all 14,850 rows.
+so these probabilities were decision aids rather than calibrated guarantees.
+Because the local reference does not disclose the public denominator, the
+table and block constraints must not be treated as recovered correct counts or
+row-label evidence.
 
 ## Candidate evidence and integrity
 

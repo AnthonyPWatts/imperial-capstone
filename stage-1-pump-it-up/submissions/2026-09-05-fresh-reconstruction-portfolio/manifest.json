@@ -1,0 +1,295 @@
+{
+  "date": "2026-09-05",
+  "explicit_cli_opt_in": "generate-admissible-fresh-reconstruction-portfolio",
+  "auto_uploaded": false,
+  "review_required_before_upload": true,
+  "external_data_used": false,
+  "protocol": {
+    "training_rows": 59400,
+    "competition_rows": 14850,
+    "historical_local_subset_used": false,
+    "competition_covariates": "supplied TestSetValues.csv only",
+    "archive_slot_weights": {
+      "deep_xgboost": 0.33,
+      "spatial_xgboost": 0.11,
+      "random_forest": 0.18,
+      "frequency_random_forest": 0.09,
+      "spatial_random_forest": 0.09,
+      "identity_catboost": 0.2
+    },
+    "within_slot_weights": {
+      "incumbent": 0.5,
+      "alternative": 0.5
+    },
+    "weight_search": false,
+    "row_level_rules": false,
+    "post_hoc_rows_changed": 0,
+    "candidate_order": [
+      "fresh_deep_archive_combined_fallback",
+      "catboost_identity_grid_50_50_at_0_20",
+      "rf_current_features_0_3_50_50_at_0_18"
+    ]
+  },
+  "fresh_evidence_sha256": {
+    "result.json": "0e76b5b9180ad43d4bd95a75aeb8e87e8051700c7045f72573c2b31bbb086261",
+    "candidate-summary.csv": "6b08c0169f40153fe3ee8fadf52650725a353e8edb9cdf200fe92c727757fab4",
+    "fold-paired-deltas.csv": "1b9f63ccf0039b35805d5c937c1d81d68ce485b879f6135624154887977d49a6",
+    "combined-catboost-rf-leaf-1-summary.csv": "0ef893c0df61f8fdcfefd28ed3e64b973f4fa46a65159d93c425cfa44ae6280a",
+    "combined-catboost-rf-leaf-1-fold-paired-deltas.csv": "aa10a30c67ef6b4376aa1d013e3b3a24fc2fc4f45410fe0f008975e8f1bc8141",
+    "ten-seed-direct-replacement-summary.csv": "612962cecd6481e8c1cb21094b8b1ed8fd4b6cf52e3bb4aff22d0d45cfa4d40f",
+    "ten-seed-direct-replacement-fold-paired-deltas.csv": "93ca6d6106d0c5db2bed42197a54834038aad846eba5d42681df155c6b134f1c",
+    "all-candidate-summary.csv": "e08ff0ec96a217b6f0cc0490df0189e9b7519b074df2906022b565a51c4c09ac",
+    "all-fold-paired-deltas.csv": "f31e21d002c01fe19fc1309650230afc50a1b117a627a99c38bbcbd69a46f6aa"
+  },
+  "pinned_source_sha256": {
+    "src/catboost_identity_evaluation.py": "b078bb5132cf994c4078aa50d16108841903a0715cd1061d19a57272432e2e9f",
+    "src/data_partitioning.py": "ccf43b4bca8cd542ec100783f6aa7bbb23dc15946ec29880604bed97d1cd3de3",
+    "src/data_preparation.py": "2aeda2f9229275ddf9bb207422d4ae4aacf3c05c46e16321147d1fa5c6e496f6",
+    "src/deep_archive_confirmation.py": "aa156cd3b69c8be2d86608244355ed6c99b9d1cf4d0819417160a35bbd636b3d",
+    "src/feature_engineering.py": "b900fd38c74ce1dee840428752aa3c342d1eea8a124804d5fd1f001a405b4026",
+    "src/final_model.py": "798e2505706f150d2c9d535e6bdb906732a44c1442ade35356b9a869d52186b8",
+    "src/fresh_deep_archive_reconstruction.py": "9f74a3c71cf6a78785e20631e0603e8ab0f8188cbbbc9cf5e8fc696b4390287b",
+    "src/fresh_rf_family_evaluation.py": "856d6b7fb969b06a2e2c044cd46a0ed6b2da89daae76fff9efe7e8f1368d616b",
+    "src/fresh_submission_portfolio.py": "148e12b2ec78d588d6c9b16faf75f446c810081e90ab2d61074e755ac9d4c1b6",
+    "src/gpu_model_evaluation.py": "e6867cac83f1acd5437a34288748578662cb106d219ac00c3cb2f76c7fd884b5",
+    "src/locked_architecture_candidates.py": "376ce158634709b87a0f787b0526ebbe5f99cdcf3b6a6a4f2d530522c028d291",
+    "src/locked_screen_evidence.py": "50b57a22c9ccf533c4b580fcc01847fe3a750978e530430b0d2d3cd7c9ace55e",
+    "src/model_evaluation.py": "2c8d668654bfb9a6bbe04b17e1fec1f9d9ce16af647d891b7807d96c77988c20",
+    "src/model_preprocessing.py": "8333221a2e9b889db99699707aacf1eab973c2b3e3ed3cea57ab777170af8762",
+    "src/modelling_data.py": "8651ee63c740fedf16ae55a1882eb4dd577fc93388f8452f6c2a3381e689e878",
+    "src/source_data_validation.py": "fdb373a25ff888a98862f3c6bd460b0299bf21e1691b1e7e1f8c5f0f7c2ba3c7",
+    "src/spatial_grid_catboost_evaluation.py": "84b53ac5d3505e4c1d1ca9e4ea2e1ab94321c1c01331ff00c87c153dfb1739c3",
+    "src/target_encoding_features.py": "bce953f40d3dd8093eacb47deef14dc25460428f3d643f98fa92cf07b0f79fd6",
+    "scripts/generate_locked_architecture_submissions.py": "6bc7aa433c03b46fd24c96c45dce75a6575b247ab8d6665cd2c6d9deaa627fa3",
+    "scripts/run_fresh_deep_archive_reconstruction.py": "ffe49d5ea5fccfe84b113c2dd4244e2262c7ab64caf32d5ad431e46dd3652316"
+  },
+  "pinned_data_sha256": {
+    "TrainingSetValues.csv": "d8ebe40f49fe749a851c8ea28601115cd92442f7b20025fbc33881595ae75f5d",
+    "TrainingSetLabels.csv": "ae9b4f893e8e89df3a2187d38cade75c61dfb1d1e156ecd7615fee14fdbe0a24",
+    "TestSetValues.csv": "a222110d5606910953607efa5112eafb1d6c30a483c4cbcd0b92c8306125c9b5",
+    "SubmissionFormat.csv": "387b15f692da6196b1f2610be1aa327a8cbe8dffa15454b25882f41a4077b9f6"
+  },
+  "incumbent_input_sha256": {
+    "deep": "71a08cfaa0992bc3940abadae7d844d79f682ff1fd7fed8b894822f926cea835",
+    "accepted": "c6bd9a710b2c3e055f07c6d541a5cb026674974e26dd65afcd45884247e48a2e",
+    "identity": "1a0ae110ac7e2f758474c6a2ff0dcb11f4fef0ca9a236df7ba4af4466d02b4e8",
+    "archive": "3a4226f03ee2fa2b8ad2da7132fa25f9ecf81d4e1a1760f0f8e644d0b49c4046",
+    "submission": "fe5de9ea46bad2b35226bc97ebdfb743807fb758df1d259e8f8a51609808fee2"
+  },
+  "generator_sha256": "3021568862014934a4f145ed49a952e1fcf2cba2617b113258f12caa5dc5bb24",
+  "replacement_component_caches": {
+    "spatial_grid_catboost": {
+      "path": ".runtime\\fresh-reconstruction-portfolio-competition\\spatial-grid-catboost.joblib",
+      "sha256": "587b7301e8da7c038f7853cce0b6f5c6cd10445a5f0ecfb5df055799ecab691e",
+      "metadata": {
+        "cache_version": 1,
+        "candidate": "spatial_grid_catboost",
+        "recipe": {
+          "spec": {
+            "name": "CatBoost d8 [complete identities plus spatial grids]",
+            "family": "CatBoost GPU",
+            "variant": "d8",
+            "feature_policy": "accepted plus six identities and four fixed coordinate grids",
+            "seed": 20260821
+          },
+          "iterations": 2436,
+          "feature_engineer": "spatial_grid_catboost_evaluation.engineer_spatial_grid_catboost_features",
+          "within_slot_target": "identity_catboost",
+          "slot_weight": 0.2
+        },
+        "training_rows": 59400,
+        "competition_rows": 14850,
+        "data_sha256": {
+          "TrainingSetValues.csv": "d8ebe40f49fe749a851c8ea28601115cd92442f7b20025fbc33881595ae75f5d",
+          "TrainingSetLabels.csv": "ae9b4f893e8e89df3a2187d38cade75c61dfb1d1e156ecd7615fee14fdbe0a24",
+          "TestSetValues.csv": "a222110d5606910953607efa5112eafb1d6c30a483c4cbcd0b92c8306125c9b5",
+          "SubmissionFormat.csv": "387b15f692da6196b1f2610be1aa327a8cbe8dffa15454b25882f41a4077b9f6"
+        },
+        "source_sha256": {
+          "src/catboost_identity_evaluation.py": "b078bb5132cf994c4078aa50d16108841903a0715cd1061d19a57272432e2e9f",
+          "src/data_partitioning.py": "ccf43b4bca8cd542ec100783f6aa7bbb23dc15946ec29880604bed97d1cd3de3",
+          "src/data_preparation.py": "2aeda2f9229275ddf9bb207422d4ae4aacf3c05c46e16321147d1fa5c6e496f6",
+          "src/deep_archive_confirmation.py": "aa156cd3b69c8be2d86608244355ed6c99b9d1cf4d0819417160a35bbd636b3d",
+          "src/feature_engineering.py": "b900fd38c74ce1dee840428752aa3c342d1eea8a124804d5fd1f001a405b4026",
+          "src/final_model.py": "798e2505706f150d2c9d535e6bdb906732a44c1442ade35356b9a869d52186b8",
+          "src/fresh_deep_archive_reconstruction.py": "9f74a3c71cf6a78785e20631e0603e8ab0f8188cbbbc9cf5e8fc696b4390287b",
+          "src/fresh_rf_family_evaluation.py": "856d6b7fb969b06a2e2c044cd46a0ed6b2da89daae76fff9efe7e8f1368d616b",
+          "src/fresh_submission_portfolio.py": "148e12b2ec78d588d6c9b16faf75f446c810081e90ab2d61074e755ac9d4c1b6",
+          "src/gpu_model_evaluation.py": "e6867cac83f1acd5437a34288748578662cb106d219ac00c3cb2f76c7fd884b5",
+          "src/locked_architecture_candidates.py": "376ce158634709b87a0f787b0526ebbe5f99cdcf3b6a6a4f2d530522c028d291",
+          "src/locked_screen_evidence.py": "50b57a22c9ccf533c4b580fcc01847fe3a750978e530430b0d2d3cd7c9ace55e",
+          "src/model_evaluation.py": "2c8d668654bfb9a6bbe04b17e1fec1f9d9ce16af647d891b7807d96c77988c20",
+          "src/model_preprocessing.py": "8333221a2e9b889db99699707aacf1eab973c2b3e3ed3cea57ab777170af8762",
+          "src/modelling_data.py": "8651ee63c740fedf16ae55a1882eb4dd577fc93388f8452f6c2a3381e689e878",
+          "src/source_data_validation.py": "fdb373a25ff888a98862f3c6bd460b0299bf21e1691b1e7e1f8c5f0f7c2ba3c7",
+          "src/spatial_grid_catboost_evaluation.py": "84b53ac5d3505e4c1d1ca9e4ea2e1ab94321c1c01331ff00c87c153dfb1739c3",
+          "src/target_encoding_features.py": "bce953f40d3dd8093eacb47deef14dc25460428f3d643f98fa92cf07b0f79fd6",
+          "scripts/generate_locked_architecture_submissions.py": "6bc7aa433c03b46fd24c96c45dce75a6575b247ab8d6665cd2c6d9deaa627fa3",
+          "scripts/run_fresh_deep_archive_reconstruction.py": "ffe49d5ea5fccfe84b113c2dd4244e2262c7ab64caf32d5ad431e46dd3652316"
+        },
+        "evidence_sha256": {
+          "fresh_reconstruction_result": "0e76b5b9180ad43d4bd95a75aeb8e87e8051700c7045f72573c2b31bbb086261",
+          "spatial_screen:result": "47c6ccfafc4abe359120938c8d44cda461ed6f82a498e689afa20e7d8a636ec8",
+          "spatial_screen:summary": "8093db3c1d5238cadb4256631e633ec04594f8cd30d59b6d87d7d3c9fd2ac085",
+          "spatial_screen:folds": "227871cf25d7ef789c71588e29df33434bbb4db8e1cbf03cb75dade36e0571d0",
+          "spatial_screen:identity": "5e1883c5dfa2c5e36d8937eaa41636f32d2c1f1f6ca200a6b5eed488d6066bbd",
+          "spatial_screen:identity_protocol": "89910e4356d2eb7891e090947eee750694b48247ca5b3df5a8a9863126a105a8",
+          "spatial_screen:grid": "e74c81ac7b198f11def8dd5e83b01ff64f8afa6a44d26152e21a9691bb82598e",
+          "spatial_screen:grid_protocol": "514392d1199992e1dbfdfa8544b7cbce67ef947032abf411d84360af7d31d2c1"
+        },
+        "within_slot_use": {
+          "incumbent_weight": 0.5,
+          "alternative_weight": 0.5,
+          "searched": false
+        }
+      },
+      "fit_and_predict_seconds": 29.813650399970356
+    },
+    "rf_features_0_3": {
+      "path": ".runtime\\fresh-reconstruction-portfolio-competition\\rf-features-0-3.joblib",
+      "sha256": "b96f0f76e6d1a3d1e9feee8cfe3be406323d554576c112c44c20bd6fa768d72b",
+      "metadata": {
+        "cache_version": 1,
+        "candidate": "rf_features_0_3",
+        "recipe": {
+          "spec": {
+            "name": "Random Forest features 0.3 [current one-hot]",
+            "family": "sklearn bagged trees CPU",
+            "variant": "Random Forest features 0.3",
+            "feature_policy": "initial 29-feature policy",
+            "seed": 20260821
+          },
+          "iterations": 500,
+          "resolved_model_parameters": {
+            "kind": "random_forest",
+            "n_estimators": 500,
+            "criterion": "gini",
+            "max_features": 0.3,
+            "min_samples_leaf": 1,
+            "class_weight": null,
+            "n_jobs": 6,
+            "random_state": 20260821,
+            "bootstrap": true
+          },
+          "preprocessor": "model_preprocessing.make_initial_preprocessor",
+          "within_slot_target": "random_forest",
+          "slot_weight": 0.18
+        },
+        "training_rows": 59400,
+        "competition_rows": 14850,
+        "data_sha256": {
+          "TrainingSetValues.csv": "d8ebe40f49fe749a851c8ea28601115cd92442f7b20025fbc33881595ae75f5d",
+          "TrainingSetLabels.csv": "ae9b4f893e8e89df3a2187d38cade75c61dfb1d1e156ecd7615fee14fdbe0a24",
+          "TestSetValues.csv": "a222110d5606910953607efa5112eafb1d6c30a483c4cbcd0b92c8306125c9b5",
+          "SubmissionFormat.csv": "387b15f692da6196b1f2610be1aa327a8cbe8dffa15454b25882f41a4077b9f6"
+        },
+        "source_sha256": {
+          "src/catboost_identity_evaluation.py": "b078bb5132cf994c4078aa50d16108841903a0715cd1061d19a57272432e2e9f",
+          "src/data_partitioning.py": "ccf43b4bca8cd542ec100783f6aa7bbb23dc15946ec29880604bed97d1cd3de3",
+          "src/data_preparation.py": "2aeda2f9229275ddf9bb207422d4ae4aacf3c05c46e16321147d1fa5c6e496f6",
+          "src/deep_archive_confirmation.py": "aa156cd3b69c8be2d86608244355ed6c99b9d1cf4d0819417160a35bbd636b3d",
+          "src/feature_engineering.py": "b900fd38c74ce1dee840428752aa3c342d1eea8a124804d5fd1f001a405b4026",
+          "src/final_model.py": "798e2505706f150d2c9d535e6bdb906732a44c1442ade35356b9a869d52186b8",
+          "src/fresh_deep_archive_reconstruction.py": "9f74a3c71cf6a78785e20631e0603e8ab0f8188cbbbc9cf5e8fc696b4390287b",
+          "src/fresh_rf_family_evaluation.py": "856d6b7fb969b06a2e2c044cd46a0ed6b2da89daae76fff9efe7e8f1368d616b",
+          "src/fresh_submission_portfolio.py": "148e12b2ec78d588d6c9b16faf75f446c810081e90ab2d61074e755ac9d4c1b6",
+          "src/gpu_model_evaluation.py": "e6867cac83f1acd5437a34288748578662cb106d219ac00c3cb2f76c7fd884b5",
+          "src/locked_architecture_candidates.py": "376ce158634709b87a0f787b0526ebbe5f99cdcf3b6a6a4f2d530522c028d291",
+          "src/locked_screen_evidence.py": "50b57a22c9ccf533c4b580fcc01847fe3a750978e530430b0d2d3cd7c9ace55e",
+          "src/model_evaluation.py": "2c8d668654bfb9a6bbe04b17e1fec1f9d9ce16af647d891b7807d96c77988c20",
+          "src/model_preprocessing.py": "8333221a2e9b889db99699707aacf1eab973c2b3e3ed3cea57ab777170af8762",
+          "src/modelling_data.py": "8651ee63c740fedf16ae55a1882eb4dd577fc93388f8452f6c2a3381e689e878",
+          "src/source_data_validation.py": "fdb373a25ff888a98862f3c6bd460b0299bf21e1691b1e7e1f8c5f0f7c2ba3c7",
+          "src/spatial_grid_catboost_evaluation.py": "84b53ac5d3505e4c1d1ca9e4ea2e1ab94321c1c01331ff00c87c153dfb1739c3",
+          "src/target_encoding_features.py": "bce953f40d3dd8093eacb47deef14dc25460428f3d643f98fa92cf07b0f79fd6",
+          "scripts/generate_locked_architecture_submissions.py": "6bc7aa433c03b46fd24c96c45dce75a6575b247ab8d6665cd2c6d9deaa627fa3",
+          "scripts/run_fresh_deep_archive_reconstruction.py": "ffe49d5ea5fccfe84b113c2dd4244e2262c7ab64caf32d5ad431e46dd3652316"
+        },
+        "evidence_sha256": {
+          "fresh_reconstruction_result": "0e76b5b9180ad43d4bd95a75aeb8e87e8051700c7045f72573c2b31bbb086261",
+          "rf_screen:result": "b285394e73c5f31b93d0c1efbe3e592c5a2766030ea23913d54fe99bc77d6e2e",
+          "rf_screen:summary": "5fadda033d53f1e595213bc010e441450d9a18d8e212d92abcb2792e4daef954",
+          "rf_screen:folds": "92ce377f8c22e00046a79e4c141de3238aaf3a8778f269fe91de4f3ce150a796",
+          "rf_screen:provenance": "9a7b45149b958f8a4386f6984b8b13cac96ec7d6fcfe7f10a9ede6906ef275e8",
+          "rf_screen:evaluation:Current Random Forest": "20edfcf44e5bd1bbf6afaf0842aca8ecfe25a9649d0d8ccee27f68202f660993",
+          "rf_screen:evaluation:Extra Trees leaf 2": "ed0c108177b20d8ef43daf248321178d93e36a17c86ad75a3ac0b1a27b949762",
+          "rf_screen:evaluation:Random Forest features 0.3": "b6e3e2bb49954aae29b5a0212cc79093ec4e9c2e7bbc4d5023ce5cfdb78c0d83",
+          "rf_screen:evaluation:Random Forest features 0.3 leaf 2": "d166d3137a7ba31b217964dc0004073bbca75b3b931a96c8a1c27acedd519969",
+          "rf_screen:bare:Current Random Forest": "44b28096d13feebb9dd248872c37adeea462a0574c5bbd6b831478244e7e7465",
+          "rf_screen:bare:Extra Trees leaf 2": "45cec9b024e1d014dcd7ec447027e624b78083e7bd06b895ed1a663ac232da97",
+          "rf_screen:bare:Random Forest features 0.3": "47a1d1affa5475114b3850210a6233b9bf6ec7d4ce61d99ac742ea8f3651cf9c",
+          "rf_screen:bare:Random Forest features 0.3 leaf 2": "45f411d8c3d9b1324f2837ab20d19e402caf8cdd528a23fcd53d4805b9031579"
+        },
+        "within_slot_use": {
+          "incumbent_weight": 0.5,
+          "alternative_weight": 0.5,
+          "searched": false
+        }
+      },
+      "fit_and_predict_seconds": 130.65095300000394
+    }
+  },
+  "hard_label_distinctness": {
+    "disagreements_vs_incumbent": {
+      "fresh_deep_archive_combined_fallback": 68,
+      "catboost_identity_grid_50_50_at_0_20": 57,
+      "rf_current_features_0_3_50_50_at_0_18": 35
+    },
+    "pairwise_disagreements": {
+      "fresh_deep_archive_combined_fallback__vs__catboost_identity_grid_50_50_at_0_20": 37,
+      "fresh_deep_archive_combined_fallback__vs__rf_current_features_0_3_50_50_at_0_18": 49,
+      "catboost_identity_grid_50_50_at_0_20__vs__rf_current_features_0_3_50_50_at_0_18": 62
+    },
+    "redundant_candidates": [],
+    "redundant_pairs": []
+  },
+  "status": "fresh_reconstruction_exploratory_portfolio",
+  "csv_files_written": 3,
+  "candidates": [
+    {
+      "candidate": "fresh_deep_archive_combined_fallback",
+      "evidence_tier": "exploratory",
+      "csv": "01-fresh-catboost-rf-combined-50-50-within-slot-bags.csv",
+      "sha256": "84454200b1f6182ed7b971163edb824207540f72e27782cec7db5c1d6b4dfb1f",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "disagreements_vs_incumbent": 68,
+      "class_shares": {
+        "functional": 0.6073400673400673,
+        "functional needs repair": 0.036632996632996635,
+        "non functional": 0.356026936026936
+      },
+      "post_hoc_rows_changed": 0
+    },
+    {
+      "candidate": "catboost_identity_grid_50_50_at_0_20",
+      "evidence_tier": "exploratory",
+      "csv": "02-fresh-catboost-identity-grid-50-50-within-slot-bag.csv",
+      "sha256": "e492c7ca37ec12750809016a44ecf27fedafacda1eecb3e2db7c8e6368fa446b",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "disagreements_vs_incumbent": 57,
+      "class_shares": {
+        "functional": 0.6076094276094276,
+        "functional needs repair": 0.0362962962962963,
+        "non functional": 0.3560942760942761
+      },
+      "post_hoc_rows_changed": 0
+    },
+    {
+      "candidate": "rf_current_features_0_3_50_50_at_0_18",
+      "evidence_tier": "exploratory",
+      "csv": "03-fresh-rf-current-features-0-3-50-50-within-slot-bag.csv",
+      "sha256": "d04b4b222f45b8e5285daa730ee2974bd8f921cd6afa1dd05d84dd6925c05fb2",
+      "rows": 14850,
+      "unique_ids": 14850,
+      "disagreements_vs_incumbent": 35,
+      "class_shares": {
+        "functional": 0.607003367003367,
+        "functional needs repair": 0.03643097643097643,
+        "non functional": 0.3565656565656566
+      },
+      "post_hoc_rows_changed": 0
+    }
+  ]
+}

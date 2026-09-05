@@ -33,7 +33,7 @@ keep appending columns; add detailed information to the compact panels below.
 
 The page loads headline values from `../project-status.json` through GitHub
 Pages or the local server. The dashboard uses matching HTML values if the
-status request fails. The current snapshot is dated 23 August 2026:
+status request fails. The current snapshot is dated 5 September 2026:
 
 | Metric | Current value |
 | --- | ---: |
@@ -41,18 +41,20 @@ status request fails. The current snapshot is dated 23 August 2026:
 | Features fully examined | 36 / 36 (physical hierarchy screens retained granular features) |
 | Locally evaluated models | 21 |
 | Candidate methods trained | 11, plus ten ensemble workflows |
-| DrivenData submissions | 15 |
-| Best leaderboard score | 0.8298 |
+| DrivenData submissions | 21 |
+| Best leaderboard score | 0.8304 |
 | Achieved provisional target | ~~0.8225~~ |
 | Stretch target score | 0.8260 |
 | Chart ceiling | 0.8500 |
 | Daily submissions used | 3 / 3 UTC |
 
-The model search is complete. The final submission replaced only the deep
-XGBoost seed in the already-fixed six-component archive recipe. Seed 20260824
-reached 81.8981% on development, 81.3973% on the used local test and 0.8298 on
-the public leaderboard. It was observed at rank 2, 0.0001 behind the displayed
-leader. The process remains iterative, so this leaderboard result does not
+The model search is complete. Fresh all-label reconstruction admitted a fixed
+three-entry exploratory slate before competition predictions were made. The
+combined CatBoost/Random-Forest bag, CatBoost identity/spatial-grid within-slot
+bag and Random-Forest current/features-0.3 within-slot bag scored `0.8302`,
+`0.8304` and `0.8303` respectively when submitted unchanged on 5 September.
+The CatBoost bag is submission `321154` and was observed at public rank **#1**.
+None passed the formal promotion gate, so these leaderboard results do not
 replace the retained local model-selection evidence:
 
 - **Step 3, explore the data (4 / 4):** the maintained overall findings report,
@@ -75,14 +77,15 @@ replace the retained local model-selection evidence:
 - **Step 8, select and train candidates (3 / 3):** eleven classifier families
   and ten bounded, calibrated or bagged ensemble workflows have reproducible
   fold-safe evaluations; the ANN family has seven fixed configurations.
-- **Step 9, evaluate and interpret (3 / 3):** the seed-20260824 deep archive
-  reaches 81.8981% on the frozen development folds and 81.3973% on the used
-  local test. Its small seed advantage was reported with paired uncertainty.
-- **Step 10, deploy and iterate (3 / 3):** the exact 14,850-row seed-20260824
-  artefact scored `0.8298`, exceeded the `0.8260` target and was observed at
-  rank 2 on 23 August 2026.
+- **Step 9, evaluate and interpret (3 / 3):** the historical seed-20260824 deep
+  archive retains 81.8981% on the frozen development folds and 81.3973% on the
+  used local test. Fresh all-label OOF evidence admitted the two conservative
+  within-slot bags and their fixed combination only as exploratory candidates.
+- **Step 10, deploy and iterate (3 / 3):** the three exact 14,850-row slate
+  artefacts scored `0.8302`, `0.8304` and `0.8303`. Submission `321154` set the
+  `0.8304` project best and was observed at rank #1 on 5 September 2026.
 
-Fifteen submissions have been made across five UTC dates:
+Twenty-one submissions have been made across seven UTC dates:
 
 | Submission | Date | DrivenData score |
 | --- | --- | ---: |
@@ -101,13 +104,21 @@ Fifteen submissions have been made across five UTC dates:
 | Complete-identity vote | 23 August | 0.8259 |
 | Archive synthesis | 23 August | 0.8288 |
 | Deep archive synthesis, seed 20260824 | 23 August | **0.8298** |
+| Targeted repair-rule union | 4 September | 0.8296 |
+| Archive gate plus strict repair core | 4 September | 0.8293 |
+| Final repair candidate | 4 September | 0.8294 |
+| Combined CatBoost/Random-Forest within-slot bags | 5 September | 0.8302 |
+| CatBoost identity/spatial-grid within-slot bag (`321154`) | 5 September | **0.8304** |
+| Random-Forest current/features-0.3 within-slot bag | 5 September | 0.8303 |
 
 The 0.5461 all-`functional` result remains the simple public leaderboard floor;
 the frozen development folds produce a separate 0.5431 local majority
-reference. The seed-20260824 deep archive now leads the project at `0.8298`,
-0.0010 above the archive synthesis and 0.0052 above the earlier source-plus-
-class leader. The displayed competition leader scored `0.8299` when the
-project result was observed.
+reference. The CatBoost identity/spatial-grid within-slot bag now leads the
+project at `0.8304`, 0.0006 above the historical seed-20260824 deep archive,
+0.0016 above the archive synthesis and 0.0058 above the earlier source-plus-
+class leader. It was observed at public rank #1 on 5 September. The existing
+rank-2 PNG remains an explicitly historical 23 August milestone and does not
+depict this result.
 
 Formal comparison now covers eleven single-model families. Random Forest remains
 the strongest family from the earlier broad comparison at 80.59%; the new
@@ -133,13 +144,13 @@ not been fetched or independently verified by the dashboard:
 | Achieved by approximately 2,500 teams | approximately 82.20% |
 | Achieved provisional target | ~~82.25%~~ |
 | Stretch target | **82.60%** |
-| Reported world record | 82.99% |
+| 14 August reported leader reference | 82.99% |
 
 The compact daily-best chart records 54.61% on 14 August, 81.70% on 15 August,
-82.41% on 21 August, 82.46% on 22 August and 82.98% on 23 August. Its scale
-runs from 50% to 85%, with the 82.60% stretch target drawn inside that range.
-The achieved 82.25% provisional target remains visible as a struck-through
-benchmark row.
+82.41% on 21 August, 82.46% on 22 August, 82.98% on 23 August and 83.04% on
+5 September. Its scale runs from 50% to 85%, with the 82.60% stretch target
+drawn inside that range. The achieved 82.25% provisional target remains visible
+as a struck-through benchmark row.
 
 ## Metric definitions
 
@@ -216,10 +227,11 @@ Calculate the CSS height as:
 ```
 
 For example, 54.61% becomes `13.17%`, 81.70% becomes `90.57%`, 82.41%
-becomes `92.60%`, 82.46% becomes `92.74%` and 82.98% becomes `94.23%`. If
-results reach or exceed 85%, change the axis and document the new scale rather
-than allowing bars to overflow. Keep the full 82.60% stretch target in the
-summary and benchmark panel regardless of the chart's temporary scale.
+becomes `92.60%`, 82.46% becomes `92.74%`, 82.98% becomes `94.23%` and 83.04%
+becomes `94.40%`. If results reach or exceed 85%, change the axis and document
+the new scale rather than allowing bars to overflow. Keep the full 82.60%
+stretch target in the summary and benchmark panel regardless of the chart's
+temporary scale.
 
 ## Real risks and controls
 
@@ -260,7 +272,8 @@ or notebook output directly.
 
 - Keep the rank explicitly labelled as an observation, because the live
   leaderboard can move while the score remains durable evidence.
-- Preserve the exact seed-20260824 artefact, manifest, component recipe and
-  SHA-256 alongside the screenshot.
+- Preserve the fixed 5 September portfolio artefacts, manifest, component
+  recipes, submission IDs, scores and SHA-256 values. Retain the seed-20260824
+  artefact and rank-2 screenshot as historical 23 August evidence.
 - Record the private-leaderboard result when it becomes available; do not
   reopen adaptive public-leaderboard tuning.
