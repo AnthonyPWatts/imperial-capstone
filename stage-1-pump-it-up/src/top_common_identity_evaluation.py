@@ -31,6 +31,7 @@ from model_evaluation import CandidateEvaluation
 from model_evaluation import build_candidate_evaluation
 from model_preprocessing import make_initial_preprocessor
 from spatial_density_features import SpatialDensityTransformer
+from target_encoding_features import normalise_identity as _normalise_identity
 
 
 TOP_COMMON_VALUES = 50
@@ -51,8 +52,14 @@ class TopCommonIdentityTrial:
 class TopCommonIdentityEncoder(_BaseEstimator, _TransformerMixin):
     """Learn fixed-width indicators for each field's most common values."""
 
-    def __init__(self, *, top_k: int = TOP_COMMON_VALUES):
+    def __init__(
+        self,
+        *,
+        top_k: int = TOP_COMMON_VALUES,
+        normalise: bool = False,
+    ):
         self.top_k = top_k
+        self.normalise = normalise
 
     def fit(
         self,
@@ -62,10 +69,12 @@ class TopCommonIdentityEncoder(_BaseEstimator, _TransformerMixin):
         _validate_source_frame(X)
         if not isinstance(self.top_k, int) or self.top_k <= 0:
             raise ValueError("top_k must be a positive integer.")
+        if not isinstance(self.normalise, bool):
+            raise TypeError("normalise must be Boolean.")
         selected_values: dict[str, tuple[str, ...]] = {}
         feature_names = []
         for feature in DEFERRED_HIGH_CARDINALITY_FEATURES:
-            values = _identity_values(X[feature])
+            values = _identity_values(X[feature], normalise=self.normalise)
             counts = (
                 values.value_counts(dropna=False)
                 .rename_axis("value")
@@ -111,7 +120,10 @@ class TopCommonIdentityEncoder(_BaseEstimator, _TransformerMixin):
         row_positions: list[int] = []
         column_positions: list[int] = []
         for feature in DEFERRED_HIGH_CARDINALITY_FEATURES:
-            mapped = _identity_values(X[feature]).map(self.value_positions_[feature])
+            mapped = _identity_values(
+                X[feature],
+                normalise=self.normalise,
+            ).map(self.value_positions_[feature])
             present = mapped.notna().to_numpy()
             rows = _np.flatnonzero(present)
             columns = mapped.iloc[rows].to_numpy(dtype="int64")
@@ -138,6 +150,20 @@ def make_top_common_identity_preprocessor() -> _FeatureUnion:
         transformer_list=[
             ("accepted", make_initial_preprocessor()),
             ("top_common_identity", TopCommonIdentityEncoder()),
+        ]
+    )
+
+
+def make_normalised_top_common_identity_preprocessor() -> _FeatureUnion:
+    """Combine accepted preprocessing with normalised top-50 identities."""
+
+    return _FeatureUnion(
+        transformer_list=[
+            ("accepted", make_initial_preprocessor()),
+            (
+                "top_common_identity",
+                TopCommonIdentityEncoder(normalise=True),
+            ),
         ]
     )
 
@@ -281,7 +307,13 @@ def evaluate_archived_deep_xgboost(
     )
 
 
-def _identity_values(values: _pd.Series) -> _pd.Series:
+def _identity_values(
+    values: _pd.Series,
+    *,
+    normalise: bool,
+) -> _pd.Series:
+    if normalise:
+        return _normalise_identity(values)
     return values.astype("string").fillna(MISSING_IDENTITY)
 
 

@@ -87,13 +87,8 @@ def evaluate_complete_identity_catboost(
 ) -> CatBoostIdentityTrial:
     """Evaluate one depth-8 CatBoost with native deferred identities."""
 
-    spec = _replace(
-        make_catboost_spec(variant="d8"),
-        name="CatBoost d8 [complete deferred identities]",
-        feature_policy="accepted plus six deferred identities",
-    )
     evaluation = evaluate_gpu_candidate(
-        spec,
+        make_complete_identity_catboost_spec(),
         partitioned_data,
         cross_validation,
         catboost_feature_engineer=(
@@ -108,6 +103,16 @@ def evaluate_complete_identity_catboost(
         evaluation=evaluation,
         engineered_features=engineered.shape[1],
         categorical_features=len(categorical),
+    )
+
+
+def make_complete_identity_catboost_spec():
+    """Return the unchanged depth-8 complete-identity specification."""
+
+    return _replace(
+        make_catboost_spec(variant="d8"),
+        name="CatBoost d8 [complete deferred identities]",
+        feature_policy="accepted plus six deferred identities",
     )
 
 

@@ -72,6 +72,41 @@ class TopCommonIdentityEvaluationTests(unittest.TestCase):
 
         self.assertEqual(encoder.selected_values_["funder"], ("a", "m"))
 
+    def test_default_encoder_preserves_raw_case_and_whitespace(self) -> None:
+        training = _source_frame(4)
+        training.loc[:, "funder"] = ["Acme", " acme ", "ACME", "Acme"]
+
+        encoder = TopCommonIdentityEncoder(top_k=3).fit(training)
+
+        self.assertEqual(
+            encoder.selected_values_["funder"],
+            ("Acme", " acme ", "ACME"),
+        )
+
+    def test_normalised_encoder_collapses_case_and_whitespace_with_sentinels(self) -> None:
+        training = _source_frame(6)
+        prediction = _source_frame(3)
+        training.loc[:, "funder"] = [
+            "  Acme  Water ",
+            "ACME\tWATER",
+            "acme water",
+            "   ",
+            None,
+            "Other",
+        ]
+        prediction.loc[:, "funder"] = [" AcMe   Water ", "", None]
+
+        encoder = TopCommonIdentityEncoder(top_k=4, normalise=True).fit(training)
+        encoded = encoder.transform(prediction).toarray()
+        offset = encoder.feature_offsets_["funder"]
+        selected = encoder.selected_values_["funder"]
+
+        self.assertEqual(selected[0], "acme water")
+        self.assertIn("__blank__", selected)
+        self.assertIn("__missing__", selected)
+        for row, value in enumerate(("acme water", "__blank__", "__missing__")):
+            self.assertEqual(encoded[row, offset + selected.index(value)], 1.0)
+
     def test_combined_occurrence_preprocessor_is_finite(self) -> None:
         training = _source_frame(60)
 

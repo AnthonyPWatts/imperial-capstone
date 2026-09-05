@@ -23,6 +23,9 @@ from data_partitioning import CROSS_VALIDATION_FOLDS, PartitionedData
 from feature_engineering import CATEGORICAL_FEATURES
 from feature_engineering import engineer_initial_features
 from model_evaluation import CandidateEvaluation
+from model_evaluation import RANDOM_FOREST_ESTIMATORS
+from model_evaluation import RANDOM_FOREST_MAX_FEATURES
+from model_evaluation import RANDOM_FOREST_MIN_SAMPLES_LEAF
 from model_evaluation import build_candidate_evaluation
 from model_preprocessing import make_initial_preprocessor
 
@@ -278,6 +281,12 @@ LIGHTGBM_VARIANTS: dict[str, dict[str, int | float]] = {
 }
 
 SKLEARN_TREE_VARIANTS: dict[str, dict[str, int | float | str]] = {
+    "Current Random Forest": {
+        "kind": "random_forest",
+        "n_estimators": RANDOM_FOREST_ESTIMATORS,
+        "max_features": RANDOM_FOREST_MAX_FEATURES,
+        "min_samples_leaf": RANDOM_FOREST_MIN_SAMPLES_LEAF,
+    },
     "Extra Trees leaf 1": {
         "kind": "extra_trees",
         "n_estimators": 500,
@@ -816,21 +825,43 @@ def _make_sklearn_tree_model(
     *,
     iterations: int,
 ) -> _ExtraTreesClassifier | _RandomForestClassifier:
+    resolved = resolve_sklearn_tree_parameters(spec, iterations=iterations)
+    kind = resolved.pop("kind")
+    if kind == "extra_trees":
+        return _ExtraTreesClassifier(**resolved)
+    if kind == "random_forest":
+        return _RandomForestClassifier(**resolved)
+    raise ValueError(f"Unknown sklearn tree kind: {kind!r}.")
+
+
+def resolve_sklearn_tree_parameters(
+    spec: GpuCandidateSpec,
+    *,
+    iterations: int | None = None,
+) -> dict[str, int | float | str | bool | None]:
+    """Return the complete estimator contract for a sklearn-tree spec."""
+
+    if spec.family != SKLEARN_TREE_FAMILY:
+        raise ValueError("Only sklearn bagged-tree specs can be resolved here.")
     parameters = SKLEARN_TREE_VARIANTS[spec.variant]
-    common = {
-        "n_estimators": iterations,
+    resolved_iterations = (
+        int(parameters["n_estimators"])
+        if iterations is None
+        else int(iterations)
+    )
+    if resolved_iterations <= 0:
+        raise ValueError("A sklearn tree model requires at least one estimator.")
+    return {
+        "kind": parameters["kind"],
+        "n_estimators": resolved_iterations,
         "criterion": "gini",
         "max_features": parameters["max_features"],
         "min_samples_leaf": parameters["min_samples_leaf"],
         "class_weight": None,
         "n_jobs": 6,
         "random_state": spec.seed,
+        "bootstrap": parameters["kind"] == "random_forest",
     }
-    if parameters["kind"] == "extra_trees":
-        return _ExtraTreesClassifier(bootstrap=False, **common)
-    if parameters["kind"] == "random_forest":
-        return _RandomForestClassifier(bootstrap=True, **common)
-    raise ValueError(f"Unknown sklearn tree kind: {parameters['kind']!r}.")
 
 
 def _encode_target(target: _pd.Series) -> _np.ndarray:
