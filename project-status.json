@@ -1,18 +1,18 @@
 {
   "snapshot": {
-    "date": "2026-09-05",
-    "label": "5 September 2026"
+    "date": "2026-09-06",
+    "label": "6 September 2026"
   },
   "overall": {
     "completed": 68,
     "total": 68,
-    "current": "Fresh CatBoost identity/spatial-grid bag scored 0.8304 publicly and reached observed rank 1"
+    "current": "Native-category follow-up retained the 0.8304 incumbent; no new candidate passed both fixed validation guards"
   },
   "stage1": {
     "state": "Model search complete",
     "title": "Pump It Up",
     "summary": "Build a leakage-safe multiclass model for Tanzanian waterpoint condition.",
-    "nextCheckpoint": "Preserve the locked result; require genuinely fresh evidence before any further model search.",
+    "nextCheckpoint": "Preserve the incumbent; native-category LightGBM needs stronger partition-stability evidence before submission.",
     "startedDate": "2026-07-29",
     "startedLabel": "29 July 2026"
   },
@@ -37,12 +37,12 @@
   },
   "submissions": {
     "total": 21,
-    "usedToday": 3,
+    "usedToday": 0,
     "dailyLimit": 3,
     "bestScore": 0.8304,
     "bestLabel": "Fresh CatBoost identity/spatial-grid within-slot bag",
     "observedPublicRank": 1,
-    "rankObservedDate": "2026-09-05",
+    "rankObservedDate": "2026-09-06",
     "latestDate": "2026-09-05",
     "latestSubmissionLabel": "Fresh Random Forest max-features 0.3 within-slot bag",
     "latestSubmissionSha256": "d04b4b222f45b8e5285daa730ee2974bd8f921cd6afa1dd05d84dd6925c05fb2"

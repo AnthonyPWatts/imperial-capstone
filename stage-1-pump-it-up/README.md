@@ -55,6 +55,13 @@ the formal promotion gate. See the
 [fresh reconstruction report](reports/fresh-ensemble-reconstruction-and-submission-slate.md)
 and [submission log](submissions/README.md).
 
+The 6 September follow-up tested deeper spatial-grid CatBoost and native-
+category LightGBM. CatBoost failed the first screen. The fixed 10% LightGBM
+blend gained 10 rows on that screen and 41 on a newly fitted second partition,
+but its worst confirmation fold lost 18 rows and exceeded the predeclared
+stability limit. No new submission was made; all three daily slots remain
+unused. See the [native-category follow-up](reports/native-category-followup.md).
+
 At the earlier 23 August checkpoint, the deliberately held third daily slot was
 reopened for the depth-17 top-50 identity XGBoost. A bounded follow-up retained
 the same 600 trees and six component weights but changed the primary model to
