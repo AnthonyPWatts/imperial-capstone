@@ -5,12 +5,12 @@ Certificate in Machine Learning and Artificial Intelligence.
 
 ## Project status
 
-Status snapshot: **5 September 2026**.
+Stage 1 result snapshot: **5 September 2026**. Stage 2 resource intake: **24 September 2026**.
 
 | Stage | Project | Status | Headline |
 | --- | --- | --- | --- |
 | 1 | [Pump It Up](stage-1-pump-it-up/) | Model search complete | Fresh CatBoost identity/spatial-grid bag scored **`0.8304`** publicly and was observed at leaderboard position **1** |
-| 2 | [Black-box optimisation](stage-2-bbo/) | Scaffolded | Awaiting the Module 12 observations and dates |
+| 2 | [Black-box optimisation](stage-2-bbo/) | Initial data ready | Module 12 observations verified; 13 weekly query rounds confirmed |
 
 The leaderboard position is a time-specific observation and may change as
 other competitors submit.
@@ -124,7 +124,8 @@ working narrative and links to notebooks, source code and generated evidence.
 Stage 2 is scaffolded for the assessed task of maximising eight unknown
 functions from sequential observations. Its workspace records the intended
 Gaussian-process workflow, data constraints, proposed points and returned
-values. Work will begin when the Module 12 files and dates are available.
+values. The Module 12 observations are now available locally and verified;
+the first modelling and query-selection round is the next step.
 
 See the [Stage 2 README](stage-2-bbo/README.md) for the planned approach and
 repository structure.

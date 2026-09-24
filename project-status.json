@@ -17,11 +17,11 @@
     "startedLabel": "29 July 2026"
   },
   "stage2": {
-    "state": "Scaffolded",
+    "state": "Initial data ready",
     "title": "Black-box optimisation",
     "summary": "Keep the assessed eight-function investigation reproducible as observations are released.",
-    "availability": "Awaiting Module 12 files",
-    "dates": "Not recorded"
+    "availability": "Module 12 files collected and verified on 24 September 2026",
+    "dates": "13 rounds, Modules 12–24; first Canvas reflection due 1 October 2026 at 17:29 BST"
   },
   "features": {
     "examined": 36,

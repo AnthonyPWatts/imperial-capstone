@@ -7,6 +7,17 @@ dimensions. Each course round adds a portal observation to the local dataset.
 Browse the [Stage 2 workspace](https://anthonypwatts.github.io/imperial-capstone/stage-2-bbo/)
 or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
 
+## Module 12 intake
+
+The initial data were collected and verified on **24 September 2026**: 16 NumPy
+arrays containing 175 observations across all eight functions. The original ZIP
+and extracted arrays are available under `data/` and remain Git-ignored.
+
+The course allows **one evaluated query per function per week**, over 13 rounds
+in Modules 12–24. Pending inputs can be revised before the week ends or processing
+occurs. See the [Module 12 intake notes](docs/module-12-intake.md) for sources,
+deadlines, verified data shapes and the first reflection requirements.
+
 ## Intended approach
 
 1. Load and validate the supplied NumPy arrays for all eight functions.
