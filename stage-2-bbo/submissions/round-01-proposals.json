@@ -1,0 +1,946 @@
+{
+  "generated_utc": "2026-09-27T15:02:43.707753+00:00",
+  "round": 1,
+  "status": "proposals_only_no_portal_submissions",
+  "base_commit": "3b8c61aee66d7505f8db7a90262833e96d7d4432",
+  "source_state": "Working-tree source hashes verified against executed report manifests.",
+  "report_provenance": {
+    "function-1-initial-analysis": {
+      "version": 1,
+      "function": 1,
+      "suffix": "initial-analysis",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/01-data-validation-and-exploration.ipynb": "c02f3b7e727cb97fa61bbf5c1788954b6f50998e69b5b69282c00f2e79564bf1",
+        "stage-2-bbo/data/initial_data/function_1/initial_inputs.npy": "ad0017b5583aababb3d3573bc9139f013fc328aa70eba5748f54ef4f1505ad0a",
+        "stage-2-bbo/data/initial_data/function_1/initial_outputs.npy": "8335e4febb64aec5e7b62a7761c0e610e5f4611551a393d225b03feec84e37db"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "f6569f2c544f6c168e71a65f05cd2b9489a9270d18c7f7faa0ca8284d10201e9",
+        "analysis.ipynb": "d59906a2163ed73413de688c0da6eee3ae3a327270f393dcba6c5a8b9e00806a"
+      }
+    },
+    "function-1-risk": {
+      "version": 1,
+      "function": 1,
+      "suffix": "risk",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/02-function-1-decision-risk.ipynb": "afbe8352b5a74f24e70492930133e7258aa316f239ca61d4fab105304d89dc47",
+        "stage-2-bbo/data/initial_data/function_1/initial_inputs.npy": "ad0017b5583aababb3d3573bc9139f013fc328aa70eba5748f54ef4f1505ad0a",
+        "stage-2-bbo/data/initial_data/function_1/initial_outputs.npy": "8335e4febb64aec5e7b62a7761c0e610e5f4611551a393d225b03feec84e37db"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "aab7f79802e1f653a2aab6089fd12879e293e3caa63d0b870022de5b750224b6",
+        "analysis.ipynb": "69b33f493810db7ab5deffae52d7d58c1f24c7711162bdbe51c20413b6f6c8ee",
+        "risk-study.json": "49f730372d1f9663a9373547c69a6ea9f9851e2ad0e3c07285587e78c267f35a"
+      }
+    },
+    "function-2-initial-analysis": {
+      "version": 1,
+      "function": 2,
+      "suffix": "initial-analysis",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/01c-function-2-initial-exploration.ipynb": "603960f3e8fa172dd36d84ecbc25e3ed212756eb89101278bdbd9d2cf46b6226",
+        "stage-2-bbo/data/initial_data/function_2/initial_inputs.npy": "9824ca17efa0fcc70e58040b3e6d6cea7c2d4b8be76023e4df0dfb1788667505",
+        "stage-2-bbo/data/initial_data/function_2/initial_outputs.npy": "b4f71bdfd3a50452a2864cffc00b4548ea5d1fb746982ab79b439cee84568a2d"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "a5315840d065163591ac0b3ad323e25c147505116354fad2d386b172af553f62",
+        "analysis.ipynb": "ac9b17dfea608dd0aae6ca41e5c1d5106a60b29f08a84095b99c5bd0092e0e16",
+        "selection-study.json": "b604b3b379b0a39bb2785c186c7e559ca87fd2b009a96eec24d2f1c99d6a3a90"
+      }
+    },
+    "function-2-risk": {
+      "version": 1,
+      "function": 2,
+      "suffix": "risk",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/01d-function-2-decision-risk.ipynb": "b3fb463a9028dbb9014190fc809dadcf4f4f3e5428fdf1eedfd44390f0e285fe",
+        "stage-2-bbo/data/initial_data/function_2/initial_inputs.npy": "9824ca17efa0fcc70e58040b3e6d6cea7c2d4b8be76023e4df0dfb1788667505",
+        "stage-2-bbo/data/initial_data/function_2/initial_outputs.npy": "b4f71bdfd3a50452a2864cffc00b4548ea5d1fb746982ab79b439cee84568a2d"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "6197b7b38cb05e19e028822cbe46c60a8753ee60134ecf9e4e73b0e047256ac4",
+        "analysis.ipynb": "d08eb0001e5ec4cd98ae28e551778ab66ab448ae0e6568bc0d2ed397c1adf413",
+        "risk-study.json": "650c2df3fdc8600d1585260fcc3bd3280b14aaa52d9e576a6b1f5e3a60e0bb5f"
+      }
+    },
+    "function-3-initial-analysis": {
+      "version": 1,
+      "function": 3,
+      "suffix": "initial-analysis",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/01e-function-3-initial-exploration.ipynb": "b1cf5870a23418b994ea7d991c85a23372713a91a32e4099426f1df6350a8cd6",
+        "stage-2-bbo/data/initial_data/function_3/initial_inputs.npy": "e54dc0e1bd94e301d0756faaf94bff74f60497f67d7fbdf7eb167fa10fe0ed71",
+        "stage-2-bbo/data/initial_data/function_3/initial_outputs.npy": "f7daf48bc753f8314f09c9a2abfad391382010ab789ca8145bc3e028871dc013"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "10cda1951e08f325b306516ffd20819895de86f9b9d1c98d23d82ebed5aa7c95",
+        "analysis.ipynb": "8419bf72e7e4c4e238502ad404df85f9e8770df1cb556817074a3d5bec0e8838"
+      }
+    },
+    "function-3-risk": {
+      "version": 1,
+      "function": 3,
+      "suffix": "risk",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/02-function-3-decision-risk.ipynb": "92b3bacef19542f1c86f6cf59c281fcb4abe646fae346e082ff87d05487e9433",
+        "stage-2-bbo/data/initial_data/function_3/initial_inputs.npy": "e54dc0e1bd94e301d0756faaf94bff74f60497f67d7fbdf7eb167fa10fe0ed71",
+        "stage-2-bbo/data/initial_data/function_3/initial_outputs.npy": "f7daf48bc753f8314f09c9a2abfad391382010ab789ca8145bc3e028871dc013"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "89fa1ebd619c6a64463e507b2742feac1c45967da9da69391ca5e8c39c72d2de",
+        "analysis.ipynb": "08456b8d99439bf396158d00784191a0ecf90a8488d307f142fd40f8e7a1587c",
+        "risk-study.json": "feea19fa9e264f22dba71b05f04b3edb50c12aa04618da33e8cf8cb40d75def7"
+      }
+    },
+    "function-4-initial-analysis": {
+      "version": 1,
+      "function": 4,
+      "suffix": "initial-analysis",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/01-function-4-initial-exploration.ipynb": "4e7625923d9d28555aec9b308de036317f31d818b54d1042d6bb65c799b3419c",
+        "stage-2-bbo/data/initial_data/function_4/initial_inputs.npy": "e431a04b3c4678191bf38f398cd79fdc826aea47a3e7c6b6d72e234ec79339e0",
+        "stage-2-bbo/data/initial_data/function_4/initial_outputs.npy": "dd594bb7929e5a57d852cbdaf7eb0bb184a3dced78b73c7c03f40ccf9046ec3f"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "7bcf125319f133a95173c9b8e71432277b71699d8045a0cff2eee4ee9605895d",
+        "analysis.ipynb": "fbd0b94c2685ab9c4dd5aa53d7924120bcdeca2ffbafbaa023e9c88604e3b57e"
+      }
+    },
+    "function-4-risk": {
+      "version": 1,
+      "function": 4,
+      "suffix": "risk",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/02-function-4-decision-risk.ipynb": "824d19d2bc660dbedf7883016ea2bb0c94d689a0ec2f8e12f57d2c43fbcf15d2",
+        "stage-2-bbo/data/initial_data/function_4/initial_inputs.npy": "e431a04b3c4678191bf38f398cd79fdc826aea47a3e7c6b6d72e234ec79339e0",
+        "stage-2-bbo/data/initial_data/function_4/initial_outputs.npy": "dd594bb7929e5a57d852cbdaf7eb0bb184a3dced78b73c7c03f40ccf9046ec3f"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "3e094176e4d79370f262b1a943b87bbc39e768a8a8599bceb656137fdb694546",
+        "analysis.ipynb": "0f6403b189ef79d50183c6643839c3ac810123b86f36e1ff91ca3244bb26014f",
+        "risk-study.json": "04d3e666fd957476022cdafd896d2b50e0df2e4b72d63dfbefcb73bb6f6d9a7f"
+      }
+    },
+    "function-5-initial-analysis": {
+      "version": 1,
+      "function": 5,
+      "suffix": "initial-analysis",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/01-function-5-initial-exploration.ipynb": "5e7ae5655192fa80b7bc52a2392008f4581985862ea16baa546ee0133b534ad9",
+        "stage-2-bbo/data/initial_data/function_5/initial_inputs.npy": "01b8b441980fdfc28af5d2090a478eebf1081ba11da3364d94473ad90f4431aa",
+        "stage-2-bbo/data/initial_data/function_5/initial_outputs.npy": "00d0346f34dd8388feee4a2b603efa29d1c9b99db6ca59225427cb838923b788"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "61ca48257fa225f016d39c145d1eec01a27485f53d9f3e415f8dc57924bb3756",
+        "analysis.ipynb": "261b7fc28117fe6ffe26bf454270510abc9ceb7d9373622edaefcfbc90b08639"
+      }
+    },
+    "function-5-risk": {
+      "version": 1,
+      "function": 5,
+      "suffix": "risk",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/02-function-5-decision-risk.ipynb": "443822676639301ad44984c438dd022f9827aeb77b04effaca9e29daace8fde3",
+        "stage-2-bbo/data/initial_data/function_5/initial_inputs.npy": "01b8b441980fdfc28af5d2090a478eebf1081ba11da3364d94473ad90f4431aa",
+        "stage-2-bbo/data/initial_data/function_5/initial_outputs.npy": "00d0346f34dd8388feee4a2b603efa29d1c9b99db6ca59225427cb838923b788"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "eab8976acd9f906f492e2025aaffec65e623fa0f42f544aa268e06045a907192",
+        "analysis.ipynb": "38e7235b53d570611e4affbbee0543cbc49bb5f20a0d0ea5c80f9d4f450209f7",
+        "risk-study.json": "2800cfebd06575c78f725b7c0c81c27b6c495a7391b75794f5701a9669fab03e"
+      }
+    },
+    "function-6-initial-analysis": {
+      "version": 1,
+      "function": 6,
+      "suffix": "initial-analysis",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/01-function-6-initial-exploration.ipynb": "94ad18fd982a6a2923099b503316f31ed13a931ca22c921785704d7fd073e9a9",
+        "stage-2-bbo/data/initial_data/function_6/initial_inputs.npy": "3a60333cd371f97a3f4c682d66bf017711ed4229f5f3c477bb5a949793c1a2d4",
+        "stage-2-bbo/data/initial_data/function_6/initial_outputs.npy": "5819356de777531e31ffa250fff14123bd378421476b068a4ac931cf73a35a82"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "f5f7c4eb724947537836d48d9ca7648cc45ced14a77421811abf7b4a969a7526",
+        "analysis.ipynb": "85d66f2e60c97b37edc6c7d12f14a7e08b13ee97ac3934976fc0d67977ba1aff"
+      }
+    },
+    "function-6-risk": {
+      "version": 1,
+      "function": 6,
+      "suffix": "risk",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/02-function-6-decision-risk.ipynb": "633425a252a244373490fe901cda1712972c52f1ba2b28e98abb7006ccc507b5",
+        "stage-2-bbo/data/initial_data/function_6/initial_inputs.npy": "3a60333cd371f97a3f4c682d66bf017711ed4229f5f3c477bb5a949793c1a2d4",
+        "stage-2-bbo/data/initial_data/function_6/initial_outputs.npy": "5819356de777531e31ffa250fff14123bd378421476b068a4ac931cf73a35a82"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "9a803ce588b34eab97fe98eacd277e2d8ece654ac8d3e422d3da7afc2afd3397",
+        "analysis.ipynb": "c31311fd20f9c326cd4e9cae0e816a8bfc9205fe0974aa2b3af9db644325a3a7",
+        "risk-study.json": "d19d60be854fe0fa9737f87650d1f92458bf21191fc2a2c47abce40d5853d1dd"
+      }
+    },
+    "function-7-initial-analysis": {
+      "version": 1,
+      "function": 7,
+      "suffix": "initial-analysis",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/01-function-7-initial-exploration.ipynb": "52caa40c37aea27f3327e8ce24b6e8d623d0e5d55218cabf29035920be9cb378",
+        "stage-2-bbo/data/initial_data/function_7/initial_inputs.npy": "f45f2203870f77a1e026ceab770305a240d9fdaa5c65db989bd0957450ed9353",
+        "stage-2-bbo/data/initial_data/function_7/initial_outputs.npy": "9dcac9c3aaee049db5de1efde196643bfda55c29079da7658d02c351d10abd95"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "0ee4b0389947afa81225b044fa2fe33fd5c840c6af206651633973990b8f6280",
+        "analysis.ipynb": "b7d7b5dc192e87ba48faf0a12556201cebe953f65b823407f2f15cbafd739d28"
+      }
+    },
+    "function-7-risk": {
+      "version": 1,
+      "function": 7,
+      "suffix": "risk",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/02-function-7-decision-risk.ipynb": "a26b89f4ca1c777c17fb9a1546509066f24e6fe491c2b74b496b31c93619c631",
+        "stage-2-bbo/data/initial_data/function_7/initial_inputs.npy": "f45f2203870f77a1e026ceab770305a240d9fdaa5c65db989bd0957450ed9353",
+        "stage-2-bbo/data/initial_data/function_7/initial_outputs.npy": "9dcac9c3aaee049db5de1efde196643bfda55c29079da7658d02c351d10abd95"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "073ca1b614bc97e9363bbbf2d00c825dc0ff3e5ad5722f4d325a2d184117bb14",
+        "analysis.ipynb": "680729e641edbb71a3caa84cce8ae8450b9666baf2ed5e4101c724b42500895d",
+        "risk-study.json": "7d0b409eb8d6be2544adaf10176afa4170fd96cbe75cef9e34c27bc56e5d232e"
+      }
+    },
+    "function-8-initial-analysis": {
+      "version": 1,
+      "function": 8,
+      "suffix": "initial-analysis",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/01-function-8-initial-exploration.ipynb": "56973d5845076b2b14e9ddc3c9e3859eeb29dc0fb23a74a2c7fb51b7806964d4",
+        "stage-2-bbo/data/initial_data/function_8/initial_inputs.npy": "fb5ebbb93c990cbdecc44d648362502233b4b5daec335319aca300f9e9b69206",
+        "stage-2-bbo/data/initial_data/function_8/initial_outputs.npy": "693ebca2bb2b738162f701f2587bad0d3f2ac1b96d47d32fa6357f2b8e257798"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "f7f3af681086723a9867a236020e8b9534cce2a6f9c40a88f9333a8b5ccab4cb",
+        "analysis.ipynb": "afe0462b9f841b9d85bdf6f46c1ea16b7df68916f224d4b59354f4b906e6a2fc"
+      }
+    },
+    "function-8-risk": {
+      "version": 1,
+      "function": 8,
+      "suffix": "risk",
+      "inputs": {
+        "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+        "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+        "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+        "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+        "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+        "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+        "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+        "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+        "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+        "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07",
+        "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+        "requirements.txt": "79d3664d6d0754aa9936931442a2adbd9fe61a719a84a5e587762f7c2b193cf2",
+        "stage-2-bbo/notebooks/02-function-8-decision-risk.ipynb": "7f15eb46290a0df23e6867385b7f6180704af7ee004b07db11c97e2a27e01e31",
+        "stage-2-bbo/data/initial_data/function_8/initial_inputs.npy": "fb5ebbb93c990cbdecc44d648362502233b4b5daec335319aca300f9e9b69206",
+        "stage-2-bbo/data/initial_data/function_8/initial_outputs.npy": "693ebca2bb2b738162f701f2587bad0d3f2ac1b96d47d32fa6357f2b8e257798"
+      },
+      "runtime": {
+        "python": "3.14.5",
+        "numpy": "2.5.2",
+        "pandas": "3.0.5",
+        "scipy": "1.18.0",
+        "scikit-learn": "1.9.0",
+        "matplotlib": "3.11.1",
+        "nbconvert": "7.17.1",
+        "nbformat": "5.11.0",
+        "nbclient": "0.11.0",
+        "ipykernel": "7.3.0"
+      },
+      "artefacts": {
+        "analysis.html": "d27d6ddb5f78459e07f46c30006260196705f1e07e79bb4ae8abd50dbd407e7c",
+        "analysis.ipynb": "2b983f86a27171ee69f8cb81a7a659605b5b5ba7036ee0b5dd0f1162526f891b",
+        "risk-study.json": "8bfae4a2c8e8d49825d0cd6f991816c8a3c70416cdf1146b836450f26a288a7b"
+      }
+    }
+  },
+  "runtime": {
+    "python": "3.14.5",
+    "numpy": "2.5.2",
+    "scipy": "1.18.0",
+    "scikit_learn": "1.9.0"
+  },
+  "source_sha256": {
+    "stage-2-bbo/notebooks/01-data-validation-and-exploration.ipynb": "c02f3b7e727cb97fa61bbf5c1788954b6f50998e69b5b69282c00f2e79564bf1",
+    "stage-2-bbo/notebooks/01-function-4-initial-exploration.ipynb": "4e7625923d9d28555aec9b308de036317f31d818b54d1042d6bb65c799b3419c",
+    "stage-2-bbo/notebooks/01-function-5-initial-exploration.ipynb": "5e7ae5655192fa80b7bc52a2392008f4581985862ea16baa546ee0133b534ad9",
+    "stage-2-bbo/notebooks/01-function-6-initial-exploration.ipynb": "94ad18fd982a6a2923099b503316f31ed13a931ca22c921785704d7fd073e9a9",
+    "stage-2-bbo/notebooks/01-function-7-initial-exploration.ipynb": "52caa40c37aea27f3327e8ce24b6e8d623d0e5d55218cabf29035920be9cb378",
+    "stage-2-bbo/notebooks/01-function-8-initial-exploration.ipynb": "56973d5845076b2b14e9ddc3c9e3859eeb29dc0fb23a74a2c7fb51b7806964d4",
+    "stage-2-bbo/notebooks/01b-function-1-batch-coverage.ipynb": "99ca55fce443c549e01f61903e0fd9a8a8e5c56fdb5786547215d8082e44ca6a",
+    "stage-2-bbo/notebooks/01c-function-2-initial-exploration.ipynb": "603960f3e8fa172dd36d84ecbc25e3ed212756eb89101278bdbd9d2cf46b6226",
+    "stage-2-bbo/notebooks/01d-function-2-decision-risk.ipynb": "b3fb463a9028dbb9014190fc809dadcf4f4f3e5428fdf1eedfd44390f0e285fe",
+    "stage-2-bbo/notebooks/01e-function-3-initial-exploration.ipynb": "b1cf5870a23418b994ea7d991c85a23372713a91a32e4099426f1df6350a8cd6",
+    "stage-2-bbo/notebooks/02-function-1-decision-risk.ipynb": "afbe8352b5a74f24e70492930133e7258aa316f239ca61d4fab105304d89dc47",
+    "stage-2-bbo/notebooks/02-function-3-decision-risk.ipynb": "92b3bacef19542f1c86f6cf59c281fcb4abe646fae346e082ff87d05487e9433",
+    "stage-2-bbo/notebooks/02-function-4-decision-risk.ipynb": "824d19d2bc660dbedf7883016ea2bb0c94d689a0ec2f8e12f57d2c43fbcf15d2",
+    "stage-2-bbo/notebooks/02-function-5-decision-risk.ipynb": "443822676639301ad44984c438dd022f9827aeb77b04effaca9e29daace8fde3",
+    "stage-2-bbo/notebooks/02-function-6-decision-risk.ipynb": "633425a252a244373490fe901cda1712972c52f1ba2b28e98abb7006ccc507b5",
+    "stage-2-bbo/notebooks/02-function-7-decision-risk.ipynb": "a26b89f4ca1c777c17fb9a1546509066f24e6fe491c2b74b496b31c93619c631",
+    "stage-2-bbo/notebooks/02-function-8-decision-risk.ipynb": "7f15eb46290a0df23e6867385b7f6180704af7ee004b07db11c97e2a27e01e31",
+    "stage-2-bbo/scripts/build_first_query_review.py": "bbb667cb33995113cf5cf3666e4ad52f6f5be81838365d934e4264ed218f94f5",
+    "stage-2-bbo/scripts/run_initial_analysis.py": "698be449c942e2b692381d3e036efdca5aa64e0513ebc0eef3b4c741950bc847",
+    "stage-2-bbo/scripts/run_risk_studies.py": "b1da3498f64cc6313979216f3caed57daaa06e9b68b92cf51ae3c0840d4dbeba",
+    "stage-2-bbo/src/batch_coverage_analysis.py": "f3e36ab40e3cf3c1c0e666003bc967523e199046b7fb4e911ec55c4e03c80d97",
+    "stage-2-bbo/src/coverage_optimisation.py": "e2f221ec8792b584c8605b6b57797043ec38c50592ac3c72dd032be37cf51d19",
+    "stage-2-bbo/src/function_2_risk.py": "6439d6910ecd0967606385c70f6c1c2390415b33f66d6d11a8178f89557e086a",
+    "stage-2-bbo/src/function_2_selection.py": "becc92e8632c1ab53247ec5058db7bbf663591e756fd4ac19684197876730efc",
+    "stage-2-bbo/src/initial_exploration.py": "e70d260b5aec9101c8ad942dd7aaa529f8898aa1494a6d8eb02877cbe906c2b3",
+    "stage-2-bbo/src/multidimensional_exploration.py": "d2f4bb973aae70bb425a7467a90572381cdd2acc899eac6718515bbd007970cb",
+    "stage-2-bbo/src/multifunction_report.py": "bd2f51f99156fc9440dedbb9069a80bcb0a66b5f8a6e21cac8c5fd770bd39122",
+    "stage-2-bbo/src/multifunction_risk.py": "7207e6f1956602dbe789a8c1d0e51128c713c78e5acb6770efb66972ed3f6cd6",
+    "stage-2-bbo/src/report_provenance.py": "1549d1378d89833c8a236bdcc3ba0ff5f641e4d12653c7b113176d7eeafb289e",
+    "stage-2-bbo/src/risk_refinement.py": "4a8026df5300cbbb4d2d416393179a79894e3cb97b6bf8cf4107874c97d8bd07"
+  },
+  "proposals": [
+    {
+      "function": 1,
+      "dimensions": 2,
+      "initial_observations": 10,
+      "point": [
+        0.468429,
+        0.43544
+      ],
+      "portal_input": "0.468429-0.435440",
+      "status": "proposed_not_submitted",
+      "rationale": "Retain average coverage. Raw-output KG is dominated by one negative extreme and lacks held-out support.",
+      "coverage_gain": 0.07537918419255725,
+      "best_model_rmse_reduction_vs_mean": -0.009100191714767503,
+      "evidence": {
+        "criterion": "Original mean-coverage proposal retained after an inconclusive raw-output KG check",
+        "noise_sd": 0.00010818187933090686,
+        "comparison_pool_size": 854,
+        "larger_pool_size": 2103,
+        "main_pool_model_gains": {
+          "Additive": 0.0001622428012127456,
+          "Local": 0.0002733282498144298,
+          "Flexible": 0.0002733282514121034
+        },
+        "larger_pool_kg_candidate": [
+          0.649999,
+          0.849999
+        ],
+        "larger_pool_worst_risk_before": 0.0032641335979355485,
+        "larger_pool_worst_risk_after_kg": 0.002943803389871984,
+        "note": "Function 1 retains coverage rather than the reported KG candidate."
+      }
+    },
+    {
+      "function": 2,
+      "dimensions": 2,
+      "initial_observations": 10,
+      "point": [
+        0.774999,
+        0.949999
+      ],
+      "portal_input": "0.774999-0.949999",
+      "status": "proposed_not_submitted",
+      "rationale": "Upper-right query from the finer local-model KG search; model uncertainty is more important than geometric coverage alone.",
+      "coverage_gain": 0.007109597626175135,
+      "best_model_rmse_reduction_vs_mean": 0.2477968156791147,
+      "evidence": {
+        "criterion": "Local 2D knowledge gradient on the 41 x 41 pool",
+        "one_query_gain": 0.033069263989403685,
+        "noise_sd": 0.05,
+        "note": "The existing thirteen-query comparison used the nearby coarse-grid choice."
+      }
+    },
+    {
+      "function": 3,
+      "dimensions": 3,
+      "initial_observations": 15,
+      "point": [
+        0.335102,
+        0.25754,
+        0.459461
+      ],
+      "portal_input": "0.335102-0.257540-0.459461",
+      "status": "proposed_not_submitted",
+      "rationale": "Test whether the relatively good region around ranks 3 and 4 extends to a nearby combination; model support remains weak.",
+      "coverage_gain": 0.019120078423610666,
+      "best_model_rmse_reduction_vs_mean": -0.03616513943503885,
+      "evidence": {
+        "criterion": "Conservative KG, confirmed on the larger pool",
+        "noise_sd": 0.008421399358525468,
+        "comparison_pool_size": 974,
+        "larger_pool_size": 2633,
+        "main_pool_model_gains": {
+          "Additive": 0.0034429836508559283,
+          "Local": 0.018599385659111022,
+          "Flexible": 0.00491250660731779
+        },
+        "larger_pool_kg_candidate": [
+          0.335102,
+          0.25754,
+          0.459461
+        ],
+        "larger_pool_worst_risk_before": 0.175516825342786,
+        "larger_pool_worst_risk_after_kg": 0.15708644946748318,
+        "note": "Conditional finite-pool expected shortfall; not a probability or continuous-domain bound."
+      }
+    },
+    {
+      "function": 4,
+      "dimensions": 4,
+      "initial_observations": 30,
+      "point": [
+        0.377878,
+        0.477308,
+        0.239218,
+        0.43529
+      ],
+      "portal_input": "0.377878-0.477308-0.239218-0.435290",
+      "status": "proposed_not_submitted",
+      "rationale": "Test a combination around the better observed settings. Held-out prediction strongly supports using fitted structure.",
+      "coverage_gain": 0.01076584862465189,
+      "best_model_rmse_reduction_vs_mean": 0.8274933628014359,
+      "evidence": {
+        "criterion": "Conservative KG, confirmed on the larger pool",
+        "noise_sd": 0.7017985211526381,
+        "comparison_pool_size": 800,
+        "larger_pool_size": 1506,
+        "main_pool_model_gains": {
+          "Additive": 0.025622551881896438,
+          "Local": 0.19112991703007998,
+          "Flexible": 0.17465013978246047
+        },
+        "larger_pool_kg_candidate": [
+          0.377878,
+          0.477308,
+          0.239218,
+          0.43529
+        ],
+        "larger_pool_worst_risk_before": 1.132671695901436,
+        "larger_pool_worst_risk_after_kg": 0.8978363217687944,
+        "note": "Conditional finite-pool expected shortfall; not a probability or continuous-domain bound."
+      }
+    },
+    {
+      "function": 5,
+      "dimensions": 4,
+      "initial_observations": 20,
+      "point": [
+        0.375048,
+        0.953644,
+        0.999999,
+        0.999999
+      ],
+      "portal_input": "0.375048-0.953644-0.999999-0.999999",
+      "status": "proposed_not_submitted",
+      "rationale": "Probe high x2, x3 and x4 near the large positive response. The larger-pool check changes the original proposal.",
+      "coverage_gain": 0.002792166286091589,
+      "best_model_rmse_reduction_vs_mean": 0.28151270341420087,
+      "evidence": {
+        "criterion": "Larger-pool conservative KG",
+        "noise_sd": 24.557598070645597,
+        "comparison_pool_size": 790,
+        "larger_pool_size": 1494,
+        "main_pool_model_gains": {
+          "Additive": 0.6702274976587432,
+          "Local": 33.05665337532673,
+          "Flexible": 23.085323549173154
+        },
+        "larger_pool_kg_candidate": [
+          0.375048,
+          0.953644,
+          0.999999,
+          0.999999
+        ],
+        "larger_pool_worst_risk_before": 130.82963523359118,
+        "larger_pool_worst_risk_after_kg": 99.89766436175151,
+        "note": "Conditional finite-pool expected shortfall; not a probability or continuous-domain bound."
+      }
+    },
+    {
+      "function": 6,
+      "dimensions": 5,
+      "initial_observations": 20,
+      "point": [
+        0.344331,
+        0.260596,
+        0.575965,
+        0.745346,
+        0.066311
+      ],
+      "portal_input": "0.344331-0.260596-0.575965-0.745346-0.066311",
+      "status": "proposed_not_submitted",
+      "rationale": "Retain relatively high x4 and low x5 while testing a different combination of the other three inputs.",
+      "coverage_gain": 0.014850264557842068,
+      "best_model_rmse_reduction_vs_mean": 0.5929368724026277,
+      "evidence": {
+        "criterion": "Conservative KG, confirmed on the larger pool",
+        "noise_sd": 0.04489995903978194,
+        "comparison_pool_size": 817,
+        "larger_pool_size": 1522,
+        "main_pool_model_gains": {
+          "Additive": 0.010673581760388684,
+          "Local": 0.06649954674311331,
+          "Flexible": 0.03418641166260239
+        },
+        "larger_pool_kg_candidate": [
+          0.344331,
+          0.260596,
+          0.575965,
+          0.745346,
+          0.066311
+        ],
+        "larger_pool_worst_risk_before": 0.3843701809619845,
+        "larger_pool_worst_risk_after_kg": 0.3119960157667415,
+        "note": "Conditional finite-pool expected shortfall; not a probability or continuous-domain bound."
+      }
+    },
+    {
+      "function": 7,
+      "dimensions": 6,
+      "initial_observations": 30,
+      "point": [
+        0.057896,
+        0.491672,
+        0.247422,
+        0.318118,
+        0.420428,
+        0.73097
+      ],
+      "portal_input": "0.057896-0.491672-0.247422-0.318118-0.420428-0.730970",
+      "status": "proposed_not_submitted",
+      "rationale": "Increase x4 by 0.1 at the best observation, keeping the other coordinates. A controlled local hypothesis test with weak model support.",
+      "coverage_gain": 0.0009176172478750975,
+      "best_model_rmse_reduction_vs_mean": 0.07471896334363559,
+      "evidence": {
+        "criterion": "Conservative KG, confirmed on the larger pool",
+        "noise_sd": 0.030212941807129252,
+        "comparison_pool_size": 868,
+        "larger_pool_size": 1573,
+        "main_pool_model_gains": {
+          "Additive": 0.0362913591761207,
+          "Local": 0.00802406335351269,
+          "Flexible": 0.010663965786900986
+        },
+        "larger_pool_kg_candidate": [
+          0.057896,
+          0.491672,
+          0.247422,
+          0.318118,
+          0.420428,
+          0.73097
+        ],
+        "larger_pool_worst_risk_before": 0.17258033269460657,
+        "larger_pool_worst_risk_after_kg": 0.13628897351848587,
+        "note": "Conditional finite-pool expected shortfall; not a probability or continuous-domain bound."
+      }
+    },
+    {
+      "function": 8,
+      "dimensions": 8,
+      "initial_observations": 40,
+      "point": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.999999,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "portal_input": "0.000000-0.000000-0.000000-0.000000-0.999999-0.000000-0.000000-0.000000",
+      "status": "proposed_not_submitted",
+      "rationale": "Test an extreme combination with low x1 and x3. Strong additive predictive structure supports modelling, while the conservative local-model choice is stable to noise.",
+      "coverage_gain": 0.0003459107378415044,
+      "best_model_rmse_reduction_vs_mean": 0.9278103077807176,
+      "evidence": {
+        "criterion": "Conservative KG, confirmed on the larger pool",
+        "noise_sd": 0.09469034630327874,
+        "comparison_pool_size": 1093,
+        "larger_pool_size": 1798,
+        "main_pool_model_gains": {
+          "Additive": 0.04454408139732813,
+          "Local": 0.1251458297047794,
+          "Flexible": 0.08579813878088771
+        },
+        "larger_pool_kg_candidate": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.999999,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "larger_pool_worst_risk_before": 0.6427749456131072,
+        "larger_pool_worst_risk_after_kg": 0.50809861318265,
+        "note": "Conditional finite-pool expected shortfall; not a probability or continuous-domain bound."
+      }
+    }
+  ]
+}

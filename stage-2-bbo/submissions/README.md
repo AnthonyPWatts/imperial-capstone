@@ -1,5 +1,10 @@
 # Submission log
 
+[`round-01-proposals.json`](round-01-proposals.json) records the eight first-query
+proposals, their rationale and computational evidence. It is explicitly marked
+as unsubmitted and records source hashes because the analysis changes are not
+committed. No returned observations are invented or implied.
+
 For each round, record:
 
 - function number;
