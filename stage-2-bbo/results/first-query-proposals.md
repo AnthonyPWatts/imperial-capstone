@@ -1,5 +1,10 @@
 # First-query proposals
 
+Historical proposal snapshot. The Week 1 results received on 5 October 2026
+confirm evaluation of all eight listed inputs. See the
+[returned observations](../submissions/round-01-results.json) and
+[Function 1 review](function-1-round-01-analysis.md).
+
 Eight proposed first inputs, before any portal evaluation.
 
 **Start by reducing ignorance, finish by exploiting what we have learned.**

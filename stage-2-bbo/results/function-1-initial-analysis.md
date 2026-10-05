@@ -1,5 +1,8 @@
 # Function 1: initial findings
 
+Historical pre-evaluation analysis. The proposed average-coverage point was
+subsequently evaluated; see the [first returned result](function-1-round-01-analysis.md).
+
 Ten supplied observations, before any new evaluation. The
 [exploration notebook](../notebooks/01-data-validation-and-exploration.ipynb)
 contains the data preview and figures; loading and plotting are kept in a helper.

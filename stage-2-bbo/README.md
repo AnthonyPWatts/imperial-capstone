@@ -7,6 +7,27 @@ dimensions. Each course round adds a portal observation to the local dataset.
 Browse the [Stage 2 workspace](https://anthonypwatts.github.io/imperial-capstone/stage-2-bbo/)
 or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
 
+## Latest results: round 1
+
+The first results email arrived on **5 October 2026 at 00:38 BST**. All eight
+returned inputs match the saved proposals. The accumulated local datasets now
+contain **183 observations**, with the initial arrays preserved unchanged.
+
+Start with the [Function 1 result analysis](results/function-1-round-01-analysis.md).
+Its returned output, `-0.00550934555381189`, is a new minimum; the best observed
+value is unchanged. Average sampling distance fell by 7.53776%, while the three
+existing GP families still failed to beat the mean baseline on held-out RMSE.
+The [Function 2 result analysis](results/function-2-round-01-analysis.md) records
+its fifth-ranked return, unchanged incumbent and stronger held-out support for
+the x1-only and flexible models. Its next-query choices remain sensitive to
+model and noise assumptions. Functions 3–8 have been ingested but not yet
+reviewed in detail.
+
+See the [round results record](submissions/round-01-results.json) and
+[accumulated data layout](data/README.md#accumulated-observations-round-1).
+The first-query material below describes historical pre-evaluation work;
+its original proposal JSON and source arrays remain unchanged.
+
 ## Module 12 intake
 
 The initial data were collected and verified on **24 September 2026**: 16 NumPy
@@ -56,8 +77,8 @@ Start with the [Function 1 exploration notebook](notebooks/01-data-validation-an
 and [Function 1 initial findings](results/function-1-initial-analysis.md). The
 notebook focuses on the supplied data, ranked locations, sampling gaps and output
 scales, then compares sequential maximin with average coverage and optimises the
-latter to propose the first query. No predictive model has been fitted and no
-portal query has been submitted.
+latter to propose the first query. That notebook fits no predictive model;
+its proposed input has since been evaluated in round 1.
 
 The [follow-on coverage study](notebooks/01b-function-1-batch-coverage.ipynb)
 plans two and three points jointly, compares that with sequential selection,
@@ -87,7 +108,8 @@ No predictive model or next-query selection is included in this first look.
 The [first-query proposals](results/first-query-proposals.md) collect the eight
 suggested inputs and their rationale. The [structured proposal record](submissions/round-01-proposals.json)
 includes portal strings, numerical evidence, runtime versions and source hashes.
-These are proposed inputs; no portal evaluation has been submitted.
+These files preserve the original proposed inputs; the separate round 1
+results record now confirms their evaluation.
 
 Functions 4–8 now have descriptive notebooks showing every supplied observation,
 all coordinate-pair projections, full-space coverage summaries and output scales.

@@ -5,12 +5,12 @@ Certificate in Machine Learning and Artificial Intelligence.
 
 ## Project status
 
-Stage 1 result snapshot: **5 September 2026**. Stage 2 resource intake: **24 September 2026**.
+Stage 1 result snapshot: **5 September 2026**. Stage 2 results intake: **5 October 2026**.
 
 | Stage | Project | Status | Headline |
 | --- | --- | --- | --- |
 | 1 | [Pump It Up](stage-1-pump-it-up/) | Model search complete | Fresh CatBoost identity/spatial-grid bag scored **`0.8304`** publicly and was observed at leaderboard position **1** |
-| 2 | [Black-box optimisation](stage-2-bbo/) | Initial data ready | Module 12 observations verified; 13 weekly query rounds confirmed |
+| 2 | [Black-box optimisation](stage-2-bbo/) | Round 1 results received | 183 observations recorded; Functions 1 and 2 follow-ups analysed |
 
 The leaderboard position is a time-specific observation and may change as
 other competitors submit.
@@ -121,11 +121,15 @@ working narrative and links to notebooks, source code and generated evidence.
 
 ## Stage 2: black-box optimisation
 
-Stage 2 is scaffolded for the assessed task of maximising eight unknown
-functions from sequential observations. Its workspace records the intended
-Gaussian-process workflow, data constraints, proposed points and returned
-values. The Module 12 observations are now available locally and verified;
-the first modelling and query-selection round is the next step.
+Stage 2 maximises eight unknown functions from sequential observations. Its
+workspace records the Gaussian-process workflow, data constraints, proposed
+points and returned values. The first return matches all eight proposals;
+the local accumulated datasets contain 183 observations. The
+[Function 1 follow-up](stage-2-bbo/results/function-1-round-01-analysis.md)
+reviews its new negative result, unchanged incumbent and improved coverage.
+The [Function 2 follow-up](stage-2-bbo/results/function-2-round-01-analysis.md)
+reviews its lower response near the incumbent and compares updated noisy-response
+models and conditional next-query choices.
 
 See the [Stage 2 README](stage-2-bbo/README.md) for the planned approach and
 repository structure.
