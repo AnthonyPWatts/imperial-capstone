@@ -5,12 +5,15 @@ competition.
 
 Source: <https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/>
 
-Browse the [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/)
-and [training label map](https://anthonypwatts.github.io/imperial-capstone/map/),
+Browse the [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/stage-1-pump-it-up/dashboard/)
+and [training label map](https://anthonypwatts.github.io/imperial-capstone/stage-1-pump-it-up/map/),
 or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
 
 ## Contents
 
+- `dashboard/`: static plan and progress dashboard.
+- `map/`: browser-side map of locally supplied training labels.
+- `assets/`: leaderboard evidence and dashboard image.
 - `instructions/competition-reference.md`: concise brief, data dictionary,
   submission shape and links to the authoritative pages.
 - `instructions/source-pages/`: dated offline copies of the public competition
@@ -32,7 +35,7 @@ public score is **`0.8304`** from the fresh CatBoost identity/spatial-grid
 previous `0.8298` best by `0.0006` and was observed at public-leaderboard
 position **1** on 5 September 2026.
 
-[![Historical DrivenData Pump It Up leaderboard milestone showing anthonypwatts at rank 2 with a score of 0.8298](../assets/pump-it-up-public-leaderboard-rank-2.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
+[![Historical DrivenData Pump It Up leaderboard milestone showing anthonypwatts at rank 2 with a score of 0.8298](assets/pump-it-up-public-leaderboard-rank-2.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
 
 *Historical leaderboard evidence from 23 August 2026. The later rank-1 result
 was observed live on 5 September 2026; rankings may change.*

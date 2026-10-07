@@ -1,8 +1,8 @@
 "use strict";
 
 const DATA_PATHS = {
-  values: "../stage-1-pump-it-up/data/TrainingSetValues.csv",
-  labels: "../stage-1-pump-it-up/data/TrainingSetLabels.csv",
+  values: "../data/TrainingSetValues.csv",
+  labels: "../data/TrainingSetLabels.csv",
 };
 
 const STATUS_GROUPS = {

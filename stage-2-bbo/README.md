@@ -147,6 +147,8 @@ do not relabel their results with current source hashes.
 | --- | --- |
 | `data/` | Locally supplied input and output arrays; ignored by Git |
 | `notebooks/` | Exploration, surrogate modelling and acquisition experiments |
+| [`side-work/`](side-work/) | Function-by-function practice notebooks and independent working data snapshots |
+| `index.html`, `styles.css` | Static Stage 2 web workspace and its styling |
 | `src/` | Reusable BBO code |
 | `results/` | Observation and experiment logs safe to publish |
 | `submissions/` | Proposed points and portal-submission notes |

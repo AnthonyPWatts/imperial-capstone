@@ -22,8 +22,28 @@ other competitors submit.
 | [`index.html`](index.html) | Static Capstone Hub joining the project stages and working tools |
 | [`stage-1-pump-it-up/`](stage-1-pump-it-up/) | Multiclass classification using the DrivenData *Pump It Up* competition |
 | [`stage-2-bbo/`](stage-2-bbo/) | Assessed black-box optimisation across eight unknown functions |
-| [`dashboard/`](dashboard/) | Static plan and progress dashboard for Stage 1 |
-| [`map/`](map/) | Browser-side map using locally selected Stage 1 training labels |
+| [`assets/`](assets/) | Shared site styling, hub styling and status loader |
+| [`project-status.json`](project-status.json) | Shared public status snapshot for the hub and both stages |
+| [`requirements.txt`](requirements.txt) | Pinned Python environment used by both stages |
+
+Stage-specific tools and supporting files live with their stage:
+
+```text
+stage-1-pump-it-up/
+  assets/       Leaderboard evidence and dashboard image
+  dashboard/    Static plan and progress dashboard
+  map/          Browser-side training-label map
+  ...           Existing data, notebooks, source, reports and submissions
+stage-2-bbo/
+  side-work/    Function-by-function practice notebooks and working snapshots
+  index.html    Stage 2 web workspace
+  styles.css    Stage 2 workspace styling
+  ...           Existing data, notebooks, source, results and submissions
+```
+
+Keep shared `.venv/` and `.runtime/` directories at the root; both remain
+Git-ignored. Local CatBoost logs live under `stage-1-pump-it-up/catboost_info/`
+and are also ignored.
 
 Stage 1 is a self-contained machine-learning project used to practise the
 course workflow on a real operational problem. Stage 2 follows the course's
@@ -48,7 +68,7 @@ Competition submissions are scored by multiclass accuracy.
 | Project target | `0.8260` |
 | Observed public rank | **1** on 5 September 2026 |
 
-[![Historical DrivenData Pump It Up leaderboard milestone showing anthonypwatts at rank 2 with a score of 0.8298](assets/pump-it-up-public-leaderboard-rank-2.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
+[![Historical DrivenData Pump It Up leaderboard milestone showing anthonypwatts at rank 2 with a score of 0.8298](stage-1-pump-it-up/assets/pump-it-up-public-leaderboard-rank-2.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
 
 *Historical leaderboard evidence from 23 August 2026. The later rank-1 result
 was observed live on 5 September 2026; rankings may change.*
@@ -137,8 +157,8 @@ repository structure.
 ## Live project tools
 
 - [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/)
-- [Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/)
-- [Stage 1 training-label map](https://anthonypwatts.github.io/imperial-capstone/map/)
+- [Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/stage-1-pump-it-up/dashboard/)
+- [Stage 1 training-label map](https://anthonypwatts.github.io/imperial-capstone/stage-1-pump-it-up/map/)
 - [Stage 2 workspace](https://anthonypwatts.github.io/imperial-capstone/stage-2-bbo/)
 
 The public pages load the non-sensitive status snapshot in
@@ -151,7 +171,7 @@ pickers.
 ### Modelling environment
 
 Create a project-local environment and install the recorded notebook and
-scikit-learn runtime before running Stage 1 analyses:
+scikit-learn runtime before running analyses in either stage:
 
 ```powershell
 py -m venv .venv

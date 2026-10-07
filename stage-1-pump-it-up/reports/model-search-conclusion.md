@@ -27,7 +27,7 @@ deep-archive synthesis as the selected competition model. It scored
 public-leaderboard position **2** on 23 August 2026. The rank is a time-specific
 observation and may change as other competitors submit.
 
-[![DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 2 with a score of 0.8298](../../assets/pump-it-up-public-leaderboard-rank-2.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
+[![DrivenData Pump It Up public leaderboard showing anthonypwatts at rank 2 with a score of 0.8298](../assets/pump-it-up-public-leaderboard-rank-2.png)](https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/leaderboard/)
 
 *Public leaderboard observed on 23 August 2026; the linked live ranking may
 change.*

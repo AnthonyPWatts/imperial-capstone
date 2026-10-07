@@ -3,7 +3,7 @@
 This directory contains a static status dashboard for the DrivenData *Pump It
 Up* work:
 
-Browse the [live dashboard](https://anthonypwatts.github.io/imperial-capstone/dashboard/)
+Browse the [live dashboard](https://anthonypwatts.github.io/imperial-capstone/stage-1-pump-it-up/dashboard/)
 or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
 
 - `index.html`: dashboard content and current values;
@@ -31,7 +31,7 @@ keep appending columns; add detailed information to the compact panels below.
 
 ## Current snapshot
 
-The page loads headline values from `../project-status.json` through GitHub
+The page loads headline values from `../../project-status.json` through GitHub
 Pages or the local server. The dashboard uses matching HTML values if the
 status request fails. The current snapshot is dated 5 September 2026:
 
@@ -159,7 +159,7 @@ Keep these definitions stable so that the counters remain meaningful.
 ### Overall plan checkpoints
 
 The headline counter is the complete project evidence ledger maintained in
-`../project-status.json`. The smaller progress values shown in the course table
+`../../project-status.json`. The smaller progress values shown in the course table
 are coarse exit gates and do not share that denominator. Step 5 feature
 coverage has its own 36-feature denominator and is also excluded from the
 headline counter. Keep these course exit gates stable:
@@ -254,7 +254,7 @@ evaluation rather than this personal constraint list.
 After a meaningful modelling or submission session:
 
 1. Update the snapshot date and supported headline values in
-   `../project-status.json`.
+   `../../project-status.json`.
 2. Keep the fallback values in `index.html` aligned with the status file.
 3. Update the course workflow rows and their evidence or next gate without
    changing the ten step numbers or meanings.
