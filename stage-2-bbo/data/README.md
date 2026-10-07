@@ -60,7 +60,7 @@ round directories and the matching proposal record. Both raw and accumulated
 observations remain course-restricted and Git-ignored.
 
 A versioned working snapshot of all eight accumulated datasets is retained in
-[`side-work/`](../side-work/), alongside the function-specific practice notebooks.
+[`Week2_Notebooks/`](../Week2_Notebooks/), alongside the function-specific practice notebooks.
 Those copies are separate files, not links, and are not updated automatically
 when new rounds are imported. The canonical source and accumulated directories
 described above remain Git-ignored.

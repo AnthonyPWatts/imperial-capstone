@@ -69,15 +69,23 @@ def plot_ranked_locations(data: pd.DataFrame, pair=("x1", "x2"), *, save_to=None
 
 
 def plot_sampling_gaps(data: pd.DataFrame, pair=("x1", "x2"), *, save_to=None,
-                       candidate=None, central_alternative=None):
+                       candidate=None, central_alternative=None, ax=None, vmax=None):
+    """Plot coverage gaps; ax embeds a subplot and vmax fixes the colour scale.
+
+    With ax supplied, the caller owns the figure; save_to saves that whole figure.
+    """
     coordinates = data[list(pair)].to_numpy()
     edges = np.linspace(0, 1, 202)
     centres = (edges[:-1] + edges[1:]) / 2
     first, second = np.meshgrid(centres, centres)
     mesh = np.column_stack([first.ravel(), second.ravel()])
     distances = cKDTree(coordinates).query(mesh)[0].reshape(first.shape)
-    figure, axis = plt.subplots(figsize=(7.6, 6.1), layout="constrained")
-    heatmap = axis.pcolormesh(edges, edges, distances, cmap="viridis", vmin=0,
+    if ax is None:
+        figure, axis = plt.subplots(figsize=(7.6, 6.1), layout="constrained")
+    else:
+        axis = ax
+        figure = axis.figure
+    heatmap = axis.pcolormesh(edges, edges, distances, cmap="viridis", vmin=0, vmax=vmax,
                             shading="flat", rasterized=True)
     axis.scatter(*coordinates.T, s=310, facecolors="white", edgecolors="#263238",
                  linewidths=0.9, zorder=3)
@@ -108,7 +116,13 @@ def plot_sampling_gaps(data: pd.DataFrame, pair=("x1", "x2"), *, save_to=None,
                       arrowprops={"arrowstyle": "-", "color": "#172126"}, zorder=6)
     figure.colorbar(heatmap, ax=axis, shrink=0.82,
                    label="Distance to nearest observation in this plane")
-    return _finish(figure, save_to)
+    if ax is None:
+        return _finish(figure, save_to)
+    if save_to is not None:
+        destination = Path(save_to)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        figure.savefig(destination, dpi=160)
+    return figure
 
 
 def maximin_candidates_2d(data: pd.DataFrame) -> pd.DataFrame:

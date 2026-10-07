@@ -35,7 +35,7 @@ stage-1-pump-it-up/
   map/          Browser-side training-label map
   ...           Existing data, notebooks, source, reports and submissions
 stage-2-bbo/
-  side-work/    Function-by-function practice notebooks and working snapshots
+  Week2_Notebooks/    Function-by-function practice notebooks and working snapshots
   index.html    Stage 2 web workspace
   styles.css    Stage 2 workspace styling
   ...           Existing data, notebooks, source, results and submissions
