@@ -1,5 +1,31 @@
 # Notebooks
 
+## Current work: Week 2
+
+`Function_N/Week_02/exploration.ipynb` exists for all eight functions. Each
+reviews the round 1 return and compares geometric coverage batches using shared
+helpers in `Shared/`. Functions 1–3 selected the first points of four-, three-
+and three-point batches respectively for Week 2.
+
+Functions 4–8 also contain `Week_02/model_predictions.ipynb`. These compare
+regression models with leave-one-out validation and select one next input using
+a Gaussian-process upper confidence bound. The saved outputs document model
+errors, candidate comparisons and limitations. The
+[Stage 2 README](../README.md#week-2-approach-and-submitted-inputs) summarises the
+current methods; the [submission log](../submissions/README.md) records Week 2
+as submitted, with results pending.
+
+Run each Week 2 notebook with its own directory as the working directory and
+its local `observations.csv` beside it. These CSV files are ignored by Git;
+populate them from the matching accumulated dataset described in
+[the data notes](../data/README.md). For the round 1 state, the versioned
+`Week2_Notebooks/function_N/observations.csv` files provide the same rows.
+Coverage caches are local and keyed to their data, search code and settings.
+The separate `Week2_Notebooks/` folder contains earlier practice notebooks and
+independent data snapshots, which are not updated automatically.
+
+The sections below describe the historical Week 1 studies.
+
 ## Function 1 exploration
 
 [`01-data-validation-and-exploration.ipynb`](Function_1/Week_01/01-data-validation-and-exploration.ipynb)
@@ -148,10 +174,14 @@ To compute all remaining risk studies before rendering, use:
 Numerical results are reused only when the supplied data and numerical source
 fingerprints match. Changed report prose or plotting code does not repeat the
 expensive calculations. Reading copies and executed notebooks remain under
-`.runtime/`; source notebooks retain no outputs. The final local review page
-links all sixteen exploration/risk reports and includes the eight portal strings.
+`.runtime/`; these Week 1 source notebooks retain no outputs. The final local
+review page links all sixteen exploration/risk reports and includes the eight
+portal strings.
 
-## Later notebook sequence
+## Originally planned later notebook sequence
+
+These filenames are a plan, not existing notebooks. Current weekly analyses
+use the `Function_N/Week_XX/` layout described above.
 
 2. `02-gaussian-process-baseline.ipynb`
 3. `03-acquisition-comparison.ipynb`

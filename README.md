@@ -5,12 +5,12 @@ Certificate in Machine Learning and Artificial Intelligence.
 
 ## Project status
 
-Stage 1 result snapshot: **5 September 2026**. Stage 2 results intake: **5 October 2026**.
+Stage 1 result snapshot: **5 September 2026**. Stage 2 documentation snapshot: **8 October 2026**.
 
 | Stage | Project | Status | Headline |
 | --- | --- | --- | --- |
 | 1 | [Pump It Up](stage-1-pump-it-up/) | Model search complete | Fresh CatBoost identity/spatial-grid bag scored **`0.8304`** publicly and was observed at leaderboard position **1** |
-| 2 | [Black-box optimisation](stage-2-bbo/) | Round 1 results received | 183 observations recorded; Functions 1 and 2 follow-ups analysed |
+| 2 | [Black-box optimisation](stage-2-bbo/) | Round 1 evaluated; Week 2 submitted | 183 observations; four improved incumbents; eight Week 2 results pending |
 
 The leaderboard position is a time-specific observation and may change as
 other competitors submit.
@@ -144,14 +144,17 @@ working narrative and links to notebooks, source code and generated evidence.
 Stage 2 maximises eight unknown functions from sequential observations. Its
 workspace records the Gaussian-process workflow, data constraints, proposed
 points and returned values. The first return matches all eight proposals;
-the local accumulated datasets contain 183 observations. The
+the versioned working snapshots contain 183 observations. The
 [Function 1 follow-up](stage-2-bbo/results/function-1-round-01-analysis.md)
 reviews its new negative result, unchanged incumbent and improved coverage.
 The [Function 2 follow-up](stage-2-bbo/results/function-2-round-01-analysis.md)
 reviews its lower response near the incumbent and compares updated noisy-response
-models and conditional next-query choices.
+models and conditional next-query choices. Round 1 improved the best observed
+outputs for Functions 4–7. Week 2 exploration notebooks now cover all eight
+functions, with regression comparisons and Gaussian-process UCB recommendations
+for Functions 4–8. Week 2 inputs have been submitted; their results are pending.
 
-See the [Stage 2 README](stage-2-bbo/README.md) for the planned approach and
+See the [Stage 2 README](stage-2-bbo/README.md) for the current approach and
 repository structure.
 
 ## Live project tools
