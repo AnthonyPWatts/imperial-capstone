@@ -1,5 +1,15 @@
 # Submission log
 
+## Copy-and-paste portal inputs
+
+[Week 2](Week_02/submissions.txt) contains the eight current recommendations.
+Each line contains only the portal input, ordered from Function 1 to Function 8.
+The file records proposals, not confirmed evaluations.
+
+[Week 1](Week_01/submissions.txt) provides the same plain-text layout for the
+eight previously evaluated inputs. The original JSON files remain available
+as historical records of the proposals, evidence and returned results.
+
 ## Latest confirmed evaluation
 
 The Week 1 results email arrived on **5 October 2026 at 00:38 BST**.
