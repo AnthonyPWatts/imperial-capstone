@@ -73,31 +73,31 @@ exercise into a research project. The useful business analogue is sequential
 decision-making where experiments are expensive: marketing tests, process
 settings, pricing trials or product configurations.
 
-Start with the [Function 1 exploration notebook](notebooks/01-data-validation-and-exploration.ipynb)
+Start with the [Function 1 exploration notebook](notebooks/Function_1/Week_01/01-data-validation-and-exploration.ipynb)
 and [Function 1 initial findings](results/function-1-initial-analysis.md). The
 notebook focuses on the supplied data, ranked locations, sampling gaps and output
 scales, then compares sequential maximin with average coverage and optimises the
 latter to propose the first query. That notebook fits no predictive model;
 its proposed input has since been evaluated in round 1.
 
-The [follow-on coverage study](notebooks/01b-function-1-batch-coverage.ipynb)
+The [follow-on coverage study](notebooks/Function_1/Week_01/01b-function-1-batch-coverage.ipynb)
 plans two and three points jointly, compares that with sequential selection,
 and records the measured computation cost.
 
-The [Function 2 exploration](notebooks/01c-function-2-initial-exploration.ipynb)
+The [Function 2 exploration](notebooks/Function_2/Week_01/01c-function-2-initial-exploration.ipynb)
 provides a descriptive first look at its ten observations, spatial coverage and
 output scales, with the course's noisy log-likelihood description as context.
 It then combines coverage and discrimination between explicit fitted explanations
 to compare possible next queries, including sensitivity to the blend weight,
 noise and model assumptions.
 
-The [Function 2 decision-risk study](notebooks/01d-function-2-decision-risk.ipynb)
+The [Function 2 decision-risk study](notebooks/Function_2/Week_01/01d-function-2-decision-risk.ipynb)
 then measures expected shortfall of a final recommendation, estimates the value
 of one answer, and tests first-query choices with twelve simulated queries still
 to come. Its risk values are conditional on the fitted models and finite pool;
 the thirteen-query comparison uses a declared taper policy.
 
-The [Function 3 exploration](notebooks/01e-function-3-initial-exploration.ipynb)
+The [Function 3 exploration](notebooks/Function_3/Week_01/01e-function-3-initial-exploration.ipynb)
 extends the descriptive analysis to fifteen observations in three dimensions.
 It separates pairwise projections from full-cube sampling distances and examines
 how one extreme output influences the apparent relationship with the third input.

@@ -1,6 +1,6 @@
 # Function 1: planning two or three coverage points
 
-The [batch-coverage notebook](../notebooks/01b-function-1-batch-coverage.ipynb)
+The [batch-coverage notebook](../notebooks/Function_1/Week_01/01b-function-1-batch-coverage.ipynb)
 extends the one-point analysis. All ten original locations remain fixed. The
 objective is mean distance to the nearest original or proposed sample, uniformly
 weighted over the unit square. Outputs do not enter the score.

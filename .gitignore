@@ -4,6 +4,7 @@ venv/
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
+.coverage-cache/
 
 # Local configuration and secrets
 .env
@@ -23,6 +24,7 @@ catboost_info/
 # Stage 2 observations are supplied through the course portal and should stay local
 stage-2-bbo/data/*
 !stage-2-bbo/data/README.md
+stage-2-bbo/notebooks/Function_*/Week_*/observations.csv
 
 # Competition prediction rows stay local; retain notebooks and submission notes
 stage-1-pump-it-up/submissions/**/*.csv

@@ -2,7 +2,7 @@
 
 ## Function 1 exploration
 
-[`01-data-validation-and-exploration.ipynb`](01-data-validation-and-exploration.ipynb)
+[`01-data-validation-and-exploration.ipynb`](Function_1/Week_01/01-data-validation-and-exploration.ipynb)
 is a finished descriptive first look at Function 1: all ten observations, ranked
 locations, sampling gaps and output magnitudes, with a second scale comparison
 excluding the largest-magnitude output from the charts only. It then uses
@@ -41,7 +41,7 @@ root, using the same environment.
 
 ## Planning several coverage points
 
-[`01b-function-1-batch-coverage.ipynb`](01b-function-1-batch-coverage.ipynb) explores
+[`01b-function-1-batch-coverage.ipynb`](Function_1/Week_01/01b-function-1-batch-coverage.ipynb) explores
 jointly selecting N = 2 and N = 3 points, with N = 1 as the reference. It compares
 joint and sequential selection, plots remaining gaps on a common colour scale,
 and reports measured computation times. Run:
@@ -57,7 +57,7 @@ The self-contained HTML, executed notebook, figure and `study.json` are saved to
 
 ## Function 2 exploration
 
-[`01c-function-2-initial-exploration.ipynb`](01c-function-2-initial-exploration.ipynb)
+[`01c-function-2-initial-exploration.ipynb`](Function_2/Week_01/01c-function-2-initial-exploration.ipynb)
 shows all ten supplied observations, ranked locations, sampling gaps and ordered
 outputs on their original and logarithmic-magnitude scales. Its observations
 distinguish the course's noisy log-likelihood description from what the small
@@ -82,7 +82,7 @@ live in [`function_2_selection.py`](../src/function_2_selection.py).
 
 ## Function 2 decision risk
 
-[`01d-function-2-decision-risk.ipynb`](01d-function-2-decision-risk.ipynb) replaces
+[`01d-function-2-decision-risk.ipynb`](Function_2/Week_01/01d-function-2-decision-risk.ipynb) replaces
 the coverage/hypothesis weighting question with expected shortfall of the final
 recommendation. It calculates finite-set knowledge-gradient values under three
 models and compares eight first queries followed by twelve simulated queries
@@ -99,7 +99,7 @@ saved to `.runtime/function-2-risk/`. The helper is
 
 ## Function 3 exploration
 
-[`01e-function-3-initial-exploration.ipynb`](01e-function-3-initial-exploration.ipynb)
+[`01e-function-3-initial-exploration.ipynb`](Function_3/Week_01/01e-function-3-initial-exploration.ipynb)
 shows all fifteen observations, all three ranked coordinate-pair projections,
 projected sampling gaps and three slices measuring distance in the full cube.
 Ordered raw/log-magnitude charts include a second view without the worst output.

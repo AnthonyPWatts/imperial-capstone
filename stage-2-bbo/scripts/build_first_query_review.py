@@ -89,7 +89,8 @@ def main():
             target = destination / f"function-{function}-{suffix}"
             target.mkdir(exist_ok=True)
             shutil.copy2(root / f".runtime/function-{function}-{suffix}/analysis.html", target / "analysis.html")
-    sources = sorted([*stage.glob("src/*.py"), *stage.glob("scripts/*.py"), *stage.glob("notebooks/*.ipynb")])
+    sources = sorted([*stage.glob("src/*.py"), *stage.glob("scripts/*.py"),
+                      *stage.glob("notebooks/Function_*/Week_01/*.ipynb")])
     record = {"generated_utc": datetime.now(timezone.utc).isoformat(), "round": 1,
               "status": "proposals_only_no_portal_submissions",
               "base_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip(),

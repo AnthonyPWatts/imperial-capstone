@@ -18,7 +18,7 @@ def notebook_path(stage, function, suffix):
                 2: "01c-function-2-initial-exploration.ipynb",
                 3: "01e-function-3-initial-exploration.ipynb"}.get(
                     function, f"01-function-{function}-initial-exploration.ipynb")
-    return stage / "notebooks" / name
+    return stage / "notebooks" / f"Function_{function}" / "Week_01" / name
 
 
 def file_hash(path):
