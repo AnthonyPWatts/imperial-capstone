@@ -54,7 +54,7 @@ def summarise_output_observations(
         count = int(latest_mask.sum())
         lines = [
             f"Latest recorded submission: round {latest_round} ({count} new {'output' if count == 1 else 'outputs'}).",
-            f"Compared with {len(prior_values)} earlier observations; rank 1 = highest of all {len(values)} outputs.",
+            f"Compared with {len(prior_values)} earlier observations ({len(values)} outputs in total).",
         ]
         if len(prior_values):
             lines.append(f"Earlier output range: [{prior_values.min():.12g}, {prior_values.max():.12g}].")
@@ -127,7 +127,7 @@ def summarise_output_observations(
             coordinates = ", ".join(f"{name} = {float(row[name]):.12g}" for name in input_columns)
             lines.extend([
                 "",
-                f"{label}: {output_column} = {value:.12g} ({sign}); rank {ranks[position]}/{len(values)}.",
+                f"{label}: {output_column} = {value:.12g} ({sign}); rank {ranks[position]}/{len(values)} (1 = highest output).",
                 f"Inputs: {coordinates}",
                 note,
             ])

@@ -12,6 +12,7 @@ from textwrap import fill
 
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
+from matplotlib.lines import Line2D
 import numpy as np
 import pandas as pd
 from scipy.spatial import cKDTree
@@ -142,6 +143,8 @@ def plot_sampling_gaps(data: pd.DataFrame, pair=("x1", "x2"), *, save_to=None,
     With ax supplied, the caller owns the figure; save_to saves that whole figure.
     show_points=False hides all point overlays, including labels and candidates.
     show_labels=False keeps markers but hides their labels; rank is then optional.
+    Labelled circles have a key distinguishing observed ranks from P1, P2, ...
+    planned samples, which have no observed output yet.
     """
     coordinates, edges, distances = _sampling_gap_surface(data, pair)
     if ax is None:
@@ -161,6 +164,18 @@ def plot_sampling_gaps(data: pd.DataFrame, pair=("x1", "x2"), *, save_to=None,
     _coordinate_axes(axis, pair)
     projected = len([name for name in data if name.startswith("x")]) > 2
     axis.set_title("Sampling gaps in this two-input projection" if projected else "Sampling gaps")
+    if show_points and show_labels:
+        planned = data["rank"].astype(str).str.fullmatch(r"P\d+")
+        labels = []
+        if (~planned).any():
+            labels.append("Numbers: observed output rank (1 = highest output)")
+        if planned.any():
+            labels.append("P1, P2, ...: planned samples (not yet evaluated)")
+        handles = [Line2D([], [], marker="o", linestyle="none", markersize=10,
+                          markerfacecolor="white", markeredgecolor="#263238", label=label)
+                   for label in labels]
+        axis.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.12),
+                    frameon=False, fontsize=10)
     if show_points and candidate is not None:
         point = np.asarray(candidate)
         nearest = coordinates[cKDTree(coordinates).query(point)[1]]

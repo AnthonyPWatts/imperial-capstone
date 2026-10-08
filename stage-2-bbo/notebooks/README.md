@@ -1,5 +1,29 @@
 # Notebooks
 
+## Week 3 data
+
+Each `Function_N/Week_03/` folder contains a consolidated `observations.csv`
+with all initial observations and the two confirmed weekly returns, ready for
+new notebooks. Row counts for Functions 1–8 are 12, 12, 17, 32, 22, 22, 32 and 42
+(191 total). The schema remains `observation_id,source_round,x1,...,y`.
+
+These are independent snapshots of the accumulated data as of 8 October 2026.
+See the [data notes](../data/README.md#week-3-notebook-snapshots) for provenance
+and verification. Earlier weekly snapshots and notebooks remain unchanged.
+
+## Weekly output review convention
+
+Use `Shared/output_helpers.py` for the printed review and reuse the same report
+in the observed-output chart caption. State the returned value and its actual
+rank together, for example `rank 5/17 (1 = highest output)`, then compare it with
+the earlier output range. Keep the rank definition beside the actual rank;
+do not present `rank 1` as a standalone summary of the latest result.
+
+When discussing percentages, distinguish earlier observations strictly below
+the new value from the chart's share of all observations at or below it,
+including the new result. Keep the next-query commentary brief and grounded in
+the result; reuse the saved shortlist unless the evidence justifies changing it.
+
 ## Function 1 exploration
 
 [`01-data-validation-and-exploration.ipynb`](Function_1/Week_01/01-data-validation-and-exploration.ipynb)

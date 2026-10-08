@@ -7,11 +7,25 @@ dimensions. Each course round adds a portal observation to the local dataset.
 Browse the [Stage 2 workspace](https://anthonypwatts.github.io/imperial-capstone/stage-2-bbo/)
 or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
 
-## Latest results: round 1
+## Latest results: round 2
+
+The Week 2 results email arrived on **8 October 2026 at 18:42 BST**. All eight
+returned inputs match the saved Week 2 submissions. The accumulated datasets
+contain **191 observations**, with consolidated CSV snapshots in each
+`notebooks/Function_N/Week_03/` folder. Initial data and earlier notebooks remain
+unchanged.
+
+Functions 4, 5 and 7 improved their incumbents. Function 5 returned
+`8662.405001248297`, up from its previous best of `3933.145723875986`.
+The cumulative attachments were reconciled with Week 1 before adding the eight
+new observations. See the [round 2 results record](submissions/round-02-results.json)
+and [Week 3 data notes](data/README.md#week-3-notebook-snapshots).
+
+## Previous results: round 1
 
 The first results email arrived on **5 October 2026 at 00:38 BST**. All eight
-returned inputs match the saved proposals. The accumulated local datasets now
-contain **183 observations**, with the initial arrays preserved unchanged.
+returned inputs match the saved proposals. The accumulated local datasets then
+contained **183 observations**, with the initial arrays preserved unchanged.
 
 Start with the [Function 1 result analysis](results/function-1-round-01-analysis.md).
 Its returned output, `-0.00550934555381189`, is a new minimum; the best observed
@@ -24,7 +38,7 @@ model and noise assumptions. Functions 3–8 have been ingested but not yet
 reviewed in detail.
 
 See the [round results record](submissions/round-01-results.json) and
-[accumulated data layout](data/README.md#accumulated-observations-round-1).
+[accumulated data layout](data/README.md#accumulated-observations-round-2).
 The first-query material below describes historical pre-evaluation work;
 its original proposal JSON and source arrays remain unchanged.
 

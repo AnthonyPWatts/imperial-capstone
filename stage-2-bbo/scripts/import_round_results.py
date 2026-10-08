@@ -19,9 +19,8 @@ def sha256(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def read_return(directory):
-    """Accept only the attachment's list of array literals; never execute it."""
-    expression = ast.parse((directory / "inputs.txt").read_text(), mode="eval").body
+def read_input_list(expression):
+    """Accept only a list of array literals; never execute attachment code."""
     if not isinstance(expression, ast.List) or len(expression.elts) != 8:
         raise ValueError("Expected eight input arrays.")
     points = []
@@ -36,9 +35,29 @@ def read_return(directory):
         if not np.array_equal(point, np.round(point, 6)):
             raise ValueError("Returned coordinates exceed portal precision.")
         points.append(point)
-    outputs = np.asarray(ast.literal_eval((directory / "outputs.txt").read_text()), dtype=float)
-    if outputs.shape != (8,) or not np.isfinite(outputs).all():
-        raise ValueError("Expected eight finite scalar outputs.")
+    return points
+
+
+def read_return(directory, previous_rounds=()):
+    """Reconcile a single-round or cumulative attachment with confirmed history."""
+    inputs = ast.parse((directory / "inputs.txt").read_text(encoding="utf-8")).body
+    outputs = ast.parse((directory / "outputs.txt").read_text(encoding="utf-8")).body
+    if (len(inputs) != len(outputs) or len(inputs) not in (1, len(previous_rounds) + 1)
+            or any(not isinstance(item, ast.Expr) for item in [*inputs, *outputs])):
+        raise ValueError("Expected matching single-round or complete cumulative attachment lists.")
+    returned = []
+    for input_list, output_list in zip(inputs, outputs):
+        points = read_input_list(input_list.value)
+        values = np.asarray(ast.literal_eval(output_list.value), dtype=float)
+        if values.shape != (8,) or not np.isfinite(values).all():
+            raise ValueError("Expected eight finite scalar outputs.")
+        returned.append((points, values))
+    if len(returned) > 1:
+        for (points, values), (old_points, old_values) in zip(returned[:-1], previous_rounds):
+            if (any(not np.array_equal(point, old) for point, old in zip(points, old_points))
+                    or not np.array_equal(values, old_values)):
+                raise ValueError("Cumulative attachments disagree with previously confirmed rounds.")
+    points, outputs = returned[-1]
     body = (directory / "email-body.txt").read_text(encoding="utf-8")
     input_lines = re.findall(r"^Function (\d+): (\[.*\])$", body, re.MULTILINE)
     output_lines = re.findall(r"^Function (\d+): ([-+0-9.eE]+)$", body, re.MULTILINE)
@@ -57,15 +76,24 @@ def import_round(stage, round_number):
     directories = sorted(rounds_root.glob("round-[0-9][0-9]"))
     if [p.name for p in directories] != [f"round-{n:02d}" for n in range(1, round_number + 1)]:
         raise ValueError("Import the latest round with a complete consecutive source history.")
-    rounds = [read_return(directory) for directory in directories]
+    rounds = []
+    for directory in directories:
+        rounds.append(read_return(directory, rounds))
     source = json.loads((directories[-1] / "source.json").read_text(encoding="utf-8"))
     if source["round"] != round_number:
         raise ValueError("Source metadata round does not match.")
     proposals_path = stage / "submissions" / f"round-{round_number:02d}-proposals.json"
-    proposals = json.loads(proposals_path.read_text(encoding="utf-8"))
-    if proposals["round"] != round_number or sorted(p["function"] for p in proposals["proposals"]) != list(range(1, 9)):
-        raise ValueError("Expected one proposal per function for this round.")
-    proposed = {p["function"]: p for p in proposals["proposals"]}
+    if proposals_path.exists():
+        proposals = json.loads(proposals_path.read_text(encoding="utf-8"))
+        if proposals["round"] != round_number or sorted(p["function"] for p in proposals["proposals"]) != list(range(1, 9)):
+            raise ValueError("Expected one proposal per function for this round.")
+        proposed = {p["function"]: p for p in proposals["proposals"]}
+    else:
+        proposals_path = stage / "submissions" / f"Week_{round_number:02d}" / "submissions.txt"
+        lines = proposals_path.read_text(encoding="utf-8").splitlines()
+        if len(lines) != 8:
+            raise ValueError("Expected eight portal input lines in function order.")
+        proposed = {number: {"portal_input": line} for number, line in enumerate(lines, 1)}
     prepared, results, source_hashes = [], [], {}
     # Validate every function before writing any derived dataset.
     for function, dimensions in enumerate(DIMENSIONS, 1):
@@ -109,6 +137,7 @@ def import_round(stage, round_number):
     record = {"round": round_number, "status": "evaluation_confirmed_by_results_email",
               "received_utc": source["received_utc"], "received_local": source["received_local"],
               "source_commit_at_intake": source["source_commit"],
+              "proposals_source": proposals_path.relative_to(stage).as_posix(),
               "proposals_sha256": sha256(proposals_path), "source_sha256": source_hashes,
               "results": results}
     for function, x, y, text in prepared:

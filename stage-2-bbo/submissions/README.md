@@ -2,15 +2,32 @@
 
 ## Copy-and-paste portal inputs
 
-[Week 2](Week_02/submissions.txt) contains the eight current recommendations.
+[Week 3](Week_03/submissions.txt) contains the eight approved Week 3 inputs,
+ready for manual submission.
+
+[Week 2](Week_02/submissions.txt) contains the eight evaluated Week 2 inputs.
 Each line contains only the portal input, ordered from Function 1 to Function 8.
-The file records proposals, not confirmed evaluations.
+The file preserves the submitted proposals; the separate results record below
+confirms their evaluation.
 
 [Week 1](Week_01/submissions.txt) provides the same plain-text layout for the
 eight previously evaluated inputs. The original JSON files remain available
 as historical records of the proposals, evidence and returned results.
 
 ## Latest confirmed evaluation
+
+The Week 2 results email arrived on **8 October 2026 at 18:42 BST**.
+[`round-02-results.json`](round-02-results.json) records all eight returned
+points and values, before/after incumbents, source hashes and proposal matches.
+All eight inputs match `Week_02/submissions.txt`. Functions 4, 5 and 7 improved
+their incumbents. The cumulative attachments agree exactly with the retained
+Week 1 return; only one new observation per function was added.
+
+The Week 3 consolidated snapshots are described in the
+[data notes](../data/README.md#week-3-notebook-snapshots).
+The precise submission time was not supplied by the results email.
+
+## Previous evaluation: Week 1
 
 The Week 1 results email arrived on **5 October 2026 at 00:38 BST**.
 [`round-01-results.json`](round-01-results.json) records all eight returned
