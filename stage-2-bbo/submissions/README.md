@@ -10,6 +10,11 @@ Each line contains only the portal input, ordered from Function 1 to Function 8.
 The file preserves the submitted proposals; the separate results record below
 confirms their evaluation.
 
+Week 2 submission was confirmed on **8 October 2026**; the exact portal
+submission timestamp was not recorded. Its model notebooks retain their
+pre-submission wording; this log records the later evaluation status.
+Week 3 submission has not yet been confirmed.
+
 [Week 1](Week_01/submissions.txt) provides the same plain-text layout for the
 eight previously evaluated inputs. The original JSON files remain available
 as historical records of the proposals, evidence and returned results.
@@ -45,8 +50,9 @@ See the [Function 1 review](../results/function-1-round-01-analysis.md) and
 
 [`round-01-proposals.json`](round-01-proposals.json) records the eight first-query
 proposals, their rationale and computational evidence. It is explicitly marked
-as unsubmitted and records source hashes because the analysis changes are not
-committed. No returned observations are invented or implied.
+as unsubmitted and records source hashes because the analysis changes were not
+committed when that snapshot was generated. The separate results record confirms
+the subsequent evaluation; the snapshot's status is historical.
 
 For each round, record:
 

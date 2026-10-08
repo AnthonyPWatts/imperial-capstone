@@ -1,15 +1,20 @@
 # Notebooks
 
-## Week 3 data
+## Current work: Week 3
 
 Each `Function_N/Week_03/` folder contains a consolidated `observations.csv`
-with all initial observations and the two confirmed weekly returns, ready for
-new notebooks. Row counts for Functions 1–8 are 12, 12, 17, 32, 22, 22, 32 and 42
+with all initial observations and the two confirmed weekly returns. Row counts for Functions 1–8 are 12, 12, 17, 32, 22, 22, 32 and 42
 (191 total). The schema remains `observation_id,source_round,x1,...,y`.
 
 These are independent snapshots of the accumulated data as of 8 October 2026.
 See the [data notes](../data/README.md#week-3-notebook-snapshots) for provenance
 and verification. Earlier weekly snapshots and notebooks remain unchanged.
+
+Exploration notebooks are approved for all eight functions. Functions 1–3
+continue their saved shortlists; Functions 4–8 also have approved
+`model_predictions.ipynb` notebooks. The [Week 3 inputs](../submissions/Week_03/submissions.txt)
+are ready for manual submission. Run each notebook with its own week
+directory as the working directory and its local CSV beside it.
 
 ## Weekly output review convention
 
@@ -23,6 +28,32 @@ When discussing percentages, distinguish earlier observations strictly below
 the new value from the chart's share of all observations at or below it,
 including the new result. Keep the next-query commentary brief and grounded in
 the result; reuse the saved shortlist unless the evidence justifies changing it.
+
+## Previous work: Week 2
+
+`Function_N/Week_02/exploration.ipynb` exists for all eight functions. Each
+reviews the round 1 return and compares geometric coverage batches using shared
+helpers in `Shared/`. Functions 1–3 selected the first points of four-, three-
+and three-point batches respectively for Week 2.
+
+Functions 4–8 also contain `Week_02/model_predictions.ipynb`. These compare
+regression models with leave-one-out validation and select one next input using
+a Gaussian-process upper confidence bound. The saved outputs document model
+errors, candidate comparisons and limitations. The
+[Stage 2 README](../README.md#week-2-approach-and-submitted-inputs) summarises the
+Week 2 methods; the [submission log](../submissions/README.md) now records
+its confirmed results.
+
+Run each Week 2 notebook with its own directory as the working directory and
+its local `observations.csv` beside it. These CSV files are ignored by Git;
+populate them from the matching accumulated dataset described in
+[the data notes](../data/README.md). For the round 1 state, the versioned
+`Week2_Notebooks/function_N/observations.csv` files provide the same rows.
+Coverage caches are local and keyed to their data, search code and settings.
+The separate `Week2_Notebooks/` folder contains earlier practice notebooks and
+independent data snapshots, which are not updated automatically.
+
+The sections below describe the historical Week 1 studies.
 
 ## Function 1 exploration
 
@@ -172,10 +203,14 @@ To compute all remaining risk studies before rendering, use:
 Numerical results are reused only when the supplied data and numerical source
 fingerprints match. Changed report prose or plotting code does not repeat the
 expensive calculations. Reading copies and executed notebooks remain under
-`.runtime/`; source notebooks retain no outputs. The final local review page
-links all sixteen exploration/risk reports and includes the eight portal strings.
+`.runtime/`; these Week 1 source notebooks retain no outputs. The final local
+review page links all sixteen exploration/risk reports and includes the eight
+portal strings.
 
-## Later notebook sequence
+## Originally planned later notebook sequence
+
+These filenames are a plan, not existing notebooks. Current weekly analyses
+use the `Function_N/Week_XX/` layout described above.
 
 2. `02-gaussian-process-baseline.ipynb`
 3. `03-acquisition-comparison.ipynb`
