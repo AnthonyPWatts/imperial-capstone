@@ -143,7 +143,7 @@ It does not replace the formal split and evaluation sequence below.
 32. [`33-recording-time-features.ipynb`](33-recording-time-features.ipynb):
     one fixed recording year, month and year-month policy beside elapsed days,
     with accepted XGBoost and Random Forest refits.
-33. [`34-identity-frequencies.ipynb`](34-identity-frequencies.ipynb): six
+33. [`34-identity-occurrence-frequencies.ipynb`](34-identity-occurrence-frequencies.ipynb): six
     fold-fitted deferred-identity occurrence counts beside accepted features.
 34. [`35-pump-age-cohorts.ipynb`](35-pump-age-cohorts.ipynb): one fixed
     categorical age cohort tested across all promoted components.

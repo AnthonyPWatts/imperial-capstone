@@ -1,20 +1,27 @@
 # Notebooks
 
-## Current work: Week 3
+## Current work: Week 3 submitted; awaiting results
 
-Each `Function_N/Week_03/` folder contains a consolidated `observations.csv`
-with all initial observations and the two confirmed weekly returns. Row counts for Functions 1–8 are 12, 12, 17, 32, 22, 22, 32 and 42
+Each `Function_N/Week_03/` notebook expects a local `observations.csv`
+with all initial observations and the two confirmed weekly returns. Expected
+row counts for Functions 1–8 are 12, 12, 17, 32, 22, 22, 32 and 42
 (191 total). The schema remains `observation_id,source_round,x1,...,y`.
 
 These are independent snapshots of the accumulated data as of 8 October 2026.
+They are Git-ignored and are not supplied by a fresh checkout. Follow the
+[recovery instructions](../data/README.md#recovering-earlier-snapshots) before
+running the notebooks on a new machine.
 See the [data notes](../data/README.md#week-3-notebook-snapshots) for provenance
 and verification. Earlier weekly snapshots and notebooks remain unchanged.
 
 Exploration notebooks are approved for all eight functions. Functions 1–3
 continue their saved shortlists; Functions 4–8 also have approved
 `model_predictions.ipynb` notebooks. The [Week 3 inputs](../submissions/Week_03/submissions.txt)
-are ready for manual submission. Run each notebook with its own week
-directory as the working directory and its local CSV beside it.
+have been submitted, with confirmation recorded on 12 October 2026 in the
+[submission log](../submissions/README.md). The notebooks preserve the
+pre-submission analysis; Week 3 results have not yet been recorded. Run each
+notebook with its own week directory as the working directory and its local
+CSV beside it.
 
 ## Weekly output review convention
 
@@ -46,12 +53,12 @@ its confirmed results.
 
 Run each Week 2 notebook with its own directory as the working directory and
 its local `observations.csv` beside it. These CSV files are ignored by Git;
-populate them from the matching accumulated dataset described in
-[the data notes](../data/README.md). For the round 1 state, the versioned
-`Week2_Notebooks/function_N/observations.csv` files provide the same rows.
+populate them with observations through round 1 only, as described in
+[the data notes](../data/README.md#recovering-earlier-snapshots). The expected
+row counts are 11, 11, 16, 31, 21, 21, 31 and 41 (183 total).
 Coverage caches are local and keyed to their data, search code and settings.
-The separate `Week2_Notebooks/` folder contains earlier practice notebooks and
-independent data snapshots, which are not updated automatically.
+The superseded practice notebooks are retained in Git history; the
+function/week folders and shared helpers are the maintained workflow.
 
 The sections below describe the historical Week 1 studies.
 
@@ -84,8 +91,8 @@ directory. The HTML hides code and embeds the charts, so it can be opened on
 another computer without Python or the repository. The source notebook has no
 saved outputs; the full supplied data remain local.
 
-This notebook's prose describes Function 1 specifically. Later functions will
-have their own descriptive notebooks and can reuse the plotting helpers. With
+This notebook's prose describes Function 1 specifically. The other functions
+have their own descriptive notebooks and reuse the plotting helpers. With
 eight inputs there are 28 distinct pairs. Pairwise gap maps describe projected
 coverage, not coverage of the full eight-dimensional space.
 

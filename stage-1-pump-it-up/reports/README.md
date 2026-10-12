@@ -1,5 +1,12 @@
 # Reports
 
+These reports preserve the evidence and decisions at each experiment's
+checkpoint. Earlier references to the incumbent or the next experiment are
+historical. For the latest recorded position, see the
+[Stage 1 README](../README.md) and the
+[6 September native-category follow-up](native-category-followup.md), which
+retained the `0.8304` public best without a new submission.
+
 The fresh exact-ensemble reconstruction, locked gates and fixed three-candidate
 exploratory submission slate are in
 [`fresh-ensemble-reconstruction-and-submission-slate.md`](fresh-ensemble-reconstruction-and-submission-slate.md).
@@ -8,7 +15,7 @@ The fresh full-label diagnosis of validation transfer, population shift and
 the failed row-level repair overrides is in
 [`generalisation-diagnosis.md`](generalisation-diagnosis.md).
 
-The current structural data-preparation decisions and implementation handoff are
+The structural data-preparation decisions and historical implementation handoff are
 in [`data-preparation-next-steps.md`](data-preparation-next-steps.md).
 
 The target's source history, collection-time meaning and competing nominal,
@@ -211,8 +218,8 @@ The all-categorical occurrence-support cross with top-common identities in
 archived deep XGBoost and its fixed archive substitution are in
 [`deep-occurrence-xgboost-screen.md`](deep-occurrence-xgboost-screen.md).
 
-The final evidence audit, leaderboard outcome and reason for ending adaptive
-model selection are in [`model-search-conclusion.md`](model-search-conclusion.md).
+The 23 August evidence audit, leaderboard outcome and stopping decision are in
+[`model-search-conclusion.md`](model-search-conclusion.md).
 
 The subsequent explicit reopening, unchanged depth-17 XGBoost local
 confirmation and final-slot candidate are in
@@ -227,10 +234,10 @@ The leakage-safe history and identity rules that selectively recover
 `functional needs repair` decisions from the final ensemble are in
 [`repair-rule-ensemble-screen.md`](repair-rule-ensemble-screen.md).
 
-The publication-quality, course-aligned account of the complete model journey,
-including the iterative lifecycle, evidence charts, final ensemble and methods
-beyond the core course treatment, is in the
+The historical research article covering the model journey through the
+23 August `0.8298` result is in the
 [`publication/` report](publication/pump-it-up-model-development-report.docx).
+It was revised on 28 August and does not include the September follow-ups.
 
 Submission configurations and public scores are recorded in the
 [`submissions/` log](../submissions/README.md). Keep this directory for findings

@@ -1,5 +1,10 @@
 # Function 1: planning two or three coverage points
 
+Historical pre-evaluation study using the ten initial observations. The
+single-point proposal was subsequently evaluated in round 1; see the
+[first returned result](function-1-round-01-analysis.md). The plans and
+submission wording below describe the original study.
+
 The [batch-coverage notebook](../notebooks/Function_1/Week_01/01b-function-1-batch-coverage.ipynb)
 extends the one-point analysis. All ten original locations remain fixed. The
 objective is mean distance to the nearest original or proposed sample, uniformly

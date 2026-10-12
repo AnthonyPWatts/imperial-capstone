@@ -133,9 +133,11 @@ run. One of the 13 planned rounds is complete; 12 remain.
 
 ## Local figures and reproduction
 
-- [Returned location and original-data predictions](../../.runtime/function-2-round-01/result-and-predictions.png)
-- [Local-model means before and after, with shared axes and colour scale](../../.runtime/function-2-round-01/local-model-before-after.png)
-- [Numerical results, runtime versions and source/figure hashes](../../.runtime/function-2-round-01/analysis.json)
+Generated under `.runtime/function-2-round-01/` at the capstone root:
+
+- `result-and-predictions.png` — returned location and original-data predictions.
+- `local-model-before-after.png` — local-model means before and after, with shared axes and colour scale.
+- `analysis.json` — numerical results, runtime versions and source/figure hashes.
 
 The surface plots show one fitted model, not the unknown function. Their
 background reversion towards the sample mean is a modelling assumption. Figures
@@ -152,7 +154,7 @@ arrays. The new row's leave-one-out forecasts match fits on the initial data;
 data and source hashes match the preserved records. Candidate bounds, precision
 and non-duplication were checked, both figures were visually inspected, and
 `git diff --check` passed. The local
-[verification record](../../.runtime/function-2-round-01/verification.json)
+`.runtime/function-2-round-01/verification.json`
 records these checks. The updated twelve-round policy, actual noise level and
 global optimum remain unverified.
 

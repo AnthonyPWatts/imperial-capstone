@@ -91,12 +91,19 @@ so it cannot attach current source hashes to stale results. Report manifests
 conservatively cover all Stage 2 helpers; edits may require rendering reports
 again, while unchanged numerical studies can still use their separate caches.
 
-Later components will cover:
+## Weekly workflow
 
-- one surrogate model per function;
-- acquisition-function evaluation;
-- candidate optimisation and duplicate avoidance;
-- portal-format validation;
-- progress plots and summary tables.
+The helpers above support the historical Week 1 studies. The
+[weekly notebooks](../notebooks/README.md) now also contain geometric query
+selection for Functions 1–3 and regression comparisons with Gaussian-process
+UCB selection for Functions 4–8. Shared plotting, coverage, cache, output-review
+and query-budget helpers live in [`notebooks/Shared/`](../notebooks/Shared/).
+
+[`import_round_results.py`](../scripts/import_round_results.py) validates
+returned dimensions, bounds, portal precision and proposal matches, reconciles
+cumulative feedback, and rebuilds the accumulated observations. See the
+[data notes](../data/README.md) for the import process and snapshot conventions.
+The [final documentation plan](../docs/README.md) retains the outstanding
+cross-round progress plots and project-wide summaries.
 
 Prefer a small, testable implementation over a general optimisation framework.

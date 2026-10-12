@@ -33,7 +33,8 @@ keep appending columns; add detailed information to the compact panels below.
 
 The page loads headline values from `../../project-status.json` through GitHub
 Pages or the local server. The dashboard uses matching HTML values if the
-status request fails. The current snapshot is dated 5 September 2026:
+status request fails. The latest Stage 1 snapshot is dated 6 September 2026;
+its best public result was observed on 5 September:
 
 | Metric | Current value |
 | --- | ---: |
@@ -46,7 +47,12 @@ status request fails. The current snapshot is dated 5 September 2026:
 | Achieved provisional target | ~~0.8225~~ |
 | Stretch target score | 0.8260 |
 | Chart ceiling | 0.8500 |
-| Daily submissions used | 3 / 3 UTC |
+| Daily submissions used at the 6 September snapshot | 0 / 3 UTC |
+
+The 6 September native-category follow-up retained the `0.8304` incumbent.
+No candidate passed both fixed validation guards and no new submission was
+made. The daily usage value belongs to that dated snapshot; it is not a live
+counter. See the [follow-up report](../reports/native-category-followup.md).
 
 The model search is complete. Fresh all-label reconstruction admitted a fixed
 three-entry exploratory slate before competition predictions were made. The
@@ -124,8 +130,7 @@ Formal comparison now covers eleven single-model families. Random Forest remains
 the strongest family from the earlier broad comparison at 80.59%; the new
 XGBoost screen supplies the better ensemble component. The leading XGBoost and
 Random Forest vote reaches 81.625% on the frozen development folds, including
-34.859% repair recall. The earlier forest and histogram-boosting vote remains
-the last workflow assessed on the one-time local test, where it recorded 80.82%
+34.859% repair recall. The earlier forest and histogram-boosting vote recorded 80.82%
 accuracy, 32.10% repair recall and 77.81% non-functional recall. Eleven
 single-model families and ten ensemble workflows raise the **Models evaluated**
 counter to twenty-one. The seven ANN configurations and 84 no-refit blends are
@@ -213,8 +218,9 @@ detailed experiments elsewhere.
 - **DrivenData submissions:** lifetime submissions made for this project.
 - **Best score:** highest recorded DrivenData leaderboard score, not the local
   validation score.
-- **Used today:** submissions made during the current UTC day, out of the
-  competition limit of three. Reset this value when the UTC date changes.
+- **Used on snapshot date:** submissions made during the snapshot's UTC day,
+  out of the competition limit of three. Update usage and the snapshot date
+  together; the static page does not reset the counter automatically.
 
 ### Daily best score chart
 

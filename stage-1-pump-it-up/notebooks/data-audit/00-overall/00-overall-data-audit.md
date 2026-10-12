@@ -1,5 +1,5 @@
 ---
-status: current
+status: historical-audit
 updated: 2026-08-20
 scope: supplied Pump It Up training and test data
 ---
@@ -7,6 +7,11 @@ scope: supplied Pump It Up training and test data
 # Pump It Up data audit: findings and modelling decisions
 
 This report records the conclusions from the raw-data audit before model building. The predictor notebooks hold the executable evidence; this document explains what that evidence means for preparation, validation and the first baseline.
+
+This is the **20 August 2026** audit checkpoint. Later modelling decisions and
+results are recorded in the [Stage 1 README](../../../README.md) and
+[report index](../../../reports/README.md); provisional treatments below
+describe the position before those experiments.
 
 The three structural removals are settled for the supplied schema. All other feature treatments remain provisional until they earn their place on a frozen training and validation split.
 

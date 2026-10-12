@@ -13,21 +13,23 @@ and explaining decisions through reproducible code and evidence.
 Browse the [Stage 2 workspace](https://anthonypwatts.github.io/imperial-capstone/stage-2-bbo/)
 or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
 
-## Current status: 8 October 2026
+## Current status: 12 October 2026
 
-Round 2 is the latest confirmed evaluation. All Week 3 notebooks and
-[eight proposed inputs](submissions/Week_03/submissions.txt) are approved
-and ready for manual submission. Week 3 submission has not yet been
-confirmed. The [submission log](submissions/README.md) distinguishes
-approved inputs from evaluated results.
+The [eight Week 3 inputs](submissions/Week_03/submissions.txt) have been
+submitted; confirmation was recorded on 12 October 2026. The exact portal
+submission timestamp was not supplied. Week 3 results have not yet been
+recorded, so round 2 remains the latest confirmed evaluation. The
+[submission log](submissions/README.md) distinguishes submitted inputs from
+evaluated results.
 
 ## Latest results: round 2
 
 The Week 2 results email arrived on **8 October 2026 at 18:42 BST**. All eight
-returned inputs match the saved Week 2 submissions. The accumulated datasets
-contain **191 observations**, with consolidated CSV snapshots in each
-`notebooks/Function_N/Week_03/` folder. Initial data and earlier notebooks remain
-unchanged.
+returned inputs match the saved Week 2 submissions. The results record covers
+**191 observations**. The Week 3 notebooks use a consolidated CSV snapshot of
+that round beside each notebook. These local files are Git-ignored and must be
+restored or rebuilt on a fresh checkout; see the [data notes](data/README.md).
+Initial observations and earlier analyses are preserved.
 
 Functions 4, 5 and 7 improved their incumbents. Function 5 returned
 `8662.405001248297`, up from its previous best of `3933.145723875986`.
@@ -39,7 +41,8 @@ and [Week 3 data notes](data/README.md#week-3-notebook-snapshots).
 
 The first results email arrived on **5 October 2026 at 00:38 BST**. All eight
 returned inputs match the saved proposals. The recorded dataset then contained
-**183 observations**, retained in the versioned [working snapshots](Week2_Notebooks/).
+**183 observations**. Those historical snapshots are recoverable from Git;
+see [recovering earlier snapshots](data/README.md#recovering-earlier-snapshots).
 The round 1 import record documents preservation of the original 175 observations.
 
 Functions **4, 5, 6 and 7** improved their best observed values. The other four
@@ -112,8 +115,8 @@ pairs and predicts responses; a Gaussian process also estimates uncertainty.
 The query-selection rule uses that information to choose the next input.
 
 The budget is 13 additional evaluations per function, or 104 across all eight.
-After round 2, 11 evaluations remain per function: the approved Week 3 query
-and 10 subsequent query opportunities.
+After round 2, 11 evaluations remain unevaluated per function: the submitted
+Week 3 query awaiting its result and 10 subsequent query opportunities.
 Weekly feedback limits adaptation. Sparse observations, unknown function
 structure and possible noise limit what can be inferred; the true global
 maxima are unavailable for checking. Progress is measured by best observed
@@ -169,13 +172,15 @@ Likewise, GP uncertainty and acquisition scores depend on the fitted kernel,
 assumed noise and searched candidates. The notebooks examine these assumptions;
 no proposal guarantees improvement or identifies a proven global maximum.
 
-## Week 3 approved inputs
+## Week 3 submitted inputs
 
 The [Week 3 portal inputs](submissions/Week_03/submissions.txt) follow the
 approved notebooks. Functions 1–3 continue their saved exploration batches
 with the next shortlisted point. Functions 4–8 use their updated model
 predictions and GP UCB recommendations. The round 2 results did not justify
-changing these approaches. Submission remains a separate manual step.
+changing these approaches. Submission is now confirmed in the
+[submission log](submissions/README.md); the saved notebooks retain their
+pre-submission wording as the record of how the inputs were selected.
 
 ## Working strategy: the taper
 
@@ -265,14 +270,13 @@ does not imply equal confidence across functions.
 
 Follow the [repository environment setup](../README.md#modelling-environment)
 and provide the authorised course data described in [the data notes](data/README.md).
-Week 1 analyses use the preserved initial arrays. Week 2 notebooks load
+Week 1 analyses use the preserved initial arrays. Week 2 and Week 3 notebooks load
 `observations.csv` beside each notebook, with that function/week directory as
 the kernel's working directory. These weekly CSV files are Git-ignored; populate
-them from the corresponding accumulated dataset before running a fresh checkout.
-For the round 1 state, the versioned `Week2_Notebooks/function_N/observations.csv`
-snapshots also provide these rows. Copy the matching function's CSV into its
-`notebooks/Function_N/Week_02/` folder. These snapshots are not updated
-automatically; check their recorded rounds before using them for later weeks.
+them with the matching historical round before running a fresh checkout:
+Week 2 uses observations through round 1; Week 3 uses observations through round 2.
+See the [recovery instructions](data/README.md#recovering-earlier-snapshots).
+Snapshots are not updated automatically when later results arrive.
 
 The commands below describe the historical first-query reports. From the
 repository root, use the full `stage-2-bbo/scripts/` path to each script.
@@ -302,7 +306,6 @@ do not relabel their results with current source hashes.
 | `data/` | Locally supplied input and output arrays; ignored by Git |
 | `notebooks/` | Exploration, surrogate modelling and acquisition experiments |
 | `notebooks/Shared/` | Weekly plotting, coverage-search, cache and query-budget helpers |
-| [`Week2_Notebooks/`](Week2_Notebooks/) | Function-by-function practice notebooks and independent working data snapshots |
 | `index.html`, `styles.css` | Static Stage 2 web workspace and its styling |
 | `src/` | Reusable BBO code |
 | `results/` | Observation and experiment logs safe to publish |

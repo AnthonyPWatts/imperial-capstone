@@ -29,6 +29,8 @@
 
 ## Distribution and maintenance
 
-The source arrays are course-restricted and are not distributed in this
-repository. [Describe how authorised users can obtain them and how this
-datasheet will be updated.]
+The source arrays are course-restricted and are not tracked in the current
+revision. Historical snapshots remain in Git history; see the
+[data handling and recovery notes](../data/README.md#recovering-earlier-snapshots).
+[Describe how authorised users can obtain the original course files and how
+this datasheet will be updated.]

@@ -1,6 +1,9 @@
 # Module 12 intake and submission rules
 
-Verified against the course on **24 September 2026**. The initial observations are available locally; modelling and submissions have not started as part of this collection.
+Historical intake notes, verified against the course on **24 September 2026**.
+The initial observations were collected at that point; modelling and submissions
+had not yet started. For subsequent progress, see the
+[current Stage 2 status](../README.md) and [submission log](../submissions/README.md).
 
 ## Submission frequency
 

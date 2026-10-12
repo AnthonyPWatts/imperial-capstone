@@ -29,11 +29,14 @@ than a fresh confirmation.
 
 ## Files
 
-1. [`01-source-plus-class.csv`](../2026-08-22-physical-hierarchies/01-source-plus-class.csv)
+These prediction CSVs are local, Git-ignored artefacts. Paths below are relative
+to this directory; the tracked manifest retains their selection evidence.
+
+1. `../2026-08-22-physical-hierarchies/01-source-plus-class.csv`
    - SHA-256: `95569ad19bec46c94089207db06d4bb240fc27c3ccb40d308aff39535ecdbbf8`
-2. [`03-waterpoint-xgb-source-rf.csv`](../2026-08-22-physical-hierarchies/03-waterpoint-xgb-source-rf.csv)
+2. `../2026-08-22-physical-hierarchies/03-waterpoint-xgb-source-rf.csv`
    - SHA-256: `7457d578fbe59e46cabbe3de2b3bd92590829b4077180548e959ea354e32ced3`
-3. [`03-60-xgboost-depth-6-7-8-local-bag-40-random-forest-oversampled.csv`](../2026-08-21-oversampled-replay-250x/03-60-xgboost-depth-6-7-8-local-bag-40-random-forest-oversampled.csv)
+3. `../2026-08-21-oversampled-replay-250x/03-60-xgboost-depth-6-7-8-local-bag-40-random-forest-oversampled.csv`
    - SHA-256: `7f113c60c272db2e08ed12f9051637f6b448790af5359f85fa0857bfcc17a53f`
 
 All three were independently reloaded and checked for exactly 14,850 unique

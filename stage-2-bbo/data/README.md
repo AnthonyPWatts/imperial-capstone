@@ -3,9 +3,16 @@
 The initial input and output `.npy` files were collected on 24 September 2026.
 They are ignored by Git because access is course-restricted.
 
-The original `Initial_data_points_starter.zip` is retained unchanged. Extracted
-files are under `initial_data/function_1/` through `initial_data/function_8/`,
-each containing `initial_inputs.npy` and `initial_outputs.npy`. Keep these
+The layout and verification results below describe the local intake and
+analysis records. A fresh checkout does not contain the starter archive,
+source feedback, accumulated arrays or weekly CSVs. Restore authorised local
+files or use the [historical recovery route](#recovering-earlier-snapshots)
+before running the analyses.
+
+The original `Initial_data_points_starter.zip` was retained unchanged at intake.
+Restore its extracted files under `initial_data/function_1/` through
+`initial_data/function_8/`, each containing `initial_inputs.npy` and
+`initial_outputs.npy`. Keep these
 original observations unchanged and store later accumulated observations separately.
 
 Verified starting shapes:
@@ -35,7 +42,9 @@ The Week 2 return was imported on **8 October 2026**, giving **191 observations*
 12, 12, 17, 32, 22, 22, 32 and 42 rows for Functions 1–8 respectively.
 This includes the Week 1 return imported on 5 October and one new observation
 per function from Week 2.
-The original 175 rows and starter archive remain unchanged.
+The import preserved the original 175 rows and starter archive.
+
+On a machine holding the complete intake, the local layout is:
 
 - `rounds/round-01/` retains complete decoded `inputs.txt` and `outputs.txt`
   attachment text, the plain email body and source metadata. Attachment text
@@ -71,10 +80,14 @@ Both raw and accumulated observations remain course-restricted and Git-ignored.
 ## Week 3 notebook snapshots
 
 `notebooks/Function_1/Week_03/observations.csv` through
-`notebooks/Function_8/Week_03/observations.csv` are independent copies of the
-round 2 accumulated CSVs, ready for Week 3 notebooks. Each retains the existing
+`notebooks/Function_8/Week_03/observations.csv` hold independent copies of the
+round 2 accumulated CSVs used by the Week 3 notebooks. Each retains the existing
 `observation_id,source_round,x1,...,y` schema, with initial observations followed
 by `round-01` and `round-02`. Values retain their full float64 precision.
+
+Week 3 submission is confirmed in the [submission log](../submissions/README.md),
+but its returned observations have not yet been recorded. These snapshots
+therefore still contain 191 observations in total, not three evaluated rounds.
 
 These snapshots are Git-ignored and remain fixed when later rounds are imported.
 The local `import-verification-2026-10-08.json` records their hashes, row counts,
@@ -82,8 +95,56 @@ exact CSV/NumPy agreement and preservation checks. All eight returned inputs
 match the saved Week 2 submission lines; repeated imports produce identical
 files. The Week 2 snapshots and existing notebooks remain unchanged.
 
-A historical round 1 working snapshot of all eight datasets is retained in
-[`Week2_Notebooks/`](../Week2_Notebooks/), alongside the function-specific practice notebooks.
-Those copies are separate files, not links, and are not updated automatically
-when new rounds are imported. The canonical source and accumulated directories
-described above remain Git-ignored.
+## Recovering earlier snapshots
+
+The superseded `stage-2-bbo/Week2_Notebooks/` directory was removed from the
+current tree after its analyses were rehomed under `notebooks/Function_N/Week_NN/`.
+Commit `ef9494d2b58b71cd2c16d7f9d92a0608d4f70ed8` retains its three practice
+notebooks and round 1 datasets for all eight functions. No additional archive
+is needed. This cleanup does not remove those files from Git history.
+
+To recover the eight Week 2 CSVs locally, run the following from the capstone
+repository root in PowerShell. It requires that historical commit to be
+available and refuses to overwrite an existing weekly CSV:
+
+```powershell
+@'
+from pathlib import Path
+import subprocess
+
+snapshot = "ef9494d2b58b71cd2c16d7f9d92a0608d4f70ed8"
+targets = [Path(f"stage-2-bbo/notebooks/Function_{n}/Week_02/observations.csv")
+           for n in range(1, 9)]
+if any(path.exists() for path in targets):
+    raise SystemExit("A Week 2 CSV already exists; inspect it before restoring.")
+payloads = [subprocess.check_output([
+    "git", "show", f"{snapshot}:stage-2-bbo/Week2_Notebooks/function_{n}/observations.csv"
+]) for n in range(1, 9)]
+for path, payload in zip(targets, payloads):
+    with path.open("xb") as output:
+        output.write(payload)
+'@ | python -
+```
+
+The restored CSVs contain **183 observations**: 11, 11, 16, 31, 21, 21, 31
+and 41 rows for Functions 1–8. They match the historical NumPy arrays exactly
+when parsed as float64. `source_round` is numeric: 0 for the initial rows and
+1 for the first returned observation.
+
+For Week 3, create separate CSVs from those snapshots and append the matching
+function's `point` and `output` from
+[`round-02-results.json`](../submissions/round-02-results.json), with
+`observation_id` set to `round-02` and `source_round` to 2. Preserve coordinate
+order and full float64 precision. The resulting counts must be 12, 12, 17, 32,
+22, 22, 32 and 42 (**191 total**). Leave the Week 2 snapshots unchanged.
+
+The 175 initial rows can also be recovered by selecting `source_round == 0`.
+The historical `inputs.npy` and `outputs.npy` files contain the same rows plus
+round 1; removing their final row reconstructs all sixteen original arrays.
+Their reconstructed hashes were verified against the intake hashes retained
+in [`round-01-results.json`](../submissions/round-01-results.json).
+
+This recovers the numerical observations, not the original email bodies or
+attachments. The normal import script still requires the complete local source
+history described above; it does not retrieve files from Git automatically.
+All recovered working files should remain in the ignored data or weekly CSV paths.

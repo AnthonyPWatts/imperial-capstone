@@ -6,6 +6,10 @@ updated: 2026-08-22
 
 # Stage 1 data preparation: decisions and next steps
 
+Historical handoff as of **22 August 2026**. The actions below describe that
+checkpoint. Subsequent experiments and the current stopping decision are
+recorded in the [report index](README.md) and [Stage 1 README](../README.md).
+
 ## Working on
 
 Continue bounded data-focused feature-family loops with the accepted 55%

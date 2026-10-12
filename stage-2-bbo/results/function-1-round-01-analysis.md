@@ -47,10 +47,11 @@ reduction. The achieved coverage agrees with the original calculation. This
 is a reduction in sampling gaps, not a measured gain in predictive accuracy
 or a probability of finding the optimum.
 
-Local figures, reproduced by the command below:
+Local figures, reproduced by the command below under
+`.runtime/function-1-round-01/` at the capstone root (not distributed in Git):
 
-- [Locations and signed output magnitudes](../../.runtime/function-1-round-01/result-and-scale.png)
-- [Coverage before and after, using shared axes and colour limits](../../.runtime/function-1-round-01/coverage-before-after.png)
+- `result-and-scale.png` — locations and signed output magnitudes.
+- `coverage-before-after.png` — coverage before and after, using shared axes and colour limits.
 
 These figures stay local with the restricted observations. In the magnitude
 plot, a large negative magnitude remains a poor output; output rank 1 is best.
@@ -124,8 +125,13 @@ One of the 13 planned query rounds has now been evaluated; 12 remain.
 
 From the capstone repository root, using its existing environment:
 
+First populate the accumulated observations using the latest-round import
+command in the [data notes](../data/README.md#accumulated-observations-round-2).
+The analysis reconstructs round 1 from the initial arrays and retained first
+return, then checks that snapshot against the accumulated data's prefix.
+Later returns therefore do not enter this historical comparison.
+
 ```powershell
-.venv/Scripts/python.exe stage-2-bbo/scripts/import_round_results.py --round 1
 .venv/Scripts/python.exe stage-2-bbo/scripts/analyse_function_1_round_01.py
 .venv/Scripts/python.exe -m unittest discover -s stage-2-bbo/tests -p test_round_results.py -v
 ```
@@ -136,7 +142,7 @@ All 16 initial-array hashes and the starter ZIP hash match the September intake
 manifest. CSV values round-trip exactly to the NumPy arrays for all eight
 functions; a second import produces byte-identical datasets and results records.
 `git diff --check` passed. The local
-[intake verification](../../.runtime/function-1-round-01/intake-verification.json)
+`.runtime/function-1-round-01/intake-verification.json`
 records the data checks.
 
 The import rebuilds all eight accumulated datasets from the unchanged initial
@@ -146,7 +152,7 @@ by Git. The original proposal record remains an unchanged historical snapshot;
 the new results record confirms evaluation without inventing a submission date.
 
 Numerical checks, runtime versions, source hashes and figure hashes are saved in
-the local [analysis.json](../../.runtime/function-1-round-01/analysis.json).
+the local `.runtime/function-1-round-01/analysis.json`.
 The model and coverage commands completed successfully, and both figures were
 visually inspected. This is a bounded descriptive/model review; it does not
 validate the unknown function globally or demonstrate an optimal next query.

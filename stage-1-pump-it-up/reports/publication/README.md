@@ -1,9 +1,11 @@
 # Pump It Up publication report
 
 `pump-it-up-model-development-report.docx` is the publication-format account
-of the Stage 1 Pump It Up model-development study and final public result. It
-is structured as a research article rather than as a tutor-facing account of
-the course lifecycle.
+of the Stage 1 Pump It Up study through the **23 August 2026** public result
+(`0.8298`, observed rank 2), revised on **28 August 2026**. It is structured as
+a research article. It predates the September generalisation investigation,
+the `0.8304` result and the native-category follow-up; see the
+[Stage 1 README](../../README.md) for the latest recorded position.
 
 ## Rebuild
 
@@ -11,7 +13,7 @@ From the repository root, use a Python 3.11+ environment with the packages in
 `requirements-publication.txt` and Poppler's `pdftoppm` on `PATH`:
 
 ```powershell
-python .\Capstone\imperial-capstone\stage-1-pump-it-up\reports\publication\generate_report.py
+python .\stage-1-pump-it-up\reports\publication\generate_report.py
 ```
 
 The generator reconstructs the nine figure plates from the versioned CSV
@@ -23,7 +25,7 @@ final open, repaginate and save pass. On a machine without Word, pass
 Run the dependency-free OOXML audit with:
 
 ```powershell
-python .\Capstone\imperial-capstone\stage-1-pump-it-up\reports\publication\audit_report.py
+python .\stage-1-pump-it-up\reports\publication\audit_report.py
 ```
 
 The audit checks UK-English metadata, heading hierarchy, genuine Word lists,

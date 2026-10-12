@@ -5,12 +5,12 @@ Certificate in Machine Learning and Artificial Intelligence.
 
 ## Project status
 
-Stage 1 result snapshot: **5 September 2026**. Stage 2 documentation snapshot: **8 October 2026**.
+Stage 1 result snapshot: **5 September 2026**. Stage 2 documentation snapshot: **12 October 2026**.
 
 | Stage | Project | Status | Headline |
 | --- | --- | --- | --- |
 | 1 | [Pump It Up](stage-1-pump-it-up/) | Model search complete | Fresh CatBoost identity/spatial-grid bag scored **`0.8304`** publicly and was observed at leaderboard position **1** |
-| 2 | [Black-box optimisation](stage-2-bbo/) | Round 2 evaluated; Week 3 approved | 191 observations; Functions 4, 5 and 7 improved in round 2; eight Week 3 inputs ready for manual submission |
+| 2 | [Black-box optimisation](stage-2-bbo/) | Week 3 submitted; awaiting results | 191 confirmed observations through round 2; Functions 4, 5 and 7 improved in round 2 |
 
 The leaderboard position is a time-specific observation and may change as
 other competitors submit.
@@ -35,7 +35,7 @@ stage-1-pump-it-up/
   map/          Browser-side training-label map
   ...           Existing data, notebooks, source, reports and submissions
 stage-2-bbo/
-  Week2_Notebooks/    Function-by-function practice notebooks and working snapshots
+  notebooks/    Function_N/Week_NN analyses and shared helpers
   index.html    Stage 2 web workspace
   styles.css    Stage 2 workspace styling
   ...           Existing data, notebooks, source, results and submissions
@@ -120,9 +120,11 @@ non-adaptive three-file model-level slate then scored `0.8302`, `0.8304` and
 ### Evidence and reproducibility
 
 - [Publication report](stage-1-pump-it-up/reports/publication/pump-it-up-model-development-report.docx)
-  — course-aligned account of the complete model-development lifecycle.
+  — historical research article revised on 28 August, covering the `0.8298`
+  result observed on 23 August; it predates the September follow-ups.
 - [Model-search conclusion](stage-1-pump-it-up/reports/model-search-conclusion.md)
-  — final decision, lifecycle summary, result comparison and stop rationale.
+  — 23 August decision, lifecycle summary, result comparison and stop rationale,
+  with links to the subsequent September work.
 - [Deep follow-up report](stage-1-pump-it-up/reports/deep-follow-up-search.md)
   — the previous deep-model seed comparison and `0.8298` submission.
 - [Generalisation diagnosis](stage-1-pump-it-up/reports/generalisation-diagnosis.md)
@@ -144,8 +146,10 @@ working narrative and links to notebooks, source code and generated evidence.
 Stage 2 maximises eight unknown functions from sequential observations. Its
 workspace records the Gaussian-process workflow, data constraints, proposed
 points and returned values. Both confirmed returns match their saved inputs;
-the latest local datasets contain 191 observations. The versioned round 1
-working snapshots retain 183 observations. The
+the latest results record covers 191 observations through round 2, up from
+183 after round 1. Weekly data files are local and Git-ignored; see the
+[data recovery notes](stage-2-bbo/data/README.md#recovering-earlier-snapshots)
+when setting up a fresh checkout. The
 [Function 1 follow-up](stage-2-bbo/results/function-1-round-01-analysis.md)
 reviews its new negative result, unchanged incumbent and improved coverage.
 The [Function 2 follow-up](stage-2-bbo/results/function-2-round-01-analysis.md)
@@ -153,8 +157,10 @@ reviews its lower response near the incumbent and compares updated noisy-respons
 models and conditional next-query choices. Round 1 improved the best observed
 outputs for Functions 4–7. Week 2 exploration notebooks now cover all eight
 functions, with regression comparisons and Gaussian-process UCB recommendations
-for Functions 4–8. Round 2 improved Functions 4, 5 and 7. All Week 3 notebooks
-and eight proposed inputs are approved and ready for manual submission.
+for Functions 4–8. Round 2 improved Functions 4, 5 and 7. The eight Week 3
+inputs have been submitted; confirmation was recorded on 12 October 2026.
+Week 3 results have not yet been recorded. The observation count and best
+observed outputs therefore remain those confirmed through round 2.
 
 See the [Stage 2 README](stage-2-bbo/README.md) for the current approach and
 repository structure.

@@ -1,5 +1,11 @@
 # Model-search conclusion
 
+This is the historical **23 August 2026** conclusion. Subsequent September
+work is recorded in the [generalisation diagnosis](generalisation-diagnosis.md),
+[fresh reconstruction and submission slate](fresh-ensemble-reconstruction-and-submission-slate.md)
+and [native-category follow-up](native-category-followup.md). Those records
+establish the later `0.8304` public best and the decision to retain it.
+
 ## Decision
 
 **Final 23 August update:** a bounded follow-up replaced the prepared deep
