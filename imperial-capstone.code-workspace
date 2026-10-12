@@ -1,0 +1,16 @@
+{
+    "folders": [
+        { "path": "." }
+    ],
+    "settings": {
+        "python.defaultInterpreterPath": "${workspaceFolder}/.venv",
+        "python.terminal.activateEnvironment": true,
+        "python.interpreter.infoVisibility": "always"
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-python.python",
+            "ms-toolsai.jupyter"
+        ]
+    }
+}

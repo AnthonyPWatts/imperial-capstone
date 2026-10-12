@@ -1,3 +1,6 @@
+# Shared modelling dependencies for both Capstone stages.
+# Validated with 64-bit Python 3.14.5 on Windows; see README.md for setup.
+# Direct dependencies are pinned; this is not a complete transitive lock file.
 catboost==1.2.10
 ipykernel==7.3.0
 lightgbm==4.7.0

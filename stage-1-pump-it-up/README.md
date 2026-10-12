@@ -3,6 +3,10 @@
 Working area for the DrivenData **Pump It Up: Data Mining the Water Table**
 competition.
 
+Use the shared Capstone environment described in the
+[repository setup guide](../README.md#local-setup). From this stage directory,
+`..\run-python.ps1` runs the correct Python even if another environment is active.
+
 Source: <https://www.drivendata.org/competitions/7/pump-it-up-data-mining-the-water-table/>
 
 Browse the [live Stage 1 dashboard](https://anthonypwatts.github.io/imperial-capstone/stage-1-pump-it-up/dashboard/)

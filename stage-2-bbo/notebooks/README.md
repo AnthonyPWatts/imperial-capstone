@@ -98,7 +98,7 @@ coverage, not coverage of the full eight-dimensional space.
 
 [`coverage_optimisation.py`](../src/coverage_optimisation.py) contains the
 two-dimensional area integral and search. Its focused checks use standard
-`unittest`: `python -m unittest discover -s stage-2-bbo/tests` from the repository
+`unittest`: `.\run-python.ps1 -m unittest discover -s stage-2-bbo/tests` from the repository
 root, using the same environment.
 
 ## Planning several coverage points

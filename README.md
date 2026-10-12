@@ -24,7 +24,10 @@ other competitors submit.
 | [`stage-2-bbo/`](stage-2-bbo/) | Assessed black-box optimisation across eight unknown functions |
 | [`assets/`](assets/) | Shared site styling, hub styling and status loader |
 | [`project-status.json`](project-status.json) | Shared public status snapshot for the hub and both stages |
-| [`requirements.txt`](requirements.txt) | Pinned Python environment used by both stages |
+| [`requirements.txt`](requirements.txt) | Pinned modelling dependencies used by both stages |
+| [`setup-venv.ps1`](setup-venv.ps1) | Windows setup for the Capstone-local Python environment |
+| [`run-python.ps1`](run-python.ps1) | Runs this checkout's Python without requiring activation |
+| [`imperial-capstone.code-workspace`](imperial-capstone.code-workspace) | Standalone VS Code workspace with a local interpreter default |
 
 Stage-specific tools and supporting files live with their stage:
 
@@ -41,7 +44,7 @@ stage-2-bbo/
   ...           Existing data, notebooks, source, results and submissions
 ```
 
-Keep shared `.venv/` and `.runtime/` directories at the root; both remain
+Keep shared `.venv/` and `.runtime/` directories at this repository's root; both remain
 Git-ignored. Local CatBoost logs live under `stage-1-pump-it-up/catboost_info/`
 and are also ignored.
 
@@ -181,21 +184,29 @@ pickers.
 
 ### Modelling environment
 
-From the repository root, create the shared Python environment and install
-the pinned dependencies for both stages with:
+This repository is standalone. Clone `imperial-capstone` into any directory;
+no surrounding course repository is needed. Both stages use **one environment
+at `imperial-capstone/.venv`**. If the checkout is nested inside another project,
+that project's environment remains separate.
+
+The supported Windows baseline is **64-bit Python 3.14** (validated with
+3.14.5). Install that Python version, then run from the Capstone root in
+Windows PowerShell 5.1 or PowerShell 7:
 
 ```powershell
 .\setup-venv.ps1
 ```
 
 The [setup helper](setup-venv.ps1) creates `.venv` beside this README, even when
-invoked from another directory. It reuses an existing working environment,
-installs `requirements.txt` and runs `pip check`. It tries the Windows Python
-launcher first, then `python.exe` on PATH. To select a base interpreter when
-creating the environment, pass its path:
+invoked from another directory or with another environment activated. It
+reuses a valid local environment, installs `requirements.txt` and runs
+`pip check`. For creation it tries `py -3.14`, then a compatible base
+`python.exe` on PATH. It rejects other Python versions, 32-bit interpreters
+and virtual environments as the base interpreter. An explicit path is also
+supported:
 
 ```powershell
-.\setup-venv.ps1 -Python 'C:\Python313\python.exe'
+.\setup-venv.ps1 -Python 'C:\Python314\python.exe'
 ```
 
 To replace an existing environment, close its notebook kernels, deactivate it
@@ -211,15 +222,80 @@ preview the operation without creating or changing files. A failed installation
 leaves the environment in place and reports the failing step; correct the
 reported issue before rerunning the command.
 
-Activation is optional when commands use `.venv\Scripts\python.exe` directly.
-To use plain `python` in the current PowerShell session instead, activate it:
+Use the [Python launcher](run-python.ps1) for everyday commands. It always
+runs this checkout's `.venv\Scripts\python.exe`, preserves the current working
+directory and returns Python's exit code. It fails if that interpreter is
+missing, so it cannot silently fall back to an active parent environment:
+
+```powershell
+.\run-python.ps1 -c "import sys; print(sys.executable)"
+.\run-python.ps1 -m pip check
+.\run-python.ps1 -m unittest discover -s stage-2-bbo/tests
+```
+
+From a stage directory, use `..\run-python.ps1`. From elsewhere, invoke the
+script by its path. Calling `.venv\Scripts\python.exe` directly is equivalent.
+Avoid bare `python` or `pip` commands when the selected environment is uncertain.
+
+Setup does not switch the current shell's active environment. Activation is
+optional; to switch from an already active environment, run `deactivate`
+first, then:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-In your notebook editor, select this repository's `.venv\Scripts\python.exe`
-as the Python interpreter/kernel.
+New environments created by the helper have the prompt `(imperial-capstone)`.
+Existing environments keep their previous prompt. Check `sys.executable` when
+in doubt; a prompt named `(.venv)` alone cannot identify the project.
+
+### Editor and notebook selection
+
+Open [`imperial-capstone.code-workspace`](imperial-capstone.code-workspace) in
+its own VS Code window, even when this checkout is nested inside a course
+repository. It recommends the Python and Jupyter extensions and defaults to
+the Capstone `.venv`. Existing saved interpreter selections take precedence
+over this default; use **Python: Select Interpreter** to choose this checkout's
+`.venv\Scripts\python.exe` if necessary. This is a
+[VS Code setting limitation](https://code.visualstudio.com/docs/python/settings-reference).
+
+Notebook kernels are selected separately. Use the notebook's **Select Kernel**
+menu to choose the same local environment. No global Jupyter kernel registration
+is required. Check a notebook's actual runtime with:
+
+```python
+import sys
+print(sys.executable)  # Must point inside this checkout's .venv.
+```
+
+### Dependencies and other platforms
+
+[`requirements.txt`](requirements.txt) pins the direct modelling dependencies
+shared by both stages. Transitive dependencies are resolved by pip; it is not
+a complete lock file. When adding a dependency, install it using
+`.\run-python.ps1 -m pip`, record the intended direct dependency here, and rerun
+`pip check` and the relevant stage tests. Do not copy a surrounding repository's
+`pip freeze` output into this file. Optional publication tooling has its own
+[requirements](stage-1-pump-it-up/reports/publication/requirements-publication.txt).
+
+The PowerShell helpers target Windows. On macOS or Linux, the equivalent
+manual setup from the Capstone root is below. These platforms have not been
+validated; availability of binary wheels and native libraries may differ.
+
+```bash
+python3.14 -m venv --prompt imperial-capstone .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip check
+```
+
+Use `.venv/bin/python` for commands and notebook selection on those platforms.
+
+The Windows environment-helper regression tests use the standard library and
+temporary standalone checkouts, with no package downloads:
+
+```powershell
+.\run-python.ps1 -m unittest discover -s tests -v
+```
 
 The competition CSV files must already be present under
 `stage-1-pump-it-up/data/`; they remain excluded from Git.
@@ -230,7 +306,7 @@ Run the site from the repository root so that the hub, shared status snapshot
 and local-data map resolve from the same origin:
 
 ```powershell
-python -m http.server 8000
+.\run-python.ps1 -m http.server 8000
 ```
 
 Then open <http://localhost:8000/>.

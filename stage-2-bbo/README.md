@@ -20,6 +20,10 @@ full results and instructions for running the work. You can also browse the
 [Stage 2 web workspace](https://anthonypwatts.github.io/imperial-capstone/stage-2-bbo/)
 or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
 
+Use the shared Capstone environment described in the
+[repository setup guide](../README.md#local-setup). From this stage directory,
+`..\run-python.ps1` runs the correct Python even if another environment is active.
+
 ## What does one experiment look like?
 
 Think of each input number as a setting on a dial. Function 1 has two dials;
