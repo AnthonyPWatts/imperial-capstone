@@ -47,7 +47,7 @@ Functions 4–8 also contain `Week_02/model_predictions.ipynb`. These compare
 regression models with leave-one-out validation and select one next input using
 a Gaussian-process upper confidence bound. The saved outputs document model
 errors, candidate comparisons and limitations. The
-[Stage 2 README](../README.md#week-2-approach-and-submitted-inputs) summarises the
+[methodology guide](../docs/methodology.md#week-2-approach-and-submitted-inputs) summarises the
 Week 2 methods; the [submission log](../submissions/README.md) now records
 its confirmed results.
 

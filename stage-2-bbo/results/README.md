@@ -1,5 +1,10 @@
 # Results
 
+Start with [results and progress](progress.md) for a chart of all eight
+functions, round-by-round scores and the best inputs from returned queries.
+The [Stage 2 introduction](../README.md) explains the experiment, and the
+[methodology guide](../docs/methodology.md) explains how inputs are chosen.
+
 ## Latest confirmed evaluation: round 2
 
 - [Round 2 return](../submissions/round-02-results.json) — received on
