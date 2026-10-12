@@ -181,13 +181,45 @@ pickers.
 
 ### Modelling environment
 
-Create a project-local environment and install the recorded notebook and
-scikit-learn runtime before running analyses in either stage:
+From the repository root, create the shared Python environment and install
+the pinned dependencies for both stages with:
 
 ```powershell
-py -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\setup-venv.ps1
 ```
+
+The [setup helper](setup-venv.ps1) creates `.venv` beside this README, even when
+invoked from another directory. It reuses an existing working environment,
+installs `requirements.txt` and runs `pip check`. It tries the Windows Python
+launcher first, then `python.exe` on PATH. To select a base interpreter when
+creating the environment, pass its path:
+
+```powershell
+.\setup-venv.ps1 -Python 'C:\Python313\python.exe'
+```
+
+To replace an existing environment, close its notebook kernels, deactivate it
+if active, and run:
+
+```powershell
+.\setup-venv.ps1 -Recreate
+```
+
+`-Recreate` clears the project-local `.venv` and installs the pinned dependencies
+again. It does not change the requirements or course data. Add `-WhatIf` to
+preview the operation without creating or changing files. A failed installation
+leaves the environment in place and reports the failing step; correct the
+reported issue before rerunning the command.
+
+Activation is optional when commands use `.venv\Scripts\python.exe` directly.
+To use plain `python` in the current PowerShell session instead, activate it:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+In your notebook editor, select this repository's `.venv\Scripts\python.exe`
+as the Python interpreter/kernel.
 
 The competition CSV files must already be present under
 `stage-1-pump-it-up/data/`; they remain excluded from Git.

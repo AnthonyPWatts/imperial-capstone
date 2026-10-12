@@ -5,8 +5,10 @@ reading copies. For the reasoning behind them, see [methodology](methodology.md)
 
 ## Environment and local data
 
-Follow the [repository environment setup](../../README.md#modelling-environment)
-and provide the authorised course data described in [the data notes](../data/README.md).
+Run `.\setup-venv.ps1` from the repository root to create or refresh the local
+Python environment. The [repository environment setup](../../README.md#modelling-environment)
+also covers selecting an interpreter, rebuilding and activation. Provide the
+authorised course data described in [the data notes](../data/README.md).
 Week 1 analyses use the preserved initial arrays. Week 2 and Week 3 notebooks load
 `observations.csv` beside each notebook, with that function/week directory as
 the kernel's working directory. These weekly CSV files are Git-ignored; populate
@@ -40,9 +42,8 @@ build the combined reading pack:
 The builder writes `.runtime/first-query-review/index.html` and the portable
 `.runtime/capstone-first-query-pack.zip`. The HTML embeds figures and hides code.
 
-Install the repository's pinned dependencies with
-`.venv\Scripts\python.exe -m pip install -r requirements.txt` from the repository
-root. Matplotlib and nbconvert are required for the reading copies and pack.
+The setup helper installs the repository's pinned dependencies, including
+Matplotlib and nbconvert, which are required for the reading copies and pack.
 
 ## Provenance and stale reports
 
