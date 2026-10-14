@@ -17,11 +17,11 @@
     "startedLabel": "29 July 2026"
   },
   "stage2": {
-    "state": "Week 3 submitted; awaiting results",
+    "state": "Week 3 results recorded",
     "title": "Black-box optimisation",
     "summary": "Keep the assessed eight-function investigation reproducible as observations are released.",
-    "availability": "191 confirmed observations through round 2",
-    "dates": "13 rounds, Modules 12–24; Week 3 submission confirmed 12 October 2026"
+    "availability": "199 confirmed observations through round 3",
+    "dates": "13 rounds, Modules 12–24; Week 3 results received 14 October 2026"
   },
   "features": {
     "examined": 36,

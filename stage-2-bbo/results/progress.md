@@ -1,8 +1,8 @@
 # Results and progress
 
 [The introduction](../README.md) explains the experiment in plain language.
-This page records measured outcomes through round 2, as of 12 October 2026.
-Week 3 inputs are submitted; their results have not yet been recorded.
+This page records measured outcomes through round 3, as of 14 October 2026.
+Week 4 notebooks are prepared with independent snapshots; initial runs are saved pending review.
 
 ## How to read progress
 
@@ -11,28 +11,57 @@ score can be lower than that best; the best-so-far line then stays flat. A flat
 line does not mean nothing was learned, but it does mean no higher output has
 been observed. The true global maxima are unknown.
 
-![Best observed output for each of the eight functions at the start, after round 1 and after round 2; Functions 4, 5, 6 and 7 improved, while the other four remained flat.](figures/best-observed-progress.png)
+![Best observed output for each of the eight functions at the start and after rounds 1, 2 and 3; Functions 4, 5, 6 and 7 improved, while the other four remained flat.](figures/best-observed-progress.png)
 
 *Every panel has its own output scale. Read changes within a panel; heights and
 slopes cannot be compared across functions. The chart uses the full-precision
 values in the round result records; dots mark the recorded bests and lines
-join the checkpoints. Week 3 is omitted because no returned
-scores have been recorded.*
+join the checkpoints. Round 3 raises Function 7's best; the other seven
+incumbents remain unchanged.*
 
 Values are rounded for readability; the structured records retain full precision.
 
-| Function | Starting best | Best after round 1 | Best after round 2 |
-| --- | ---: | ---: | ---: |
-| 1 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 |
-| 2 | 0.611205 | 0.611205 | 0.611205 |
-| 3 | -0.034835 | -0.034835 | -0.034835 |
-| 4 | -4.025542 | -2.738157 | -0.129918 |
-| 5 | 1088.859618 | 3933.145724 | 8662.405001 |
-| 6 | -0.714265 | -0.378691 | -0.378691 |
-| 7 | 1.364968 | 1.405759 | 2.075222 |
-| 8 | 9.598482 | 9.598482 | 9.598482 |
+| Function | Starting best | Best after round 1 | Best after round 2 | Best after round 3 |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 |
+| 2 | 0.611205 | 0.611205 | 0.611205 | 0.611205 |
+| 3 | -0.034835 | -0.034835 | -0.034835 | -0.034835 |
+| 4 | -4.025542 | -2.738157 | -0.129918 | -0.129918 |
+| 5 | 1088.859618 | 3933.145724 | 8662.405001 | 8662.405001 |
+| 6 | -0.714265 | -0.378691 | -0.378691 | -0.378691 |
+| 7 | 1.364968 | 1.405759 | 2.075222 | 2.552418 |
+| 8 | 9.598482 | 9.598482 | 9.598482 | 9.598482 |
 
-## Latest results: round 2
+## Latest results: round 3
+
+The Week 3 results email arrived on **14 October 2026 at 10:16 BST**. All eight
+returned inputs match the saved Week 3 submissions. The three-round cumulative
+attachments agree exactly with both earlier returns. Adding only the eight new
+observations gives **199 confirmed observations**; the initial data and earlier
+weekly snapshots remain unchanged.
+
+Function 7 improved from `2.075221839308756` to `2.55241765269229`, a gain of
+`0.477195813383534`. No other incumbent improved. See the
+[round 3 results record](../submissions/round-03-results.json) and
+[Week 4 data notes](../data/README.md#week-4-notebook-snapshots).
+
+| Function | Returned output | Best observed after round 3 | Improved incumbent? |
+| --- | ---: | ---: | --- |
+| 1 | 1.972812e-200 | 7.710875e-16 | No |
+| 2 | 0.156096 | 0.611205 | No |
+| 3 | -0.054209 | -0.034835 | No |
+| 4 | -0.347965 | -0.129918 | No |
+| 5 | 8525.753289 | 8662.405001 | No |
+| 6 | -0.551379 | -0.378691 | No |
+| 7 | 2.552418 | 2.552418 | Yes |
+| 8 | 8.798303 | 9.598482 | No |
+
+Function 1's small positive return remains below its incumbent; scientific
+notation preserves the distinction from zero. Week 4 has thirteen notebooks
+using independent CSV snapshots, with initial runs saved pending review.
+No Week 4 query decision has been confirmed.
+
+## Previous results: round 2
 
 The Week 2 results email arrived on **8 October 2026 at 18:42 BST**. All eight
 returned inputs match the saved Week 2 submissions. The results record covers
@@ -73,7 +102,7 @@ local datasets and analysis notebooks, rather than being copied here.
 | 4 | `0.445520-0.390792-0.374106-0.377372` | -0.129918 | Round 2 |
 | 5 | `0.999999-0.999999-0.999999-0.999999` | 8662.405001 | Round 2 |
 | 6 | `0.344331-0.260596-0.575965-0.745346-0.066311` | -0.378691 | Round 1 |
-| 7 | `0.015118-0.386113-0.305380-0.283890-0.363300-0.714745` | 2.075222 | Round 2 |
+| 7 | `0.018718-0.312926-0.370268-0.285721-0.308321-0.695670` | 2.552418 | Round 3 |
 
 ## Previous results: round 1
 
@@ -110,27 +139,30 @@ notebooks reviewing the returned observation, output scale and sampling gaps.
 Functions 4–8 also have Week 2 model-comparison and query-selection notebooks.
 
 See the [round results record](../submissions/round-01-results.json) and
-[accumulated data layout](../data/README.md#accumulated-observations-round-2).
+[accumulated data layout](../data/README.md#accumulated-observations-round-3).
 The [first-query proposals](first-query-proposals.md) describe historical
 pre-evaluation work; their proposal JSON and source arrays remain unchanged.
 
-## Week 3: submitted, awaiting results
+## Week 4: prepared; initial runs saved
 
-The [saved Week 3 inputs](../submissions/Week_03/submissions.txt) follow the
-approved notebooks. Submission confirmation was recorded on 12 October 2026;
-the exact portal timestamp was not supplied. This confirms the inputs were
-submitted, rather than establishing any new observations or improvements.
+The [saved Week 3 inputs](../submissions/Week_03/submissions.txt) have now been
+evaluated. Their submission confirmation was recorded on 12 October 2026; the
+return arrived on 14 October. The exact portal submission timestamp was not supplied.
 
-Functions 1–3 use the next points in their saved coverage shortlists. Functions
-4–8 use updated Gaussian-process UCB recommendations. The
-[methodology guide](../docs/methodology.md#week-3-submitted-inputs) explains the
-selection, and the [submission log](../submissions/README.md) records its status.
+Week 4 copies preserve the existing methods. Functions 1–3 advance to the next
+unevaluated points in their saved shortlists; Functions 4–8 retain their model
+and acquisition settings for a fresh comparison. Initial runs are saved for
+Functions 1–4 exploration and Function 4 model predictions, pending review.
+No Week 4 query decision is confirmed here. See the
+[notebook guide](../notebooks/README.md) for the working sequence.
 
 ## Inspecting an individual result
 
-For the latest complete analyses, use each function's `Week_03/` notebooks in
-the [notebook guide](../notebooks/README.md). These review round 2 before making
-Week 3 recommendations; their saved pre-submission wording is historical.
+The latest saved analyses remain in each function's `Week_03/` notebooks;
+these review round 2 before making Week 3 recommendations, and their saved
+pre-submission wording is historical. The `Week_04/` copies contain round 3
+data and updated output notes; some also retain initial runs pending review. See
+the [notebook guide](../notebooks/README.md).
 Standalone round 1 reports for [Function 1](function-1-round-01-analysis.md) and
 [Function 2](function-2-round-01-analysis.md) explain how a lower returned score
 affected coverage, modelling and the next decision.

@@ -121,29 +121,34 @@ def value_label(value):
 
 
 def best_observed_progress():
-    records = [json.loads((STAGE / f"submissions/round-{i:02d}-results.json").read_text())
-               for i in (1, 2)]
+    paths = sorted((STAGE / "submissions").glob("round-[0-9][0-9]-results.json"))
+    records = [json.loads(path.read_text(encoding="utf-8")) for path in paths]
+    rounds = list(range(1, len(records) + 1))
+    if not records or [record["round"] for record in records] != rounds:
+        raise ValueError("Expected a consecutive history of confirmed round results")
     by_round = [{row["function"]: row for row in record["results"]} for record in records]
+    checkpoints = [0, *rounds]
     fig, axes = plt.subplots(4, 2, figsize=(12, 12))
     fig.subplots_adjust(left=0.12, right=0.96, top=0.89, bottom=0.07,
                         hspace=0.73, wspace=0.35)
     fig.suptitle("Best score observed so far", x=0.54, y=0.975,
                  fontsize=24, weight="bold")
-    fig.text(0.54, 0.935, "Two confirmed rounds · each function has its own output scale",
+    fig.text(0.54, 0.935, f"{len(records)} confirmed rounds · each function has its own output scale",
              ha="center", fontsize=15, color=MUTED)
     for function, ax in enumerate(axes.flat, 1):
-        first, second = [rows[function] for rows in by_round]
-        if second["best_before"] != first["best_after"]:
+        history = [rows[function] for rows in by_round]
+        if any(current["best_before"] != previous["best_after"]
+               for previous, current in zip(history, history[1:])):
             raise ValueError(f"Inconsistent round records for Function {function}")
-        values = [first["best_before"], first["best_after"], second["best_after"]]
+        values = [history[0]["best_before"], *[row["best_after"] for row in history]]
         unchanged = values[0] == values[-1]
         colour = MUTED if unchanged else TEAL
-        ax.plot([0, 1, 2], values, "o-", color=colour, lw=2.5, markersize=8)
+        ax.plot(checkpoints, values, "o-", color=colour, lw=2.5, markersize=8)
         ax.set_title(f"Function {function}", loc="left", fontsize=17, weight="bold", pad=13)
         ax.text(1, 1.08, "Unchanged" if unchanged else "Improved", transform=ax.transAxes,
                 ha="right", fontsize=12, color=colour)
-        ax.set_xticks([0, 1, 2], ["Start", "Round 1", "Round 2"], fontsize=12)
-        ax.set_xlim(-0.13, 2.13)
+        ax.set_xticks(checkpoints, ["Start", *[f"Round {number}" for number in rounds]], fontsize=12)
+        ax.set_xlim(-0.13, len(records) + 0.13)
         if unchanged:
             padding = abs(values[0]) * 0.025 or 0.025
             ax.set_ylim(values[0] - padding, values[0] + padding)
@@ -156,7 +161,7 @@ def best_observed_progress():
         ax.tick_params(axis="y", labelsize=12)
         ax.grid(axis="y", color="#dce5e9")
         ax.spines[["top", "right"]].set_visible(False)
-    fig.text(0.54, 0.025, "Source: published round 1 and 2 records · Week 3 results not yet recorded",
+    fig.text(0.54, 0.025, f"Source: published results through round {rounds[-1]} · best observed outputs",
              ha="center", fontsize=13, color=MUTED)
     save(fig, STAGE / "results/figures", "best-observed-progress.png")
 

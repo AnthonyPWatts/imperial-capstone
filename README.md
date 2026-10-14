@@ -5,12 +5,12 @@ Certificate in Machine Learning and Artificial Intelligence.
 
 ## Project status
 
-Stage 1 result snapshot: **5 September 2026**. Stage 2 documentation snapshot: **12 October 2026**.
+Stage 1 result snapshot: **5 September 2026**. Stage 2 documentation snapshot: **14 October 2026**.
 
 | Stage | Project | Status | Headline |
 | --- | --- | --- | --- |
 | 1 | [Pump It Up](stage-1-pump-it-up/) | Model search complete | Fresh CatBoost identity/spatial-grid bag scored **`0.8304`** publicly and was observed at leaderboard position **1** |
-| 2 | [Black-box optimisation](stage-2-bbo/) | Week 3 submitted; awaiting results | 191 confirmed observations through round 2; Functions 4, 5 and 7 improved in round 2 |
+| 2 | [Black-box optimisation](stage-2-bbo/) | Week 3 results recorded | 199 confirmed observations through round 3; Function 7 improved in round 3 |
 
 The leaderboard position is a time-specific observation and may change as
 other competitors submit.
@@ -148,9 +148,9 @@ working narrative and links to notebooks, source code and generated evidence.
 
 Stage 2 maximises eight unknown functions from sequential observations. Its
 workspace records the Gaussian-process workflow, data constraints, proposed
-points and returned values. Both confirmed returns match their saved inputs;
-the latest results record covers 191 observations through round 2, up from
-183 after round 1. Weekly data files are local and Git-ignored; see the
+points and returned values. All three confirmed returns match their saved inputs;
+the latest results record covers 199 observations through round 3, up from
+191 after round 2. Weekly data files are local and Git-ignored; see the
 [data recovery notes](stage-2-bbo/data/README.md#recovering-earlier-snapshots)
 when setting up a fresh checkout. The
 [Function 1 follow-up](stage-2-bbo/results/function-1-round-01-analysis.md)
@@ -160,10 +160,11 @@ reviews its lower response near the incumbent and compares updated noisy-respons
 models and conditional next-query choices. Round 1 improved the best observed
 outputs for Functions 4–7. Week 2 exploration notebooks now cover all eight
 functions, with regression comparisons and Gaussian-process UCB recommendations
-for Functions 4–8. Round 2 improved Functions 4, 5 and 7. The eight Week 3
-inputs have been submitted; confirmation was recorded on 12 October 2026.
-Week 3 results have not yet been recorded. The observation count and best
-observed outputs therefore remain those confirmed through round 2.
+for Functions 4–8. Round 2 improved Functions 4, 5 and 7. The Week 3 results
+arrived on 14 October 2026; Function 7 improved again, to `2.55241765269229`.
+The thirteen Week 4 notebooks and their independent data snapshots are ready
+for use, with initial runs now saved pending review. No Week 4 submission
+or query decision has been confirmed.
 
 See the [Stage 2 README](stage-2-bbo/README.md) for the current approach and
 repository structure.

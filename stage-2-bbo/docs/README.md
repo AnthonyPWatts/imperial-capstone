@@ -9,7 +9,7 @@ want to understand or do.
 | Guide | What it covers |
 | --- | --- |
 | [Methodology](methodology.md) | The objective, coverage and model-guided choices, validation, the taper and limitations |
-| [Results and progress](../results/progress.md) | All eight functions' measured progress through round 2 and the pending Week 3 results |
+| [Results and progress](../results/progress.md) | All eight functions' measured progress through round 3 and the Week 4 preparation status |
 | [Reproducing the analyses](reproducing-the-analyses.md) | Environment setup, historical data snapshots, report commands and provenance |
 | [Notebook guide](../notebooks/README.md) | Individual analyses in the function/week folders |
 | [Submission log](../submissions/README.md) | Exact submitted inputs, confirmation and evaluation status |

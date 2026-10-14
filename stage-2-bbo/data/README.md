@@ -36,12 +36,12 @@ The local `import-verification-2026-09-24.json` records file hashes and checks.
 See the [intake notes](../docs/module-12-intake.md) for the official data link and
 submission rules. Do not add the supplied arrays to the repository.
 
-## Accumulated observations: round 2
+## Accumulated observations: round 3
 
-The Week 2 return was imported on **8 October 2026**, giving **191 observations**:
-12, 12, 17, 32, 22, 22, 32 and 42 rows for Functions 1–8 respectively.
-This includes the Week 1 return imported on 5 October and one new observation
-per function from Week 2.
+The Week 3 return was imported on **14 October 2026**, giving **199 observations**:
+13, 13, 18, 33, 23, 23, 33 and 43 rows for Functions 1–8 respectively.
+This includes the Week 1 and Week 2 returns imported on 5 and 8 October,
+plus one new observation per function from Week 3.
 The import preserved the original 175 rows and starter archive.
 
 On a machine holding the complete intake, the local layout is:
@@ -53,11 +53,15 @@ On a machine holding the complete intake, the local layout is:
   bytes), the plain email body and source metadata. These attachments contain
   both rounds; the first round matches the retained return exactly and is
   included only once in the accumulated datasets.
+- `rounds/round-03/` retains the original downloaded attachments (1,259 and 494
+  bytes), the plain email body and source metadata. Their three-round cumulative
+  history agrees exactly with the earlier returns; each observation is included
+  only once. The email arrived at 10:16 BST on 14 October 2026.
 - `accumulated/function_N/inputs.npy` and `outputs.npy` hold the initial rows
   followed by the confirmed round observations, in matching order.
 - `accumulated/function_N/observations.csv` provides the same data with stable
   observation IDs and `source_round` (`0` means an initial observation).
-- The [results record](../submissions/round-02-results.json) links returned
+- The [results record](../submissions/round-03-results.json) links returned
   values to proposals and source hashes. All eight proposals matched; all
   returned coordinates are new, finite, correctly dimensioned and in `[0, 1)`.
 
@@ -67,7 +71,7 @@ loader was silently redirected. The initial and accumulated `.npy` arrays use
 float64; small non-zero outputs are preserved without decimal-place rounding.
 
 Rebuild the accumulated files with
-`.venv/Scripts/python.exe stage-2-bbo/scripts/import_round_results.py --round 2`
+`.venv/Scripts/python.exe stage-2-bbo/scripts/import_round_results.py --round 3`
 from the capstone root. It checks all functions before writing, reconciles the
 email and attachments, verifies the latest proposals, and rebuilds from source
 rounds rather than appending blindly. It accepts a single-round return or a
@@ -85,15 +89,33 @@ round 2 accumulated CSVs used by the Week 3 notebooks. Each retains the existing
 `observation_id,source_round,x1,...,y` schema, with initial observations followed
 by `round-01` and `round-02`. Values retain their full float64 precision.
 
-Week 3 submission is confirmed in the [submission log](../submissions/README.md),
-but its returned observations have not yet been recorded. These snapshots
-therefore still contain 191 observations in total, not three evaluated rounds.
+Week 3 submission and its subsequent return are confirmed in the
+[submission log](../submissions/README.md). These historical snapshots retain
+191 observations through round 2; the third return is in the Week 4 copies.
 
 These snapshots are Git-ignored and remain fixed when later rounds are imported.
 The local `import-verification-2026-10-08.json` records their hashes, row counts,
 exact CSV/NumPy agreement and preservation checks. All eight returned inputs
 match the saved Week 2 submission lines; repeated imports produce identical
 files. The Week 2 snapshots and existing notebooks remain unchanged.
+
+## Week 4 notebook snapshots
+
+`notebooks/Function_1/Week_04/observations.csv` through
+`notebooks/Function_8/Week_04/observations.csv` are independent copies of the
+round 3 accumulated CSVs. They contain 199 observations in total, with the
+existing Week 3 rows followed by `round-03` and `source_round` set to 3.
+All eight inputs match `submissions/Week_03/submissions.txt`. Function 7 is
+the only new incumbent, at `2.55241765269229`.
+
+The local `import-verification-2026-10-14.json` records attachment-size checks,
+source hashes, reconciliation of the cumulative history, exact CSV/NumPy
+agreement, rebuild idempotency and preservation of earlier notebooks and
+local edits. The snapshots remain Git-ignored. On a fresh checkout, recover
+Week 3 as below, then append each function's `point` and `output` from
+[`round-03-results.json`](../submissions/round-03-results.json), retaining
+full precision and the existing schema. Expected counts are 13, 13, 18, 33,
+23, 23, 33 and 43. Leave the earlier weekly CSVs unchanged.
 
 ## Recovering earlier snapshots
 

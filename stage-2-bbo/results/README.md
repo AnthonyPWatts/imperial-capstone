@@ -5,7 +5,17 @@ functions, round-by-round scores and the best inputs from returned queries.
 The [Stage 2 introduction](../README.md) explains the experiment, and the
 [methodology guide](../docs/methodology.md) explains how inputs are chosen.
 
-## Latest confirmed evaluation: round 2
+## Latest confirmed evaluation: round 3
+
+- [Round 3 return](../submissions/round-03-results.json) — received on
+  14 October 2026 at 10:16 BST; all eight inputs match the saved Week 3 submissions.
+  Function 7 improved its incumbent to `2.55241765269229`; the other bests are unchanged.
+  The accumulated datasets contain **199 observations**.
+- The [Week 4 notebooks](../notebooks/README.md) and independent local CSV
+  snapshots are prepared. Initial runs are saved pending review; no Week 4
+  query decision or submission has been confirmed.
+
+## Earlier evaluation: round 2
 
 - [Round 2 return](../submissions/round-02-results.json) — received on
   8 October 2026; all eight inputs match the saved Week 2 submissions.
@@ -14,8 +24,8 @@ The [Stage 2 introduction](../README.md) explains the experiment, and the
 - The [Week 3 notebooks](../notebooks/README.md) review the round 2 returns
   for all eight functions and record the next selections.
 
-Week 3 submission was confirmed on 12 October 2026, but its results have not
-yet been recorded. See the [submission log](../submissions/README.md).
+Week 3 submission was confirmed on 12 October 2026 and its results arrived on
+14 October. See the [submission log](../submissions/README.md).
 
 ## Earlier evaluation: round 1
 

@@ -4,9 +4,13 @@
 
 [Week 3](Week_03/submissions.txt) contains the eight selected Week 3 inputs.
 Submission was confirmed by the project owner on **12 October 2026**; the
-exact portal submission timestamp was not supplied. Week 3 results have not
-yet been recorded. The saved notebooks retain their pre-submission wording;
+exact portal submission timestamp was not supplied. Its return arrived on
+14 October 2026 and all eight inputs matched. The saved notebooks retain their pre-submission wording;
 this log records the later submission status.
+
+Week 4 has thirteen prepared notebooks, with initial runs saved pending
+review. No Week 4 inputs or submission have been recorded; complete and
+review the analyses before confirming the next queries.
 
 [Week 2](Week_02/submissions.txt) contains the eight evaluated Week 2 inputs.
 Each line contains only the portal input, ordered from Function 1 to Function 8.
@@ -22,6 +26,18 @@ eight previously evaluated inputs. The original JSON files remain available
 as historical records of the proposals, evidence and returned results.
 
 ## Latest confirmed evaluation
+
+The Week 3 results email arrived on **14 October 2026 at 10:16 BST**.
+[`round-03-results.json`](round-03-results.json) records all eight returned
+points and values, before/after incumbents, source hashes and proposal matches.
+All inputs match `Week_03/submissions.txt`. Function 7 improved from
+`2.075221839308756` to `2.55241765269229`; the other incumbents are unchanged.
+The cumulative attachments agree exactly with both retained earlier returns.
+Only one new observation per function was added, giving 199 observations.
+The independent Week 4 CSVs and notebooks are prepared; see the
+[data notes](../data/README.md#week-4-notebook-snapshots).
+
+## Previous evaluation: Week 2
 
 The Week 2 results email arrived on **8 October 2026 at 18:42 BST**.
 [`round-02-results.json`](round-02-results.json) records all eight returned

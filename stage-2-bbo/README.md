@@ -88,8 +88,8 @@ from the first round.
 
 ## What has happened so far?
 
-**As of 12 October 2026, Week 3 inputs have been submitted and their results
-have not yet been recorded.** There are two confirmed rounds of feedback.
+**As of 14 October 2026, Week 3 results are recorded and the Week 4 notebooks
+are prepared, with initial runs saved pending review.** There are three confirmed rounds of feedback.
 “Week” labels the submitted batch; “round” labels its returned evaluation.
 
 | Point in the project | What is recorded |
@@ -97,12 +97,14 @@ have not yet been recorded.** There are two confirmed rounds of feedback.
 | Starting data | 175 supplied observations across eight functions |
 | Week 1 / round 1 | Eight returned scores; new bests for Functions 4, 5, 6 and 7 |
 | Week 2 / round 2 | Eight more returned scores; new bests for Functions 4, 5 and 7; 191 observations in total |
-| Week 3 | Eight inputs submitted; awaiting recorded results |
+| Week 3 / round 3 | Eight returned scores; Function 7 improved to 2.552418; 199 observations in total |
+| Week 4 | Thirteen notebooks prepared with independent data snapshots; initial runs saved pending review |
 
 Function 5 is the clearest improvement so far: its best observed score rose
 from about **1,089** in the starting data to **3,933** after round 1 and
 **8,662** after round 2. Function 4 also improved despite its scores remaining
-negative. Functions 1, 2, 3 and 8 have yet to beat their starting bests.
+negative. Function 7 improved again in round 3, from **2.075222** to **2.552418**.
+Functions 1, 2, 3 and 8 have yet to beat their starting bests.
 
 An experiment that does not produce a new best can still help me understand a
 function. Function 1's first result, for example, improved coverage while

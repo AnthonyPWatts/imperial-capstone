@@ -2,8 +2,8 @@
 
 [Start with the introduction](../README.md) for the plain-language story. This
 guide explains the decision rules, their evidence and their limits. It records
-the approach through the submitted Week 3 inputs, as of 12 October 2026; Week 3
-results have not yet been recorded.
+the approach through the evaluated Week 3 inputs, as of 14 October 2026. Week 4
+notebooks are prepared, with initial runs saved pending review.
 
 ## The decision in one sentence
 
@@ -27,16 +27,16 @@ returns one scalar output. Every function is maximised, including those with
 negative outputs: a less negative value is better. The functions have different
 output scales, so raw values are compared within each function.
 
-| Function | Input dimensions | Initial observations | Observations after round 2 |
+| Function | Input dimensions | Initial observations | Observations after round 3 |
 | --- | ---: | ---: | ---: |
-| 1 | 2 | 10 | 12 |
-| 2 | 2 | 10 | 12 |
-| 3 | 3 | 15 | 17 |
-| 4 | 4 | 30 | 32 |
-| 5 | 4 | 20 | 22 |
-| 6 | 5 | 20 | 22 |
-| 7 | 6 | 30 | 32 |
-| 8 | 8 | 40 | 42 |
+| 1 | 2 | 10 | 13 |
+| 2 | 2 | 10 | 13 |
+| 3 | 3 | 15 | 18 |
+| 4 | 4 | 30 | 33 |
+| 5 | 4 | 20 | 23 |
+| 6 | 5 | 20 | 23 |
+| 7 | 6 | 30 | 33 |
+| 8 | 8 | 40 | 43 |
 
 For a function with `n` observations and `d` coordinates, the input array has
 shape `(n, d)` and the output array has shape `(n,)`. Portal inputs use exactly
@@ -47,8 +47,7 @@ pairs and predicts responses; a Gaussian process also estimates uncertainty.
 The query-selection rule uses that information to choose the next input.
 
 The budget is 13 additional evaluations per function, or 104 across all eight.
-After round 2, 11 evaluations remain unevaluated per function: the submitted
-Week 3 query awaiting its result and 10 subsequent query opportunities.
+After round 3, 10 query opportunities remain per function, including Week 4.
 Weekly feedback limits adaptation. Sparse observations, unknown function
 structure and possible noise limit what can be inferred; the true global
 maxima are unavailable for checking. Progress is measured by best observed
@@ -136,6 +135,14 @@ predictions and GP UCB recommendations. The round 2 results did not justify
 changing these approaches. Submission is now confirmed in the
 [submission log](../submissions/README.md); the saved notebooks retain their
 pre-submission wording as the record of how the inputs were selected.
+
+The Week 3 return arrived on 14 October 2026. All eight inputs match these
+submissions; Function 7 improved its incumbent to `2.55241765269229`.
+The Week 4 copies use the 199 confirmed observations. Functions 1–3 advance
+past the two evaluated points in their saved Week 2 shortlists; Functions 4–8
+retain their model and candidate-search settings for the next comparison.
+Some initial runs are saved; their Week 4 validation, forecasts and query
+decisions remain to be reviewed. See the [notebook guide](../notebooks/README.md).
 
 ## How the first-round approach developed
 

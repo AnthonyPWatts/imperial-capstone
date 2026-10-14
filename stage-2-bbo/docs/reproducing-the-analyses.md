@@ -9,13 +9,23 @@ Run `.\setup-venv.ps1` from the repository root to create or refresh the local
 Python environment. The [repository environment setup](../../README.md#modelling-environment)
 also covers selecting an interpreter, rebuilding and activation. Provide the
 authorised course data described in [the data notes](../data/README.md).
-Week 1 analyses use the preserved initial arrays. Week 2 and Week 3 notebooks load
+Week 1 analyses use the preserved initial arrays. Week 2–4 notebooks load
 `observations.csv` beside each notebook, with that function/week directory as
 the kernel's working directory. These weekly CSV files are Git-ignored; populate
 them with the matching historical round before running a fresh checkout:
-Week 2 uses observations through round 1; Week 3 uses observations through round 2.
+Week 2 uses observations through round 1; Week 3 uses observations through round 2;
+Week 4 uses observations through round 3 (199 in total).
 See the [recovery instructions](../data/README.md#recovering-earlier-snapshots).
 Snapshots are not updated automatically when later results arrive.
+
+The Week 4 notebooks were prepared without executing cells; some now retain
+initial runs and figures pending review. Select this
+repository's `.venv` kernel, use the individual `Week_04` directory as the
+working directory, then run `exploration.ipynb`. For Functions 4–8, continue in
+`model_predictions.ipynb` and review the newly calculated validation and
+sensitivity results before recording a query decision. The model notebooks
+may perform coverage searches and fits; earlier weeks' caches and outputs
+were not copied into the new week.
 
 ## Historical first-query reading copies
 
