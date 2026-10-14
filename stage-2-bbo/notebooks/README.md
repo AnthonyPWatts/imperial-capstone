@@ -1,27 +1,40 @@
 # Notebooks
 
-## Current work: Week 3 submitted; awaiting results
+## Current work: Week 4 prepared; initial runs saved
 
-Each `Function_N/Week_03/` notebook expects a local `observations.csv`
-with all initial observations and the two confirmed weekly returns. Expected
-row counts for Functions 1–8 are 12, 12, 17, 32, 22, 22, 32 and 42
-(191 total). The schema remains `observation_id,source_round,x1,...,y`.
+Each `Function_N/Week_04/` notebook expects a local `observations.csv`
+with all initial observations and the three confirmed weekly returns. Expected
+row counts for Functions 1–8 are 13, 13, 18, 33, 23, 23, 33 and 43
+(199 total). The schema remains `observation_id,source_round,x1,...,y`.
 
-These are independent snapshots of the accumulated data as of 8 October 2026.
+These are independent snapshots of the accumulated data as of 14 October 2026.
 They are Git-ignored and are not supplied by a fresh checkout. Follow the
 [recovery instructions](../data/README.md#recovering-earlier-snapshots) before
 running the notebooks on a new machine.
-See the [data notes](../data/README.md#week-3-notebook-snapshots) for provenance
+See the [data notes](../data/README.md#week-4-notebook-snapshots) for provenance
 and verification. Earlier weekly snapshots and notebooks remain unchanged.
 
-Exploration notebooks are approved for all eight functions. Functions 1–3
-continue their saved shortlists; Functions 4–8 also have approved
-`model_predictions.ipynb` notebooks. The [Week 3 inputs](../submissions/Week_03/submissions.txt)
-have been submitted, with confirmation recorded on 12 October 2026 in the
-[submission log](../submissions/README.md). The notebooks preserve the
-pre-submission analysis; Week 3 results have not yet been recorded. Run each
-notebook with its own week directory as the working directory and its local
-CSV beside it.
+Thirteen notebooks were prepared without saved execution counts or outputs:
+`exploration.ipynb` for all eight functions and `model_predictions.ipynb` for
+Functions 4–8. They copy the current Week 3 working notebooks, including the
+local Function 5 versions, while preserving all earlier files. Initial runs
+are now saved for Functions 1–4 exploration and Function 4 model predictions,
+together with their figures. These Week 4 outputs are retained pending review;
+the other eight notebooks remain unexecuted. Preparation notes inside the
+notebooks describe their initial state.
+
+Functions 1–3 skip the first two evaluated points of the saved Week 2
+shortlists. Function 1 has two planned points left; Functions 2 and 3 each
+have one. Functions 4–8 retain their modelling and candidate-search settings
+for the next run. Old numerical decisions are replaced with a reminder to
+review the new validation and sensitivity results. Function 7's new best is
+recorded in its output review. No Week 4 query decision is confirmed here.
+
+Use the capstone-local `.venv` kernel and each notebook's own week directory
+as the working directory. Run exploration first, then model predictions
+where present. The CSVs retain full float64 precision and the new notebooks
+load them with `float_precision="round_trip"`. Ten weekly query opportunities
+remain per function, including Week 4. No Week 4 submissions are recorded.
 
 ## Weekly output review convention
 
@@ -35,6 +48,15 @@ When discussing percentages, distinguish earlier observations strictly below
 the new value from the chart's share of all observations at or below it,
 including the new result. Keep the next-query commentary brief and grounded in
 the result; reuse the saved shortlist unless the evidence justifies changing it.
+
+## Previous work: Week 3
+
+`Function_N/Week_03/` retains the analyses that selected the eight
+[Week 3 inputs](../submissions/Week_03/submissions.txt). Their fixed snapshots
+contain 191 observations through round 2. Submission was confirmed on
+12 October 2026; the return arrived on 14 October. All eight inputs matched,
+and Function 7 improved its incumbent. The saved pre-submission wording and
+outputs remain historical. See the [submission log](../submissions/README.md).
 
 ## Previous work: Week 2
 
