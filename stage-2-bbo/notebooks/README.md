@@ -1,6 +1,19 @@
 # Notebooks
 
-## Current work: Week 4 prepared; initial runs saved
+## Module 14 reporting cutoff
+
+Use each function's `Week_03/` notebooks to review the decisions made for
+Module 14. Their independent CSV snapshots contain **191 observations through
+round 2**: 12, 12, 17, 32, 22, 22, 32 and 42 rows for Functions 1–8.
+All eight Week 3 inputs were submitted; confirmation was recorded on
+12 October 2026. Functions 1–3 used the next points in their saved coverage
+shortlists, and Functions 4–8 used updated GP comparisons and UCB selection.
+The [Stage 2 overview](../README.md) records that module-end position.
+
+The third-query return and Week 4 runs below are later workspace history.
+They must not be used to explain the earlier Week 3 decisions or reflection.
+
+## Later workspace: Week 4 prepared; initial runs saved
 
 Each `Function_N/Week_04/` notebook expects a local `observations.csv`
 with all initial observations and the three confirmed weekly returns. Expected

@@ -1,5 +1,11 @@
 # Stage 2: choosing the next experiment
 
+**Reporting cutoff: Module 14 / Week 3 submission.** This overview uses only
+the starting data and feedback through round 2: **191 observations**. The third
+queries are submitted. Their early return and subsequent Week 4 work belong
+to the next iteration and are excluded from the decisions and progress below.
+The underlying records retain that later history separately.
+
 Imagine trying to improve a recipe when you can try only one new combination
 each week. You have a few earlier results, but no recipe book explaining how
 the ingredients interact. Should the next attempt be close to something that
@@ -15,8 +21,9 @@ As a software developer, I am using this project to develop judgement about
 applying machine learning: when a model has earned some trust, when more data
 would help, and how to explain a decision that might still turn out badly.
 
-This page tells the story so far. The linked guides contain the calculations,
-full results and instructions for running the work. You can also browse the
+This page describes the Module 14 position. The linked guides contain the
+calculations, dated results and instructions for running the work. Some working
+guides include later records beyond this reporting cutoff. You can also browse the
 [Stage 2 web workspace](https://anthonypwatts.github.io/imperial-capstone/stage-2-bbo/)
 or return to the [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/).
 
@@ -86,10 +93,23 @@ The [methodology guide](docs/methodology.md) explains those checks, the
 exploration batches, the model selection rule and how the approach evolved
 from the first round.
 
+For Week 3 I retained an exploration weight of **1.96** in the GP upper
+confidence bound: predicted mean plus 1.96 times posterior standard deviation.
+Kernel parameters were fitted from the observations; the exploration weight
+remained a heuristic, checked alongside alternative weights and noise assumptions.
+The updated evidence supported continuing the plan without another change of method.
+
+I considered an SVM classifier for high/low-performing regions, with a soft
+margin to tolerate classification errors and an RBF kernel for non-linear
+decision boundaries. I did not implement it. Thresholding the outputs would
+discard information about their magnitudes, and the sparse data offered no
+clear reason to use that classification ahead of the GP for the next query.
+
 ## What has happened so far?
 
-**As of 14 October 2026, Week 3 results are recorded and the Week 4 notebooks
-are prepared, with initial runs saved pending review.** There are three confirmed rounds of feedback.
+**At the Module 14 cutoff, the third queries are submitted and the analysis
+uses two confirmed rounds of feedback.** Submission confirmation was recorded
+on **12 October 2026**; the exact portal submission timestamp was not supplied.
 “Week” labels the submitted batch; “round” labels its returned evaluation.
 
 | Point in the project | What is recorded |
@@ -97,14 +117,13 @@ are prepared, with initial runs saved pending review.** There are three confirme
 | Starting data | 175 supplied observations across eight functions |
 | Week 1 / round 1 | Eight returned scores; new bests for Functions 4, 5, 6 and 7 |
 | Week 2 / round 2 | Eight more returned scores; new bests for Functions 4, 5 and 7; 191 observations in total |
-| Week 3 / round 3 | Eight returned scores; Function 7 improved to 2.552418; 199 observations in total |
-| Week 4 | Thirteen notebooks prepared with independent data snapshots; initial runs saved pending review |
+| Week 3 submission | Eight queries selected from the 191-observation snapshot and submitted; their return is outside this reporting cutoff |
 
 Function 5 is the clearest improvement so far: its best observed score rose
 from about **1,089** in the starting data to **3,933** after round 1 and
 **8,662** after round 2. Function 4 also improved despite its scores remaining
-negative. Function 7 improved again in round 3, from **2.075222** to **2.552418**.
-Functions 1, 2, 3 and 8 have yet to beat their starting bests.
+negative. Function 7's best reached **2.075222** after round 2.
+Functions 1, 2, 3 and 8 had not beaten their starting bests at this cutoff.
 
 An experiment that does not produce a new best can still help me understand a
 function. Function 1's first result, for example, improved coverage while
@@ -112,10 +131,18 @@ returning its lowest score so far. That distinction matters: learning more and
 finding a better score are different outcomes, and I record both. A coverage
 improvement alone does not show that I am closer to the maximum.
 
-The [results guide](results/progress.md) shows progress for all eight
-functions, the returned scores and the best inputs from returned queries. The
+The [results index](results/README.md#module-14-reporting-cutoff) identifies the
+round 2 evidence used here. The [rolling results guide](results/progress.md)
+also retains later returns, which are excluded from this snapshot. The
 [submission log](submissions/README.md) records the exact submitted strings
 and their status.
+
+## Module 14 deliverables
+
+The third queries are submitted, and the first GitHub README draft is posted
+on Canvas. The strategy reflection has been drafted against all five rubric
+criteria, using only the Week 3 work. Reflection submission and the requested
+peer comments are not yet confirmed in the project record.
 
 ## What can this work tell us?
 
@@ -134,8 +161,8 @@ waiting for its answer limits how quickly you can adapt.
 | If you want to… | Read… |
 | --- | --- |
 | Understand why particular experiments were chosen | [Methodology](docs/methodology.md) — coverage, models, uncertainty and limitations |
-| See what improved and what did not | [Results and progress](results/progress.md) — charts, scores and links to the evidence |
-| Inspect an individual function's analysis | [Notebook guide](notebooks/README.md) — current work and historical studies |
+| See the results available for Module 14 | [Results index](results/README.md#module-14-reporting-cutoff) — round 1 and 2 evidence; later returns labelled separately |
+| Inspect an individual function's analysis | [Notebook guide](notebooks/README.md#module-14-reporting-cutoff) — Week 3 evidence and the later workspace |
 | Run the notebooks or rebuild a reading copy | [Reproducing the analyses](docs/reproducing-the-analyses.md) — setup, data snapshots and commands |
 | Check the official task and submission rules | [Module 12 intake notes](docs/module-12-intake.md) — dated course requirements and sources |
 

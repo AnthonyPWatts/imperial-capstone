@@ -5,7 +5,19 @@ functions, round-by-round scores and the best inputs from returned queries.
 The [Stage 2 introduction](../README.md) explains the experiment, and the
 [methodology guide](../docs/methodology.md) explains how inputs are chosen.
 
-## Latest confirmed evaluation: round 3
+## Module 14 reporting cutoff
+
+The module-end summary uses **191 observations through round 2**. Its evidence is
+the [round 1 record](../submissions/round-01-results.json),
+[round 2 record](../submissions/round-02-results.json) and the saved
+`Function_N/Week_03/` analyses. Round 2 improved the incumbents for Functions
+4, 5 and 7; that evidence informed the submitted Week 3 inputs.
+
+The third-query return below and the rolling progress chart are retained as
+later history. They are excluded from the [Module 14 overview](../README.md)
+and the strategy reflection explaining those query choices.
+
+## Later record: round 3, outside the Module 14 snapshot
 
 - [Round 3 return](../submissions/round-03-results.json) — received on
   14 October 2026 at 10:16 BST; all eight inputs match the saved Week 3 submissions.

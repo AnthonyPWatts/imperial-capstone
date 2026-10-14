@@ -1,5 +1,17 @@
 # Submission log
 
+## Module 14 reporting cutoff
+
+The [Module 14 overview](../README.md) stops at the submitted
+[Week 3 inputs](Week_03/submissions.txt), using **191 observations through
+round 2**. Submission confirmation was recorded on 12 October 2026; the exact
+portal timestamp was not supplied. The round 1 and 2 records are the feedback
+available for those decisions. The subsequent third-query return is retained
+in this log but is outside the module-end snapshot and strategy reflection.
+
+The first README draft is posted on Canvas. The strategy reflection is drafted;
+submission and peer-comment completion are not yet confirmed in the project record.
+
 ## Copy-and-paste portal inputs
 
 [Week 3](Week_03/submissions.txt) contains the eight selected Week 3 inputs.

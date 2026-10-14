@@ -1,5 +1,18 @@
 # Local BBO data
 
+## Module 14 reporting cutoff
+
+The [Module 14 overview](../README.md) and strategy reflection use the fixed
+[Week 3 notebook snapshots](#week-3-notebook-snapshots): **191 observations
+through round 2**, with 12, 12, 17, 32, 22, 22, 32 and 42 rows for Functions 1–8.
+The submitted Week 3 queries were selected from that evidence.
+
+The accumulated-data inventory and Week 4 snapshots below include the later
+third-query return. They remain intact for subsequent work and must not be
+substituted for the Week 3 snapshots when reproducing the Module 14 decisions.
+
+## Source data and recovery
+
 The initial input and output `.npy` files were collected on 24 September 2026.
 They are ignored by Git because access is course-restricted.
 

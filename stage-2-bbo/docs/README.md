@@ -4,12 +4,21 @@ Start with the [Stage 2 introduction](../README.md) for the story of the
 experiment. The working guides below provide detail according to what you
 want to understand or do.
 
+## Module 14 reporting cutoff
+
+The [Stage 2 overview](../README.md) records the module-end position:
+**191 observations through round 2**, all eight Week 3 queries submitted,
+and the established coverage/GP plan retained. The first README draft is
+posted; the strategy reflection is drafted, with submission confirmation pending.
+The rolling guides also retain later feedback and Week 4 work. Those records
+are excluded from the Module 14 decisions and reflection.
+
 ## Working guides
 
 | Guide | What it covers |
 | --- | --- |
 | [Methodology](methodology.md) | The objective, coverage and model-guided choices, validation, the taper and limitations |
-| [Results and progress](../results/progress.md) | All eight functions' measured progress through round 3 and the Week 4 preparation status |
+| [Results and progress](../results/progress.md) | Rolling measured progress, including returns after the Module 14 cutoff; use the [results index](../results/README.md#module-14-reporting-cutoff) for the module-end evidence |
 | [Reproducing the analyses](reproducing-the-analyses.md) | Environment setup, historical data snapshots, report commands and provenance |
 | [Notebook guide](../notebooks/README.md) | Individual analyses in the function/week folders |
 | [Submission log](../submissions/README.md) | Exact submitted inputs, confirmation and evaluation status |
@@ -32,5 +41,5 @@ The final repository will also need an account of the approach across all
 eight functions, final progress plots and best observed inputs/outputs,
 the rationale for Bayesian optimisation, challenges and practical insights,
 and presentation links if required. The working guides provide the starting
-material; they currently describe an ongoing experiment with two confirmed
-rounds.
+material. The Module 14 summary uses two confirmed rounds; the rolling records
+also retain subsequent returns for the ongoing experiment.
