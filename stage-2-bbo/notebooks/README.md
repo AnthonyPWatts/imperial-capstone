@@ -1,5 +1,12 @@
 # Notebooks
 
+## Shared implementation
+
+Use [`Shared/`](Shared/README.md) for helpers reused by several functions and
+`Function_N/FunctionSpecificShared/` for helpers tied to one function across
+weeks. The shared-helper guide lists the modelling and plotting modules.
+Weekly notebooks retain their data, assumptions, teaching steps and decisions.
+
 ## Module 14 reporting cutoff
 
 Use each function's `Week_03/` notebooks to review the decisions made for
@@ -13,7 +20,7 @@ The [Stage 2 overview](../README.md) records that module-end position.
 The third-query return and Week 4 runs below are later workspace history.
 They must not be used to explain the earlier Week 3 decisions or reflection.
 
-## Later workspace: Week 4 prepared; initial runs saved
+## Later workspace: Week 4 runs saved for Functions 1–5
 
 Each `Function_N/Week_04/` notebook expects a local `observations.csv`
 with all initial observations and the three confirmed weekly returns. Expected
@@ -27,20 +34,22 @@ running the notebooks on a new machine.
 See the [data notes](../data/README.md#week-4-notebook-snapshots) for provenance
 and verification. Earlier weekly snapshots and notebooks remain unchanged.
 
-Thirteen notebooks were prepared without saved execution counts or outputs:
-`exploration.ipynb` for all eight functions and `model_predictions.ipynb` for
-Functions 4–8. They copy the current Week 3 working notebooks, including the
-local Function 5 versions, while preserving all earlier files. Initial runs
-are now saved for Functions 1–4 exploration and Function 4 model predictions,
-together with their figures. These Week 4 outputs are retained pending review;
-the other eight notebooks remain unexecuted. Preparation notes inside the
-notebooks describe their initial state.
+Each function now has `exploration.ipynb` and `model_predictions.ipynb`.
+Both notebooks have saved executions and figures for Functions 1–5.
+Functions 6–8 retain their prepared, unexecuted notebooks; preparation notes
+inside those notebooks describe their initial state.
+
+Functions 1–3 keep measured-output and coverage reviews in exploration, with
+fitted surfaces, validation, uncertainty and hypothetical model-led queries in
+model predictions. The two-input functions share contour and terrain plots;
+Function 3 uses coordinate curves and conditional planes through its three-input
+space. Their actual next queries still follow the saved coverage sequence.
 
 Functions 1–3 skip the first two evaluated points of the saved Week 2
 shortlists. Function 1 has two planned points left; Functions 2 and 3 each
-have one. Functions 4–8 retain their modelling and candidate-search settings
-for the next run. Old numerical decisions are replaced with a reminder to
-review the new validation and sensitivity results. Function 7's new best is
+have one. Functions 4–8 retain their modelling and candidate-search settings.
+Functions 6–8 still need their Week 4 runs and updated validation and sensitivity
+results reviewed. Function 7's new best is
 recorded in its output review. No Week 4 query decision is confirmed here.
 
 Use the capstone-local `.venv` kernel and each notebook's own week directory
