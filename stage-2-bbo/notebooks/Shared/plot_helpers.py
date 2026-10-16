@@ -19,6 +19,9 @@ from scipy.spatial import cKDTree
 
 
 __all__ = [
+    "PLOT_CONFIG",
+    "TERRAIN_COLOURS",
+    "plot_observed_terrain",
     "plot_ranked_locations",
     "plot_pairwise_ranked_locations",
     "plot_sampling_gaps",
@@ -28,6 +31,67 @@ __all__ = [
     "plot_coverage_tradeoff",
     "plot_output_distribution",
 ]
+
+
+TERRAIN_COLOURS = [[0, "#2475b0"], [0.4, "#42b983"],
+                   [0.65, "#b6d77a"], [0.85, "#d9c69c"], [1, "#fffde0"]]
+PLOT_CONFIG = dict(scrollZoom=True, displaylogo=False, responsive=True)
+
+
+def plot_observed_terrain(inputs, outputs, *, title, heights=None, height_axis=None,
+                          height_description="measured outputs", relief=0.16, save_to=None):
+    """Join observed two-input heights without fitting or extrapolating a model.
+
+    Supply transformed heights and axis ticks when a function needs a different
+    display scale. Hover labels and the best-output marker always use raw outputs.
+    Relief changes the visual aspect ratio only. Returns a draggable Plotly figure.
+    """
+    import plotly.graph_objects as go
+    from scipy.spatial import Delaunay
+
+    inputs, outputs = np.asarray(inputs, dtype=float), np.asarray(outputs, dtype=float)
+    heights = outputs if heights is None else np.asarray(heights, dtype=float)
+    triangles = Delaunay(inputs).simplices
+    fig = go.Figure(go.Mesh3d(
+        x=inputs[:, 0], y=inputs[:, 1], z=heights,
+        i=triangles[:, 0], j=triangles[:, 1], k=triangles[:, 2],
+        intensity=heights, intensitymode="vertex", flatshading=True,
+        colorscale=TERRAIN_COLOURS, showscale=False, hoverinfo="skip", name="Joined observations",
+    ))
+    fig.add_trace(go.Scatter3d(
+        x=inputs[:, 0], y=inputs[:, 1], z=heights, mode="markers",
+        marker=dict(color="black", size=4), customdata=outputs,
+        hovertemplate="x1=%{x:.4f}<br>x2=%{y:.4f}<br>Output y=%{customdata:.3e}<extra></extra>",
+        name="Observed outputs",
+    ))
+    best = np.argmax(outputs)
+    fig.add_trace(go.Scatter3d(
+        x=[inputs[best, 0]], y=[inputs[best, 1]], z=[heights[best]], mode="markers",
+        marker=dict(color="gold", size=7, symbol="diamond", line=dict(color="black", width=2)),
+        customdata=[outputs[best]],
+        hovertemplate="Best observed output: %{customdata:.3e}<extra></extra>",
+        name="Best observed output",
+    ))
+    fig.update_layout(
+        title=dict(text=title + "<br><sup>Drag to rotate; scroll to zoom; use the toolbar to pan or reset.</sup>"),
+        height=700, margin=dict(l=10, r=10, t=90, b=90),
+        scene=dict(
+            xaxis=dict(title="x1", range=[0, 1]),
+            yaxis=dict(title="x2", range=[0, 1]),
+            zaxis=height_axis if height_axis is not None else dict(title="Output y", tickmode="auto", nticks=3),
+            aspectmode="manual", aspectratio=dict(x=1, y=1, z=relief),
+            dragmode="orbit", camera=dict(eye=dict(x=-1.4, y=-1.8, z=1.2)),
+        ),
+        legend=dict(x=0, y=1),
+        annotations=[dict(
+            x=0.5, y=-0.08, xref="paper", yref="paper", showarrow=False,
+            text=f"Faces linearly join {height_description}; they are not the known function surface."
+                 "<br>Blank areas are outside the sampled region. Higher still means a larger output.",
+        )],
+    )
+    if save_to is not None:
+        fig.write_html(Path(save_to), include_plotlyjs=True, config=PLOT_CONFIG)
+    return fig
 
 
 def _finish(figure, save_to):
