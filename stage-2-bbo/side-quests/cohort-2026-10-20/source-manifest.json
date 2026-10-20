@@ -1,0 +1,418 @@
+{
+  "collected_on": "2026-10-20",
+  "sources": [
+    {
+      "repository": "tomxandrews/bbocapstone-s1",
+      "path": "capstone_bbo_master_tracker.xlsx",
+      "url": "https://raw.githubusercontent.com/tomxandrews/bbocapstone-s1/79ce87a94b3a99c6f78e8b2a625dad58f3312127/capstone_bbo_master_tracker.xlsx",
+      "commit": "79ce87a94b3a99c6f78e8b2a625dad58f3312127",
+      "sha256": "26ae4825cfc88e25e0b72e1fa3faf362b572b4fdc42cfc4cc51a3c6ecbb04cd1"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_1/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_1/initial_inputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "ad0017b5583aababb3d3573bc9139f013fc328aa70eba5748f54ef4f1505ad0a"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_1/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_1/initial_outputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "8335e4febb64aec5e7b62a7761c0e610e5f4611551a393d225b03feec84e37db"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_2/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_2/initial_inputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "9824ca17efa0fcc70e58040b3e6d6cea7c2d4b8be76023e4df0dfb1788667505"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_2/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_2/initial_outputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "b4f71bdfd3a50452a2864cffc00b4548ea5d1fb746982ab79b439cee84568a2d"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_3/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_3/initial_inputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "e54dc0e1bd94e301d0756faaf94bff74f60497f67d7fbdf7eb167fa10fe0ed71"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_3/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_3/initial_outputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "f7daf48bc753f8314f09c9a2abfad391382010ab789ca8145bc3e028871dc013"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_4/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_4/initial_inputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "e431a04b3c4678191bf38f398cd79fdc826aea47a3e7c6b6d72e234ec79339e0"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_4/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_4/initial_outputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "dd594bb7929e5a57d852cbdaf7eb0bb184a3dced78b73c7c03f40ccf9046ec3f"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_5/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_5/initial_inputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "01b8b441980fdfc28af5d2090a478eebf1081ba11da3364d94473ad90f4431aa"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_5/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_5/initial_outputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "00d0346f34dd8388feee4a2b603efa29d1c9b99db6ca59225427cb838923b788"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_6/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_6/initial_inputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "3a60333cd371f97a3f4c682d66bf017711ed4229f5f3c477bb5a949793c1a2d4"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_6/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_6/initial_outputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "5819356de777531e31ffa250fff14123bd378421476b068a4ac931cf73a35a82"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_7/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_7/initial_inputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "f45f2203870f77a1e026ceab770305a240d9fdaa5c65db989bd0957450ed9353"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_7/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_7/initial_outputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "9dcac9c3aaee049db5de1efde196643bfda55c29079da7658d02c351d10abd95"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_8/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_8/initial_inputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "fb5ebbb93c990cbdecc44d648362502233b4b5daec335319aca300f9e9b69206"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/initial_data/function_8/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/initial_data/function_8/initial_outputs.npy",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "693ebca2bb2b738162f701f2587bad0d3f2ac1b96d47d32fa6357f2b8e257798"
+    },
+    {
+      "repository": "mkamar17/bbocapstone",
+      "path": "project/stage-two/query_history.py",
+      "url": "https://raw.githubusercontent.com/mkamar17/bbocapstone/c13006540ea59b28153c41ea0389bea40d2110d8/project/stage-two/query_history.py",
+      "commit": "c13006540ea59b28153c41ea0389bea40d2110d8",
+      "sha256": "72e905ff54ed2557d9ff946d62073d806a848c2a55910d1ff0c85bdd5831d344"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "capstone_bbo.ipynb",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/capstone_bbo.ipynb",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "839d6d633f936f68a26b9d4a41c041708a34f18e929c2149f705fc6fada1c9d4"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_1/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_1/initial_inputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "ad0017b5583aababb3d3573bc9139f013fc328aa70eba5748f54ef4f1505ad0a"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_1/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_1/initial_outputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "8335e4febb64aec5e7b62a7761c0e610e5f4611551a393d225b03feec84e37db"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_2/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_2/initial_inputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "9824ca17efa0fcc70e58040b3e6d6cea7c2d4b8be76023e4df0dfb1788667505"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_2/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_2/initial_outputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "b4f71bdfd3a50452a2864cffc00b4548ea5d1fb746982ab79b439cee84568a2d"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_3/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_3/initial_inputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "e54dc0e1bd94e301d0756faaf94bff74f60497f67d7fbdf7eb167fa10fe0ed71"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_3/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_3/initial_outputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "f7daf48bc753f8314f09c9a2abfad391382010ab789ca8145bc3e028871dc013"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_4/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_4/initial_inputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "e431a04b3c4678191bf38f398cd79fdc826aea47a3e7c6b6d72e234ec79339e0"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_4/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_4/initial_outputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "dd594bb7929e5a57d852cbdaf7eb0bb184a3dced78b73c7c03f40ccf9046ec3f"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_5/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_5/initial_inputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "01b8b441980fdfc28af5d2090a478eebf1081ba11da3364d94473ad90f4431aa"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_5/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_5/initial_outputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "00d0346f34dd8388feee4a2b603efa29d1c9b99db6ca59225427cb838923b788"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_6/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_6/initial_inputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "3a60333cd371f97a3f4c682d66bf017711ed4229f5f3c477bb5a949793c1a2d4"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_6/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_6/initial_outputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "5819356de777531e31ffa250fff14123bd378421476b068a4ac931cf73a35a82"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_7/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_7/initial_inputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "f45f2203870f77a1e026ceab770305a240d9fdaa5c65db989bd0957450ed9353"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_7/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_7/initial_outputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "9dcac9c3aaee049db5de1efde196643bfda55c29079da7658d02c351d10abd95"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_8/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_8/initial_inputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "fb5ebbb93c990cbdecc44d648362502233b4b5daec335319aca300f9e9b69206"
+    },
+    {
+      "repository": "kosina/bbocapstone",
+      "path": "initial_data/function_8/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/kosina/bbocapstone/b3b116bba723bda384dab703229ed63cf83f9689/initial_data/function_8/initial_outputs.npy",
+      "commit": "b3b116bba723bda384dab703229ed63cf83f9689",
+      "sha256": "693ebca2bb2b738162f701f2587bad0d3f2ac1b96d47d32fa6357f2b8e257798"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "history/function_1_history.csv",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/history/function_1_history.csv",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "5f1faee6c9682f798d352937da219e376ad8fe98a65a7a77151ea878273e783c"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "history/function_2_history.csv",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/history/function_2_history.csv",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "4a3ab54ac9cb67cbd5873dc970c488ae8e1e6eb5f73f053318ba81664d8a0fe9"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "history/function_3_history.csv",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/history/function_3_history.csv",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "71ed7941169320d354db85a1b862a8b6e93d165ab62890d0a8bd8bbb2aa18da1"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "history/function_4_history.csv",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/history/function_4_history.csv",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "28c539be8a8722206d81d9bc3ab710636af4c66929d9137ca1038f9fdadaa11f"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "history/function_5_history.csv",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/history/function_5_history.csv",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "5f54c150825f80cbe7685048e1b2a0b911831a556ca7831ac03789fd1699e0c6"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "history/function_6_history.csv",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/history/function_6_history.csv",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "3dce512219c5c40669af4439c147df3f5e7ba4816ca7d8e792f2369da5ef837b"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "history/function_7_history.csv",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/history/function_7_history.csv",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "45cf650c93bf027d136c290dab4b19ba060bc3ce2b8f13d30634471b819c86c0"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "history/function_8_history.csv",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/history/function_8_history.csv",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "b3bfcb53f327ed2c990cbe77e2581935a4fdd4b21d8bd51c2478e638bdb083ba"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_1/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_1/initial_inputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "ad0017b5583aababb3d3573bc9139f013fc328aa70eba5748f54ef4f1505ad0a"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_1/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_1/initial_outputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "8335e4febb64aec5e7b62a7761c0e610e5f4611551a393d225b03feec84e37db"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_2/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_2/initial_inputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "9824ca17efa0fcc70e58040b3e6d6cea7c2d4b8be76023e4df0dfb1788667505"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_2/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_2/initial_outputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "b4f71bdfd3a50452a2864cffc00b4548ea5d1fb746982ab79b439cee84568a2d"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_3/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_3/initial_inputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "e54dc0e1bd94e301d0756faaf94bff74f60497f67d7fbdf7eb167fa10fe0ed71"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_3/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_3/initial_outputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "f7daf48bc753f8314f09c9a2abfad391382010ab789ca8145bc3e028871dc013"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_4/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_4/initial_inputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "e431a04b3c4678191bf38f398cd79fdc826aea47a3e7c6b6d72e234ec79339e0"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_4/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_4/initial_outputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "dd594bb7929e5a57d852cbdaf7eb0bb184a3dced78b73c7c03f40ccf9046ec3f"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_5/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_5/initial_inputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "01b8b441980fdfc28af5d2090a478eebf1081ba11da3364d94473ad90f4431aa"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_5/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_5/initial_outputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "00d0346f34dd8388feee4a2b603efa29d1c9b99db6ca59225427cb838923b788"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_6/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_6/initial_inputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "3a60333cd371f97a3f4c682d66bf017711ed4229f5f3c477bb5a949793c1a2d4"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_6/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_6/initial_outputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "5819356de777531e31ffa250fff14123bd378421476b068a4ac931cf73a35a82"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_7/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_7/initial_inputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "f45f2203870f77a1e026ceab770305a240d9fdaa5c65db989bd0957450ed9353"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_7/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_7/initial_outputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "9dcac9c3aaee049db5de1efde196643bfda55c29079da7658d02c351d10abd95"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_8/initial_inputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_8/initial_inputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "fb5ebbb93c990cbdecc44d648362502233b4b5daec335319aca300f9e9b69206"
+    },
+    {
+      "repository": "arwelbrown/black-box-capstone",
+      "path": "initial_data/function_8/initial_outputs.npy",
+      "url": "https://raw.githubusercontent.com/arwelbrown/black-box-capstone/7604880eb28cffb24851a066f57cd71c490fdfaa/initial_data/function_8/initial_outputs.npy",
+      "commit": "7604880eb28cffb24851a066f57cd71c490fdfaa",
+      "sha256": "693ebca2bb2b738162f701f2587bad0d3f2ac1b96d47d32fa6357f2b8e257798"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+[
+  {
+    "function": 1,
+    "notebook": "exploration.ipynb",
+    "executed_cells": 18,
+    "seconds": 4.5
+  },
+  {
+    "function": 1,
+    "notebook": "model_predictions.ipynb",
+    "executed_cells": 20,
+    "seconds": 9.9
+  },
+  {
+    "function": 2,
+    "notebook": "exploration.ipynb",
+    "executed_cells": 15,
+    "seconds": 3.5
+  },
+  {
+    "function": 2,
+    "notebook": "model_predictions.ipynb",
+    "executed_cells": 13,
+    "seconds": 6.9
+  },
+  {
+    "function": 3,
+    "notebook": "exploration.ipynb",
+    "executed_cells": 18,
+    "seconds": 5.0
+  },
+  {
+    "function": 3,
+    "notebook": "model_predictions.ipynb",
+    "executed_cells": 14,
+    "seconds": 9.2
+  },
+  {
+    "function": 4,
+    "notebook": "observation_review.ipynb",
+    "executed_cells": 9,
+    "seconds": 3.1
+  },
+  {
+    "function": 4,
+    "notebook": "model_predictions.ipynb",
+    "executed_cells": 20,
+    "seconds": 4.9
+  },
+  {
+    "function": 5,
+    "notebook": "observation_review.ipynb",
+    "executed_cells": 9,
+    "seconds": 3.1
+  },
+  {
+    "function": 5,
+    "notebook": "model_predictions.ipynb",
+    "executed_cells": 25,
+    "seconds": 5.6
+  },
+  {
+    "function": 6,
+    "notebook": "observation_review.ipynb",
+    "executed_cells": 9,
+    "seconds": 3.1
+  },
+  {
+    "function": 6,
+    "notebook": "model_predictions.ipynb",
+    "executed_cells": 24,
+    "seconds": 5.2
+  },
+  {
+    "function": 7,
+    "notebook": "observation_review.ipynb",
+    "executed_cells": 9,
+    "seconds": 3.2
+  },
+  {
+    "function": 7,
+    "notebook": "model_predictions.ipynb",
+    "executed_cells": 24,
+    "seconds": 5.4
+  },
+  {
+    "function": 8,
+    "notebook": "observation_review.ipynb",
+    "executed_cells": 9,
+    "seconds": 3.2
+  },
+  {
+    "function": 8,
+    "notebook": "model_predictions.ipynb",
+    "executed_cells": 24,
+    "seconds": 5.7
+  }
+]
