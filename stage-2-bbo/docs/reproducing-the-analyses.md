@@ -18,12 +18,13 @@ Week 4 uses observations through round 3 (199 in total).
 See the [recovery instructions](../data/README.md#recovering-earlier-snapshots).
 Snapshots are not updated automatically when later results arrive.
 
-The Week 4 notebooks were prepared without executing cells; some now retain
-initial runs and figures pending review. Select this
-repository's `.venv` kernel, use the individual `Week_04` directory as the
-working directory, then run `exploration.ipynb`. For Functions 4–8, continue in
-`model_predictions.ipynb` and review the newly calculated validation and
-sensitivity results before recording a query decision. The model notebooks
+Select this repository's `.venv` kernel and use the individual `Week_04`
+directory as the working directory. Functions 1–3 start with `exploration.ipynb`;
+Functions 4–8 start with `observation_review.ipynb`. Continue in
+`model_predictions.ipynb` and review the validation and sensitivity results
+before recording a query decision. The observation reviews for Functions 4–8
+have saved runs and figures, as do all eight model notebooks. The Week 4
+strategies were retained and submission was confirmed on 20 October 2026. The model notebooks
 may perform coverage searches and fits; earlier weeks' caches and outputs
 were not copied into the new week.
 

@@ -20,7 +20,7 @@ The [Stage 2 overview](../README.md) records that module-end position.
 The third-query return and Week 4 runs below are later workspace history.
 They must not be used to explain the earlier Week 3 decisions or reflection.
 
-## Later workspace: Week 4 runs saved for Functions 1–5
+## Later workspace: Week 4 observation reviews and model studies
 
 Each `Function_N/Week_04/` notebook expects a local `observations.csv`
 with all initial observations and the three confirmed weekly returns. Expected
@@ -34,10 +34,13 @@ running the notebooks on a new machine.
 See the [data notes](../data/README.md#week-4-notebook-snapshots) for provenance
 and verification. Earlier weekly snapshots and notebooks remain unchanged.
 
-Each function now has `exploration.ipynb` and `model_predictions.ipynb`.
-Both notebooks have saved executions and figures for Functions 1–5.
-Functions 6–8 retain their prepared, unexecuted notebooks; preparation notes
-inside those notebooks describe their initial state.
+Functions 1–3 have `exploration.ipynb` and `model_predictions.ipynb`, with saved
+executions and figures. Functions 4–8 use `observation_review.ipynb` followed by
+`model_predictions.ipynb`. Their observation reviews retain the output number
+line, distinguish initial observations from returned queries, track the best
+observed output across rounds, and compare the strongest full input profiles.
+All five observation reviews and all eight model notebooks have saved executions
+and figures. Week 4 submission was confirmed on 20 October 2026.
 
 Functions 1–3 keep measured-output and coverage reviews in exploration, with
 fitted surfaces, validation, uncertainty and hypothetical model-led queries in
@@ -48,15 +51,17 @@ space. Their actual next queries still follow the saved coverage sequence.
 Functions 1–3 skip the first two evaluated points of the saved Week 2
 shortlists. Function 1 has two planned points left; Functions 2 and 3 each
 have one. Functions 4–8 retain their modelling and candidate-search settings.
-Functions 6–8 still need their Week 4 runs and updated validation and sensitivity
-results reviewed. Function 7's new best is
-recorded in its output review. No Week 4 query decision is confirmed here.
+The project owner reviewed the Week 4 runs and retained the existing strategies.
+Function 7's new best is recorded in its observation review. The eight selected
+inputs are retained in the [Week 4 submission file](../submissions/Week_04/submissions.txt).
 
 Use the capstone-local `.venv` kernel and each notebook's own week directory
-as the working directory. Run exploration first, then model predictions
-where present. The CSVs retain full float64 precision and the new notebooks
+as the working directory. For Functions 1–3, run exploration first; for
+Functions 4–8, run observation review first. Continue in model predictions.
+The CSVs retain full float64 precision and the new notebooks
 load them with `float_precision="round_trip"`. Ten weekly query opportunities
-remain per function, including Week 4. No Week 4 submissions are recorded.
+were available per function at the start of Week 4. All eight Week 4 inputs
+have now been submitted; their outputs are not yet recorded.
 
 ## Weekly output review convention
 

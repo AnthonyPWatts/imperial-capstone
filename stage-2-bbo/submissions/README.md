@@ -14,15 +14,20 @@ submission and peer-comment completion are not yet confirmed in the project reco
 
 ## Copy-and-paste portal inputs
 
+[Week 4](Week_04/submissions.txt) contains the eight selected inputs, ordered
+from Function 1 to Function 8, with one portal input per line. The project owner
+confirmed on **20 October 2026** that the notebooks had been run and the existing
+strategies would continue: saved coverage points for Functions 1–3 and the saved
+model-led proposals for Functions 4–8. Dimensions, `[0, 1)` bounds, six-decimal
+formatting and duplicate status were checked against the Week 4 observations
+and earlier submission files. Portal submission was confirmed by the project
+owner on **20 October 2026**; the exact submission time was not supplied.
+
 [Week 3](Week_03/submissions.txt) contains the eight selected Week 3 inputs.
 Submission was confirmed by the project owner on **12 October 2026**; the
 exact portal submission timestamp was not supplied. Its return arrived on
 14 October 2026 and all eight inputs matched. The saved notebooks retain their pre-submission wording;
 this log records the later submission status.
-
-Week 4 has thirteen prepared notebooks, with initial runs saved pending
-review. No Week 4 inputs or submission have been recorded; complete and
-review the analyses before confirming the next queries.
 
 [Week 2](Week_02/submissions.txt) contains the eight evaluated Week 2 inputs.
 Each line contains only the portal input, ordered from Function 1 to Function 8.

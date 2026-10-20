@@ -7,6 +7,7 @@ teaching sequence, interpretation and query decision beside its data.
 | --- | --- |
 | `plot_helpers.py` | Observed-output plots, including a linear number line; coverage and sampling-gap plots; fixed-plan progressions for two inputs; observed two-input terrains; common interactive plot settings and colours. |
 | `output_helpers.py` | Weekly output summaries and chart captions. |
+| `observation_review_helpers.py` | Measured-output number lines, progress across returned rounds and strongest input profiles for the Week 4 reviews of Functions 4–8. |
 | `coverage_helpers.py`, `coverage_cache.py` | Geometric coverage comparisons and their local caches. |
 | `query_budget.py` | Remaining query allowance. |
 | `model_helpers.py` | Model construction, leave-one-out comparisons, GP teaching curves, validation plots and hypothetical query scoring, shared across input dimensions. |

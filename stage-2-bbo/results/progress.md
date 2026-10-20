@@ -2,7 +2,8 @@
 
 [The introduction](../README.md) explains the experiment in plain language.
 This page records measured outcomes through round 3, as of 14 October 2026.
-Week 4 notebooks are prepared with independent snapshots; initial runs are saved pending review.
+Week 4 notebooks have saved runs using independent snapshots. All eight Week 4
+inputs were submitted, confirmed on 20 October 2026; their outputs are pending.
 
 ## How to read progress
 
@@ -59,7 +60,8 @@ Function 7 improved from `2.075221839308756` to `2.55241765269229`, a gain of
 Function 1's small positive return remains below its incumbent; scientific
 notation preserves the distinction from zero. Week 4 has thirteen notebooks
 using independent CSV snapshots, with initial runs saved pending review.
-No Week 4 query decision has been confirmed.
+The existing Week 4 strategies were retained and all eight inputs were submitted,
+confirmed on 20 October 2026.
 
 ## Previous results: round 2
 
@@ -143,7 +145,7 @@ See the [round results record](../submissions/round-01-results.json) and
 The [first-query proposals](first-query-proposals.md) describe historical
 pre-evaluation work; their proposal JSON and source arrays remain unchanged.
 
-## Week 4: prepared; initial runs saved
+## Week 4: submitted; outputs pending
 
 The [saved Week 3 inputs](../submissions/Week_03/submissions.txt) have now been
 evaluated. Their submission confirmation was recorded on 12 October 2026; the
@@ -153,7 +155,9 @@ Week 4 copies preserve the existing methods. Functions 1–3 advance to the next
 unevaluated points in their saved shortlists; Functions 4–8 retain their model
 and acquisition settings for a fresh comparison. Initial runs are saved for
 Functions 1–4 exploration and Function 4 model predictions, pending review.
-No Week 4 query decision is confirmed here. See the
+All Week 4 runs have now been reviewed and the existing strategies retained.
+Submission was confirmed on 20 October 2026; see the [selected inputs](../submissions/Week_04/submissions.txt).
+See the
 [notebook guide](../notebooks/README.md) for the working sequence.
 
 ## Inspecting an individual result
