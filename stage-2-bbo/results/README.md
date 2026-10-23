@@ -13,19 +13,30 @@ the [round 1 record](../submissions/round-01-results.json),
 `Function_N/Week_03/` analyses. Round 2 improved the incumbents for Functions
 4, 5 and 7; that evidence informed the submitted Week 3 inputs.
 
-The third-query return below and the rolling progress chart are retained as
+The later returns below and the rolling progress chart are retained as
 later history. They are excluded from the [Module 14 overview](../README.md)
 and the strategy reflection explaining those query choices.
 
-## Later record: round 3, outside the Module 14 snapshot
+## Latest record: round 4, outside the Module 14 snapshot
+
+- [Round 4 return](../submissions/round-04-results.json) — received on
+  23 October 2026 at 03:53 BST; all eight inputs match the saved Week 4 submissions.
+  Function 7 improved to `2.6189682154023832`; the other incumbents are unchanged.
+  The accumulated datasets contain **207 observations**.
+- The [Week 5 observation notebooks](../notebooks/README.md#current-work-week-5-observation-reviews)
+  follow the current Week 4 pattern, with all eight executions and figures saved.
+  Functions 2 and 3 continue in saved Week 5 model studies with unsubmitted proposals;
+  the other functions' Week 5 model studies remain to be done.
+
+## Earlier record: round 3, outside the Module 14 snapshot
 
 - [Round 3 return](../submissions/round-03-results.json) — received on
   14 October 2026 at 10:16 BST; all eight inputs match the saved Week 3 submissions.
   Function 7 improved its incumbent to `2.55241765269229`; the other bests are unchanged.
   The accumulated datasets contain **199 observations**.
 - The [Week 4 notebooks](../notebooks/README.md) and independent local CSV
-  snapshots are prepared. Initial runs are saved pending review; no Week 4
-  query decision or submission has been confirmed.
+  snapshots retain the studies that selected the Week 4 queries. Submission
+  was confirmed on 20 October 2026; the round 4 return is recorded above.
 
 ## Earlier evaluation: round 2
 

@@ -44,6 +44,25 @@ as historical records of the proposals, evidence and returned results.
 
 ## Latest confirmed evaluation
 
+The Week 4 results email arrived on **23 October 2026 at 03:53 BST**.
+[`round-04-results.json`](round-04-results.json) records all eight returned
+points and values, before/after incumbents, source hashes and proposal matches.
+Every input matches `Week_04/submissions.txt`; the four-round cumulative
+attachments agree exactly with the retained earlier history. Only eight new
+observations were added, giving **207 observations**.
+
+Function 7 is the only improved incumbent, increasing from `2.55241765269229`
+to `2.6189682154023832`. All eight Week 5 observation notebooks have saved
+executions and independent CSV snapshots; see the
+[notebook guide](../notebooks/README.md#current-work-week-5-observation-reviews).
+Function 2's [Week 5 model notebook](../notebooks/Function_2/Week_05/model_predictions.ipynb)
+now records an unsubmitted proposal with validation and sensitivity checks.
+Function 3's [Week 5 model notebook](../notebooks/Function_3/Week_05/model_predictions.ipynb)
+likewise records an executed model comparison and an unsubmitted proposal.
+No Week 5 portal submission is confirmed.
+
+## Previous evaluation: Week 3
+
 The Week 3 results email arrived on **14 October 2026 at 10:16 BST**.
 [`round-03-results.json`](round-03-results.json) records all eight returned
 points and values, before/after incumbents, source hashes and proposal matches.
