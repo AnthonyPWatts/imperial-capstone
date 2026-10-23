@@ -55,10 +55,13 @@ Function 7 is the only improved incumbent, increasing from `2.55241765269229`
 to `2.6189682154023832`. All eight Week 5 observation notebooks have saved
 executions and independent CSV snapshots; see the
 [notebook guide](../notebooks/README.md#current-work-week-5-observation-reviews).
-Function 2's [Week 5 model notebook](../notebooks/Function_2/Week_05/model_predictions.ipynb)
+Function 2's [Week 5 model notebook](../notebooks/Function_2/Week_05/official/model_predictions.ipynb)
 now records an unsubmitted proposal with validation and sensitivity checks.
-Function 3's [Week 5 model notebook](../notebooks/Function_3/Week_05/model_predictions.ipynb)
+Function 3's [Week 5 model notebook](../notebooks/Function_3/Week_05/official/model_predictions.ipynb)
 likewise records an executed model comparison and an unsubmitted proposal.
+Function 4's [Week 5 model notebook](../notebooks/Function_4/Week_05/official/model_predictions.ipynb)
+now records a new unsubmitted proposal and a separate cohort comparison in
+the [week-level report](../notebooks/Function_4/Week_05/report.md).
 No Week 5 portal submission is confirmed.
 
 ## Previous evaluation: Week 3

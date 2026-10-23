@@ -22,6 +22,7 @@ __all__ = [
     "PLOT_CONFIG",
     "TERRAIN_COLOURS",
     "plot_observed_terrain",
+    "plot_fixed_exploration_projections",
     "plot_ranked_locations",
     "plot_pairwise_ranked_locations",
     "plot_sampling_gaps",
@@ -225,7 +226,7 @@ def plot_sampling_gaps(data: pd.DataFrame, pair=("x1", "x2"), *, save_to=None,
                        candidate=None, central_alternative=None, ax=None, vmax=None,
                        show_points=True, show_labels=True, highlight=None,
                        highlight_label="Highlighted observations", show_legend=True,
-                       show_colorbar=True):
+                       show_colorbar=True, figsize=(7.6, 6.1)):
     """Plot coverage gaps; ax embeds a subplot and vmax fixes the colour scale.
 
     With ax supplied, the caller owns the figure; save_to saves that whole figure.
@@ -236,13 +237,14 @@ def plot_sampling_gaps(data: pd.DataFrame, pair=("x1", "x2"), *, save_to=None,
     highlight is an optional boolean mask in data row order (one value per row).
     Selected observations use red stars, retaining ranks when labels are shown.
     Hide the legend or colour bar when a caller supplies a shared figure key.
+    figsize controls standalone figures; embedded plots retain their caller's size.
     """
     coordinates, edges, distances = _sampling_gap_surface(data, pair)
     highlighted = np.zeros(len(data), dtype=bool) if highlight is None else np.asarray(highlight)
     if highlighted.shape != (len(data),) or highlighted.dtype != np.dtype(bool):
         raise ValueError("highlight must be a boolean mask with one value per data row")
     if ax is None:
-        figure, axis = plt.subplots(figsize=(7.6, 6.1), layout="constrained")
+        figure, axis = plt.subplots(figsize=figsize, layout="constrained")
     else:
         axis = ax
         figure = axis.figure
@@ -578,13 +580,14 @@ def plot_coverage_tradeoff(coverage_results: pd.DataFrame, selected_q, *, save_t
     return _finish(figure, save_to)
 
 
-def plot_output_number_line(review, *, title=None, save_to=None):
+def plot_output_number_line(review, *, title=None, output_limits=None, save_to=None):
     """Show measured outputs on one linear baseline, highlighting latest results.
 
     Accept the review returned by summarise_output_observations. Both signs use
     blue circles for earlier observations; exact zeros use grey diamonds and
     the latest round uses red stars. Values and input row order are unchanged.
     Use this for moderate output ranges; Function 1 has its own mirrored log view.
+    output_limits zooms the view without filtering observations or changing ranks.
     Return a closed figure for a single inline notebook display.
     """
     data = review["data"]
@@ -610,6 +613,11 @@ def plot_output_number_line(review, *, title=None, save_to=None):
     padding = 0.06 * span if span > 0 else max(0.05, abs(float(values[0])) * 0.05)
     axis.set(xlim=(values.min() - padding, values.max() + padding), ylim=(-0.45, 0.75),
              yticks=[], xlabel=f"Output {review['output_column']} (linear scale)")
+    if output_limits is not None:
+        if (len(output_limits) != 2 or not np.isfinite(output_limits).all()
+                or output_limits[0] >= output_limits[1]):
+            raise ValueError("output_limits must contain two increasing finite values")
+        axis.set_xlim(*output_limits)
     if axis.get_xlim()[0] <= 0 <= axis.get_xlim()[1]:
         axis.axvline(0, color="grey", linestyle=":", linewidth=0.8, zorder=1)
     axis.ticklabel_format(axis="x", style="sci", scilimits=(-3, 4), useOffset=False)
@@ -728,3 +736,82 @@ def plot_output_distribution(review, *, title=None, save_to=None):
         magnitude_axis.legend(loc="lower right", fontsize=9)
 
     return _finish(figure, save_to)
+
+
+def plot_fixed_exploration_projections(observations, plan, *, current_week,
+                                   first_plan_week=2, pairs=None, figsize=None, save_to=None):
+    """Show a recorded fixed plan in selected input-pair projections for any input count."""
+    columns = list(plan.columns)
+    completed = current_week - first_plan_week
+    if len(columns) < 2 or plan.empty:
+        raise ValueError("Supply a non-empty plan with at least two inputs.")
+    if completed not in range(len(plan) + 1):
+        raise ValueError("current_week must identify a stage of the saved plan.")
+    if (observations["source_round"] >= current_week).any():
+        raise ValueError("Observed submissions must precede the current week's query.")
+    baseline = observations.loc[observations["source_round"] < first_plan_week, columns].copy()
+    if baseline.empty:
+        raise ValueError("The plan needs earlier observations as a starting point.")
+
+    # Completed steps use recorded inputs, including their submission precision.
+    # Only unevaluated steps use the saved planning coordinates.
+    stages = [baseline]
+    for index, point in enumerate(plan.to_numpy(dtype=float)):
+        week = first_plan_week + index
+        if index < completed:
+            addition = observations.loc[observations["source_round"] == week, columns].copy()
+            if len(addition) != 1 or not np.allclose(addition.to_numpy()[0], point, rtol=0, atol=5e-7):
+                raise ValueError(f"Week {week}'s recorded input does not match the saved plan.")
+        else:
+            addition = pd.DataFrame([point], columns=columns)
+        stages.append(pd.concat([stages[-1], addition], ignore_index=True))
+
+    pairs = _input_pairs(columns, pairs)
+    figsize = figsize or (14, 3 * len(pairs) + 0.4)
+    figure, axes = plt.subplots(len(pairs), len(stages), figsize=figsize,
+                                sharex=True, sharey=True, squeeze=False, layout="constrained")
+    meshes = []
+    for row, pair in enumerate(pairs):
+        for column, stage in enumerate(stages):
+            axis = axes[row, column]
+            plot_sampling_gaps(stage, pair=pair, ax=axis, show_labels=False,
+                               show_legend=False, show_colorbar=False)
+            meshes.append(axis.collections[0])
+            dots = axis.collections[1]
+            dots.set_sizes([18])
+            dots.set_linewidths([0.6])
+            dots.set_clip_on(False)
+            dots.set_in_layout(False)
+            axis.set(xticks=[0, 0.5, 1], yticks=[0, 0.5, 1])
+            axis.tick_params(labelsize=8)
+            axis.set_ylabel(pair[1] if column == 0 else "")
+            if row == 0:
+                last_week = first_plan_week + len(plan) - 1
+                title = (f"Week {first_plan_week + column} start" if column < len(plan)
+                         else f"After Week {last_week}")
+                if column == completed:
+                    title += "\nCurrent Position"
+                elif column > completed:
+                    title += "\nPlanned"
+                axis.set_title(title, fontsize=10,
+                               color="#9a3412" if column == completed else "#172126",
+                               fontweight="bold" if column == completed else "normal")
+            else:
+                axis.set_title("")
+            if column == completed:
+                for spine in axis.spines.values():
+                    spine.set_edgecolor("#c2410c")
+                    spine.set_linewidth(2.5)
+
+    # Adding observations cannot increase nearest-point distances, so the
+    # largest starting gap across the projections fixes the scale everywhere.
+    starting_meshes = meshes[::len(stages)]
+    norm = Normalize(vmin=0, vmax=max(float(mesh.get_array().max()) for mesh in starting_meshes))
+    for mesh in meshes:
+        mesh.set_norm(norm)
+    figure.colorbar(meshes[0], ax=axes.ravel().tolist(), shrink=0.85, fraction=0.025, pad=0.02,
+                    label="Distance to nearest observation in this projection")
+    if save_to is not None:
+        figure.savefig(save_to, dpi=160)
+    plt.close(figure)
+    return figure

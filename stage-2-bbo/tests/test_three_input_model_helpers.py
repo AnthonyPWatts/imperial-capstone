@@ -7,12 +7,14 @@ import unittest
 import matplotlib
 matplotlib.use("Agg")
 import numpy as np
+import pandas as pd
 from scipy.spatial import Delaunay
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "notebooks" / "Shared"))
 from model_helpers import gp_slice, make_gp, make_query_candidates, score_query_candidates
 from three_input_model_helpers import (build_plane_slices, input_cloud,
-                                        interactive_terrain_slices, plane_grid)
+                                        interactive_terrain_slices, plane_grid, plot_observed_input_cloud)
+from plot_helpers import plot_fixed_exploration_projections
 
 
 class CoordinateResponse:
@@ -35,6 +37,33 @@ class ThreeInputModelTests(unittest.TestCase):
         section = gp_slice(CoordinateResponse(), inputs, outputs, inputs[0], 2)
         np.testing.assert_allclose(section["points"][:, :2], [[.2, .3]] * 250)
         np.testing.assert_array_equal(section["observed_y"], [1, 3])
+
+    def test_cloud_zoom_filters_display_only_and_preserves_the_third_input(self):
+        before_inputs, before_outputs = self.inputs.copy(), self.outputs.copy()
+        figure = plot_observed_input_cloud(self.inputs, self.outputs, title="Measured", output_limits=(-.25, 0))
+        np.testing.assert_array_equal(figure.data[0].z, self.inputs[[1, 2], 2])
+        np.testing.assert_array_equal(figure.data[0].marker.color, [-.1, -.2])
+        self.assertEqual(figure.data[1].customdata[0], -.1)
+        np.testing.assert_array_equal(self.inputs, before_inputs)
+        np.testing.assert_array_equal(self.outputs, before_outputs)
+        with self.assertRaisesRegex(ValueError, "displayed observation"):
+            plot_observed_input_cloud(self.inputs, self.outputs, title="Empty", output_limits=(0, 1))
+
+    def test_projected_plan_retains_recorded_precision_in_five_inputs(self):
+        columns = [f"x{i+1}" for i in range(5)]
+        plan = pd.DataFrame([[.2012341]*5, [.7512341]*5], columns=columns)
+        observations = pd.DataFrame([[.1]*5, [.9]*5, [.201234]*5, [.751234]*5], columns=columns)
+        observations["source_round"] = [0, 1, 2, 3]
+        before = observations.copy(deep=True)
+        figure = plot_fixed_exploration_projections(observations, plan, current_week=4,
+                                                    pairs=[("x1", "x5"), ("x2", "x4")])
+        self.assertEqual(len(figure.axes), 7)
+        last_points = figure.axes[2].collections[1].get_offsets()
+        np.testing.assert_array_equal(last_points[-1], [.751234, .751234])
+        for row in range(2):
+            maxima = [float(figure.axes[row*3+col].collections[0].get_array().max()) for col in range(3)]
+            self.assertTrue(all(after <= prior for prior, after in zip(maxima, maxima[1:])))
+        pd.testing.assert_frame_equal(observations, before)
 
     def test_plane_retains_fixed_coordinate_and_joint_model_response(self):
         for axes, fixed in [((0, 1), 2), ((0, 2), 1), ((1, 2), 0)]:

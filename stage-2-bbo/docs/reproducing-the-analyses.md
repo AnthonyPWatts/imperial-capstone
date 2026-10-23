@@ -10,7 +10,7 @@ Python environment. The [repository environment setup](../../README.md#modelling
 also covers selecting an interpreter, rebuilding and activation. Provide the
 authorised course data described in [the data notes](../data/README.md).
 Week 1 analyses use the preserved initial arrays. Week 2–5 notebooks load
-`observations.csv` beside each notebook, with that function/week directory as
+`observations.csv` beside each notebook, with that notebook's directory as
 the kernel's working directory. These weekly CSV files are Git-ignored; populate
 them with the matching historical round before running a fresh checkout:
 Week 2 uses observations through round 1; Week 3 uses observations through round 2;
@@ -20,22 +20,27 @@ See the [recovery instructions](../data/README.md#recovering-earlier-snapshots).
 Snapshots are not updated automatically when later results arrive.
 
 Select this repository's `.venv` kernel and use the individual `Week_05`
-directory as the working directory for the current observation reviews.
+directory as the working directory for the current observation reviews,
+except Functions 2–4, which use `Week_05/official/` for the official analysis
+and `Week_05/cohort/` for the pooled comparison.
 Function 1 uses `exploration.ipynb`; Functions 2 and 3 use
 `exploration-review.ipynb`; Functions 4–8 use `observation_review.ipynb`.
 All eight have saved executions and regenerated figures. Their sources follow
 the current Week 4 pattern, with updated data checks, result commentary and
 historical forecast comparisons. For Function 2, continue in
-`Function_2/Week_05/model_predictions.ipynb`. It has a saved run using the same
+`Function_2/Week_05/official/model_predictions.ipynb`. It has a saved run using the same
 14-observation snapshot and compares the higher-dimensional model pattern with
 the established x1-only and separate-length-scale GP hypotheses. Its proposed
 input remains unsubmitted. Function 3 continues in
-`Function_3/Week_05/model_predictions.ipynb`, using its unchanged 19-observation
+`Function_3/Week_05/official/model_predictions.ipynb`, using its unchanged 19-observation
 snapshot. It compares seven declared regressors, then fitted GP candidates with
 shared or separate input length scales, and includes conditional three-input
 curves, hull-masked response planes, interactive terrains and acquisition views.
-Its proposed input also remains unsubmitted. The other functions have no new Week 5 model studies;
-their Week 4 model links are explicitly historical.
+Its proposed input also remains unsubmitted. Function 4 continues in
+`Function_4/Week_05/official/model_predictions.ipynb`, using 34 official rows
+and its five established model families. It also has a separate 40-row cohort
+comparison. The remaining functions have no new Week 5 model studies; their
+Week 4 model links are explicitly historical.
 
 For the previous model studies, use the individual `Week_04`
 directory as the working directory. Functions 1–3 start with `exploration.ipynb`;
@@ -49,18 +54,49 @@ were not copied into the new week.
 
 ## Functions 2 and 3: Week 5 cohort copies
 
-From the respective `notebooks/Function_N/Week_05/` folder, run `cohort-exploration-review.ipynb` then
-`cohort-model_predictions.ipynb` with the capstone-local kernel. Restore the
-local `cohort-observations.csv` and its source audit as described in the
+For Function 2, run `exploration-review.ipynb` then `model_predictions.ipynb`
+from `notebooks/Function_2/Week_05/cohort/`, using its local `observations.csv`
+and `data-audit.json`. The comparison reads the official CSV, saved proposal
+and coverage cache from the sibling `official/` folder. Each version writes
+to its own `figures/` and `.coverage-cache/`. Start with the week-level
+`report.md` to read the results without running code.
+
+For Function 3, run `exploration-review.ipynb` then `model_predictions.ipynb`
+from `notebooks/Function_3/Week_05/cohort/`, using its local `observations.csv`
+and `data-audit.json`. Its sibling `official/` folder has the same notebook
+names and its own observations, figures and cache. The week-level `report.md`
+contains the discussion and cohort comparison; notebook settings are at the
+top, with calculations and plotting in shared helpers. The Function 3 brief
+does not state that it is noisy, so no noise analysis is included.
+
+Use the capstone-local kernel and restore the data as described in the
 [Function 2 data notes](../data/README.md#function-2-week-5-cohort-comparison) or
 [Function 3 data notes](../data/README.md#function-3-week-5-cohort-comparison). These notebooks
-also read the official `observations.csv`; the model comparison reads the saved
-official notebook's proposal summary. They write figures under `figures/cohort/`
-and use a separate coverage-cache subdirectory. No official notebook, CSV or
-figure is overwritten. The paired comparison refits the original model families
+also read the sibling official `observations.csv`; each model comparison reads
+the saved official notebook's proposal summary. Both versions write figures
+under their own `figures/` and use their own `.coverage-cache/`. A cohort run
+does not overwrite official notebooks, CSVs or figures. The paired comparison refits the original model families
 on the matching 14 or 19 official rows to reproduce the recorded baseline and
 proposal model. Function 3 retains all three coordinates in conditional views
 and in the proposal comparison.
+
+## Function 4: Week 5 official and cohort runs
+
+Run `observation_review.ipynb` then `model_predictions.ipynb` from
+`notebooks/Function_4/Week_05/official/`, followed by the matching notebooks
+in `cohort/`. Each folder has its own local `observations.csv`, `figures/`
+and `.coverage-cache/`. Restore the snapshots and `cohort/data-audit.json`
+as described in the [data notes](../data/README.md#function-4-week-5-cohort-comparison).
+The cohort model reads the saved official proposal and refits the same five
+families on the matching official targets.
+
+Use `Week_05/report.md` for discussion and the cohort comparison. Notebook
+settings are at the top; shared helpers prepare official progress, verify
+the saved Week 4 forecast, fit models and retain every coordinate in conditional
+curves and proposal profiles. The original Week 4 model must have its saved
+printed forecast for the actually submitted input. No historical forecast is
+recreated from later data. Function 4's course description does not state that
+it is noisy, so these runs include no noise analysis.
 
 ## Historical first-query reading copies
 

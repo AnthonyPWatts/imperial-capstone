@@ -1,18 +1,26 @@
 # Shared notebook helpers
 
-Keep reusable implementation here and leave each notebook's assumptions,
-teaching sequence, interpretation and query decision beside its data.
+Keep reusable implementation here. Notebooks declare their settings and run
+calculations beside their data. Where a week has a `report.md`, put the
+human-readable discussion and interpretation in that report; concise code
+comments can explain the calculations. Historical teaching notebooks retain
+their existing explanations.
 
 | Module | Responsibility |
 | --- | --- |
-| `plot_helpers.py` | Observed-output plots, including a linear number line; coverage and sampling-gap plots; fixed-plan progressions for two inputs; observed two-input terrains; common interactive plot settings and colours. |
+| `plot_helpers.py` | Observed-output plots, including a configurable linear number line; coverage and sampling-gap plots; fixed-plan progressions for two inputs and selected projections from any input count; observed two-input terrains; common interactive plot settings and colours. |
 | `output_helpers.py` | Weekly output summaries and chart captions. |
-| `observation_review_helpers.py` | Measured-output number lines, progress across returned rounds and strongest input profiles for the Week 4 reviews of Functions 4–8. |
+| `exploration_review_helpers.py` | Validated snapshot loading, ranked plotting data and remaining fixed-plan inputs with portal strings, independent of input dimension. |
+| `observation_review_helpers.py` | Dimension-independent measured review preparation, official round progress, saved historical forecast checks, measured-output plots and strongest input profiles. |
 | `coverage_helpers.py`, `coverage_cache.py` | Geometric coverage comparisons and their local caches. |
 | `query_budget.py` | Remaining query allowance. |
 | `model_helpers.py` | Model construction, leave-one-out comparisons, GP teaching curves, validation plots and hypothetical query scoring, shared across input dimensions. |
+| `model_review_helpers.py` | Configurable regression families, optional scaled polynomial ridge, held-out review, candidate construction, geometric tie-breaks and sensitivity calculations for any input count. |
+| `model_review_plots.py` | Held-out predictions, latest-result checks, conditional coordinate curves, paired cohort errors and proposal profiles, independent of input dimension. |
+| `cohort_review_helpers.py` | Validate pooled snapshots against official records, align identical held-out targets by ID and compare fits on common candidates and proposals, for any input count. |
+| `noise_review_helpers.py` | Full-input neighbour differences, exact-input repeat candidates, cutoff sensitivity and separate conditional GP noise fits, for any input count. |
 | `two_input_model_helpers.py` | Model curves in the input square, prediction grids, contour maps and fitted terrains. |
-| `three_input_model_helpers.py` | Three-input clouds, conditional coordinate curves, contour planes and terrain sliders. |
+| `three_input_model_helpers.py` | Three-input measured clouds, conditional coordinate curves, contour planes, terrain sliders, proposal exports and a paired cohort comparison map. |
 
 Use `Function_N/FunctionSpecificShared/` for code tied to one function, shared
 across its weekly notebooks. For example, Function 1's mirrored output number
@@ -33,8 +41,56 @@ maps in one row with a shared colour scale and legend. An optional boolean
 remain local to each two-input plane. The existing pairwise helpers still
 return separate figures for notebooks that need them.
 
-Run notebooks using their own week directory and the repository's `.venv` kernel.
+Run notebooks using their own directory and the repository's `.venv` kernel.
 Add `notebooks/Shared` and, when needed, that function's `FunctionSpecificShared`
 directory to `sys.path`, following the Week 4 notebooks. Keep `observations.csv`,
 saved plans and generated figures with their week; helpers do not evaluate the
 course functions or submit queries.
+
+Function 2's Week 5 official exploration review uses a settings cell for its
+input columns, expected round history, full-precision plan and plot options.
+The shared preparation and remaining-plan helpers accept any input dimension;
+the terrain and fixed-plan figures retain their explicit two-input renderers.
+The notebook runs from `Function_2/Week_05/official/` and its discussion lives
+in the parent week's `report.md`.
+
+The official Function 2 Week 5 model notebook follows the same pattern. Its
+settings cell declares the model families, feature subsets, noise and kernel
+assumptions, seeded searches, geometric tie-break and sensitivity cases.
+Numerical review helpers accept arbitrary input counts; explicit two-input
+renderers export this function's contours, slices, terrain and proposal maps.
+The final JSON output preserves the saved-summary format consumed by the
+separate cohort notebook. Interpretation and the course lifecycle remain in
+the week-level report.
+
+Both Function 2 Week 5 cohort notebooks follow the same settings-and-helpers
+pattern. Snapshot validation preserves official records exactly and keeps
+peer round labels out of the owner's timeline. Pooled predictions are aligned
+to official target IDs before paired scoring. Nearby-pair noise proxies use
+all input coordinates; distinct inputs are not treated as repeated experiments.
+Separate white-noise GP fits report variance in normalised units and SD in
+original output units, with fitting warnings retained. These diagnostic fits
+do not change model selection or saved query proposals. Their interpretation
+and the cohort discussion live in the week-level report.
+
+Function 3 Week 5 uses the same `official/` and `cohort/` layout, with one
+week-level report. Its optional quadratic ridge model is constructed by the
+shared regression factory, with polynomial features and scaling fitted inside
+each held-out fold. The generic fixed-plan projection renderer accepts a
+configured list of input pairs; all calculations still use the full input
+vectors. Three-input clouds, conditional planes and terrains use their explicit
+three-dimensional renderers. The course description does not label Function 3
+noisy, so these notebooks omit noise diagnostics and the earlier
+noise-sensitivity table, retaining the existing GP diagonal regularisation and
+all model scores, paired comparisons and provisional inputs.
+
+Function 4 Week 5 follows the same folder and report pattern, keeping
+`observation_review.ipynb` as its measured-review name. Its new model runs
+retain the five established families. Shared review preparation accepts any
+input count, keeps official progress separate from peer labels and verifies
+the historical printed forecast at the actual submitted coordinates. Pooled
+output charts distinguish peers and retain their full source IDs in the
+highest-output labels. Conditional model curves hold every other coordinate
+fixed, while proposal-profile charts show every input without projecting it
+away. The problem description does not label Function 4 noisy, so no noise
+analysis is included; its existing GP regularisation setting is retained.

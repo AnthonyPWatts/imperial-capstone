@@ -109,8 +109,8 @@ def plane_grid(model, inputs, varying_axes, fixed_value, *, side=61, uncertainty
                 std=None if std is None else std.reshape(u.shape))
 
 
-def build_plane_slices(model, inputs, values):
-    return [[plane_grid(model, inputs, (a, b), value) for a, b, _ in PLANE_AXES] for value in values]
+def build_plane_slices(model, inputs, values, *, side=61):
+    return [[plane_grid(model, inputs, (a, b), value, side=side) for a, b, _ in PLANE_AXES] for value in values]
 
 
 def plot_contour_sections(rows, outputs, *, title, save_to=None):
@@ -220,3 +220,115 @@ def interactive_terrain_slices(slices, values, outputs, *, title, save_to=None):
     if save_to is not None:
         fig.write_html(save_to, include_plotlyjs=True, config=PLOT_CONFIG)
     return fig
+
+
+def plot_observed_input_cloud(inputs, outputs, *, title, output_limits=None,
+                               colourscale="Plasma", width=850, height=560,
+                               best_label="Best observed output", save_to=None):
+    """Three input axes and measured output colours; optional limits filter display only."""
+    inputs, outputs = np.asarray(inputs), np.asarray(outputs)
+    if inputs.ndim != 2 or inputs.shape[1] != 3 or outputs.shape != (len(inputs),):
+        raise ValueError("Supply three-input observations and their output vector")
+    if output_limits is not None:
+        lower, upper = output_limits
+        if not np.isfinite([lower, upper]).all() or lower >= upper:
+            raise ValueError("output_limits must contain two increasing finite values")
+        keep = (outputs >= lower) & (outputs <= upper)
+        inputs, outputs = inputs[keep], outputs[keep]
+    if not len(outputs) or not np.isfinite(inputs).all() or not np.isfinite(outputs).all():
+        raise ValueError("The cloud needs at least one finite displayed observation")
+    best = int(np.argmax(outputs))
+    fig = go.Figure(go.Scatter3d(
+        x=inputs[:, 0], y=inputs[:, 1], z=inputs[:, 2], mode="markers",
+        marker=dict(size=6, color=outputs, colorscale=colourscale,
+                    cmin=outputs.min(), cmax=outputs.max(),
+                    colorbar=dict(title="Observed y" if output_limits is None else "Observed y<br>(displayed range)"),
+                    line=dict(color="black", width=1)),
+        customdata=outputs, name="Observed inputs and outputs",
+        hovertemplate="x1=%{x:.4f}<br>x2=%{y:.4f}<br>x3=%{z:.4f}<br>Observed y=%{customdata:.4f}<extra></extra>",
+    ))
+    fig.add_trace(go.Scatter3d(
+        x=[inputs[best, 0]], y=[inputs[best, 1]], z=[inputs[best, 2]], mode="markers",
+        marker=dict(size=9, color="gold", symbol="diamond", line=dict(color="black", width=2)),
+        customdata=[outputs[best]], name=best_label,
+        hovertemplate="Best observed y=%{customdata:.4f}<extra></extra>",
+    ))
+    fig.update_layout(title=title, width=width, height=height, autosize=width is None,
+        margin=dict(l=10, r=80, t=70, b=30), legend=dict(x=0, y=1),
+        scene=dict(xaxis=dict(title="x1", range=[0, 1]), yaxis=dict(title="x2", range=[0, 1]),
+                   zaxis=dict(title="x3 (input)", range=[0, 1]), aspectmode="cube", dragmode="orbit"))
+    if save_to is not None:
+        fig.write_html(save_to, include_plotlyjs=True, config={**PLOT_CONFIG, "responsive": width is None})
+    return fig
+
+
+def save_three_input_model_views(model_run, inputs, target, *, gp_names, title, figures_dir,
+                                 reference_label="Kernel ridge", grid_side=61,
+                                 slice_values=(.10, .25, .40, .50, .60, .75, .90)):
+    """Export the two fitted GP explanations and full-hull conditional response planes."""
+    from pathlib import Path
+
+    figures_dir = Path(figures_dir)
+    anchor = np.asarray(inputs)[int(np.argmax(target))].copy()
+    fitted = model_run["fitted"]
+    curves = plot_coordinate_curves({name: fitted[name] for name in gp_names}, inputs, target, anchor,
+                                    save_to=figures_dir / "gp-coordinate-slices.png")
+    rows = [(name, [plane_grid(fitted[name], inputs, (a, b), anchor[c], side=grid_side)
+                    for a, b, c in PLANE_AXES])
+            for name in (reference_label, model_run["selected_name"])]
+    contours = plot_contour_sections(rows, target,
+        title=f"{title}: fitted output planes through the incumbent",
+        save_to=figures_dir / "fitted-output-contour-slices.png")
+    slices = build_plane_slices(model_run["selected_model"], inputs, slice_values, side=grid_side)
+    terrain = interactive_terrain_slices(slices, slice_values, target,
+        title=f"{title}: {model_run['selected_name']} conditional terrains",
+        save_to=figures_dir / "fitted-terrain-slices.html")
+    return dict(figures=[curves, contours], terrain=terrain, anchor=anchor)
+
+
+def save_three_input_query_views(model, inputs, target, anchor, proposal, *, title,
+                                 figures_dir, weight=1.96, grid_side=61):
+    """Export the unevaluated proposal in a 3D cloud and three conditional score planes."""
+    from pathlib import Path
+
+    figures_dir = Path(figures_dir)
+    cloud = input_cloud(inputs, target, anchor=anchor, suggestion=proposal,
+                         title=f"{title}: observed inputs and proposed GP-UCB query")
+    for trace in cloud.data:
+        if trace.name and "Hypothetical" in trace.name:
+            trace.name = trace.name.replace("Hypothetical", "Proposed")
+    cloud.write_html(figures_dir / "model-query-input-cloud.html", include_plotlyjs=True, config=PLOT_CONFIG)
+    planes = [plane_grid(model, inputs, (a, b), proposal[c], side=grid_side, uncertainty=True)
+              for a, b, c in PLANE_AXES]
+    scores = plot_gp_score_sections(planes, inputs, weight=weight, suggestion=proposal,
+                                    title=f"{title}: conditional query mean, uncertainty and UCB")
+    scores.supxlabel("Dotted boundary: full 3D sampled hull. Coloured regions outside it are extrapolations.\n"
+                     "Colours are shared down each column. Black dots match the held input; magenta X is the proposed query.",
+                     fontsize=9, y=.02)
+    scores.savefig(figures_dir / "model-query-proposal-sections.png", dpi=160, bbox_inches="tight")
+    return dict(cloud=cloud, scores=scores)
+
+
+def plot_cohort_comparison(paired, own_inputs, peer_inputs, own_proposal, pooled_proposal,
+                            *, title, figsize=(14, 6), save_to=None):
+    """Paired target errors beside the explicit three-input observation/proposal map."""
+    own_inputs, peer_inputs = np.asarray(own_inputs), np.asarray(peer_inputs)
+    if own_inputs.ndim != 2 or peer_inputs.ndim != 2 or own_inputs.shape[1] != 3 or peer_inputs.shape[1] != 3:
+        raise ValueError("The cohort input map requires exactly three coordinates")
+    fig = plt.figure(figsize=figsize, layout="constrained")
+    axes = [fig.add_subplot(1, 2, 1), fig.add_subplot(1, 2, 2, projection="3d")]
+    positions = np.arange(len(paired))
+    axes[0].barh(positions-.18, paired.iloc[:, 1], height=.34, label="Own training")
+    axes[0].barh(positions+.18, paired.iloc[:, 2], height=.34, label="Own + peer training")
+    axes[0].set(yticks=positions, yticklabels=paired.Model,
+                xlabel=f"RMSE on the same {len(own_inputs)} official targets", title="Paired held-out comparison")
+    axes[0].legend(fontsize=8)
+    axes[1].scatter(*own_inputs.T, color="#4678a0", label="Official observations", s=30)
+    axes[1].scatter(*peer_inputs.T, color="#bd7720", marker="D", label="Added peer observations", s=45)
+    axes[1].scatter(*own_proposal, color="purple", marker="X", s=110, label="Official provisional query")
+    axes[1].scatter(*pooled_proposal, color="crimson", marker="*", s=150, label="Cohort exploratory query")
+    axes[1].set(xlim=(0, 1), ylim=(0, 1), zlim=(0, 1), xlabel="x1", ylabel="x2", zlabel="x3",
+                title="Observed inputs and the two proposals")
+    axes[1].legend(fontsize=7, loc="upper left")
+    fig.suptitle(title)
+    return finish_figure(fig, save_to)

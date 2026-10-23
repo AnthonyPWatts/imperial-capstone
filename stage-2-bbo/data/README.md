@@ -77,7 +77,9 @@ The original arrays, raw feedback and weekly CSVs remain Git-ignored.
 
 `notebooks/Function_1/Week_05/observations.csv` through
 `notebooks/Function_8/Week_05/observations.csv` are independent copies of the
-round 4 accumulated CSVs, containing **207 observations**. They retain the
+round 4 accumulated CSVs, containing **207 observations**. Functions 2–4
+now keep their copies in `notebooks/Function_N/Week_05/official/observations.csv`
+alongside their official notebooks; the other five locations are unchanged. They retain the
 `observation_id,source_round,x1,...,y` schema and full float64 precision.
 Each earlier Week 4 snapshot is preserved exactly, followed by one `round-04`
 row with `source_round` set to 4. No pooled cohort observations are included.
@@ -89,11 +91,15 @@ new snapshots with `float_precision="round_trip"`.
 
 ## Function 2 Week 5 cohort comparison
 
-The two `cohort-` notebooks in `notebooks/Function_2/Week_05/` use a separate local
-`cohort-observations.csv`: all 14 official Week 5 rows, followed by five accepted
-peer rows from the retained 20 October 2026 study. `cohort-data-audit.json` records
+The two notebooks in `notebooks/Function_2/Week_05/cohort/` use a separate local
+`observations.csv`: all 14 official Week 5 rows, followed by five accepted
+peer rows from the retained 20 October 2026 study. The adjacent `data-audit.json` records
 the source commits and checksums, earlier exclusions, duplicate handling and the
 new pooled CSV hash. Both files remain Git-ignored. The official CSV is unchanged.
+
+The week-level `report.md` presents both analyses. The `official/` and `cohort/`
+folders each contain `exploration-review.ipynb`, `model_predictions.ipynb`,
+their own `observations.csv`, `figures/` and local `.coverage-cache/`.
 
 The earlier study's Function 2 CSV contains 18 rows: 13 then-official rows and
 five IDs beginning with `peer-`. Reconstruct the new 19-row snapshot by retaining
@@ -112,12 +118,17 @@ the comparison does not establish a new confirmed return or increase the query b
 
 ## Function 3 Week 5 cohort comparison
 
-The two `cohort-` notebooks in `notebooks/Function_3/Week_05/` use a local
-`cohort-observations.csv` with **24 rows**: the 19 official Week 5 rows followed
+The two notebooks in `notebooks/Function_3/Week_05/cohort/` use a local
+`observations.csv` with **24 rows**: the 19 official Week 5 rows followed
 by five accepted peer records from the retained 20 October study. The companion
-`cohort-data-audit.json` records commits, source checksums, previous exclusions,
+`data-audit.json` records commits, source checksums, previous exclusions,
 duplicate handling and CSV hashes. Both files remain Git-ignored; the official
 CSV is unchanged.
+
+The week-level `report.md` presents the discussion and cohort comparison.
+Both `official/` and `cohort/` contain `exploration-review.ipynb`,
+`model_predictions.ipynb`, their own `observations.csv`, `figures/` and local
+`.coverage-cache/`. Their data and model results were preserved during the move.
 
 Reconstruct the snapshot by taking the five `peer-` rows from the earlier
 Function 3 pooled CSV and appending them to the current official Week 5 CSV.
@@ -131,6 +142,35 @@ checks compare the same 19 official targets with and without peer training
 rows, then score both GP policies on a common candidate pool. These are
 retrospective checks on self-reported, adaptively sampled data; no portal
 submission or extra owner query allowance follows from this comparison.
+
+## Function 4 Week 5 cohort comparison
+
+The notebooks in `notebooks/Function_4/Week_05/cohort/` use **40 rows**: all
+34 official observations followed by the six accepted `peer-` rows from the
+retained 20 October Function 4 study. The sibling `official/` folder contains
+the unchanged official CSV, the observation review and a new Week 5 model run.
+Both versions use `observation_review.ipynb`, `model_predictions.ipynb`,
+`observations.csv`, `figures/` and a local `.coverage-cache/`. Their discussion
+and comparison live in the week-level `report.md`.
+
+Reconstruct the pooled snapshot from the earlier study's 39-row CSV: first
+check that its 33 non-peer rows exactly match the current official history
+through round 3, then append only its six peer rows to the current 34-row
+official CSV. Preserve `observation_id,source_round,x1,x2,x3,x4,y` and full
+float64 precision. Retain the shared initial batch once. Earlier duplicate
+reports, pending returns and invalid coordinates stay excluded; distinct
+valid inputs with equal reported outputs remain separate records.
+
+The local `cohort/data-audit.json` retains source commits, checksums, exclusions
+and snapshot hashes. All four pinned source files were checked against the
+earlier audit without refreshing repositories. The pooled snapshot contains
+one positive peer-reported output, 0.712146; values are not clipped to zero.
+The CSVs, detailed audit and coverage caches remain Git-ignored.
+
+Peer round labels do not enter the owner's historical progress or the saved
+Week 4 forecast check. The model comparison scores identical official targets
+with and without peer training rows, then compares the fits on common
+candidates and both actual proposals. Neither proposal is a portal submission.
 
 ## Accumulated observations: round 3
 

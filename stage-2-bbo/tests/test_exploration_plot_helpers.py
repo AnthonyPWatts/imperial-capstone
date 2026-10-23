@@ -73,6 +73,15 @@ class Function1NumberLineTests(unittest.TestCase):
 
 
 class LinearNumberLineTests(unittest.TestCase):
+    def test_zoom_preserves_observations_and_original_ranks(self):
+        review = self.review([-.4, -.1, -.05], [0, 0, 4])
+        before = review["data"].copy(deep=True)
+        figure = plot_linear_output_number_line(review, output_limits=(-.15, 0))
+        np.testing.assert_array_equal(figure.axes[0].get_xlim(), [-.15, 0])
+        np.testing.assert_array_equal(figure.axes[0].collections[0].get_offsets()[:, 0], [-.4, -.1])
+        self.assertIn("rank 1/3", "\n".join(text.get_text() for text in figure.texts))
+        pd.testing.assert_frame_equal(review["data"], before)
+
     def review(self, values, rounds):
         data = pd.DataFrame({"observation_id": [f"row-{i}" for i in range(len(values))],
                              "source_round": rounds, "x1": .3, "x2": .7, "y": values},
@@ -134,6 +143,12 @@ class SamplingGapHighlightTests(unittest.TestCase):
         # A non-default index makes the positional mask convention explicit.
         self.data = pd.DataFrame({"x1": [.1, .7, .8], "x2": [.1, .7, 0.],
                                   "rank": [2, 1, 3]}, index=[10, 20, 30])
+
+    def test_configured_figure_size_keeps_the_observed_coordinates(self):
+        figure = plot_sampling_gaps(self.data, figsize=(5.7, 4.575))
+        np.testing.assert_allclose(figure.get_size_inches(), [5.7, 4.575])
+        np.testing.assert_array_equal(figure.axes[0].collections[1].get_offsets(),
+                                      self.data[["x1", "x2"]])
 
     def test_one_or_multiple_highlights_keep_ranks_and_coverage_unchanged(self):
         before = self.data.copy(deep=True)

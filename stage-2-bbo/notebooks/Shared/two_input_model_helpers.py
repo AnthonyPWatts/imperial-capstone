@@ -134,3 +134,79 @@ def fitted_terrain(grid, inputs, target, raw_outputs, *, title, target_label="Si
     if save_to is not None:
         fig.write_html(Path(save_to), include_plotlyjs=True, config=PLOT_CONFIG)
     return fig
+
+
+def save_two_input_model_views(model, reference_model, inputs, target, *, title,
+                               figures_dir, reference_label="Kernel ridge",
+                               grid_side=61, slice_padding=.05):
+    """Export the declared two-input contours, common-scale slices and terrain."""
+    inputs, target = np.asarray(inputs), np.asarray(target)
+    if inputs.ndim != 2 or inputs.shape[1] != 2:
+        raise ValueError("These model views require exactly two input coordinates")
+    figures_dir = Path(figures_dir)
+    anchor = inputs[int(np.argmax(target))].copy()
+    grid = prediction_grid(model, inputs, side=grid_side, uncertainty=True)
+    reference_grid = prediction_grid(reference_model, inputs, side=grid_side)
+    figures = [plot_contour_comparison(inputs, [
+        (reference_label, reference_grid, target), ("Fitted GP mean", grid, target),
+    ], title=f"{title}: fitted output comparisons", target_label="Output y",
+       contour_format="%.2f", save_to=figures_dir / "fitted-output-contours.png")]
+    sections = [gp_slice(model, inputs, target, anchor, axis) for axis in range(2)]
+    lower = min(np.min(section["mean"] - 1.96 * section["std"]) for section in sections)
+    upper = max(np.max(section["mean"] + 1.96 * section["std"]) for section in sections)
+    pad = slice_padding * (upper - lower)
+    for axis in range(2):
+        figures.append(plot_gp_slice(model, inputs, target, anchor, axis,
+            title=f"{title}: fitted GP, vary x{axis + 1}", height_limits=(lower-pad, upper+pad),
+            target_label="Output y", save_to=figures_dir / f"gp-slice-x{axis + 1}.png"))
+    terrain = fitted_terrain(grid, inputs, target, target,
+        title=f"{title}: fitted GP mean (raw output)", target_label="Output y",
+        number_format=".3f", save_to=figures_dir / "fitted-gp-terrain.html")
+    return dict(figures=figures, terrain=terrain, grid=grid, anchor=anchor)
+
+
+def plot_query_proposal(grid, inputs, anchor, proposal, *, title, weight=1.96,
+                        figsize=(15, 5), save_to=None):
+    """Locate the incumbent and proposal on distinct mean, uncertainty and UCB maps."""
+    fields = [grid["mean"], grid["std"], grid["mean"] + weight * grid["std"]]
+    labels = ["GP mean: predicted output y", "GP standard deviation: uncertainty",
+              f"UCB = mean + {weight:g} × SD"]
+    fig, axes = plt.subplots(1, 3, figsize=figsize, layout="constrained")
+    for ax, field, label in zip(axes, fields, labels):
+        fill = ax.contourf(grid["xx"], grid["yy"], field, levels=15, cmap="viridis")
+        fig.colorbar(fill, ax=ax, shrink=.8)
+        outline_hull(ax, inputs)
+        ax.scatter(*np.asarray(inputs).T, color="black", s=18, label="Observed inputs")
+        ax.scatter(*anchor, marker="*", color="gold", edgecolor="black", s=170, label="Incumbent")
+        ax.scatter(*proposal, marker="X", color="magenta", edgecolor="black", s=100,
+                   clip_on=False, zorder=5, label="Proposed query")
+        ax.set(xlim=(0, 1), ylim=(0, 1), xlabel="x1", ylabel="x2", title=label)
+        ax.set_aspect("equal")
+    axes[0].legend(fontsize=8, loc="upper left")
+    fig.suptitle(title)
+    fig.supxlabel("Gold star: incumbent. Magenta X: proposed query. Dotted line: sampled hull. Outside-hull predictions are extrapolations.", fontsize=10)
+    return finish_figure(fig, save_to)
+
+
+def plot_cohort_comparison(paired, own_inputs, peer_inputs, own_proposal, pooled_proposal,
+                            *, title, figsize=(13, 5), save_to=None):
+    """Paired target errors beside the explicit two-input observation/proposal map."""
+    own_inputs, peer_inputs = np.asarray(own_inputs), np.asarray(peer_inputs)
+    if own_inputs.ndim != 2 or peer_inputs.ndim != 2 or own_inputs.shape[1] != 2 or peer_inputs.shape[1] != 2:
+        raise ValueError("The cohort input map requires exactly two coordinates")
+    fig, axes = plt.subplots(1, 2, figsize=figsize, layout="constrained")
+    positions = np.arange(len(paired))
+    axes[0].barh(positions-.18, paired.iloc[:, 1], height=.34, label="Own training")
+    axes[0].barh(positions+.18, paired.iloc[:, 2], height=.34, label="Own + peer training")
+    axes[0].set(yticks=positions, yticklabels=paired.Model,
+                xlabel=f"RMSE on the same {len(own_inputs)} official targets", title="Paired held-out comparison")
+    axes[0].legend(fontsize=8)
+    axes[1].scatter(*own_inputs.T, color="#4678a0", label="Official observations", s=35)
+    axes[1].scatter(*peer_inputs.T, color="#bd7720", marker="D", label="Added peer observations", s=45)
+    axes[1].scatter(*own_proposal, color="purple", marker="X", s=110, label="Official provisional query")
+    axes[1].scatter(*pooled_proposal, color="crimson", marker="*", s=150, label="Cohort exploratory query")
+    axes[1].set(xlim=(0, 1), ylim=(0, 1), xlabel="x1", ylabel="x2", title="Observed inputs and the two proposals")
+    axes[1].set_aspect("equal")
+    axes[1].legend(fontsize=8)
+    fig.suptitle(title)
+    return finish_figure(fig, save_to)

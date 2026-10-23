@@ -1,9 +1,78 @@
 """Measured-output, round-progress and input-profile plots for weekly reviews."""
 
 from pathlib import Path
+import re
 
 import matplotlib.pyplot as plt
+import nbformat
 import numpy as np
+import pandas as pd
+
+
+def prepare_weekly_observation_review(review, *, history=None, strongest_count=5):
+    """Prepare measured rankings and official progress using every input coordinate.
+
+    A pooled review supplies official rows as history. Peer round labels never
+    become owner history, while ranks and the incumbent use the complete snapshot.
+    """
+    data = review["data"]
+    history = data if history is None else history
+    inputs, output, round_column = review["input_columns"], review["output_column"], review["round_column"]
+    if review["latest_mask"].sum() != 1 or strongest_count < 1:
+        raise ValueError("Require one latest return and a positive strongest_count")
+    latest = data.loc[review["latest_mask"]].iloc[0]
+    initial = history.loc[history[round_column].eq(0)]
+    returned = history.loc[history[round_column].gt(0)].sort_values(round_column)
+    if (initial.empty or returned[round_column].duplicated().any()
+            or not history.observation_id.eq(latest.observation_id).any()):
+        raise ValueError("History needs an initial batch, one return per round and the latest observation")
+    running_best = float(initial[output].max())
+    rows = [dict(source_round=0, stage="Initial batch", returned_y=np.nan,
+                 best_y=running_best, change_vs_prior_best=np.nan)]
+    for _, observation in returned.iterrows():
+        value = float(observation[output])
+        change = value - running_best
+        running_best = max(running_best, value)
+        round_number = int(observation[round_column])
+        rows.append(dict(source_round=round_number, stage=f"Round {round_number}",
+                         returned_y=value, best_y=running_best, change_vs_prior_best=change))
+    ranked = data.assign(rank=data[output].rank(ascending=False, method="min").astype(int))
+    strongest = ranked.sort_values(["rank", "observation_id"]).head(strongest_count)
+    earlier = history.loc[history[round_column].lt(latest[round_column])]
+    previous_best = earlier.loc[earlier[output].idxmax()]
+    changes = latest[inputs].astype(float) - previous_best[inputs].astype(float)
+    distances = np.linalg.norm(earlier[inputs].to_numpy(dtype=float) - latest[inputs].to_numpy(dtype=float), axis=1)
+    nearest = earlier.iloc[int(distances.argmin())]
+    return dict(latest=latest, incumbent=data.loc[data[output].idxmax()],
+        strongest=strongest, progress=pd.DataFrame(rows),
+        coordinate_changes=pd.DataFrame({"Previous best": previous_best[inputs].astype(float),
+            "Latest query": latest[inputs].astype(float), "Latest minus previous best": changes}),
+        neighbour_summary=dict(previous_best_id=previous_best.observation_id,
+            previous_best_output=float(previous_best[output]),
+            distance_to_previous_best=float(np.linalg.norm(changes.to_numpy())),
+            latest_minus_previous_best=float(latest[output]-previous_best[output]),
+            nearest_previous_id=nearest.observation_id, nearest_previous_distance=float(distances.min())))
+
+
+def read_saved_forecast(notebook_path, *, point, precision=6):
+    """Read a historical printed forecast only when its saved coordinates match.
+
+    The legacy model notebook prints both fields in one output cell. Preserve
+    that recorded forecast; do not reconstruct it using later observations.
+    """
+    matches = []
+    for cell in nbformat.read(Path(notebook_path), as_version=4).cells:
+        text = "".join(output.get("text", "") for output in cell.get("outputs", []))
+        coordinates = re.search(r"^Coordinates: (.+)$", text, re.MULTILINE)
+        prediction = re.search(r"^Predicted output at the proposed query: ([-+\d.eE]+)$", text, re.MULTILINE)
+        if coordinates and prediction:
+            saved_point = np.asarray([float(value.strip()) for value in coordinates.group(1).split(",")])
+            if saved_point.shape == np.asarray(point).shape and np.array_equal(saved_point.round(precision), np.asarray(point).round(precision)):
+                matches.append(dict(point=saved_point.tolist(), predicted_output=float(prediction.group(1)),
+                                    printed_decimal_places=precision))
+    if len(matches) != 1 or not np.isfinite(matches[0]["predicted_output"]):
+        raise ValueError("Require one saved forecast matching the actual submitted input")
+    return matches[0]
 
 
 def _finish(figure, save_to):
@@ -19,6 +88,7 @@ def plot_output_review(review, *, save_to=None):
     values = data[review["output_column"]].to_numpy(dtype=float)
     rounds = data[review["round_column"]].to_numpy(dtype=int)
     latest = np.asarray(review["latest_mask"], dtype=bool)
+    peer = np.asarray(review.get("peer_mask", np.zeros(len(values), dtype=bool)), dtype=bool)
     incumbent = values == values.max()
     highest = np.argsort(values, kind="stable")[-5:]
     figure, axes = plt.subplots(2, 1, figsize=(12, 6.2))
@@ -29,7 +99,8 @@ def plot_output_review(review, *, save_to=None):
     ):
         for mask, colour, marker, size, label in (
             (rounds == 0, "#4678a0", "o", 42, "Initial supplied observations"),
-            (rounds > 0, "#bd7720", "D", 58, "Returned queries"),
+            ((rounds > 0) & ~peer, "#bd7720", "D", 58, "Returned queries"),
+            (peer, "#8055a0", "s", 55, "Retained peer returns"),
             (incumbent, "#23734f", "o", 170, "Incumbent (highest observed)"),
             (latest, "#c6403b", "*", 190, "Latest return"),
         ):
@@ -54,6 +125,8 @@ def plot_output_review(review, *, save_to=None):
 
     for position, text_x in zip(highest, np.linspace(0.08, 0.92, len(highest))):
         label = f"round-{rounds[position]:02d}" if rounds[position] > 0 else "Initial"
+        if peer[position]:
+            label = str(data.iloc[position]["observation_id"]).replace("-round-", "\nround-")
         if incumbent[position]:
             label += " (incumbent)"
         if latest[position]:

@@ -74,38 +74,50 @@ def compare_models(models, inputs, target, *, floor_zero=False):
     return table, predictions, fitted
 
 
-def make_query_candidates(observed_inputs, *, power=12, seed=42):
-    """A finite 2D or 3D pool, rounded before scoring, excluding observed coordinates.
+def make_query_candidates(observed_inputs, *, power=12, seed=42, precision=6,
+                          include_corners=True):
+    """A finite input-dimensional pool, excluding observed coordinates.
 
-    Include all allowed extreme corners. Six-decimal equality follows the
+    Include all allowed extreme corners unless disabled. Six-decimal equality follows the
     portal input convention, so a nearby point that rounds to an observation is
     not treated as a new query. No course evaluations are performed.
     """
     observed = np.asarray(observed_inputs, dtype=float)
-    if observed.ndim != 2 or observed.shape[1] not in (2, 3) or not np.isfinite(observed).all():
-        raise ValueError("Expected finite two-input or three-input observations")
+    if observed.ndim != 2 or observed.shape[1] < 1 or not np.isfinite(observed).all():
+        raise ValueError("Expected finite observations with at least one input column")
+    if not isinstance(precision, (int, np.integer)) or precision < 1:
+        raise ValueError("precision must be a positive integer")
     dimensions = observed.shape[1]
+    upper = 1 - 10.0 ** -precision
     candidates = qmc.Sobol(d=dimensions, scramble=True, seed=seed).random_base2(power)
-    corners = np.array(list(product((0, 0.999999), repeat=dimensions)))
-    candidates = np.unique(np.clip(np.round(np.vstack([candidates, corners]), 6), 0, 0.999999), axis=0)
-    observed_keys = set(map(tuple, np.round(observed, 6)))
+    if include_corners:
+        candidates = np.vstack([candidates, np.array(list(product((0, upper), repeat=dimensions)))])
+    candidates = np.unique(np.clip(np.round(candidates, precision), 0, upper), axis=0)
+    observed_keys = set(map(tuple, np.round(observed, precision)))
     keep = [tuple(point) not in observed_keys for point in candidates]
     return candidates[keep]
 
 
-def score_query_candidates(model, candidates, *, weight=1.96):
+def score_query_candidates(model, candidates, *, weight=1.96, input_columns=None,
+                           precision=6):
     """Rank exact candidate coordinates by GP UCB; the maximum is finite-pool only."""
     candidates = np.asarray(candidates, dtype=float)
-    if (candidates.ndim != 2 or candidates.shape[1] not in (2, 3) or len(candidates) == 0
+    if not isinstance(precision, (int, np.integer)) or precision < 1:
+        raise ValueError("precision must be a positive integer")
+    if (candidates.ndim != 2 or candidates.shape[1] < 1 or len(candidates) == 0
             or not np.isfinite(candidates).all()
-            or not ((candidates >= 0) & (candidates <= 0.999999)).all()):
-        raise ValueError("Expected non-empty finite 2D or 3D candidates in [0, 0.999999]")
+            or not ((candidates >= 0) & (candidates <= 1 - 10.0 ** -precision)).all()):
+        raise ValueError("Expected non-empty finite candidates within submission bounds")
     if not np.isfinite(weight) or weight < 0:
         raise ValueError("weight must be finite and non-negative")
     mean, std = model.predict(candidates, return_std=True)
     if not np.isfinite(mean).all() or not np.isfinite(std).all() or (std < 0).any():
         raise ValueError("Expected finite GP means and non-negative standard deviations")
-    columns = [f"x{index + 1}" for index in range(candidates.shape[1])]
+    columns = ([f"x{index + 1}" for index in range(candidates.shape[1])]
+               if input_columns is None else list(input_columns))
+    if (len(columns) != candidates.shape[1] or len(set(columns)) != len(columns)
+            or set(columns) & {"posterior_mean", "posterior_sd", "ucb"}):
+        raise ValueError("Supply one distinct input column name per coordinate")
     result = pd.DataFrame(candidates, columns=columns)
     result["posterior_mean"], result["posterior_sd"] = mean, std
     result["ucb"] = mean + weight * std
