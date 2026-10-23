@@ -20,7 +20,99 @@ The [Stage 2 overview](../README.md) records that module-end position.
 The third-query return and Week 4 runs below are later workspace history.
 They must not be used to explain the earlier Week 3 decisions or reflection.
 
-## Later workspace: Week 4 observation reviews and model studies
+## Current work: Week 5 observation reviews
+
+All eight `Function_N/Week_05/` folders contain independent local CSV snapshots
+through round 4 and saved executions of the current Week 4 observation pattern:
+
+| Function | Week 5 notebook | Observations |
+| --- | --- | ---: |
+| 1 | [Exploration](Function_1/Week_05/exploration.ipynb) | 14 |
+| 2 | [Exploration review](Function_2/Week_05/exploration-review.ipynb), then [model predictions](Function_2/Week_05/model_predictions.ipynb) | 14 |
+| 3 | [Exploration review](Function_3/Week_05/exploration-review.ipynb), then [model predictions](Function_3/Week_05/model_predictions.ipynb) | 19 |
+| 4 | [Observation review](Function_4/Week_05/observation_review.ipynb) | 34 |
+| 5 | [Observation review](Function_5/Week_05/observation_review.ipynb) | 24 |
+| 6 | [Observation review](Function_6/Week_05/observation_review.ipynb) | 24 |
+| 7 | [Observation review](Function_7/Week_05/observation_review.ipynb) | 34 |
+| 8 | [Observation review](Function_8/Week_05/observation_review.ipynb) | 44 |
+
+- Function 1: `exploration.ipynb`, retaining output number lines, sampling-gap
+  views, interactive terrain/cloud figures and the fixed exploration progression.
+- Function 2: `exploration-review.ipynb` closes the saved coverage plan. Its
+  `model_predictions.ipynb` continues with held-out comparisons, fitted surfaces,
+  uncertainty, candidate selection and sensitivity checks using all 14 observations.
+- Function 3: `exploration-review.ipynb` closes its fixed plan, followed by an
+  executed `model_predictions.ipynb` using all 19 observations. Conditional curves,
+  planes and interactive terrains retain all three inputs and full 3D hull checks.
+- Functions 4–8: `observation_review.ipynb`, retaining measured-output ranks,
+  round progress, strongest full input profiles, distance comparisons and a
+  check against the saved Week 4 forecast for the actual submitted input.
+
+The snapshots contain **207 observations**: 14, 14, 19, 34, 24, 24, 34 and 44
+rows respectively. They include the Week 4 return received on **23 October 2026**;
+all eight inputs match the saved submissions. Only Function 7 improves its
+incumbent, to `2.6189682154023832`. Source data and earlier weekly files are
+unchanged. The raw feedback and CSV snapshots remain Git-ignored; see the
+[data notes](../data/README.md#week-5-notebook-snapshots).
+
+Use the capstone-local `.venv` with each `Week_05/` folder as the working
+directory. All eight notebooks were executed from that interpreter and their
+figures regenerated. Functions 2 and 3 also have saved Week 5 model runs and
+unsubmitted proposals; the other functions' Week 5 model studies remain separate
+work. No Week 5 submission is recorded. Nine query opportunities
+remain per function, including Week 5. Function 1 has one saved exploration point
+left; Functions 2 and 3 have completed their saved shortlists.
+
+### Function 2: retained cohort comparison
+
+In `Function_2/Week_05/`, [cohort exploration review](Function_2/Week_05/cohort-exploration-review.ipynb)
+and [cohort model predictions](Function_2/Week_05/cohort-model_predictions.ipynb) are
+separate, executed copies of the official notebooks. They use 19 observations:
+the 14 official rows plus five accepted peer returns from the pinned 20 October
+cohort snapshot. No peer repository refresh is implied. The official notebooks,
+data and provisional proposal remain unchanged.
+
+The model copy compares the same seven model families, scores the same 14 official
+held-out targets with and without peer training rows, and compares both fitted
+policies on one common candidate pool. Its final discussion distinguishes the
+new exploratory alternative from the official proposal. Figures live under
+`figures/cohort/`, with separate coverage caches. The pooled CSV and detailed
+source audit remain local and Git-ignored; see the
+[data notes](../data/README.md#function-2-week-5-cohort-comparison).
+
+### Function 3: retained cohort comparison
+
+In `Function_3/Week_05/`, [cohort exploration review](Function_3/Week_05/cohort-exploration-review.ipynb)
+and [cohort model predictions](Function_3/Week_05/cohort-model_predictions.ipynb) are
+executed copies using **24 observations**: the 19 official rows and five accepted
+peer returns from the same pinned 20 October snapshot. The official notebooks,
+data and proposal remain unchanged. Figures live under `figures/cohort/`.
+
+The comparison retains all three inputs, the same seven model families, and
+conditional 3D plots. It scores the same 19 official targets with and without
+peer training rows, and compares both policies on one common candidate pool.
+The shared-length-scale GP becomes preferred, while the separate-length-scale
+GP's paired error increases. The final discussion records the low-x3 exploratory
+alternative and its limitations. See the
+[data notes](../data/README.md#function-3-week-5-cohort-comparison) for the local
+pooled CSV and pinned source audit.
+
+The course lifecycle for the original observation-only rollover is listed below.
+The model notebooks for Functions 2 and 3 follow the same ten steps through
+candidate comparison and proposed next inputs; neither performs a portal submission.
+
+1. **Define the goal and scope** — review the fourth return and prepare the next week's evidence.
+2. **Gather the data** — retain the results email and original cumulative attachments.
+3. **Explore the data** — regenerate output, coverage, progress and input-profile views.
+4. **Clean and preprocess the data** — validate dimensions, bounds, precision and cumulative history; add each return once.
+5. **Select and engineer features** — retain the existing ordered input coordinates; no new features are required.
+6. **Define the machine-learning task** — not applicable to new modelling here; the existing regression/optimisation task is unchanged.
+7. **Partition the data** — not applicable to descriptive observation reviews; no model is evaluated on these snapshots.
+8. **Select and train candidate methods** — not applicable; Week 5 fitting is separate work.
+9. **Evaluate and interpret the results** — compare measured returns, incumbents, ranks and saved pre-return forecasts.
+10. **Deploy and iterate** — no deployment or portal submission applies; carry this evidence into the next query review.
+
+## Previous workspace: Week 4 observation reviews and model studies
 
 Each `Function_N/Week_04/` notebook expects a local `observations.csv`
 with all initial observations and the three confirmed weekly returns. Expected
@@ -61,7 +153,8 @@ Functions 4–8, run observation review first. Continue in model predictions.
 The CSVs retain full float64 precision and the new notebooks
 load them with `float_precision="round_trip"`. Ten weekly query opportunities
 were available per function at the start of Week 4. All eight Week 4 inputs
-have now been submitted; their outputs are not yet recorded.
+were submitted; their outputs are now recorded in the round 4 results and
+reviewed in the Week 5 notebooks above.
 
 ## Weekly output review convention
 

@@ -25,6 +25,8 @@ catboost_info/
 stage-2-bbo/data/*
 !stage-2-bbo/data/README.md
 stage-2-bbo/notebooks/Function_*/Week_*/observations.csv
+stage-2-bbo/notebooks/Function_*/Week_*/cohort-observations.csv
+stage-2-bbo/notebooks/Function_*/Week_*/cohort-data-audit.json
 
 # Competition prediction rows stay local; retain notebooks and submission notes
 stage-1-pump-it-up/submissions/**/*.csv

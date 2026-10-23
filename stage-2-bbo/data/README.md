@@ -7,8 +7,8 @@ The [Module 14 overview](../README.md) and strategy reflection use the fixed
 through round 2**, with 12, 12, 17, 32, 22, 22, 32 and 42 rows for Functions 1–8.
 The submitted Week 3 queries were selected from that evidence.
 
-The accumulated-data inventory and Week 4 snapshots below include the later
-third-query return. They remain intact for subsequent work and must not be
+The accumulated data and Week 5 snapshots now include the fourth-query return.
+Earlier weekly snapshots remain intact and must not be
 substituted for the Week 3 snapshots when reproducing the Module 14 decisions.
 
 ## Source data and recovery
@@ -48,6 +48,89 @@ distinct within each function. There are 175 observations in total.
 The local `import-verification-2026-09-24.json` records file hashes and checks.
 See the [intake notes](../docs/module-12-intake.md) for the official data link and
 submission rules. Do not add the supplied arrays to the repository.
+
+## Current accumulated observations: round 4
+
+The Week 4 results email arrived on **23 October 2026 at 03:53 BST**. Its
+original attachments contain all four rounds and agree exactly with the retained
+history. All eight returned inputs match `submissions/Week_04/submissions.txt`.
+Importing the eight new returns gives **207 observations**: 14, 14, 19, 34, 24,
+24, 34 and 44 rows for Functions 1–8. Function 7 is the only new incumbent,
+at `2.6189682154023832`.
+
+`rounds/round-04/` retains the unchanged attachments (1,679 and 661 bytes),
+plain email body and source metadata. The existing importer rebuilt `accumulated/`
+from all source rounds; importing twice produced identical files. Rebuild from
+the capstone root with:
+
+```powershell
+.venv\Scripts\python.exe stage-2-bbo/scripts/import_round_results.py --round 4
+```
+
+The [round 4 result record](../submissions/round-04-results.json) retains proposal
+matches, full-precision outputs, before/after incumbents and source hashes.
+The local `import-verification-2026-10-23.json` records attachment byte lengths,
+exact CSV/NumPy agreement, idempotency and preservation of earlier files.
+The original arrays, raw feedback and weekly CSVs remain Git-ignored.
+
+## Week 5 notebook snapshots
+
+`notebooks/Function_1/Week_05/observations.csv` through
+`notebooks/Function_8/Week_05/observations.csv` are independent copies of the
+round 4 accumulated CSVs, containing **207 observations**. They retain the
+`observation_id,source_round,x1,...,y` schema and full float64 precision.
+Each earlier Week 4 snapshot is preserved exactly, followed by one `round-04`
+row with `source_round` set to 4. No pooled cohort observations are included.
+
+For a fresh checkout, recover Week 4 as described below, then append each
+function's `point` and `output` from the round 4 result record. Expected counts
+are 14, 14, 19, 34, 24, 24, 34 and 44. Preserve the earlier CSVs and load the
+new snapshots with `float_precision="round_trip"`.
+
+## Function 2 Week 5 cohort comparison
+
+The two `cohort-` notebooks in `notebooks/Function_2/Week_05/` use a separate local
+`cohort-observations.csv`: all 14 official Week 5 rows, followed by five accepted
+peer rows from the retained 20 October 2026 study. `cohort-data-audit.json` records
+the source commits and checksums, earlier exclusions, duplicate handling and the
+new pooled CSV hash. Both files remain Git-ignored. The official CSV is unchanged.
+
+The earlier study's Function 2 CSV contains 18 rows: 13 then-official rows and
+five IDs beginning with `peer-`. Reconstruct the new 19-row snapshot by retaining
+those five peer rows and combining them with the current official Week 5 CSV.
+Verify that the earlier study's non-peer rows match the current CSV through
+round 3, and preserve the `observation_id,source_round,x1,x2,y` schema and full
+float64 precision. Do not append the shared starting rows again. The accepted
+source files, pinned audit and original CSV are needed to verify provenance;
+this comparison does not refresh repositories or fill pending results.
+
+Peer round numbers are per-source labels, not an owner query timeline. The
+cohort review's fixed-plan storyboard therefore uses only the official history.
+The model comparison separately checks pooled LOO metrics, the same 14 official
+target rows, and one common candidate pool. Peer records remain self-reported;
+the comparison does not establish a new confirmed return or increase the query budget.
+
+## Function 3 Week 5 cohort comparison
+
+The two `cohort-` notebooks in `notebooks/Function_3/Week_05/` use a local
+`cohort-observations.csv` with **24 rows**: the 19 official Week 5 rows followed
+by five accepted peer records from the retained 20 October study. The companion
+`cohort-data-audit.json` records commits, source checksums, previous exclusions,
+duplicate handling and CSV hashes. Both files remain Git-ignored; the official
+CSV is unchanged.
+
+Reconstruct the snapshot by taking the five `peer-` rows from the earlier
+Function 3 pooled CSV and appending them to the current official Week 5 CSV.
+Verify the earlier non-peer rows against the current data through round 3.
+Keep `observation_id,source_round,x1,x2,x3,y`, full float64 precision, and the
+15 shared initial rows exactly once. Pending outputs and invalid coordinates
+remain excluded; equal outputs at distinct inputs remain separate records.
+
+The historical fixed-plan storyboard uses only the official timeline. Model
+checks compare the same 19 official targets with and without peer training
+rows, then score both GP policies on a common candidate pool. These are
+retrospective checks on self-reported, adaptively sampled data; no portal
+submission or extra owner query allowance follows from this comparison.
 
 ## Accumulated observations: round 3
 
