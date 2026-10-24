@@ -93,6 +93,23 @@ def read_saved_proposal(notebook_path, *, function, week, model_run, observation
     return summary
 
 
+def read_saved_analysis(notebook_path, *, function, week, analysis):
+    """Read exactly one dated analysis summary, including multi-target studies."""
+    matches = []
+    for cell in nbformat.read(Path(notebook_path), as_version=4).cells:
+        for output in cell.get("outputs", []):
+            try:
+                value = json.loads(output.get("text", ""))
+            except (ValueError, TypeError):
+                continue
+            if (isinstance(value, dict) and value.get("function") == function
+                    and value.get("week") == week and value.get("analysis") == analysis):
+                matches.append(value)
+    if len(matches) != 1:
+        raise ValueError("Require exactly one saved matching analysis summary")
+    return matches[0]
+
+
 def common_candidate_comparison(fits, point_sets, observed, *, input_columns, weight=1.96, precision=6):
     """Score a frozen union of candidate sets using every declared fit."""
     points = np.unique(np.clip(np.vstack(point_sets).round(precision), 0, 1-10.**-precision), axis=0)

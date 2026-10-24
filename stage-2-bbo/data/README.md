@@ -75,11 +75,11 @@ The original arrays, raw feedback and weekly CSVs remain Git-ignored.
 
 ## Week 5 notebook snapshots
 
-`notebooks/Function_1/Week_05/observations.csv` through
-`notebooks/Function_8/Week_05/observations.csv` are independent copies of the
-round 4 accumulated CSVs, containing **207 observations**. Functions 2–4
+The official Week 5 CSVs for Functions 1–8 are independent copies of the
+round 4 accumulated CSVs, containing **207 observations**. Functions 1–4
 now keep their copies in `notebooks/Function_N/Week_05/official/observations.csv`
-alongside their official notebooks; the other five locations are unchanged. They retain the
+alongside their official notebooks; Functions 5–8 still use
+`notebooks/Function_N/Week_05/observations.csv`. They retain the
 `observation_id,source_round,x1,...,y` schema and full float64 precision.
 Each earlier Week 4 snapshot is preserved exactly, followed by one `round-04`
 row with `source_round` set to 4. No pooled cohort observations are included.
@@ -88,6 +88,34 @@ For a fresh checkout, recover Week 4 as described below, then append each
 function's `point` and `output` from the round 4 result record. Expected counts
 are 14, 14, 19, 34, 24, 24, 34 and 44. Preserve the earlier CSVs and load the
 new snapshots with `float_precision="round_trip"`.
+
+## Function 1 Week 5 cohort comparison
+
+The notebooks in `notebooks/Function_1/Week_05/cohort/` use **20 rows**:
+the unchanged 14 official observations followed by six accepted peer returns
+from the retained 20 October study. Both `official/` and `cohort/` contain
+`exploration.ipynb`, `model_predictions.ipynb`, their own `observations.csv`
+and `figures/`. Discussion lives in the week-level `report.md`. The final
+saved coverage query is retained.
+
+Reconstruct the snapshot from the earlier Function 1 study's 19-row CSV.
+Verify that its 13 non-peer rows exactly match the current official history
+through round 3, then append only its six `peer-` rows to the current
+14-row official CSV. Retain the shared initial batch once, preserve the
+`observation_id,source_round,x1,x2,y` schema and load full float64 precision.
+All 20 outputs are non-zero: preserve scientific notation and sign, including
+the very small positive and negative returns. Do not round them to zero.
+
+The local `cohort/data-audit.json` retains source commits, checksums,
+previous exclusions, duplicate handling and CSV hashes. All four retained
+source files were verified against the pinned audit without refreshing
+repositories. CSVs and the detailed audit remain Git-ignored.
+
+Peer round labels do not enter the owner's fixed-plan timeline. The model
+comparison fits signed-log and magnitude targets separately, scores identical
+official held-out targets and compares fits on a common candidate pool.
+These self-reported peer returns do not change the confirmed owner incumbent
+or query allowance.
 
 ## Function 2 Week 5 cohort comparison
 

@@ -70,20 +70,24 @@ def make_regression_models(n_inputs, *, feature_sets=None, noise_fraction=.10,
     return models
 
 
-def fit_model_review(models, inputs, target, *, gp_names, baseline_name="Mean baseline"):
-    """Run held-out comparisons once and select the lowest-RMSE declared GP."""
+def fit_model_review(models, inputs, target, *, gp_names, baseline_name="Mean baseline",
+                     selection_metric="LOO RMSE"):
+    """Compare once and select a declared GP using the configured MAE or RMSE rule."""
+    if selection_metric not in ("LOO MAE", "LOO RMSE"):
+        raise ValueError("selection_metric must be LOO MAE or LOO RMSE")
     comparison, predictions, fitted = compare_models(models, inputs, target)
     baseline = float(comparison.loc[baseline_name, "LOO RMSE"])
-    selected_name = comparison.loc[list(gp_names), "LOO RMSE"].idxmin()
+    selected_name = comparison.loc[list(gp_names), selection_metric].idxmin()
     table = comparison.reset_index()
     table["RMSE reduction (%)"] = 100 * (1 - table["LOO RMSE"] / baseline) if baseline else np.nan
-    table = table.sort_values("LOO RMSE").reset_index(drop=True)
+    table = table.sort_values(selection_metric).reset_index(drop=True)
     selected = fitted[selected_name]
     gp = selected.steps[-1][1] if hasattr(selected, "steps") else selected
     return dict(table=table, predictions=predictions, fitted=fitted,
                 selected_name=selected_name, selected_model=selected, fitted_kernel=str(gp.kernel_),
                 selected_rmse=float(comparison.loc[selected_name, "LOO RMSE"]),
-                baseline_rmse=baseline)
+                baseline_rmse=baseline, selected_mae=float(comparison.loc[selected_name, "LOO MAE"]),
+                baseline_mae=float(comparison.loc[baseline_name, "LOO MAE"]), selection_metric=selection_metric)
 
 
 def review_latest_predictions(predictions, target, latest_mask):

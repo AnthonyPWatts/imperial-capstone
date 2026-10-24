@@ -14,21 +14,31 @@ their existing explanations.
 | `observation_review_helpers.py` | Dimension-independent measured review preparation, official round progress, saved historical forecast checks, measured-output plots and strongest input profiles. |
 | `coverage_helpers.py`, `coverage_cache.py` | Geometric coverage comparisons and their local caches. |
 | `query_budget.py` | Remaining query allowance. |
-| `model_helpers.py` | Model construction, leave-one-out comparisons, GP teaching curves, validation plots and hypothetical query scoring, shared across input dimensions. |
-| `model_review_helpers.py` | Configurable regression families, optional scaled polynomial ridge, held-out review, candidate construction, geometric tie-breaks and sensitivity calculations for any input count. |
-| `model_review_plots.py` | Held-out predictions, latest-result checks, conditional coordinate curves, paired cohort errors and proposal profiles, independent of input dimension. |
-| `cohort_review_helpers.py` | Validate pooled snapshots against official records, align identical held-out targets by ID and compare fits on common candidates and proposals, for any input count. |
+| `model_helpers.py` | Configurable fixed-length-scale model families, leave-one-out comparisons, GP teaching curves, validation plots and hypothetical query scoring, shared across input dimensions. |
+| `model_review_helpers.py` | Configurable regression families, optional scaled polynomial ridge, held-out review with RMSE or MAE selection, candidate construction, geometric tie-breaks and sensitivity calculations for any input count. |
+| `model_review_plots.py` | Held-out predictions with configurable target units, latest-result checks, conditional coordinate curves, paired cohort errors and proposal profiles, independent of input dimension. |
+| `cohort_review_helpers.py` | Validate pooled snapshots against official records, read saved proposal or named analysis summaries, align identical held-out targets by ID and compare fits on common candidates and proposals, for any input count. |
 | `noise_review_helpers.py` | Full-input neighbour differences, exact-input repeat candidates, cutoff sensitivity and separate conditional GP noise fits, for any input count. |
 | `two_input_model_helpers.py` | Model curves in the input square, prediction grids, contour maps and fitted terrains. |
 | `three_input_model_helpers.py` | Three-input measured clouds, conditional coordinate curves, contour planes, terrain sliders, proposal exports and a paired cohort comparison map. |
 
 Use `Function_N/FunctionSpecificShared/` for code tied to one function, shared
 across its weekly notebooks. For example, Function 1's mirrored output number
-line, historical magnitude plots and signed-log target transform live in
+line, magnitude plots and signed-log target reviews live in
 [`Function_1/FunctionSpecificShared/`](../Function_1/FunctionSpecificShared/).
 The transform accepts an explicit scale; choosing that scale remains a notebook
 decision. New function folders need this directory only when they have helpers
 to put in it.
+
+Function 1's Week 5 target-review helpers refit the same configured families
+independently to signed and magnitude targets. They score the saved coverage
+point separately from hypothetical alternatives, validate the saved official
+review, and use generic paired-target and common-candidate comparisons.
+Those calculations accept arbitrary input dimensions; exporting the input-square
+contours and query maps remains explicitly two-dimensional. Fixed-model defaults
+and the shared review's default RMSE selection remain unchanged for other callers.
+Both Function 1 versions declare MAE selection and the same target scale at the
+top, with interpretation in the week-level report.
 
 Use `plot_helpers.plot_output_number_line` for outputs with a moderate range,
 such as Function 2. Function 1's function-specific version uses mirrored log

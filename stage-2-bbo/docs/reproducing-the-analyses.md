@@ -21,7 +21,7 @@ Snapshots are not updated automatically when later results arrive.
 
 Select this repository's `.venv` kernel and use the individual `Week_05`
 directory as the working directory for the current observation reviews,
-except Functions 2–4, which use `Week_05/official/` for the official analysis
+except Functions 1–4, which use `Week_05/official/` for the official analysis
 and `Week_05/cohort/` for the pooled comparison.
 Function 1 uses `exploration.ipynb`; Functions 2 and 3 use
 `exploration-review.ipynb`; Functions 4–8 use `observation_review.ipynb`.
@@ -39,7 +39,8 @@ curves, hull-masked response planes, interactive terrains and acquisition views.
 Its proposed input also remains unsubmitted. Function 4 continues in
 `Function_4/Week_05/official/model_predictions.ipynb`, using 34 official rows
 and its five established model families. It also has a separate 40-row cohort
-comparison. The remaining functions have no new Week 5 model studies; their
+comparison. Function 1 has a signed-score and magnitude model study described
+below, retaining its saved coverage plan. Functions 5–8 have no new Week 5 model studies; their
 Week 4 model links are explicitly historical.
 
 For the previous model studies, use the individual `Week_04`
@@ -51,6 +52,29 @@ have saved runs and figures, as do all eight model notebooks. The Week 4
 strategies were retained and submission was confirmed on 20 October 2026. The model notebooks
 may perform coverage searches and fits; earlier weeks' caches and outputs
 were not copied into the new week.
+
+## Function 1: Week 5 official and cohort runs
+
+Run `exploration.ipynb` then `model_predictions.ipynb` from
+`notebooks/Function_1/Week_05/official/`, followed by the matching notebooks
+in `cohort/`. Each folder uses its own local CSV and saves its own figures.
+Restore the 14-row official and 20-row pooled snapshots, plus the detailed
+local audit, using the [data notes](../data/README.md#function-1-week-5-cohort-comparison).
+No new coverage search is required: one fixed exploration point remains.
+
+The settings declare the five existing model families, fixed target scale,
+GP length scales, MAE selection rule, seeded candidates and uncertainty weights.
+Signed-log score and log absolute magnitude are refitted independently.
+Predictions and errors remain in the declared transformed units. Magnitude
+does not predict sign or replace the competition objective.
+
+The cohort model reads the sibling official CSV and saved target-review
+summary, checks its settings, and reproduces the official fit before
+comparing identical held-out official targets and common candidate inputs.
+Both versions retain the saved portal input `0.912140-0.861783`; model-led
+choices are hypothetical. The week-level `report.md` contains interpretation
+and the course lifecycle. The brief does not state that Function 1 is noisy,
+so no noise analysis is included.
 
 ## Functions 2 and 3: Week 5 cohort copies
 

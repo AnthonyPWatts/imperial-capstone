@@ -55,6 +55,11 @@ Function 7 is the only improved incumbent, increasing from `2.55241765269229`
 to `2.6189682154023832`. All eight Week 5 observation notebooks have saved
 executions and independent CSV snapshots; see the
 [notebook guide](../notebooks/README.md#current-work-week-5-observation-reviews).
+Function 1's [Week 5 model notebook](../notebooks/Function_1/Week_05/official/model_predictions.ipynb)
+compares signed-score and magnitude hypotheses, alongside a separate cohort
+comparison in its [report](../notebooks/Function_1/Week_05/report.md).
+Its final saved coverage input, `0.912140-0.861783`, is retained; the model
+choices are hypothetical.
 Function 2's [Week 5 model notebook](../notebooks/Function_2/Week_05/official/model_predictions.ipynb)
 now records an unsubmitted proposal with validation and sensitivity checks.
 Function 3's [Week 5 model notebook](../notebooks/Function_3/Week_05/official/model_predictions.ipynb)

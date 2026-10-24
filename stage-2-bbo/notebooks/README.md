@@ -27,7 +27,7 @@ through round 4 and saved executions of the current Week 4 observation pattern:
 
 | Function | Week 5 notebook | Observations |
 | --- | --- | ---: |
-| 1 | [Exploration](Function_1/Week_05/exploration.ipynb) | 14 |
+| 1 | [Results report, including cohort comparison](Function_1/Week_05/report.md); [official exploration](Function_1/Week_05/official/exploration.ipynb), then [official model predictions](Function_1/Week_05/official/model_predictions.ipynb) | 14 |
 | 2 | [Results report, including cohort comparison](Function_2/Week_05/report.md); [official exploration review](Function_2/Week_05/official/exploration-review.ipynb), then [official model predictions](Function_2/Week_05/official/model_predictions.ipynb) | 14 |
 | 3 | [Results report, including cohort comparison](Function_3/Week_05/report.md); [official exploration review](Function_3/Week_05/official/exploration-review.ipynb), then [official model predictions](Function_3/Week_05/official/model_predictions.ipynb) | 19 |
 | 4 | [Results report, including cohort comparison](Function_4/Week_05/report.md); [official observation review](Function_4/Week_05/official/observation_review.ipynb), then [official model predictions](Function_4/Week_05/official/model_predictions.ipynb) | 34 |
@@ -38,6 +38,11 @@ through round 4 and saved executions of the current Week 4 observation pattern:
 
 - Function 1: `exploration.ipynb`, retaining output number lines, sampling-gap
   views, interactive terrain/cloud figures and the fixed exploration progression.
+  Matching official and cohort notebooks live in separate folders, with settings
+  at the top, shared helpers and discussion in `report.md`. Model predictions
+  compare signed-score and magnitude targets separately; the final saved coverage
+  point remains the actual plan. Its brief does not state that it is noisy,
+  so no noise analysis is included.
 - Function 2: `exploration-review.ipynb` closes the saved coverage plan. Its
   `model_predictions.ipynb` continues with held-out comparisons, fitted surfaces,
   uncertainty, candidate selection and sensitivity checks using all 14 observations.
@@ -66,14 +71,33 @@ unchanged. The raw feedback and CSV snapshots remain Git-ignored; see the
 [data notes](../data/README.md#week-5-notebook-snapshots).
 
 Use the capstone-local `.venv` with each notebook's folder as the working
-directory. For Functions 2–4, use `Week_05/official/` or `Week_05/cohort/`;
+directory. For Functions 1–4, use `Week_05/official/` or `Week_05/cohort/`;
 the other functions still use their `Week_05/` folder. All eight observation
 notebooks were executed from that interpreter and their
-figures regenerated. Functions 2–4 also have saved Week 5 model runs and
-unsubmitted proposals; the other functions' Week 5 model studies remain separate
-work. No Week 5 submission is recorded. Nine query opportunities
+figures regenerated. Functions 1–4 also have saved Week 5 model runs.
+Function 1 retains its fixed coverage plan, with model choices labelled
+hypothetical; Functions 2–4 have unsubmitted model proposals. The remaining
+functions' Week 5 model studies remain separate work. No Week 5 submission is
+recorded. Nine query opportunities
 remain per function, including Week 5. Function 1 has one saved exploration point
 left; Functions 2 and 3 have completed their saved shortlists.
+
+### Function 1: retained cohort comparison
+
+In `Function_1/Week_05/cohort/`, [exploration](Function_1/Week_05/cohort/exploration.ipynb)
+and [model predictions](Function_1/Week_05/cohort/model_predictions.ipynb) use
+**20 observations**: all 14 official rows plus six accepted peer returns from
+the pinned 20 October snapshot. Both versions have their own figures and local
+CSV. The week-level [report](Function_1/Week_05/report.md) contains the discussion.
+
+The five established model families are refitted independently to the signed-log
+score and log absolute magnitude. Paired checks score the same 14 official
+targets, and both fits use a symmetric common candidate pool. Peer training rows
+reduce the selected magnitude GP's paired MAE by 20.1%, while increasing the
+selected signed GP's by 2.8%. Magnitude is a separate diagnostic objective and
+does not predict sign. The saved coverage input, `0.912140-0.861783`, remains
+unchanged. See the [data notes](../data/README.md#function-1-week-5-cohort-comparison)
+for reconstruction and provenance checks.
 
 ### Function 2: retained cohort comparison
 
@@ -132,8 +156,10 @@ comparison, including its search sensitivity. See the
 snapshot and checksum verification.
 
 The course lifecycle for the original observation-only rollover is listed below.
-The model notebooks for Functions 2–4 follow the same ten steps through
-candidate comparison and proposed next inputs; neither performs a portal submission.
+The model notebooks for Functions 1–4 follow the same ten steps through
+candidate comparison and hypothetical or proposed next inputs; none performs
+a portal submission. Function 1's report also records its distinct magnitude
+target and retained coverage plan.
 
 1. **Define the goal and scope** — review the fourth return and prepare the next week's evidence.
 2. **Gather the data** — retain the results email and original cumulative attachments.

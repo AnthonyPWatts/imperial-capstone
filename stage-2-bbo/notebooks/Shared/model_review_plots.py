@@ -8,7 +8,7 @@ from model_helpers import finish_figure, gp_slice, plot_posterior_curve
 
 
 def plot_held_out_comparison(predictions, target, *, model_names, latest_mask,
-                             title, figsize=(15, 5), padding_fraction=.05, save_to=None):
+                             title, figsize=(15, 5), padding_fraction=.05, target_label="output", save_to=None):
     """Compare declared models on identical output axes and highlight the latest row."""
     target, latest_mask = np.asarray(target), np.asarray(latest_mask, dtype=bool)
     values = np.concatenate([target, *(predictions[name] for name in model_names)])
@@ -21,14 +21,17 @@ def plot_held_out_comparison(predictions, target, *, model_names, latest_mask,
         ax.scatter(target[latest_mask], predicted[latest_mask], marker="*", s=180,
                    color="darkorange", edgecolor="black", label="Latest observation")
         ax.plot(limits, limits, "k--", linewidth=1, label="Perfect prediction")
-        ax.set(xlim=limits, ylim=limits, xlabel="Observed output",
+        ax.set(xlim=limits, ylim=limits, xlabel=f"Observed {target_label}",
                title=f"{name}\nLOO RMSE: {root_mean_squared_error(target, predicted):.3f}")
         ax.set_aspect("equal", adjustable="box")
         ax.grid(alpha=.2)
         ax.legend(fontsize=8, loc="upper left")
-    axes[0, 0].set_ylabel("Held-out predicted output")
+    axes[0, 0].set_ylabel(f"Held-out predicted {target_label}")
     fig.suptitle(title, fontsize=15)
-    fig.text(.5, .02, "Every point is predicted with its own result held out. Higher outputs are better; all observations are retained.",
+    caption = ("Every point is predicted with its own result held out. Higher outputs are better; all observations are retained."
+               if target_label == "output" else
+               "Every point is predicted with its own target held out. All observations are retained; errors use the stated target units.")
+    fig.text(.5, .02, caption,
              ha="center", fontsize=10)
     fig.tight_layout(rect=(0, .055, 1, .95))
     return finish_figure(fig, save_to)
@@ -97,7 +100,7 @@ def plot_nearby_differences(review, *, assumed_noise_sd, title, maximum_distance
 
 def plot_coordinate_model_review(models, inputs, target, anchor, *, input_columns,
                                   title, side=250, padding_fraction=.05,
-                                  figsize=None, save_to=None):
+                                  figsize=None, target_label="Output y", save_to=None):
     """Conditional curves for any input count, holding every other coordinate fixed."""
     inputs, target, anchor = np.asarray(inputs), np.asarray(target), np.asarray(anchor)
     dimensions = len(input_columns)
@@ -119,7 +122,7 @@ def plot_coordinate_model_review(models, inputs, target, anchor, *, input_column
             ax.set(xlim=(0, 1), ylim=(lower-padding, upper+padding), xlabel=f"Vary {input_columns[axis]}",
                    title=f"{name}\nHold {held}" if held else name)
             if axis == 0:
-                ax.set_ylabel("Output y")
+                ax.set_ylabel(target_label)
             ax.legend(fontsize=7)
     fig.suptitle(title)
     fig.text(.5, .01, "All panels share vertical limits. Green crosses match every held coordinate; other measurements are not projected onto the curves.",
@@ -129,17 +132,18 @@ def plot_coordinate_model_review(models, inputs, target, anchor, *, input_column
 
 
 def plot_paired_cohort_profiles(paired, proposals, *, input_columns, target_count,
-                                title, figsize=(14, 5.5), save_to=None):
+                                title, figsize=(14, 5.5), error_columns=None, error_label="RMSE", save_to=None):
     """Paired errors and exact proposed input profiles without dropping dimensions."""
     points = np.asarray(list(proposals.values()))
     if points.ndim != 2 or points.shape[1] != len(input_columns):
         raise ValueError("Proposals must retain every labelled input coordinate")
     fig, axes = plt.subplots(1, 2, figsize=figsize, layout="constrained")
     positions = np.arange(len(paired))
-    axes[0].barh(positions-.18, paired.iloc[:, 1], height=.34, label="Official training")
-    axes[0].barh(positions+.18, paired.iloc[:, 2], height=.34, label="Official + peer training")
+    errors = paired.iloc[:, [1, 2]] if error_columns is None else paired[list(error_columns)]
+    axes[0].barh(positions-.18, errors.iloc[:, 0], height=.34, label="Official training")
+    axes[0].barh(positions+.18, errors.iloc[:, 1], height=.34, label="Official + peer training")
     axes[0].set(yticks=positions, yticklabels=paired.Model,
-                xlabel=f"RMSE on the same {target_count} official targets", title="Paired held-out comparison")
+                xlabel=f"{error_label} on the same {target_count} official targets", title="Paired held-out comparison")
     axes[0].legend(fontsize=8)
     image = axes[1].imshow(points, cmap="Blues", vmin=0, vmax=1, aspect="auto")
     for (row, column), value in np.ndenumerate(points):

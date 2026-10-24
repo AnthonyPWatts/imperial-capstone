@@ -35,18 +35,27 @@ def make_gp(length_scale=0.15, noise_fraction=0.10):
     )
 
 
-def make_models():
-    """A small declared comparison, without a search for favourable settings."""
-    return {
+def make_models(*, ridge_alpha=1., quadratic_degree=2, noise_fraction=.10, gp_length_scales=None):
+    """A configurable fixed-kernel comparison for any input dimension.
+
+    Defaults preserve the historical Function 1 studies. GP labels and fixed
+    length scales can be declared by the calling notebook, without fitting them.
+    """
+    scales = ({"GP: local (l=0.15)": .15, "GP: broad (l=0.35)": .35}
+              if gp_length_scales is None else gp_length_scales)
+    models = {
         "Mean baseline": DummyRegressor(strategy="mean"),
-        "Linear ridge": make_pipeline(StandardScaler(), Ridge(alpha=1.0)),
+        "Linear ridge": make_pipeline(StandardScaler(), Ridge(alpha=ridge_alpha)),
         "Quadratic ridge": make_pipeline(
-            PolynomialFeatures(degree=2, include_bias=False),
-            StandardScaler(), Ridge(alpha=1.0),
+            PolynomialFeatures(degree=quadratic_degree, include_bias=False),
+            StandardScaler(), Ridge(alpha=ridge_alpha),
         ),
-        "GP: local (l=0.15)": make_gp(0.15),
-        "GP: broad (l=0.35)": make_gp(0.35),
     }
+    for label, scale in scales.items():
+        if label in models or not np.isfinite(scale) or scale <= 0:
+            raise ValueError("GP names must be distinct and length scales finite and positive")
+        models[label] = make_gp(scale, noise_fraction)
+    return models
 
 
 def compare_models(models, inputs, target, *, floor_zero=False):
