@@ -1,5 +1,18 @@
 # Function 2 — Week 5 results and cohort comparison
 
+**Submission confirmation, 29 October 2026:** the project owner confirmed
+submission of the [eight selected Week 5 inputs](../../../submissions/Week_05/README.md).
+Results are pending. Eight future weekly queries remain per function.
+The analysis below retains its pre-submission evidence and query budget.
+
+**Selection review, 28 October 2026:** the [prepared Week 5 submission](../../../submissions/Week_05/README.md)
+selects the retained cohort candidate **`0.636151-0.495605`**. On the same
+14 official targets, the x1-only GP's RMSE falls from 0.145783 to 0.121879
+(16.4%), with lower MAE as well. The saved common-pool comparison retains this
+choice. The x2 setting is a geometric tie-break; the lower predicted mean and
+weight sensitivity make this an exploratory query. The official provisional
+proposal and the analysis below are retained as history. Submission confirmation is recorded above.
+
 **Analysis snapshot: 23 October 2026.** Official feedback includes four returned
 queries. The cohort comparison adds five peer observations retained on
 20 October 2026. This report uses the saved notebook results and exported

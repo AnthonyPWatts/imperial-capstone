@@ -1,5 +1,20 @@
 # Function 3 — Week 5 results and cohort comparison
 
+**Submission confirmation, 29 October 2026:** the project owner confirmed
+submission of the [eight selected Week 5 inputs](../../../submissions/Week_05/README.md).
+Results are pending. Eight future weekly queries remain per function.
+The analysis below retains its pre-submission evidence and query budget.
+
+**Selection review, 28 October 2026:** the [prepared Week 5 submission](../../../submissions/Week_05/README.md)
+selects the retained cohort candidate **`0.658460-0.558234-0.006012`**.
+The pooled shared-length-scale GP's RMSE on the same 19 official targets is
+0.047850, versus 0.075703 for the official selected separate-length-scale GP:
+a 36.8% reduction. Its MAE is slightly higher (0.038978 versus 0.037542);
+selection retains the declared RMSE criterion. The common-pool comparison
+retains this candidate. Its small predicted mean gain is much smaller than
+model uncertainty, and the input is outside the sampled hull. The original
+proposals and analysis below remain intact. Submission confirmation is recorded above.
+
 **Analysis snapshot: 23 October 2026.** Official observations include four
 returned queries. The cohort comparison adds five accepted peer observations
 from the retained 20 October snapshot. This report presents the saved notebook

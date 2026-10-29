@@ -14,6 +14,17 @@ submission and peer-comment completion are not yet confirmed in the project reco
 
 ## Copy-and-paste portal inputs
 
+[Week 5](Week_05/submissions.txt) contains all eight selected inputs, prepared
+on **28 October 2026** and ordered from Function 1 to Function 8. The
+[selection review](Week_05/README.md) records the retained Function 1 coverage
+point, the reviewed Function 2–4 choices and the completed Function 5–8 model
+studies. Dimensions, bounds, formatting and duplicate checks passed against
+the current snapshots and earlier submissions. **Portal submission was confirmed
+by the project owner on 29 October 2026; results are pending.** The exact portal
+submission timestamp was not supplied. Eight future queries remain per function.
+The
+[proposal record](Week_05/proposals.json) preserves evidence and source hashes.
+
 [Week 4](Week_04/submissions.txt) contains the eight selected inputs, ordered
 from Function 1 to Function 8, with one portal input per line. The project owner
 confirmed on **20 October 2026** that the notebooks had been run and the existing
@@ -67,7 +78,11 @@ likewise records an executed model comparison and an unsubmitted proposal.
 Function 4's [Week 5 model notebook](../notebooks/Function_4/Week_05/official/model_predictions.ipynb)
 now records a new unsubmitted proposal and a separate cohort comparison in
 the [week-level report](../notebooks/Function_4/Week_05/report.md).
-No Week 5 portal submission is confirmed.
+Functions 5–8 now have executed Week 5 model studies and reports. The
+[Week 5 selection review](Week_05/README.md) records the submitted choices,
+including the adopted alternatives for Functions 2–4. Submission was confirmed
+on 29 October 2026; its results remain pending. Saved notebook proposal statuses
+describe their pre-submission analyses; this log records the later confirmation.
 
 ## Previous evaluation: Week 3
 

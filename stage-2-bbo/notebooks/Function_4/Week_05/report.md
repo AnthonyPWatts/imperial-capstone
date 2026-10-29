@@ -1,5 +1,19 @@
 # Function 4 — Week 5 results and cohort comparison
 
+**Submission confirmation, 29 October 2026:** the project owner confirmed
+submission of the [eight selected Week 5 inputs](../../../submissions/Week_05/README.md).
+Results are pending. Eight future weekly queries remain per function.
+The analysis below retains its pre-submission evidence and query budget.
+
+**Selection review, 28 October 2026:** the [prepared Week 5 submission](../../../submissions/Week_05/README.md)
+retains the official GP and selects **`0.419096-0.406060-0.408855-0.426466`**,
+its already saved winner in the common candidate comparison. That fit has
+lower paired RMSE and MAE than the pooled GP; peers raise RMSE from 1.466791
+to 1.543057. The selected point's official-model UCB is 0.152263, compared
+with 0.139098 at the original official proposal. Its mean remains below the
+incumbent. This final review uses the saved comparison without further fitting;
+the original proposals and analysis below remain intact. Submission confirmation is recorded above.
+
 **Analysis snapshot: 23 October 2026.** The official data contain 30 initial
 observations and four returned queries. A separate cohort snapshot adds six
 accepted peer returns collected on 20 October. The Week 5 model studies are

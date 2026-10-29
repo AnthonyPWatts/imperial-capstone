@@ -4,8 +4,11 @@
 This page records measured outcomes through round 4, as of 23 October 2026.
 All eight Week 4 inputs have been evaluated. Week 5 observation notebooks have
 saved runs using independent snapshots of the 207 confirmed observations.
-Functions 2 and 3 have saved Week 5 model comparisons and unsubmitted proposals;
-the other functions' Week 5 model studies remain to be done.
+All eight functions now have saved Week 5 model comparisons. The
+[submission and selection review](../submissions/Week_05/README.md)
+contains all eight chosen inputs, prepared on 28 October. Submission was confirmed
+by the project owner on 29 October 2026; results are pending. These inputs do not
+change the measured progress below.
 
 ## How to read progress
 
@@ -59,11 +62,13 @@ Function 7 improves from `2.55241765269229` to `2.6189682154023832`, a gain of
 | 8 | 8.818303 | 9.598482 | No |
 
 All eight Week 5 observation notebooks follow the latest Week 4 pattern, with
-executions and figures saved. Function 1 has one fixed exploration point left;
-Functions 2 and 3 have completed their shortlists and continue in
-executed Week 5 model notebooks, with proposed inputs awaiting review.
-The other functions' model fitting and query selection remain separate work.
-Nine weekly queries remain per function.
+executions and figures saved. Function 1's final fixed exploration point has
+been submitted; Functions 2 and 3 have completed their shortlists. All eight model studies
+and the [Week 5 selection review](../submissions/Week_05/README.md) are complete;
+the eight-line input file preserves the submitted inputs. The review selects
+pooled candidates for Functions 2 and 3, the official GP's saved common-pool
+candidate for Function 4 and new official-data candidates for Functions 5–8.
+Eight future weekly queries remain per function after the fifth submission.
 
 ## Previous results: round 3
 

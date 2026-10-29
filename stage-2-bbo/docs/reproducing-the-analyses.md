@@ -40,8 +40,9 @@ Its proposed input also remains unsubmitted. Function 4 continues in
 `Function_4/Week_05/official/model_predictions.ipynb`, using 34 official rows
 and its five established model families. It also has a separate 40-row cohort
 comparison. Function 1 has a signed-score and magnitude model study described
-below, retaining its saved coverage plan. Functions 5–8 have no new Week 5 model studies; their
-Week 4 model links are explicitly historical.
+below, retaining its saved coverage plan. Functions 5–8 now continue in their
+own `Week_05/model_predictions.ipynb`, with interpretation in `Week_05/report.md`.
+All four runs are saved; their Week 4 model links remain historical.
 
 For the previous model studies, use the individual `Week_04`
 directory as the working directory. Functions 1–3 start with `exploration.ipynb`;
@@ -121,6 +122,33 @@ curves and proposal profiles. The original Week 4 model must have its saved
 printed forecast for the actually submitted input. No historical forecast is
 recreated from later data. Function 4's course description does not state that
 it is noisy, so these runs include no noise analysis.
+
+## Functions 5–8: Week 5 model runs
+
+Run `observation_review.ipynb` then `model_predictions.ipynb` from each function's
+`Week_05/` folder, using its independent local `observations.csv`. Each model
+notebook verifies the Capstone-local interpreter and declares its assumptions
+and seeded searches in the settings cell. The saved runs include every code
+cell and regenerate the held-out comparison, latest-result and conditional-curve
+figures. No additional dependencies or peer downloads are required.
+
+The models retain the established raw-output GP/UCB selection and mean, linear,
+ridge and kernel-ridge benchmarks. Function 5 also compares the existing
+log-target GP in original output units. It adds a declared 0.02 minimum distance
+from measured inputs after the unconstrained search selected an almost identical
+corner repeat; a frozen-score comparison shows thresholds 0, 0.01, 0.02 and 0.05.
+Function 8 retains a separate local search around the latest returned corner.
+All four notebooks check weights 0, 1, 1.96 and 3, plus alternative GP diagonal
+regularisation at the same proposed input. The per-function reports contain
+the interpretation and ten-step course lifecycle.
+
+The [Week 5 submission](../submissions/Week_05/README.md) records the
+final reviewed choices for all eight functions, including the saved cohort
+comparisons for Functions 2–4. Its JSON record preserves the exact inputs,
+source hashes and validation evidence. Portal submission was confirmed by the
+project owner on 29 October 2026; results are pending. The notebooks perform
+the analysis and preserve their pre-submission context. Eight future weekly
+queries remain per function after the fifth submission.
 
 ## Historical first-query reading copies
 

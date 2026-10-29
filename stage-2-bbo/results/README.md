@@ -25,8 +25,10 @@ and the strategy reflection explaining those query choices.
   The accumulated datasets contain **207 observations**.
 - The [Week 5 observation notebooks](../notebooks/README.md#current-work-week-5-observation-reviews)
   follow the current Week 4 pattern, with all eight executions and figures saved.
-  Functions 2 and 3 continue in saved Week 5 model studies with unsubmitted proposals;
-  the other functions' Week 5 model studies remain to be done.
+  All eight functions now have saved Week 5 model studies. The
+  [submission and selection review](../submissions/Week_05/README.md)
+  contains all eight submitted inputs. Submission was confirmed by the project
+  owner on 29 October 2026; results are pending.
 
 ## Earlier record: round 3, outside the Module 14 snapshot
 

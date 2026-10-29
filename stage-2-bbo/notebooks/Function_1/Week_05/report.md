@@ -1,5 +1,10 @@
 # Function 1 — Week 5 results and cohort comparison
 
+**Submission confirmation, 29 October 2026:** the project owner confirmed
+submission of the [eight selected Week 5 inputs](../../../submissions/Week_05/README.md).
+Results are pending. Eight future weekly queries remain per function.
+The analysis below retains its pre-submission evidence and query budget.
+
 **Analysis snapshot: 24 October 2026.** The official data include the fourth
 return, received on 23 October. The cohort comparison adds six accepted peer
 returns from the retained 20 October snapshot. No peer repositories have been

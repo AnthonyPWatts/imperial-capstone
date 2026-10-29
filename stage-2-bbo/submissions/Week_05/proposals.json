@@ -1,0 +1,973 @@
+{
+  "week": 5,
+  "prepared_on": "2026-10-28",
+  "status": "submitted_awaiting_results",
+  "feedback_through_round": 4,
+  "official_observations": 207,
+  "base_commit": "1bb7765ff0e3d6d460c8c252d5a6b891b4e1b87d",
+  "submission_file": {
+    "path": "stage-2-bbo/submissions/Week_05/submissions.txt",
+    "sha256": "18558cbae60b6b1cf11b552dd7e0115fab022b30d988fcb2a215326a3811d07c"
+  },
+  "validation": {
+    "line_count": 8,
+    "dimensions": [
+      2,
+      2,
+      3,
+      4,
+      4,
+      5,
+      6,
+      8
+    ],
+    "coordinate_range": "[0, 1)",
+    "decimal_places": 6,
+    "separator": "-",
+    "spaces": false,
+    "observed_duplicate": false,
+    "earlier_official_submission_duplicate": false
+  },
+  "candidates": [
+    {
+      "function": 1,
+      "dimensions": 2,
+      "portal_input": "0.912140-0.861783",
+      "point": [
+        0.91214,
+        0.861783
+      ],
+      "data_scope": "official_fixed_coverage_plan",
+      "reason": "Retain the final point in the predetermined exploration shortlist.",
+      "model_prediction": null,
+      "evidence": {
+        "official_observations": 14,
+        "best_official_output": 7.710875114502849e-16
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_1/Week_05/official/observations.csv",
+          "sha256": "66483534aa9298dfdb95584769eb3cb8857bdd210b278d407aadd2f52558f7af"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_1/Week_05/official/exploration.ipynb",
+          "sha256": "6ac912bc48f822ae679049e2a2edbcaf35f7bb7ee9d14db7d84c2e81c72c6b75"
+        }
+      ],
+      "validation": {
+        "observed_rows_checked": 20,
+        "earlier_submission_files_checked": 4,
+        "duplicate_at_six_decimals": false,
+        "nearest_measured_input_distance": 0.10441143975637912
+      }
+    },
+    {
+      "function": 2,
+      "dimensions": 2,
+      "portal_input": "0.636151-0.495605",
+      "point": [
+        0.636151,
+        0.495605
+      ],
+      "data_scope": "official_plus_retained_cohort",
+      "reason": "Adopt the pooled x1-only GP proposal: paired official-target RMSE falls from 0.145783 to 0.121879 (16.4%), with lower MAE as well. The x2 setting remains a geometric tie-break.",
+      "model_prediction": {
+        "predicted_output": 0.3666505371281177,
+        "posterior_std": 0.14202744829292002,
+        "ucb_weight": 1.96,
+        "inside_sampled_hull": true,
+        "ucb": 0.6450243357822409
+      },
+      "evidence": {
+        "official_observations": 14,
+        "best_official_output": 0.6112052157614438,
+        "paired_target_comparison": [
+          {
+            "Model": "Mean baseline",
+            "Own-target RMSE: 13 training rows": 0.21511752990375593,
+            "Own-target RMSE: 13 own + 5 peer training rows": 0.21084970561955357,
+            "Own-target MAE: own training": 0.17746533282706173,
+            "Own-target MAE: pooled training": 0.17394419527096922
+          },
+          {
+            "Model": "Linear regression",
+            "Own-target RMSE: 13 training rows": 0.18707398138779543,
+            "Own-target RMSE: 13 own + 5 peer training rows": 0.1839653727844224,
+            "Own-target MAE: own training": 0.14493112782565162,
+            "Own-target MAE: pooled training": 0.1323881097865798
+          },
+          {
+            "Model": "Ridge",
+            "Own-target RMSE: 13 training rows": 0.1857089023799673,
+            "Own-target RMSE: 13 own + 5 peer training rows": 0.18444909669463513,
+            "Own-target MAE: own training": 0.141081089000667,
+            "Own-target MAE: pooled training": 0.13645684642986128
+          },
+          {
+            "Model": "Kernel ridge",
+            "Own-target RMSE: 13 training rows": 0.19886371413202034,
+            "Own-target RMSE: 13 own + 5 peer training rows": 0.1912835323920455,
+            "Own-target MAE: own training": 0.15419615741869355,
+            "Own-target MAE: pooled training": 0.13841326591773964
+          },
+          {
+            "Model": "Gaussian process",
+            "Own-target RMSE: 13 training rows": 0.22369664103795822,
+            "Own-target RMSE: 13 own + 5 peer training rows": 0.17160519596162596,
+            "Own-target MAE: own training": 0.18544393799070846,
+            "Own-target MAE: pooled training": 0.13829641597556055
+          },
+          {
+            "Model": "GP: x1 only",
+            "Own-target RMSE: 13 training rows": 0.14578291498430085,
+            "Own-target RMSE: 13 own + 5 peer training rows": 0.12187904722460353,
+            "Own-target MAE: own training": 0.11979502394619766,
+            "Own-target MAE: pooled training": 0.0925528397758414
+          },
+          {
+            "Model": "GP: separate length scales",
+            "Own-target RMSE: 13 training rows": 0.147263985761653,
+            "Own-target RMSE: 13 own + 5 peer training rows": 0.12567876358358285,
+            "Own-target MAE: own training": 0.12002129522105054,
+            "Own-target MAE: pooled training": 0.09972126673693753
+          }
+        ],
+        "common_candidate_comparison": [
+          {
+            "Fit": "Official 14-row fit",
+            "Model": "GP: x1 only",
+            "x1": 0.729749,
+            "x2": 0.474365,
+            "posterior_mean": 0.4724544855982812,
+            "posterior_sd": 0.13563989964509018,
+            "ucb": 0.738308688902658,
+            "Candidates": 20491
+          },
+          {
+            "Fit": "Pooled 19-row fit",
+            "Model": "GP: x1 only",
+            "x1": 0.636151,
+            "x2": 0.495605,
+            "posterior_mean": 0.3666505371281177,
+            "posterior_sd": 0.14202744829291997,
+            "ucb": 0.6450243357822408,
+            "Candidates": 20491
+          }
+        ],
+        "previous_official_proposal": "0.729749-0.474365",
+        "cohort_proposal": "0.636151-0.495605",
+        "query_model": "GP: x1 only"
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_2/Week_05/official/observations.csv",
+          "sha256": "08023e4685028b063f657cb2cde156b8b9277420c9ca8fdc715c662c82bbc43c"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_2/Week_05/official/model_predictions.ipynb",
+          "sha256": "d784ba650cc54dbbc976e3919cbdb99a43fb017cf6bc89b6ae7b480b01d761b1"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_2/Week_05/cohort/model_predictions.ipynb",
+          "sha256": "60f506e5d3bc907cdf99fd24ca32bf35fd8a21fa82c5757170b70c36c1510d46"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_2/Week_05/cohort/observations.csv",
+          "sha256": "1851cf7d495481ecab5c71378fa2ce30df03513b65ddb9b2117ba48b5a623955"
+        }
+      ],
+      "validation": {
+        "observed_rows_checked": 19,
+        "earlier_submission_files_checked": 4,
+        "duplicate_at_six_decimals": false,
+        "nearest_measured_input_distance": 0.2739162272521017
+      }
+    },
+    {
+      "function": 3,
+      "dimensions": 3,
+      "portal_input": "0.658460-0.558234-0.006012",
+      "point": [
+        0.65846,
+        0.558234,
+        0.006012
+      ],
+      "data_scope": "official_plus_retained_cohort",
+      "reason": "Adopt the pooled shared-length-scale GP proposal: its RMSE on the same 19 official targets is 0.047850, versus 0.075703 for the official selected GP (36.8% lower). MAE is slightly higher than the official selected GP; retain the declared RMSE criterion. The new point is extrapolative.",
+      "model_prediction": {
+        "predicted_output": -0.0332840209778196,
+        "posterior_std": 0.0658848518885604,
+        "ucb_weight": 1.96,
+        "inside_sampled_hull": false,
+        "ucb": 0.09585028872375878
+      },
+      "evidence": {
+        "official_observations": 19,
+        "best_official_output": -0.0348353133500785,
+        "paired_target_comparison": [
+          {
+            "Model": "Mean baseline",
+            "Own-target RMSE: 18 training rows": 0.08216049100123747,
+            "Own-target RMSE: 18 own + 5 peer training rows": 0.08195574844307386,
+            "Own-target MAE: own training": 0.04817273234561264,
+            "Own-target MAE: pooled training": 0.04942152829533231
+          },
+          {
+            "Model": "Linear regression",
+            "Own-target RMSE: 18 training rows": 0.09524224179712065,
+            "Own-target RMSE: 18 own + 5 peer training rows": 0.09103508217989727,
+            "Own-target MAE: own training": 0.06521091811216402,
+            "Own-target MAE: pooled training": 0.07027913862599258
+          },
+          {
+            "Model": "Ridge",
+            "Own-target RMSE: 18 training rows": 0.08562023784728563,
+            "Own-target RMSE: 18 own + 5 peer training rows": 0.08193163338751942,
+            "Own-target MAE: own training": 0.053199557037244605,
+            "Own-target MAE: pooled training": 0.05964251050231989
+          },
+          {
+            "Model": "Kernel ridge",
+            "Own-target RMSE: 18 training rows": 0.09454257599649184,
+            "Own-target RMSE: 18 own + 5 peer training rows": 0.07575493520507905,
+            "Own-target MAE: own training": 0.0665669137438501,
+            "Own-target MAE: pooled training": 0.05905506111542304
+          },
+          {
+            "Model": "Quadratic ridge",
+            "Own-target RMSE: 18 training rows": 0.11050422606647092,
+            "Own-target RMSE: 18 own + 5 peer training rows": 0.09554828052828485,
+            "Own-target MAE: own training": 0.07959782256734699,
+            "Own-target MAE: pooled training": 0.07376419695088593
+          },
+          {
+            "Model": "Gaussian process",
+            "Own-target RMSE: 18 training rows": 0.08563530164842995,
+            "Own-target RMSE: 18 own + 5 peer training rows": 0.04785023141088899,
+            "Own-target MAE: own training": 0.05524236984186798,
+            "Own-target MAE: pooled training": 0.0389776207837511
+          },
+          {
+            "Model": "GP: separate length scales",
+            "Own-target RMSE: 18 training rows": 0.07570284931593903,
+            "Own-target RMSE: 18 own + 5 peer training rows": 0.08468714245797299,
+            "Own-target MAE: own training": 0.037542299465464876,
+            "Own-target MAE: pooled training": 0.06781913765404447
+          }
+        ],
+        "common_candidate_comparison": [
+          {
+            "Fit": "Official 19-row fit",
+            "Model": "GP: separate length scales",
+            "x1": 0.019633,
+            "x2": 0.050082,
+            "x3": 0.64704,
+            "posterior_mean": -0.08690945470370987,
+            "posterior_sd": 0.08596127663192338,
+            "ucb": 0.08157464749485996,
+            "Candidates": 20498
+          },
+          {
+            "Fit": "Pooled 24-row fit",
+            "Model": "Gaussian process",
+            "x1": 0.65846,
+            "x2": 0.558234,
+            "x3": 0.006012,
+            "posterior_mean": -0.03328402097781959,
+            "posterior_sd": 0.0658848518885604,
+            "ucb": 0.0958502887237588,
+            "Candidates": 20498
+          }
+        ],
+        "previous_official_proposal": "0.019633-0.050082-0.647040",
+        "cohort_proposal": "0.658460-0.558234-0.006012",
+        "query_model": "Gaussian process"
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_3/Week_05/official/observations.csv",
+          "sha256": "53798b43da72497a733f776c0bd60334588198bd023d137d3505fd419cb2d6f2"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_3/Week_05/official/model_predictions.ipynb",
+          "sha256": "ca151b54b5454d4271ff6e869e73d3c071408b0c97184db68babfc22596ddfc4"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_3/Week_05/cohort/model_predictions.ipynb",
+          "sha256": "3953521d3a1fa0088f12442d82806022fe41c6057f5aa1647786e677a9794dbc"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_3/Week_05/cohort/observations.csv",
+          "sha256": "853a82cbdde0d0ec114ba4ef397944b69f52207e0e85fe7388e23baffe4faa0e"
+        }
+      ],
+      "validation": {
+        "observed_rows_checked": 24,
+        "earlier_submission_files_checked": 4,
+        "duplicate_at_six_decimals": false,
+        "nearest_measured_input_distance": 0.18673937865172704
+      }
+    },
+    {
+      "function": 4,
+      "dimensions": 4,
+      "portal_input": "0.419096-0.406060-0.408855-0.426466",
+      "point": [
+        0.419096,
+        0.40606,
+        0.408855,
+        0.426466
+      ],
+      "data_scope": "official_fit_with_saved_common_candidate_review",
+      "reason": "Retain the official GP: adding peers raises paired RMSE from 1.466791 to 1.543057 and MAE from 0.988323 to 1.122493. Adopt the already saved common-pool winner under that official fit: UCB 0.152263 versus 0.139098 at the initial official proposal.",
+      "model_prediction": {
+        "predicted_output": -0.68957000111007,
+        "posterior_std": 0.42950676701896273,
+        "ucb": 0.15226326224709685,
+        "ucb_weight": 1.96,
+        "inside_sampled_hull": true
+      },
+      "evidence": {
+        "official_observations": 34,
+        "best_official_output": -0.1299181452172493,
+        "paired_target_comparison": [
+          {
+            "Model": "Mean baseline",
+            "Own-target RMSE: 33 training rows": 8.65426864237204,
+            "Own-target RMSE: 33 own + 6 peer training rows": 8.698071608459673,
+            "Own-target MAE: own training": 6.737887578928527,
+            "Own-target MAE: pooled training": 6.73320750270663
+          },
+          {
+            "Model": "Linear regression",
+            "Own-target RMSE: 33 training rows": 6.979268332474662,
+            "Own-target RMSE: 33 own + 6 peer training rows": 7.282012001660303,
+            "Own-target MAE: own training": 5.87884620857317,
+            "Own-target MAE: pooled training": 6.125889198481516
+          },
+          {
+            "Model": "Ridge",
+            "Own-target RMSE: 33 training rows": 6.856621988525513,
+            "Own-target RMSE: 33 own + 6 peer training rows": 6.906621933367346,
+            "Own-target MAE: own training": 5.641139207436306,
+            "Own-target MAE: pooled training": 5.857910924676807
+          },
+          {
+            "Model": "Kernel ridge",
+            "Own-target RMSE: 33 training rows": 4.444829812825274,
+            "Own-target RMSE: 33 own + 6 peer training rows": 4.066917190610625,
+            "Own-target MAE: own training": 3.5323986670546796,
+            "Own-target MAE: pooled training": 3.144093306080636
+          },
+          {
+            "Model": "Gaussian process",
+            "Own-target RMSE: 33 training rows": 1.4667906142808187,
+            "Own-target RMSE: 33 own + 6 peer training rows": 1.5430567448753159,
+            "Own-target MAE: own training": 0.9883226090674407,
+            "Own-target MAE: pooled training": 1.1224934036351994
+          }
+        ],
+        "common_candidate_comparison": [
+          {
+            "Fit": "Official 34-row fit",
+            "Model": "Gaussian process",
+            "x1": 0.419096,
+            "x2": 0.40606,
+            "x3": 0.408855,
+            "x4": 0.426466,
+            "posterior_mean": -0.68957000111007,
+            "posterior_sd": 0.42950676701896273,
+            "ucb": 0.15226326224709685,
+            "Candidates": 20514
+          },
+          {
+            "Fit": "Pooled 40-row fit",
+            "Model": "Gaussian process",
+            "x1": 0.372337,
+            "x2": 0.419841,
+            "x3": 0.442391,
+            "x4": 0.452843,
+            "posterior_mean": -0.7083652857024703,
+            "posterior_sd": 0.5713276735102845,
+            "ucb": 0.41143695437768724,
+            "Candidates": 20514
+          }
+        ],
+        "previous_official_proposal": "0.414390-0.395070-0.420904-0.438653",
+        "cohort_proposal": "0.372337-0.419841-0.442391-0.452843",
+        "query_model": "Gaussian process"
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_4/Week_05/official/observations.csv",
+          "sha256": "7b66a52c585d8ef15b554294b5abaf7ea4e3baf1b5bd04f37eb7a5c8502f26e0"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_4/Week_05/official/model_predictions.ipynb",
+          "sha256": "b90f296eab7ddcb09c0a6fe744aefd90ecba74f776c0a247fe7a9dc32e2dc078"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_4/Week_05/cohort/model_predictions.ipynb",
+          "sha256": "579d35d07838dbb22322ac7ccfb312443eaf74357e1a213710fbb48ba4a9405e"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_4/Week_05/cohort/observations.csv",
+          "sha256": "2983b86eb20da106557162c82dfa2fc376cc2d5adbcaf35d5b8810d4f72b219d"
+        }
+      ],
+      "validation": {
+        "observed_rows_checked": 40,
+        "earlier_submission_files_checked": 4,
+        "duplicate_at_six_decimals": false,
+        "nearest_measured_input_distance": 0.04807151674328573
+      }
+    },
+    {
+      "function": 5,
+      "dimensions": 4,
+      "portal_input": "0.999999-0.999999-0.999999-0.979636",
+      "point": [
+        0.999999,
+        0.999999,
+        0.999999,
+        0.979636
+      ],
+      "data_scope": "official_only",
+      "reason": "Retain raw-output GP selection, including the log-target comparator. Apply an explicit 0.02 minimum Euclidean input distance to avoid a near-repeat after two non-improving corner refinements; test x4 while retaining the other three upper-bound settings.",
+      "model_prediction": {
+        "predicted_output": 8431.759822694796,
+        "posterior_std": 169.62271859233132,
+        "ucb_weight": 1.96,
+        "inside_sampled_hull": false,
+        "ucb": 8764.220351135766
+      },
+      "evidence": {
+        "official_observations": 24,
+        "best_official_output": 8662.405001248297,
+        "query_model": "Gaussian process",
+        "gp_rmse": 334.6837027859419,
+        "baseline_rmse": 2951.314709653315,
+        "gp_baseline_rmse_ratio": 0.11340156361205428,
+        "candidate_count": 20059,
+        "candidate_source": "Near incumbent",
+        "distinct_weight_choices": 1,
+        "fitted_kernel": "1.33**2 * RBF(length_scale=0.949)",
+        "weight_sensitivity": [
+          {
+            "Weight": 0.0,
+            "x1": 0.999999,
+            "x2": 0.999999,
+            "x3": 0.999999,
+            "x4": 0.979636,
+            "Predicted output": 8431.759822694803,
+            "Posterior SD": 169.62271859234178
+          },
+          {
+            "Weight": 1.0,
+            "x1": 0.999999,
+            "x2": 0.999999,
+            "x3": 0.999999,
+            "x4": 0.979636,
+            "Predicted output": 8431.759822694803,
+            "Posterior SD": 169.62271859234178
+          },
+          {
+            "Weight": 1.96,
+            "x1": 0.999999,
+            "x2": 0.999999,
+            "x3": 0.999999,
+            "x4": 0.979636,
+            "Predicted output": 8431.759822694803,
+            "Posterior SD": 169.62271859234178
+          },
+          {
+            "Weight": 3.0,
+            "x1": 0.999999,
+            "x2": 0.999999,
+            "x3": 0.999999,
+            "x4": 0.979636,
+            "Predicted output": 8431.759822694803,
+            "Posterior SD": 169.62271859234178
+          }
+        ],
+        "regularisation_sensitivity": [
+          {
+            "Assumed noise fraction": 0.03,
+            "Predicted output": 8476.985807491925,
+            "Posterior SD": 73.17116882215446
+          },
+          {
+            "Assumed noise fraction": 0.1,
+            "Predicted output": 8431.759822694796,
+            "Posterior SD": 169.62271859233132
+          },
+          {
+            "Assumed noise fraction": 0.3,
+            "Predicted output": 8147.800644028819,
+            "Posterior SD": 476.9793523639837
+          }
+        ],
+        "minimum_query_distance": 0.02,
+        "nearest_observed_distance": 0.02036300000000002,
+        "spacing_sensitivity": [
+          {
+            "Minimum distance": 0.0,
+            "Portal input": "0.999999-0.999999-0.999942-0.999999",
+            "Nearest measured input": 5.699999999997374e-05,
+            "Predicted output": 8537.334050217447,
+            "Posterior SD": 163.42532082594565,
+            "UCB": 8857.647679036301,
+            "Eligible candidates": 20255
+          },
+          {
+            "Minimum distance": 0.01,
+            "Portal input": "0.999999-0.999999-0.999999-0.989835",
+            "Nearest measured input": 0.01016399999999995,
+            "Predicted output": 8485.293184523205,
+            "Posterior SD": 164.9332539978003,
+            "UCB": 8808.562362358894,
+            "Eligible candidates": 20154
+          },
+          {
+            "Minimum distance": 0.02,
+            "Portal input": "0.999999-0.999999-0.999999-0.979636",
+            "Nearest measured input": 0.02036300000000002,
+            "Predicted output": 8431.759822694803,
+            "Posterior SD": 169.62271859234178,
+            "UCB": 8764.220351135793,
+            "Eligible candidates": 20059
+          },
+          {
+            "Minimum distance": 0.05,
+            "Portal input": "0.999999-0.999999-0.999999-0.949598",
+            "Nearest measured input": 0.05040099999999992,
+            "Predicted output": 8268.721005274634,
+            "Posterior SD": 198.1505414561987,
+            "UCB": 8657.096066528784,
+            "Eligible candidates": 19696
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_5/Week_05/observations.csv",
+          "sha256": "4d7b09f704bd086de6dae72cb63fd295107c0ffb54f54d6eca2f98511d7c9ce6"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_5/Week_05/model_predictions.ipynb",
+          "sha256": "0f73407c3c00496670bbda477b9959c388e590ff7cddbb4916b4ed38da7a550f"
+        }
+      ],
+      "validation": {
+        "observed_rows_checked": 24,
+        "earlier_submission_files_checked": 4,
+        "duplicate_at_six_decimals": false,
+        "nearest_measured_input_distance": 0.02036300000000002
+      }
+    },
+    {
+      "function": 6,
+      "dimensions": 5,
+      "portal_input": "0.310003-0.303475-0.617318-0.965962-0.334839",
+      "point": [
+        0.310003,
+        0.303475,
+        0.617318,
+        0.965962,
+        0.334839
+      ],
+      "data_scope": "official_only",
+      "reason": "Retain the established GP/UCB choice from the full-space candidate pool; its mean is below the incumbent and the query is exploratory.",
+      "model_prediction": {
+        "predicted_output": -0.49276183522307104,
+        "posterior_std": 0.20912941731679782,
+        "ucb_weight": 1.96,
+        "inside_sampled_hull": false,
+        "ucb": -0.08286817728214729
+      },
+      "evidence": {
+        "official_observations": 24,
+        "best_official_output": -0.3786912545484574,
+        "query_model": "Gaussian process",
+        "gp_rmse": 0.3434711137340955,
+        "baseline_rmse": 0.5331287818578707,
+        "gp_baseline_rmse_ratio": 0.644255432124959,
+        "candidate_count": 20545,
+        "candidate_source": "Full input space",
+        "distinct_weight_choices": 4,
+        "fitted_kernel": "0.995**2 * RBF(length_scale=0.486)",
+        "weight_sensitivity": [
+          {
+            "Weight": 0.0,
+            "x1": 0.43341,
+            "x2": 0.315338,
+            "x3": 0.57749,
+            "x4": 0.805345,
+            "x5": 0.15098,
+            "Predicted output": -0.31757280867748583,
+            "Posterior SD": 0.08581774081432095
+          },
+          {
+            "Weight": 1.0,
+            "x1": 0.390645,
+            "x2": 0.336658,
+            "x3": 0.568844,
+            "x4": 0.812561,
+            "x5": 0.207421,
+            "Predicted output": -0.32575760819131117,
+            "Posterior SD": 0.10818998630119586
+          },
+          {
+            "Weight": 1.96,
+            "x1": 0.310003,
+            "x2": 0.303475,
+            "x3": 0.617318,
+            "x4": 0.965962,
+            "x5": 0.334839,
+            "Predicted output": -0.49276183522307104,
+            "Posterior SD": 0.20912941731679782
+          },
+          {
+            "Weight": 3.0,
+            "x1": 0.293683,
+            "x2": 0.371414,
+            "x3": 0.685187,
+            "x4": 0.991058,
+            "x5": 0.420433,
+            "Predicted output": -0.6457967252658722,
+            "Posterior SD": 0.2656996974376004
+          }
+        ],
+        "regularisation_sensitivity": [
+          {
+            "Assumed noise fraction": 0.03,
+            "Predicted output": -0.48223586428533094,
+            "Posterior SD": 0.21103914615370814
+          },
+          {
+            "Assumed noise fraction": 0.1,
+            "Predicted output": -0.49276183522307104,
+            "Posterior SD": 0.20912941731679782
+          },
+          {
+            "Assumed noise fraction": 0.3,
+            "Predicted output": -0.5783932854341621,
+            "Posterior SD": 0.20234211593878812
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_6/Week_05/observations.csv",
+          "sha256": "2c7abccf1ee4e400fba32c277aa07ed5459c5ae2c19f8bb590908aa07d44f5c2"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_6/Week_05/model_predictions.ipynb",
+          "sha256": "22256e73ebe35aac8d482d1fb1091289f300bcfe3bf54d95df797515cb8d88ad"
+        }
+      ],
+      "validation": {
+        "observed_rows_checked": 24,
+        "earlier_submission_files_checked": 4,
+        "duplicate_at_six_decimals": false,
+        "nearest_measured_input_distance": 0.34607341766885247
+      }
+    },
+    {
+      "function": 7,
+      "dimensions": 6,
+      "portal_input": "0.000000-0.257992-0.509505-0.318385-0.371190-0.725014",
+      "point": [
+        0.0,
+        0.257992,
+        0.509505,
+        0.318385,
+        0.37119,
+        0.725014
+      ],
+      "data_scope": "official_only",
+      "reason": "Refine the region of the new round-4 incumbent with the GP/UCB local candidate. Its higher uncertainty, rather than a higher predicted mean, supports selection.",
+      "model_prediction": {
+        "predicted_output": 2.451917404102129,
+        "posterior_std": 0.1997559442558339,
+        "ucb_weight": 1.96,
+        "inside_sampled_hull": false,
+        "ucb": 2.8434390548435635
+      },
+      "evidence": {
+        "official_observations": 34,
+        "best_official_output": 2.6189682154023832,
+        "query_model": "Gaussian process",
+        "gp_rmse": 0.257475400700517,
+        "baseline_rmse": 0.7287527975491223,
+        "gp_baseline_rmse_ratio": 0.3533096566715569,
+        "candidate_count": 20609,
+        "candidate_source": "Near incumbent",
+        "distinct_weight_choices": 4,
+        "fitted_kernel": "0.715**2 * RBF(length_scale=0.335)",
+        "weight_sensitivity": [
+          {
+            "Weight": 0.0,
+            "x1": 0.0,
+            "x2": 0.203559,
+            "x3": 0.387219,
+            "x4": 0.27126,
+            "x5": 0.273578,
+            "x6": 0.718375,
+            "Predicted output": 2.610026095527146,
+            "Posterior SD": 0.08065908290972033
+          },
+          {
+            "Weight": 1.0,
+            "x1": 0.0,
+            "x2": 0.204921,
+            "x3": 0.380637,
+            "x4": 0.285976,
+            "x5": 0.324343,
+            "x6": 0.666259,
+            "Predicted output": 2.5744272512080992,
+            "Posterior SD": 0.12292692416407165
+          },
+          {
+            "Weight": 1.96,
+            "x1": 0.0,
+            "x2": 0.257992,
+            "x3": 0.509505,
+            "x4": 0.318385,
+            "x5": 0.37119,
+            "x6": 0.725014,
+            "Predicted output": 2.451917404102129,
+            "Posterior SD": 0.19975594425583382
+          },
+          {
+            "Weight": 3.0,
+            "x1": 0.0,
+            "x2": 0.270775,
+            "x3": 0.557313,
+            "x4": 0.301736,
+            "x5": 0.399132,
+            "x6": 0.74637,
+            "Predicted output": 2.2962156566096263,
+            "Posterior SD": 0.2640557763247652
+          }
+        ],
+        "regularisation_sensitivity": [
+          {
+            "Assumed noise fraction": 0.03,
+            "Predicted output": 2.4802765868427863,
+            "Posterior SD": 0.2097682185916425
+          },
+          {
+            "Assumed noise fraction": 0.1,
+            "Predicted output": 2.451917404102129,
+            "Posterior SD": 0.1997559442558339
+          },
+          {
+            "Assumed noise fraction": 0.3,
+            "Predicted output": 2.2647192396308777,
+            "Posterior SD": 0.22646001132432073
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_7/Week_05/observations.csv",
+          "sha256": "04582b5d7efc96b577578d8a658762f3cb0b8657241c99699eb8db40ecbcfc3a"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_7/Week_05/model_predictions.ipynb",
+          "sha256": "bf373c5014dc3e76133453103d34a0f09bcfbfcba9ff8734e57953f7f0edbdcc"
+        }
+      ],
+      "validation": {
+        "observed_rows_checked": 34,
+        "earlier_submission_files_checked": 4,
+        "duplicate_at_six_decimals": false,
+        "nearest_measured_input_distance": 0.14407218509136313
+      }
+    },
+    {
+      "function": 8,
+      "dimensions": 8,
+      "portal_input": "0.000000-0.000000-0.000000-0.000000-0.000000-0.000000-0.000000-0.999999",
+      "point": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.999999
+      ],
+      "data_scope": "official_only",
+      "reason": "Select an unmeasured corner by GP/UCB after comparing full-space, incumbent-local, latest-return-local and geometric coverage alternatives. The point is extrapolative and weight-sensitive.",
+      "model_prediction": {
+        "predicted_output": 9.432307195025363,
+        "posterior_std": 0.5880482857438927,
+        "ucb_weight": 1.96,
+        "inside_sampled_hull": false,
+        "ucb": 10.584881835083392
+      },
+      "evidence": {
+        "official_observations": 44,
+        "best_official_output": 9.598482002566342,
+        "query_model": "Gaussian process",
+        "gp_rmse": 0.3154592616784588,
+        "baseline_rmse": 1.01055409203103,
+        "gp_baseline_rmse_ratio": 0.31216464726241716,
+        "candidate_count": 25324,
+        "candidate_source": "Full input space",
+        "distinct_weight_choices": 4,
+        "fitted_kernel": "1.58**2 * RBF(length_scale=1.28)",
+        "weight_sensitivity": [
+          {
+            "Weight": 0.0,
+            "x1": 0.04059,
+            "x2": 0.201266,
+            "x3": 0.004758,
+            "x4": 0.175232,
+            "x5": 0.48242,
+            "x6": 0.456175,
+            "x7": 0.220741,
+            "x8": 0.705113,
+            "Predicted output": 10.030597386245518,
+            "Posterior SD": 0.2060200213476961
+          },
+          {
+            "Weight": 1.0,
+            "x1": 0.25336,
+            "x2": 0.262644,
+            "x3": 0.070249,
+            "x4": 0.077138,
+            "x5": 0.511387,
+            "x6": 0.389897,
+            "x7": 0.039989,
+            "x8": 0.503902,
+            "Predicted output": 10.017732808715746,
+            "Posterior SD": 0.26017261077728226
+          },
+          {
+            "Weight": 1.96,
+            "x1": 0.0,
+            "x2": 0.0,
+            "x3": 0.0,
+            "x4": 0.0,
+            "x5": 0.0,
+            "x6": 0.0,
+            "x7": 0.0,
+            "x8": 0.999999,
+            "Predicted output": 9.432307195025363,
+            "Posterior SD": 0.5880482857438946
+          },
+          {
+            "Weight": 3.0,
+            "x1": 0.0,
+            "x2": 0.999999,
+            "x3": 0.0,
+            "x4": 0.999999,
+            "x5": 0.999999,
+            "x6": 0.0,
+            "x7": 0.0,
+            "x8": 0.0,
+            "Predicted output": 8.902420570009813,
+            "Posterior SD": 0.7678883076046598
+          }
+        ],
+        "regularisation_sensitivity": [
+          {
+            "Assumed noise fraction": 0.03,
+            "Predicted output": 9.342682798503333,
+            "Posterior SD": 0.5995185239143763
+          },
+          {
+            "Assumed noise fraction": 0.1,
+            "Predicted output": 9.432307195025363,
+            "Posterior SD": 0.5880482857438927
+          },
+          {
+            "Assumed noise fraction": 0.3,
+            "Predicted output": 9.653110169046716,
+            "Posterior SD": 0.5879011898294406
+          }
+        ]
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_8/Week_05/observations.csv",
+          "sha256": "044aef99663621da8575dd492aa380601db723705f26db0f12a2e5ace827d8c9"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_8/Week_05/model_predictions.ipynb",
+          "sha256": "4348ae9822c1f28589f6f8b3c7b9fa7028d39a5f1e7edcb92b331d5dbba1537f"
+        }
+      ],
+      "validation": {
+        "observed_rows_checked": 44,
+        "earlier_submission_files_checked": 4,
+        "duplicate_at_six_decimals": false,
+        "nearest_measured_input_distance": 0.9886930198174932
+      }
+    }
+  ],
+  "verification": {
+    "verified_on": "2026-10-28",
+    "submission_file_readback": "passed",
+    "source_sha256_readback": "passed",
+    "coordinate_and_duplicate_checks": "passed",
+    "notebook_schema_and_saved_runs": [
+      {
+        "function": 5,
+        "code_cells_executed": 12,
+        "saved_errors": 0,
+        "capstone_interpreter_verified": true
+      },
+      {
+        "function": 6,
+        "code_cells_executed": 12,
+        "saved_errors": 0,
+        "capstone_interpreter_verified": true
+      },
+      {
+        "function": 7,
+        "code_cells_executed": 12,
+        "saved_errors": 0,
+        "capstone_interpreter_verified": true
+      },
+      {
+        "function": 8,
+        "code_cells_executed": 12,
+        "saved_errors": 0,
+        "capstone_interpreter_verified": true
+      }
+    ],
+    "png_files_opened_and_verified": 12,
+    "local_report_links_checked": 38,
+    "focused_tests": [
+      {
+        "command": ".\\run-python.ps1 -m unittest discover -s stage-2-bbo/tests -p test_model_review_helpers.py -v",
+        "passed": 12
+      },
+      {
+        "command": ".\\run-python.ps1 -m unittest discover -s stage-2-bbo/tests -p test_cohort_review_helpers.py -v",
+        "passed": 10
+      }
+    ],
+    "portal_submission_performed_by_this_workflow": false
+  },
+  "submission_confirmation": {
+    "confirmed_on": "2026-10-29",
+    "source": "project_owner_confirmation",
+    "exact_portal_timestamp": null,
+    "results_status": "pending"
+  },
+  "queries_available_per_function_before_submission": 9,
+  "remaining_queries_per_function_after_submission": 8,
+  "submission_confirmation_verification": {
+    "checked_on": "2026-10-29",
+    "submitted_input_file_unchanged": true,
+    "source_hashes_match": true,
+    "notebook_and_input_readback": "passed",
+    "latest_confirmed_feedback_round": 4
+  }
+}

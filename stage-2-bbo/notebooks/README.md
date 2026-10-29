@@ -31,10 +31,10 @@ through round 4 and saved executions of the current Week 4 observation pattern:
 | 2 | [Results report, including cohort comparison](Function_2/Week_05/report.md); [official exploration review](Function_2/Week_05/official/exploration-review.ipynb), then [official model predictions](Function_2/Week_05/official/model_predictions.ipynb) | 14 |
 | 3 | [Results report, including cohort comparison](Function_3/Week_05/report.md); [official exploration review](Function_3/Week_05/official/exploration-review.ipynb), then [official model predictions](Function_3/Week_05/official/model_predictions.ipynb) | 19 |
 | 4 | [Results report, including cohort comparison](Function_4/Week_05/report.md); [official observation review](Function_4/Week_05/official/observation_review.ipynb), then [official model predictions](Function_4/Week_05/official/model_predictions.ipynb) | 34 |
-| 5 | [Observation review](Function_5/Week_05/observation_review.ipynb) | 24 |
-| 6 | [Observation review](Function_6/Week_05/observation_review.ipynb) | 24 |
-| 7 | [Observation review](Function_7/Week_05/observation_review.ipynb) | 34 |
-| 8 | [Observation review](Function_8/Week_05/observation_review.ipynb) | 44 |
+| 5 | [Observation review](Function_5/Week_05/observation_review.ipynb), [model predictions](Function_5/Week_05/model_predictions.ipynb), [report](Function_5/Week_05/report.md) | 24 |
+| 6 | [Observation review](Function_6/Week_05/observation_review.ipynb), [model predictions](Function_6/Week_05/model_predictions.ipynb), [report](Function_6/Week_05/report.md) | 24 |
+| 7 | [Observation review](Function_7/Week_05/observation_review.ipynb), [model predictions](Function_7/Week_05/model_predictions.ipynb), [report](Function_7/Week_05/report.md) | 34 |
+| 8 | [Observation review](Function_8/Week_05/observation_review.ipynb), [model predictions](Function_8/Week_05/model_predictions.ipynb), [report](Function_8/Week_05/report.md) | 44 |
 
 - Function 1: `exploration.ipynb`, retaining output number lines, sampling-gap
   views, interactive terrain/cloud figures and the fixed exploration progression.
@@ -62,6 +62,9 @@ through round 4 and saved executions of the current Week 4 observation pattern:
 - Functions 5–8: `observation_review.ipynb`, retaining measured-output ranks,
   round progress, strongest full input profiles, distance comparisons and a
   check against the saved Week 4 forecast for the actual submitted input.
+  Executed `model_predictions.ipynb` notebooks now continue with held-out model
+  comparisons, conditional curves, GP/UCB candidate selection and sensitivity
+  checks; interpretation and the course lifecycle are in each week's `report.md`.
 
 The snapshots contain **207 observations**: 14, 14, 19, 34, 24, 24, 34 and 44
 rows respectively. They include the Week 4 return received on **23 October 2026**;
@@ -74,13 +77,17 @@ Use the capstone-local `.venv` with each notebook's folder as the working
 directory. For Functions 1–4, use `Week_05/official/` or `Week_05/cohort/`;
 the other functions still use their `Week_05/` folder. All eight observation
 notebooks were executed from that interpreter and their
-figures regenerated. Functions 1–4 also have saved Week 5 model runs.
+figures regenerated. All eight functions also have saved Week 5 model runs.
 Function 1 retains its fixed coverage plan, with model choices labelled
-hypothetical; Functions 2–4 have unsubmitted model proposals. The remaining
-functions' Week 5 model studies remain separate work. No Week 5 submission is
-recorded. Nine query opportunities
-remain per function, including Week 5. Function 1 has one saved exploration point
-left; Functions 2 and 3 have completed their saved shortlists.
+hypothetical. The [Week 5 submission](../submissions/Week_05/README.md)
+records the reviewed selections: pooled candidates for Functions 2 and 3,
+the official GP's saved common-pool candidate for Function 4 and the new
+official-data candidates for Functions 5–8. Function 5 adds an explicit 0.02
+spacing safeguard against near-repeats. Submission was confirmed by the project
+owner on **29 October 2026**; results are pending and eight future query
+opportunities remain per function. Function 1's final saved exploration point
+has now been submitted, completing the inputs from all three fixed shortlists.
+Saved notebook wording and query budgets retain their pre-submission context.
 
 ### Function 1: retained cohort comparison
 
