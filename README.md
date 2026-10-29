@@ -184,6 +184,16 @@ The [results log](stage-2-bbo/results/progress.md) and
 [notebook guide](stage-2-bbo/notebooks/README.md) also retain later workspace
 history; those records must not be used to explain the earlier query decisions.
 
+## Later Stage 2 work: Week 5
+
+Later Stage 2 work is recorded outside the Module 14 snapshot above. The eight
+Week 5 queries are submitted and awaiting feedback. Posting of the [Week 5
+discussion draft](stage-2-bbo/docs/week-05-discussion-draft.md) was confirmed on
+29 October 2026. It draws on the [retrospective neural-network and surrogate
+comparisons](stage-2-bbo/results/week-05-surrogate-comparison.md), using 207
+official observations through round 4. These studies followed query submission;
+their fitted predictions are not new function evaluations.
+
 ## Live project tools
 
 - [Capstone Hub](https://anthonypwatts.github.io/imperial-capstone/)

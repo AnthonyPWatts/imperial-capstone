@@ -5,6 +5,19 @@ functions, round-by-round scores and the best inputs from returned queries.
 The [Stage 2 introduction](../README.md) explains the experiment, and the
 [methodology guide](../docs/methodology.md) explains how inputs are chosen.
 
+The [Week 5 neural-network and surrogate comparison](week-05-surrogate-comparison.md)
+provides separate retrospective evidence for the seven reflection criteria.
+Eight executed notebooks compare numerical regression and good/bad classification,
+with actual support vectors, checked input gradients and conditional boundaries.
+These experiments use feedback through round 4; the fifth inputs remain submitted
+and awaiting results. Their validation scores are not new BBO outcomes.
+
+The [Week 5 discussion draft](../docs/week-05-discussion-draft.md) preserves the
+final seven-prompt reflection. Posting to the course discussion board was
+confirmed by the project owner on **29 October 2026**. It records the suspected
+F5 boundary maximum as a hypothesis and the evidence against using the current
+F3 classifier to guide queries; neither claim changes the measured results.
+
 ## Module 14 reporting cutoff
 
 The module-end summary uses **191 observations through round 2**. Its evidence is

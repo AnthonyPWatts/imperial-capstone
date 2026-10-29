@@ -20,6 +20,40 @@ The [Stage 2 overview](../README.md) records that module-end position.
 The third-query return and Week 4 runs below are later workspace history.
 They must not be used to explain the earlier Week 3 decisions or reflection.
 
+## Week 5 discussion study: neural networks and other surrogates
+
+Separate `surrogate_comparison.ipynb` notebooks now compare three small neural
+architectures with three fixed initialisations against the linear, kernel and
+GP alternatives. Each also trains logistic, linear-SVM, RBF-SVM and neural
+classifiers, identifies actual support vectors, checks input backpropagation
+against finite differences and demonstrates bounded surrogate ascent/descent.
+The [cross-function comparison](../results/week-05-surrogate-comparison.md)
+links the numerical results and seven reflection sections for every function.
+The [final Week 5 discussion draft](../docs/week-05-discussion-draft.md)
+uses this evidence; posting was confirmed on **29 October 2026**.
+
+| Function | New notebook | Study report |
+| --- | --- | --- |
+| 1 | [Surrogate comparison](Function_1/Week_05/official/surrogate_comparison.ipynb) | [Evidence and figures](Function_1/Week_05/official/surrogate-study/report.md) |
+| 2 | [Surrogate comparison](Function_2/Week_05/official/surrogate_comparison.ipynb) | [Evidence and figures](Function_2/Week_05/official/surrogate-study/report.md) |
+| 3 | [Surrogate comparison](Function_3/Week_05/official/surrogate_comparison.ipynb) | [Evidence and figures](Function_3/Week_05/official/surrogate-study/report.md) |
+| 4 | [Surrogate comparison](Function_4/Week_05/official/surrogate_comparison.ipynb) | [Evidence and figures](Function_4/Week_05/official/surrogate-study/report.md) |
+| 5 | [Surrogate comparison](Function_5/Week_05/surrogate_comparison.ipynb) | [Evidence and figures](Function_5/Week_05/surrogate-study/report.md) |
+| 6 | [Surrogate comparison](Function_6/Week_05/surrogate_comparison.ipynb) | [Evidence and figures](Function_6/Week_05/surrogate-study/report.md) |
+| 7 | [Surrogate comparison](Function_7/Week_05/surrogate_comparison.ipynb) | [Evidence and figures](Function_7/Week_05/surrogate-study/report.md) |
+| 8 | [Surrogate comparison](Function_8/Week_05/surrogate_comparison.ipynb) | [Evidence and figures](Function_8/Week_05/surrogate-study/report.md) |
+
+These are retrospective experiments dated **29 October 2026**, using only the
+207 official observations through round 4. They preserve the submitted fifth
+queries and their pending-result status. Their results must not be used to
+explain earlier decisions. The upper-quartile classification threshold, input
+scaling and regression target scaling are learned within training folds;
+Function 1 retains its fixed signed-log objective scale. Neural architectures
+are compared across all three seeds rather than selecting the luckiest fit.
+Warnings, local-gradient limitations and the absence of an independent final
+test set remain part of the evidence. See the
+[execution guide](../docs/reproducing-the-analyses.md#week-5-discussion-surrogate-comparisons).
+
 ## Current work: Week 5 observation reviews
 
 All eight `Function_N/Week_05/` folders contain independent local CSV snapshots

@@ -150,6 +150,43 @@ project owner on 29 October 2026; results are pending. The notebooks perform
 the analysis and preserve their pre-submission context. Eight future weekly
 queries remain per function after the fifth submission.
 
+## Week 5 discussion surrogate comparisons
+
+From the Capstone repository root, execute the eight new studies with:
+
+```powershell
+.\run-python.ps1 stage-2-bbo/scripts/run_surrogate_studies.py
+```
+
+For a targeted rerun, supply function numbers, for example `--functions 3 8`.
+The runner uses `Week_05/official/surrogate_comparison.ipynb` for Functions 1–4
+and `Week_05/surrogate_comparison.ipynb` for Functions 5–8. It verifies the
+Capstone-local interpreter, executes from each notebook's own directory and
+saves completed outputs. A failed execution retains its diagnostic notebook.
+These runs use the existing dependencies; no TensorFlow or PyTorch install is needed.
+
+Each notebook declares three architectures, three initialisations, the complete
+model matrix and a 400-iteration neural fitting budget before comparison.
+The models use the same leave-one-out rows. Classification predicts whether
+the held-out result reaches the training history's upper quartile; each fold
+computes that threshold without its test outcome. Input and regression target
+scaling are also fitted inside folds. Function 1 retains the established fixed
+signed-log scale; all other regression metrics use the original signed score.
+
+The separate `surrogate-study/` output folder contains figures, `results.json`
+and a generated report covering all seven reflection criteria and the course
+lifecycle. Input backpropagation is verified numerically. Conditional boundary
+views retain fixed higher-dimensional coordinates and show only observations
+on that slice. Model selection, seed variation, fitting warnings and training
+versus held-out gaps are visible. Neural seed variation is not calibrated
+posterior uncertainty, and the plots do not reveal a known black-box boundary.
+
+Use the [cross-function results](../results/week-05-surrogate-comparison.md) as
+the reading index. These 29 October studies are retrospective evidence from the
+207 official observations through round 4. The fifth queries remain submitted
+and awaiting feedback; the study neither evaluates the hidden functions nor
+modifies their submitted input file.
+
 ## Historical first-query reading copies
 
 From the repository root, these commands render Function 1's exploration and

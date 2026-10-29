@@ -21,6 +21,9 @@ their existing explanations.
 | `noise_review_helpers.py` | Full-input neighbour differences, exact-input repeat candidates, cutoff sensitivity and separate conditional GP noise fits, for any input count. |
 | `two_input_model_helpers.py` | Model curves in the input square, prediction grids, contour maps and fitted terrains. |
 | `three_input_model_helpers.py` | Three-input measured clouds, conditional coordinate curves, contour planes, terrain sliders, proposal exports and a paired cohort comparison map. |
+| `surrogate_study_helpers.py` | Bounded neural/regression/classification comparisons, training-only class thresholds, seed aggregation, checked input backpropagation, actual SVM support vectors and hypothetical surrogate paths. |
+| `surrogate_study_plots.py` | Surrogate validation, seed variation, confusion matrices, complete input-gradient profiles, conditional decision boundaries and support-vector profiles. |
+| `surrogate_study_report.py` | Generate the seven reflection-evidence sections from numerical results, preserving target units, model limitations and the ten-step course lifecycle. |
 
 Use `Function_N/FunctionSpecificShared/` for code tied to one function, shared
 across its weekly notebooks. For example, Function 1's mirrored output number
@@ -104,3 +107,12 @@ highest-output labels. Conditional model curves hold every other coordinate
 fixed, while proposal-profile charts show every input without projecting it
 away. The problem description does not label Function 4 noisy, so no noise
 analysis is included; its existing GP regularisation setting is retained.
+
+The separate Week 5 `surrogate_comparison.ipynb` studies use only the official
+snapshots and write under their own `surrogate-study/` folders. Their MLP input
+gradients use fitted public weights and biases, include input and regression
+target scaling, and are checked against finite differences. Classifier thresholds
+use each fold's training targets, and the full-fit boundary is labelled separately.
+SVM scores are not probabilities; unavailable probability metrics are saved as
+JSON null. Seed variation is optimisation sensitivity, not GP uncertainty.
+The study does not change existing model defaults, saved proposals or submissions.

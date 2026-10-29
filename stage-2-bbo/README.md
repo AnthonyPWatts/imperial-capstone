@@ -156,6 +156,17 @@ with limited evidence. The same tension appears when tuning a model, adjusting
 a process or planning a product experiment: each test costs something, and
 waiting for its answer limits how quickly you can adapt.
 
+## Later work: Week 5
+
+Later work is recorded separately from the Module 14 snapshot above. All eight
+Week 5 queries are submitted, with confirmation recorded on 29 October 2026;
+their results remain pending. The [Week 5 discussion
+draft](docs/week-05-discussion-draft.md) was also posted, confirmed on the same
+date. Its [surrogate comparisons](results/week-05-surrogate-comparison.md) use
+207 official observations through round 4 and were run after query submission.
+The reflection treats F5's suspected maximum as a hypothesis and explains why
+the current F3 classifier should not guide queries.
+
 ## Where to go next
 
 | If you want to… | Read… |

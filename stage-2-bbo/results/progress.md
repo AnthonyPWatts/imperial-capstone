@@ -10,6 +10,28 @@ contains all eight chosen inputs, prepared on 28 October. Submission was confirm
 by the project owner on 29 October 2026; results are pending. These inputs do not
 change the measured progress below.
 
+## Week 5 discussion and retrospective studies
+
+The project owner confirmed posting the [Week 5 discussion
+draft](../docs/week-05-discussion-draft.md) on **29 October 2026**. It addresses
+the seven reflection criteria using the [eight surrogate
+studies](week-05-surrogate-comparison.md), which were run after the fifth-query
+submission using the 207 official observations through round 4. Discussion
+posting is separate from query submission; round 5 results remain pending.
+No marked result or completion of the peer-comment requirement is recorded.
+
+F5's upper-corner score of **8662.405001** remains the measured best. Two later
+nearby returns were lower, and all four fitted neural derivatives at the corner
+were positive; the bounded ascent trial accepted no steps. This supports the
+working hypothesis that the permitted boundary corner may be at or near the
+maximum, without proving a global maximum.
+
+F3's RBF classifier uses 14 of 19 observations as support vectors, but its
+leave-one-out predictions label all 19 bad and miss all five good results
+(50% balanced accuracy). The support-vector count alone does not invalidate
+classification. The predictive evidence argues against using this fitted
+classifier to guide queries, without ruling out all classification approaches.
+
 ## How to read progress
 
 The aim is to raise the **best observed output** for each function. A returned

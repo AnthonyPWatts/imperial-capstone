@@ -16,6 +16,14 @@ peer snapshot. These peer reports remain self-reported evidence and do not
 change the official progress history or query allowance. No source repository
 was refreshed. The original official and cohort analyses remain intact.
 
+## Discussion reflection
+
+The separate [Week 5 discussion draft](../../docs/week-05-discussion-draft.md)
+was posted to the course discussion board, confirmed by the project owner on
+29 October 2026. Its supporting neural/surrogate experiments followed query
+submission and did not inform or change the submitted inputs. Discussion
+posting does not indicate that round 5 results have arrived.
+
 ## Selected inputs
 
 | Function | Portal input | Basis |

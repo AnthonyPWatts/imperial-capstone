@@ -1,0 +1,719 @@
+{
+  "function": 2,
+  "week": 5,
+  "study_date": "2026-10-29",
+  "analysis": "retrospective_neural_and_surrogate_comparison",
+  "data_scope": "official_only",
+  "feedback_through_round": 4,
+  "observations": 14,
+  "dimensions": 2,
+  "target_units": "score",
+  "source_csv": "stage-2-bbo\\notebooks\\Function_2\\Week_05\\official\\observations.csv",
+  "source_csv_sha256": "08023e4685028b063f657cb2cde156b8b9277420c9ca8fdc715c662c82bbc43c",
+  "submitted_input": "0.636151-0.495605",
+  "submitted_file_sha256": "18558cbae60b6b1cf11b552dd7e0115fab022b30d988fcb2a215326a3811d07c",
+  "settings": {
+    "architectures": [
+      {
+        "name": "tanh-8",
+        "layers": [
+          8
+        ],
+        "activation": "tanh"
+      },
+      {
+        "name": "tanh-16",
+        "layers": [
+          16
+        ],
+        "activation": "tanh"
+      },
+      {
+        "name": "relu-8-8",
+        "layers": [
+          8,
+          8
+        ],
+        "activation": "relu"
+      }
+    ],
+    "seeds": [
+      11,
+      42,
+      73
+    ],
+    "representative_seed": 42,
+    "models": {
+      "alpha": 0.1,
+      "max_iter": 400,
+      "max_fun": 15000,
+      "tolerance": 1e-06,
+      "gp_restarts": 3
+    },
+    "good_quantile": 0.75,
+    "height_scale": null,
+    "candidates": {
+      "broad_power": 12,
+      "local_power": 10,
+      "local_radius": 0.15
+    },
+    "gradients": {
+      "gradient_step": 1e-05,
+      "path_steps": 8,
+      "path_step_size": 0.05
+    }
+  },
+  "regression_comparison": [
+    {
+      "Model": "GP x1 only",
+      "LOO RMSE": 0.14578291498430085,
+      "LOO MAE": 0.11979502394619766,
+      "Rank correlation": 0.5780219780219781,
+      "Training RMSE": 0.007837854396737218,
+      "Fit warnings": 12,
+      "RMSE / baseline": 0.6776896101843697
+    },
+    {
+      "Model": "GP separate length scales",
+      "LOO RMSE": 0.147263985761653,
+      "LOO MAE": 0.12002129522105054,
+      "Rank correlation": 0.6835164835164835,
+      "Training RMSE": 0.004941174781779817,
+      "Fit warnings": 0,
+      "RMSE / baseline": 0.6845745478182984
+    },
+    {
+      "Model": "Ridge",
+      "LOO RMSE": 0.18380156301292616,
+      "LOO MAE": 0.14124325947318944,
+      "Rank correlation": 0.5648351648351648,
+      "Training RMSE": 0.14602889958718449,
+      "Fit warnings": 0,
+      "RMSE / baseline": 0.8544239193112686
+    },
+    {
+      "Model": "Linear regression",
+      "LOO RMSE": 0.18707398138779543,
+      "LOO MAE": 0.14493112782565162,
+      "Rank correlation": 0.5208791208791209,
+      "Training RMSE": 0.14580723921261826,
+      "Fit warnings": 0,
+      "RMSE / baseline": 0.8696361541130225
+    },
+    {
+      "Model": "RBF SVR",
+      "LOO RMSE": 0.18932958745402276,
+      "LOO MAE": 0.15218966113402876,
+      "Rank correlation": 0.4681318681318682,
+      "Training RMSE": 0.14425958811753106,
+      "Fit warnings": 0,
+      "RMSE / baseline": 0.8801216132350034
+    },
+    {
+      "Model": "Mean baseline",
+      "LOO RMSE": 0.21511752990375593,
+      "LOO MAE": 0.17746533282706173,
+      "Rank correlation": -1.0,
+      "Training RMSE": 0.19975199205348765,
+      "Fit warnings": 0,
+      "RMSE / baseline": 1.0
+    },
+    {
+      "Model": "GP shared length scale",
+      "LOO RMSE": 0.22369664103795822,
+      "LOO MAE": 0.18544393799070846,
+      "Rank correlation": -0.3010989010989011,
+      "Training RMSE": 0.002103089789095811,
+      "Fit warnings": 0,
+      "RMSE / baseline": 1.0398810414848134
+    },
+    {
+      "Model": "NN relu-8-8 seed 11",
+      "LOO RMSE": 0.2270309716159138,
+      "LOO MAE": 0.1637199059178709,
+      "Rank correlation": 0.4813186813186813,
+      "Training RMSE": 0.051437149795994085,
+      "Fit warnings": 0,
+      "RMSE / baseline": 1.0553810826922752
+    },
+    {
+      "Model": "Kernel ridge",
+      "LOO RMSE": 0.23997888718400506,
+      "LOO MAE": 0.1997545744872484,
+      "Rank correlation": 0.367032967032967,
+      "Training RMSE": 0.10002828211890082,
+      "Fit warnings": 0,
+      "RMSE / baseline": 1.1155710429148762
+    },
+    {
+      "Model": "NN relu-8-8 seed 73",
+      "LOO RMSE": 0.25336514455005915,
+      "LOO MAE": 0.19386790592091446,
+      "Rank correlation": 0.4197802197802198,
+      "Training RMSE": 0.0848797826359017,
+      "Fit warnings": 1,
+      "RMSE / baseline": 1.1777986882957203
+    },
+    {
+      "Model": "NN tanh-16 seed 73",
+      "LOO RMSE": 0.25797871756316526,
+      "LOO MAE": 0.19350262212471606,
+      "Rank correlation": 0.37142857142857144,
+      "Training RMSE": 0.08703121633926066,
+      "Fit warnings": 5,
+      "RMSE / baseline": 1.1992454435423534
+    },
+    {
+      "Model": "NN tanh-8 seed 42",
+      "LOO RMSE": 0.25966915725089024,
+      "LOO MAE": 0.19556142382717284,
+      "Rank correlation": 0.3934065934065934,
+      "Training RMSE": 0.08703176413512646,
+      "Fit warnings": 2,
+      "RMSE / baseline": 1.207103658019255
+    },
+    {
+      "Model": "NN tanh-8 seed 73",
+      "LOO RMSE": 0.26072399900800164,
+      "LOO MAE": 0.20262289097738787,
+      "Rank correlation": 0.3538461538461538,
+      "Training RMSE": 0.06517080435964762,
+      "Fit warnings": 1,
+      "RMSE / baseline": 1.2120072182153176
+    },
+    {
+      "Model": "NN tanh-8 seed 11",
+      "LOO RMSE": 0.26093539328213405,
+      "LOO MAE": 0.199227649433466,
+      "Rank correlation": 0.3494505494505495,
+      "Training RMSE": 0.08703465573857533,
+      "Fit warnings": 1,
+      "RMSE / baseline": 1.2129899102080484
+    },
+    {
+      "Model": "NN tanh-16 seed 11",
+      "LOO RMSE": 0.2621250988437562,
+      "LOO MAE": 0.20050465415861426,
+      "Rank correlation": 0.3626373626373627,
+      "Training RMSE": 0.07252103882924393,
+      "Fit warnings": 3,
+      "RMSE / baseline": 1.2185204012012947
+    },
+    {
+      "Model": "NN tanh-16 seed 42",
+      "LOO RMSE": 0.2631239672750823,
+      "LOO MAE": 0.2033060097789039,
+      "Rank correlation": 0.3934065934065934,
+      "Training RMSE": 0.07430301953196197,
+      "Fit warnings": 5,
+      "RMSE / baseline": 1.2231637625850602
+    },
+    {
+      "Model": "NN relu-8-8 seed 42",
+      "LOO RMSE": 0.2645344973422449,
+      "LOO MAE": 0.21551555579888365,
+      "Rank correlation": 0.432967032967033,
+      "Training RMSE": 0.06280907464586082,
+      "Fit warnings": 1,
+      "RMSE / baseline": 1.2297207831486268
+    }
+  ],
+  "classification_comparison": [
+    {
+      "Model": "Logistic regression",
+      "LOO balanced accuracy": 0.775,
+      "LOO accuracy": 0.7857142857142857,
+      "Good precision": 0.6,
+      "Good recall": 0.75,
+      "Good F1": 0.6666666666666666,
+      "ROC AUC": 0.7749999999999999,
+      "Brier score": 0.16549866413457798,
+      "Log loss": 0.5028082694686399,
+      "Training balanced accuracy": 0.65,
+      "False negatives": 1,
+      "False positives": 2,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "Linear SVM",
+      "LOO balanced accuracy": 0.775,
+      "LOO accuracy": 0.7857142857142857,
+      "Good precision": 0.6,
+      "Good recall": 0.75,
+      "Good F1": 0.6666666666666666,
+      "ROC AUC": 0.675,
+      "Brier score": null,
+      "Log loss": null,
+      "Training balanced accuracy": 0.775,
+      "False negatives": 1,
+      "False positives": 2,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "RBF SVM",
+      "LOO balanced accuracy": 0.775,
+      "LOO accuracy": 0.7857142857142857,
+      "Good precision": 0.6,
+      "Good recall": 0.75,
+      "Good F1": 0.6666666666666666,
+      "ROC AUC": 0.675,
+      "Brier score": null,
+      "Log loss": null,
+      "Training balanced accuracy": 0.7,
+      "False negatives": 1,
+      "False positives": 2,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "NN relu-8-8 seed 11",
+      "LOO balanced accuracy": 0.775,
+      "LOO accuracy": 0.7857142857142857,
+      "Good precision": 0.6,
+      "Good recall": 0.75,
+      "Good F1": 0.6666666666666666,
+      "ROC AUC": 0.6499999999999999,
+      "Brier score": 0.2327189384197874,
+      "Log loss": 1.8025436261089065,
+      "Training balanced accuracy": 0.9,
+      "False negatives": 1,
+      "False positives": 2,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "NN relu-8-8 seed 42",
+      "LOO balanced accuracy": 0.775,
+      "LOO accuracy": 0.7857142857142857,
+      "Good precision": 0.6,
+      "Good recall": 0.75,
+      "Good F1": 0.6666666666666666,
+      "ROC AUC": 0.675,
+      "Brier score": 0.22025343034356143,
+      "Log loss": 2.249614778836164,
+      "Training balanced accuracy": 1.0,
+      "False negatives": 1,
+      "False positives": 2,
+      "Fit warnings": 3
+    },
+    {
+      "Model": "NN relu-8-8 seed 73",
+      "LOO balanced accuracy": 0.775,
+      "LOO accuracy": 0.7857142857142857,
+      "Good precision": 0.6,
+      "Good recall": 0.75,
+      "Good F1": 0.6666666666666666,
+      "ROC AUC": 0.6249999999999999,
+      "Brier score": 0.2171358652588285,
+      "Log loss": 1.7566315562733745,
+      "Training balanced accuracy": 0.9,
+      "False negatives": 1,
+      "False positives": 2,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "NN tanh-8 seed 11",
+      "LOO balanced accuracy": 0.725,
+      "LOO accuracy": 0.7142857142857143,
+      "Good precision": 0.5,
+      "Good recall": 0.75,
+      "Good F1": 0.6,
+      "ROC AUC": 0.6000000000000001,
+      "Brier score": 0.2343019507194025,
+      "Log loss": 1.1605176096226977,
+      "Training balanced accuracy": 0.825,
+      "False negatives": 1,
+      "False positives": 3,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "NN tanh-8 seed 42",
+      "LOO balanced accuracy": 0.725,
+      "LOO accuracy": 0.7142857142857143,
+      "Good precision": 0.5,
+      "Good recall": 0.75,
+      "Good F1": 0.6,
+      "ROC AUC": 0.6000000000000001,
+      "Brier score": 0.23404413095443924,
+      "Log loss": 1.159406803005591,
+      "Training balanced accuracy": 1.0,
+      "False negatives": 1,
+      "False positives": 3,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "NN tanh-8 seed 73",
+      "LOO balanced accuracy": 0.725,
+      "LOO accuracy": 0.7142857142857143,
+      "Good precision": 0.5,
+      "Good recall": 0.75,
+      "Good F1": 0.6,
+      "ROC AUC": 0.6000000000000001,
+      "Brier score": 0.23387157242905182,
+      "Log loss": 1.1433375339185512,
+      "Training balanced accuracy": 1.0,
+      "False negatives": 1,
+      "False positives": 3,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "NN tanh-16 seed 11",
+      "LOO balanced accuracy": 0.725,
+      "LOO accuracy": 0.7142857142857143,
+      "Good precision": 0.5,
+      "Good recall": 0.75,
+      "Good F1": 0.6,
+      "ROC AUC": 0.6000000000000001,
+      "Brier score": 0.2350218253654967,
+      "Log loss": 1.257587549416058,
+      "Training balanced accuracy": 1.0,
+      "False negatives": 1,
+      "False positives": 3,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "NN tanh-16 seed 42",
+      "LOO balanced accuracy": 0.725,
+      "LOO accuracy": 0.7142857142857143,
+      "Good precision": 0.5,
+      "Good recall": 0.75,
+      "Good F1": 0.6,
+      "ROC AUC": 0.6000000000000001,
+      "Brier score": 0.23485050698883764,
+      "Log loss": 1.2173250187034839,
+      "Training balanced accuracy": 1.0,
+      "False negatives": 1,
+      "False positives": 3,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "NN tanh-16 seed 73",
+      "LOO balanced accuracy": 0.725,
+      "LOO accuracy": 0.7142857142857143,
+      "Good precision": 0.5,
+      "Good recall": 0.75,
+      "Good F1": 0.6,
+      "ROC AUC": 0.6250000000000001,
+      "Brier score": 0.23452016940073436,
+      "Log loss": 1.2397634174879433,
+      "Training balanced accuracy": 1.0,
+      "False negatives": 1,
+      "False positives": 3,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "Class-prior baseline",
+      "LOO balanced accuracy": 0.5,
+      "LOO accuracy": 0.7142857142857143,
+      "Good precision": 0.0,
+      "Good recall": 0.0,
+      "Good F1": 0.0,
+      "ROC AUC": 0.5,
+      "Brier score": 0.20456466610312765,
+      "Log loss": 0.599419127615697,
+      "Training balanced accuracy": 0.5,
+      "False negatives": 4,
+      "False positives": 0,
+      "Fit warnings": 0
+    }
+  ],
+  "regression_seed_comparison": [
+    {
+      "architecture": "relu-8-8",
+      "mean": 0.2483102045027393,
+      "std": 0.019255984125406137,
+      "min": 0.2270309716159138,
+      "max": 0.2645344973422449
+    },
+    {
+      "architecture": "tanh-8",
+      "mean": 0.26044284984700866,
+      "std": 0.0006783229759858736,
+      "min": 0.25966915725089024,
+      "max": 0.26093539328213405
+    },
+    {
+      "architecture": "tanh-16",
+      "mean": 0.26107592789400125,
+      "std": 0.0027283636874238103,
+      "min": 0.25797871756316526,
+      "max": 0.2631239672750823
+    }
+  ],
+  "classification_seed_comparison": [
+    {
+      "architecture": "relu-8-8",
+      "mean": 0.775,
+      "std": 0.0,
+      "min": 0.775,
+      "max": 0.775
+    },
+    {
+      "architecture": "tanh-16",
+      "mean": 0.725,
+      "std": 0.0,
+      "min": 0.725,
+      "max": 0.725
+    },
+    {
+      "architecture": "tanh-8",
+      "mean": 0.725,
+      "std": 0.0,
+      "min": 0.725,
+      "max": 0.725
+    }
+  ],
+  "selected_regression_architecture": "relu-8-8",
+  "selected_classification_architecture": "relu-8-8",
+  "regression_representative": "NN relu-8-8 seed 42",
+  "classification_representative": "NN relu-8-8 seed 42",
+  "reference_gp": "GP x1 only",
+  "classification_threshold": 0.29135569514308934,
+  "full_good_count": 4,
+  "held_out_good_count": 4,
+  "training_fold_threshold_range": [
+    0.2834440433397594,
+    0.293992912410866
+  ],
+  "fold_labels_differing_from_full_labels": 0,
+  "rbf_support_count": 10,
+  "linear_support_count": 9,
+  "rbf_support_examples": [
+    {
+      "observation_id": "initial-010",
+      "Good class": 1,
+      "Decision score": -0.02352541174802203
+    },
+    {
+      "observation_id": "round-01",
+      "Good class": 0,
+      "Decision score": 0.2092639517444954
+    },
+    {
+      "observation_id": "round-03",
+      "Good class": 0,
+      "Decision score": -0.545416133337405
+    },
+    {
+      "observation_id": "initial-004",
+      "Good class": 1,
+      "Decision score": 0.5514424754176058
+    },
+    {
+      "observation_id": "initial-006",
+      "Good class": 0,
+      "Decision score": -0.5668242364576804
+    },
+    {
+      "observation_id": "initial-001",
+      "Good class": 1,
+      "Decision score": -0.6032136395031626
+    },
+    {
+      "observation_id": "initial-002",
+      "Good class": 1,
+      "Decision score": 0.6368792845586647
+    },
+    {
+      "observation_id": "initial-005",
+      "Good class": 0,
+      "Decision score": -0.9996692759689711
+    }
+  ],
+  "input_gradients": [
+    {
+      "Input": "x1",
+      "NN backpropagation": 0.007443855031513935,
+      "GP finite difference": -3.0244033884434502,
+      "SVR finite difference": 0.23284532193019122,
+      "NN sampled mean absolute gradient": 0.8596244617723848,
+      "NN seed SD of mean absolute gradient": 0.0659337324725573,
+      "NN P(good) gradient near boundary": 8.144644793309762
+    },
+    {
+      "Input": "x2",
+      "NN backpropagation": 0.0029536109870482957,
+      "GP finite difference": 0.0,
+      "SVR finite difference": -0.14834027372912847,
+      "NN sampled mean absolute gradient": 0.5478176502828779,
+      "NN seed SD of mean absolute gradient": 0.2606040102450001,
+      "NN P(good) gradient near boundary": 0.6672545343345464
+    }
+  ],
+  "gradient_checks": [
+    {
+      "Model": "NN relu-8-8 seed 42",
+      "Maximum absolute error": 1.1801226662555564e-11,
+      "Maximum normalised error": 3.3009750717856447e-12,
+      "Passed": true
+    },
+    {
+      "Model": "NN relu-8-8 seed 42",
+      "Maximum absolute error": 5.768889277391054e-08,
+      "Maximum normalised error": 1.9218080168731715e-08,
+      "Passed": true
+    }
+  ],
+  "conditional_boundary_axes": [
+    "x1",
+    "x2"
+  ],
+  "conditional_boundary_anchor": [
+    0.551555,
+    0.227317
+  ],
+  "anchor_predicted_good_probability": 0.5000853927064336,
+  "candidate_count": 5128,
+  "hypothetical_mean_only_candidates": [
+    {
+      "Method": "Linear regression: mean only",
+      "Predicted score": 0.4850958038757628,
+      "Input": "0.999999-0.999999",
+      "Nearest measured input": 0.23048861143232216
+    },
+    {
+      "Method": "RBF SVR: mean only",
+      "Predicted score": 0.32166179996068706,
+      "Input": "0.852625-0.828239",
+      "Nearest measured input": 0.0556293793807604
+    },
+    {
+      "Method": "GP x1 only: mean only",
+      "Predicted score": 0.6252820210622447,
+      "Input": "0.691738-0.886631",
+      "Nearest measured input": 0.041393704947102636
+    },
+    {
+      "Method": "NN relu-8-8 seed 42: mean only",
+      "Predicted score": 0.5244699296712867,
+      "Input": "0.665511-0.181993",
+      "Nearest measured input": 0.058024589942294175
+    },
+    {
+      "Method": "NN seed ensemble: mean only",
+      "Predicted score": 0.5178699274134994,
+      "Input": "0.725547-0.001013",
+      "Nearest measured input": 0.13670392652737057
+    }
+  ],
+  "nn_ensemble_seed_spread_at_mean_winner": 0.11368267038949274,
+  "gradient_paths": {
+    "Ascent (maximise surrogate)": [
+      {
+        "step": 0,
+        "prediction": 0.48071850684292683,
+        "x1": 0.7026365569244406,
+        "x2": 0.9265641975455574
+      }
+    ],
+    "Descent (minimise surrogate)": [
+      {
+        "step": 0,
+        "prediction": 0.48071850684292683,
+        "x1": 0.7026365569244406,
+        "x2": 0.9265641975455574
+      },
+      {
+        "step": 1,
+        "prediction": 0.32569154604735123,
+        "x1": 0.656161,
+        "x2": 0.908124
+      },
+      {
+        "step": 2,
+        "prediction": 0.17435943288397382,
+        "x1": 0.606201,
+        "x2": 0.906129
+      },
+      {
+        "step": 3,
+        "prediction": 0.05129171366384522,
+        "x1": 0.556543,
+        "x2": 0.900293
+      },
+      {
+        "step": 4,
+        "prediction": 0.050955479912117047,
+        "x1": 0.534772,
+        "x2": 0.888004
+      }
+    ]
+  },
+  "neural_parameter_counts": [
+    {
+      "Model": "NN relu-8-8 seed 11",
+      "Trainable parameters": 105,
+      "Observations": 14,
+      "Final iterations": 86
+    },
+    {
+      "Model": "NN relu-8-8 seed 42",
+      "Trainable parameters": 105,
+      "Observations": 14,
+      "Final iterations": 168
+    },
+    {
+      "Model": "NN relu-8-8 seed 73",
+      "Trainable parameters": 105,
+      "Observations": 14,
+      "Final iterations": 127
+    }
+  ],
+  "fit_warnings": {
+    "regression": {
+      "Mean baseline": {},
+      "Linear regression": {},
+      "Ridge": {},
+      "Kernel ridge": {},
+      "RBF SVR": {},
+      "GP shared length scale": {},
+      "GP separate length scales": {},
+      "GP x1 only": {
+        "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value.": 12
+      },
+      "NN tanh-8 seed 11": {
+        "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 1
+      },
+      "NN tanh-8 seed 42": {
+        "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 2
+      },
+      "NN tanh-8 seed 73": {
+        "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 1
+      },
+      "NN tanh-16 seed 11": {
+        "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 3
+      },
+      "NN tanh-16 seed 42": {
+        "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 5
+      },
+      "NN tanh-16 seed 73": {
+        "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 5
+      },
+      "NN relu-8-8 seed 11": {},
+      "NN relu-8-8 seed 42": {
+        "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 1
+      },
+      "NN relu-8-8 seed 73": {
+        "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 1
+      }
+    },
+    "classification": {
+      "Class-prior baseline": {},
+      "Logistic regression": {},
+      "Linear SVM": {},
+      "RBF SVM": {},
+      "NN tanh-8 seed 11": {},
+      "NN tanh-8 seed 42": {},
+      "NN tanh-8 seed 73": {},
+      "NN tanh-16 seed 11": {},
+      "NN tanh-16 seed 42": {},
+      "NN tanh-16 seed 73": {},
+      "NN relu-8-8 seed 11": {},
+      "NN relu-8-8 seed 42": {
+        "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 3
+      },
+      "NN relu-8-8 seed 73": {}
+    }
+  },
+  "estimator_fits": 450,
+  "submitted_inputs_changed": false,
+  "new_course_evaluations": 0
+}
