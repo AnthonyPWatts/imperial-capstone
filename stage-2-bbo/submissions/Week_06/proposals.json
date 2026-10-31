@@ -1,0 +1,1072 @@
+{
+  "week": 6,
+  "prepared_on": "2026-10-30",
+  "status": "submitted_awaiting_results",
+  "feedback_through_round": 5,
+  "agreed_functions": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "selections_finalised_on": "2026-10-31",
+  "official_observations": 215,
+  "query_opportunities_per_function_including_week_06": 8,
+  "future_opportunities_after_week_06_if_submitted": 7,
+  "submission_file": {
+    "path": "stage-2-bbo/submissions/Week_06/submissions.txt",
+    "sha256": "a5d2fbf7b9363131a2d08c52d4d2b7f197861233583d88f33030656b99e5b773"
+  },
+  "validation": {
+    "line_count": 8,
+    "dimensions": [
+      2,
+      2,
+      3,
+      4,
+      4,
+      5,
+      6,
+      8
+    ],
+    "coordinate_range": "[0, 1)",
+    "decimal_places": 6,
+    "separator": "-",
+    "spaces": false,
+    "duplicates": false,
+    "prior_submission_files_checked": 5
+  },
+  "candidates": [
+    {
+      "function": 1,
+      "dimensions": 2,
+      "portal_input": "0.537942-0.522217",
+      "point": [
+        0.537942,
+        0.522217
+      ],
+      "selection_policy": "hunch_led_central_signed_mean",
+      "data_scope": "official_plus_retained_peers",
+      "reason": "Follow through on the central-region hunch with the saved signed-log GP mean maximum. The nearby positive peer report motivates a query of our own; magnitude studies inform the hypothesis rather than replace the signed-score objective. This is not an established source detection.",
+      "decision_status": "agreed",
+      "predictions": {
+        "point": [
+          0.537942,
+          0.522217
+        ],
+        "portal_input": "0.537942-0.522217",
+        "gp_mean": 184.02384861529072,
+        "gp_latent_sd": 18.521031052109056,
+        "gp_ucb_1_96": 220.32506947742445,
+        "neural_mean": -219.54374955008083,
+        "neural_seed_sd": 0.0983420403340495,
+        "neural_seed_predictions": [
+          -219.61609409300254,
+          -219.43177584572354,
+          -219.58337871151633
+        ],
+        "inside_selected_gp_training_hull": true,
+        "nearest_known_input_distance": 0.0033639835017430643
+      },
+      "prediction_units": "signed-log height h",
+      "original_model_notebook_proposal": "0.608515-0.846200",
+      "changed_from_notebook_proposal": true,
+      "evidence": {
+        "official_observations": 15,
+        "best_official_raw_output": 7.710875114502849e-16,
+        "gp_selection_metric": "LOO MAE",
+        "gp_official_target_error": 119.63625240625065,
+        "neural_ensemble_errors": {
+          "LOO RMSE": 189.99135376655653,
+          "LOO MAE": 136.57432624445636
+        }
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_1/Week_06/official/observations.csv",
+          "sha256": "47ab79bd8fa8764f137a63ac00d00fbec77e98b0b5343110fb37880ae802faf6"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_1/Week_06/official/model-review.json",
+          "sha256": "133d4c46267ce609deeaa37a4588e2d53016c7b2a59ca5b056c75af7a0eede32"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_1/Week_06/official/model_predictions.ipynb",
+          "sha256": "ca1c43b78c3cc02d2caa517a7bde673fc31ffb402fef9611e844f2316bffe879"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_1/Week_06/official/figures/neural-network-explorer.html",
+          "sha256": "8283e7bf82b56b0704e5023e672a8587e76dc4c56ed79843065e5b1cd0a696d3"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_1/Week_06/cohort/observations.csv",
+          "sha256": "06ea76bdebece67c575c8343412b3aca6f0db2df73720791178ff9042430e1f2"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_1/Week_06/cohort/data-audit.json",
+          "sha256": "cf80eca4adf12bcb64b9d8503f320bb9bc88c93093732f7a8d21dd1aafb86279"
+        }
+      ],
+      "validation": {
+        "function": 1,
+        "known_rows_checked": 21,
+        "prior_submission_files_checked": 5,
+        "duplicate": false,
+        "nearest_known_input_distance": 0.0033639835017430643
+      }
+    },
+    {
+      "function": 2,
+      "dimensions": 2,
+      "portal_input": "0.700520-0.000114",
+      "point": [
+        0.70052,
+        0.000114
+      ],
+      "selection_policy": "retained_gp_ucb",
+      "data_scope": "official_plus_retained_peers",
+      "reason": "Retain the pooled separate-length-scale GP candidate. Official-target RMSE improves from 0.12335237524474416 to 0.11137906268912874; the neural comparator is weaker. Weight and regularisation sensitivity limit confidence.",
+      "decision_status": "agreed",
+      "predictions": {
+        "point": [
+          0.70052,
+          0.000114
+        ],
+        "portal_input": "0.700520-0.000114",
+        "gp_mean": 0.5884352358211427,
+        "gp_latent_sd": 0.09347082915265524,
+        "gp_ucb_1_96": 0.7716380609603469,
+        "neural_mean": 0.5007165387320227,
+        "neural_seed_sd": 0.024458746154861488,
+        "neural_seed_predictions": [
+          0.5288306765475633,
+          0.48432994098035587,
+          0.48898899866814916
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.12862970191810155
+      },
+      "prediction_units": "output y",
+      "original_model_notebook_proposal": "0.700520-0.000114",
+      "changed_from_notebook_proposal": false,
+      "evidence": {
+        "official_observations": 15,
+        "best_official_raw_output": 0.6112052157614438,
+        "gp_selection_metric": "LOO RMSE",
+        "gp_official_target_error": 0.11137906268912874,
+        "neural_ensemble_errors": {
+          "LOO RMSE": 0.2343391064037235,
+          "LOO MAE": 0.1845345990366585
+        }
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_2/Week_06/official/observations.csv",
+          "sha256": "e81454caa596dd1ddf7da8ab8658127ece64e6c004c66d6e4c5f319509c0582d"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_2/Week_06/official/model-review.json",
+          "sha256": "9cf0026b390b5116c973d724942cd37dce651a949eba3f9f17168140cff1f89a"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_2/Week_06/official/model_predictions.ipynb",
+          "sha256": "0111e7319c5d7c8ed2c56d24751b0c849bdd35552b43a5c93e1da1935ef99859"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_2/Week_06/official/figures/neural-network-explorer.html",
+          "sha256": "a732622e607936f79ad40e4fee280c5ca24b720fe4c3e12df302821c2c9f8cd3"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_2/Week_06/cohort/observations.csv",
+          "sha256": "e78583704e07429257f06e26bec1093b16e0b72245379be6015cddc51dd788be"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_2/Week_06/cohort/data-audit.json",
+          "sha256": "11e412e27b0cfc62abf86ba2160db2ad4774bbc9a428f59e5191d437e625437a"
+        }
+      ],
+      "validation": {
+        "function": 2,
+        "known_rows_checked": 20,
+        "prior_submission_files_checked": 5,
+        "duplicate": false,
+        "nearest_known_input_distance": 0.12862970191810155
+      }
+    },
+    {
+      "function": 3,
+      "dimensions": 3,
+      "portal_input": "0.721213-0.830963-0.001845",
+      "point": [
+        0.721213,
+        0.830963,
+        0.001845
+      ],
+      "selection_policy": "retained_gp_ucb",
+      "data_scope": "official_plus_retained_peers",
+      "reason": "Retain the pooled shared-length-scale GP candidate under the declared RMSE rule. Its official-target RMSE is 0.04869707389884704 versus 0.07390043231177344 for the official selected GP. The last low-x3 failure and continued extrapolation remain risks; one result does not isolate an x3 effect.",
+      "decision_status": "agreed",
+      "predictions": {
+        "point": [
+          0.721213,
+          0.830963,
+          0.001845
+        ],
+        "portal_input": "0.721213-0.830963-0.001845",
+        "gp_mean": -0.051736969714887816,
+        "gp_latent_sd": 0.06493744324266373,
+        "gp_ucb_1_96": 0.07554041904073311,
+        "neural_mean": -0.01377463681991343,
+        "neural_seed_sd": 0.006460505575070125,
+        "neural_seed_predictions": [
+          -0.017495591854538958,
+          -0.017513623786659244,
+          -0.006314694818542091
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.1731925939658387
+      },
+      "prediction_units": "output y",
+      "original_model_notebook_proposal": "0.721213-0.830963-0.001845",
+      "changed_from_notebook_proposal": false,
+      "evidence": {
+        "official_observations": 20,
+        "best_official_raw_output": -0.034835313350078584,
+        "gp_selection_metric": "LOO RMSE",
+        "gp_official_target_error": 0.04869707389884704,
+        "neural_ensemble_errors": {
+          "LOO RMSE": 0.10650150814252836,
+          "LOO MAE": 0.06770540029648782
+        }
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_3/Week_06/official/observations.csv",
+          "sha256": "054015a5db41c49533519978a93f4721f5578fedafc1b5661f4621c3eb1e4ff9"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_3/Week_06/official/model-review.json",
+          "sha256": "14a70496398e1dc001e4bf22f2060207207a74eddddc31254da6f6bfdffaa05e"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_3/Week_06/official/model_predictions.ipynb",
+          "sha256": "612f4f8daf2241bf8e8b5dd1f184c15f6d94d7c6225cc2e3e3eebf3f18808456"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_3/Week_06/official/figures/neural-network-explorer.html",
+          "sha256": "ecd5e10f1956027802ece5cce3630527f9d8ff6cb5aeb9341223cf6deef90d55"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_3/Week_06/cohort/observations.csv",
+          "sha256": "642e029ae9330ab051d6c9ea9c94479eaf5c277eef929a84bbc0e802a819adae"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_3/Week_06/cohort/data-audit.json",
+          "sha256": "f5e57ae49a7537734c0d58d0cc54edb2906231258956384fc2e11ac7d04c9395"
+        }
+      ],
+      "validation": {
+        "function": 3,
+        "known_rows_checked": 25,
+        "prior_submission_files_checked": 5,
+        "duplicate": false,
+        "nearest_known_input_distance": 0.1731925939658387
+      }
+    },
+    {
+      "function": 4,
+      "dimensions": 4,
+      "portal_input": "0.408963-0.412546-0.416464-0.438393",
+      "point": [
+        0.408963,
+        0.412546,
+        0.416464,
+        0.438393
+      ],
+      "selection_policy": "retained_gp_ucb",
+      "data_scope": "official",
+      "reason": "Retain the official GP local candidate near the new confirmed positive incumbent. GP validation is materially better than the neural fit, and peer training does not improve the declared error. The fitted mean remains below the measured best.",
+      "decision_status": "agreed",
+      "predictions": {
+        "point": [
+          0.408963,
+          0.412546,
+          0.416464,
+          0.438393
+        ],
+        "portal_input": "0.408963-0.412546-0.416464-0.438393",
+        "gp_mean": -0.4087963505982497,
+        "gp_latent_sd": 0.4219918545537333,
+        "gp_ucb_1_96": 0.41830768432706755,
+        "neural_mean": 0.2296305369667054,
+        "neural_seed_sd": 0.156433228921392,
+        "neural_seed_predictions": [
+          0.39723891870384165,
+          0.08750029797753811,
+          0.20415239421873643
+        ],
+        "inside_selected_gp_training_hull": true,
+        "nearest_known_input_distance": 0.0185713783818003
+      },
+      "prediction_units": "output y",
+      "original_model_notebook_proposal": "0.408963-0.412546-0.416464-0.438393",
+      "changed_from_notebook_proposal": false,
+      "evidence": {
+        "official_observations": 35,
+        "best_official_raw_output": 0.6501304054949952,
+        "gp_selection_metric": "LOO RMSE",
+        "gp_official_target_error": 1.5155657444705466,
+        "neural_ensemble_errors": {
+          "LOO RMSE": 2.4862376638885593,
+          "LOO MAE": 1.909220978688307
+        }
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_4/Week_06/official/observations.csv",
+          "sha256": "c1371934c3ae51051bcc6a664a8c02c028fcfb7c3c270bfb596e83d6cda2e38d"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_4/Week_06/official/model-review.json",
+          "sha256": "6e44604e8ccdb047fd0a71aefa11e36a255b8b5e9f7668c72f5e38eb72658dcf"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_4/Week_06/official/model_predictions.ipynb",
+          "sha256": "f4b0a3f912c81182c1de5e5104556d6921e9c5ef10392383fc1c2de3a1848ca5"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_4/Week_06/official/figures/neural-network-explorer.html",
+          "sha256": "e732df25a06bf61b6a0477bae7cf7faaba8ea9b0c93c3fb1a46066649b912607"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_4/Week_06/cohort/observations.csv",
+          "sha256": "9838663984827686a04518eee565b1fbe0f5fb5f3895445af5d7f4f79e0212fc"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_4/Week_06/cohort/data-audit.json",
+          "sha256": "83549fadd1336d7996e652bf1a01b96842a137d08f041559aac768a01dbc4ff7"
+        }
+      ],
+      "validation": {
+        "function": 4,
+        "known_rows_checked": 41,
+        "prior_submission_files_checked": 5,
+        "duplicate": false,
+        "nearest_known_input_distance": 0.0185713783818003
+      }
+    },
+    {
+      "function": 5,
+      "dimensions": 4,
+      "portal_input": "0.000000-0.000000-0.999999-0.999999",
+      "point": [
+        0.0,
+        0.0,
+        0.999999,
+        0.999999
+      ],
+      "selection_policy": "global_information_priority",
+      "data_scope": "official",
+      "reason": "Three lower near-corner returns support pausing local refinement for one exploration query. Test the largest finite-pool model/coverage gap; both fits predict a low score, so this is a learning query. An isolated local x3 test remains available. The existing best remains 8662.405001248297; no local or global maximum is established.",
+      "decision_status": "agreed",
+      "predictions": {
+        "point": [
+          0.0,
+          0.0,
+          0.999999,
+          0.999999
+        ],
+        "portal_input": "0.000000-0.000000-0.999999-0.999999",
+        "gp_mean": -685.9953831546907,
+        "gp_latent_sd": 1583.1998147900035,
+        "gp_ucb_1_96": 2417.076253833716,
+        "neural_mean": -13.514815315906768,
+        "neural_seed_sd": 0.4474301758860762,
+        "neural_seed_predictions": [
+          -13.833859061669955,
+          -13.707219683181393,
+          -13.003367202868958
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.731396794953996
+      },
+      "prediction_units": "output y",
+      "original_model_notebook_proposal": "0.999999-0.999999-0.979593-0.999999",
+      "changed_from_notebook_proposal": true,
+      "evidence": {
+        "official_observations": 25,
+        "best_official_raw_output": 8662.405001248297,
+        "gp_selection_metric": "LOO RMSE",
+        "gp_official_target_error": 329.4321113711169,
+        "neural_ensemble_errors": {
+          "LOO RMSE": 136.77880209454497,
+          "LOO MAE": 107.49548886613769
+        }
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_5/Week_06/observations.csv",
+          "sha256": "548341fae720aea8687a5ba6f3c271134b654b34f0854d8f682ed0ea6946565c"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_5/Week_06/model-review.json",
+          "sha256": "d2f80d82653defbfd64635c6246b81a0d0e2c5efde98efa2d394159d5922c87c"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_5/Week_06/model_predictions.ipynb",
+          "sha256": "810880edc2764e8674dc8c780d2a3e793a7c620beca54a7d2a66de76df291353"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_5/Week_06/figures/neural-network-explorer.html",
+          "sha256": "0439b895a78219c3c411b3410b5e835a73868f825fcdbfa3676f8a445d5db40a"
+        }
+      ],
+      "validation": {
+        "function": 5,
+        "known_rows_checked": 25,
+        "prior_submission_files_checked": 5,
+        "duplicate": false,
+        "nearest_known_input_distance": 0.731396794953996
+      }
+    },
+    {
+      "function": 6,
+      "dimensions": 5,
+      "portal_input": "0.398303-0.269220-0.627336-0.768441-0.000000",
+      "point": [
+        0.398303,
+        0.26922,
+        0.627336,
+        0.768441,
+        0.0
+      ],
+      "selection_policy": "neural_seed_mean_candidate_with_gp_crosscheck",
+      "data_scope": "official",
+      "reason": "Use one focused, non-repeated query near the incumbent after four non-improving returns. The neural ensemble has lower overall RMSE/MAE and both model families prefer this candidate's mean to the GP-UCB candidate's mean. The roughly 4% RMSE gain, worse five-week-target RMSE and seed variability limit confidence; this is not a general replacement of GP acquisition.",
+      "decision_status": "agreed",
+      "predictions": {
+        "point": [
+          0.398303,
+          0.26922,
+          0.627336,
+          0.768441,
+          0.0
+        ],
+        "portal_input": "0.398303-0.269220-0.627336-0.768441-0.000000",
+        "gp_mean": -0.39406782326722867,
+        "gp_latent_sd": 0.08157727905271799,
+        "gp_ucb_1_96": -0.2341763563239014,
+        "neural_mean": -0.36349738025850886,
+        "neural_seed_sd": 0.07525418986281351,
+        "neural_seed_predictions": [
+          -0.4483616982195261,
+          -0.3048871884968829,
+          -0.3372432540591175
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.10274656951450989
+      },
+      "prediction_units": "output y",
+      "original_model_notebook_proposal": "0.470286-0.366388-0.723696-0.848362-0.000000",
+      "changed_from_notebook_proposal": true,
+      "evidence": {
+        "official_observations": 25,
+        "best_official_raw_output": -0.3786912545484574,
+        "gp_selection_metric": "LOO RMSE",
+        "gp_official_target_error": 0.33964848515026014,
+        "neural_ensemble_errors": {
+          "LOO RMSE": 0.3260539482469173,
+          "LOO MAE": 0.2613433369172684
+        }
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_6/Week_06/observations.csv",
+          "sha256": "a8993a0d51afc688212122ef893e336610068f8443449334e955601fc144c091"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_6/Week_06/model-review.json",
+          "sha256": "6243ba25f456149d0ce7fd4cc01e0911da22e37473dc1ba322d1847a24600c04"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_6/Week_06/model_predictions.ipynb",
+          "sha256": "dff100235aa1d873c0bccf80737b50e3bda50a36590cfe4f5e2035b0cbf050b6"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_6/Week_06/figures/neural-network-explorer.html",
+          "sha256": "d543ae8b4594d190ec35d6d375b40aadc2796ea38436ae0a5801faf82889ee5e"
+        }
+      ],
+      "validation": {
+        "function": 6,
+        "known_rows_checked": 25,
+        "prior_submission_files_checked": 5,
+        "duplicate": false,
+        "nearest_known_input_distance": 0.10274656951450989
+      }
+    },
+    {
+      "function": 7,
+      "dimensions": 6,
+      "portal_input": "0.000000-0.135108-0.370684-0.306265-0.311144-0.649736",
+      "point": [
+        0.0,
+        0.135108,
+        0.370684,
+        0.306265,
+        0.311144,
+        0.649736
+      ],
+      "selection_policy": "retained_gp_ucb",
+      "data_scope": "official",
+      "reason": "Retain the GP-UCB local candidate. GP RMSE is lower than the neural ensemble's; the more optimistic neural mean alternative lacks enough validation support to replace the established policy.",
+      "decision_status": "agreed",
+      "predictions": {
+        "point": [
+          0.0,
+          0.135108,
+          0.370684,
+          0.306265,
+          0.311144,
+          0.649736
+        ],
+        "portal_input": "0.000000-0.135108-0.370684-0.306265-0.311144-0.649736",
+        "gp_mean": 2.481352934139366,
+        "gp_latent_sd": 0.18611131218960883,
+        "gp_ucb_1_96": 2.8461311060309993,
+        "neural_mean": 2.4439151085591875,
+        "neural_seed_sd": 0.0497819559515384,
+        "neural_seed_predictions": [
+          2.3864318935316158,
+          2.47260076134696,
+          2.472712670798987
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.13344319933964416
+      },
+      "prediction_units": "output y",
+      "original_model_notebook_proposal": "0.000000-0.135108-0.370684-0.306265-0.311144-0.649736",
+      "changed_from_notebook_proposal": false,
+      "evidence": {
+        "official_observations": 35,
+        "best_official_raw_output": 2.6189682154023832,
+        "gp_selection_metric": "LOO RMSE",
+        "gp_official_target_error": 0.2664872077806767,
+        "neural_ensemble_errors": {
+          "LOO RMSE": 0.41055820767376294,
+          "LOO MAE": 0.30414118235673276
+        }
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_7/Week_06/observations.csv",
+          "sha256": "05447e3f71720ea2db202303f185f735a4ad0f953298fa1b302ccd8c346a879d"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_7/Week_06/model-review.json",
+          "sha256": "f4a037329d00c2ffa79e77524c2440e804e43f6be0863f5502d12be07a1bc0da"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_7/Week_06/model_predictions.ipynb",
+          "sha256": "f3e743a3152f97f7d2b7f92eed8e73de1219f1b76e848eb9f6222454bde7882a"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_7/Week_06/figures/neural-network-explorer.html",
+          "sha256": "8271c6f6931f8fd685227caf2412be0a735133dfc86b8b75631cc5f3588cf75b"
+        }
+      ],
+      "validation": {
+        "function": 7,
+        "known_rows_checked": 35,
+        "prior_submission_files_checked": 5,
+        "duplicate": false,
+        "nearest_known_input_distance": 0.13344319933964416
+      }
+    },
+    {
+      "function": 8,
+      "dimensions": 8,
+      "portal_input": "0.022327-0.096114-0.237034-0.202848-0.982361-0.880106-0.159960-0.678158",
+      "point": [
+        0.022327,
+        0.096114,
+        0.237034,
+        0.202848,
+        0.982361,
+        0.880106,
+        0.15996,
+        0.678158
+      ],
+      "selection_policy": "retained_gp_ucb",
+      "data_scope": "official",
+      "reason": "Retain the full-input GP-UCB candidate, with a predicted mean above the incumbent. GP validation is better than the neural comparator; full eight-input extrapolation and weight sensitivity remain material limitations.",
+      "decision_status": "agreed",
+      "predictions": {
+        "point": [
+          0.022327,
+          0.096114,
+          0.237034,
+          0.202848,
+          0.982361,
+          0.880106,
+          0.15996,
+          0.678158
+        ],
+        "portal_input": "0.022327-0.096114-0.237034-0.202848-0.982361-0.880106-0.159960-0.678158",
+        "gp_mean": 9.812241549906545,
+        "gp_latent_sd": 0.3416867692559273,
+        "gp_ucb_1_96": 10.481947617648164,
+        "neural_mean": 9.614408821039413,
+        "neural_seed_sd": 0.01684083506999959,
+        "neural_seed_predictions": [
+          9.608242106231417,
+          9.60152056464854,
+          9.633463792238285
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.7547592375850184
+      },
+      "prediction_units": "output y",
+      "original_model_notebook_proposal": "0.022327-0.096114-0.237034-0.202848-0.982361-0.880106-0.159960-0.678158",
+      "changed_from_notebook_proposal": false,
+      "evidence": {
+        "official_observations": 45,
+        "best_official_raw_output": 9.598482002566342,
+        "gp_selection_metric": "LOO RMSE",
+        "gp_official_target_error": 0.31336901830627456,
+        "neural_ensemble_errors": {
+          "LOO RMSE": 0.3685716106501677,
+          "LOO MAE": 0.2694238433702425
+        }
+      },
+      "sources": [
+        {
+          "path": "stage-2-bbo/notebooks/Function_8/Week_06/observations.csv",
+          "sha256": "4e9c47ebf4398e7e574c4fb253f097b016b5c846611a894c7be929b417524f2c"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_8/Week_06/model-review.json",
+          "sha256": "4f52b40155aa3bda7b7df587e48bcd2825a3f8fcd075df5f8e02ea79b0213f05"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_8/Week_06/model_predictions.ipynb",
+          "sha256": "bd65044e76738af2185fc1865d7cdb4669e6d46761efac52888ec699bb8e2f03"
+        },
+        {
+          "path": "stage-2-bbo/notebooks/Function_8/Week_06/figures/neural-network-explorer.html",
+          "sha256": "b10d1884500ce264a1dcb3b2c8e210957b97d697f6788536e0b5379d5ad19a7c"
+        }
+      ],
+      "validation": {
+        "function": 8,
+        "known_rows_checked": 45,
+        "prior_submission_files_checked": 5,
+        "duplicate": false,
+        "nearest_known_input_distance": 0.7547592375850184
+      }
+    }
+  ],
+  "function_1_review": {
+    "decision": "hunch_led_central_signed_mean",
+    "effective_ucb_weight": 0.0,
+    "rationale": "Follow through on the central-region hunch with the saved signed-log GP mean maximum. The nearby positive peer report motivates a query of our own; magnitude studies inform the hypothesis rather than replace the signed-score objective. This is not an established source detection.",
+    "signal_assessment": "None of the outputs so far is regarded as clearly non-zero in practical or source-detection terms. The stored values are numerically non-zero and remain unchanged; no background or significance threshold has been established.",
+    "outputs_regarded_as_clearly_nonzero": false,
+    "numerical_outputs_modified": false,
+    "limitations": "The choice depends substantially on a self-reported positive peer reading. The official-only neural fit disagrees on sign. GP uncertainty is conditional on the fitted kernel; no raw expected score or positive return is guaranteed.",
+    "alternatives": {
+      "original_gp_ucb": {
+        "point": [
+          0.608515,
+          0.8462
+        ],
+        "portal_input": "0.608515-0.846200",
+        "gp_mean": 118.11051132172304,
+        "gp_latent_sd": 108.32391478446084,
+        "gp_ucb_1_96": 330.4253842992663,
+        "neural_mean": 103.8951219255285,
+        "neural_seed_sd": 0.07070129871593035,
+        "neural_seed_predictions": [
+          103.86357946794104,
+          103.97610418611231,
+          103.84568212253215
+        ],
+        "inside_selected_gp_training_hull": true,
+        "nearest_known_input_distance": 0.04800239795173642
+      },
+      "agreed_central_signed_mean": {
+        "point": [
+          0.537942,
+          0.522217
+        ],
+        "portal_input": "0.537942-0.522217",
+        "gp_mean": 184.02384861529072,
+        "gp_latent_sd": 18.521031052109056,
+        "gp_ucb_1_96": 220.32506947742445,
+        "neural_mean": -219.54374955008083,
+        "neural_seed_sd": 0.0983420403340495,
+        "neural_seed_predictions": [
+          -219.61609409300254,
+          -219.43177584572354,
+          -219.58337871151633
+        ],
+        "inside_selected_gp_training_hull": true,
+        "nearest_known_input_distance": 0.0033639835017430643
+      }
+    }
+  },
+  "function_2_review": {
+    "decision": "retained_gp_ucb",
+    "status": "agreed",
+    "effective_ucb_weight": 1.96,
+    "portal_input": "0.700520-0.000114",
+    "rationale": "Retain the pooled separate-length-scale GP candidate. Official-target RMSE improves from 0.12335237524474416 to 0.11137906268912874; the neural comparator is weaker. Weight and regularisation sensitivity limit confidence.",
+    "weight_interpretation": "An explicit exploration/exploitation choice, not calibrated coverage or a guarantee of improvement."
+  },
+  "function_3_review": {
+    "decision": "retained_gp_ucb",
+    "status": "agreed",
+    "effective_ucb_weight": 1.96,
+    "portal_input": "0.721213-0.830963-0.001845",
+    "rationale": "Retain the pooled shared-length-scale GP candidate under the declared RMSE rule. Its official-target RMSE is 0.04869707389884704 versus 0.07390043231177344 for the official selected GP. The last low-x3 failure and continued extrapolation remain risks; one result does not isolate an x3 effect.",
+    "relies_on_retained_peer_data": true,
+    "peer_data_caveat": "The selected peer-assisted GP has lower declared official-target RMSE, but the official-only GP proposes a completely different region. There is no cross-scope agreement on the low-x3 region. The recommendation depends on retained self-reported peer evidence; the recent low-x3 failure and extrapolation limit confidence."
+  },
+  "function_4_review": {
+    "decision": "retained_gp_ucb",
+    "status": "agreed",
+    "effective_ucb_weight": 1.96,
+    "portal_input": "0.408963-0.412546-0.416464-0.438393",
+    "rationale": "Retain the official GP local candidate near the new confirmed positive incumbent. GP validation is materially better than the neural fit, and peer training does not improve the declared error. The fitted mean remains below the measured best.",
+    "gp_forecast_caveat": "The GP predicts about -0.371831 at the already measured +0.650130 incumbent. At the agreed point its mean is about -0.408796 and UCB about +0.418308, both below the measured best. The choice is a small local test guided by finite-pool ranking, not a demonstrated predicted improvement or calibrated local forecast.",
+    "gp_at_measured_incumbent": {
+      "point": [
+        0.419096,
+        0.40606,
+        0.408855,
+        0.426466
+      ],
+      "portal_input": "0.419096-0.406060-0.408855-0.426466",
+      "gp_mean": -0.3718307915185246,
+      "gp_latent_sd": 0.3991223570740629,
+      "gp_ucb_1_96": 0.41044902834663866,
+      "neural_mean": 0.3597128714677205,
+      "neural_seed_sd": 0.02120310717450429,
+      "neural_seed_predictions": [
+        0.3724334317706379,
+        0.3352359618549521,
+        0.3714692207775716
+      ],
+      "inside_selected_gp_training_hull": true,
+      "nearest_known_input_distance": 0.0
+    }
+  },
+  "function_5_review": {
+    "decision": "global_information_priority",
+    "local_exclusion_radius": 0.15,
+    "radius_definition": "maximum absolute coordinate change from incumbent; same box as existing local search",
+    "minimum_known_input_distance": 0.02,
+    "candidate_count": 20010,
+    "eligible_global_candidates": 16406,
+    "alternatives": {
+      "original_gp_ucb": {
+        "point": [
+          0.999999,
+          0.999999,
+          0.979593,
+          0.999999
+        ],
+        "portal_input": "0.999999-0.999999-0.979593-0.999999",
+        "gp_mean": 8366.402154025302,
+        "gp_latent_sd": 161.44022475807557,
+        "gp_ucb_1_96": 8682.824994551129,
+        "neural_mean": 8381.789634852872,
+        "neural_seed_sd": 0.1686212804708614,
+        "neural_seed_predictions": [
+          8381.696324419196,
+          8381.984286719851,
+          8381.68829341957
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.020405999999999924
+      },
+      "original_neural_mean": {
+        "point": [
+          0.999999,
+          0.999999,
+          0.979593,
+          0.999999
+        ],
+        "portal_input": "0.999999-0.999999-0.979593-0.999999",
+        "gp_mean": 8366.402154025302,
+        "gp_latent_sd": 161.44022475807557,
+        "gp_ucb_1_96": 8682.824994551129,
+        "neural_mean": 8381.789634852872,
+        "neural_seed_sd": 0.1686212804708614,
+        "neural_seed_predictions": [
+          8381.696324419196,
+          8381.984286719851,
+          8381.68829341957
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.020405999999999924
+      },
+      "global_information_query": {
+        "point": [
+          0.0,
+          0.0,
+          0.999999,
+          0.999999
+        ],
+        "portal_input": "0.000000-0.000000-0.999999-0.999999",
+        "gp_mean": -685.9953831546907,
+        "gp_latent_sd": 1583.1998147900035,
+        "gp_ucb_1_96": 2417.076253833716,
+        "neural_mean": -13.514815315906768,
+        "neural_seed_sd": 0.4474301758860762,
+        "neural_seed_predictions": [
+          -13.833859061669955,
+          -13.707219683181393,
+          -13.003367202868958
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.731396794953996
+      },
+      "finite_pool_coverage": {
+        "point": [
+          0.0,
+          0.0,
+          0.999999,
+          0.999999
+        ],
+        "portal_input": "0.000000-0.000000-0.999999-0.999999",
+        "gp_mean": -685.9953831546907,
+        "gp_latent_sd": 1583.1998147900035,
+        "gp_ucb_1_96": 2417.076253833716,
+        "neural_mean": -13.514815315906768,
+        "neural_seed_sd": 0.4474301758860762,
+        "neural_seed_predictions": [
+          -13.833859061669955,
+          -13.707219683181393,
+          -13.003367202868958
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.731396794953996
+      }
+    },
+    "search_sensitivity": [
+      {
+        "broad_seed": 43,
+        "broad_power": 14,
+        "eligible_candidates": 16408,
+        "portal_input": "0.000000-0.000000-0.999999-0.999999",
+        "gp_latent_sd": 1583.1998147900022
+      },
+      {
+        "broad_seed": 42,
+        "broad_power": 12,
+        "eligible_candidates": 4124,
+        "portal_input": "0.000000-0.000000-0.999999-0.999999",
+        "gp_latent_sd": 1583.1998147900022
+      },
+      {
+        "broad_seed": 42,
+        "broad_power": 15,
+        "eligible_candidates": 32782,
+        "portal_input": "0.000000-0.000000-0.999999-0.999999",
+        "gp_latent_sd": 1583.1998147900022
+      }
+    ],
+    "prediction_checks": {
+      "gp_rmse": 329.4321113711169,
+      "neural_rmse": 136.77880209454497,
+      "gp_mae": 279.15770831266514,
+      "neural_mae": 107.49548886613769,
+      "gp_weekly_target_rmse": 287.24458862279425,
+      "neural_weekly_target_rmse": 163.11992484337085,
+      "weekly_target_count": 5,
+      "neural_smaller_absolute_error_cases": 18,
+      "scoring_cases": 25,
+      "gp_latest_held_out_error": 147.93171910187448,
+      "neural_latest_held_out_error": 158.38648768428902,
+      "note": "Subset scoring reuses the same retrospective LOO fits; it is not new temporal validation."
+    },
+    "original_gp_and_neural_proposals_identical": true,
+    "uncertainty_and_coverage_agree": true,
+    "selection_uses_ucb_weight": false,
+    "untested_local_direction": "There has been no isolated near-incumbent x3 reduction. The original GP/NN candidate would test that direction; local refinement is not exhausted.",
+    "learning_tradeoff": "The exploration point prioritises GP latent SD and geometric coverage. Both models forecast a low return. It may simply confirm low yield, and no greatest downstream optimisation benefit has been established.",
+    "rationale": "Three lower near-corner returns support pausing local refinement for one exploration query. Test the largest finite-pool model/coverage gap; both fits predict a low score, so this is a learning query. An isolated local x3 test remains available. The existing best remains 8662.405001248297; no local or global maximum is established.",
+    "status": "agreed",
+    "portal_input": "0.000000-0.000000-0.999999-0.999999",
+    "one_off_exploration_query": true,
+    "exploration_queries_committed": 1
+  },
+  "function_6_review": {
+    "decision": "neural_seed_mean_candidate_with_gp_crosscheck",
+    "prediction_checks": {
+      "gp_rmse": 0.33964848515026014,
+      "neural_rmse": 0.3260539482469173,
+      "gp_mae": 0.2669702577361193,
+      "neural_mae": 0.2613433369172684,
+      "gp_weekly_target_rmse": 0.3278870433366085,
+      "neural_weekly_target_rmse": 0.359079193456825,
+      "weekly_target_count": 5,
+      "neural_smaller_absolute_error_cases": 11,
+      "scoring_cases": 25,
+      "gp_latest_held_out_error": 0.15881022616050022,
+      "neural_latest_held_out_error": 0.013736733576281579,
+      "note": "Subset scoring reuses the same retrospective LOO fits; it is not new temporal validation."
+    },
+    "guardrails": {
+      "neural_rmse_lower": true,
+      "neural_mae_lower": true,
+      "gp_mean_higher_at_neural_candidate": true,
+      "all_selected_neural_seeds_prefer_neural_candidate": true
+    },
+    "alternatives": {
+      "original_gp_ucb": {
+        "point": [
+          0.470286,
+          0.366388,
+          0.723696,
+          0.848362,
+          0.0
+        ],
+        "portal_input": "0.470286-0.366388-0.723696-0.848362-0.000000",
+        "gp_mean": -0.4541589982145745,
+        "gp_latent_sd": 0.1605423336350956,
+        "gp_ucb_1_96": -0.13949602428978713,
+        "neural_mean": -0.507858247713303,
+        "neural_seed_sd": 0.1107371315079378,
+        "neural_seed_predictions": [
+          -0.6352907250816602,
+          -0.43500772862896886,
+          -0.45327628942928
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.25276570698376
+      },
+      "gp_mean_only": {
+        "point": [
+          0.440478,
+          0.300403,
+          0.565546,
+          0.790678,
+          0.101469
+        ],
+        "portal_input": "0.440478-0.300403-0.565546-0.790678-0.101469",
+        "gp_mean": -0.3476734750834033,
+        "gp_latent_sd": 0.06526109168719275,
+        "gp_ucb_1_96": -0.2197617353765055,
+        "neural_mean": -0.4493790952657502,
+        "neural_seed_sd": 0.09352991440683756,
+        "neural_seed_predictions": [
+          -0.5571565945205877,
+          -0.3895026182121303,
+          -0.40147807306453265
+        ],
+        "inside_selected_gp_training_hull": true,
+        "nearest_known_input_distance": 0.11928316564796558
+      },
+      "selected_neural_candidate": {
+        "point": [
+          0.398303,
+          0.26922,
+          0.627336,
+          0.768441,
+          0.0
+        ],
+        "portal_input": "0.398303-0.269220-0.627336-0.768441-0.000000",
+        "gp_mean": -0.39406782326722867,
+        "gp_latent_sd": 0.08157727905271799,
+        "gp_ucb_1_96": -0.2341763563239014,
+        "neural_mean": -0.36349738025850886,
+        "neural_seed_sd": 0.07525418986281351,
+        "neural_seed_predictions": [
+          -0.4483616982195261,
+          -0.3048871884968829,
+          -0.3372432540591175
+        ],
+        "inside_selected_gp_training_hull": false,
+        "nearest_known_input_distance": 0.10274656951450989
+      }
+    },
+    "rationale": "Use one focused, non-repeated query near the incumbent after four non-improving returns. The neural ensemble has lower overall RMSE/MAE and both model families prefer this candidate's mean to the GP-UCB candidate's mean. The roughly 4% RMSE gain, worse five-week-target RMSE and seed variability limit confidence; this is not a general replacement of GP acquisition.",
+    "tradeoff": "Less GP uncertainty/coverage gain than the original UCB point; prioritises a plausible near-incumbent improvement test.",
+    "selection_uses_ucb_weight": false,
+    "neural_seed_spread_is_posterior_uncertainty": false,
+    "status": "agreed",
+    "portal_input": "0.398303-0.269220-0.627336-0.768441-0.000000",
+    "one_focused_neural_led_test": true,
+    "focused_tests_committed": 1,
+    "agreed_caveats": "The overall neural RMSE gain is only about 4%, while error on the five weekly targets is worse. The proposed mean gain over the incumbent is only about 0.0152, far below held-out error. The GP mean at this point remains below the incumbent and the GP prefers its own mean-only candidate. The full-input point extrapolates on x5=0. Neural seed variation is not posterior uncertainty; the 1.96 multiplier does not select this point."
+  },
+  "function_7_review": {
+    "decision": "retained_gp_ucb",
+    "status": "agreed",
+    "effective_ucb_weight": 1.96,
+    "portal_input": "0.000000-0.135108-0.370684-0.306265-0.311144-0.649736",
+    "rationale": "Retain the GP-UCB local candidate. GP RMSE is lower than the neural ensemble's; the more optimistic neural mean alternative lacks enough validation support to replace the established policy.",
+    "agreed_caveats": "The GP mean at the point is below the measured incumbent; UCB is an optimistic ranking score, not a returned-value forecast. The full six-input point is outside the sampled hull on x1=0. Posterior SD is conditional on the fitted kernel and regularisation. The exact point changes with the uncertainty weight, and no optimal multiplier or guaranteed improvement is established."
+  },
+  "function_8_review": {
+    "decision": "retained_gp_ucb",
+    "status": "agreed",
+    "agreed_on": "2026-10-31",
+    "effective_ucb_weight": 1.96,
+    "portal_input": "0.022327-0.096114-0.237034-0.202848-0.982361-0.880106-0.159960-0.678158",
+    "rationale": "Retain the full-input GP-UCB candidate, with a predicted mean above the incumbent. GP validation is better than the neural comparator; full eight-input extrapolation and weight sensitivity remain material limitations.",
+    "agreed_caveats": "Only 45 observations support this eight-dimensional fit. The full-input point lies outside the sampled hull and is about 0.754759 from its nearest observation. The GP mean gain of about 0.213760 is below held-out RMSE, and the neural mean margin is tiny. The exact point is weight-sensitive and another candidate has a near-identical UCB. Posterior SD is conditional on the fitted model; UCB is an optimistic ranking score, not a forecast or guarantee of improvement. Neither a uniquely best input nor an optimal 1.96 multiplier is established."
+  },
+  "selection_source": {
+    "path": "stage-2-bbo/scripts/review_week_06_queries.py",
+    "sha256": "30bfcad73a17c4c60a4bbdae52008c1377c397a264fe866ba1da44604b1feeed"
+  },
+  "earlier_submissions": [
+    {
+      "path": "stage-2-bbo/submissions/Week_01/submissions.txt",
+      "sha256": "20b9d83e3e0c7532645656cb3494da9327ce9ddd7c1a5db95973a0e2904a1b2a"
+    },
+    {
+      "path": "stage-2-bbo/submissions/Week_02/submissions.txt",
+      "sha256": "807043713965262e51d3c3757c150e927805f7557dd375d6eabdce3adf61d1dc"
+    },
+    {
+      "path": "stage-2-bbo/submissions/Week_03/submissions.txt",
+      "sha256": "0d783acf6691435b11d0b81cfa7536d062db595f65294a7ac036864986e9cf1e"
+    },
+    {
+      "path": "stage-2-bbo/submissions/Week_04/submissions.txt",
+      "sha256": "cc692a625f4d3beec1fcb642410f215a2bc53202aee335e18c4d0d67c2153a8d"
+    },
+    {
+      "path": "stage-2-bbo/submissions/Week_05/submissions.txt",
+      "sha256": "18558cbae60b6b1cf11b552dd7e0115fab022b30d988fcb2a215326a3811d07c"
+    }
+  ],
+  "new_course_evaluations": 0,
+  "portal_submission_performed": true,
+  "portal_submission_performed_by_this_workflow": false,
+  "submission_confirmation": {
+    "week": 6,
+    "status": "submitted_awaiting_results",
+    "confirmed_on": "2026-10-31",
+    "source": "project_owner_confirmation",
+    "exact_portal_timestamp": null,
+    "results_status": "pending",
+    "latest_confirmed_feedback_round": 5,
+    "official_observations": 215,
+    "remaining_queries_per_function_after_submission": 7,
+    "submission_file": {
+      "path": "stage-2-bbo/submissions/Week_06/submissions.txt",
+      "sha256": "a5d2fbf7b9363131a2d08c52d4d2b7f197861233583d88f33030656b99e5b773"
+    },
+    "portal_submission_performed_by_this_workflow": false
+  },
+  "remaining_queries_per_function_after_submission": 7
+}

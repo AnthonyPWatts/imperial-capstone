@@ -1,0 +1,986 @@
+{
+  "function": 1,
+  "week": 6,
+  "analysis": "activity_hypothesis",
+  "study_date": "2026-10-30",
+  "official_rows": 15,
+  "retained_peer_rows": 6,
+  "height_scale": 1e-200,
+  "centre": [
+    0.5,
+    0.5
+  ],
+  "centre_is_a_source_estimate": false,
+  "selection_metric": "LOO MAE",
+  "ucb_weight": 1.96,
+  "candidate_counts": {
+    "baseline": 20488,
+    "symmetric": 24589
+  },
+  "reference_signed_proposal": [
+    0.608515,
+    0.8462
+  ],
+  "validation": [
+    {
+      "Target": "signed-log score h",
+      "Selected GP": "GP: separate length scales",
+      "Scope": "official_plus_retained_peers",
+      "Selected kernel": "0.962**2 * RBF(length_scale=[0.0738, 0.03])",
+      "Official-target MAE": 119.63625240625065,
+      "Own-target mean-baseline MAE": 132.3322129573312,
+      "MAE / own baseline": 0.9040599392441643
+    },
+    {
+      "Target": "log-magnitude activity g",
+      "Selected GP": "Gaussian process",
+      "Scope": "official_plus_retained_peers",
+      "Selected kernel": "1.89**2 * RBF(length_scale=0.359)",
+      "Official-target MAE": 16.491897537536705,
+      "Own-target mean-baseline MAE": 47.369309279626044,
+      "MAE / own baseline": 0.34815575291975
+    },
+    {
+      "Target": "absolute raw output |y|",
+      "Selected GP": "GP: separate length scales",
+      "Scope": "official_plus_retained_peers",
+      "Selected kernel": "0.894**2 * RBF(length_scale=[0.267, 0.0366])",
+      "Official-target MAE": 0.0008462616203515829,
+      "Own-target mean-baseline MAE": 0.0011285743483455068,
+      "MAE / own baseline": 0.7498501286975066
+    }
+  ],
+  "proposals": {
+    "baseline": {
+      "signed": {
+        "target": "signed",
+        "units": "signed-log score h",
+        "pool": "baseline",
+        "model": "GP: separate length scales",
+        "training_scope": "official_plus_retained_peers",
+        "point": [
+          0.608515,
+          0.8462
+        ],
+        "portal_input": "0.608515-0.846200",
+        "predicted_target": 118.11051132172312,
+        "latent_sd": 108.3239147844608,
+        "ucb": 330.4253842992663,
+        "distance_to_centre": 0.3628084139390926,
+        "reference_distance_to_centre": 0.3628084139390926,
+        "change_in_centre_distance": 0.0,
+        "percent_closer_to_centre": 0.0,
+        "movement_from_reference": 0.0
+      },
+      "magnitude": {
+        "target": "magnitude",
+        "units": "log-magnitude activity g",
+        "pool": "baseline",
+        "model": "Gaussian process",
+        "training_scope": "official_plus_retained_peers",
+        "point": [
+          0.361195,
+          0.37988
+        ],
+        "portal_input": "0.361195-0.379880",
+        "predicted_target": 196.59319192591252,
+        "latent_sd": 6.3434897065639895,
+        "ucb": 209.02643175077793,
+        "distance_to_centre": 0.18356372851138103,
+        "reference_distance_to_centre": 0.3628084139390926,
+        "change_in_centre_distance": -0.17924468542771155,
+        "percent_closer_to_centre": 49.40477633404685,
+        "movement_from_reference": 0.5278461184853025
+      },
+      "raw_magnitude": {
+        "target": "raw_magnitude",
+        "units": "absolute raw output |y|",
+        "pool": "baseline",
+        "model": "GP: separate length scales",
+        "training_scope": "official_plus_retained_peers",
+        "point": [
+          0.590368,
+          0.455132
+        ],
+        "portal_input": "0.590368-0.455132",
+        "predicted_target": 0.005482703118788919,
+        "latent_sd": 0.0009384308864107638,
+        "ucb": 0.007322027656154016,
+        "distance_to_centre": 0.10089357188641902,
+        "reference_distance_to_centre": 0.3628084139390926,
+        "change_in_centre_distance": -0.26191484205267357,
+        "percent_closer_to_centre": 72.19095037212759,
+        "movement_from_reference": 0.39148881750696274
+      }
+    },
+    "symmetric": {
+      "signed": {
+        "target": "signed",
+        "units": "signed-log score h",
+        "pool": "symmetric",
+        "model": "GP: separate length scales",
+        "training_scope": "official_plus_retained_peers",
+        "point": [
+          0.608515,
+          0.8462
+        ],
+        "portal_input": "0.608515-0.846200",
+        "predicted_target": 118.11051132172312,
+        "latent_sd": 108.3239147844608,
+        "ucb": 330.4253842992663,
+        "distance_to_centre": 0.3628084139390926,
+        "reference_distance_to_centre": 0.3628084139390926,
+        "change_in_centre_distance": 0.0,
+        "percent_closer_to_centre": 0.0,
+        "movement_from_reference": 0.0
+      },
+      "magnitude": {
+        "target": "magnitude",
+        "units": "log-magnitude activity g",
+        "pool": "symmetric",
+        "model": "Gaussian process",
+        "training_scope": "official_plus_retained_peers",
+        "point": [
+          0.354965,
+          0.381615
+        ],
+        "portal_input": "0.354965-0.381615",
+        "predicted_target": 196.34160066648045,
+        "latent_sd": 6.481306794776392,
+        "ucb": 209.04496198424218,
+        "distance_to_centre": 0.18721687811199078,
+        "reference_distance_to_centre": 0.3628084139390926,
+        "change_in_centre_distance": -0.1755915358271018,
+        "percent_closer_to_centre": 48.397867601984466,
+        "movement_from_reference": 0.5292700867468328
+      },
+      "raw_magnitude": {
+        "target": "raw_magnitude",
+        "units": "absolute raw output |y|",
+        "pool": "symmetric",
+        "model": "GP: separate length scales",
+        "training_scope": "official_plus_retained_peers",
+        "point": [
+          0.590368,
+          0.455132
+        ],
+        "portal_input": "0.590368-0.455132",
+        "predicted_target": 0.005482703118788919,
+        "latent_sd": 0.0009384308864107638,
+        "ucb": 0.007322027656154016,
+        "distance_to_centre": 0.10089357188641902,
+        "reference_distance_to_centre": 0.3628084139390926,
+        "change_in_centre_distance": -0.26191484205267357,
+        "percent_closer_to_centre": 72.19095037212759,
+        "movement_from_reference": 0.39148881750696274
+      }
+    }
+  },
+  "weight_sensitivity": [
+    {
+      "pool": "baseline",
+      "target": "signed",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 0.0,
+      "x1": 0.537942,
+      "x2": 0.522217,
+      "distance_to_centre": 0.043968061738038945,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.3188403522010536,
+      "percent_closer_to_centre": 87.88119016847823,
+      "movement_from_reference": 0.3315803562004238
+    },
+    {
+      "pool": "baseline",
+      "target": "signed",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.0,
+      "x1": 0.637838,
+      "x2": 0.879877,
+      "distance_to_centre": 0.4041111844195852,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.041302770480492634,
+      "percent_closer_to_centre": -11.384182089951867,
+      "movement_from_reference": 0.044653988153355396
+    },
+    {
+      "pool": "baseline",
+      "target": "signed",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.96,
+      "x1": 0.608515,
+      "x2": 0.8462,
+      "distance_to_centre": 0.3628084139390926,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.0,
+      "percent_closer_to_centre": 0.0,
+      "movement_from_reference": 0.0
+    },
+    {
+      "pool": "baseline",
+      "target": "signed",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 3.0,
+      "x1": 0.595994,
+      "x2": 0.839376,
+      "distance_to_centre": 0.3526909658780616,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.010117448061030987,
+      "percent_closer_to_centre": 2.7886475815661393,
+      "movement_from_reference": 0.014259818266724135
+    },
+    {
+      "pool": "baseline",
+      "target": "magnitude",
+      "model": "Gaussian process",
+      "scope": "official_plus_retained_peers",
+      "weight": 0.0,
+      "x1": 0.401359,
+      "x2": 0.426784,
+      "distance_to_centre": 0.1228439234842326,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.23996449045485996,
+      "percent_closer_to_centre": 66.14082839190843,
+      "movement_from_reference": 0.4677856233276093
+    },
+    {
+      "pool": "baseline",
+      "target": "magnitude",
+      "model": "Gaussian process",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.0,
+      "x1": 0.377742,
+      "x2": 0.403998,
+      "distance_to_centre": 0.15544581875367375,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.20736259518541883,
+      "percent_closer_to_centre": 57.154847357048986,
+      "movement_from_reference": 0.4987973399417843
+    },
+    {
+      "pool": "baseline",
+      "target": "magnitude",
+      "model": "Gaussian process",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.96,
+      "x1": 0.361195,
+      "x2": 0.37988,
+      "distance_to_centre": 0.18356372851138103,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.17924468542771155,
+      "percent_closer_to_centre": 49.40477633404685,
+      "movement_from_reference": 0.5278461184853025
+    },
+    {
+      "pool": "baseline",
+      "target": "magnitude",
+      "model": "Gaussian process",
+      "scope": "official_plus_retained_peers",
+      "weight": 3.0,
+      "x1": 0.340635,
+      "x2": 0.362578,
+      "distance_to_centre": 0.2104329092822698,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.15237550465682279,
+      "percent_closer_to_centre": 41.99888944207431,
+      "movement_from_reference": 0.5528561596690408
+    },
+    {
+      "pool": "baseline",
+      "target": "raw_magnitude",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 0.0,
+      "x1": 0.449167,
+      "x2": 0.453403,
+      "distance_to_centre": 0.06895849692387444,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.2938499170152181,
+      "percent_closer_to_centre": 80.99313734894498,
+      "movement_from_reference": 0.42388827338462665
+    },
+    {
+      "pool": "baseline",
+      "target": "raw_magnitude",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.0,
+      "x1": 0.509157,
+      "x2": 0.456552,
+      "distance_to_centre": 0.04440247012273077,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.3184059438163618,
+      "percent_closer_to_centre": 87.7614552428255,
+      "movement_from_reference": 0.4021163713006472
+    },
+    {
+      "pool": "baseline",
+      "target": "raw_magnitude",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.96,
+      "x1": 0.590368,
+      "x2": 0.455132,
+      "distance_to_centre": 0.10089357188641902,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.26191484205267357,
+      "percent_closer_to_centre": 72.19095037212759,
+      "movement_from_reference": 0.39148881750696274
+    },
+    {
+      "pool": "baseline",
+      "target": "raw_magnitude",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 3.0,
+      "x1": 0.654037,
+      "x2": 0.456979,
+      "distance_to_centre": 0.15993187240196993,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.20287654153712265,
+      "percent_closer_to_centre": 55.91836730974522,
+      "movement_from_reference": 0.39187400950433027
+    },
+    {
+      "pool": "symmetric",
+      "target": "signed",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 0.0,
+      "x1": 0.541502,
+      "x2": 0.524203,
+      "distance_to_centre": 0.04804374270391517,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.31476467123517743,
+      "percent_closer_to_centre": 86.75782014471676,
+      "movement_from_reference": 0.32889635172497733
+    },
+    {
+      "pool": "symmetric",
+      "target": "signed",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.0,
+      "x1": 0.637838,
+      "x2": 0.879877,
+      "distance_to_centre": 0.4041111844195852,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.041302770480492634,
+      "percent_closer_to_centre": -11.384182089951867,
+      "movement_from_reference": 0.044653988153355396
+    },
+    {
+      "pool": "symmetric",
+      "target": "signed",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.96,
+      "x1": 0.608515,
+      "x2": 0.8462,
+      "distance_to_centre": 0.3628084139390926,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.0,
+      "percent_closer_to_centre": 0.0,
+      "movement_from_reference": 0.0
+    },
+    {
+      "pool": "symmetric",
+      "target": "signed",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 3.0,
+      "x1": 0.595994,
+      "x2": 0.839376,
+      "distance_to_centre": 0.3526909658780616,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.010117448061030987,
+      "percent_closer_to_centre": 2.7886475815661393,
+      "movement_from_reference": 0.014259818266724135
+    },
+    {
+      "pool": "symmetric",
+      "target": "magnitude",
+      "model": "Gaussian process",
+      "scope": "official_plus_retained_peers",
+      "weight": 0.0,
+      "x1": 0.400033,
+      "x2": 0.421237,
+      "distance_to_centre": 0.1272674791845898,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.23554093475450277,
+      "percent_closer_to_centre": 64.92157450186501,
+      "movement_from_reference": 0.47334796470778234
+    },
+    {
+      "pool": "symmetric",
+      "target": "magnitude",
+      "model": "Gaussian process",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.0,
+      "x1": 0.372902,
+      "x2": 0.398461,
+      "distance_to_centre": 0.16267781079483457,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.200130603144258,
+      "percent_closer_to_centre": 55.16151099457562,
+      "movement_from_reference": 0.5059483154335035
+    },
+    {
+      "pool": "symmetric",
+      "target": "magnitude",
+      "model": "Gaussian process",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.96,
+      "x1": 0.354965,
+      "x2": 0.381615,
+      "distance_to_centre": 0.18721687811199078,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.1755915358271018,
+      "percent_closer_to_centre": 48.397867601984466,
+      "movement_from_reference": 0.5292700867468328
+    },
+    {
+      "pool": "symmetric",
+      "target": "magnitude",
+      "model": "Gaussian process",
+      "scope": "official_plus_retained_peers",
+      "weight": 3.0,
+      "x1": 0.339439,
+      "x2": 0.366286,
+      "distance_to_centre": 0.20894800433839997,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.1538604096006926,
+      "percent_closer_to_centre": 42.40817017725569,
+      "movement_from_reference": 0.5501993649323852
+    },
+    {
+      "pool": "symmetric",
+      "target": "raw_magnitude",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 0.0,
+      "x1": 0.446008,
+      "x2": 0.455385,
+      "distance_to_centre": 0.0700402333591201,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.29276818057997245,
+      "percent_closer_to_centre": 80.69498096841869,
+      "movement_from_reference": 0.42325511133830385
+    },
+    {
+      "pool": "symmetric",
+      "target": "raw_magnitude",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.0,
+      "x1": 0.520246,
+      "x2": 0.45432,
+      "distance_to_centre": 0.04996561733832575,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.3128427966007668,
+      "percent_closer_to_centre": 86.22809851738613,
+      "movement_from_reference": 0.40169808408928215
+    },
+    {
+      "pool": "symmetric",
+      "target": "raw_magnitude",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 1.96,
+      "x1": 0.590368,
+      "x2": 0.455132,
+      "distance_to_centre": 0.10089357188641902,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.26191484205267357,
+      "percent_closer_to_centre": 72.19095037212759,
+      "movement_from_reference": 0.39148881750696274
+    },
+    {
+      "pool": "symmetric",
+      "target": "raw_magnitude",
+      "model": "GP: separate length scales",
+      "scope": "official_plus_retained_peers",
+      "weight": 3.0,
+      "x1": 0.654037,
+      "x2": 0.456979,
+      "distance_to_centre": 0.15993187240196993,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.20287654153712265,
+      "percent_closer_to_centre": 55.91836730974522,
+      "movement_from_reference": 0.39187400950433027
+    }
+  ],
+  "same_family_comparison": [
+    {
+      "scope": "official",
+      "model": "GP: local (l=0.15)",
+      "target": "signed",
+      "x1": 0.407324,
+      "x2": 0.961401,
+      "distance_to_centre": 0.47061632332187536,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.10780790938278279,
+      "percent_closer_to_centre": -29.71483164138562,
+      "movement_from_reference": 0.23183849741145235
+    },
+    {
+      "scope": "official",
+      "model": "GP: local (l=0.15)",
+      "target": "magnitude",
+      "x1": 0.630405,
+      "x2": 0.495382,
+      "distance_to_centre": 0.13048674242619437,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.2323216715128982,
+      "percent_closer_to_centre": 64.03425681078605,
+      "movement_from_reference": 0.3515002720112745
+    },
+    {
+      "scope": "official",
+      "model": "GP: local (l=0.15)",
+      "target": "raw_magnitude",
+      "x1": 0.548802,
+      "x2": 0.545287,
+      "distance_to_centre": 0.06657738034047299,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.2962310335986196,
+      "percent_closer_to_centre": 81.6494387168072,
+      "movement_from_reference": 0.3067805012350035
+    },
+    {
+      "scope": "official",
+      "model": "GP: broad (l=0.35)",
+      "target": "signed",
+      "x1": 0.999279,
+      "x2": 0.384687,
+      "distance_to_centre": 0.5124222944115527,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.14961388047246016,
+      "percent_closer_to_centre": -41.23770969037586,
+      "movement_from_reference": 0.6047236996058613
+    },
+    {
+      "scope": "official",
+      "model": "GP: broad (l=0.35)",
+      "target": "magnitude",
+      "x1": 0.573723,
+      "x2": 0.553495,
+      "distance_to_centre": 0.09108674850931936,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.2717216654297732,
+      "percent_closer_to_centre": 74.89398122817218,
+      "movement_from_reference": 0.29476550050675876
+    },
+    {
+      "scope": "official",
+      "model": "GP: broad (l=0.35)",
+      "target": "raw_magnitude",
+      "x1": 0.531757,
+      "x2": 0.485428,
+      "distance_to_centre": 0.03494066732333545,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.3278677466157571,
+      "percent_closer_to_centre": 90.36938891687302,
+      "movement_from_reference": 0.3688471587907381
+    },
+    {
+      "scope": "official",
+      "model": "Gaussian process",
+      "target": "signed",
+      "x1": 0.735805,
+      "x2": 0.765309,
+      "distance_to_centre": 0.3549547344465207,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.007853679492571874,
+      "percent_closer_to_centre": 2.1646905614185474,
+      "movement_from_reference": 0.15081809566825857
+    },
+    {
+      "scope": "official",
+      "model": "Gaussian process",
+      "target": "magnitude",
+      "x1": 0.577201,
+      "x2": 0.542531,
+      "distance_to_centre": 0.088141252328294,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.27466716161079857,
+      "percent_closer_to_centre": 75.70584117073676,
+      "movement_from_reference": 0.3052792625728121
+    },
+    {
+      "scope": "official",
+      "model": "Gaussian process",
+      "target": "raw_magnitude",
+      "x1": 0.456034,
+      "x2": 0.423513,
+      "distance_to_centre": 0.08822284468889,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.2745855692502026,
+      "percent_closer_to_centre": 75.68335206699462,
+      "movement_from_reference": 0.4493492576270712
+    },
+    {
+      "scope": "official",
+      "model": "GP: separate length scales",
+      "target": "signed",
+      "x1": 0.71884,
+      "x2": 0.81322,
+      "distance_to_centre": 0.382096472111429,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.01928805817233642,
+      "percent_closer_to_centre": -5.316320523805285,
+      "movement_from_reference": 0.115148973182569
+    },
+    {
+      "scope": "official",
+      "model": "GP: separate length scales",
+      "target": "magnitude",
+      "x1": 0.577201,
+      "x2": 0.542531,
+      "distance_to_centre": 0.088141252328294,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.27466716161079857,
+      "percent_closer_to_centre": 75.70584117073676,
+      "movement_from_reference": 0.3052792625728121
+    },
+    {
+      "scope": "official",
+      "model": "GP: separate length scales",
+      "target": "raw_magnitude",
+      "x1": 0.456034,
+      "x2": 0.423513,
+      "distance_to_centre": 0.08822284468889,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.2745855692502026,
+      "percent_closer_to_centre": 75.68335206699462,
+      "movement_from_reference": 0.4493492576270712
+    },
+    {
+      "scope": "peers",
+      "model": "GP: local (l=0.15)",
+      "target": "signed",
+      "x1": 0.999999,
+      "x2": 0.999999,
+      "distance_to_centre": 0.7071053669729851,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.3442969530338925,
+      "percent_closer_to_centre": -94.89773109057285,
+      "movement_from_reference": 0.42061128688731114
+    },
+    {
+      "scope": "peers",
+      "model": "GP: local (l=0.15)",
+      "target": "magnitude",
+      "x1": 0.319078,
+      "x2": 0.3493,
+      "distance_to_centre": 0.23546392522847318,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.1273444887106194,
+      "percent_closer_to_centre": 35.099651446340964,
+      "movement_from_reference": 0.5750507690360912
+    },
+    {
+      "scope": "peers",
+      "model": "GP: local (l=0.15)",
+      "target": "raw_magnitude",
+      "x1": 0.369835,
+      "x2": 0.364614,
+      "distance_to_centre": 0.18780920164092066,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.17499921229817192,
+      "percent_closer_to_centre": 48.234606909516266,
+      "movement_from_reference": 0.5374878768828186
+    },
+    {
+      "scope": "peers",
+      "model": "GP: broad (l=0.35)",
+      "target": "signed",
+      "x1": 0.479628,
+      "x2": 0.998355,
+      "distance_to_centre": 0.49877121449518314,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.13596280055609056,
+      "percent_closer_to_centre": -37.475095761951,
+      "movement_from_reference": 0.19940662675548176
+    },
+    {
+      "scope": "peers",
+      "model": "GP: broad (l=0.35)",
+      "target": "magnitude",
+      "x1": 0.55842,
+      "x2": 0.584506,
+      "distance_to_centre": 0.10273344361015062,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.26007497032894195,
+      "percent_closer_to_centre": 71.68383100745915,
+      "movement_from_reference": 0.2664456016919776
+    },
+    {
+      "scope": "peers",
+      "model": "GP: broad (l=0.35)",
+      "target": "raw_magnitude",
+      "x1": 0.379816,
+      "x2": 0.458258,
+      "distance_to_centre": 0.12722652404274826,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.23558188989634432,
+      "percent_closer_to_centre": 64.9328628679194,
+      "movement_from_reference": 0.45033568364609966
+    },
+    {
+      "scope": "peers",
+      "model": "Gaussian process",
+      "target": "signed",
+      "x1": 0.628346,
+      "x2": 0.870363,
+      "distance_to_centre": 0.39197123298145237,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.02916281904235979,
+      "percent_closer_to_centre": -8.03807682565365,
+      "movement_from_reference": 0.031258904811269375
+    },
+    {
+      "scope": "peers",
+      "model": "Gaussian process",
+      "target": "magnitude",
+      "x1": 0.354965,
+      "x2": 0.381615,
+      "distance_to_centre": 0.18721687811199078,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.1755915358271018,
+      "percent_closer_to_centre": 48.397867601984466,
+      "movement_from_reference": 0.5292700867468328
+    },
+    {
+      "scope": "peers",
+      "model": "Gaussian process",
+      "target": "raw_magnitude",
+      "x1": 0.417432,
+      "x2": 0.418731,
+      "distance_to_centre": 0.1158538949927882,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.24695451894630438,
+      "percent_closer_to_centre": 68.06747293015165,
+      "movement_from_reference": 0.46823333803777784
+    },
+    {
+      "scope": "peers",
+      "model": "GP: separate length scales",
+      "target": "signed",
+      "x1": 0.608515,
+      "x2": 0.8462,
+      "distance_to_centre": 0.3628084139390926,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": 0.0,
+      "percent_closer_to_centre": 0.0,
+      "movement_from_reference": 0.0
+    },
+    {
+      "scope": "peers",
+      "model": "GP: separate length scales",
+      "target": "magnitude",
+      "x1": 0.363543,
+      "x2": 0.36779,
+      "distance_to_centre": 0.18999999197105247,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.1728084219680401,
+      "percent_closer_to_centre": 47.63076470355806,
+      "movement_from_reference": 0.5374824730947046
+    },
+    {
+      "scope": "peers",
+      "model": "GP: separate length scales",
+      "target": "raw_magnitude",
+      "x1": 0.590368,
+      "x2": 0.455132,
+      "distance_to_centre": 0.10089357188641902,
+      "reference_distance_to_centre": 0.3628084139390926,
+      "change_in_centre_distance": -0.26191484205267357,
+      "percent_closer_to_centre": 72.19095037212759,
+      "movement_from_reference": 0.39148881750696274
+    }
+  ],
+  "cross_predictions": [
+    {
+      "Point policy": "signed",
+      "Fitted target": "signed-log score h",
+      "Mean": 118.11051132172315,
+      "Latent SD": 108.3239147844608
+    },
+    {
+      "Point policy": "signed",
+      "Fitted target": "log-magnitude activity g",
+      "Mean": 167.11781688166684,
+      "Latent SD": 3.936533915818916
+    },
+    {
+      "Point policy": "signed",
+      "Fitted target": "absolute raw output |y|",
+      "Mean": 0.00016396384160913193,
+      "Latent SD": 0.0006927281087014313
+    },
+    {
+      "Point policy": "magnitude",
+      "Fitted target": "signed-log score h",
+      "Mean": -34.36634617228637,
+      "Latent SD": 139.04630807443357
+    },
+    {
+      "Point policy": "magnitude",
+      "Fitted target": "log-magnitude activity g",
+      "Mean": 196.59319192591312,
+      "Latent SD": 6.343489706564322
+    },
+    {
+      "Point policy": "magnitude",
+      "Fitted target": "absolute raw output |y|",
+      "Mean": 0.0010902452884971796,
+      "Latent SD": 0.0013791418904577988
+    },
+    {
+      "Point policy": "raw_magnitude",
+      "Fitted target": "signed-log score h",
+      "Mean": -44.23268745836141,
+      "Latent SD": 136.02164795904926
+    },
+    {
+      "Point policy": "raw_magnitude",
+      "Fitted target": "log-magnitude activity g",
+      "Mean": 182.92037669762783,
+      "Latent SD": 7.277080656542003
+    },
+    {
+      "Point policy": "raw_magnitude",
+      "Fitted target": "absolute raw output |y|",
+      "Mean": 0.00548270311878892,
+      "Latent SD": 0.0009384308864107638
+    }
+  ],
+  "positive_peer_reports": [
+    {
+      "observation_id": "peer-kosina-round-02",
+      "source_round": 2,
+      "x1": 0.540351,
+      "x2": 0.524565,
+      "y": 1.180859165804771e-13
+    }
+  ],
+  "opposite_sign_pairs": [
+    {
+      "positive_id": "initial-009",
+      "negative_id": "peer-tomxandrews-round-02",
+      "positive_output": 3.6067711901420254e-81,
+      "negative_output": -1.434379e-124,
+      "input_distance": 0.08353722189055254
+    },
+    {
+      "positive_id": "peer-kosina-round-02",
+      "negative_id": "peer-arwelbrown-round-02",
+      "positive_output": 1.180859165804771e-13,
+      "negative_output": -0.003606,
+      "input_distance": 0.08670799626099197
+    },
+    {
+      "positive_id": "initial-003",
+      "negative_id": "peer-tomxandrews-round-01",
+      "positive_output": 7.710875114502849e-16,
+      "negative_output": -0.003606,
+      "input_distance": 0.09015963281262135
+    },
+    {
+      "positive_id": "initial-003",
+      "negative_id": "initial-005",
+      "positive_output": 7.710875114502849e-16,
+      "negative_output": -0.0036060626443634764,
+      "input_distance": 0.09589516366549646
+    },
+    {
+      "positive_id": "peer-kosina-round-02",
+      "negative_id": "round-01",
+      "positive_output": 1.180859165804771e-13,
+      "negative_output": -0.00550934555381189,
+      "input_distance": 0.1145252797813653
+    },
+    {
+      "positive_id": "initial-003",
+      "negative_id": "peer-mkamar17-round-01",
+      "positive_output": 7.710875114502849e-16,
+      "negative_output": -5.8850231640661904e-49,
+      "input_distance": 0.12057349230498236
+    }
+  ],
+  "warnings": {
+    "signed": {
+      "official": {
+        "Mean baseline": {},
+        "GP: local (l=0.15)": {},
+        "GP: broad (l=0.35)": {},
+        "Gaussian process": {
+          "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value.": 14
+        },
+        "GP: separate length scales": {
+          "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value.": 14,
+          "ConvergenceWarning: The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value.": 1
+        }
+      },
+      "peers": {
+        "GP: local (l=0.15)": {},
+        "GP: broad (l=0.35)": {},
+        "Gaussian process": {},
+        "GP: separate length scales": {
+          "ConvergenceWarning: The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value.": 13
+        }
+      }
+    },
+    "magnitude": {
+      "official": {
+        "Mean baseline": {},
+        "GP: local (l=0.15)": {},
+        "GP: broad (l=0.35)": {},
+        "Gaussian process": {},
+        "GP: separate length scales": {}
+      },
+      "peers": {
+        "GP: local (l=0.15)": {},
+        "GP: broad (l=0.35)": {},
+        "Gaussian process": {},
+        "GP: separate length scales": {}
+      }
+    },
+    "raw_magnitude": {
+      "official": {
+        "Mean baseline": {},
+        "GP: local (l=0.15)": {},
+        "GP: broad (l=0.35)": {},
+        "Gaussian process": {
+          "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value.": 14
+        },
+        "GP: separate length scales": {
+          "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value.": 14,
+          "ConvergenceWarning: The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value.": 14
+        }
+      },
+      "peers": {
+        "GP: local (l=0.15)": {},
+        "GP: broad (l=0.35)": {},
+        "Gaussian process": {},
+        "GP: separate length scales": {}
+      }
+    }
+  },
+  "source_sha256": {
+    "stage-2-bbo/notebooks/Function_1/Week_06/official/observations.csv": "47ab79bd8fa8764f137a63ac00d00fbec77e98b0b5343110fb37880ae802faf6",
+    "stage-2-bbo/notebooks/Function_1/Week_06/cohort/observations.csv": "06ea76bdebece67c575c8343412b3aca6f0db2df73720791178ff9042430e1f2",
+    "stage-2-bbo/notebooks/Function_1/Week_06/cohort/data-audit.json": "cf80eca4adf12bcb64b9d8503f320bb9bc88c93093732f7a8d21dd1aafb86279",
+    "stage-2-bbo/notebooks/Function_1/Week_06/official/model-review.json": "133d4c46267ce609deeaa37a4588e2d53016c7b2a59ca5b056c75af7a0eede32",
+    "stage-2-bbo/notebooks/Function_1/FunctionSpecificShared/function_1_activity_helpers.py": "7289ae600f67e88b1a4db75bec0a9575162af4299d055c41d9a36cd3d0fc0814"
+  },
+  "prepared_submission_sha256": "7ce0f0385c738d1fb5800c2ec62730daaffd314850953cbd35a7868621c018ab",
+  "prepared_submission_changed": false,
+  "new_course_evaluations": 0,
+  "portal_submission_performed": false
+}

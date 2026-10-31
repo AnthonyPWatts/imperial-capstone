@@ -1,14 +1,17 @@
 # Results and progress
 
 [The introduction](../README.md) explains the experiment in plain language.
-This page records measured outcomes through round 4, as of 23 October 2026.
-All eight Week 4 inputs have been evaluated. Week 5 observation notebooks have
-saved runs using independent snapshots of the 207 confirmed observations.
-All eight functions now have saved Week 5 model comparisons. The
-[submission and selection review](../submissions/Week_05/README.md)
-contains all eight chosen inputs, prepared on 28 October. Submission was confirmed
-by the project owner on 29 October 2026; results are pending. These inputs do not
-change the measured progress below.
+This page records measured outcomes through round 5, received on **30 October 2026**.
+**Week 6 submission was confirmed by the project owner on 31 October 2026;
+results are pending.** Seven future queries remain per function. Submission
+does not add measured results: the confirmed total remains **215 observations**.
+All eight Week 5 inputs have been evaluated. The [Week 6 observation and
+exploration notebooks](../notebooks/README.md#current-work-week-6-observation-and-exploration-reviews)
+have saved runs using independent snapshots of **215 confirmed observations**.
+Function 4 is the only new incumbent. The [Week 5 selection
+review](../submissions/Week_05/README.md) preserves the evidence used before
+these returns. The [Week 6 submission record](../submissions/Week_06/README.md)
+preserves the eight owner-confirmed submitted inputs and their decision caveats.
 
 ## Week 5 discussion and retrospective studies
 
@@ -17,8 +20,12 @@ draft](../docs/week-05-discussion-draft.md) on **29 October 2026**. It addresses
 the seven reflection criteria using the [eight surrogate
 studies](week-05-surrogate-comparison.md), which were run after the fifth-query
 submission using the 207 official observations through round 4. Discussion
-posting is separate from query submission; round 5 results remain pending.
+posting is separate from query submission; these retrospective studies predate
+the round 5 returns received on 30 October.
 No marked result or completion of the peer-comment requirement is recorded.
+
+The following study findings describe the evidence available on 29 October,
+before the fifth-query returns.
 
 F5's upper-corner score of **8662.405001** remains the measured best. Two later
 nearby returns were lower, and all four fitted neural derivatives at the corner
@@ -39,28 +46,75 @@ score can be lower than that best; the best-so-far line then stays flat. A flat
 line does not mean nothing was learned, but it does mean no higher output has
 been observed. The true global maxima are unknown.
 
-![Best observed output for each of the eight functions at the start and after rounds 1–4; Functions 4, 5, 6 and 7 improved, while the other four remained flat.](figures/best-observed-progress.png)
+![Best observed output for each of the eight functions at the start and after rounds 1–5; Functions 4, 5, 6 and 7 improved, while the other four remained flat.](figures/best-observed-progress.png)
 
 *Every panel has its own output scale. Read changes within a panel; heights and
 slopes cannot be compared across functions. The chart uses the full-precision
 values in the round result records; dots mark the recorded bests and lines
-join the checkpoints. Round 4 raises Function 7's best; the other seven
+join the checkpoints. Round 5 raises Function 4's best; the other seven
 incumbents remain unchanged.*
 
 Values are rounded for readability; the structured records retain full precision.
 
-| Function | Starting best | Best after round 1 | Best after round 2 | Best after round 3 | Best after round 4 |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| 1 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 |
-| 2 | 0.611205 | 0.611205 | 0.611205 | 0.611205 | 0.611205 |
-| 3 | -0.034835 | -0.034835 | -0.034835 | -0.034835 | -0.034835 |
-| 4 | -4.025542 | -2.738157 | -0.129918 | -0.129918 | -0.129918 |
-| 5 | 1088.859618 | 3933.145724 | 8662.405001 | 8662.405001 | 8662.405001 |
-| 6 | -0.714265 | -0.378691 | -0.378691 | -0.378691 | -0.378691 |
-| 7 | 1.364968 | 1.405759 | 2.075222 | 2.552418 | 2.618968 |
-| 8 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.598482 |
+| Function | Starting best | Best after round 1 | Best after round 2 | Best after round 3 | Best after round 4 | Best after round 5 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 |
+| 2 | 0.611205 | 0.611205 | 0.611205 | 0.611205 | 0.611205 | 0.611205 |
+| 3 | -0.034835 | -0.034835 | -0.034835 | -0.034835 | -0.034835 | -0.034835 |
+| 4 | -4.025542 | -2.738157 | -0.129918 | -0.129918 | -0.129918 | 0.650130 |
+| 5 | 1088.859618 | 3933.145724 | 8662.405001 | 8662.405001 | 8662.405001 | 8662.405001 |
+| 6 | -0.714265 | -0.378691 | -0.378691 | -0.378691 | -0.378691 | -0.378691 |
+| 7 | 1.364968 | 1.405759 | 2.075222 | 2.552418 | 2.618968 | 2.618968 |
+| 8 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.598482 |
 
-## Latest results: round 4
+## Latest results: round 5
+
+The Week 5 results email arrived on **30 October 2026 at 14:57 GMT**. All eight
+inputs match `Week_05/submissions.txt`. The five-round cumulative attachments
+agree exactly with the retained earlier returns. Only the eight new observations
+were added, giving **215 observations**; earlier weekly snapshots remain unchanged.
+
+Function 4 improves from `-0.12991814521724931` to `0.6501304054949952`, a gain of
+`0.7800485507122445`. No other incumbent changes. See the [round 5 result
+record](../submissions/round-05-results.json) and [Week 6 data
+notes](../data/README.md#week-6-notebook-snapshots).
+
+| Function | Returned output | Rank (1 = highest output) | Best observed after round 5 | Improved incumbent? |
+| --- | ---: | --- | ---: | --- |
+| 1 | -1.386359e-94 | 11/15 | 7.710875e-16 | No |
+| 2 | 0.322508 | 4/15 | 0.611205 | No |
+| 3 | -0.098369 | 12/20 | -0.034835 | No |
+| 4 | 0.650130 | 1/35 | 0.650130 | Yes |
+| 5 | 8283.828104 | 4/25 | 8662.405001 | No |
+| 6 | -0.651572 | 3/25 | -0.378691 | No |
+| 7 | 2.458557 | 3/35 | 2.618968 | No |
+| 8 | 9.218300 | 5/45 | 9.598482 | No |
+
+The Week 6 notebooks retain the established exploration pattern for Functions
+1–3 and measured-output, progress and full-input profiles for Functions 4–8.
+Forecast checks use the preserved Week 5 selection record at the actual
+submitted point, including the cohort-informed fits for Functions 2 and 3 and
+the official common-pool choice for Function 4. No model is refitted in these
+reviews. Function 1's fixed coverage shortlist is complete; eight weekly query
+opportunities were available per function at preparation, including Week 6;
+seven remain after the confirmed sixth submission.
+
+The subsequent [Week 6 model review](week-06-model-review.md) now records all
+eight provisional next queries, with neural comparisons and offline GP/neural
+input explorers. Function 1 has moved to signed-score GP UCB after completing
+its fixed coverage plan. Neural ensembles have lower held-out error for
+Functions 5 and 6; selected GPs lead for the other six. These fitted results
+do not add measured observations or confirm any portal submission.
+
+The [Week 6 selection review](../submissions/Week_06/README.md) has subsequently
+finalised all eight inputs, submitted with owner confirmation on **31 October
+2026**. It retains Functions 2–4, 7 and 8, follows Function 1's central-region
+hunch using its signed-mean candidate, switches Function 5 to one global
+information query, and chooses Function 6's neural ensemble candidate for one
+focused test with a GP cross-check. Results are pending; the confirmed
+observation count remains 215 and seven future queries remain per function.
+
+## Previous results: round 4
 
 The Week 4 results email arrived on **23 October 2026 at 03:53 BST**. All eight
 inputs match `Week_04/submissions.txt`. The cumulative attachments contain four
@@ -160,7 +214,7 @@ local datasets and analysis notebooks, rather than being copied here.
 
 | Function | Current best evaluated input | Output | Found in |
 | --- | --- | ---: | --- |
-| 4 | `0.445520-0.390792-0.374106-0.377372` | -0.129918 | Round 2 |
+| 4 | `0.419096-0.406060-0.408855-0.426466` | 0.650130 | Round 5 |
 | 5 | `0.999999-0.999999-0.999999-0.999999` | 8662.405001 | Round 2 |
 | 6 | `0.344331-0.260596-0.575965-0.745346-0.066311` | -0.378691 | Round 1 |
 | 7 | `0.002902-0.196293-0.424115-0.271557-0.287658-0.746916` | 2.618968 | Round 4 |

@@ -1,5 +1,11 @@
 # Stage 2: choosing the next experiment
 
+**Current working status, 31 October 2026: Week 6 submitted; results pending.**
+The project owner confirmed submission of [all eight agreed inputs](submissions/Week_06/README.md).
+Seven future queries remain per function. Measured progress stays at **215
+observations through round 5** until the returned results are recorded. The
+Module 14 overview below retains its historical reporting cutoff.
+
 **Reporting cutoff: Module 14 / Week 3 submission.** This overview uses only
 the starting data and feedback through round 2: **191 observations**. The third
 queries are submitted. Their early return and subsequent Week 4 work belong
@@ -156,11 +162,22 @@ with limited evidence. The same tension appears when tuning a model, adjusting
 a process or planning a product experiment: each test costs something, and
 waiting for its answer limits how quickly you can adapt.
 
-## Later work: Week 5
+## Later work: Weeks 5 and 6
 
 Later work is recorded separately from the Module 14 snapshot above. All eight
-Week 5 queries are submitted, with confirmation recorded on 29 October 2026;
-their results remain pending. The [Week 5 discussion
+Week 5 queries were submitted, with confirmation recorded on 29 October 2026.
+Their results arrived on **30 October at 14:57 GMT**, matching all eight
+submitted inputs and raising the official total to **215 observations**.
+Function 4 is the only new incumbent, at `0.6501304054949952`. The
+[Week 6 observation and exploration reviews](notebooks/README.md#current-work-week-6-observation-and-exploration-reviews)
+have saved executions and figures for all eight functions. The separate
+[Week 6 prediction notebooks](results/week-06-model-review.md) now include neural
+comparisons and offline GP/neural explorers. The [final Week 6 inputs](submissions/Week_06/README.md)
+were submitted, confirmed by the project owner on **31 October 2026**. Results
+are pending; seven future queries remain per function. Function 1 follows the
+central-region hunch using the signed-mean candidate, Function 5 makes one
+exploration query, and Function 6 makes one focused neural-led test. The
+original model proposals remain pre-submission evidence. The [Week 5 discussion
 draft](docs/week-05-discussion-draft.md) was also posted, confirmed on the same
 date. Its [surrogate comparisons](results/week-05-surrogate-comparison.md) use
 207 official observations through round 4 and were run after query submission.

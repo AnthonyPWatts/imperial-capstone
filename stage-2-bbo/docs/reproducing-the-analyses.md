@@ -9,18 +9,101 @@ Run `.\setup-venv.ps1` from the repository root to create or refresh the local
 Python environment. The [repository environment setup](../../README.md#modelling-environment)
 also covers selecting an interpreter, rebuilding and activation. Provide the
 authorised course data described in [the data notes](../data/README.md).
-Week 1 analyses use the preserved initial arrays. Week 2–5 notebooks load
+Week 1 analyses use the preserved initial arrays. Week 2–6 notebooks load
 `observations.csv` beside each notebook, with that notebook's directory as
 the kernel's working directory. These weekly CSV files are Git-ignored; populate
 them with the matching historical round before running a fresh checkout:
 Week 2 uses observations through round 1; Week 3 uses observations through round 2;
 Week 4 uses observations through round 3 (199 in total); Week 5 uses observations
-through round 4 (207 in total).
+through round 4 (207 in total); Week 6 uses observations through round 5
+(215 in total).
 See the [recovery instructions](../data/README.md#recovering-earlier-snapshots).
 Snapshots are not updated automatically when later results arrive.
 
+## Current Week 6 reviews
+
+Select this repository's `.venv` kernel and run each notebook from its own
+directory: `Week_06/official/` for Functions 1–4, and `Week_06/` for Functions
+5–8. Function 1 uses `exploration.ipynb`, Functions 2 and 3 use
+`exploration-review.ipynb`, and Functions 4–8 use `observation_review.ipynb`.
+The [notebook guide](../notebooks/README.md#current-work-week-6-observation-and-exploration-reviews)
+links all eight saved executions and describes their figures.
+
+Each CSV is an independent official snapshot with 15, 15, 20, 35, 25, 25, 35
+and 45 rows respectively. Recover Week 5 and append the appropriate round 5
+record as described in the [data notes](../data/README.md#week-6-notebook-snapshots).
+The reviews load full float64 precision, validate the fixed round counts and
+read `submissions/Week_05/proposals.json` for the forecast at the actual
+submitted coordinates. Its saved hash guards the historical comparison.
+No historical forecast is reconstructed with the new observation. The fixed
+coverage shortlist has no remaining points. These descriptive reviews do not
+fit models; continue in `model_predictions.ipynb` beside each review.
+
+### Week 6 model predictions
+
+All eight prediction notebooks have saved runs and a week-level `report.md`.
+Use the same per-function working directories and local interpreter. Settings
+declare model families, targets, held-out criteria, neural architectures/seeds,
+candidate searches and Function 5's 0.02 spacing safeguard. Each notebook saves
+`model-review.json` and figures beside its independent snapshot.
+
+Functions 1–4 additionally require the retained cohort CSV and audit described
+in the [data notes](../data/README.md#week-6-retained-peer-model-comparisons).
+Peer-assisted GP errors use the same official target rows as official-only
+errors. Neural architecture selection averages errors across seeds 11, 42 and
+73; the ensemble comparison scores their mean predictions. No peer source is
+refreshed and no new dependency is needed.
+
+Open each `figures/neural-network-explorer.html` directly in a browser; no
+server or Python runtime is needed. Change any input, architecture or curve
+axis, or restore the measured incumbent/provisional query. Neural bands show
+seed variation; GP bands show conditional latent uncertainty. Export parity
+checks preserve input and target scaling. The explorer performs no training,
+course evaluations or submissions. Its displayed proposals retain the original
+model-review state. The final eight inputs were submitted, confirmed by the
+project owner on **31 October 2026**; see the [submission record](../submissions/Week_06/README.md).
+
+The [cross-function review](../results/week-06-model-review.md) links the eight
+reports, notebooks and explorers. New helper checks can be run with:
+
+```powershell
+.\run-python.ps1 -m unittest discover -s stage-2-bbo/tests -p test_prediction_review_helpers.py
+```
+
+### Week 6 final selection
+
+The [selection review](../submissions/Week_06/README.md) and executed
+`submissions/Week_06/selection_review.ipynb` reuse saved GP/neural exports and
+held-out predictions, with no new training or course evaluations. The review
+changes Functions 5 and 6 and prepares exactly eight function-ordered lines.
+It preserves the function notebooks' original proposals and source hashes.
+
+From the capstone root, reproduce the prepared file and validate its safeguards:
+
+```powershell
+.\run-python.ps1 stage-2-bbo/scripts/review_week_06_queries.py
+.\run-python.ps1 -m unittest discover -s stage-2-bbo/tests -p test_week_06_submission_review.py
+```
+
+The script checks source hashes, official/retained peer duplicates, all five
+earlier submission files, bounds, precision and dimensions before writing.
+It refuses to overwrite a differing prepared input file. To rerun the reading
+notebook, use `submissions/Week_06/` as the working directory and the capstone
+kernel. No portal submission is performed by either route.
+
+Relevant helper checks, run from the capstone repository root:
+
+```powershell
+.\run-python.ps1 -m unittest discover -s stage-2-bbo/tests -p test_round_results.py
+.\run-python.ps1 -m unittest discover -s stage-2-bbo/tests -p test_weekly_observation_helpers.py
+.\run-python.ps1 -m unittest discover -s stage-2-bbo/tests -p test_exploration_review_helpers.py
+.\run-python.ps1 -m unittest discover -s stage-2-bbo/tests -p test_exploration_plot_helpers.py
+```
+
+## Previous Week 5 reviews and model studies
+
 Select this repository's `.venv` kernel and use the individual `Week_05`
-directory as the working directory for the current observation reviews,
+directory as the working directory for these historical observation reviews,
 except Functions 1–4, which use `Week_05/official/` for the official analysis
 and `Week_05/cohort/` for the pooled comparison.
 Function 1 uses `exploration.ipynb`; Functions 2 and 3 use

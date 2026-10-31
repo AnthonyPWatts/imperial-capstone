@@ -3,6 +3,14 @@
 Coursework and portfolio work for the Imperial College London Professional
 Certificate in Machine Learning and Artificial Intelligence.
 
+## Current Stage 2 status
+
+**Week 6 submitted; results pending.** The project owner confirmed submission
+of [all eight agreed inputs](stage-2-bbo/submissions/Week_06/README.md) on
+**31 October 2026**. Seven future queries remain per function. The measured
+record stays at **215 observations through round 5** until new results arrive.
+The dated Module 14 summary below remains a separate historical snapshot.
+
 ## Project status at the Module 14 close
 
 Stage 1 result snapshot: **5 September 2026**. Stage 2 reporting cutoff:
@@ -184,10 +192,22 @@ The [results log](stage-2-bbo/results/progress.md) and
 [notebook guide](stage-2-bbo/notebooks/README.md) also retain later workspace
 history; those records must not be used to explain the earlier query decisions.
 
-## Later Stage 2 work: Week 5
+## Later Stage 2 work: Weeks 5 and 6
 
 Later Stage 2 work is recorded outside the Module 14 snapshot above. The eight
-Week 5 queries are submitted and awaiting feedback. Posting of the [Week 5
+Week 5 queries were evaluated on **30 October 2026 at 14:57 GMT**. All eight
+inputs matched; Function 4 improved to `0.6501304054949952`. The official total
+is now **215 observations**, and the [Week 6 observation and exploration
+notebooks](stage-2-bbo/notebooks/README.md#current-work-week-6-observation-and-exploration-reviews)
+have saved executions for all eight functions. The separate [Week 6 model
+review](stage-2-bbo/results/week-06-model-review.md) includes GP and neural
+comparisons and offline input explorers. The [final Week 6 inputs](stage-2-bbo/submissions/Week_06/README.md)
+were submitted, with owner confirmation on **31 October 2026**; results are
+pending and seven future queries remain per function. Function 1 follows the
+central-region hunch using its signed-mean candidate, Function 5 makes one
+exploration query, and Function 6 makes one focused neural-led test. The
+original model proposals remain pre-submission evidence.
+Posting of the [Week 5
 discussion draft](stage-2-bbo/docs/week-05-discussion-draft.md) was confirmed on
 29 October 2026. It draws on the [retrospective neural-network and surrogate
 comparisons](stage-2-bbo/results/week-05-surrogate-comparison.md), using 207

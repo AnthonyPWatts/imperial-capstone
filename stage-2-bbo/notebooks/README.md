@@ -7,6 +7,139 @@ Use [`Shared/`](Shared/README.md) for helpers reused by several functions and
 weeks. The shared-helper guide lists the modelling and plotting modules.
 Weekly notebooks retain their data, assumptions, teaching steps and decisions.
 
+## Current work: Week 6 observation and exploration reviews
+
+**Week 6 submitted; results pending.** Owner confirmation was recorded on
+**31 October 2026**. Seven future queries remain per function. The input file
+and model evidence are unchanged, and the measured snapshots still contain
+**215 observations through round 5**. See the [submission record](../submissions/Week_06/README.md).
+
+The Week 5 return arrived on **30 October 2026 at 14:57 GMT**. All eight inputs
+match the submitted queries. The new independent official snapshots contain
+**215 observations through round 5**, with earlier weeks and cohort studies
+preserved. Each notebook has a saved execution, regenerated figures, updated
+ranks and a comparison with the actual Week 5 selection record.
+
+| Function | Week 6 notebook | Observations |
+| --- | --- | ---: |
+| 1 | [Exploration](Function_1/Week_06/official/exploration.ipynb) | 15 |
+| 2 | [Exploration review](Function_2/Week_06/official/exploration-review.ipynb) | 15 |
+| 3 | [Exploration review](Function_3/Week_06/official/exploration-review.ipynb) | 20 |
+| 4 | [Observation review](Function_4/Week_06/official/observation_review.ipynb) | 35 |
+| 5 | [Observation review](Function_5/Week_06/observation_review.ipynb) | 25 |
+| 6 | [Observation review](Function_6/Week_06/observation_review.ipynb) | 25 |
+| 7 | [Observation review](Function_7/Week_06/observation_review.ipynb) | 35 |
+| 8 | [Observation review](Function_8/Week_06/observation_review.ipynb) | 45 |
+
+Use the capstone-local `.venv` kernel and each notebook's own folder as its
+working directory: `Week_06/official/` for Functions 1–4 and `Week_06/` for
+Functions 5–8. Local `observations.csv` files retain full float64 precision and
+remain Git-ignored; see the [Week 6 data notes](../data/README.md#week-6-notebook-snapshots).
+
+Function 4 is the only new incumbent, at `0.6501304054949952`. Function 1's fixed
+coverage shortlist is complete. Functions 2 and 3 compare the return with their
+saved cohort-informed forecasts, while their new CSVs contain official rows
+only. Their fixed-plan storyboards explicitly stop at Week 4; current coverage
+views include round 5. The measured reviews retain their original executions;
+the separate model notebooks retain the original provisional next queries.
+Their preparation-time budget was eight including Week 6; seven future queries
+remain after the confirmed sixth submission.
+
+### Week 6 model and neural comparisons
+
+Each function now has an executed `model_predictions.ipynb` beside its measured
+review and a week-level `report.md`. The [cross-function review](../results/week-06-model-review.md)
+links all eight notebooks, reports and offline GP/neural input explorers.
+
+| Function | Prediction notebook | Interpretation |
+| --- | --- | --- |
+| 1 | [Model predictions](Function_1/Week_06/official/model_predictions.ipynb) | [Report](Function_1/Week_06/report.md) |
+| 2 | [Model predictions](Function_2/Week_06/official/model_predictions.ipynb) | [Report](Function_2/Week_06/report.md) |
+| 3 | [Model predictions](Function_3/Week_06/official/model_predictions.ipynb) | [Report](Function_3/Week_06/report.md) |
+| 4 | [Model predictions](Function_4/Week_06/official/model_predictions.ipynb) | [Report](Function_4/Week_06/report.md) |
+| 5 | [Model predictions](Function_5/Week_06/model_predictions.ipynb) | [Report](Function_5/Week_06/report.md) |
+| 6 | [Model predictions](Function_6/Week_06/model_predictions.ipynb) | [Report](Function_6/Week_06/report.md) |
+| 7 | [Model predictions](Function_7/Week_06/model_predictions.ipynb) | [Report](Function_7/Week_06/report.md) |
+| 8 | [Model predictions](Function_8/Week_06/model_predictions.ipynb) | [Report](Function_8/Week_06/report.md) |
+
+Three small neural architectures use seeds 11, 42 and 73, with input and target
+scaling fitted inside each held-out fold. Architecture selection averages seed
+errors; the seed-mean comparison then scores their mean held-out predictions.
+The selected GP has lower declared error for six functions. Neural ensembles
+have lower RMSE for Functions 5 and 6, substantially so for Function 5. These
+are provisional predictive checks on small, adaptively sampled datasets.
+
+Function 1 now proposes a signed-score GP-UCB input after completing its fixed
+coverage plan. Its fixed signed-log scale preserves signed-output ordering;
+magnitude is a separate diagnostic. Its limited validation gain and broad SD
+remain explicit. No inverse-transformed raw posterior mean is claimed.
+
+Functions 1–4 compare official and unchanged, audited peer training on identical
+official targets. The declared criterion selects GP and training scope; peer
+reports never change official progress or query allowance. Function 5 retains
+the 0.02 spacing safeguard and log-target GP comparator. Candidate searches use
+seeded broad/local pools; the geometric comparator is explicitly a finite-pool
+farthest-point proxy. These model outputs retain their pre-submission state;
+the final eight submitted inputs are recorded in the selection review below.
+
+Each `figures/neural-network-explorer.html` runs offline and allows architecture
+selection, all input controls, conditional response curves and incumbent/proposal
+resets. Neural seed variation is labelled separately from latent GP uncertainty.
+
+The subsequent [Week 6 selection review](../submissions/Week_06/README.md) now
+records the final prepared choices separately from those notebook proposals.
+The [executed selection notebook](../submissions/Week_06/selection_review.ipynb)
+reviews Function 5's global information query and Function 6's neural candidate
+against GP predictions. The [eight-line input file](../submissions/Week_06/submissions.txt)
+is now owner-confirmed as submitted on **31 October 2026**, with results pending;
+earlier fitted-model notebooks remain unchanged.
+
+### Function 1: agreed central-region hunch
+
+The separate [activity-hypothesis notebook](Function_1/Week_06/official/activity_hypothesis.ipynb)
+and [reading report](Function_1/Week_06/activity-hypothesis.md) test whether
+ignoring sign draws a query towards the centre. They fit signed-log score,
+log magnitude and raw absolute magnitude separately on shared candidate pools,
+with the same official-target validation and retained-peer comparison.
+
+At the current UCB weight of 1.96, the log- and raw-magnitude proposals are
+49.4% and 72.2% closer to the geometric centre than the original signed-UCB query.
+The same direction holds for all eight fixed GP-family/training-scope controls.
+The signed mean-only candidate is already central; its uncertainty bonus
+explains the original upper-region location. The conclusion therefore depends
+on the acquisition rule. Activity is a possible information objective and does
+not establish a positive return or the true source location.
+
+The agreed prepared input is now **`0.537942-0.522217`**, the saved signed-log
+mean maximum, following through on the central-region hunch. None of Function 1's
+outputs so far is regarded as clearly non-zero in practical or source-detection
+terms. Stored observations and earlier fitted-model outputs remain unchanged.
+The separate selection record preserves this choice; Week 6 submission was
+confirmed by the owner on 31 October 2026. Function 2 is also agreed at **`0.700520-0.000114`** with
+uncertainty weight **1.96**. Function 3 is agreed at
+**`0.721213-0.830963-0.001845`**, with weight **1.96** and the peer-data reliance
+caveat retained. Function 4 is agreed at
+**`0.408963-0.412546-0.416464-0.438393`** with weight **1.96**, retaining the
+GP forecast caveat at the known positive incumbent. Function 5 is agreed at
+**`0.000000-0.000000-0.999999-0.999999`** for one exploration query, with the
+low-return expectation, unfinished local x3 check and unproven optimum retained.
+Function 6 is agreed at **`0.398303-0.269220-0.627336-0.768441-0.000000`** for
+one focused neural-led test, retaining the modest error advantage, worse weekly
+error, tiny predicted gain, model disagreement and boundary extrapolation.
+Function 7 is agreed at **`0.000000-0.135108-0.370684-0.306265-0.311144-0.649736`**
+with weight **1.96**, retaining the below-incumbent mean, extrapolation and
+weight-sensitive point as caveats. Function 8 is agreed at
+**`0.022327-0.096114-0.237034-0.202848-0.982361-0.880106-0.159960-0.678158`**
+with weight **1.96**, retaining sparse-data, extrapolation, modest mean-gain and
+weight-sensitivity caveats. All eight choices are finalised as of **31 October
+2026**; submission was subsequently confirmed by the owner, with results pending.
+
+Observation-review verification used the local interpreter for all eight executions: **88 completed
+code cells, 25 embedded PNG charts and 29 figure files**. The round import,
+weekly-observation, exploration-review and exploration-plot helper suites passed
+**39 tests**. Readback checked notebook schemas, saved errors, exact CSV/NumPy
+agreement, unchanged earlier snapshots and import idempotency.
+
 ## Module 14 reporting cutoff
 
 Use each function's `Week_03/` notebooks to review the decisions made for
@@ -54,7 +187,7 @@ Warnings, local-gradient limitations and the absence of an independent final
 test set remain part of the evidence. See the
 [execution guide](../docs/reproducing-the-analyses.md#week-5-discussion-surrogate-comparisons).
 
-## Current work: Week 5 observation reviews
+## Previous work: Week 5 observation reviews
 
 All eight `Function_N/Week_05/` folders contain independent local CSV snapshots
 through round 4 and saved executions of the current Week 4 observation pattern:

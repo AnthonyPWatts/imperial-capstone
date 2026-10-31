@@ -24,6 +24,9 @@ their existing explanations.
 | `surrogate_study_helpers.py` | Bounded neural/regression/classification comparisons, training-only class thresholds, seed aggregation, checked input backpropagation, actual SVM support vectors and hypothetical surrogate paths. |
 | `surrogate_study_plots.py` | Surrogate validation, seed variation, confusion matrices, complete input-gradient profiles, conditional decision boundaries and support-vector profiles. |
 | `surrogate_study_report.py` | Generate the seven reflection-evidence sections from numerical results, preserving target units, model limitations and the ten-step course lifecycle. |
+| `prediction_review_helpers.py` | Weekly GP selection on identical official held-out targets, retained-peer training comparisons, neural architecture/seed review, constrained candidate pools and ReLU-aware gradient checks. |
+| `prediction_review_plots.py` | Conditional GP/neural curves with distinct uncertainty and seed bands, and full-input hull checks in two- or three-input acquisition planes. |
+| `neural_explorer.py` | Offline GP/neural input explorer retaining fitted preprocessing, all neural architectures/seeds and GP mean/latent SD, checked against fitted Python models. |
 
 Use `Function_N/FunctionSpecificShared/` for code tied to one function, shared
 across its weekly notebooks. For example, Function 1's mirrored output number
@@ -116,3 +119,23 @@ use each fold's training targets, and the full-fit boundary is labelled separate
 SVM scores are not probabilities; unavailable probability metrics are saved as
 JSON null. Seed variation is optimisation sensitivity, not GP uncertainty.
 The study does not change existing model defaults, saved proposals or submissions.
+
+Week 6 prediction notebooks reuse these bounded architectures and per-function
+families. Function 1 adds optimised shared/separate-length-scale GPs to its fixed
+GP comparators, selecting signed-score UCB after completing the coverage plan.
+Magnitude is diagnostic. The geometric comparator is the farthest eligible
+point in the frozen broad/local pool, rather than a new continuous optimisation.
+
+The explorer serialises the pinned scikit-learn GPs and scaled MLPs. Parity
+checks cover input/target scaling, projected GP inputs, posterior means and
+latent SD. Near-zero ReLU activations are flagged as possible gradient kinks;
+nearby verification probes are recorded separately from incumbent derivatives.
+No helper submits queries or evaluates a course function.
+
+Function 1's separate `FunctionSpecificShared/function_1_activity_helpers.py`
+supports the Week 6 activity-hypothesis study. It keeps signed-log score, log
+magnitude and raw absolute magnitude as separately fitted targets, compares
+identical official held-out rows, freezes shared candidate pools and quantifies
+distance to the geometric centre. The centre is not assumed to be a source.
+Model-family/scope and exploration-weight controls remain explicit, and the
+study does not change the prepared input file.

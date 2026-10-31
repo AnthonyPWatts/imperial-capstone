@@ -1,0 +1,9 @@
+# Preserve exact bytes for the Week 6 records and the sources they fingerprint.
+# Git line-ending conversion would invalidate their recorded SHA-256 values.
+stage-2-bbo/notebooks/Function_*/Week_06/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+stage-2-bbo/submissions/Week_0[1-6]/submissions.txt -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+stage-2-bbo/submissions/Week_06/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+stage-2-bbo/notebooks/Function_1/FunctionSpecificShared/function_1_activity_helpers.py -text
+stage-2-bbo/scripts/review_week_06_queries.py -text
+# The generated observation views embed Plotly's unmodified third-party bundle.
+stage-2-bbo/notebooks/Function_*/Week_06/**/figures/observed*.html -whitespace

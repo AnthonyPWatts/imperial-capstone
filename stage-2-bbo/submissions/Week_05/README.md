@@ -1,14 +1,19 @@
 # Week 5 submitted inputs
 
 **Prepared on 28 October 2026. Submission confirmed by the project owner on
-29 October 2026. Status: submitted; awaiting results.** The exact portal
+29 October 2026. Evaluation confirmed by the results email received on
+30 October 2026 at 14:57 GMT.** The exact portal
 submission timestamp was not supplied.
 
 [`submissions.txt`](submissions.txt) contains exactly eight lines, ordered from
 Function 1 to Function 8, preserving the submitted inputs. The file contains
 no labels or extra spaces. Eight future weekly query opportunities remain
-per function after this fifth submission. Results through round 4 remain the
-latest confirmed feedback; the official datasets still contain 207 observations.
+per function after this fifth submission. The selection evidence below uses the
+207 observations available through round 4. The [round 5 result
+record](../round-05-results.json) now confirms all eight submitted inputs and
+raises the official total to 215 observations. Function 4 is the only new
+incumbent, at `0.6501304054949952`. The [Week 6 reviews](../../notebooks/README.md#current-work-week-6-observation-and-exploration-reviews)
+contain the updated descriptive analyses.
 
 The selections use the 207 official observations through round 4, received on
 23 October. Functions 2 and 3 additionally use the retained, audited 20 October
@@ -76,7 +81,8 @@ records which alternatives were chosen for submission. The confirmation date,
 source and pending-result status are recorded separately from the preparation
 and validation evidence.
 
-These are unevaluated inputs. GP posterior SD and UCB are model-dependent;
+At selection time these inputs were unevaluated. GP posterior SD and UCB are
+model-dependent;
 UCB is not a returned output or a calibrated guarantee. The selected model means
 for Functions 2 and 4–8 are below their respective official incumbents. Function
 3's mean is only 0.001551 above its incumbent, compared with model SD 0.065885;
@@ -85,4 +91,6 @@ RMSE but has slightly higher MAE than the official selected fit. All four tested
 exploration weights choose different points for Functions 2, 6, 7 and 8; Function
 5's weight choices agree after its separately declared spacing rule. The analysis
 workflow prepared the inputs; the project owner later confirmed portal submission.
-No Week 5 results have been recorded.
+The saved `proposals.json` remains the historical selection record, including
+its original pending-result status. Confirmed evaluation is recorded separately
+in `round-05-results.json`; the forecast comparisons use those preserved predictions.
