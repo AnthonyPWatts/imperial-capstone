@@ -2,6 +2,9 @@
 
 Use numbered notebooks so the analysis can be followed in order.
 
+[Recovered working snapshots from 14 August 2026](recovered/2026-08-14/README.md)
+preserve two earlier unsaved data-audit notebooks for reference.
+
 ## Data audit
 
 `data-audit/` is the canonical audit area. Its dedicated target-label analysis
