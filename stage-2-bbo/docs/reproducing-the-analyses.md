@@ -9,18 +9,44 @@ Run `.\setup-venv.ps1` from the repository root to create or refresh the local
 Python environment. The [repository environment setup](../../README.md#modelling-environment)
 also covers selecting an interpreter, rebuilding and activation. Provide the
 authorised course data described in [the data notes](../data/README.md).
-Week 1 analyses use the preserved initial arrays. Week 2–6 notebooks load
+Week 1 analyses use the preserved initial arrays. Week 2–7 notebooks load
 `observations.csv` beside each notebook, with that notebook's directory as
 the kernel's working directory. These weekly CSV files are Git-ignored; populate
 them with the matching historical round before running a fresh checkout:
 Week 2 uses observations through round 1; Week 3 uses observations through round 2;
 Week 4 uses observations through round 3 (199 in total); Week 5 uses observations
 through round 4 (207 in total); Week 6 uses observations through round 5
-(215 in total).
+(215 in total); Week 7 uses observations through round 6 (223 in total).
 See the [recovery instructions](../data/README.md#recovering-earlier-snapshots).
 Snapshots are not updated automatically when later results arrive.
 
-## Current Week 6 reviews
+## Current Week 7 reviews
+
+Use the Capstone-local `.venv` kernel and each notebook's own directory:
+`Week_07/official/` for Functions 1–4 and `Week_07/` for Functions 5–8.
+The [notebook guide](../notebooks/README.md#current-work-week-7-reviews) links
+all sixteen saved observation/model notebooks. Restore the independent local
+CSVs and retained-peer audits using the [Week 7 data notes](../data/README.md#week-7-notebook-snapshots).
+Counts are 16, 16, 21, 36, 26, 26, 36 and 46 official rows.
+
+From the Capstone root:
+
+```powershell
+.\run-python.ps1 stage-2-bbo/scripts/run_week_07_reviews.py
+```
+
+For a focused rerun, add `--functions 3 8`, `--kind observations` or
+`--kind models`. The runner explicitly launches the local Python kernel,
+checks input-source hashes and saves executed notebook outputs. Observation
+reviews compare the measured round 6 return with the preserved final Week 6
+GP/neural forecasts at the submitted coordinates; model notebooks then refit
+on the new snapshot. GP/neural settings and candidate-search budgets are
+unchanged. New figures, JSON summaries and offline explorers stay under Week 7.
+Seven query opportunities remain per function, including Week 7; no portal
+submission is performed. The [cross-function review](../results/week-07-review.md)
+records interpretation and verification.
+
+## Previous Week 6 reviews
 
 Select this repository's `.venv` kernel and run each notebook from its own
 directory: `Week_06/official/` for Functions 1–4, and `Week_06/` for Functions

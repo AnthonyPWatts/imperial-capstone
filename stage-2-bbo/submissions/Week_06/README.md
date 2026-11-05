@@ -1,7 +1,7 @@
 # Week 6 submitted inputs
 
 **Prepared on 30 October 2026. Submission confirmed by the project owner on
-31 October 2026. Status: submitted; awaiting results.** The exact portal
+31 October 2026. Results received on 2 November 2026 at 07:28 GMT.** The exact portal
 submission timestamp was not supplied.
 
 All eight choices were finalised on 31 October 2026. The
@@ -12,8 +12,10 @@ the portal submission.
 [`submissions.txt`](submissions.txt) contains exactly eight lines, in Function
 1–8 order, with six-decimal coordinates and no labels or spaces. The submitted
 bytes are unchanged. **Seven future query opportunities remain per function.**
-Results are pending, so the measured record remains **215 observations through
-round 5**, with all incumbents unchanged.
+The [round 6 results](../round-06-results.json), ingested on 5 November, match
+all eight inputs and raise the official total to **223 observations**. Functions
+1, 2, 6, 7 and 8 have new numerical bests; Function 1 remains practically zero.
+The [Week 7 reviews](../../results/week-07-review.md) assess the returns.
 
 The decision notes below retain the pre-submission evidence, predictions,
 budgets and caveats. The confirmation above records the later submission.

@@ -1,9 +1,10 @@
 # Results
 
-**Week 6 submitted; awaiting results.** The project owner confirmed all eight
-submissions on **31 October 2026**. There are **seven future queries per
-function** and still **215 measured observations through round 5**. The
-[submission record](../submissions/Week_06/README.md) retains the exact inputs.
+**Week 6 evaluated; Week 7 reviews updated.** The results arrived on
+**2 November 2026 at 07:28 GMT** and were ingested on 5 November. All eight
+inputs match. There are **223 official observations through round 6** and
+**seven queries per function**, including Week 7. The [round 6 record](../submissions/round-06-results.json)
+and [Week 7 review](week-07-review.md) contain the new evidence.
 
 Start with [results and progress](progress.md) for a chart of all eight
 functions, round-by-round scores and the best inputs from returned queries.
@@ -44,7 +45,17 @@ The later returns below and the rolling progress chart are retained as
 later history. They are excluded from the [Module 14 overview](../README.md)
 and the strategy reflection explaining those query choices.
 
-## Latest record: round 5, outside the Module 14 snapshot
+## Latest record: round 6, outside the Module 14 snapshot
+
+- [Round 6 return](../submissions/round-06-results.json) — received on
+  2 November 2026 at 07:28 GMT; all inputs and cumulative history match.
+  Functions 1, 2, 6, 7 and 8 have new numerical bests; Function 1 remains
+  practically zero. The official total is **223 observations**.
+- [Week 7 review](week-07-review.md) — all eight updated observation reviews
+  and model comparisons, per-function reports and regenerated GP/neural explorers.
+  The saved Week 6 selections supply historical forecasts without refitting.
+
+## Earlier record: round 5, outside the Module 14 snapshot
 
 - [Round 5 return](../submissions/round-05-results.json) — received on
   30 October 2026 at 14:57 GMT; all eight inputs match the saved Week 5 submissions.

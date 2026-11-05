@@ -1,17 +1,15 @@
 # Results and progress
 
 [The introduction](../README.md) explains the experiment in plain language.
-This page records measured outcomes through round 5, received on **30 October 2026**.
-**Week 6 submission was confirmed by the project owner on 31 October 2026;
-results are pending.** Seven future queries remain per function. Submission
-does not add measured results: the confirmed total remains **215 observations**.
-All eight Week 5 inputs have been evaluated. The [Week 6 observation and
-exploration notebooks](../notebooks/README.md#current-work-week-6-observation-and-exploration-reviews)
-have saved runs using independent snapshots of **215 confirmed observations**.
-Function 4 is the only new incumbent. The [Week 5 selection
-review](../submissions/Week_05/README.md) preserves the evidence used before
-these returns. The [Week 6 submission record](../submissions/Week_06/README.md)
-preserves the eight owner-confirmed submitted inputs and their decision caveats.
+This page records measured outcomes through round 6, received on **2 November
+2026 at 07:28 GMT** and ingested on 5 November. All eight Week 6 inputs match
+the submitted batch and the cumulative attachments match the earlier history.
+The official total is **223 observations**. Functions 1, 2, 6, 7 and 8 have new
+numerical incumbents; Function 1 remains practically zero. Seven queries remain
+per function, including Week 7. The [Week 7 notebooks](../notebooks/README.md#current-work-week-7-reviews)
+have independent snapshots and saved observation/model runs. The [Week 6
+selection record](../submissions/Week_06/README.md) preserves the forecasts and
+decision evidence used before these results arrived.
 
 ## Week 5 discussion and retrospective studies
 
@@ -46,28 +44,60 @@ score can be lower than that best; the best-so-far line then stays flat. A flat
 line does not mean nothing was learned, but it does mean no higher output has
 been observed. The true global maxima are unknown.
 
-![Best observed output for each of the eight functions at the start and after rounds 1–5; Functions 4, 5, 6 and 7 improved, while the other four remained flat.](figures/best-observed-progress.png)
+![Best observed output for each of the eight functions at the start and after rounds 1–6; seven functions have improved numerically, while Function 3 remains at its starting best.](figures/best-observed-progress.png)
 
 *Every panel has its own output scale. Read changes within a panel; heights and
 slopes cannot be compared across functions. The chart uses the full-precision
 values in the round result records; dots mark the recorded bests and lines
-join the checkpoints. Round 5 raises Function 4's best; the other seven
-incumbents remain unchanged.*
+join the checkpoints. Round 6 raises the numerical bests for Functions
+1, 2, 6, 7 and 8; Function 1's scores remain practically zero.*
 
 Values are rounded for readability; the structured records retain full precision.
 
-| Function | Starting best | Best after round 1 | Best after round 2 | Best after round 3 | Best after round 4 | Best after round 5 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| 1 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 |
-| 2 | 0.611205 | 0.611205 | 0.611205 | 0.611205 | 0.611205 | 0.611205 |
-| 3 | -0.034835 | -0.034835 | -0.034835 | -0.034835 | -0.034835 | -0.034835 |
-| 4 | -4.025542 | -2.738157 | -0.129918 | -0.129918 | -0.129918 | 0.650130 |
-| 5 | 1088.859618 | 3933.145724 | 8662.405001 | 8662.405001 | 8662.405001 | 8662.405001 |
-| 6 | -0.714265 | -0.378691 | -0.378691 | -0.378691 | -0.378691 | -0.378691 |
-| 7 | 1.364968 | 1.405759 | 2.075222 | 2.552418 | 2.618968 | 2.618968 |
-| 8 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.598482 |
+| Function | Starting best | Best after round 1 | Best after round 2 | Best after round 3 | Best after round 4 | Best after round 5 | Best after round 6 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 7.710875e-16 | 2.170913e-14 |
+| 2 | 0.611205 | 0.611205 | 0.611205 | 0.611205 | 0.611205 | 0.611205 | 0.723058 |
+| 3 | -0.034835 | -0.034835 | -0.034835 | -0.034835 | -0.034835 | -0.034835 | -0.034835 |
+| 4 | -4.025542 | -2.738157 | -0.129918 | -0.129918 | -0.129918 | 0.650130 | 0.650130 |
+| 5 | 1088.859618 | 3933.145724 | 8662.405001 | 8662.405001 | 8662.405001 | 8662.405001 | 8662.405001 |
+| 6 | -0.714265 | -0.378691 | -0.378691 | -0.378691 | -0.378691 | -0.378691 | -0.328192 |
+| 7 | 1.364968 | 1.405759 | 2.075222 | 2.552418 | 2.618968 | 2.618968 | 2.739375 |
+| 8 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.782943 |
 
-## Latest results: round 5
+## Latest results: round 6
+
+The **2 November 2026, 07:28 GMT** results email contains all six rounds.
+All eight new inputs match `Week_06/submissions.txt`; only those eight returns
+were added, giving **223 observations**. Earlier weekly snapshots are unchanged.
+
+| Function | Returned output | Rank (1 = highest output) | Best observed after round 6 | Improved incumbent? |
+| --- | ---: | --- | ---: | --- |
+| 1 | 2.170913e-14 | 1/16 | 2.170913e-14 | Yes, numerically; practically zero |
+| 2 | 0.723058 | 1/16 | 0.723058 | Yes |
+| 3 | -0.121417 | 19/21 | -0.034835 | No |
+| 4 | 0.489906 | 2/36 | 0.650130 | No |
+| 5 | 1616.625747 | 6/26 | 8662.405001 | No |
+| 6 | -0.328192 | 1/26 | -0.328192 | Yes |
+| 7 | 2.739375 | 1/36 | 2.739375 | Yes |
+| 8 | 9.782943 | 1/46 | 9.782943 | Yes |
+
+Function 6's focused neural-led query produces its first improvement since
+round 1. Function 8 first exceeds its starting best. Function 4 supplies a
+second nearby positive result despite its saved negative GP mean. Function 5's
+exploration beats every starting observation but remains far below the
+incumbent; both saved model means underpredicted it substantially. Function 3
+is third from last and misses both saved model means.
+
+See the [round 6 record](../submissions/round-06-results.json), [Week 7 review](week-07-review.md)
+and [data notes](../data/README.md#week-7-notebook-snapshots). The sixteen Week 7
+observation/model notebooks have saved executions, regenerated figures and
+new offline GP/neural explorers. Forecast comparisons use the final Week 6
+selection, including the changed inputs for Functions 1, 5 and 6; those
+forecasts are never reconstructed from round 6 data. The new candidates are
+provisional and unsubmitted. Seven query opportunities remain, including Week 7.
+
+## Previous results: round 5
 
 The Week 5 results email arrived on **30 October 2026 at 14:57 GMT**. All eight
 inputs match `Week_05/submissions.txt`. The five-round cumulative attachments
@@ -111,8 +141,8 @@ finalised all eight inputs, submitted with owner confirmation on **31 October
 2026**. It retains Functions 2–4, 7 and 8, follows Function 1's central-region
 hunch using its signed-mean candidate, switches Function 5 to one global
 information query, and chooses Function 6's neural ensemble candidate for one
-focused test with a GP cross-check. Results are pending; the confirmed
-observation count remains 215 and seven future queries remain per function.
+focused test with a GP cross-check. Its return is recorded in round 6 above;
+the pre-submission model outputs remain unchanged.
 
 ## Previous results: round 4
 

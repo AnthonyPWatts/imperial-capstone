@@ -7,8 +7,8 @@ The [Module 14 overview](../README.md) and strategy reflection use the fixed
 through round 2**, with 12, 12, 17, 32, 22, 22, 32 and 42 rows for Functions 1–8.
 The submitted Week 3 queries were selected from that evidence.
 
-The accumulated data include the fifth-query return. Week 5 snapshots retain
-the fourth-query return; Week 6 snapshots include round 5.
+The accumulated data include the sixth-query return. Week 5 snapshots retain
+the fourth-query return; Week 6 snapshots include round 5; Week 7 includes round 6.
 Earlier weekly snapshots remain intact and must not be
 substituted for the Week 3 snapshots when reproducing the Module 14 decisions.
 
@@ -50,7 +50,48 @@ The local `import-verification-2026-09-24.json` records file hashes and checks.
 See the [intake notes](../docs/module-12-intake.md) for the official data link and
 submission rules. Do not add the supplied arrays to the repository.
 
-## Current accumulated observations: round 5
+## Current accumulated observations: round 6
+
+The Week 6 results email arrived on **2 November 2026 at 07:28 GMT** and was
+ingested on 5 November. Its original cumulative attachments contain all six
+rounds, agree exactly with the retained history and match all eight inputs in
+`submissions/Week_06/submissions.txt`. Adding each return once gives **223
+observations**: 16, 16, 21, 36, 26, 26, 36 and 46 rows for Functions 1–8.
+Functions 1, 2, 6, 7 and 8 improve their numerical incumbents; Function 1 remains
+practically zero.
+
+`rounds/round-06/` retains the original attachments (2,523 and 991 bytes),
+plain email body and source metadata. From the Capstone root, rebuild with:
+
+```powershell
+.\run-python.ps1 stage-2-bbo/scripts/import_round_results.py --round 6
+```
+
+The [round 6 record](../submissions/round-06-results.json) retains exact outputs,
+proposal matches, before/after incumbents and source hashes. Source data and
+accumulated arrays remain local and Git-ignored.
+
+## Week 7 notebook snapshots
+
+The official Week 7 CSVs are independent copies of the round 6 accumulated
+CSVs. Functions 1–4 use `notebooks/Function_N/Week_07/official/observations.csv`;
+Functions 5–8 use `notebooks/Function_N/Week_07/observations.csv`. The schema and
+`float_precision="round_trip"` loading are unchanged. All 215 Week 6 rows are
+preserved exactly, followed by one `round-06` row per function.
+
+To recover a fresh checkout, restore Week 6 and append each function's point
+and output from the round 6 record, keeping the earlier CSV intact. Expected
+counts are **16, 16, 21, 36, 26, 26, 36 and 46**. Preserve Function 1's signed
+non-zero value at full precision.
+
+Functions 1–4 retain exactly **6, 5, 5 and 6** peer rows from their Week 6 pooled
+CSVs, giving **22, 21, 26 and 42** pooled rows. Append only the old `peer-` rows
+to each new official CSV. The local `cohort/data-audit.json` records the current
+CSV hashes and previous CSV/audit hashes while retaining the original source
+commits and hashes. Peer rows do not enter official progress or change the
+query allowance. No peer repositories were refreshed.
+
+## Previous accumulated observations: round 5
 
 The Week 5 results email arrived on **30 October 2026 at 14:57 GMT**. Its original
 attachments contain all five rounds and agree exactly with the retained history.

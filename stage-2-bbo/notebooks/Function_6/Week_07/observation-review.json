@@ -1,0 +1,105 @@
+{
+  "function": 6,
+  "week": 7,
+  "observations": 26,
+  "latest_id": "round-06",
+  "latest_output": -0.32819238785766186,
+  "latest_rank": 1,
+  "rank_definition": "1 = highest output",
+  "best_id": "round-06",
+  "best_observed_output": -0.32819238785766186,
+  "positive_outputs": 0,
+  "negative_outputs": 26,
+  "exact_zeros": 0,
+  "progress": [
+    {
+      "source_round": 0,
+      "stage": "Initial batch",
+      "returned_y": "not_applicable",
+      "best_y": -0.7142649478202404,
+      "change_vs_prior_best": "not_applicable"
+    },
+    {
+      "source_round": 1,
+      "stage": "Round 1",
+      "returned_y": -0.3786912545484574,
+      "best_y": -0.3786912545484574,
+      "change_vs_prior_best": 0.335573693271783
+    },
+    {
+      "source_round": 2,
+      "stage": "Round 2",
+      "returned_y": -1.1242807927769425,
+      "best_y": -0.3786912545484574,
+      "change_vs_prior_best": -0.7455895382284851
+    },
+    {
+      "source_round": 3,
+      "stage": "Round 3",
+      "returned_y": -0.5513794232617993,
+      "best_y": -0.3786912545484574,
+      "change_vs_prior_best": -0.17268816871334192
+    },
+    {
+      "source_round": 4,
+      "stage": "Round 4",
+      "returned_y": -0.9170702533647022,
+      "best_y": -0.3786912545484574,
+      "change_vs_prior_best": -0.5383789988162447
+    },
+    {
+      "source_round": 5,
+      "stage": "Round 5",
+      "returned_y": -0.6515720613835713,
+      "best_y": -0.3786912545484574,
+      "change_vs_prior_best": -0.27288080683511384
+    },
+    {
+      "source_round": 6,
+      "stage": "Round 6",
+      "returned_y": -0.32819238785766186,
+      "best_y": -0.32819238785766186,
+      "change_vs_prior_best": 0.05049886669079556
+    }
+  ],
+  "official_history_comparison": {
+    "previous_best_id": "round-01",
+    "previous_best_output": -0.3786912545484574,
+    "distance_to_previous_best": 0.10274656951450989,
+    "latest_minus_previous_best": 0.05049886669079556,
+    "nearest_previous_id": "round-01",
+    "nearest_previous_distance": 0.10274656951450989
+  },
+  "historical_forecast": {
+    "point": [
+      0.398303,
+      0.26922,
+      0.627336,
+      0.768441,
+      0.0
+    ],
+    "portal_input": "0.398303-0.269220-0.627336-0.768441-0.000000",
+    "gp_mean": -0.39406782326722867,
+    "gp_latent_sd": 0.08157727905271799,
+    "gp_ucb_1_96": -0.2341763563239014,
+    "neural_mean": -0.36349738025850886,
+    "neural_seed_sd": 0.07525418986281351,
+    "neural_seed_predictions": [
+      -0.4483616982195261,
+      -0.3048871884968829,
+      -0.3372432540591175
+    ],
+    "inside_selected_gp_training_hull": false,
+    "nearest_known_input_distance": 0.10274656951450989,
+    "source": "submissions/Week_06/proposals.json",
+    "source_sha256": "2383fe87bb8ea2b6ffd20f0e558f49188e6b17ba67c97d3cf07889ea8e6674c6",
+    "data_scope": "official",
+    "selection_policy": "neural_seed_mean_candidate_with_gp_crosscheck",
+    "prediction_units": "output y",
+    "actual_output": -0.32819238785766186,
+    "actual_in_prediction_units": -0.32819238785766186,
+    "actual_minus_gp_mean": 0.06587543540956681,
+    "actual_minus_neural_mean": 0.035304992400847
+  },
+  "remaining_queries": 7
+}

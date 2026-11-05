@@ -147,7 +147,7 @@ def best_observed_progress():
         ax.set_title(f"Function {function}", loc="left", fontsize=17, weight="bold", pad=13)
         ax.text(1, 1.08, "Unchanged" if unchanged else "Improved", transform=ax.transAxes,
                 ha="right", fontsize=12, color=colour)
-        ax.set_xticks(checkpoints, ["Start", *[f"Round {number}" for number in rounds]], fontsize=12)
+        ax.set_xticks(checkpoints, ["Start", *[f"Round\n{number}" for number in rounds]], fontsize=11)
         ax.set_xlim(-0.13, len(records) + 0.13)
         if unchanged:
             padding = abs(values[0]) * 0.025 or 0.025

@@ -15,7 +15,7 @@ submission and peer-comment completion are not yet confirmed in the project reco
 ## Copy-and-paste portal inputs
 
 [Week 6](Week_06/submissions.txt) contains the eight prepared inputs in function
-order. **Status: submitted; awaiting results.** The project owner confirmed
+order. **Status: evaluated; results received on 2 November 2026.** The project owner confirmed
 submission on **31 October 2026**; the exact portal time was not supplied. The
 [selection review](Week_06/README.md) retains Functions 2–4, 7 and 8, follows
 the Function 1 central-region hunch at `0.537942-0.522217`, switches Function 5
@@ -23,8 +23,9 @@ to a global information/coverage query, and adopts Function 6's saved
 neural ensemble candidate for one GP-cross-checked focused test. Bounds,
 precision and duplicate checks passed against official/retained peer data and
 all five earlier weekly input files. **Seven future queries remain per function.**
-The submitted input file is unchanged. Results are pending; there are still
-215 confirmed observations through round 5 and no new incumbent changes.
+The submitted input file is unchanged. The [round 6 results](round-06-results.json)
+match all inputs and raise the official total to **223 observations**. Functions
+1, 2, 6, 7 and 8 improve numerically; Function 1 remains practically zero.
 
 Function 1's agreed query follows through on a hunch. None of its outputs so
 far is regarded as clearly non-zero in practical or source-detection terms;
@@ -62,7 +63,20 @@ submission timestamp was not supplied. Eight future queries remain per function.
 The
 [proposal record](Week_05/proposals.json) preserves evidence and source hashes.
 
-## Latest evaluation: round 5
+## Latest evaluation: round 6
+
+[`round-06-results.json`](round-06-results.json) records the Week 6 return
+received on **2 November 2026 at 07:28 GMT**, ingested on 5 November. All eight
+inputs match and the six-round cumulative attachments agree with earlier
+returns. There are **223 official observations**. Functions 1, 2, 6, 7 and 8
+have new numerical incumbents; Function 1 remains practically zero. Seven
+queries remain per function, including Week 7.
+
+The [Week 7 review](../results/week-07-review.md) links the new observation/model
+notebooks and retains forecast comparisons against the final Week 6 inputs.
+Week 7 model candidates are provisional and have not been submitted.
+
+## Previous evaluation: round 5
 
 [`round-05-results.json`](round-05-results.json) records the Week 5 return received
 on **30 October 2026 at 14:57 GMT**. All eight returned inputs match the submitted
@@ -76,7 +90,8 @@ query has been selected by this rollover.
 The separate [Week 6 model studies](../results/week-06-model-review.md) now
 record provisional next queries for all eight functions. They include the
 transition to model-guided signed-score UCB for Function 1 and neural
-comparators for every function. No Week 6 portal submission is recorded.
+comparators for every function. These model outputs predate the final
+31 October selection and submission, whose results are recorded above.
 
 ## Earlier submitted inputs
 

@@ -5,10 +5,12 @@ Certificate in Machine Learning and Artificial Intelligence.
 
 ## Current Stage 2 status
 
-**Week 6 submitted; results pending.** The project owner confirmed submission
-of [all eight agreed inputs](stage-2-bbo/submissions/Week_06/README.md) on
-**31 October 2026**. Seven future queries remain per function. The measured
-record stays at **215 observations through round 5** until new results arrive.
+**Week 6 results received; Week 7 reviews updated.** The results email arrived
+on **2 November 2026 at 07:28 GMT** and was ingested on 5 November. All eight
+inputs match the submitted batch. There are **223 official observations through
+round 6** and seven queries remain per function, including Week 7. Functions
+1, 2, 6, 7 and 8 have new numerical bests; Function 1 remains practically zero.
+See the [Week 7 notebooks](stage-2-bbo/notebooks/README.md#current-work-week-7-reviews).
 The dated Module 14 summary below remains a separate historical snapshot.
 
 ## Project status at the Module 14 close
@@ -192,21 +194,25 @@ The [results log](stage-2-bbo/results/progress.md) and
 [notebook guide](stage-2-bbo/notebooks/README.md) also retain later workspace
 history; those records must not be used to explain the earlier query decisions.
 
-## Later Stage 2 work: Weeks 5 and 6
+## Later Stage 2 work: Weeks 5–7
 
 Later Stage 2 work is recorded outside the Module 14 snapshot above. The eight
 Week 5 queries were evaluated on **30 October 2026 at 14:57 GMT**. All eight
 inputs matched; Function 4 improved to `0.6501304054949952`. The official total
-is now **215 observations**, and the [Week 6 observation and exploration
+then reached **215 observations**, and the [Week 6 observation and exploration
 notebooks](stage-2-bbo/notebooks/README.md#current-work-week-6-observation-and-exploration-reviews)
 have saved executions for all eight functions. The separate [Week 6 model
 review](stage-2-bbo/results/week-06-model-review.md) includes GP and neural
 comparisons and offline input explorers. The [final Week 6 inputs](stage-2-bbo/submissions/Week_06/README.md)
-were submitted, with owner confirmation on **31 October 2026**; results are
-pending and seven future queries remain per function. Function 1 follows the
+were submitted, with owner confirmation on **31 October 2026**, and evaluated
+in the 2 November results email. Seven queries remain per function. Function 1 follows the
 central-region hunch using its signed-mean candidate, Function 5 makes one
 exploration query, and Function 6 makes one focused neural-led test. The
 original model proposals remain pre-submission evidence.
+The [round 6 results](stage-2-bbo/submissions/round-06-results.json) raise the
+official total to **223 observations**. The independent Week 7 notebooks
+review the returns and refresh the GP/neural comparisons without changing
+earlier weekly snapshots. Their next-query proposals have not been submitted.
 Posting of the [Week 5
 discussion draft](stage-2-bbo/docs/week-05-discussion-draft.md) was confirmed on
 29 October 2026. It draws on the [retrospective neural-network and surrogate

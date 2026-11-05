@@ -7,12 +7,49 @@ Use [`Shared/`](Shared/README.md) for helpers reused by several functions and
 weeks. The shared-helper guide lists the modelling and plotting modules.
 Weekly notebooks retain their data, assumptions, teaching steps and decisions.
 
-## Current work: Week 6 observation and exploration reviews
+## Current work: Week 7 reviews
 
-**Week 6 submitted; results pending.** Owner confirmation was recorded on
-**31 October 2026**. Seven future queries remain per function. The input file
-and model evidence are unchanged, and the measured snapshots still contain
-**215 observations through round 5**. See the [submission record](../submissions/Week_06/README.md).
+The **Week 6 results arrived on 2 November 2026 at 07:28 GMT** and were ingested
+on 5 November. All eight submitted inputs match. Independent Week 7 snapshots
+contain **223 official observations through round 6**; seven queries remain per
+function, including Week 7. Earlier notebooks, CSVs and selection evidence are
+preserved. The saved Week 6 final selection supplies the historical GP and
+neural forecasts at the inputs actually submitted.
+
+| Function | Measured review | Updated models | Rows | Latest rank |
+| --- | --- | --- | ---: | ---: |
+| 1 | [Exploration](Function_1/Week_07/official/exploration.ipynb) | [Predictions](Function_1/Week_07/official/model_predictions.ipynb) | 16 | 1/16 |
+| 2 | [Exploration](Function_2/Week_07/official/exploration-review.ipynb) | [Predictions](Function_2/Week_07/official/model_predictions.ipynb) | 16 | 1/16 |
+| 3 | [Exploration](Function_3/Week_07/official/exploration-review.ipynb) | [Predictions](Function_3/Week_07/official/model_predictions.ipynb) | 21 | 19/21 |
+| 4 | [Observations](Function_4/Week_07/official/observation_review.ipynb) | [Predictions](Function_4/Week_07/official/model_predictions.ipynb) | 36 | 2/36 |
+| 5 | [Observations](Function_5/Week_07/observation_review.ipynb) | [Predictions](Function_5/Week_07/model_predictions.ipynb) | 26 | 6/26 |
+| 6 | [Observations](Function_6/Week_07/observation_review.ipynb) | [Predictions](Function_6/Week_07/model_predictions.ipynb) | 26 | 1/26 |
+| 7 | [Observations](Function_7/Week_07/observation_review.ipynb) | [Predictions](Function_7/Week_07/model_predictions.ipynb) | 36 | 1/36 |
+| 8 | [Observations](Function_8/Week_07/observation_review.ipynb) | [Predictions](Function_8/Week_07/model_predictions.ipynb) | 46 | 1/46 |
+
+Rank 1 is the highest signed output, including starting observations and all
+six official returns. Functions 1, 2, 6, 7 and 8 have new numerical incumbents;
+Function 1 remains practically zero. Function 4 is second best. Function 5's
+exploration beats every starting observation but remains far below its
+incumbent, and Function 3 is third from last.
+
+Use each notebook's own directory and the Capstone-local kernel. Retained
+peer rows for Functions 1–4 are unchanged, with a new local audit linking the
+previous snapshot. Each model notebook refreshes its fitted models, held-out
+checks, figures, provisional candidate and offline GP/neural explorer.
+The [Week 7 review](../results/week-07-review.md) links per-function reports
+and records interpretation and verification. These candidates are unsubmitted.
+Function 1's Week 6 activity-hypothesis notebook remains historical evidence
+for the central query, assessed in the new observation review.
+
+<a id="current-work-week-6-observation-and-exploration-reviews"></a>
+
+## Previous work: Week 6 observation and exploration reviews
+
+**Historical snapshot used to choose Week 6.** Submission was confirmed on
+31 October and the 2 November return is reviewed in Week 7 above. These
+preserved snapshots contain **215 observations through round 5**. See the
+[submission record](../submissions/Week_06/README.md).
 
 The Week 5 return arrived on **30 October 2026 at 14:57 GMT**. All eight inputs
 match the submitted queries. The new independent official snapshots contain
