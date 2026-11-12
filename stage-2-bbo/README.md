@@ -199,6 +199,8 @@ model candidates are provisional and unsubmitted.
 | If you want to… | Read… |
 | --- | --- |
 | Understand why particular experiments were chosen | [Methodology](docs/methodology.md) — coverage, models, uncertainty and limitations |
+| Trace a query from saved predictions to the portal return | [Function 6 worked example](docs/methodology.md#worked-example-for-function-6-in-round-6) · [decision record](submissions/Week_06/README.md#function-6-one-focused-neural-candidate-with-a-gp-cross-check) · [executed notebook](notebooks/Function_6/Week_06/model_predictions.ipynb) · [reproduction](docs/reproducing-the-analyses.md#week-6-model-predictions) |
+| See the F5 replay and offline benchmark | [Module 17.2 technical checks](results/module-17-technical-checks.md) |
 | See the results available for Module 14 | [Results index](results/README.md#module-14-reporting-cutoff) — round 1 and 2 evidence; later returns labelled separately |
 | Inspect an individual function's analysis | [Notebook guide](notebooks/README.md#module-14-reporting-cutoff) — Week 3 evidence and the later workspace |
 | Run the notebooks or rebuild a reading copy | [Reproducing the analyses](docs/reproducing-the-analyses.md) — setup, data snapshots and commands |

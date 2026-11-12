@@ -11,6 +11,9 @@ functions, round-by-round scores and the best inputs from returned queries.
 The [Stage 2 introduction](../README.md) explains the experiment, and the
 [methodology guide](../docs/methodology.md) explains how inputs are chosen.
 
+The [Module 17.2 technical checks](module-17-technical-checks.md) link the F6
+worked example and record the F5 sensitivity replay and offline BBOB comparison.
+
 The [Week 6 model prediction review](week-06-model-review.md) links all eight
 executed prediction notebooks, per-function reports and offline GP/neural
 explorers. Its original Function 1 proposal used signed-score UCB after completing

@@ -126,6 +126,24 @@ Relevant helper checks, run from the capstone repository root:
 .\run-python.ps1 -m unittest discover -s stage-2-bbo/tests -p test_exploration_plot_helpers.py
 ```
 
+## Module 17.2 technical checks
+
+Use the Capstone-local environment with the pinned `ioh` dependency. Restore
+F5's Week 6 official snapshot through round 5 and its saved model outputs
+using the [Week 6 instructions](#week-6-model-predictions). Run the checks
+from the capstone root.
+
+```powershell
+.\run-python.ps1 stage-2-bbo/scripts/run_module_17_technical_checks.py
+```
+
+The runner checks the F5 source hashes, replays the sensitivity cases and
+runs the paired BBOB benchmark on published functions. It writes the
+[JSON run record](../results/module-17-technical-checks.json) after both
+checks complete. Use `--output` with a separate path to save a comparison
+run. The [results](../results/module-17-technical-checks.md) describe the
+benchmarks and the measured gaps.
+
 ## Previous Week 5 reviews and model studies
 
 Select this repository's `.venv` kernel and use the individual `Week_05`

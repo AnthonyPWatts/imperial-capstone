@@ -1,9 +1,9 @@
 # How the experiments are chosen
 
 [Start with the introduction](../README.md) for the plain-language story. This
-guide explains the decision rules, their evidence and their limits. It records
-the approach through the evaluated Week 3 inputs, as of 14 October 2026. Week 4
-notebooks are prepared, with initial runs saved pending review.
+guide explains the decision rules, their evidence and their limits. The
+early-round account covers the evaluated Week 3 inputs as of 14 October 2026.
+The Function 6 worked example uses the saved round 6 decision and return.
 
 ## The decision in one sentence
 
@@ -107,6 +107,8 @@ observations, rather than directly testing how well the next-query rule works.
 The Week 2 UCB score is **predicted mean + 1.96 × posterior standard deviation**.
 It rewards both high predicted responses and uncertainty worth investigating.
 The weight is a selection setting, not a calibrated 95% confidence guarantee.
+The acquisition follows the GP upper confidence bound rule.
+[Srinivas et al. (2010)](https://arxiv.org/abs/0912.3995)
 Functions 6 and 7 illustrate the distinction: their selected points have
 predicted means below the incumbent but enough uncertainty to warrant a query.
 Candidate searches include broad sampling and corners, with additional boundary
@@ -213,6 +215,35 @@ This keeps the method aligned with the course material without turning the
 exercise into a research project. The useful business analogue is sequential
 decision-making where experiments are expensive: marketing tests, process
 settings, pricing trials or product configurations.
+
+## Worked example for Function 6 in round 6
+
+Before submission, the Week 6 models used the same **25 official observations
+through round 5** and the same leave-one-out targets. The three-seed ReLU-8-8
+ensemble had RMSE **0.326054** and the GP had **0.339648**. On the five weekly
+targets within those folds, the GP had lower RMSE (0.327887 against 0.359079).
+Some Week 6 comparisons for other functions fit GPs with additional retained
+peer rows and score on official held-out rows. The F6 comparison is official-only
+for both models. [Week 6 model review](../results/week-06-model-review.md)
+
+| Candidate | Input | Saved GP mean | Saved GP latent SD | Saved neural mean |
+| --- | --- | ---: | ---: | ---: |
+| Original GP-UCB, weight 1.96 | `0.470286-0.366388-0.723696-0.848362-0.000000` | −0.454159 | 0.160542 | −0.507858 |
+| Submitted neural-mean point | `0.398303-0.269220-0.627336-0.768441-0.000000` | −0.394068 | 0.081577 | −0.363497 |
+
+Both fitted means favoured the submitted point in this comparison. The GP-UCB
+proposal had a larger uncertainty bonus. With one query available, the higher
+means supported a focused test near the incumbent. The existing GP mean-only
+candidate and the individual neural predictions are in the
+[pre-submission decision](../submissions/Week_06/README.md#function-6-one-focused-neural-candidate-with-a-gp-cross-check).
+
+The matching portal result received on **2 November 2026** was **−0.328192**,
+up from the previous best of **−0.378691**. The improvement of **0.050499** is
+measured at the selected input. The alternatives in the decision record retain
+their saved predictions. [Round 6 result](../submissions/round-06-results.json)
+
+Recreate the evidence from the [executed F6 notebook](../notebooks/Function_6/Week_06/model_predictions.ipynb)
+and the [Week 6 setup and snapshot instructions](reproducing-the-analyses.md#week-6-model-predictions).
 
 ## Reading the evidence without overstating it
 

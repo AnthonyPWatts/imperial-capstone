@@ -139,7 +139,7 @@ def review_f1(review):
     return point, details
 
 
-def review_f5(review):
+def review_f5(review, *, sensitivity_cases=((43, 14), (42, 12), (42, 15))):
     """Choose one global information query, outside the existing local-search box.
 
     Maximise fitted GP latent SD first; geometric distance and coordinates break
@@ -165,7 +165,7 @@ def review_f5(review):
         "finite_pool_coverage": point_record(review, coverage),
     }
     sensitivity = []
-    for seed, power in ((43, 14), (42, 12), (42, 15)):
+    for seed, power in sensitivity_cases:
         settings = {**summary["search_settings"], "broad_seed": seed, "broad_power": power}
         changed, _ = make_candidate_review(review["known"], anchor, input_columns=columns,
             search_settings=settings, minimum_distance=F5_MIN_DISTANCE)
