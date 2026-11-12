@@ -1,0 +1,111 @@
+{
+  "function": 4,
+  "week": 8,
+  "observations": 37,
+  "latest_id": "round-07",
+  "latest_output": 0.6660895989337701,
+  "latest_rank": 1,
+  "rank_definition": "1 = highest output",
+  "best_id": "round-07",
+  "best_observed_output": 0.6660895989337701,
+  "positive_outputs": 3,
+  "negative_outputs": 34,
+  "exact_zeros": 0,
+  "progress": [
+    {
+      "source_round": 0,
+      "stage": "Initial batch",
+      "returned_y": "not_applicable",
+      "best_y": -4.025542281908162,
+      "change_vs_prior_best": "not_applicable"
+    },
+    {
+      "source_round": 1,
+      "stage": "Round 1",
+      "returned_y": -2.738157434185442,
+      "best_y": -2.738157434185442,
+      "change_vs_prior_best": 1.2873848477227203
+    },
+    {
+      "source_round": 2,
+      "stage": "Round 2",
+      "returned_y": -0.12991814521724931,
+      "best_y": -0.12991814521724931,
+      "change_vs_prior_best": 2.6082392889681927
+    },
+    {
+      "source_round": 3,
+      "stage": "Round 3",
+      "returned_y": -0.3479650984974785,
+      "best_y": -0.12991814521724931,
+      "change_vs_prior_best": -0.21804695328022916
+    },
+    {
+      "source_round": 4,
+      "stage": "Round 4",
+      "returned_y": -1.2591603093261408,
+      "best_y": -0.12991814521724931,
+      "change_vs_prior_best": -1.1292421641088914
+    },
+    {
+      "source_round": 5,
+      "stage": "Round 5",
+      "returned_y": 0.6501304054949952,
+      "best_y": 0.6501304054949952,
+      "change_vs_prior_best": 0.7800485507122445
+    },
+    {
+      "source_round": 6,
+      "stage": "Round 6",
+      "returned_y": 0.48990613858950427,
+      "best_y": 0.6501304054949952,
+      "change_vs_prior_best": -0.16022426690549096
+    },
+    {
+      "source_round": 7,
+      "stage": "Round 7",
+      "returned_y": 0.6660895989337701,
+      "best_y": 0.6660895989337701,
+      "change_vs_prior_best": 0.015959193438774832
+    }
+  ],
+  "official_history_comparison": {
+    "previous_best_id": "round-05",
+    "previous_best_output": 0.6501304054949952,
+    "distance_to_previous_best": 0.044655,
+    "latest_minus_previous_best": 0.015959193438774832,
+    "nearest_previous_id": "round-05",
+    "nearest_previous_distance": 0.044655
+  },
+  "historical_forecast": {
+    "point": [
+      0.419096,
+      0.40606,
+      0.3642,
+      0.426466
+    ],
+    "portal_input": "0.419096-0.406060-0.364200-0.426466",
+    "gp_mean": -0.28422224986306155,
+    "gp_latent_sd": 0.3642124861921303,
+    "gp_ucb_1_96": 0.42963422307351384,
+    "neural_mean": 0.27091211177475455,
+    "neural_seed_sd": 0.3810236141913705,
+    "neural_seed_predictions": [
+      0.022129084577098723,
+      0.7095634678689802,
+      0.0810437828781847
+    ],
+    "inside_selected_gp_training_hull": true,
+    "nearest_known_input_distance": 0.017798924040514377,
+    "source": "submissions/Week_07/proposals.json",
+    "source_sha256": "23cdcf011d52c2684166b6f1a0aff2bf18d9d542383053c452e0707a3cfb5676",
+    "data_scope": "official_with_retained_peer_coordinate_reference",
+    "selection_policy": "incumbent_x3_test_informed_by_retained_peer",
+    "prediction_units": "output y",
+    "actual_output": 0.6660895989337701,
+    "actual_in_prediction_units": 0.6660895989337701,
+    "actual_minus_gp_mean": 0.9503118487968316,
+    "actual_minus_neural_mean": 0.3951774871590155
+  },
+  "remaining_queries": 6
+}

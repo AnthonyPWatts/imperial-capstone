@@ -7,10 +7,9 @@ The [Module 14 overview](../README.md) and strategy reflection use the fixed
 through round 2**, with 12, 12, 17, 32, 22, 22, 32 and 42 rows for Functions 1–8.
 The submitted Week 3 queries were selected from that evidence.
 
-The accumulated data include the sixth-query return. Week 5 snapshots retain
-the fourth-query return; Week 6 snapshots include round 5; Week 7 includes round 6.
-Earlier weekly snapshots remain intact and must not be
-substituted for the Week 3 snapshots when reproducing the Module 14 decisions.
+The accumulated data include the seventh-query return. Week 5–8 snapshots
+contain returns through rounds 4–7 respectively. Use the Week 3 snapshots
+to reproduce the Module 14 decisions.
 
 ## Source data and recovery
 
@@ -50,7 +49,39 @@ The local `import-verification-2026-09-24.json` records file hashes and checks.
 See the [intake notes](../docs/module-12-intake.md) for the official data link and
 submission rules. Do not add the supplied arrays to the repository.
 
-## Current accumulated observations: round 6
+## Current accumulated observations: round 7
+
+The Week 7 results arrived on **12 November 2026 at 03:39 GMT**. The cumulative
+attachments reconcile with the prior six rounds and all eight latest inputs
+match the prepared submission. Adding each return once gives **231 official
+observations**. The [round 7 record](../submissions/round-07-results.json) has the
+exact outputs, source hashes and changes to the best observed values.
+
+The Git-ignored folder `rounds/round-07/` holds the original attachments
+(2,941 and 1,148 bytes), feedback lines and source metadata. Rebuild the
+accumulated arrays and CSVs from the Capstone root with the full local history:
+
+~~~powershell
+.\run-python.ps1 stage-2-bbo/scripts/import_round_results.py --round 7
+~~~
+
+## Week 8 notebook snapshots
+
+Functions 1–4 use `notebooks/Function_N/Week_08/official/observations.csv`.
+Functions 5–8 use `notebooks/Function_N/Week_08/observations.csv`. To recreate
+these Git-ignored snapshots, copy the round 7 accumulated CSVs to those paths.
+Alternatively, append the matching point and output from the round 7 record
+to a copy of each Week 7 CSV. Use `round-07` as the observation ID and `7` as
+the source round. The expected official counts for Functions 1–8 are
+**17, 17, 22, 37, 27, 27, 37 and 47**.
+
+For Functions 1–4, the Week 8 `cohort/observations.csv` files append the
+**6, 5, 5 and 6** retained `peer-` rows from their Week 7 cohort CSVs to the
+new official CSVs. These pooled snapshots and the local `cohort/data-audit.json`
+provenance records are Git-ignored. The Week 8 notebooks use the saved Week 7
+selection records to recover the pre-return forecasts.
+
+## Previous accumulated observations: round 6
 
 The Week 6 results email arrived on **2 November 2026 at 07:28 GMT** and was
 ingested on 5 November. Its original cumulative attachments contain all six

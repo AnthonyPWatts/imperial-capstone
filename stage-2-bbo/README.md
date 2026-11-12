@@ -1,13 +1,11 @@
 # Stage 2: choosing the next experiment
 
-**Week 7 inputs prepared on 10 November 2026.**
-The [2 November results](submissions/round-06-results.json) match all eight
-submitted inputs and raise the official total to **223 observations through
-round 6**. Functions 1, 2, 6, 7 and 8 improve their numerical incumbents;
-Function 1 remains practically zero. Seven queries remain per function,
-including Week 7. The [current notebooks](notebooks/README.md#current-work-week-7-reviews)
-retain the earlier evidence and refresh the observation and model reviews.
-[Prepared Week 7 inputs](submissions/Week_07/README.md)
+**Week 7 evaluated on 12 November 2026.**
+The [round 7 results](submissions/round-07-results.json) match all eight
+submitted inputs and bring the official total to **231 observations**.
+Functions 1, 4, 6 and 8 set new bests. Six queries remain per function,
+including Week 8. The [Week 8 review](results/week-08-review.md) links
+the sixteen observation and model notebooks.
 
 The Module 14 overview below retains its historical reporting cutoff.
 
@@ -167,7 +165,7 @@ with limited evidence. The same tension appears when tuning a model, adjusting
 a process or planning a product experiment: each test costs something, and
 waiting for its answer limits how quickly you can adapt.
 
-## Later work: Weeks 5–7
+## Later work: Weeks 5–8
 
 Later work is recorded separately from the Module 14 snapshot above. All eight
 Week 5 queries were submitted, with confirmation recorded on 29 October 2026.
@@ -196,6 +194,10 @@ links sixteen updated observation/model notebooks, per-function reports and
 offline GP/neural explorers. The selection review records the agreed inputs
 and forecasts at the prepared points.
 [Week 7 selection](submissions/Week_07/README.md)
+
+The round 7 return evaluates those eight selections. The
+[Week 8 review](results/week-08-review.md) compares each return with the
+recorded forecasts and links the models refitted on the updated data.
 
 ## Where to go next
 

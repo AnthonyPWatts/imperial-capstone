@@ -1,6 +1,8 @@
 # Results and progress
 
 [The introduction](../README.md) explains the experiment in plain language.
+For the latest returns and notebooks, see the [Week 8 review](week-08-review.md).
+
 This page records measured outcomes through round 6, received on **2 November
 2026 at 07:28 GMT** and ingested on 5 November. All eight Week 6 inputs match
 the submitted batch and the cumulative attachments match the earlier history.
@@ -65,7 +67,7 @@ Values are rounded for readability; the structured records retain full precision
 | 7 | 1.364968 | 1.405759 | 2.075222 | 2.552418 | 2.618968 | 2.618968 | 2.739375 |
 | 8 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.598482 | 9.782943 |
 
-## Latest results: round 6
+## Round 6 results
 
 The **2 November 2026, 07:28 GMT** results email contains all six rounds.
 All eight new inputs match `Week_06/submissions.txt`; only those eight returns

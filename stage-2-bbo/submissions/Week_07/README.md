@@ -1,9 +1,11 @@
 # Week 7 prepared inputs
 
-**All eight choices are agreed and ready for portal submission as of
-10 November 2026.** Functions 1 and 2 were agreed on 5 November. The
-selection uses 223 official observations through round 6. Seven query
-opportunities remain per function, including this batch.
+**Evaluated on 12 November 2026.** All eight returned inputs match this
+batch. [Round 7 results](../round-07-results.json) ·
+[Week 8 review](../../results/week-08-review.md)
+
+The choices were prepared on 10 November using 223 official observations
+through round 6. Functions 1 and 2 were agreed on 5 November.
 
 The portal file contains one six-decimal input per line in Function 1–8
 order. [Portal inputs](submissions.txt) · [Structured decisions](proposals.json) ·

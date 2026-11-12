@@ -15,10 +15,11 @@ from nbclient import NotebookClient
 from jupyter_client import KernelManager
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+def main(*, week=7):
+    parser = argparse.ArgumentParser(description=f"Execute Week {week} observation and model reviews.")
     parser.add_argument("--functions", type=int, nargs="+", default=list(range(1, 9)), choices=range(1, 9))
-    parser.add_argument("--kind", choices=("observations", "models", "activity", "source", "all"), default="all")
+    study_kinds = ("activity", "source") if week == 7 else ()
+    parser.add_argument("--kind", choices=("observations", "models", *study_kinds, "all"), default="all")
     arguments = parser.parse_args()
     if arguments.kind in ("activity", "source") and arguments.functions != [1]:
         parser.error("The activity/source comparisons are for Function 1; supply --functions 1.")
@@ -27,13 +28,14 @@ def main():
     if Path(sys.executable).resolve() != expected.resolve():
         raise RuntimeError(f"Use the Capstone Python interpreter: {expected}")
     stage = root / "stage-2-bbo"
-    sources = [stage / "submissions/Week_06/proposals.json", stage / "submissions/Week_06/submissions.txt"]
-    sources.extend(stage.glob("notebooks/Function_*/Week_07/**/observations.csv"))
+    previous = stage / f"submissions/Week_{week-1:02d}"
+    sources = [previous / "proposals.json", previous / "submissions.txt"]
+    sources.extend(stage.glob(f"notebooks/Function_*/Week_{week:02d}/**/observations.csv"))
     fingerprints = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in sources}
     observation_names = ("exploration.ipynb", "exploration-review.ipynb", "exploration-review.ipynb",
                          *("observation_review.ipynb",) * 5)
     for function in arguments.functions:
-        folder = stage / f"notebooks/Function_{function}/Week_07"
+        folder = stage / f"notebooks/Function_{function}/Week_{week:02d}"
         if function <= 4:
             folder /= "official"
         names = []
@@ -41,9 +43,9 @@ def main():
             names.append(observation_names[function-1])
         if arguments.kind in ("models", "all"):
             names.append("model_predictions.ipynb")
-        if function == 1 and arguments.kind in ("activity", "all"):
+        if week == 7 and function == 1 and arguments.kind in ("activity", "all"):
             names.append("activity_hypothesis.ipynb")
-        if function == 1 and arguments.kind in ("source", "all"):
+        if week == 7 and function == 1 and arguments.kind in ("source", "all"):
             names.append("source_shape_comparison.ipynb")
         for name in names:
             path = folder / name

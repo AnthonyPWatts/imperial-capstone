@@ -7,7 +7,18 @@ Use [`Shared/`](Shared/README.md) for helpers reused by several functions and
 weeks. The shared-helper guide lists the modelling and plotting modules.
 Weekly notebooks retain their data, assumptions, teaching steps and decisions.
 
-## Current work: Week 7 reviews
+## Current work: Week 8 reviews
+
+The 12 November return added eight matched inputs and outputs. The
+[Week 8 review](../results/week-08-review.md) links all sixteen executed
+notebooks, with comparisons against the forecasts saved before the Week 7
+return. The [local snapshots](../data/README.md#week-8-notebook-snapshots)
+contain **231 official observations**. The refreshed model notebooks produce
+provisional candidates for the next query.
+
+<a id="current-work-week-7-reviews"></a>
+
+## Week 7 reviews
 
 The **Week 6 results arrived on 2 November 2026 at 07:28 GMT** and were ingested
 on 5 November. All eight submitted inputs match. Independent Week 7 snapshots

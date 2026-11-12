@@ -14,10 +14,10 @@ submission and peer-comment completion are not yet confirmed in the project reco
 
 ## Copy-and-paste portal inputs
 
-**Week 7 is ready for portal submission.** All eight choices were agreed
-and the eight-line input file was prepared on **10 November 2026**.
-Seven query opportunities remain per function, including Week 7.
-[Portal inputs](Week_07/submissions.txt) · [Decision record](Week_07/README.md)
+**Week 7 evaluated.** All eight inputs in the results email received on
+12 November match the input file prepared on 10 November. Six queries
+remain per function, including Week 8.
+[Submitted inputs](Week_07/submissions.txt) · [Decision record](Week_07/README.md)
 
 [Week 6](Week_06/submissions.txt) contains the eight prepared inputs in function
 order. **Status: evaluated; results received on 2 November 2026.** The project owner confirmed
@@ -68,7 +68,15 @@ submission timestamp was not supplied. Eight future queries remain per function.
 The
 [proposal record](Week_05/proposals.json) preserves evidence and source hashes.
 
-## Latest evaluation: round 6
+## Latest evaluation: round 7
+
+The [round 7 record](round-07-results.json) contains the returns received on
+**12 November 2026 at 03:39 GMT**. The cumulative attachments agree with
+previous feedback and bring the official total to **231 observations**.
+The [Week 8 review](../results/week-08-review.md) compares the returns with
+the saved Week 7 forecasts and links the refitted models.
+
+## Previous evaluation: round 6
 
 [`round-06-results.json`](round-06-results.json) records the Week 6 return
 received on **2 November 2026 at 07:28 GMT**, ingested on 5 November. All eight

@@ -5,13 +5,12 @@ Certificate in Machine Learning and Artificial Intelligence.
 
 ## Current Stage 2 status
 
-**Week 7 inputs prepared on 10 November 2026.** The Week 6 results email arrived
-on **2 November 2026 at 07:28 GMT** and was ingested on 5 November. All eight
-inputs match the submitted batch. There are **223 official observations through
-round 6** and seven queries remain per function, including Week 7. Functions
-1, 2, 6, 7 and 8 have new numerical bests; Function 1 remains practically zero.
-[Prepared Week 7 inputs](stage-2-bbo/submissions/Week_07/README.md) ·
-[Week 7 notebooks](stage-2-bbo/notebooks/README.md#current-work-week-7-reviews)
+**Week 7 evaluated.** The results arrived on **12 November 2026 at 03:39 GMT**.
+All eight inputs match the submitted batch. There are **231 official
+observations through round 7** and six queries remain per function, including
+Week 8. Functions 1, 4, 6 and 8 set new bests.
+[Round 7 results](stage-2-bbo/submissions/round-07-results.json) ·
+[Week 8 notebooks](stage-2-bbo/results/week-08-review.md)
 The dated Module 14 summary below remains a separate historical snapshot.
 
 ## Project status at the Module 14 close
@@ -212,8 +211,9 @@ exploration query, and Function 6 makes one focused neural-led test. The
 original model proposals remain pre-submission evidence.
 The [round 6 results](stage-2-bbo/submissions/round-06-results.json) raise the
 official total to **223 observations**. The independent Week 7 notebooks
-review the returns and refresh the GP/neural comparisons without changing
-earlier weekly snapshots. Their next-query proposals have not been submitted.
+review the returns and refresh the GP/neural comparisons. The final Week 7
+selections and their forecasts are recorded in the
+[submission notes](stage-2-bbo/submissions/Week_07/README.md).
 Posting of the [Week 5
 discussion draft](stage-2-bbo/docs/week-05-discussion-draft.md) was confirmed on
 29 October 2026. It draws on the [retrospective neural-network and surrogate

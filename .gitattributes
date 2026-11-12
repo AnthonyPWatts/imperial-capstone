@@ -25,5 +25,8 @@ stage-2-bbo/notebooks/Shared/model_review_helpers.py text eol=lf
 stage-2-bbo/notebooks/Shared/prediction_review_helpers.py text eol=lf
 stage-2-bbo/notebooks/Shared/surrogate_study_helpers.py text eol=lf
 stage-2-bbo/notebooks/Shared/cohort_review_helpers.py text eol=lf
+# Preserve the checkout hash recorded for the imported Round 7 result.
+stage-2-bbo/submissions/round-07-results.json text eol=crlf
 # The generated observation views embed Plotly's unmodified third-party bundle.
 stage-2-bbo/notebooks/Function_*/Week_06/**/figures/observed*.html -whitespace
+stage-2-bbo/notebooks/Function_*/Week_08/**/figures/observed*.html -whitespace

@@ -1,13 +1,13 @@
 # Results
 
-**Week 6 evaluated; Week 7 reviews updated.** The results arrived on
-**2 November 2026 at 07:28 GMT** and were ingested on 5 November. All eight
-inputs match. There are **223 official observations through round 6** and
-**seven queries per function**, including Week 7. The [round 6 record](../submissions/round-06-results.json)
-and [Week 7 review](week-07-review.md) contain the new evidence.
+**Week 7 evaluated.** All eight returned inputs match the prepared batch.
+There are **231 official observations through round 7** and six queries
+remain per function, including Week 8. Functions 1, 4, 6 and 8 set new bests.
+The [round 7 record](../submissions/round-07-results.json) and
+[Week 8 review](week-08-review.md) have the results and all sixteen notebooks.
 
-Start with [results and progress](progress.md) for a chart of all eight
-functions, round-by-round scores and the best inputs from returned queries.
+See [results and progress](progress.md) for the historical chart, scores and
+best inputs through round 6.
 The [Stage 2 introduction](../README.md) explains the experiment, and the
 [methodology guide](../docs/methodology.md) explains how inputs are chosen.
 
@@ -48,7 +48,7 @@ The later returns below and the rolling progress chart are retained as
 later history. They are excluded from the [Module 14 overview](../README.md)
 and the strategy reflection explaining those query choices.
 
-## Latest record: round 6, outside the Module 14 snapshot
+## Earlier record: round 6, outside the Module 14 snapshot
 
 - [Round 6 return](../submissions/round-06-results.json) — received on
   2 November 2026 at 07:28 GMT; all inputs and cumulative history match.

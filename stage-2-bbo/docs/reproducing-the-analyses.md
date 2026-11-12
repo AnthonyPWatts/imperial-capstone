@@ -9,18 +9,35 @@ Run `.\setup-venv.ps1` from the repository root to create or refresh the local
 Python environment. The [repository environment setup](../../README.md#modelling-environment)
 also covers selecting an interpreter, rebuilding and activation. Provide the
 authorised course data described in [the data notes](../data/README.md).
-Week 1 analyses use the preserved initial arrays. Week 2–7 notebooks load
+Week 1 analyses use the preserved initial arrays. Week 2–8 notebooks load
 `observations.csv` beside each notebook, with that notebook's directory as
 the kernel's working directory. These weekly CSV files are Git-ignored; populate
 them with the matching historical round before running a fresh checkout:
 Week 2 uses observations through round 1; Week 3 uses observations through round 2;
 Week 4 uses observations through round 3 (199 in total); Week 5 uses observations
 through round 4 (207 in total); Week 6 uses observations through round 5
-(215 in total); Week 7 uses observations through round 6 (223 in total).
+(215 in total); Week 7 uses observations through round 6 (223 in total); Week 8
+uses observations through round 7 (231 in total).
 See the [recovery instructions](../data/README.md#recovering-earlier-snapshots).
 Snapshots are not updated automatically when later results arrive.
 
-## Current Week 7 reviews
+## Current Week 8 reviews
+
+Restore the [Week 8 snapshots](../data/README.md#week-8-notebook-snapshots),
+then run the sixteen observation and model notebooks from the Capstone root:
+
+~~~powershell
+.\run-python.ps1 stage-2-bbo/scripts/run_week_08_reviews.py
+~~~
+
+Use `--functions 1 --kind observations` to rerun only the Function 1
+observation review. Use `--kind models` for the model notebooks. The runner
+uses the Capstone kernel from each notebook's directory and checks the
+hashes of the local snapshots and the saved Week 7 selections. The
+[Week 8 review](../results/week-08-review.md) links the notebooks and records
+the validation results.
+
+## Week 7 reviews
 
 Use the Capstone-local `.venv` kernel and each notebook's own directory:
 `Week_07/official/` for Functions 1–4 and `Week_07/` for Functions 5–8.
