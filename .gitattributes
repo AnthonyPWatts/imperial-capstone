@@ -5,5 +5,25 @@ stage-2-bbo/submissions/Week_0[1-6]/submissions.txt -text whitespace=blank-at-eo
 stage-2-bbo/submissions/Week_06/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 stage-2-bbo/notebooks/Function_1/FunctionSpecificShared/function_1_activity_helpers.py -text
 stage-2-bbo/scripts/review_week_06_queries.py -text
+# Keep the prepared Week 7 bytes and the line endings of their pinned sources.
+stage-2-bbo/submissions/Week_07/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+stage-2-bbo/scripts/review_week_07_queries.py -text
+stage-2-bbo/submissions/round-06-results.json text eol=crlf
+stage-2-bbo/notebooks/Function_*/Week_07/**/model-review.json text eol=crlf
+stage-2-bbo/notebooks/Function_*/Week_07/**/model_predictions.ipynb text eol=crlf
+stage-2-bbo/notebooks/Function_*/Week_07/**/neural-network-explorer.html text eol=crlf
+stage-2-bbo/notebooks/Function_2/Week_07/report.md text eol=crlf
+stage-2-bbo/notebooks/Function_1/Week_07/source-shape.md -text
+stage-2-bbo/notebooks/Function_1/Week_07/official/source_shape_comparison.ipynb -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+stage-2-bbo/notebooks/Function_1/Week_07/official/source-shape/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+stage-2-bbo/notebooks/Function_1/Week_07/official/activity-hypothesis/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+stage-2-bbo/notebooks/Function_1/FunctionSpecificShared/function_1_source_helpers.py -text
+# Match the helper bytes fingerprinted by the Week 7 Function 1 studies.
+stage-2-bbo/notebooks/Function_1/FunctionSpecificShared/function_1_model_helpers.py text eol=crlf
+stage-2-bbo/notebooks/Shared/model_helpers.py text eol=crlf
+stage-2-bbo/notebooks/Shared/model_review_helpers.py text eol=lf
+stage-2-bbo/notebooks/Shared/prediction_review_helpers.py text eol=lf
+stage-2-bbo/notebooks/Shared/surrogate_study_helpers.py text eol=lf
+stage-2-bbo/notebooks/Shared/cohort_review_helpers.py text eol=lf
 # The generated observation views embed Plotly's unmodified third-party bundle.
 stage-2-bbo/notebooks/Function_*/Week_06/**/figures/observed*.html -whitespace

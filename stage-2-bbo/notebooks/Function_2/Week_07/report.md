@@ -1,6 +1,11 @@
 # Function 2 — Week 7 review
 
-Prepared on **5 November 2026**, using **16 official observations through round 6**. The latest result arrived on 2 November at 07:28 GMT. Seven queries remain, including Week 7. The model candidate is **provisional and unsubmitted**.
+Prepared on **5 November 2026**, using **16 official observations through round 6**. The latest result arrived on 2 November at 07:28 GMT. Seven queries remain, including Week 7.
+
+**Agreed Week 7 choice, 5 November 2026: `0.716870-0.000000`, with GP-UCB
+weight 1.96.** The [selection record](../../../submissions/Week_07/README.md)
+records the decision and caveats. Nothing has been submitted. Executed model
+outputs retain their original pre-decision state.
 
 [Executed observation review](official/exploration-review.ipynb) · [Executed models](official/model_predictions.ipynb) · [Numerical review](official/model-review.json) · [Offline GP/neural explorer](official/figures/neural-network-explorer.html)
 
@@ -52,7 +57,7 @@ Selection reuses these validation errors, so they are optimistic estimates of fu
 | Inside selected GP training hull | False |
 | Nearest known input distance | 0.0163503974 |
 
-The neural mean-led alternative is `0.700695-0.000000`, with target mean **0.694026846** and seed SD **0.0152616194**. Both candidates use the same eligible finite pool. No final Week 7 selection or submission is recorded.
+The neural mean-led alternative is `0.700695-0.000000`, with target mean **0.694026846** and seed SD **0.0152616194**. Both candidates use the same eligible finite pool. The separate selection record agrees the GP-UCB input above; no submission is recorded.
 
 The notebook checks weights 0, 1, 1.96 and 3 on a common seeded broad/local pool. Six-decimal bounds, duplicate exclusions and the existing spacing settings are retained. The coverage comparator is a finite-pool farthest-point proxy. UCB is a selection score, not a forecast or guarantee of improvement.
 

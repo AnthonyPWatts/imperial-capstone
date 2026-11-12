@@ -46,6 +46,57 @@ Seven query opportunities remain per function, including Week 7; no portal
 submission is performed. The [cross-function review](../results/week-07-review.md)
 records interpretation and verification.
 
+### Function 1 three-target follow-up
+
+The separate [activity comparison](../notebooks/Function_1/Week_07/activity-hypothesis.md)
+fits signed-log score, log magnitude and raw magnitude using the same
+official/retained-peer snapshot. It preserves the original signed summary
+while saving its own full evidence and unsubmitted recommendation:
+
+```powershell
+.\run-python.ps1 stage-2-bbo/scripts/run_week_07_reviews.py --functions 1 --kind activity
+```
+
+The default `--kind all` also includes this follow-up. Its complete LOO
+tables, median diagnostic, shared-pool controls, cross-predictions and source
+hashes are saved under `Function_1/Week_07/official/activity-hypothesis/`.
+
+### Function 1 official-only source comparison
+
+The [source-shaped study](../notebooks/Function_1/Week_07/source-shape.md)
+fits circular and axis-aligned Gaussian hypotheses using only official data.
+Restore the official CSV and run the three-target study above first: the
+source notebook reads its saved official-only held-out GP predictions and
+settings, plus the existing model review's official neural forecasts.
+
+```powershell
+.\run-python.ps1 stage-2-bbo/scripts/run_week_07_reviews.py --functions 1 --kind source
+```
+
+The default `--kind all` runs this after the activity study. It saves twelve
+source/control fits, all official held-out predictions, subset and temporal
+checks, official-only GP choices, provenance hashes and four charts under
+`Function_1/Week_07/official/source-shape/`. The notebook performs no course
+evaluation or submission, and supplies no peer location to fitting.
+
+### Week 7 final selection
+
+The selection review uses the saved fitted models to check the exact eight
+agreed inputs and forecasts, including the Function 8 local screen.
+Run the notebook from `submissions/Week_07/` with the Capstone-local kernel.
+Restore the Week 7 data snapshots first.
+[Decision record](../submissions/Week_07/README.md) ·
+[Selection review](../submissions/Week_07/selection_review.ipynb)
+
+From the capstone root, verify the prepared file or recreate a missing copy:
+
+```powershell
+.\run-python.ps1 stage-2-bbo/scripts/review_week_07_queries.py
+```
+
+The verifier checks the hashes of the saved notebooks and model exports.
+Use a separate checkout for exploratory notebook reruns to preserve that evidence.
+
 ## Previous Week 6 reviews
 
 Select this repository's `.venv` kernel and run each notebook from its own

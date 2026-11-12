@@ -37,10 +37,40 @@ Use each notebook's own directory and the Capstone-local kernel. Retained
 peer rows for Functions 1–4 are unchanged, with a new local audit linking the
 previous snapshot. Each model notebook refreshes its fitted models, held-out
 checks, figures, provisional candidate and offline GP/neural explorer.
-The [Week 7 review](../results/week-07-review.md) links per-function reports
-and records interpretation and verification. These candidates are unsubmitted.
+The Week 7 review links per-function reports and records interpretation and
+verification. The selection review records all eight agreed choices prepared
+on 10 November. [Week 7 review](../results/week-07-review.md) ·
+[Executed selection review](../submissions/Week_07/selection_review.ipynb)
 Function 1's Week 6 activity-hypothesis notebook remains historical evidence
 for the central query, assessed in the new observation review.
+
+### Function 1: full Week 7 signed/magnitude comparison
+
+The [executed activity notebook](Function_1/Week_07/official/activity_hypothesis.ipynb)
+and [report](Function_1/Week_07/activity-hypothesis.md) repeat the full
+signed-score, log-magnitude and raw-magnitude comparison on 16 official rows
+and six unchanged peers. They retain shared pools, official-target validation,
+four GP families, scope/weight controls and signed predictions at each point.
+A median benchmark weakens the raw-magnitude fit's case. Its earlier recommendation
+was **`0.340635-0.362578`**, one log-magnitude-led exploration query, with a
+material risk of a negative return. It is recommended for discussion,
+without final agreement or submission. The original signed model evidence
+and earlier weekly snapshots are preserved; seven queries remain.
+
+### Function 1: official-only source-shaped comparison
+
+The [executed source notebook](Function_1/Week_07/official/source_shape_comparison.ipynb)
+and [report](Function_1/Week_07/source-shape.md) compare circular/axis-aligned
+Gaussian source hypotheses with the saved official-only GP and neural fits.
+Every held-out target remains in evaluation; positive subset selection occurs
+inside each fold. The source reduces signed-log MAE but worsens RMSE, and the
+GP remains better on log magnitude. Larger-subset and all-magnitude failures
+are retained alongside the stable five/six-reading local peak.
+
+The **agreed Week 7 choice is `0.627916-0.628953`**, testing that positive
+component with one query. The [selection record](../submissions/Week_07/README.md)
+records agreement on 5 November 2026; nothing has been submitted. No peer data
+or reported location enters fitting or selection.
 
 <a id="current-work-week-6-observation-and-exploration-reviews"></a>
 

@@ -1,4 +1,4 @@
-"""Execute the Week 7 observation reviews and model comparisons with the local kernel."""
+"""Execute Week 7 reviews, including Function 1's activity and source studies."""
 
 import argparse
 import hashlib
@@ -18,8 +18,10 @@ from jupyter_client import KernelManager
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--functions", type=int, nargs="+", default=list(range(1, 9)), choices=range(1, 9))
-    parser.add_argument("--kind", choices=("observations", "models", "all"), default="all")
+    parser.add_argument("--kind", choices=("observations", "models", "activity", "source", "all"), default="all")
     arguments = parser.parse_args()
+    if arguments.kind in ("activity", "source") and arguments.functions != [1]:
+        parser.error("The activity/source comparisons are for Function 1; supply --functions 1.")
     root = Path(__file__).resolve().parents[2]
     expected = root / ".venv" / ("Scripts/python.exe" if os.name == "nt" else "bin/python")
     if Path(sys.executable).resolve() != expected.resolve():
@@ -39,6 +41,10 @@ def main():
             names.append(observation_names[function-1])
         if arguments.kind in ("models", "all"):
             names.append("model_predictions.ipynb")
+        if function == 1 and arguments.kind in ("activity", "all"):
+            names.append("activity_hypothesis.ipynb")
+        if function == 1 and arguments.kind in ("source", "all"):
+            names.append("source_shape_comparison.ipynb")
         for name in names:
             path = folder / name
             notebook = nbformat.read(path, as_version=4)

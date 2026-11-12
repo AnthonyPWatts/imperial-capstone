@@ -1,0 +1,51 @@
+{
+  "prepared_on": "2026-11-10",
+  "status": "prepared_not_submitted",
+  "line_count": 8,
+  "dimensions": [
+    2,
+    2,
+    3,
+    4,
+    4,
+    5,
+    6,
+    8
+  ],
+  "agreed_functions": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "official_observations": 223,
+  "known_observation_rows_checked": 245,
+  "earlier_submission_files_checked": 6,
+  "all_candidate_source_hashes_verified": true,
+  "selected_gp_and_neural_forecasts_reproduced": 8,
+  "function_8_local_screen_reproduced": true,
+  "function_5_minimum_spacing": 0.02,
+  "function_5_nearest_known_distance": 0.020405999999999924,
+  "coordinate_format_and_duplicates_checked": true,
+  "original_agreement_dates_preserved": [
+    1,
+    2
+  ],
+  "executed_review_code_cells": 3,
+  "submission_sha256": "5fda6149eedf87365ac185a65272b9343c72b595f5113c661a9889f9da0d8fa2",
+  "proposal_record_sha256": "23cdcf011d52c2684166b6f1a0aff2bf18d9d542383053c452e0707a3cfb5676",
+  "selection_notebook_sha256": "1eaa0a87e837141cc1a3ff78dc239467f4b9f6655624b05a866bdf0970174541",
+  "portal_submission_performed": false,
+  "new_course_evaluations": 0,
+  "notebook_forecast_table_inspected": true,
+  "tests_passed": 29,
+  "tests": "Capstone-local unittest: test_week_06_submission_review, test_prediction_review_helpers, test_round_results",
+  "byte_idempotency_verified": true,
+  "static_status_bindings_checked": 6,
+  "selection_document_links_checked": 19,
+  "git_diff_check_passed": true
+}

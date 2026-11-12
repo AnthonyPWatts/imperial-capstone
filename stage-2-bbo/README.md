@@ -1,13 +1,15 @@
 # Stage 2: choosing the next experiment
 
-**Current working status, 5 November 2026: Week 6 evaluated; Week 7 reviews updated.**
+**Week 7 inputs prepared on 10 November 2026.**
 The [2 November results](submissions/round-06-results.json) match all eight
 submitted inputs and raise the official total to **223 observations through
 round 6**. Functions 1, 2, 6, 7 and 8 improve their numerical incumbents;
 Function 1 remains practically zero. Seven queries remain per function,
 including Week 7. The [current notebooks](notebooks/README.md#current-work-week-7-reviews)
-retain the earlier evidence and refresh the observation and model reviews. The
-Module 14 overview below retains its historical reporting cutoff.
+retain the earlier evidence and refresh the observation and model reviews.
+[Prepared Week 7 inputs](submissions/Week_07/README.md)
+
+The Module 14 overview below retains its historical reporting cutoff.
 
 **Reporting cutoff: Module 14 / Week 3 submission.** This overview uses only
 the starting data and feedback through round 2: **191 observations**. The third
@@ -191,8 +193,9 @@ the current F3 classifier should not guide queries.
 The [round 6 record](submissions/round-06-results.json) raises the official
 total to **223 observations**. The [Week 7 review](results/week-07-review.md)
 links sixteen updated observation/model notebooks, per-function reports and
-offline GP/neural explorers. Earlier weekly evidence remains intact; the new
-model candidates are provisional and unsubmitted.
+offline GP/neural explorers. The selection review records the agreed inputs
+and forecasts at the prepared points.
+[Week 7 selection](submissions/Week_07/README.md)
 
 ## Where to go next
 

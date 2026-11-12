@@ -14,6 +14,11 @@ submission and peer-comment completion are not yet confirmed in the project reco
 
 ## Copy-and-paste portal inputs
 
+**Week 7 is ready for portal submission.** All eight choices were agreed
+and the eight-line input file was prepared on **10 November 2026**.
+Seven query opportunities remain per function, including Week 7.
+[Portal inputs](Week_07/submissions.txt) · [Decision record](Week_07/README.md)
+
 [Week 6](Week_06/submissions.txt) contains the eight prepared inputs in function
 order. **Status: evaluated; results received on 2 November 2026.** The project owner confirmed
 submission on **31 October 2026**; the exact portal time was not supplied. The
@@ -72,9 +77,11 @@ returns. There are **223 official observations**. Functions 1, 2, 6, 7 and 8
 have new numerical incumbents; Function 1 remains practically zero. Seven
 queries remain per function, including Week 7.
 
-The [Week 7 review](../results/week-07-review.md) links the new observation/model
-notebooks and retains forecast comparisons against the final Week 6 inputs.
-Week 7 model candidates are provisional and have not been submitted.
+The Week 7 review links the observation and model notebooks and compares
+the returns against the forecasts saved before Week 6 submission.
+The separate selection review records the forecasts for the prepared Week 7
+inputs. [Results review](../results/week-07-review.md) ·
+[Selection review](Week_07/selection_review.ipynb)
 
 ## Previous evaluation: round 5
 

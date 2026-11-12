@@ -1,8 +1,13 @@
 # Week 7 review: round 6 returns and refreshed models
 
-Results received on **2 November 2026 at 07:28 GMT**, ingested and reviewed on **5 November 2026**. All eight submitted inputs and all earlier cumulative returns match exactly. The official total is **223 observations**. Seven queries remain per function, including Week 7; new candidates are provisional and unsubmitted.
+Results received on **2 November 2026 at 07:28 GMT**, ingested and reviewed on **5 November 2026**. All eight submitted inputs and all earlier cumulative returns match exactly. The official total is **223 observations**. Seven queries remain per function, including Week 7.
 
 Functions **1, 2, 6, 7 and 8** improve their numerical incumbents. Function 1 remains practically zero. Function 4 ranks second; Function 5's exploration beats every starting observation but falls far short of its best; Function 3 ranks 19th of 21.
+
+**All eight Week 7 choices are agreed and prepared as of 10 November 2026.**
+The selection review records the accepted inputs and forecasts at the exact
+coordinates. [Decision record](../submissions/Week_07/README.md) ·
+[Executed selection review](../submissions/Week_07/selection_review.ipynb)
 
 | Function | Return | Rank | Observation review | Models | Interpretation |
 | --- | ---: | ---: | --- | --- | --- |
@@ -20,6 +25,58 @@ Functions **1, 2, 6, 7 and 8** improve their numerical incumbents. Function 1 re
 Function 6's neural-led trial produces its first improvement since round 1. Function 8 first exceeds its initial best. Function 4's second nearby positive result exposes persistent GP underprediction. Function 5's new exploration score substantially exceeds both saved negative model means, while Function 3 misses both means badly.
 
 The refreshed Function 2 comparison now selects official-only training. Function 3's provisional GP candidate moves away from the disappointing low-x3 boundary. Function 5's shortlist returns to the unfinished isolated x3 check. These are model-review outcomes, not final query decisions.
+
+## Function 1 follow-up: signed score and two magnitude targets
+
+The subsequent [three-target study](../notebooks/Function_1/Week_07/activity-hypothesis.md)
+and [executed notebook](../notebooks/Function_1/Week_07/official/activity_hypothesis.ipynb)
+use all 16 official rows and six unchanged peers. The signed, log-magnitude
+and raw-magnitude weight-1.96 proposals are respectively
+`0.709459-0.792240`, `0.340635-0.362578` and `0.576742-0.455704`.
+All three survive expansion of the shared candidate pool unchanged.
+
+The study's earlier recommendation was **`0.340635-0.362578` for one log-magnitude-led
+exploration query**, recommended for discussion without final agreement or
+submission. The log fit reduces MAE by 65.0% against its own mean baseline
+and beats a median benchmark. The raw fit loses to its median benchmark.
+The signed mean at the recommendation is negative and highly uncertain;
+the activity rationale does not establish a positive score or a source.
+Original signed/neural comparison outputs remain available as evidence.
+
+The additional activity notebook completed **nine code cells and six charts**.
+Its relevant helper suites passed **25 tests**. Independent readback verified
+the target-specific errors and baselines, candidate-pool hashes, original
+model outputs and **251 unchanged protected files**; all six figures were
+visually inspected. See the [detailed verification](../notebooks/Function_1/Week_07/official/activity-hypothesis/verification.json).
+
+## Function 1 follow-up: official-only source hypothesis
+
+The [source-shaped comparison](../notebooks/Function_1/Week_07/source-shape.md)
+and [executed notebook](../notebooks/Function_1/Week_07/official/source_shape_comparison.ipynb)
+use only the 16 official observations. A circular positive Gaussian fitted
+to the strongest five positive training readings recommends
+**`0.627916-0.628953`**, superseding the earlier magnitude-led suggestion.
+**Function 1 was agreed on 5 November 2026** and retained in the prepared
+batch. [Week 7 selection record](../submissions/Week_07/README.md)
+
+Its official held-out signed-log MAE is **91.662**, versus **135.652** for
+the official-only GP, but its RMSE is worse (**155.154** versus **147.135**).
+The log-magnitude GP remains better on its own target. Five/six-reading
+full-data peaks and default deletion checks agree locally; larger subsets
+and all-magnitude envelopes expose substantial instability. Negative responses
+remain unexplained. The fitted height **0.7081** is conditional on the positive
+component assumption, not an established signed-score forecast.
+
+The notebook retains all twelve source/control fits, identical official
+validation targets, saved official neural forecasts, retrospective temporal
+holdouts, competing official-only GP candidates and four figures. No peer
+location, output or fitted parameter enters this analysis.
+
+The new source notebook completed **nine code cells and four charts**. Its
+relevant helper suites passed **31 tests**; independent readback checked
+192 training-subset selections, recomputed the default fold predictions,
+and confirmed **260 protected files unchanged**. The original model code
+and outputs are preserved. See the [source verification](../notebooks/Function_1/Week_07/official/source-shape/verification.json).
 
 ## Forecasts retained before refitting
 

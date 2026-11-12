@@ -1,0 +1,4 @@
+Target,Selected GP,Scope,Selected kernel,Official-target MAE,Own-target mean-baseline MAE,MAE / own baseline
+signed-log score h,Gaussian process,official_plus_retained_peers,0.94**2 * RBF(length_scale=0.046),109.5841566947501,135.52320585878223,0.808600682077569
+log-magnitude activity g,Gaussian process,official_plus_retained_peers,1.71**2 * RBF(length_scale=0.327),16.952686725445062,48.422874686595456,0.35009666062097605
+absolute raw output |y|,GP: separate length scales,official_plus_retained_peers,"0.901**2 * RBF(length_scale=[0.258, 0.0364])",0.0007855368614345446,0.0010634642897867513,0.7386584288524276

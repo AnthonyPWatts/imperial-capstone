@@ -17,11 +17,11 @@
     "startedLabel": "29 July 2026"
   },
   "stage2": {
-    "state": "Week 6 evaluated; Week 7 reviews updated",
+    "state": "Week 7 inputs prepared",
     "title": "Black-box optimisation",
     "summary": "Keep the assessed eight-function investigation reproducible as observations are released.",
     "availability": "223 confirmed observations through round 6",
-    "dates": "Week 6 results received 2 November 2026; ingested 5 November; 7 queries per function including Week 7",
+    "dates": "Week 7 inputs prepared 10 November 2026. Seven queries per function including Week 7",
     "submissionConfirmedOn": "2026-10-31",
     "latestSubmittedWeek": 6,
     "latestConfirmedFeedbackRound": 6,

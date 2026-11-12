@@ -36,6 +36,13 @@ The transform accepts an explicit scale; choosing that scale remains a notebook
 decision. New function folders need this directory only when they have helpers
 to put in it.
 
+Function 1's `function_1_source_helpers.py` fits constrained log-quadratic
+circular or axis-aligned positive Gaussian components. Training-only positive
+subset selection, log-domain predictions, permitted analytic maxima and
+leave-one-out refits support the Week 7 source comparison. It does not model
+negative components, import peer evidence or submit queries; those limitations
+and the subset sensitivity remain explicit in the study.
+
 Function 1's Week 5 target-review helpers refit the same configured families
 independently to signed and magnitude targets. They score the saved coverage
 point separately from hypothetical alternatives, validate the saved official

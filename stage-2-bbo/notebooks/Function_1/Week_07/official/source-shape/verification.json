@@ -1,0 +1,38 @@
+{
+  "study": "Function 1 Week 7 official-only source comparison",
+  "date": "2026-11-05",
+  "official_rows": 16,
+  "peer_training_rows": 0,
+  "source_models_checked": 12,
+  "training_subset_selections_checked": 192,
+  "default_fold_predictions_independently_recomputed": 16,
+  "target_specific_metrics_recomputed": 106,
+  "official_gp_arrays_match_prior": true,
+  "official_neural_seed_mean_matches_prior": true,
+  "original_model_code_and_outputs_unchanged": true,
+  "protected_files_unchanged": 260,
+  "intentional_markdown_only_notebook_changes": [
+    "stage-2-bbo/notebooks/Function_1/Week_07/official/model_predictions.ipynb"
+  ],
+  "executed_code_cells": 9,
+  "saved_notebook_errors": 0,
+  "embedded_pngs": 4,
+  "figures_visually_inspected": [
+    "magnitude-held-out-comparison.png",
+    "positive-count-sensitivity.png",
+    "signed-held-out-comparison.png",
+    "source-shape-maps.png"
+  ],
+  "tests": {
+    "command": "Capstone-local Python unittest: function_1_source, function_1_model, function_1_activity, prediction_review and cohort_review helper suites",
+    "passed": 31,
+    "failed": 0
+  },
+  "source_hashes_verified": 9,
+  "submission_hashes_verified": 6,
+  "recommendation_bounds_precision_duplicates_checked": true,
+  "portal_submission_performed": false,
+  "new_course_evaluations": 0,
+  "result_sha256": "b7e16ad34f0fd074f9a5d9e6203df0631b8fa167058facd0d62b61db4d42ccc4",
+  "notebook_sha256": "fcabc94014f69f26c1be231dc00766a820951dd75e1fd1344d1f7979a0ee632f"
+}

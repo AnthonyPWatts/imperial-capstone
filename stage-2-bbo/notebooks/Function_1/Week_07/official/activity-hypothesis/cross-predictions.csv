@@ -1,0 +1,19 @@
+pool,point_policy,portal_input,fitted_target,units,mean,latent_sd
+baseline,signed,0.709459-0.792240,signed,signed-log score h,112.64349658750551,122.52775656431047
+baseline,signed,0.709459-0.792240,magnitude,log-magnitude activity g,177.78242275678136,3.5065866429343227
+baseline,signed,0.709459-0.792240,raw_magnitude,absolute raw output |y|,-2.0430507796285156e-06,0.0008076852006843878
+baseline,magnitude,0.340635-0.362578,signed,signed-log score h,-19.45507498851829,139.40039229005694
+baseline,magnitude,0.340635-0.362578,magnitude,log-magnitude activity g,198.5368136478892,7.869118893029723
+baseline,magnitude,0.340635-0.362578,raw_magnitude,absolute raw output |y|,0.0008054224850530887,0.0015802310018698039
+baseline,raw_magnitude,0.576742-0.455704,signed,signed-log score h,32.193278913482644,134.91557615389354
+baseline,raw_magnitude,0.576742-0.455704,magnitude,log-magnitude activity g,180.05023642782115,7.057253472128702
+baseline,raw_magnitude,0.576742-0.455704,raw_magnitude,absolute raw output |y|,0.005511032950055182,0.0008932673028389788
+symmetric,signed,0.709459-0.792240,signed,signed-log score h,112.64349658750551,122.52775656431047
+symmetric,signed,0.709459-0.792240,magnitude,log-magnitude activity g,177.78242275678136,3.5065866429343227
+symmetric,signed,0.709459-0.792240,raw_magnitude,absolute raw output |y|,-2.0430507796285156e-06,0.0008076852006843878
+symmetric,magnitude,0.340635-0.362578,signed,signed-log score h,-19.45507498851829,139.40039229005694
+symmetric,magnitude,0.340635-0.362578,magnitude,log-magnitude activity g,198.5368136478892,7.869118893029723
+symmetric,magnitude,0.340635-0.362578,raw_magnitude,absolute raw output |y|,0.0008054224850530887,0.0015802310018698039
+symmetric,raw_magnitude,0.576742-0.455704,signed,signed-log score h,32.193278913482644,134.91557615389354
+symmetric,raw_magnitude,0.576742-0.455704,magnitude,log-magnitude activity g,180.05023642782115,7.057253472128702
+symmetric,raw_magnitude,0.576742-0.455704,raw_magnitude,absolute raw output |y|,0.005511032950055182,0.0008932673028389788

@@ -5,12 +5,13 @@ Certificate in Machine Learning and Artificial Intelligence.
 
 ## Current Stage 2 status
 
-**Week 6 results received; Week 7 reviews updated.** The results email arrived
+**Week 7 inputs prepared on 10 November 2026.** The Week 6 results email arrived
 on **2 November 2026 at 07:28 GMT** and was ingested on 5 November. All eight
 inputs match the submitted batch. There are **223 official observations through
 round 6** and seven queries remain per function, including Week 7. Functions
 1, 2, 6, 7 and 8 have new numerical bests; Function 1 remains practically zero.
-See the [Week 7 notebooks](stage-2-bbo/notebooks/README.md#current-work-week-7-reviews).
+[Prepared Week 7 inputs](stage-2-bbo/submissions/Week_07/README.md) ·
+[Week 7 notebooks](stage-2-bbo/notebooks/README.md#current-work-week-7-reviews)
 The dated Module 14 summary below remains a separate historical snapshot.
 
 ## Project status at the Module 14 close

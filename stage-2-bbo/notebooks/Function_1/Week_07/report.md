@@ -1,5 +1,44 @@
 # Function 1 — Week 7 review
 
+## Agreed Week 7 choice: test the positive-source hypothesis
+
+**Agreed on 5 November 2026: `0.627916-0.628953`**, not submitted.
+The [Week 7 selection record](../../../submissions/Week_07/README.md)
+records the decision. The [source comparison](source-shape.md) and
+[executed notebook](official/source_shape_comparison.ipynb) use only the
+16 official observations. A four-parameter Gaussian fitted to the strongest
+five positive training readings places its peak there; the six-reading and
+axis-aligned controls place it nearby.
+
+The source has lower held-out signed-log MAE than the official-only GP
+(91.662 versus 135.652), but worse RMSE (155.154 versus 147.135). The GP
+predicts log magnitude better; the source misses negative responses, and
+larger subsets can destabilise it. This supports one specific experiment,
+not a recovered global function. The model's conditional height of 0.7081
+is not a calibrated signed-score forecast. Seven queries remain.
+
+This follow-up supersedes the earlier log-magnitude recommendation below;
+its original fitted evidence remains preserved.
+
+## Earlier study: three target rules
+
+**Earlier recommendation: `0.340635-0.362578` for one log-magnitude-led
+exploration query**, recommended for discussion without final agreement or
+submission. The [full study](activity-hypothesis.md) and
+[executed notebook](official/activity_hypothesis.ipynb) compare signed score,
+log magnitude and raw magnitude using all 16 official rows and six unchanged
+peers. The log fit improves MAE by 65.0% against its own mean baseline and
+beats a median benchmark; the raw fit loses to its median benchmark. All
+three weight-1.96 proposals survive shared-pool expansion. The signed mean
+at the recommendation is negative and highly uncertain, so this is an
+activity-seeking experiment with a risk of a negative return.
+
+The original signed/neural review below preserves its fitted evidence and
+provisional signed-GP candidate as a comparator. The source follow-up above
+supplies the current recommendation. Seven query opportunities remain.
+
+## Original signed-score and neural comparison
+
 Prepared on **5 November 2026**, using **16 official observations through round 6**. The latest result arrived on 2 November at 07:28 GMT. Seven queries remain, including Week 7. The model candidate is **provisional and unsubmitted**.
 
 [Executed observation review](official/exploration.ipynb) · [Executed models](official/model_predictions.ipynb) · [Numerical review](official/model-review.json) · [Offline GP/neural explorer](official/figures/neural-network-explorer.html)
