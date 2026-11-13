@@ -81,6 +81,15 @@ new official CSVs. These pooled snapshots and the local `cohort/data-audit.json`
 provenance records are Git-ignored. The Week 8 notebooks use the saved Week 7
 selection records to recover the pre-return forecasts.
 
+## Cohort refresh on 12 November 2026
+
+The local `cohort/2026-11-12/` snapshot contains 231 official Week 8 rows and
+194 distinct published peer returns, including 151 new to the October intake.
+Use its eight `function_N/observations.csv` files for fresh peer-assisted
+comparisons. The local `README.md` records the findings, and
+`dataset-audit.json` records the pinned sources and checksums. Saved Week 8
+executions refer to their fingerprinted input snapshots.
+
 ## Previous accumulated observations: round 6
 
 The Week 6 results email arrived on **2 November 2026 at 07:28 GMT** and was
