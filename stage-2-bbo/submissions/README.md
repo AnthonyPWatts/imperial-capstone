@@ -14,9 +14,14 @@ submission and peer-comment completion are not yet confirmed in the project reco
 
 ## Copy-and-paste portal inputs
 
+**Week 8 submitted.** The project owner confirmed all eight portal queries on
+19 November 2026. Results are pending, with five future queries per function.
+[Submitted inputs](Week_08/submissions.txt) ·
+[Submission confirmation](Week_08/submission-confirmation.json) ·
+[Function 2 acquisition comparison](../notebooks/Function_2/Week_08/official/model_predictions.ipynb)
+
 **Week 7 evaluated.** All eight inputs in the results email received on
-12 November match the input file prepared on 10 November. Six queries
-remain per function, including Week 8.
+12 November match the input file prepared on 10 November.
 [Submitted inputs](Week_07/submissions.txt) · [Decision record](Week_07/README.md)
 
 [Week 6](Week_06/submissions.txt) contains the eight prepared inputs in function

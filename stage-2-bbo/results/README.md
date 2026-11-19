@@ -1,8 +1,12 @@
 # Results
 
+**Week 8 submitted.** The project owner confirmed all eight inputs on
+19 November 2026. Results are pending, with five future queries per function.
+[Submission confirmation](../submissions/Week_08/submission-confirmation.json)
+
 **Week 7 evaluated.** All eight returned inputs match the prepared batch.
-There are **231 official observations through round 7** and six queries
-remain per function, including Week 8. Functions 1, 4, 6 and 8 set new bests.
+There are **231 official observations through round 7**. Functions 1, 4, 6 and
+8 set new bests.
 The [round 7 record](../submissions/round-07-results.json) and
 [Week 8 review](week-08-review.md) have the results and all sixteen notebooks.
 

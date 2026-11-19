@@ -1,11 +1,14 @@
 # Stage 2: choosing the next experiment
 
+**Week 8 submitted on 19 November 2026.** The project owner confirmed all
+eight inputs. Results are pending, with five future queries per function.
+[Submission confirmation](submissions/Week_08/submission-confirmation.json)
+
 **Week 7 evaluated on 12 November 2026.**
 The [round 7 results](submissions/round-07-results.json) match all eight
 submitted inputs and bring the official total to **231 observations**.
-Functions 1, 4, 6 and 8 set new bests. Six queries remain per function,
-including Week 8. The [Week 8 review](results/week-08-review.md) links
-the sixteen observation and model notebooks.
+Functions 1, 4, 6 and 8 set new bests. The sixteen observation and model
+notebooks are linked in the [Week 8 review](results/week-08-review.md).
 
 The Module 14 overview below retains its historical reporting cutoff.
 
