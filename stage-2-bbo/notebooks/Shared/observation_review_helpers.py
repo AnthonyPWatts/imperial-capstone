@@ -1,5 +1,7 @@
 """Measured-output, round-progress and input-profile plots for weekly reviews."""
 
+import hashlib
+import json
 from pathlib import Path
 import re
 
@@ -73,6 +75,52 @@ def read_saved_forecast(notebook_path, *, point, precision=6):
     if len(matches) != 1 or not np.isfinite(matches[0]["predicted_output"]):
         raise ValueError("Require one saved forecast matching the actual submitted input")
     return matches[0]
+
+
+def replay_weekly_forecast(analysis_dir, *, function, week, input_columns, point):
+    """Evaluate archived fits at a returned point without retraining on feedback."""
+    from neural_explorer import gp_prediction, network_prediction
+
+    folder = Path(analysis_dir)
+    model_path = folder / "model-review.json"
+    saved = json.loads(model_path.read_text(encoding="utf-8"))
+    snapshot_hash = hashlib.sha256((folder / "observations.csv").read_bytes()).hexdigest()
+    if (saved["function"], saved["week"], saved["snapshot_sha256"]) != (function, week, snapshot_hash):
+        raise ValueError("Archived forecast does not match the declared official snapshot")
+    if saved["cohort_audit_sha256"] is not None:
+        audit_path = folder.parent / "cohort/data-audit.json"
+        if hashlib.sha256(audit_path.read_bytes()).hexdigest() != saved["cohort_audit_sha256"]:
+            raise ValueError("Archived forecast does not match the retained peer audit")
+
+    explorer = folder / "figures/neural-network-explorer.html"
+    explorer_bytes = explorer.read_bytes()
+    match = re.search(r'<script id="model-data" type="application/json">(.*?)</script>',
+                      explorer_bytes.decode("utf-8"), re.S)
+    if match is None:
+        raise ValueError("Archived explorer is missing its fitted models")
+    fitted = json.loads(match[1])
+    if (fitted["input_columns"] != list(input_columns) or fitted["proposal"] != saved["point"]
+            or fitted["selected_architecture"] != saved["selected_neural_architecture"]
+            or fitted["scope"] != saved["training_scope"] or fitted["target_label"] != saved["target_units"]):
+        raise ValueError("Archived explorer and review describe different fits")
+    reference_mean, reference_sd = gp_prediction(fitted["gp"], saved["point"])
+    if not np.allclose([reference_mean[0], reference_sd[0]],
+                       [saved["proposal"]["predicted_output"], saved["proposal"]["posterior_std"]],
+                       rtol=1e-10, atol=1e-9):
+        raise ValueError("Archived GP fails parity at its saved proposal")
+
+    gp_mean, gp_sd = gp_prediction(fitted["gp"], point)
+    seeds = [network_prediction(network, point)[0]
+             for network in fitted["networks"][fitted["selected_architecture"]]]
+    return dict(
+        gp_model=saved["query_model"], data_scope=saved["training_scope"],
+        prediction_units=saved["target_units"], height_scale=saved["height_scale"],
+        gp_mean=float(gp_mean[0]), gp_latent_sd=float(gp_sd[0]),
+        neural_architecture=fitted["selected_architecture"], neural_mean=float(np.mean(seeds)),
+        neural_seed_sd=float(np.std(seeds, ddof=1)),
+        official_snapshot_sha256=snapshot_hash,
+        explorer_sha256=hashlib.sha256(explorer_bytes).hexdigest(),
+    )
 
 
 def _finish(figure, save_to):
@@ -179,8 +227,8 @@ def plot_round_progress(progress, *, save_to=None):
             offset = -24 if value < best[position] else 13
             axis.annotate(f"{value:.6f}", (rounds[position], value),
                           xytext=(0, offset), textcoords="offset points", ha="center", fontsize=9)
-    axis.annotate(f"Initial best: {best[0]:.6f}", (rounds[0], best[0]),
-                  xytext=(8, 12), textcoords="offset points", fontsize=9)
+    axis.annotate(f"{best[0]:.6f}", (rounds[0], best[0]),
+                  xytext=(10, -13), textcoords="offset points", va="top", fontsize=9)
     axis.set(xticks=rounds, xticklabels=progress["stage"].astype(str),
              ylabel="Signed output y (higher is better)")
     axis.set_xlim(rounds[0] - 0.2, rounds[-1] + 0.4)

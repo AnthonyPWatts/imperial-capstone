@@ -5,12 +5,12 @@ Certificate in Machine Learning and Artificial Intelligence.
 
 ## Current Stage 2 status
 
-**Week 7 evaluated.** The results arrived on **12 November 2026 at 03:39 GMT**.
-All eight inputs match the submitted batch. There are **231 official
-observations through round 7** and six queries remain per function, including
-Week 8. Functions 1, 4, 6 and 8 set new bests.
-[Round 7 results](stage-2-bbo/submissions/round-07-results.json) ·
-[Week 8 notebooks](stage-2-bbo/results/week-08-review.md)
+**Week 8 evaluated.** The results arrived on **23 November 2026 at 14:55 GMT**.
+All eight inputs match the submitted batch. There are **239 official
+observations through round 8**, and five queries remain per function.
+Functions 1, 3 and 8 set new bests.
+[Round 8 results](stage-2-bbo/submissions/round-08-results.json) ·
+[Week 9 review](stage-2-bbo/results/week-09-review.md)
 The dated Module 14 summary below remains a separate historical snapshot.
 
 ## Project status at the Module 14 close

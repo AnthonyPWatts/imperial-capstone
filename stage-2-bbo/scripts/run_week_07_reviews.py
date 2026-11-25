@@ -15,7 +15,7 @@ from nbclient import NotebookClient
 from jupyter_client import KernelManager
 
 
-def main(*, week=7):
+def main(*, week=7, forecast_sources=None, full_cohort=False):
     parser = argparse.ArgumentParser(description=f"Execute Week {week} observation and model reviews.")
     parser.add_argument("--functions", type=int, nargs="+", default=list(range(1, 9)), choices=range(1, 9))
     study_kinds = ("activity", "source") if week == 7 else ()
@@ -29,18 +29,24 @@ def main(*, week=7):
         raise RuntimeError(f"Use the Capstone Python interpreter: {expected}")
     stage = root / "stage-2-bbo"
     previous = stage / f"submissions/Week_{week-1:02d}"
-    sources = [previous / "proposals.json", previous / "submissions.txt"]
+    sources = [previous / "submissions.txt"]
+    if forecast_sources is None:
+        sources.append(previous / "proposals.json")
+    else:
+        sources.extend(forecast_sources(stage))
     sources.extend(stage.glob(f"notebooks/Function_*/Week_{week:02d}/**/observations.csv"))
     fingerprints = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in sources}
     observation_names = ("exploration.ipynb", "exploration-review.ipynb", "exploration-review.ipynb",
                          *("observation_review.ipynb",) * 5)
     for function in arguments.functions:
         folder = stage / f"notebooks/Function_{function}/Week_{week:02d}"
-        if function <= 4:
+        if full_cohort:
+            folder /= "full-cohort"
+        elif function <= 4:
             folder /= "official"
         names = []
         if arguments.kind in ("observations", "all"):
-            names.append(observation_names[function-1])
+            names.append("observation_review.ipynb" if full_cohort else observation_names[function-1])
         if arguments.kind in ("models", "all"):
             names.append("model_predictions.ipynb")
         if week == 7 and function == 1 and arguments.kind in ("activity", "all"):

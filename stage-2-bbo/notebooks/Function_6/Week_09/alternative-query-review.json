@@ -1,0 +1,147 @@
+{
+  "candidate_count": 20542,
+  "minimum_query_distance": 0.0,
+  "acquisition_weight": 1.96,
+  "validation": [
+    {
+      "policy": "Saved GP family",
+      "mean_error": 0.33414030623084723,
+      "mean_returned_error": 0.26719596652611566,
+      "mean_selection_gap": 0.13817872356323008,
+      "best_picks": 3,
+      "seed_42_error": 0.3418427718038805,
+      "seed_73_error": 0.32643784065781395
+    },
+    {
+      "policy": "SVR standard C=3",
+      "mean_error": 0.23855972368103917,
+      "mean_returned_error": 0.12323868057654824,
+      "mean_selection_gap": 0.06146676676585125,
+      "best_picks": 5,
+      "seed_42_error": 0.22653857333342184,
+      "seed_73_error": 0.2505808740286565
+    },
+    {
+      "policy": "GP Mat\u00e9rn 3/2",
+      "mean_error": 0.2755081330910587,
+      "mean_returned_error": 0.22916315753221034,
+      "mean_selection_gap": 0.10059972106456254,
+      "best_picks": 4,
+      "seed_42_error": 0.2763375878905928,
+      "seed_73_error": 0.2746786782915246
+    }
+  ],
+  "validation_warnings": {},
+  "proposals": [
+    {
+      "source": "Original My data only GP",
+      "model": "Gaussian process",
+      "point": [
+        0.424535,
+        0.332747,
+        0.976123,
+        0.806605,
+        0.002468
+      ],
+      "portal_input": "0.424535-0.332747-0.976123-0.806605-0.002468",
+      "criterion": "GP UCB (1.96)",
+      "predicted_target": -0.5716982413038556,
+      "latent_sd": 0.2716152858503774,
+      "acquisition_score": -0.039332281037115835,
+      "nearest_official_distance": 0.3575454528336222,
+      "distance_to_original_gp": 0.0,
+      "distance_to_full_cohort_gp": 0.4942944129554774,
+      "original_gp_mean": -0.5716982413038568,
+      "original_gp_latent_sd": 0.2716152858503775,
+      "original_gp_ucb": -0.039332281037116945
+    },
+    {
+      "source": "Full-cohort GP",
+      "model": "Gaussian process",
+      "point": [
+        0.353915,
+        0.525746,
+        0.54787,
+        0.672992,
+        0.031418
+      ],
+      "portal_input": "0.353915-0.525746-0.547870-0.672992-0.031418",
+      "criterion": "GP UCB (1.96)",
+      "predicted_target": -0.28299259680566424,
+      "latent_sd": 0.09084001250114082,
+      "acquisition_score": -0.10494617230342823,
+      "nearest_official_distance": 0.2124653638596184,
+      "distance_to_original_gp": 0.4942944129554774,
+      "distance_to_full_cohort_gp": 0.0,
+      "original_gp_mean": -0.3730197113649032,
+      "original_gp_latent_sd": 0.12989827512881424,
+      "original_gp_ucb": -0.1184190921124273
+    },
+    {
+      "source": "My data only alternative",
+      "model": "SVR standard C=3",
+      "point": [
+        0.445816,
+        0.3236,
+        0.551644,
+        0.755918,
+        0.072632
+      ],
+      "portal_input": "0.445816-0.323600-0.551644-0.755918-0.072632",
+      "criterion": "Predicted mean",
+      "predicted_target": -0.2500237284065582,
+      "latent_sd": null,
+      "acquisition_score": -0.2500237284065582,
+      "details": {},
+      "predicted_target_at_original_gp": -0.6904554042700575,
+      "predicted_target_at_full_cohort_gp": -0.4303612755355811,
+      "nearest_official_distance": 0.11886618762709603,
+      "distance_to_original_gp": 0.4338330656784934,
+      "distance_to_full_cohort_gp": 0.24062077521485964,
+      "original_gp_mean": -0.2678961186738844,
+      "original_gp_latent_sd": 0.051464692311800724,
+      "original_gp_ucb": -0.16702532174275497
+    },
+    {
+      "source": "My data only alternative",
+      "model": "GP Mat\u00e9rn 3/2",
+      "point": [
+        0.443519,
+        0.397098,
+        0.73583,
+        0.825106,
+        0.0
+      ],
+      "portal_input": "0.443519-0.397098-0.735830-0.825106-0.000000",
+      "criterion": "GP UCB (1.96)",
+      "predicted_target": -0.3360857333315125,
+      "latent_sd": 0.12338753884275877,
+      "acquisition_score": -0.0942461571997053,
+      "details": {
+        "modelled_coordinates": [
+          "x1",
+          "x2",
+          "x3",
+          "x4",
+          "x5"
+        ]
+      },
+      "predicted_target_at_original_gp": -0.5823744763733142,
+      "predicted_target_at_full_cohort_gp": -0.432267471476793,
+      "nearest_official_distance": 0.18269958894589772,
+      "distance_to_original_gp": 0.2501810291189162,
+      "distance_to_full_cohort_gp": 0.28988602249849854,
+      "original_gp_mean": -0.31942158948378774,
+      "original_gp_latent_sd": 0.12476728654110575,
+      "original_gp_ucb": -0.07487770786322048
+    }
+  ],
+  "function": 6,
+  "week": 9,
+  "training_scope": "official",
+  "official_rows": 28,
+  "official_snapshot_sha256": "b1c5c5e38cabaf997aa99659df74e140232b8bb8758dfef3c75fbbc9e694fa40",
+  "target_units": "output y",
+  "metric": "RMSE",
+  "proposal_status": "proposed_not_submitted"
+}

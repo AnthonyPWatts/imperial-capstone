@@ -7,14 +7,27 @@ Use [`Shared/`](Shared/README.md) for helpers reused by several functions and
 weeks. The shared-helper guide lists the modelling and plotting modules.
 Weekly notebooks retain their data, assumptions, teaching steps and decisions.
 
-## Current work: Week 8 reviews
+## Week 9 reviews
+
+The [Week 9 review](../results/week-09-review.md) links all sixteen executed
+observation and model notebooks. They use **239 official observations through
+round 8** and compare the refreshed fits on held-out official targets.
+[Week 9 snapshots](../data/README.md#week-9-notebook-snapshots)
+
+The [full-cohort notebooks](../results/week-09-cohort-review.md#provisional-next-inputs)
+use 217 published peer returns alongside the official rows and compare both
+sets of provisional GP inputs.
+The cohort model notebooks also compare preprocessing, alternative surrogates
+and blends on two nested validation splits. [Cross-function study](../results/week-09-cohort-surrogate-study.md)
+
+## Week 8 reviews
 
 The 12 November return added eight matched inputs and outputs. The
 [Week 8 review](../results/week-08-review.md) links all sixteen executed
 notebooks, with comparisons against the forecasts saved before the Week 7
 return. The [local snapshots](../data/README.md#week-8-notebook-snapshots)
-contain **231 official observations**. The refreshed model notebooks produce
-provisional candidates for the next query.
+contain **231 official observations**. The refreshed model notebooks produced
+provisional candidates for the Week 8 query.
 
 <a id="current-work-week-7-reviews"></a>
 

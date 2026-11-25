@@ -1,0 +1,113 @@
+{
+  "candidate_count": 20512,
+  "minimum_query_distance": 0.0,
+  "acquisition_weight": 1.96,
+  "validation": [
+    {
+      "policy": "Saved GP family",
+      "mean_error": 2.394122813997763,
+      "mean_returned_error": 0.749303527617847,
+      "mean_selection_gap": 0.09016003475750055,
+      "best_picks": 7,
+      "seed_42_error": 2.4992563005033275,
+      "seed_73_error": 2.288989327492198
+    },
+    {
+      "policy": "GP Mat\u00e9rn 3/2",
+      "mean_error": 1.7073959933880225,
+      "mean_returned_error": 0.5652999067376088,
+      "mean_selection_gap": 0.005563645211314849,
+      "best_picks": 8,
+      "seed_42_error": 1.6725263644310815,
+      "seed_73_error": 1.7422656223449635
+    }
+  ],
+  "validation_warnings": {
+    "GP Mat\u00e9rn 3/2": {
+      "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified upper bound 2.0. Increasing the bound and calling fit again may find a better value.": 7
+    }
+  },
+  "proposals": [
+    {
+      "source": "Original My data only GP",
+      "model": "Gaussian process",
+      "point": [
+        0.391921,
+        0.432079,
+        0.420229,
+        0.427165
+      ],
+      "portal_input": "0.391921-0.432079-0.420229-0.427165",
+      "criterion": "GP UCB (1.96)",
+      "predicted_target": -0.060301592017189876,
+      "latent_sd": 0.40008920913014606,
+      "acquisition_score": 0.7238732578778964,
+      "nearest_official_distance": 0.02849931686900579,
+      "distance_to_original_gp": 0.0,
+      "distance_to_full_cohort_gp": 0.054248022231229764,
+      "original_gp_mean": -0.06030159201710461,
+      "original_gp_latent_sd": 0.4000892091300977,
+      "original_gp_ucb": 0.7238732578778869
+    },
+    {
+      "source": "Full-cohort GP",
+      "model": "Gaussian process",
+      "point": [
+        0.386254,
+        0.37928,
+        0.428728,
+        0.43429
+      ],
+      "portal_input": "0.386254-0.379280-0.428728-0.434290",
+      "criterion": "GP UCB (1.96)",
+      "predicted_target": 0.21181257952415322,
+      "latent_sd": 0.3238649221749382,
+      "acquisition_score": 0.846587826987032,
+      "nearest_official_distance": 0.04230325923613927,
+      "distance_to_original_gp": 0.054248022231229764,
+      "distance_to_full_cohort_gp": 0.0,
+      "original_gp_mean": -0.14426508763164847,
+      "original_gp_latent_sd": 0.42125727893210346,
+      "original_gp_ucb": 0.6813991790752743
+    },
+    {
+      "source": "My data only alternative",
+      "model": "GP Mat\u00e9rn 3/2",
+      "point": [
+        0.427496,
+        0.489395,
+        0.426743,
+        0.422611
+      ],
+      "portal_input": "0.427496-0.489395-0.426743-0.422611",
+      "criterion": "GP UCB (1.96)",
+      "predicted_target": -0.2643667447164688,
+      "latent_sd": 0.8205620680555329,
+      "acquisition_score": 1.3439349086723755,
+      "details": {
+        "modelled_coordinates": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ]
+      },
+      "predicted_target_at_original_gp": 0.14374297025167238,
+      "predicted_target_at_full_cohort_gp": -0.11975113160524131,
+      "nearest_official_distance": 0.08126481560306402,
+      "distance_to_original_gp": 0.06792551503669296,
+      "distance_to_full_cohort_gp": 0.11818018046610017,
+      "original_gp_mean": -0.47939778634199115,
+      "original_gp_latent_sd": 0.45240654959853077,
+      "original_gp_ucb": 0.4073190508711292
+    }
+  ],
+  "function": 4,
+  "week": 9,
+  "training_scope": "official",
+  "official_rows": 38,
+  "official_snapshot_sha256": "7d77791ac15027bdfb396fe4beb71de7ed1e61ee2e67fa8ddcc6af2f679973ec",
+  "target_units": "output y",
+  "metric": "RMSE",
+  "proposal_status": "proposed_not_submitted"
+}

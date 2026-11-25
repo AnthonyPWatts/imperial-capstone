@@ -8,6 +8,7 @@ stage-2-bbo/scripts/review_week_06_queries.py -text
 # Keep the prepared Week 7 bytes and the line endings of their pinned sources.
 stage-2-bbo/submissions/Week_07/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 stage-2-bbo/scripts/review_week_07_queries.py -text
+stage-2-bbo/submissions/Week_08/submissions.txt -text
 stage-2-bbo/submissions/round-06-results.json text eol=crlf
 stage-2-bbo/notebooks/Function_*/Week_07/**/model-review.json text eol=crlf
 stage-2-bbo/notebooks/Function_*/Week_07/**/model_predictions.ipynb text eol=crlf
@@ -30,3 +31,4 @@ stage-2-bbo/submissions/round-07-results.json text eol=crlf
 # The generated observation views embed Plotly's unmodified third-party bundle.
 stage-2-bbo/notebooks/Function_*/Week_06/**/figures/observed*.html -whitespace
 stage-2-bbo/notebooks/Function_*/Week_08/**/figures/observed*.html -whitespace
+stage-2-bbo/notebooks/Function_*/Week_09/**/figures/observed*.html -whitespace

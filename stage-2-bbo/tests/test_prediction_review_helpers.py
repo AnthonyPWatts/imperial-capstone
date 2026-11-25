@@ -33,6 +33,19 @@ class PredictionReviewTests(unittest.TestCase):
         np.testing.assert_allclose(run["predictions"]["Linear"], expected)
         self.assertFalse(hasattr(model, "coef_"))
 
+    def test_peer_review_excludes_reported_repeats_of_the_held_out_input(self):
+        x = np.array([[.1], [.4], [.8]])
+        y = np.array([1., 2., 4.])
+        peer_x = np.array([[.4000002], [.6]])
+        peer_y = np.array([100., 3.])
+        model = LinearRegression()
+        official = {"predictions": {"Linear": y}}
+        run = paired_peer_review({"Linear": model}, x, peer_x, y, peer_y, official,
+                                 verbose=False, exclude_matching_peer_inputs=True)
+        expected = clone(model).fit([[.1], [.8], [.6]], [1., 4., 3.]).predict([[.4]])[0]
+        self.assertEqual(run["withheld_peer_counts"], [0, 1, 0])
+        self.assertAlmostEqual(run["predictions"]["Linear"][1], expected)
+
     def test_scope_selection_uses_the_declared_metric_and_retains_official_ties(self):
         official_model, pooled_model = object(), object()
         own = dict(table=pd.DataFrame([{"Model": "GP", "LOO RMSE": 1., "LOO MAE": .5}]), fitted={"GP": official_model})
@@ -87,11 +100,15 @@ class PredictionReviewTests(unittest.TestCase):
              solver="lbfgs", max_iter=400, random_state=42))]), transformer=StandardScaler()).fit(x, x.ravel())
         network = model.regressor_.named_steps["model"]
         network.coefs_[0][:] = 1.;network.intercepts_[0][:] = 0.;network.coefs_[1][:] = 1.
-        result = neural_gradient_review({"names": ["ReLU"], "models": [model]}, np.array([.5])).iloc[0]
-        self.assertFalse(result.anchor_check_passes)
-        self.assertTrue(result.passes)
-        self.assertIn("ReLU kink", result.check_location)
-        self.assertNotEqual(result.check_point, [.5])
+        # The second anchor has positive activation, but its finite difference
+        # still crosses the kink. An activation-magnitude cutoff misses it.
+        for anchor in (.5, .500003):
+            with self.subTest(anchor=anchor):
+                result = neural_gradient_review({"names": ["ReLU"], "models": [model]}, [anchor]).iloc[0]
+                self.assertFalse(result.anchor_check_passes)
+                self.assertTrue(result.passes)
+                self.assertIn("ReLU kink", result.check_location)
+                self.assertNotEqual(result.check_point, [anchor])
 
 
 if __name__ == "__main__":

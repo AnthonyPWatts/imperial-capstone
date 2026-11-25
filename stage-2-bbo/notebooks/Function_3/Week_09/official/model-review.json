@@ -1,0 +1,914 @@
+{
+  "function": 3,
+  "week": 9,
+  "analysis": "week_09_model_review",
+  "observations": 23,
+  "official_observations": 23,
+  "retained_peer_observations": 5,
+  "python_executable": "C:\\_Source\\Imperial-ML-AI-Live\\Capstone\\imperial-capstone\\.venv\\Scripts\\python.exe",
+  "target_units": "output y",
+  "height_scale": null,
+  "best_observed_raw_output": -0.004952000821836788,
+  "best_observed_target": -0.004952000821836788,
+  "query_model": "Gaussian process",
+  "training_scope": "official_plus_retained_peers",
+  "selection_metric": "LOO RMSE",
+  "official_target_error": 0.04603251255984507,
+  "baseline_error": 0.07694782771041825,
+  "proposal_status": "proposed_not_submitted",
+  "remaining_queries": 5,
+  "portal_input": "0.405878-0.697808-0.476376",
+  "point": [
+    0.405878,
+    0.697808,
+    0.476376
+  ],
+  "proposal": {
+    "point": [
+      0.405878,
+      0.697808,
+      0.476376
+    ],
+    "predicted_output": -0.028403109496137377,
+    "posterior_std": 0.060378798447330566,
+    "ucb": 0.08993933546063053,
+    "predicted_mean_improvement": -0.02345110867430059,
+    "inside_sampled_hull": true,
+    "portal_input": "0.405878-0.697808-0.476376",
+    "nearest_observed_distance": 0.14638910179381523
+  },
+  "proposal_target_units": "output y",
+  "ucb_weight": 1.96,
+  "candidate_count": 20494,
+  "minimum_query_distance": 0.0,
+  "coverage_proxy_point": [
+    0.999999,
+    0.999999,
+    0.999999
+  ],
+  "search_settings": {
+    "broad_power": 14,
+    "broad_seed": 42,
+    "local_power": 12,
+    "local_seed": 43,
+    "local_radius": 0.15,
+    "precision": 6,
+    "include_corners": true
+  },
+  "fitted_kernel": "0.852**2 * RBF(length_scale=0.13)",
+  "model_settings": {
+    "noise_fraction": 0.1,
+    "ridge_alpha": 1.0,
+    "kernel_ridge_alpha": 0.1,
+    "kernel_ridge_gamma": 1.0,
+    "polynomial_degree": 2,
+    "polynomial_ridge_alpha": 1.0,
+    "length_scale": 0.3,
+    "length_scale_bounds": [
+      0.03,
+      2.0
+    ],
+    "amplitude": 1.0,
+    "amplitude_bounds": [
+      0.01,
+      100.0
+    ],
+    "optimiser_restarts": 3,
+    "seed": 42
+  },
+  "model_comparison": [
+    {
+      "Model": "GP: separate length scales",
+      "LOO RMSE": 0.07014392734887558,
+      "LOO MAE": 0.03587843776737542,
+      "Rank correlation": 0.7104743083003953,
+      "Training RMSE": 0.0031713180352095733,
+      "Fit warnings": 26,
+      "RMSE / baseline": 0.9115777460651893
+    },
+    {
+      "Model": "Mean baseline",
+      "LOO RMSE": 0.07694782771041825,
+      "LOO MAE": 0.04582504718028384,
+      "Rank correlation": -1.0,
+      "Training RMSE": 0.07360226998387834,
+      "Fit warnings": 0,
+      "RMSE / baseline": 1.0
+    },
+    {
+      "Model": "Gaussian process",
+      "LOO RMSE": 0.08097450818816102,
+      "LOO MAE": 0.050072123956679454,
+      "Rank correlation": 0.11561264822134389,
+      "Training RMSE": 0.0010698070973617,
+      "Fit warnings": 0,
+      "RMSE / baseline": 1.0523300084948022
+    },
+    {
+      "Model": "Ridge",
+      "LOO RMSE": 0.08210796226730051,
+      "LOO MAE": 0.05158094618877275,
+      "Rank correlation": -0.3112648221343874,
+      "Training RMSE": 0.0685396003728347,
+      "Fit warnings": 0,
+      "RMSE / baseline": 1.0670601719427566
+    },
+    {
+      "Model": "Kernel ridge",
+      "LOO RMSE": 0.08618489741108598,
+      "LOO MAE": 0.05966865554583745,
+      "Rank correlation": -0.15711462450592886,
+      "Training RMSE": 0.04437653192617653,
+      "Fit warnings": 0,
+      "RMSE / baseline": 1.120043280954338
+    },
+    {
+      "Model": "Linear regression",
+      "LOO RMSE": 0.0891035273247041,
+      "LOO MAE": 0.05942540604768243,
+      "Rank correlation": -0.2608695652173913,
+      "Training RMSE": 0.06795568468516076,
+      "Fit warnings": 0,
+      "RMSE / baseline": 1.1579732654706254
+    },
+    {
+      "Model": "NN relu-8-8 seed 73",
+      "LOO RMSE": 0.09671299652493442,
+      "LOO MAE": 0.06568313482561748,
+      "Rank correlation": 0.3073122529644269,
+      "Training RMSE": 0.008583051777851345,
+      "Fit warnings": 2,
+      "RMSE / baseline": 1.2568645457919807
+    },
+    {
+      "Model": "Quadratic ridge",
+      "LOO RMSE": 0.09718436048027886,
+      "LOO MAE": 0.06852955231366056,
+      "Rank correlation": -0.1373517786561265,
+      "Training RMSE": 0.0513710804267667,
+      "Fit warnings": 0,
+      "RMSE / baseline": 1.262990306185352
+    },
+    {
+      "Model": "NN tanh-16 seed 11",
+      "LOO RMSE": 0.104092021464495,
+      "LOO MAE": 0.07186758066040272,
+      "Rank correlation": 0.1818181818181818,
+      "Training RMSE": 0.012487391277611386,
+      "Fit warnings": 19,
+      "RMSE / baseline": 1.352761014335972
+    },
+    {
+      "Model": "NN tanh-16 seed 42",
+      "LOO RMSE": 0.10437920717925371,
+      "LOO MAE": 0.06891475969854388,
+      "Rank correlation": 0.15217391304347824,
+      "Training RMSE": 0.01202372635351278,
+      "Fit warnings": 22,
+      "RMSE / baseline": 1.3564932277499684
+    },
+    {
+      "Model": "NN tanh-8 seed 11",
+      "LOO RMSE": 0.10463798811292332,
+      "LOO MAE": 0.06571180454229908,
+      "Rank correlation": 0.2658102766798419,
+      "Training RMSE": 0.01199788599292979,
+      "Fit warnings": 9,
+      "RMSE / baseline": 1.359856297785467
+    },
+    {
+      "Model": "NN tanh-16 seed 73",
+      "LOO RMSE": 0.10716360174704903,
+      "LOO MAE": 0.06987884201395014,
+      "Rank correlation": 0.23221343873517786,
+      "Training RMSE": 0.01195634234963398,
+      "Fit warnings": 19,
+      "RMSE / baseline": 1.3926787140807064
+    },
+    {
+      "Model": "NN tanh-8 seed 42",
+      "LOO RMSE": 0.1081156590754587,
+      "LOO MAE": 0.06897040456282996,
+      "Rank correlation": 0.18577075098814227,
+      "Training RMSE": 0.012093695182714638,
+      "Fit warnings": 6,
+      "RMSE / baseline": 1.4050514782865082
+    },
+    {
+      "Model": "NN tanh-8 seed 73",
+      "LOO RMSE": 0.10828732714612432,
+      "LOO MAE": 0.07139797896622664,
+      "Rank correlation": 0.14624505928853757,
+      "Training RMSE": 0.01422197207755182,
+      "Fit warnings": 4,
+      "RMSE / baseline": 1.4072824453686676
+    },
+    {
+      "Model": "NN relu-8-8 seed 42",
+      "LOO RMSE": 0.11538008642490097,
+      "LOO MAE": 0.07912943626359802,
+      "Rank correlation": 0.12154150197628459,
+      "Training RMSE": 0.012113334600630726,
+      "Fit warnings": 18,
+      "RMSE / baseline": 1.4994586573530944
+    },
+    {
+      "Model": "NN relu-8-8 seed 11",
+      "LOO RMSE": 0.12451776320620274,
+      "LOO MAE": 0.0758372974580952,
+      "Rank correlation": 0.25691699604743085,
+      "Training RMSE": 0.016577778014249842,
+      "Fit warnings": 10,
+      "RMSE / baseline": 1.6182102459709051
+    }
+  ],
+  "model_warnings": {
+    "Mean baseline": {},
+    "Linear regression": {},
+    "Ridge": {},
+    "Kernel ridge": {},
+    "Quadratic ridge": {},
+    "Gaussian process": {},
+    "GP: separate length scales": {
+      "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified upper bound 2.0. Increasing the bound and calling fit again may find a better value.": 23,
+      "ConvergenceWarning: The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified upper bound 2.0. Increasing the bound and calling fit again may find a better value.": 3
+    },
+    "NN tanh-8 seed 11": {
+      "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 9
+    },
+    "NN tanh-8 seed 42": {
+      "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 6
+    },
+    "NN tanh-8 seed 73": {
+      "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 4
+    },
+    "NN tanh-16 seed 11": {
+      "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 19
+    },
+    "NN tanh-16 seed 42": {
+      "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 22
+    },
+    "NN tanh-16 seed 73": {
+      "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 19
+    },
+    "NN relu-8-8 seed 11": {
+      "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 10
+    },
+    "NN relu-8-8 seed 42": {
+      "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 18
+    },
+    "NN relu-8-8 seed 73": {
+      "ConvergenceWarning: lbfgs failed to converge after 400 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=400).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html": 2
+    }
+  },
+  "held_out_predictions": {
+    "Mean baseline": [
+      -0.09111628038234493,
+      -0.09221443221121786,
+      -0.09114844157176515,
+      -0.09462932070563994,
+      -0.09403058111281708,
+      -0.09118452071824232,
+      -0.07807976616944802,
+      -0.0910369024584326,
+      -0.09023726182876352,
+      -0.09193140036198107,
+      -0.09407877104761991,
+      -0.09139615150629889,
+      -0.09084691420123958,
+      -0.09455920640011475,
+      -0.09363281806000824,
+      -0.09364769134013896,
+      -0.09388172602446686,
+      -0.0937487179175525,
+      -0.09363810203174525,
+      -0.09174143250553134,
+      -0.09069379851519034,
+      -0.09321847871031105,
+      -0.09598765309328729
+    ],
+    "Linear regression": [
+      -0.0965527430500264,
+      -0.09915570224743325,
+      -0.06777458126978458,
+      -0.0906150857395647,
+      -0.129005370158184,
+      -0.0882107529889615,
+      -0.06736459421539034,
+      -0.12112000794887112,
+      -0.04450165790939681,
+      -0.09343247053256024,
+      -0.11067842933901285,
+      -0.06872027797647068,
+      -0.1499068741303008,
+      -0.06573591544583807,
+      -0.08576861357876077,
+      -0.11004682038898023,
+      -0.03770942046596096,
+      -0.18588367616537432,
+      -0.12932921492165955,
+      -0.047100943139054545,
+      -0.03824786351674179,
+      -0.08531975502291263,
+      -0.09898147216258492
+    ],
+    "Ridge": [
+      -0.09638069737615025,
+      -0.09518278731792522,
+      -0.0778018896265579,
+      -0.09126924916152636,
+      -0.1190678232592753,
+      -0.08532559338657704,
+      -0.07266178987393758,
+      -0.11212946493500571,
+      -0.06759430221923547,
+      -0.09055639880609798,
+      -0.1066892321024256,
+      -0.07526258663676827,
+      -0.13091125863790848,
+      -0.0739016614999765,
+      -0.0855389494739912,
+      -0.10690810692774581,
+      -0.05637609058435722,
+      -0.13408129653172776,
+      -0.11581598749674384,
+      -0.0629798068017833,
+      -0.0537697792516847,
+      -0.08769790596192176,
+      -0.09735877848297383
+    ],
+    "Kernel ridge": [
+      -0.05176142434035133,
+      -0.08105338092269608,
+      -0.07540482845057764,
+      -0.07606876705569013,
+      -0.08531675201250728,
+      -0.038283858565770414,
+      -0.09389848782090757,
+      -0.12816938066022276,
+      -0.047207863949598035,
+      -0.08446479759907599,
+      -0.07389049994195597,
+      -0.0633490795907005,
+      -0.21351742846379979,
+      -0.0983608349058962,
+      0.02020282398056283,
+      -0.07976931935473844,
+      -0.10552367543024607,
+      -0.20286008787693904,
+      -0.09005238792556951,
+      -0.10146926476996701,
+      -0.07015494153519838,
+      -0.07363349280867293,
+      -0.08413035484483006
+    ],
+    "Quadratic ridge": [
+      -0.0689897038156758,
+      -0.07750025373267257,
+      -0.06761825145076279,
+      -0.06920237740630887,
+      -0.10749807979339637,
+      -0.02925083563024044,
+      -0.09336787463968221,
+      -0.12833615157210132,
+      -0.036164859067610675,
+      -0.07649950317286007,
+      -0.08406548217507637,
+      -0.057828556244903434,
+      -0.22324676287589823,
+      -0.09090684923343066,
+      0.0482682658699158,
+      -0.08507056319156239,
+      -0.13514265512620244,
+      -0.2807633704548017,
+      -0.12496165493314976,
+      -0.10098878157388978,
+      -0.0820231775634805,
+      -0.06732582344690571,
+      -0.07465323058190301
+    ],
+    "Gaussian process": [
+      -0.06164447149395891,
+      -0.08703266201852963,
+      -0.1267414646749624,
+      -0.04411460492242271,
+      -0.04420601728413693,
+      -0.06877684524379246,
+      -0.07809781548549896,
+      -0.08679513755234723,
+      -0.09926554809899882,
+      -0.09905162474177612,
+      -0.081849552528025,
+      -0.038762480389044535,
+      -0.15509862667188223,
+      -0.12888910071719184,
+      -0.0939811526280022,
+      -0.02894691698346781,
+      -0.14304114124476403,
+      -0.09510830050203402,
+      -0.09749770312770727,
+      -0.05918444748801962,
+      -0.023615801862026303,
+      -0.051908948700602954,
+      -0.029155275924086593
+    ],
+    "GP: separate length scales": [
+      -0.10801833248428697,
+      -0.12108963515419983,
+      -0.12884194359613627,
+      -0.05135936772697211,
+      -0.06289230811170543,
+      -0.08209213557704753,
+      -0.09110974177591664,
+      -0.18544642855296256,
+      -0.10934310025686991,
+      -0.08040943460134,
+      -0.02684336935837288,
+      -0.1286803174168441,
+      -0.08798103773463346,
+      -0.03529957560802823,
+      -0.11348819746626716,
+      -0.035274126393934124,
+      -0.061653973940446805,
+      -0.07334178845219413,
+      -0.0305147614005348,
+      -0.11360904393088513,
+      -0.09961750899870789,
+      -0.06637656043040137,
+      -0.055243253563444415
+    ],
+    "NN tanh-8 seed 11": [
+      -0.044498950415220395,
+      -0.08336177624206141,
+      -0.10476663797063726,
+      -0.046672944237056334,
+      -0.04149122297228244,
+      -0.08937349424718563,
+      -0.1141311536460891,
+      -0.17155305759602613,
+      -0.12716784184743252,
+      -0.09745475810773972,
+      -0.084325519415139,
+      -0.016200556891994886,
+      -0.2424439005943595,
+      -0.11987361496677061,
+      -0.028304556295464994,
+      -0.012224440519824006,
+      -0.17017591154152706,
+      -0.37806570744495777,
+      -0.01375589378206267,
+      -0.08006710108768146,
+      -0.07749600881316328,
+      -0.037948084340045055,
+      -0.06433314324640516
+    ],
+    "NN tanh-8 seed 42": [
+      -0.08032939124313754,
+      -0.07486787211637212,
+      -0.12968318707758536,
+      -0.05043636983639195,
+      -0.049827398974829504,
+      -0.08743073343687481,
+      -0.11063038204394474,
+      -0.14305463842459623,
+      -0.1369260238361436,
+      -0.11040236324738453,
+      -0.08145441099764335,
+      -0.014011028905191278,
+      -0.27024704739800753,
+      -0.11466599503900382,
+      -0.09001039644314016,
+      -0.012413591377583577,
+      -0.1954540128321965,
+      -0.36818736836722066,
+      -0.05639179590978078,
+      -0.014654024042485447,
+      -0.01172944353328531,
+      -0.04839695587469415,
+      -0.04484708232593813
+    ],
+    "NN tanh-8 seed 73": [
+      -0.08035105585983478,
+      -0.05901785391061558,
+      -0.12892279416608052,
+      -0.05042882283094186,
+      -0.051739594614021105,
+      -0.08763445291356078,
+      -0.11057624427590104,
+      -0.17160136468075513,
+      -0.11248970400371484,
+      -0.11032036403273306,
+      -0.08138044074508378,
+      -0.01618889508190599,
+      -0.2909447267320333,
+      -0.11491361530557084,
+      -0.10249899303446722,
+      -0.011447796276094227,
+      -0.18087464251552043,
+      -0.3654541729761049,
+      -0.04686747353132914,
+      -0.04683476503196208,
+      -0.015998518914860316,
+      -0.04839978223627928,
+      -0.053981080714880114
+    ],
+    "NN tanh-16 seed 11": [
+      -0.07682711928819398,
+      -0.05987760184150003,
+      -0.13407829477950445,
+      -0.05062653301031659,
+      -0.03181035862335049,
+      -0.10441348269035666,
+      -0.11262667286099637,
+      -0.16089792542144646,
+      -0.17255850870239314,
+      -0.13032957347540028,
+      -0.08073959209943385,
+      -0.012021778757653548,
+      -0.25513962797884765,
+      -0.114174653796859,
+      -0.10283636209867592,
+      -0.019750591739827142,
+      -0.19320393275540693,
+      -0.3402162439666485,
+      -0.03873895200207825,
+      -0.03793564907243241,
+      -0.01577743041100857,
+      -0.03789426595695084,
+      -0.05783361293595718
+    ],
+    "NN tanh-16 seed 42": [
+      -0.07266946051263692,
+      -0.08503933446222003,
+      -0.10337319521152358,
+      -0.04536644010367967,
+      -0.027298484069537582,
+      -0.08006787413242694,
+      -0.11274248794422721,
+      -0.15799187674324497,
+      -0.17153462854089585,
+      -0.09581264807417421,
+      -0.08217697201782184,
+      -0.01069824677356672,
+      -0.2538950037113484,
+      -0.1248855946973362,
+      -0.032893122337174244,
+      -0.017222888649468304,
+      -0.19331409422478635,
+      -0.34098591973692205,
+      -0.0499911313679017,
+      -0.06772655169601655,
+      -0.0010541256050189685,
+      -0.03740550113355903,
+      -0.07291925000025577
+    ],
+    "NN tanh-16 seed 73": [
+      -0.06390256569292642,
+      -0.08368272923159745,
+      -0.10440228817665971,
+      -0.046683071463442125,
+      -0.03556258053677597,
+      -0.08647857726528974,
+      -0.13327828493486588,
+      -0.17254554503889596,
+      -0.17311044526340819,
+      -0.09870889838467951,
+      -0.08213882394271917,
+      -0.014011141599045748,
+      -0.2675839360164897,
+      -0.11937860867690869,
+      -0.056141033963475175,
+      -0.01317006733703728,
+      -0.18077655496691442,
+      -0.3817506589046253,
+      -0.02314332741287209,
+      -0.0632180771037936,
+      -0.0011538504650777104,
+      -0.037748619522419834,
+      -0.05609051779328523
+    ],
+    "NN relu-8-8 seed 11": [
+      -0.040898647192599884,
+      -0.05206246300607055,
+      -0.11331286671929647,
+      -0.045872601103754095,
+      -0.018600179928449798,
+      -0.14086912336902097,
+      -0.12381586938706696,
+      -0.14977360042685928,
+      -0.10807400376476775,
+      -0.1283212546065018,
+      -0.08285205172892726,
+      -0.03457371991996263,
+      -0.30888316899529195,
+      -0.0973571541968991,
+      -0.0027379921972423144,
+      -0.045542144778886746,
+      -0.17586797879194255,
+      -0.49317599503248966,
+      -0.1262602234091856,
+      -0.10657207384673176,
+      -0.05757249551954602,
+      -0.05068086132166767,
+      -0.0565305505242678
+    ],
+    "NN relu-8-8 seed 42": [
+      -0.046876054908709705,
+      -0.07617045091752564,
+      -0.12927353773208508,
+      -0.03823799576025506,
+      -0.0100695706113237,
+      0.0025271429923242883,
+      -0.09625917925862801,
+      -0.14961301442253255,
+      -0.08887175752623772,
+      -0.1330472307516476,
+      -0.08352308791405175,
+      -0.009656490025940045,
+      -0.25182760189954123,
+      -0.11374654982665569,
+      0.07821424697118963,
+      -0.059939480244494275,
+      -0.1538471391612009,
+      -0.39340086146100084,
+      -0.08446754294191483,
+      -0.1400690185852781,
+      -0.054245484230203825,
+      -0.04981184379444012,
+      -0.0786563315068565
+    ],
+    "NN relu-8-8 seed 73": [
+      -0.09552539051077734,
+      -0.05082364997679886,
+      -0.12939042593416003,
+      -0.05414108161153594,
+      -0.052299449349772174,
+      -0.18838337792615287,
+      -0.16280926693607228,
+      -0.20099982701168354,
+      -0.10338126989466524,
+      -0.09028629360619804,
+      -0.0825278080845018,
+      -0.04320608487749395,
+      -0.3076978107735966,
+      -0.12320360779368122,
+      -0.013906779323084095,
+      -0.03375115315307679,
+      -0.15598600273823576,
+      -0.31919787446148634,
+      -0.02701676787465826,
+      -0.10451432029107396,
+      -0.03604837591243765,
+      -0.07140053567945173,
+      -0.050656908704169806
+    ]
+  },
+  "peer_comparison": [
+    {
+      "Model": "Gaussian process",
+      "Official LOO RMSE": 0.08097450818816102,
+      "Peer-assisted LOO RMSE": 0.04603251255984507,
+      "Official LOO MAE": 0.050072123956679454,
+      "Peer-assisted LOO MAE": 0.03787245558444578,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "GP: separate length scales",
+      "Official LOO RMSE": 0.07014392734887558,
+      "Peer-assisted LOO RMSE": 0.0673223083817181,
+      "Official LOO MAE": 0.03587843776737542,
+      "Peer-assisted LOO MAE": 0.04581488293690454,
+      "Fit warnings": 15
+    }
+  ],
+  "peer_warnings": {
+    "Gaussian process": {},
+    "GP: separate length scales": {
+      "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified upper bound 2.0. Increasing the bound and calling fit again may find a better value.": 6,
+      "ConvergenceWarning: The optimal value found for dimension 1 of parameter k2__length_scale is close to the specified upper bound 2.0. Increasing the bound and calling fit again may find a better value.": 5,
+      "ConvergenceWarning: The optimal value found for dimension 2 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value.": 2,
+      "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified lower bound 0.03. Decreasing the bound and calling fit again may find a better value.": 2
+    }
+  },
+  "scope_proposals": {
+    "selected": {
+      "scope": "official_plus_retained_peers",
+      "model": "Gaussian process",
+      "point": [
+        0.405878,
+        0.697808,
+        0.476376
+      ],
+      "predicted_output": -0.028403109496137377,
+      "posterior_std": 0.060378798447330566,
+      "ucb": 0.08993933546063053,
+      "predicted_mean_improvement": -0.02345110867430059,
+      "inside_sampled_hull": true,
+      "portal_input": "0.405878-0.697808-0.476376",
+      "nearest_observed_distance": 0.14638910179381523
+    },
+    "alternative": {
+      "scope": "official",
+      "model": "GP: separate length scales",
+      "point": [
+        0.152252,
+        0.992806,
+        0.410288
+      ],
+      "predicted_output": 0.028913744472601657,
+      "posterior_std": 0.03806556352999175,
+      "ucb": 0.10352224899138548,
+      "predicted_mean_improvement": 0.03386574529443845,
+      "inside_sampled_hull": false,
+      "portal_input": "0.152252-0.992806-0.410288",
+      "nearest_observed_distance": 0.24466346878237522
+    }
+  },
+  "weight_sensitivity": [
+    {
+      "Weight": 0.0,
+      "x1": 0.49538,
+      "x2": 0.657849,
+      "x3": 0.435222,
+      "Predicted output": 0.00045537199281282803,
+      "Posterior SD": 0.025014269059130217
+    },
+    {
+      "Weight": 1.0,
+      "x1": 0.452416,
+      "x2": 0.700734,
+      "x3": 0.470508,
+      "Predicted output": -0.01258990492109803,
+      "Posterior SD": 0.04997536193274557
+    },
+    {
+      "Weight": 1.96,
+      "x1": 0.405878,
+      "x2": 0.697808,
+      "x3": 0.476376,
+      "Predicted output": -0.02840310949613739,
+      "Posterior SD": 0.060378798447330566
+    },
+    {
+      "Weight": 3.0,
+      "x1": 0.384329,
+      "x2": 0.696342,
+      "x3": 0.497872,
+      "Predicted output": -0.04192479270792837,
+      "Posterior SD": 0.06602843205773072
+    }
+  ],
+  "regularisation_sensitivity": null,
+  "neural_architectures": [
+    {
+      "name": "tanh-8",
+      "layers": [
+        8
+      ],
+      "activation": "tanh"
+    },
+    {
+      "name": "tanh-16",
+      "layers": [
+        16
+      ],
+      "activation": "tanh"
+    },
+    {
+      "name": "relu-8-8",
+      "layers": [
+        8,
+        8
+      ],
+      "activation": "relu"
+    }
+  ],
+  "neural_seeds": [
+    11,
+    42,
+    73
+  ],
+  "neural_settings": {
+    "alpha": 0.1,
+    "max_iter": 400,
+    "max_fun": 15000,
+    "tolerance": 1e-06,
+    "gp_restarts": 3
+  },
+  "neural_architecture_comparison": [
+    {
+      "architecture": "tanh-16",
+      "mean": 0.10521161013026592,
+      "std": 0.0016965619242114399,
+      "min": 0.104092021464495,
+      "max": 0.10716360174704903
+    },
+    {
+      "architecture": "tanh-8",
+      "mean": 0.10701365811150211,
+      "std": 0.002059180283081603,
+      "min": 0.10463798811292332,
+      "max": 0.10828732714612432
+    },
+    {
+      "architecture": "relu-8-8",
+      "mean": 0.11220361538534605,
+      "std": 0.014171934897846189,
+      "min": 0.09671299652493442,
+      "max": 0.12451776320620274
+    }
+  ],
+  "selected_neural_architecture": "tanh-16",
+  "neural_ensemble_errors": {
+    "LOO RMSE": 0.10468458897274152,
+    "LOO MAE": 0.06907441116749405
+  },
+  "saved_follow_up": {
+    "portal_input": "0.495000-0.550000-0.450000",
+    "point": [
+      0.495,
+      0.55,
+      0.45
+    ],
+    "gp_mean": -0.025188680279677397,
+    "gp_latent_sd": 0.03412463683921223,
+    "gp_ucb": 0.04169560792517857,
+    "neural_mean": -0.017340499771354632,
+    "neural_seed_sd": 0.000744094172649131,
+    "nearest_known_input_distance": 0.06499999999999996,
+    "eligible": true,
+    "target_units": "output y",
+    "gp_training_scope": "official_plus_retained_peers"
+  },
+  "neural_proposal": {
+    "point": [
+      0.413275,
+      0.989623,
+      0.717766
+    ],
+    "predicted_target": 0.007856894660523047,
+    "seed_prediction_sd": 0.003738040970815512,
+    "architecture": "tanh-16",
+    "portal_input": "0.413275-0.989623-0.717766",
+    "criterion": "mean prediction across all declared seeds; not GP UCB"
+  },
+  "neural_gradient_checks": [
+    {
+      "Model": "NN tanh-16 seed 11",
+      "maximum_relative_error": 2.4139998333616575e-10,
+      "passes": true,
+      "check_location": "anchor",
+      "check_point": [
+        0.52,
+        0.61,
+        0.45
+      ],
+      "anchor_relative_error": 2.4139998333616575e-10,
+      "anchor_check_passes": true,
+      "gradient": [
+        0.027131627730105835,
+        -0.10289523750609686,
+        0.15106531973790605
+      ]
+    },
+    {
+      "Model": "NN tanh-16 seed 42",
+      "maximum_relative_error": 2.3447857544489636e-10,
+      "passes": true,
+      "check_location": "anchor",
+      "check_point": [
+        0.52,
+        0.61,
+        0.45
+      ],
+      "anchor_relative_error": 2.3447857544489636e-10,
+      "anchor_check_passes": true,
+      "gradient": [
+        0.052231496417804064,
+        -0.0963122578249791,
+        0.1553140452718145
+      ]
+    },
+    {
+      "Model": "NN tanh-16 seed 73",
+      "maximum_relative_error": 2.348881922298318e-10,
+      "passes": true,
+      "check_location": "anchor",
+      "check_point": [
+        0.52,
+        0.61,
+        0.45
+      ],
+      "anchor_relative_error": 2.348881922298318e-10,
+      "anchor_check_passes": true,
+      "gradient": [
+        0.05101164629891501,
+        -0.09663920041244783,
+        0.15261746556339384
+      ]
+    }
+  ],
+  "magnitude_comparison": null,
+  "snapshot_sha256": "d54f514f8dfd111391561cbbcc842b7726d274be6895091d51434675c181a94b",
+  "cohort_audit_sha256": "0303f9693a6f5b847ca09a62c000c62dffed9ab8e94cdbb8808c9d7236b89cde"
+}

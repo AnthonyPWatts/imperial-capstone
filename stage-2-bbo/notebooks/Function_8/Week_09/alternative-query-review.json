@@ -1,0 +1,129 @@
+{
+  "candidate_count": 20986,
+  "minimum_query_distance": 0.0,
+  "acquisition_weight": 1.96,
+  "validation": [
+    {
+      "policy": "Saved GP family",
+      "mean_error": 0.34373115979828206,
+      "mean_returned_error": 0.3696893001634822,
+      "mean_selection_gap": 0.03200002799994,
+      "best_picks": 8,
+      "seed_42_error": 0.31471605535579034,
+      "seed_73_error": 0.3727462642407738
+    },
+    {
+      "policy": "GP Mat\u00e9rn 3/2",
+      "mean_error": 0.3119007179665737,
+      "mean_returned_error": 0.2724295728232049,
+      "mean_selection_gap": 0.0020000079999899613,
+      "best_picks": 9,
+      "seed_42_error": 0.294629449136316,
+      "seed_73_error": 0.3291719867968314
+    }
+  ],
+  "validation_warnings": {
+    "GP Mat\u00e9rn 3/2": {
+      "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified upper bound 2.0. Increasing the bound and calling fit again may find a better value.": 10
+    }
+  },
+  "proposals": [
+    {
+      "source": "Original My data only GP",
+      "model": "Gaussian process",
+      "point": [
+        0.0,
+        0.999999,
+        0.0,
+        0.999999,
+        0.999999,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "portal_input": "0.000000-0.999999-0.000000-0.999999-0.999999-0.000000-0.000000-0.000000",
+      "criterion": "GP UCB (1.96)",
+      "predicted_target": 9.004518626714678,
+      "latent_sd": 0.7358728839970671,
+      "acquisition_score": 10.44682947934893,
+      "nearest_official_distance": 1.1137617307809915,
+      "distance_to_original_gp": 0.0,
+      "distance_to_full_cohort_gp": 0.999999,
+      "original_gp_mean": 9.004518626714678,
+      "original_gp_latent_sd": 0.7358728839970675,
+      "original_gp_ucb": 10.44682947934893
+    },
+    {
+      "source": "Full-cohort GP",
+      "model": "Gaussian process",
+      "point": [
+        0.0,
+        0.999999,
+        0.0,
+        0.999999,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "portal_input": "0.000000-0.999999-0.000000-0.999999-0.000000-0.000000-0.000000-0.000000",
+      "criterion": "GP UCB (1.96)",
+      "predicted_target": 9.128609210873883,
+      "latent_sd": 0.7561323927481395,
+      "acquisition_score": 10.610628700660236,
+      "nearest_official_distance": 1.128166051495443,
+      "distance_to_original_gp": 0.999999,
+      "distance_to_full_cohort_gp": 0.0,
+      "original_gp_mean": 8.82269000089829,
+      "original_gp_latent_sd": 0.7746718659908457,
+      "original_gp_ucb": 10.341046858240347
+    },
+    {
+      "source": "My data only alternative",
+      "model": "GP Mat\u00e9rn 3/2",
+      "point": [
+        0.0,
+        0.365002,
+        0.020186,
+        0.15,
+        0.796758,
+        0.436941,
+        0.101883,
+        0.630634
+      ],
+      "portal_input": "0.000000-0.365002-0.020186-0.150000-0.796758-0.436941-0.101883-0.630634",
+      "criterion": "GP UCB (1.96)",
+      "predicted_target": 10.112831514608855,
+      "latent_sd": 0.26212087492842023,
+      "acquisition_score": 10.626588429468558,
+      "details": {
+        "modelled_coordinates": [
+          "x1",
+          "x2",
+          "x3",
+          "x4",
+          "x5",
+          "x6",
+          "x7",
+          "x8"
+        ]
+      },
+      "predicted_target_at_original_gp": 8.739363912077847,
+      "predicted_target_at_full_cohort_gp": 8.678689772481949,
+      "nearest_official_distance": 0.3991748759679147,
+      "distance_to_original_gp": 1.3290713652069253,
+      "distance_to_full_cohort_gp": 1.5362119320901007,
+      "original_gp_mean": 9.996643611218829,
+      "original_gp_latent_sd": 0.19162702769808312,
+      "original_gp_ucb": 10.372232585507072
+    }
+  ],
+  "function": 8,
+  "week": 9,
+  "training_scope": "official",
+  "official_rows": 48,
+  "official_snapshot_sha256": "92f5e574057f3394df4069fc46aff1aab8452936a76aaff03a7d2e268b2c87d7",
+  "target_units": "output y",
+  "metric": "RMSE",
+  "proposal_status": "proposed_not_submitted"
+}

@@ -1,8 +1,10 @@
 # Stage 2: choosing the next experiment
 
-**Week 8 submitted on 19 November 2026.** The project owner confirmed all
-eight inputs. Results are pending, with five future queries per function.
-[Submission confirmation](submissions/Week_08/submission-confirmation.json)
+**Week 8 evaluated on 23 November 2026.** All eight returned inputs match
+the submitted batch, bringing the total to **239 official observations**.
+Functions 1, 3 and 8 set new bests. Five queries remain per function.
+[Round 8 results](submissions/round-08-results.json) ·
+[Week 9 review](results/week-09-review.md)
 
 **Week 7 evaluated on 12 November 2026.**
 The [round 7 results](submissions/round-07-results.json) match all eight

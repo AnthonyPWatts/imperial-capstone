@@ -14,8 +14,15 @@ submission and peer-comment completion are not yet confirmed in the project reco
 
 ## Copy-and-paste portal inputs
 
-**Week 8 submitted.** The project owner confirmed all eight portal queries on
-19 November 2026. Results are pending, with five future queries per function.
+**Week 9 submitted.** The project owner confirmed on 23 November 2026 that all
+eight inputs were submitted exactly as saved. Round 9 results are pending.
+Four queries remain per function.
+[Submitted inputs](Week_09/submissions.txt) ·
+[Submission confirmation](Week_09/submission-confirmation.json) ·
+[Decision record](Week_09/README.md)
+
+**Week 8 evaluated.** The project owner confirmed submission on 19 November
+2026. All eight results arrived on 23 November.
 [Submitted inputs](Week_08/submissions.txt) ·
 [Submission confirmation](Week_08/submission-confirmation.json) ·
 [Function 2 acquisition comparison](../notebooks/Function_2/Week_08/official/model_predictions.ipynb)
@@ -73,7 +80,16 @@ submission timestamp was not supplied. Eight future queries remain per function.
 The
 [proposal record](Week_05/proposals.json) preserves evidence and source hashes.
 
-## Latest evaluation: round 7
+## Latest evaluation: round 8
+
+The [round 8 record](round-08-results.json) contains the returns received on
+**23 November 2026 at 14:55 GMT**. All eight inputs match
+[`Week_08/submissions.txt`](Week_08/submissions.txt), and both cumulative
+attachments agree with prior feedback. The official total is **239 observations**.
+Functions 1, 3 and 8 set new bests. The [Week 9 review](../results/week-09-review.md)
+links the observations and provisional model comparisons.
+
+## Previous evaluation: round 7
 
 The [round 7 record](round-07-results.json) contains the returns received on
 **12 November 2026 at 03:39 GMT**. The cumulative attachments agree with

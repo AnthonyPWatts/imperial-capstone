@@ -1,0 +1,19 @@
+{
+  "function": 3,
+  "intake_date": "2026-11-23",
+  "official_rows": 23,
+  "peer_rows": 28,
+  "new_peer_rows": 3,
+  "latest_output": -0.004952000821836788,
+  "latest_official_rank": 1,
+  "latest_cohort_rank": 2,
+  "official_best": -0.004952000821836788,
+  "peer_best": -0.0001403067678185869,
+  "best_peer_point": [
+    0.52,
+    0.55,
+    0.45
+  ],
+  "official_snapshot_sha256": "d54f514f8dfd111391561cbbcc842b7726d274be6895091d51434675c181a94b",
+  "pooled_snapshot_sha256": "16dd67bf664614fb1d0243aacebb7b72a1454330cfb5b500485356abfb6f1c22"
+}

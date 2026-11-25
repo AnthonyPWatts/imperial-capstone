@@ -28,11 +28,13 @@ def select_gp(run, gp_names, *, metric="LOO RMSE"):
                 error=float(table.loc[name, metric]))
 
 
-def paired_peer_review(models, official, peers, target, peer_target, official_run, *, verbose=True):
+def paired_peer_review(models, official, peers, target, peer_target, official_run, *, verbose=True,
+                       exclude_matching_peer_inputs=False):
     """Score the same official targets; the held-out official row never enters training.
 
     Only GP candidates need a second fit. All official outputs remain the owner's
-    progress record even when a fit uses retained, self-reported peer training rows.
+    progress record even when a fit uses self-reported peer training rows. The
+    exclusion option removes peer observations at a held-out portal input.
     """
     official, peers = np.asarray(official), np.asarray(peers)
     target, peer_target = np.asarray(target), np.asarray(peer_target)
@@ -40,6 +42,9 @@ def paired_peer_review(models, official, peers, target, peer_target, official_ru
             or target.shape != (len(official),) or peer_target.shape != (len(peers),)
             or not len(peers)):
         raise ValueError("Supply matching official and peer inputs and targets")
+    withheld_peers = np.zeros((len(official), len(peers)), dtype=bool)
+    if exclude_matching_peer_inputs:
+        withheld_peers = np.all(official.round(6)[:, None, :] == peers.round(6)[None, :, :], axis=2)
     prediction, fitted, rows, warning_details = {}, {}, [], {}
     for name, estimator in models.items():
         predicted, counts = np.empty(len(target)), Counter()
@@ -47,8 +52,9 @@ def paired_peer_review(models, official, peers, target, peer_target, official_ru
             train = np.arange(len(target)) != held
             with warnings.catch_warnings(record=True) as caught:
                 warnings.simplefilter("always")
-                fold = clone(estimator).fit(np.vstack([official[train], peers]),
-                                             np.r_[target[train], peer_target])
+                allowed = ~withheld_peers[held]
+                fold = clone(estimator).fit(np.vstack([official[train], peers[allowed]]),
+                                             np.r_[target[train], peer_target[allowed]])
                 predicted[held] = fold.predict(official[held:held+1])[0]
             counts.update(f"{w.category.__name__}: {w.message}" for w in caught)
         with warnings.catch_warnings(record=True) as caught:
@@ -66,7 +72,8 @@ def paired_peer_review(models, official, peers, target, peer_target, official_ru
         prediction[name], warning_details[name] = predicted, dict(counts)
         if verbose:
             print(f"Peer-assisted official-target review complete: {name}", flush=True)
-    return dict(table=pd.DataFrame(rows), predictions=prediction, fitted=fitted, warnings=warning_details)
+    return dict(table=pd.DataFrame(rows), predictions=prediction, fitted=fitted, warnings=warning_details,
+                withheld_peer_counts=withheld_peers.sum(axis=1).tolist())
 
 
 def choose_training_scope(official_run, gp_names, *, peer_run=None, metric="LOO RMSE"):
@@ -146,6 +153,61 @@ def review_gp_query(selected, candidates, inputs, target, *, input_columns, weig
     return dict(scores=scores, proposal=proposal, weight_sensitivity=sensitivity)
 
 
+def compare_full_cohort_gp(review, models, gp_names, official_target, peer_target, saved_official,
+                           *, metric, search_settings, weights, weight, feature_sets, minimum_distance):
+    """Reproduce the weekly owner-only proposal and fit its full-cohort counterpart."""
+    from surrogate_study_helpers import evaluate_regressors
+
+    columns = review["input_columns"]
+    own = review["own_data"][columns].to_numpy(dtype=float)
+    known = review["inputs"].to_numpy(dtype=float)
+    peers = known[review["peer_mask"]]
+    official_run = evaluate_regressors(models, own, official_target)
+    owner = select_gp(official_run, gp_names, metric=metric)
+    paired = paired_peer_review({name: models[name] for name in gp_names}, own, peers,
+        official_target, peer_target, official_run, exclude_matching_peer_inputs=True)
+    column = "Peer-assisted " + metric
+    scores = paired["table"].set_index("Model")
+    name = scores.loc[list(gp_names), column].idxmin()
+    full = dict(name=name, model=paired["fitted"][name], error=float(scores.loc[name, column]))
+    if owner["name"] != saved_official["model"]:
+        raise ValueError("The refit selected a different owner-only GP from the saved review")
+    reference = query_prediction(owner["model"], saved_official["point"], own, official_target,
+                                 weight=weight, precision=search_settings["precision"])
+    np.testing.assert_allclose([reference["predicted_output"], reference["posterior_std"]],
+        [saved_official["predicted_output"], saved_official["posterior_std"]], rtol=1e-10, atol=1e-9)
+
+    anchor = own[int(np.argmax(official_target))]
+    pool, _ = make_candidate_review(own, anchor, input_columns=columns, search_settings=search_settings,
+                                    minimum_distance=minimum_distance, excluded_inputs=known)
+    search = review_gp_query(full, pool, known, official_target, input_columns=columns, weights=weights,
+                            weight=weight, feature_sets=feature_sets, minimum_distance=minimum_distance)
+    full_proposal = search["proposal"]
+    rows = []
+    precision = search_settings["precision"]
+    for label, proposal in (("My data only", reference), ("Full cohort", full_proposal)):
+        point = np.asarray(proposal["point"])
+        duplicate = bool(np.any(np.all(known.round(precision) == point, axis=1)))
+        distance = float(cdist(point[None], known).min())
+        means = {}
+        for scope, selected in (("owner", owner), ("cohort", full)):
+            mean, sd = selected["model"].predict(point[None], return_std=True)
+            means[f"{scope}_mean"], means[f"{scope}_latent_sd"] = float(mean[0]), float(sd[0])
+        rows.append(dict(training_scope=label, portal_input=proposal["portal_input"], point=point.tolist(),
+            nearest_cohort_distance=distance, cohort_eligible=not duplicate and distance >= minimum_distance,
+            **means))
+    if not rows[1]["cohort_eligible"]:
+        raise ValueError("Full-cohort proposal violates the observed-input or spacing guard")
+    return dict(owner=dict(model=owner["name"], error=owner["error"], proposal=reference),
+                cohort=dict(model=full["name"], error=full["error"], proposal=full_proposal),
+                mean_baseline=float(official_run["table"].set_index("Model").loc["Mean baseline", metric]),
+                paired=paired["table"], warnings=paired["warnings"],
+                withheld_peer_counts=paired["withheld_peer_counts"], cross_scores=pd.DataFrame(rows),
+                owner_held_out=official_run["predictions"][owner["name"]].tolist(),
+                cohort_held_out=paired["predictions"][full["name"]].tolist(),
+                weight_sensitivity=search["weight_sensitivity"], candidate_count=len(pool))
+
+
 def neural_candidate_review(networks, candidates, *, input_columns):
     """Give each architecture the same candidates; seed spread is labelled as variation."""
     points = candidates[list(input_columns)].to_numpy(dtype=float)
@@ -158,35 +220,50 @@ def neural_candidate_review(networks, candidates, *, input_columns):
                 criterion="mean prediction across all declared seeds; not GP UCB")
 
 
-def neural_gradient_review(networks, anchor, *, relative_tolerance=.005):
-    """Check derivatives, explicitly separating a ReLU kink from a smooth probe.
+def _relu_stencil_crosses_kink(pipeline, point, step):
+    """Check the activation pattern at the actual bounded finite-difference points."""
+    offsets = np.eye(len(point)) * step
+    stencil = np.clip(np.vstack([point, point - offsets, point + offsets]), 0, .999999)
+    activation = pipeline.named_steps["scale"].transform(stencil)
+    network = pipeline.named_steps["model"]
+    for weights, bias in zip(network.coefs_[:-1], network.intercepts_[:-1]):
+        linear = activation @ weights + bias
+        active = linear > 0
+        if np.any(active != active[0]):
+            return True
+        activation = np.maximum(linear, 0)
+    return False
 
-    A central difference across an activation boundary need not match either
-    branch derivative. Keep the anchor check visible; validate the implementation
-    at a fixed nearby point only when a near-zero ReLU activation explains it.
+
+def neural_gradient_review(networks, anchor, *, relative_tolerance=.005):
+    """Check derivatives and preserve the original error when a stencil crosses a kink.
+
+    A central difference across an activation boundary can mix branch
+    derivatives. Check parity at a nearby point with a single activation
+    pattern in its stencil, and leave the original anchor check visible.
     """
+    anchor = np.asarray(anchor, dtype=float)
+    step = 1e-5
     rows = []
     for name, model in zip(networks["names"], networks["models"]):
         gradient = network_input_gradient(model, anchor)[0]
-        numerical = finite_difference_gradient(model.predict, np.atleast_2d(anchor))[0]
+        numerical = finite_difference_gradient(model.predict, anchor, step=step)[0]
         relative = float(np.max(np.abs(gradient-numerical) / np.maximum(1., np.abs(gradient))))
         anchor_passes = relative <= relative_tolerance
-        check_point, check_error, status = np.asarray(anchor), relative, "anchor"
+        check_point, check_error, status = anchor, relative, "anchor"
         pipeline = model.regressor_
         network = pipeline.named_steps["model"]
-        if not anchor_passes and network.activation == "relu":
-            activation = pipeline.named_steps["scale"].transform(np.atleast_2d(anchor))
-            margins = []
-            for weights, bias in zip(network.coefs_[:-1], network.intercepts_[:-1]):
-                linear = activation @ weights + bias
-                margins.append(float(np.abs(linear).min()))
-                activation = np.maximum(linear, 0)
-            if min(margins) <= 1e-6:
-                check_point = np.clip(np.asarray(anchor) + np.linspace(.0001, .0002, len(anchor)), 0, .999999)
+        if (not anchor_passes and network.activation == "relu"
+                and _relu_stencil_crosses_kink(pipeline, anchor, step)):
+            towards_centre = np.where(anchor < .5, 1., -1.)
+            probe = anchor + towards_centre * np.linspace(.0001, .0002, len(anchor))
+            probe_step = 1e-7
+            if not _relu_stencil_crosses_kink(pipeline, probe, probe_step):
+                check_point = probe
                 analytic = network_input_gradient(model, check_point)[0]
-                numeric = finite_difference_gradient(model.predict, check_point, step=1e-7)[0]
+                numeric = finite_difference_gradient(model.predict, check_point, step=probe_step)[0]
                 check_error = float(np.max(np.abs(analytic-numeric) / np.maximum(1., np.abs(analytic))))
-                status = "nearby smooth probe; anchor is near a ReLU kink"
+                status = "nearby smooth probe; anchor stencil crosses a ReLU kink"
         rows.append(dict(Model=name, maximum_relative_error=check_error,
                          passes=check_error <= relative_tolerance, check_location=status,
                          check_point=check_point.tolist(), anchor_relative_error=relative,

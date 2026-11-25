@@ -1,5 +1,6 @@
 """Snapshot alignment and like-for-like cohort comparisons for any input count."""
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -51,6 +52,23 @@ def load_cohort_review(data_path, official_path, *, input_columns, output_column
     positions = indexed.index.get_indexer(own_data.observation_id)
     review.update(own_data=own_data, own_positions=positions, own_mask=own_mask, peer_mask=peer_mask)
     return review
+
+
+def load_dated_cohort_review(snapshot_dir, official_path, *, function, input_columns, expected_round_counts):
+    """Validate an archived intake and its official/peer row alignment."""
+    snapshot = Path(snapshot_dir)
+    official_path = Path(official_path)
+    audit = json.loads((snapshot / "dataset-audit.json").read_text(encoding="utf-8"))
+    entry = next(row for row in audit["summary"] if row["function"] == function)
+    pooled = snapshot / f"function_{function}/observations.csv"
+    for path, expected in ((official_path, entry["official_sha256"]), (pooled, entry["sha256"])):
+        if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
+            raise ValueError(f"Snapshot hash mismatch: {path}")
+    review = load_cohort_review(pooled, official_path, input_columns=input_columns,
+        expected_round_counts=expected_round_counts, expected_peer_count=entry["peer"])
+    if len(review["own_data"]) != entry["official"] or len(review["data"]) != entry["total"]:
+        raise ValueError("Cohort counts do not match the intake audit")
+    return review, entry
 
 
 def paired_target_comparison(own_run, pooled_run, own_target, *, own_positions, peer_count):

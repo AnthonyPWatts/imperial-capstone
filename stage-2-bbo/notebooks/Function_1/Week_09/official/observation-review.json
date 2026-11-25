@@ -1,0 +1,107 @@
+{
+  "function": 1,
+  "week": 9,
+  "observations": 18,
+  "latest_id": "round-08",
+  "latest_output": 1.9973556997182018,
+  "latest_rank": 1,
+  "rank_definition": "1 = highest output",
+  "best_id": "round-08",
+  "best_observed_output": 1.9973556997182018,
+  "positive_outputs": 11,
+  "negative_outputs": 7,
+  "exact_zeros": 0,
+  "progress": [
+    {
+      "source_round": 0,
+      "stage": "Initial batch",
+      "returned_y": "not_applicable",
+      "best_y": 7.710875114502849e-16,
+      "change_vs_prior_best": "not_applicable"
+    },
+    {
+      "source_round": 1,
+      "stage": "Round 1",
+      "returned_y": -0.00550934555381189,
+      "best_y": 7.710875114502849e-16,
+      "change_vs_prior_best": -0.005509345553812661
+    },
+    {
+      "source_round": 2,
+      "stage": "Round 2",
+      "returned_y": -4.0577449722040024e-109,
+      "best_y": 7.710875114502849e-16,
+      "change_vs_prior_best": -7.710875114502849e-16
+    },
+    {
+      "source_round": 3,
+      "stage": "Round 3",
+      "returned_y": 1.9728117755887245e-200,
+      "best_y": 7.710875114502849e-16,
+      "change_vs_prior_best": -7.710875114502849e-16
+    },
+    {
+      "source_round": 4,
+      "stage": "Round 4",
+      "returned_y": -9.545890352347559e-172,
+      "best_y": 7.710875114502849e-16,
+      "change_vs_prior_best": -7.710875114502849e-16
+    },
+    {
+      "source_round": 5,
+      "stage": "Round 5",
+      "returned_y": -1.3863589099829094e-94,
+      "best_y": 7.710875114502849e-16,
+      "change_vs_prior_best": -7.710875114502849e-16
+    },
+    {
+      "source_round": 6,
+      "stage": "Round 6",
+      "returned_y": 2.1709129251221444e-14,
+      "best_y": 2.1709129251221444e-14,
+      "change_vs_prior_best": 2.093804173977116e-14
+    },
+    {
+      "source_round": 7,
+      "stage": "Round 7",
+      "returned_y": 1.9973143634157464,
+      "best_y": 1.9973143634157464,
+      "change_vs_prior_best": 1.9973143634157247
+    },
+    {
+      "source_round": 8,
+      "stage": "Round 8",
+      "returned_y": 1.9973556997182018,
+      "best_y": 1.9973556997182018,
+      "change_vs_prior_best": 4.133630245539699e-05
+    }
+  ],
+  "official_history_comparison": {
+    "previous_best_id": "round-07",
+    "previous_best_output": 1.9973143634157464,
+    "distance_to_previous_best": 0.0003850519445477151,
+    "latest_minus_previous_best": 4.133630245539699e-05,
+    "nearest_previous_id": "round-07",
+    "nearest_previous_distance": 0.0003850519445477151
+  },
+  "historical_forecast": {
+    "gp_model": "GP: separate length scales",
+    "data_scope": "official_plus_retained_peers",
+    "prediction_units": "signed-log height h",
+    "height_scale": 1e-200,
+    "gp_mean": 197.21352824485666,
+    "gp_latent_sd": 15.168380611292008,
+    "neural_architecture": "tanh-8",
+    "neural_mean": 86.90538007453979,
+    "neural_seed_sd": 24.276734585236653,
+    "official_snapshot_sha256": "ac0e4351a5c87e738818354ce175044d162449eb00e455c9c00af7e7d0251ad4",
+    "explorer_sha256": "54e086b18547dd3abe96aed3832cca3e9089891afdac4115d5ab335deb86ddd2",
+    "source": "notebooks/Function_1/Week_08/official/figures/neural-network-explorer.html",
+    "portal_input": "0.628208-0.629204",
+    "actual_output": 1.9973556997182018,
+    "actual_in_prediction_units": 200.30045541322764,
+    "actual_minus_gp_mean": 3.086927168370977,
+    "actual_minus_neural_mean": 113.39507533868785
+  },
+  "remaining_queries": 5
+}

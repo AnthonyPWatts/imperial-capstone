@@ -1,0 +1,107 @@
+{
+  "function": 5,
+  "week": 9,
+  "observations": 28,
+  "latest_id": "round-08",
+  "latest_output": 8099.179958965934,
+  "latest_rank": 6,
+  "rank_definition": "1 = highest output",
+  "best_id": "round-02",
+  "best_observed_output": 8662.405001248297,
+  "positive_outputs": 28,
+  "negative_outputs": 0,
+  "exact_zeros": 0,
+  "progress": [
+    {
+      "source_round": 0,
+      "stage": "Initial batch",
+      "returned_y": "not_applicable",
+      "best_y": 1088.8596181962705,
+      "change_vs_prior_best": "not_applicable"
+    },
+    {
+      "source_round": 1,
+      "stage": "Round 1",
+      "returned_y": 3933.145723875986,
+      "best_y": 3933.145723875986,
+      "change_vs_prior_best": 2844.2861056797155
+    },
+    {
+      "source_round": 2,
+      "stage": "Round 2",
+      "returned_y": 8662.405001248297,
+      "best_y": 8662.405001248297,
+      "change_vs_prior_best": 4729.259277372311
+    },
+    {
+      "source_round": 3,
+      "stage": "Round 3",
+      "returned_y": 8525.753289433393,
+      "best_y": 8662.405001248297,
+      "change_vs_prior_best": -136.65171181490405
+    },
+    {
+      "source_round": 4,
+      "stage": "Round 4",
+      "returned_y": 8449.982374548918,
+      "best_y": 8662.405001248297,
+      "change_vs_prior_best": -212.42262669937918
+    },
+    {
+      "source_round": 5,
+      "stage": "Round 5",
+      "returned_y": 8283.828103592921,
+      "best_y": 8662.405001248297,
+      "change_vs_prior_best": -378.57689765537543
+    },
+    {
+      "source_round": 6,
+      "stage": "Round 6",
+      "returned_y": 1616.625747348229,
+      "best_y": 8662.405001248297,
+      "change_vs_prior_best": -7045.7792539000675
+    },
+    {
+      "source_round": 7,
+      "stage": "Round 7",
+      "returned_y": 8283.06154432586,
+      "best_y": 8662.405001248297,
+      "change_vs_prior_best": -379.3434569224373
+    },
+    {
+      "source_round": 8,
+      "stage": "Round 8",
+      "returned_y": 8099.179958965934,
+      "best_y": 8662.405001248297,
+      "change_vs_prior_best": -563.2250422823627
+    }
+  ],
+  "official_history_comparison": {
+    "previous_best_id": "round-02",
+    "previous_best_output": 8662.405001248297,
+    "distance_to_previous_best": 0.030945999999999918,
+    "latest_minus_previous_best": -563.2250422823627,
+    "nearest_previous_id": "round-04",
+    "nearest_previous_distance": 0.020234789274909626
+  },
+  "historical_forecast": {
+    "gp_model": "Gaussian process",
+    "data_scope": "official",
+    "prediction_units": "output y",
+    "height_scale": null,
+    "gp_mean": 8284.836031685822,
+    "gp_latent_sd": 159.6087202329524,
+    "neural_architecture": "tanh-16",
+    "neural_mean": 8330.072533376828,
+    "neural_seed_sd": 12.382677134966778,
+    "official_snapshot_sha256": "b3b7098fbb55a245da5edb9283f403623033d69a0431e18d930a057952792162",
+    "explorer_sha256": "6d366cb6bc67b213c6783962fca0f3e097dff4e2623a17be3d314295a37800be",
+    "source": "notebooks/Function_5/Week_08/figures/neural-network-explorer.html",
+    "portal_input": "0.999999-0.969053-0.999999-0.999999",
+    "actual_output": 8099.179958965934,
+    "actual_in_prediction_units": 8099.179958965934,
+    "actual_minus_gp_mean": -185.65607271988756,
+    "actual_minus_neural_mean": -230.89257441089376
+  },
+  "remaining_queries": 5
+}

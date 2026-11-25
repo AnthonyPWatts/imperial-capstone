@@ -11,7 +11,7 @@ their existing explanations.
 | `plot_helpers.py` | Observed-output plots, including a configurable linear number line; coverage and sampling-gap plots; fixed-plan progressions for two inputs and selected projections from any input count; observed two-input terrains; common interactive plot settings and colours. |
 | `output_helpers.py` | Weekly output summaries and chart captions. |
 | `exploration_review_helpers.py` | Validated snapshot loading, ranked plotting data and remaining fixed-plan inputs with portal strings, independent of input dimension. |
-| `observation_review_helpers.py` | Dimension-independent measured review preparation, official round progress, saved historical forecast checks, measured-output plots and strongest input profiles. |
+| `observation_review_helpers.py` | Dimension-independent measured review preparation, official round progress, checks of recorded and replayed historical forecasts, measured-output plots and strongest input profiles. |
 | `coverage_helpers.py`, `coverage_cache.py` | Geometric coverage comparisons and their local caches. |
 | `query_budget.py` | Remaining query allowance. |
 | `model_helpers.py` | Configurable fixed-length-scale model families, leave-one-out comparisons, GP teaching curves, validation plots and hypothetical query scoring, shared across input dimensions. |
@@ -24,8 +24,11 @@ their existing explanations.
 | `surrogate_study_helpers.py` | Bounded neural/regression/classification comparisons, training-only class thresholds, seed aggregation, checked input backpropagation, actual SVM support vectors and hypothetical surrogate paths. |
 | `surrogate_study_plots.py` | Surrogate validation, seed variation, confusion matrices, complete input-gradient profiles, conditional decision boundaries and support-vector profiles. |
 | `surrogate_study_report.py` | Generate the seven reflection-evidence sections from numerical results, preserving target units, model limitations and the ten-step course lifecycle. |
-| `prediction_review_helpers.py` | Weekly GP selection on identical official held-out targets, retained-peer training comparisons, neural architecture/seed review, constrained candidate pools and ReLU-aware gradient checks. |
+| `prediction_review_helpers.py` | Weekly GP selection on identical official held-out targets, retained-peer training comparisons, neural architecture/seed review, constrained candidate pools and gradient checks that detect ReLU branch crossings at the finite-difference points. |
 | `prediction_review_plots.py` | Conditional GP/neural curves with distinct uncertainty and seed bands, and full-input hull checks in two- or three-input acquisition planes. |
+| `cohort_surrogate_study.py` | Runs the surrogate screen and nested grouped validation, with fold-local preprocessing, model choice and blending. Exposes the same blend procedure for official-only fits. |
+| `cohort_surrogate_plots.py` | Compares official and peer distributions and plots fixed and nested cohort-model evidence. |
+| `official_query_alternatives.py` | Repeats the official-only validation for supported alternatives and compares their query points with the saved GP proposals. |
 | `neural_explorer.py` | Offline GP/neural input explorer retaining fitted preprocessing, all neural architectures/seeds and GP mean/latent SD, checked against fitted Python models. |
 
 Use `Function_N/FunctionSpecificShared/` for code tied to one function, shared

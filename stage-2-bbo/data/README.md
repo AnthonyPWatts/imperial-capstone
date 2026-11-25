@@ -7,8 +7,8 @@ The [Module 14 overview](../README.md) and strategy reflection use the fixed
 through round 2**, with 12, 12, 17, 32, 22, 22, 32 and 42 rows for Functions 1–8.
 The submitted Week 3 queries were selected from that evidence.
 
-The accumulated data include the seventh-query return. Week 5–8 snapshots
-contain returns through rounds 4–7 respectively. Use the Week 3 snapshots
+The accumulated data include the eighth-query return. Week 5–9 snapshots
+contain returns through rounds 4–8 respectively. Use the Week 3 snapshots
 to reproduce the Module 14 decisions.
 
 ## Source data and recovery
@@ -49,7 +49,40 @@ The local `import-verification-2026-09-24.json` records file hashes and checks.
 See the [intake notes](../docs/module-12-intake.md) for the official data link and
 submission rules. Do not add the supplied arrays to the repository.
 
-## Current accumulated observations: round 7
+## Current accumulated observations: round 8
+
+The Week 8 results arrived on **23 November 2026 at 14:55 GMT**. Both cumulative
+attachments agree with the seven previous rounds, and all eight returned
+inputs match the Week 8 submission. The eight new observations bring the
+official total to **239**. The [round 8 record](../submissions/round-08-results.json)
+contains the exact returns, source hashes and best observed values.
+
+The Git-ignored folder `rounds/round-08/` holds the original attachments
+(3,349 and 1,310 bytes), the sixteen result lines and source metadata. Rebuild
+the accumulated NumPy arrays and CSVs from the Capstone root:
+
+~~~powershell
+.\run-python.ps1 stage-2-bbo/scripts/import_round_results.py --round 8
+~~~
+
+## Week 9 notebook snapshots
+
+Functions 1–4 use `notebooks/Function_N/Week_09/official/observations.csv`.
+Functions 5–8 use `notebooks/Function_N/Week_09/observations.csv`. These
+Git-ignored copies of the round 8 accumulated CSVs contain **18, 18, 23, 38,
+28, 28, 38 and 48** official rows respectively. They preserve the Week 8
+observations and add one row per function with observation ID `round-08`
+and source round `8`. To recreate the Week 9 files, copy each round 8
+accumulated CSV to its corresponding notebook path.
+
+For Functions 1–4, append the **6, 5, 5 and 6** retained peer rows from the
+corresponding Week 8 pooled CSVs to the new official copies. The resulting
+pooled counts are **24, 23, 28 and 44**. Keep the peer IDs and original peer
+round labels, and record the new official and pooled CSV hashes in each
+Week 9 cohort audit. The local audits also retain the previous pooled CSV and
+audit hashes. Held-out comparisons use only official rows as targets.
+
+## Previous accumulated observations: round 7
 
 The Week 7 results arrived on **12 November 2026 at 03:39 GMT**. The cumulative
 attachments reconcile with the prior six rounds and all eight latest inputs
@@ -58,12 +91,8 @@ observations**. The [round 7 record](../submissions/round-07-results.json) has t
 exact outputs, source hashes and changes to the best observed values.
 
 The Git-ignored folder `rounds/round-07/` holds the original attachments
-(2,941 and 1,148 bytes), feedback lines and source metadata. Rebuild the
-accumulated arrays and CSVs from the Capstone root with the full local history:
-
-~~~powershell
-.\run-python.ps1 stage-2-bbo/scripts/import_round_results.py --round 7
-~~~
+(2,941 and 1,148 bytes), feedback lines and source metadata. The Week 8
+snapshots below retain the round 7 state for notebook reproduction.
 
 ## Week 8 notebook snapshots
 
@@ -80,6 +109,16 @@ For Functions 1–4, the Week 8 `cohort/observations.csv` files append the
 new official CSVs. These pooled snapshots and the local `cohort/data-audit.json`
 provenance records are Git-ignored. The Week 8 notebooks use the saved Week 7
 selection records to recover the pre-return forecasts.
+
+## Full-cohort refresh on 23 November 2026
+
+The local `cohort/2026-11-23/` snapshot contains 456 observations, including
+239 official rows through round 8 and 217 published peer returns. It adds 23
+peer returns to the earlier intake. Each `function_N/observations.csv` and the
+official source file are fingerprinted in `dataset-audit.json`, with pinned
+repository commits and retained provenance. Local snapshots supply the
+[full-cohort notebooks](../results/week-09-cohort-review.md). The Week 9
+official model reviews use their own recorded training snapshots.
 
 ## Cohort refresh on 12 November 2026
 

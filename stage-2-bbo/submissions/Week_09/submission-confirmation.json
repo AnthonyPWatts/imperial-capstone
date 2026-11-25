@@ -1,0 +1,16 @@
+{
+  "week": 9,
+  "status": "submitted_awaiting_results",
+  "confirmed_on": "2026-11-23",
+  "source": "project_owner_confirmation",
+  "exact_portal_timestamp": null,
+  "results_status": "pending",
+  "latest_confirmed_feedback_round": 8,
+  "official_observations": 239,
+  "remaining_queries_per_function_after_submission": 4,
+  "submission_file": {
+    "path": "stage-2-bbo/submissions/Week_09/submissions.txt",
+    "sha256": "cd0244e85ca59459e192483b31a32f42095fcef346b9d103a124427deceae9ce"
+  },
+  "portal_submission_performed_by_this_workflow": false
+}

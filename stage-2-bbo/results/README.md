@@ -1,8 +1,12 @@
 # Results
 
-**Week 8 submitted.** The project owner confirmed all eight inputs on
-19 November 2026. Results are pending, with five future queries per function.
-[Submission confirmation](../submissions/Week_08/submission-confirmation.json)
+**Week 8 evaluated.** The [round 8 record](../submissions/round-08-results.json)
+confirms all eight inputs and brings the total to **239 official observations**.
+Functions 1, 3 and 8 set new bests. Function 3 improved on its starting best
+for the first time, from `-0.034835` to `-0.004952`.
+The [Week 9 review](week-09-review.md) links all sixteen executed notebooks
+and the held-out model comparisons. The [full-cohort review](week-09-cohort-review.md)
+links the refreshed peer analyses and both provisional query lists. Five queries remain per function.
 
 **Week 7 evaluated.** All eight returned inputs match the prepared batch.
 There are **231 official observations through round 7**. Functions 1, 4, 6 and

@@ -9,7 +9,7 @@ Run `.\setup-venv.ps1` from the repository root to create or refresh the local
 Python environment. The [repository environment setup](../../README.md#modelling-environment)
 also covers selecting an interpreter, rebuilding and activation. Provide the
 authorised course data described in [the data notes](../data/README.md).
-Week 1 analyses use the preserved initial arrays. Week 2–8 notebooks load
+Week 1 analyses use the preserved initial arrays. Week 2–9 notebooks load
 `observations.csv` beside each notebook, with that notebook's directory as
 the kernel's working directory. These weekly CSV files are Git-ignored; populate
 them with the matching historical round before running a fresh checkout:
@@ -17,11 +17,58 @@ Week 2 uses observations through round 1; Week 3 uses observations through round
 Week 4 uses observations through round 3 (199 in total); Week 5 uses observations
 through round 4 (207 in total); Week 6 uses observations through round 5
 (215 in total); Week 7 uses observations through round 6 (223 in total); Week 8
-uses observations through round 7 (231 in total).
+uses observations through round 7 (231 in total), and Week 9 uses observations
+through round 8 (239 in total).
 See the [recovery instructions](../data/README.md#recovering-earlier-snapshots).
 Snapshots are not updated automatically when later results arrive.
 
-## Current Week 8 reviews
+## Week 9 reviews
+
+Restore the [Week 9 snapshots and retained peer rows](../data/README.md#week-9-notebook-snapshots)
+and the Week 8 snapshots and audits. The archived Week 8 model summaries and
+offline explorers supply the fitted historical models. Run the sixteen current
+notebooks from the Capstone root:
+
+~~~powershell
+.\run-python.ps1 stage-2-bbo/scripts/run_week_09_reviews.py
+~~~
+
+Use `--kind observations` or `--kind models` to run one side, or
+`--functions 1 2` to select functions. The runner uses each notebook's
+directory and the Capstone kernel, and checks the input files' hashes after each
+notebook. The observation reviews replay archived fits at the submitted inputs.
+The model reviews refit on the new data, check held-out accuracy and export
+provisional candidates. See the [Week 9 review](../results/week-09-review.md)
+for the results and links to the individual notebooks.
+
+The model notebooks for Functions 1, 2 and 4–8 also refit the supported
+official-only alternatives. Use the same runner with `--kind models` and
+those function numbers. These notebooks save `alternative-query-review.json`.
+The comparison uses the archived full-cohort GP point when its saved model
+review is available. [Official-only query comparison](../results/week-09-official-alternatives.md)
+
+## Week 9 full-cohort review
+
+Restore the [23 November cohort snapshot](../data/README.md#full-cohort-refresh-on-23-november-2026)
+with its audit. The runner also uses the matching official CSVs and the
+saved Week 9 official model summaries. Run from the Capstone root:
+
+~~~powershell
+.\run-python.ps1 stage-2-bbo/scripts/run_week_09_cohort_reviews.py
+~~~
+
+Use `--kind observations` or `--kind models` to rerun one side.
+The working directory for each notebook is its `Week_09/full-cohort/` folder.
+The [full-cohort review](../results/week-09-cohort-review.md) links the
+notebooks, paired validation and both exact provisional input strings.
+
+The same cohort runner regenerates the expanded [surrogate study](../results/week-09-cohort-surrogate-study.md).
+Observation reviews add coordinate and score distribution diagnostics. Model
+reviews run the fixed leave-one-out screen and two nested five-fold repeats.
+These notebooks save `surrogate-study.json` beside the paired GP review.
+Use the `--functions` option for a focused rerun.
+
+## Week 8 reviews
 
 Restore the [Week 8 snapshots](../data/README.md#week-8-notebook-snapshots),
 then run the sixteen observation and model notebooks from the Capstone root:
