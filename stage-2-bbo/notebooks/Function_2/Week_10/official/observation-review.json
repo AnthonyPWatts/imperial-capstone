@@ -1,0 +1,114 @@
+{
+  "function": 2,
+  "week": 10,
+  "observations": 19,
+  "latest_id": "round-09",
+  "latest_output": 0.7029662813642908,
+  "latest_rank": 2,
+  "rank_definition": "1 = highest output",
+  "best_id": "round-06",
+  "best_observed_output": 0.7230575455749746,
+  "positive_outputs": 17,
+  "negative_outputs": 2,
+  "exact_zeros": 0,
+  "progress": [
+    {
+      "source_round": 0,
+      "stage": "Initial batch",
+      "returned_y": "not_applicable",
+      "best_y": 0.6112052157614438,
+      "change_vs_prior_best": "not_applicable"
+    },
+    {
+      "source_round": 1,
+      "stage": "Round 1",
+      "returned_y": 0.2834440433397594,
+      "best_y": 0.6112052157614438,
+      "change_vs_prior_best": -0.3277611724216844
+    },
+    {
+      "source_round": 2,
+      "stage": "Round 2",
+      "returned_y": 0.031095044455081614,
+      "best_y": 0.6112052157614438,
+      "change_vs_prior_best": -0.5801101713063622
+    },
+    {
+      "source_round": 3,
+      "stage": "Round 3",
+      "returned_y": 0.1560963719637047,
+      "best_y": 0.6112052157614438,
+      "change_vs_prior_best": -0.4551088437977391
+    },
+    {
+      "source_round": 4,
+      "stage": "Round 4",
+      "returned_y": 0.1311943186340309,
+      "best_y": 0.6112052157614438,
+      "change_vs_prior_best": -0.48001089712741296
+    },
+    {
+      "source_round": 5,
+      "stage": "Round 5",
+      "returned_y": 0.3225077077129568,
+      "best_y": 0.6112052157614438,
+      "change_vs_prior_best": -0.28869750804848704
+    },
+    {
+      "source_round": 6,
+      "stage": "Round 6",
+      "returned_y": 0.7230575455749746,
+      "best_y": 0.7230575455749746,
+      "change_vs_prior_best": 0.11185232981353077
+    },
+    {
+      "source_round": 7,
+      "stage": "Round 7",
+      "returned_y": 0.5117797786721923,
+      "best_y": 0.7230575455749746,
+      "change_vs_prior_best": -0.21127776690278233
+    },
+    {
+      "source_round": 8,
+      "stage": "Round 8",
+      "returned_y": 0.5318742667349191,
+      "best_y": 0.7230575455749746,
+      "change_vs_prior_best": -0.19118327884005548
+    },
+    {
+      "source_round": 9,
+      "stage": "Round 9",
+      "returned_y": 0.7029662813642908,
+      "best_y": 0.7230575455749746,
+      "change_vs_prior_best": -0.020091264210683746
+    }
+  ],
+  "official_history_comparison": {
+    "previous_best_id": "round-06",
+    "previous_best_output": 0.7230575455749746,
+    "distance_to_previous_best": 0.5298860000000001,
+    "latest_minus_previous_best": -0.020091264210683746,
+    "nearest_previous_id": "round-05",
+    "nearest_previous_distance": 0.07298208126656845
+  },
+  "historical_forecast": {
+    "gp_model": "GP: x1 only",
+    "data_scope": "official_plus_retained_peers",
+    "prediction_units": "output y",
+    "height_scale": null,
+    "gp_mean": 0.6217854719177824,
+    "gp_latent_sd": 0.01346887560199616,
+    "neural_architecture": "relu-8-8",
+    "neural_mean": 0.32374860380909787,
+    "neural_seed_sd": 0.11228403815845266,
+    "official_snapshot_sha256": "1d42b2716ff808973995120d35f8fa76d5c60931301e18a6862ea7157b9374fa",
+    "explorer_sha256": "11ee3c0dba6f26b9bbea50ce82736ce1b75f6a65d4047b06861a79a123bac73c",
+    "source": "notebooks/Function_2/Week_09/official/figures/neural-network-explorer.html",
+    "portal_input": "0.700520-0.530000",
+    "actual_output": 0.7029662813642908,
+    "actual_in_prediction_units": 0.7029662813642908,
+    "actual_minus_gp_mean": 0.0811808094465084,
+    "actual_minus_neural_mean": 0.379217677555193
+  },
+  "remaining_queries": 4
+}

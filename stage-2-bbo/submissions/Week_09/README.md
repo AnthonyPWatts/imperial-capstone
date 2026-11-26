@@ -1,8 +1,9 @@
 # Week 9 submitted inputs
 
 **Submission confirmed on 23 November 2026.** The project owner confirmed
-that all eight inputs were submitted exactly as saved. Round 9 results are
-pending. Four queries remain per function.
+that all eight inputs were submitted exactly as saved. The [round 9
+results](../round-09-results.json) arrived on 25 November and matched all eight.
+Four queries remain per function.
 [Submission confirmation](submission-confirmation.json)
 
 The choices used the 239 official observations through round 8 and the

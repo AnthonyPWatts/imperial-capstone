@@ -28,6 +28,9 @@ their existing explanations.
 | `prediction_review_plots.py` | Conditional GP/neural curves with distinct uncertainty and seed bands, and full-input hull checks in two- or three-input acquisition planes. |
 | `cohort_surrogate_study.py` | Runs the surrogate screen and nested grouped validation, with fold-local preprocessing, model choice and blending. Exposes the same blend procedure for official-only fits. |
 | `cohort_surrogate_plots.py` | Compares official and peer distributions and plots fixed and nested cohort-model evidence. |
+| `cohort_attention.py` | Benchmarks a fixed tabular transformer and an attention-off ablation on the same grouped official holdouts as the cohort surrogate study. |
+| `week_10_decision_record.py` | Resolves the four recorded Week 10 inputs, labels both prepared routes and compares forecasts using the official data. |
+| `weekly_peak_review.py` | Compares local and broader incumbent regret using joint Gaussian-process draws, validates official returns, and evaluates shortlist lookahead. Includes the starter-only separable quadratic check. |
 | `official_query_alternatives.py` | Repeats the official-only validation for supported alternatives and compares their query points with the saved GP proposals. |
 | `neural_explorer.py` | Offline GP/neural input explorer retaining fitted preprocessing, all neural architectures/seeds and GP mean/latent SD, checked against fitted Python models. |
 

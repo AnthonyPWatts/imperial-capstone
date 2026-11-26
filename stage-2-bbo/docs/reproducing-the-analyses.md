@@ -9,7 +9,7 @@ Run `.\setup-venv.ps1` from the repository root to create or refresh the local
 Python environment. The [repository environment setup](../../README.md#modelling-environment)
 also covers selecting an interpreter, rebuilding and activation. Provide the
 authorised course data described in [the data notes](../data/README.md).
-Week 1 analyses use the preserved initial arrays. Week 2–9 notebooks load
+Week 1 analyses use the preserved initial arrays. Week 2–10 notebooks load
 `observations.csv` beside each notebook, with that notebook's directory as
 the kernel's working directory. These weekly CSV files are Git-ignored; populate
 them with the matching historical round before running a fresh checkout:
@@ -17,10 +17,51 @@ Week 2 uses observations through round 1; Week 3 uses observations through round
 Week 4 uses observations through round 3 (199 in total); Week 5 uses observations
 through round 4 (207 in total); Week 6 uses observations through round 5
 (215 in total); Week 7 uses observations through round 6 (223 in total); Week 8
-uses observations through round 7 (231 in total), and Week 9 uses observations
-through round 8 (239 in total).
+uses observations through round 7 (231 in total), Week 9 uses observations
+through round 8 (239 in total), and Week 10 uses observations through round 9
+(247 in total).
 See the [recovery instructions](../data/README.md#recovering-earlier-snapshots).
 Snapshots are not updated automatically when later results arrive.
+
+## Week 10 reviews
+
+Restore the [Week 10 official and retained-peer snapshots](../data/README.md#week-10-notebook-snapshots),
+the archived Week 9 model summaries and explorers, and the [25 November cohort
+snapshot](../data/README.md#full-cohort-refresh-on-25-november-2026).
+Run the official notebooks first so the full-cohort prediction notebooks
+can use their fresh official summaries.
+
+~~~powershell
+.\run-python.ps1 stage-2-bbo/scripts/run_week_10_reviews.py
+.\run-python.ps1 stage-2-bbo/scripts/run_week_10_cohort_reviews.py
+~~~
+
+Use `--functions` to select functions and `--kind observations` or `--kind models`
+to select the review type. Each notebook runs in its own directory with the
+Capstone Python kernel. The runners check the input hashes. The full-cohort
+prediction notebooks save `attention-study.json` alongside the GP and nested
+surrogate summaries. After the pooled run, rerun the official model notebooks
+with `--kind models` to include the pooled GP point in their alternative-query
+tables. The [Week 10 review](../results/week-10-review.md) links
+each notebook and compares the results.
+
+### Expectations, Results and Predictions notebooks
+
+The Week 10 decision notebooks read the official observation CSV, both
+official review JSON files and the round 9 result. The dated current-cohort
+and 2024 snapshots are measured comparisons. The decision models use
+official data. The prepared comparison reads the initial proposal and auto-
+generated advisory batch alongside the two current portal files. Run from
+the Capstone root after the official observation and model notebooks.
+
+~~~powershell
+.\run-python.ps1 stage-2-bbo/scripts/run_week_10_reviews.py --kind decision
+~~~
+
+Each function saves `weekly-peak-review.json`. For a new week, refresh the
+expectations from the saved pre-return forecast, run the latest official
+reviews, and revise the function's evidence, tolerance and remaining-round
+strategy. [Week 10 decision notebook index](../results/week-10-review.md#weekly-decision-notebooks)
 
 ## Week 9 reviews
 

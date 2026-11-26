@@ -102,7 +102,9 @@ def plot_output_number_line(review, *, title=None, save_to=None):
     tick_step = max(1, int(np.ceil((upper_exponent - lower_exponent) / 5 / 10)) * 10)
     exponents = np.arange(np.ceil(lower_exponent / tick_step) * tick_step,
                           upper_exponent, tick_step).astype(int)
-    exponents = np.unique(np.r_[exponents, upper_exponent])
+    if exponents.size and upper_exponent - exponents[-1] < tick_step / 2:
+        exponents = exponents[:-1]
+    exponents = np.r_[exponents, upper_exponent]
     ticks = 10.0 ** exponents
 
     figure = plt.figure(figsize=(14, 4.5))

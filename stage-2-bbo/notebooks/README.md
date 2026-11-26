@@ -7,6 +7,19 @@ Use [`Shared/`](Shared/README.md) for helpers reused by several functions and
 weeks. The shared-helper guide lists the modelling and plotting modules.
 Weekly notebooks retain their data, assumptions, teaching steps and decisions.
 
+## Week 10 reviews
+
+Start with the [eight weekly decision notebooks](../results/week-10-review.md#weekly-decision-notebooks).
+Each uses **Expectations → Results → Predictions** with function-specific
+evidence, a local and broader peak check, and the prepared Week 10 decision with its cohort-informed and official-data routes. The [advisory notebooks](../submissions/Week_10/advisory-review.md) show the same decision alongside the experimental ranking. The [cross-function story](capstone_decision_story.ipynb) traces the changes from the first round to the current unsubmitted decision.
+
+The [Week 10 review](../results/week-10-review.md) links the exploration and
+prediction notebooks for each function in both scopes. The official datasets
+have **247 observations through round 9**. The pooled datasets add **243**
+published returns. Each pooled prediction notebook benchmarks a frozen
+transformer against an attention-off ablation and the reference GP.
+[Week 10 snapshots](../data/README.md#week-10-notebook-snapshots)
+
 ## Week 9 reviews
 
 The [Week 9 review](../results/week-09-review.md) links all sixteen executed

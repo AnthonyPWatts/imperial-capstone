@@ -14,9 +14,14 @@ submission and peer-comment completion are not yet confirmed in the project reco
 
 ## Copy-and-paste portal inputs
 
-**Week 9 submitted.** The project owner confirmed on 23 November 2026 that all
-eight inputs were submitted exactly as saved. Round 9 results are pending.
-Four queries remain per function.
+**Week 10 prepared and unsubmitted.** The [decision and course check](Week_10/README.md)
+link the [revised cohort-informed batch](Week_10/submissions.txt) and
+[official-data fallback](Week_10/official-data-submissions.txt). Four queries
+remain per function, including Week 10.
+
+**Week 9 evaluated.** The project owner confirmed submission on 23 November
+2026. All eight inputs match the [round 9 results](round-09-results.json)
+received on 25 November.
 [Submitted inputs](Week_09/submissions.txt) ·
 [Submission confirmation](Week_09/submission-confirmation.json) ·
 [Decision record](Week_09/README.md)
@@ -80,7 +85,14 @@ submission timestamp was not supplied. Eight future queries remain per function.
 The
 [proposal record](Week_05/proposals.json) preserves evidence and source hashes.
 
-## Latest evaluation: round 8
+## Latest evaluation through round 9
+
+The [round 9 record](round-09-results.json) contains the eight returns
+received on 25 November 2026. All inputs match the submitted batch.
+The official total is 247 observations. The previous bests still lead.
+[Week 10 review](../results/week-10-review.md)
+
+## Round 8 evaluation
 
 The [round 8 record](round-08-results.json) contains the returns received on
 **23 November 2026 at 14:55 GMT**. All eight inputs match

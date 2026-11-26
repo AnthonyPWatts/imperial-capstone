@@ -1,0 +1,249 @@
+{
+  "function": 3,
+  "week": 10,
+  "analysis": "week_10_full_cohort_gp_review",
+  "intake_date": "2026-11-25",
+  "target_units": "output y",
+  "metric": "LOO RMSE",
+  "official_rows": 24,
+  "peer_rows": 30,
+  "new_peer_rows": 2,
+  "official_snapshot_sha256": "d0ed9d354e1f14e8b4c54251f92066a98fda96f8ea253fdb23a58f6bee6d257e",
+  "pooled_snapshot_sha256": "669d49742f385ac23d4b7fc8e1e8f254f45893eb24cf6e9615c94939479c53a6",
+  "peer_audit_sha256": "7e3f22d716c16da8d012c41b68d367eb8e2689e629e716d3bb175bab80ffdb5c",
+  "weekly_model_review_sha256": "3a4647162f2e460334492175f735ceea73f7864e1e60749a0e5bb56d022b3651",
+  "official_target_ids": [
+    "initial-001",
+    "initial-002",
+    "initial-003",
+    "initial-004",
+    "initial-005",
+    "initial-006",
+    "initial-007",
+    "initial-008",
+    "initial-009",
+    "initial-010",
+    "initial-011",
+    "initial-012",
+    "initial-013",
+    "initial-014",
+    "initial-015",
+    "round-01",
+    "round-02",
+    "round-03",
+    "round-04",
+    "round-05",
+    "round-06",
+    "round-07",
+    "round-08",
+    "round-09"
+  ],
+  "candidate_status": "provisional",
+  "ucb_weight": 1.96,
+  "minimum_query_distance": 0.0,
+  "eligible_pool_size": 20494,
+  "owner": {
+    "model": "GP: separate length scales",
+    "error": 0.06824720128939113,
+    "proposal": {
+      "point": [
+        0.152252,
+        0.992806,
+        0.410288
+      ],
+      "predicted_output": 0.03136715254561653,
+      "posterior_std": 0.03775925276622895,
+      "ucb": 0.10537528796742528,
+      "predicted_mean_improvement": 0.036319153367453325,
+      "inside_sampled_hull": false,
+      "portal_input": "0.152252-0.992806-0.410288"
+    }
+  },
+  "cohort": {
+    "model": "GP: separate length scales",
+    "error": 0.01951305563364001,
+    "proposal": {
+      "point": [
+        0.053258,
+        0.998179,
+        0.654576
+      ],
+      "predicted_output": -0.10161081245187,
+      "posterior_std": 0.08331887181400827,
+      "ucb": 0.061694176303586215,
+      "predicted_mean_improvement": -0.0966588116300332,
+      "inside_sampled_hull": false,
+      "portal_input": "0.053258-0.998179-0.654576",
+      "nearest_observed_distance": 0.36346896535055095
+    }
+  },
+  "mean_baseline": 0.077194746239121,
+  "withheld_peer_counts": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "owner_held_out": [
+    -0.10794229817594063,
+    -0.09781113224549069,
+    -0.12896234154570727,
+    -0.051270625050791926,
+    -0.06301126982840652,
+    -0.08204819686576766,
+    -0.087758518996332,
+    -0.18555823201293292,
+    -0.10928546461296809,
+    -0.08012716096096548,
+    -0.026633368366189403,
+    -0.1287431266802609,
+    -0.0852228806227167,
+    -0.035142837397453136,
+    -0.11193688378700886,
+    -0.03517732246319261,
+    -0.06163523463192027,
+    -0.07306201670112798,
+    -0.030539860574913737,
+    -0.11360794660318467,
+    -0.09950741083754096,
+    -0.06656122823143944,
+    -0.009968561553314423,
+    -0.010891602744838538
+  ],
+  "cohort_held_out": [
+    -0.1203167082942471,
+    -0.09050589507165614,
+    -0.09093266873515733,
+    -0.037274355734830275,
+    -0.0520910510560983,
+    -0.09748043995800638,
+    -0.3986091592305582,
+    -0.14997671541169,
+    -0.11914880734956047,
+    -0.08369662272629978,
+    -0.04108925317538156,
+    -0.10375779092782027,
+    -0.1017859592784873,
+    -0.04964855748302508,
+    -0.06259380538900433,
+    -0.034985720438952754,
+    -0.05278928083556184,
+    0.007398147276771266,
+    -0.0317801220171134,
+    -0.11586062227858192,
+    -0.08835259710289692,
+    -0.06752075659395954,
+    -0.013405278939010251,
+    -0.012728868399646917
+  ],
+  "warnings": {
+    "Gaussian process": {},
+    "GP: separate length scales": {
+      "ConvergenceWarning: The optimal value found for dimension 0 of parameter k2__length_scale is close to the specified upper bound 2.0. Increasing the bound and calling fit again may find a better value.": 25
+    }
+  },
+  "paired": [
+    {
+      "Model": "Gaussian process",
+      "Official LOO RMSE": 0.08018395772188776,
+      "Peer-assisted LOO RMSE": 0.04184219363136687,
+      "Official LOO MAE": 0.04838591566577591,
+      "Peer-assisted LOO MAE": 0.030799425686116575,
+      "Fit warnings": 0
+    },
+    {
+      "Model": "GP: separate length scales",
+      "Official LOO RMSE": 0.06824720128939113,
+      "Peer-assisted LOO RMSE": 0.01951305563364001,
+      "Official LOO MAE": 0.031883745781137285,
+      "Peer-assisted LOO MAE": 0.013676766299921381,
+      "Fit warnings": 25
+    }
+  ],
+  "cross_scores": [
+    {
+      "training_scope": "My data only",
+      "portal_input": "0.152252-0.992806-0.410288",
+      "point": [
+        0.152252,
+        0.992806,
+        0.410288
+      ],
+      "nearest_cohort_distance": 0.24466346878237522,
+      "cohort_eligible": true,
+      "owner_mean": 0.03136715254561653,
+      "owner_latent_sd": 0.03775925276622895,
+      "cohort_mean": -0.06614305833479536,
+      "cohort_latent_sd": 0.020137551722566295
+    },
+    {
+      "training_scope": "Full cohort",
+      "portal_input": "0.053258-0.998179-0.654576",
+      "point": [
+        0.053258,
+        0.998179,
+        0.654576
+      ],
+      "nearest_cohort_distance": 0.36346896535055095,
+      "cohort_eligible": true,
+      "owner_mean": -0.07902604868238418,
+      "owner_latent_sd": 0.08971701206281193,
+      "cohort_mean": -0.10161081245187,
+      "cohort_latent_sd": 0.08331887181400827
+    }
+  ],
+  "weight_sensitivity": [
+    {
+      "Weight": 0.0,
+      "x1": 0.016624,
+      "x2": 0.579203,
+      "x3": 0.458909,
+      "Predicted output": -0.007761705353236503,
+      "Posterior SD": 0.016490367883914194
+    },
+    {
+      "Weight": 1.0,
+      "x1": 0.984803,
+      "x2": 0.320592,
+      "x3": 0.081136,
+      "Predicted output": -0.024128945922217364,
+      "Posterior SD": 0.035549545525004
+    },
+    {
+      "Weight": 1.96,
+      "x1": 0.053258,
+      "x2": 0.998179,
+      "x3": 0.654576,
+      "Predicted output": -0.10161081245186998,
+      "Posterior SD": 0.08331887181400825
+    },
+    {
+      "Weight": 3.0,
+      "x1": 0.008722,
+      "x2": 0.957052,
+      "x3": 0.675751,
+      "Predicted output": -0.11044960741891818,
+      "Posterior SD": 0.08760522951428695
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "function": 3,
+  "week": 10,
+  "queries_remaining": 4,
+  "official_snapshot_sha256": "d0ed9d354e1f14e8b4c54251f92066a98fda96f8ea253fdb23a58f6bee6d257e",
+  "candidate_count": 454,
+  "local_count": 143,
+  "probability_draws": 1024,
+  "local_radius": 0.06,
+  "tolerance": 0.004,
+  "target_units": "output y",
+  "models": [
+    {
+      "Model": "Mat\u00e9rn 3/2",
+      "Local set within tolerance": 0.0048828125,
+      "Broader set within tolerance": 0.0009765625,
+      "Broader gap median": 0.07354503357055828,
+      "Broader gap 90th pct": 0.12154516659317126,
+      "Return MAE": 0.0108548212447214,
+      "Return RMSE": 0.013554599121889907,
+      "In 90% observation band": 9,
+      "Return holdouts": 9,
+      "Fitted noise SD": 0.0005231055651525483,
+      "Fit warnings": 3
+    },
+    {
+      "Model": "RBF",
+      "Local set within tolerance": 0.0,
+      "Broader set within tolerance": 0.0,
+      "Broader gap median": 0.08497236165940454,
+      "Broader gap 90th pct": 0.13404964686303517,
+      "Return MAE": 0.01513349381837029,
+      "Return RMSE": 0.016414362444851137,
+      "In 90% observation band": 9,
+      "Return holdouts": 9,
+      "Fitted noise SD": 0.0005231055651525483,
+      "Fit warnings": 2
+    }
+  ],
+  "mat\u00e9rn_shortlist": [
+    {
+      "Input": "0.017606-0.993400-0.420414",
+      "Region": "Elsewhere",
+      "Mean": 0.020246892406864836,
+      "Observed SD": 0.04486504283528389,
+      "One-query EI": 0.033249225762882736,
+      "Two-query gain": 0.04589355894767058
+    },
+    {
+      "Input": "0.097780-0.968332-0.424677",
+      "Region": "Elsewhere",
+      "Mean": 0.022941423493292867,
+      "Observed SD": 0.040392753329655334,
+      "One-query EI": 0.03375758940118488,
+      "Two-query gain": 0.044862302239812454
+    },
+    {
+      "Input": "0.667283-0.918471-0.419613",
+      "Region": "Elsewhere",
+      "Mean": 0.02150986420098304,
+      "Observed SD": 0.039221547663234116,
+      "One-query EI": 0.03231008797673918,
+      "Two-query gain": 0.04462358946278154
+    },
+    {
+      "Input": "0.557312-0.996482-0.429093",
+      "Region": "Elsewhere",
+      "Mean": 0.027553967053627712,
+      "Observed SD": 0.0322265433844675,
+      "One-query EI": 0.035146897613952,
+      "Two-query gain": 0.044601508975066095
+    },
+    {
+      "Input": "0.574795-0.963664-0.417219",
+      "Region": "Elsewhere",
+      "Mean": 0.02268244745006162,
+      "Observed SD": 0.04087251529406199,
+      "One-query EI": 0.033714181141349275,
+      "Two-query gain": 0.04428396720109721
+    },
+    {
+      "Input": "0.128888-0.915878-0.426064",
+      "Region": "Elsewhere",
+      "Mean": 0.022543595489894444,
+      "Observed SD": 0.03787070040094051,
+      "One-query EI": 0.03267192096601086,
+      "Two-query gain": 0.04405734914908818
+    },
+    {
+      "Input": "0.267879-0.978787-0.430494",
+      "Region": "Elsewhere",
+      "Mean": 0.026947518620587016,
+      "Observed SD": 0.033167007018074235,
+      "One-query EI": 0.034869872663025006,
+      "Two-query gain": 0.043868745278877914
+    },
+    {
+      "Input": "0.348059-0.950116-0.410693",
+      "Region": "Elsewhere",
+      "Mean": 0.018745910718431985,
+      "Observed SD": 0.04470683266597838,
+      "One-query EI": 0.03213302348871845,
+      "Two-query gain": 0.04324320376187116
+    },
+    {
+      "Input": "0.516196-0.649812-0.414152",
+      "Region": "Local",
+      "Mean": 0.009926479987791073,
+      "Observed SD": 0.039922471885729637,
+      "One-query EI": 0.02445943881720207,
+      "Two-query gain": 0.04208463892636351
+    },
+    {
+      "Input": "0.996931-0.949923-0.682372",
+      "Region": "Elsewhere",
+      "Mean": -0.09295138912524065,
+      "Observed SD": 0.08198880548242374,
+      "One-query EI": 0.005929333674545147,
+      "Two-query gain": 0.03770383679831327
+    }
+  ]
+}

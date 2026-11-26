@@ -23,6 +23,7 @@ are excluded from the Module 14 decisions and reflection.
 | [Notebook guide](../notebooks/README.md) | Individual analyses in the function/week folders |
 | [Submission log](../submissions/README.md) | Exact submitted inputs, confirmation and evaluation status |
 | [Week 5 discussion draft](week-05-discussion-draft.md) | Final seven-prompt reflection; posting confirmed on 29 October 2026, with links to the retrospective surrogate evidence |
+| [Capstone data-use review](capstone-data-policy.md) | Course wording on collaboration, pooling and public repositories |
 | [Module 12 intake](module-12-intake.md) | Historical intake notes and dated course requirements with source links |
 
 The introductory diagrams and results chart can be rebuilt with the

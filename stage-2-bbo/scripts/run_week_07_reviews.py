@@ -15,10 +15,12 @@ from nbclient import NotebookClient
 from jupyter_client import KernelManager
 
 
-def main(*, week=7, forecast_sources=None, full_cohort=False):
+def main(*, week=7, forecast_sources=None, full_cohort=False, decision_reference_sources=None):
     parser = argparse.ArgumentParser(description=f"Execute Week {week} observation and model reviews.")
     parser.add_argument("--functions", type=int, nargs="+", default=list(range(1, 9)), choices=range(1, 9))
     study_kinds = ("activity", "source") if week == 7 else ()
+    if decision_reference_sources is not None:
+        study_kinds = (*study_kinds, "decision")
     parser.add_argument("--kind", choices=("observations", "models", *study_kinds, "all"), default="all")
     arguments = parser.parse_args()
     if arguments.kind in ("activity", "source") and arguments.functions != [1]:
@@ -35,6 +37,12 @@ def main(*, week=7, forecast_sources=None, full_cohort=False):
     else:
         sources.extend(forecast_sources(stage))
     sources.extend(stage.glob(f"notebooks/Function_*/Week_{week:02d}/**/observations.csv"))
+    if arguments.kind == "decision":
+        for function in arguments.functions:
+            current = stage / f"notebooks/Function_{function}/Week_{week:02d}"
+            official = current / "official" if function <= 4 else current
+            sources.extend(official / name for name in ("model-review.json", "observation-review.json"))
+        sources.extend(decision_reference_sources(stage))
     fingerprints = {path: hashlib.sha256(path.read_bytes()).hexdigest() for path in sources}
     observation_names = ("exploration.ipynb", "exploration-review.ipynb", "exploration-review.ipynb",
                          *("observation_review.ipynb",) * 5)
@@ -42,9 +50,11 @@ def main(*, week=7, forecast_sources=None, full_cohort=False):
         folder = stage / f"notebooks/Function_{function}/Week_{week:02d}"
         if full_cohort:
             folder /= "full-cohort"
-        elif function <= 4:
+        elif function <= 4 and arguments.kind != "decision":
             folder /= "official"
         names = []
+        if arguments.kind == "decision":
+            names.append("weekly_review.ipynb")
         if arguments.kind in ("observations", "all"):
             names.append("observation_review.ipynb" if full_cohort else observation_names[function-1])
         if arguments.kind in ("models", "all"):

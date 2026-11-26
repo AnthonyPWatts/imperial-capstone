@@ -1,9 +1,9 @@
 # Results and progress
 
 [The introduction](../README.md) explains the experiment in plain language.
-The [round 8 record](../submissions/round-08-results.json) contains the latest
-returns. The [Week 9 review](week-09-review.md) compares them with the
-archived Week 8 fits and links the refreshed models.
+The [round 9 record](../submissions/round-09-results.json) contains the latest
+returns. The [Week 10 review](week-10-review.md) compares them with the
+archived Week 9 fits and links the refreshed models.
 
 This page records measured outcomes through round 6, received on **2 November
 2026 at 07:28 GMT** and ingested on 5 November. All eight Week 6 inputs match

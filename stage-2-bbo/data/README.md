@@ -49,7 +49,45 @@ The local `import-verification-2026-09-24.json` records file hashes and checks.
 See the [intake notes](../docs/module-12-intake.md) for the official data link and
 submission rules. Do not add the supplied arrays to the repository.
 
-## Current accumulated observations: round 8
+## Current accumulated observations through round 9
+
+The Week 9 results arrived on **25 November 2026 at 12:51 GMT**. The original
+cumulative attachments match all eight preceding rounds. All eight latest
+inputs match the submitted batch. Importing them adds one observation per
+function and brings the total to **247**. The [round 9 record](../submissions/round-09-results.json)
+preserves full-precision returns and source hashes.
+
+The local folder `rounds/round-09/` holds the original attachments
+(3,755 and 1,469 bytes), the sixteen result lines and source metadata.
+Rebuild the accumulated arrays and CSVs from the Capstone root with
+
+~~~powershell
+.\run-python.ps1 stage-2-bbo/scripts/import_round_results.py --round 9
+~~~
+
+## Week 10 notebook snapshots
+
+Functions 1–4 use `notebooks/Function_N/Week_10/official/observations.csv`.
+Functions 5–8 use `notebooks/Function_N/Week_10/observations.csv`. Copy the
+round 9 accumulated CSVs to those paths. The files contain **19, 19, 24, 39,
+29, 29, 39 and 49** official observations respectively.
+
+For Functions 1–4, the retained-peer comparison appends the same **6, 5, 5
+and 6** published rows from the corresponding Week 9 pooled CSVs to the new
+official copies. Preserve peer IDs and labels. The separate local audit in
+`Week_10/cohort/` records the source and resulting hashes.
+
+## Full-cohort refresh on 25 November 2026
+
+The local `cohort/2026-11-25/` snapshot contains **490 rows** across the eight
+functions, including **247 official observations** and **243 published
+returns**. The refresh added 26 peer returns from three pinned sources. Six
+reported inputs with a coordinate of 1.000000 were excluded. The local audit
+holds the pinned files, source locations and hashes, exclusions, historical
+provenance and per-function CSV fingerprints. See the [Week 10 notebook
+runners](../docs/reproducing-the-analyses.md#week-10-reviews).
+
+## Previous accumulated observations: round 8
 
 The Week 8 results arrived on **23 November 2026 at 14:55 GMT**. Both cumulative
 attachments agree with the seven previous rounds, and all eight returned
