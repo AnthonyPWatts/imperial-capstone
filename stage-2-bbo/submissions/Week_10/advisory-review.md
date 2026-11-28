@@ -17,6 +17,6 @@
 
 Distances are Euclidean on the portal input axes. The replay holds out each official return in turn using the latest frozen adviser snapshots. It measures predictive error retrospectively.
 
-The strongest archived regions for F2, F6 and F7 lie outside the official shortlist. F3's broader candidate relies on extrapolated upside. Its notebook exposes the local alternative alongside the blended winner. Each notebook now displays the two prepared, unsubmitted portal paths separately from that frozen experiment.
+The strongest archived regions for F2, F6 and F7 lie outside the official shortlist. F3's broader candidate relies on extrapolated upside. Its notebook exposes the local alternative alongside the blended winner. The notebooks retain both portal paths as prepared on 25 November. The [submission record](README.md) identifies the confirmed batch.
 
 Regenerate from the capstone root with `./run-python.ps1 stage-2-bbo/scripts/run_week_10_advisory_reviews.py`.

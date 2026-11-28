@@ -1,9 +1,13 @@
 # Results
 
+**Week 10 submitted, awaiting results.** All eight inputs were confirmed on
+28 November 2026. Three queries remain per function.
+[Week 10 submission record](../submissions/Week_10/README.md)
+
 **Week 9 evaluated.** The [round 9 record](../submissions/round-09-results.json)
 confirms all eight inputs and brings the total to **247 official observations**.
 The [Week 10 review](week-10-review.md) links the 32 official and pooled
-notebooks, the held-out transformer comparison and the proposed inputs.
+notebooks and the held-out transformer comparison used in the review.
 
 **Week 8 evaluated.** The [round 8 record](../submissions/round-08-results.json)
 confirms all eight inputs and brings the total to **239 official observations**.

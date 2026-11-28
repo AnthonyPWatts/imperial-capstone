@@ -3,8 +3,12 @@
 The Week 9 results arrived on 25 November 2026 at 12:51 GMT. All eight inputs
 match the recorded submission. The official total is **247 observations**, and
 the existing best scores still lead on all eight functions. Four queries per
-function remain, including Week 10.
-[Round 9 results](../submissions/round-09-results.json) · [Current unsubmitted decision](../submissions/Week_10/README.md)
+function remained at intake, including Week 10.
+[Round 9 results](../submissions/round-09-results.json)
+
+The project owner confirmed the Week 10 submission on 28 November 2026.
+Round 10 results are pending, and three queries remain per function.
+[Week 10 submission record](../submissions/Week_10/README.md)
 
 The pooled snapshot adds 243 published peer returns, including 26 newly
 available returns. There are 490 rows across the eight functions. Six new
@@ -13,7 +17,7 @@ reported rows were excluded because a coordinate was 1.000000.
 
 ## Owner-first cohort advice
 
-The [advisory review](../submissions/Week_10/advisory-review.md) links eight executed notebooks, conditional pairwise surfaces and a separate experimental input list. The owner GP generates the shortlist and supplies 80% of the ranking. Current and archived cohort layers contribute up to 10% each. The [current Week 10 decision](../submissions/Week_10/README.md) also compares the archive challengers outside the shortlist and records the course check.
+The [advisory review](../submissions/Week_10/advisory-review.md) links eight executed notebooks, conditional pairwise surfaces and a separate experimental input list. The owner GP generates the shortlist and supplies 80% of the ranking. Current and archived cohort layers contribute up to 10% each. The [Week 10 decision record](../submissions/Week_10/README.md) also compares the archive challengers outside the shortlist and records the course check.
 
 ## Weekly decision notebooks
 

@@ -14,10 +14,11 @@ submission and peer-comment completion are not yet confirmed in the project reco
 
 ## Copy-and-paste portal inputs
 
-**Week 10 prepared and unsubmitted.** The [decision and course check](Week_10/README.md)
-link the [revised cohort-informed batch](Week_10/submissions.txt) and
-[official-data fallback](Week_10/official-data-submissions.txt). Four queries
-remain per function, including Week 10.
+**Week 10 submitted, awaiting results.** The project owner confirmed all
+eight inputs on 28 November 2026. Three queries remain per function.
+[Submitted inputs](Week_10/submissions.txt) ·
+[Submission confirmation](Week_10/submission-confirmation.json) ·
+[Decision record](Week_10/README.md)
 
 **Week 9 evaluated.** The project owner confirmed submission on 23 November
 2026. All eight inputs match the [round 9 results](round-09-results.json)

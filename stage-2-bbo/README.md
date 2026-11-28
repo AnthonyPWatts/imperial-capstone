@@ -1,11 +1,12 @@
 # Stage 2: choosing the next experiment
 
-**Week 9 evaluated on 25 November 2026.** All eight returned inputs match
-the submitted batch, bringing the total to **247 official observations**.
-Four queries remain per function, including Week 10.
+**Week 10 submitted on 28 November 2026.** Results are pending and
+three queries remain per function. All eight Week 9 returns received on
+25 November matched the submitted batch, bringing the total to
+**247 official observations**.
 [Round 9 results](submissions/round-09-results.json) ·
 [Week 10 review](results/week-10-review.md) ·
-[Week 10 prepared inputs and course check](submissions/Week_10/README.md)
+[Week 10 submitted inputs and decision record](submissions/Week_10/README.md)
 
 **Week 8 evaluated on 23 November 2026.** All eight returned inputs match
 the submitted batch, bringing the total to **239 official observations**.

@@ -11,7 +11,12 @@ Weekly notebooks retain their data, assumptions, teaching steps and decisions.
 
 Start with the [eight weekly decision notebooks](../results/week-10-review.md#weekly-decision-notebooks).
 Each uses **Expectations → Results → Predictions** with function-specific
-evidence, a local and broader peak check, and the prepared Week 10 decision with its cohort-informed and official-data routes. The [advisory notebooks](../submissions/Week_10/advisory-review.md) show the same decision alongside the experimental ranking. The [cross-function story](capstone_decision_story.ipynb) traces the changes from the first round to the current unsubmitted decision.
+evidence, a local and broader peak check, and the Week 10 decision as
+prepared on 25 November. The [advisory notebooks](../submissions/Week_10/advisory-review.md)
+show the options alongside the experimental ranking. The [cross-function story](capstone_decision_story.ipynb)
+traces changes from the first round to the prepared batch. The
+[submission record](../submissions/Week_10/README.md) identifies the inputs
+confirmed on 28 November.
 
 The [Week 10 review](../results/week-10-review.md) links the exploration and
 prediction notebooks for each function in both scopes. The official datasets

@@ -1,21 +1,24 @@
-# Week 10 query decision
+# Week 10 submitted inputs
 
-**Prepared and unsubmitted on 25 November 2026.** Round 9 is the latest
-confirmed feedback. Four opportunities remain per function, including Week 10.
+**Submission confirmed on 28 November 2026.** The project owner confirmed
+submission of all eight inputs in the [saved batch](submissions.txt).
+Round 10 results are pending. Round 9 remains the latest confirmed feedback,
+with **247 official observations**. Three queries remain per function.
+[Submission confirmation](submission-confirmation.json)
 
-- [Revised cohort-informed batch](submissions.txt) uses the historical
-  challengers and deliberately repeats a published F2 input. Use this batch
-  if the course permits cohort-informed assessed selection and published-input
-  reuse.
-- [Official-data fallback](official-data-submissions.txt) is the batch to use
-  if the assessed-use rules require official data only or remain unclear close
-  to the portal deadline.
+## Decision record from 25 November
+
+- The [revised cohort-informed batch](submissions.txt) uses historical
+  challengers and deliberately repeats a published F2 input.
+- The [official-data fallback](official-data-submissions.txt) was prepared
+  in case the assessed-use rules required official data only or remained
+  unresolved at the deadline.
 - [Initial proposal](initial-proposal.md) and the [80/10/10 advisory experiment](advisory-review.md)
   preserve the earlier decisions separately from this shortlist review.
 
-## Revised cohort-informed batch
+## Submitted cohort-informed batch
 
-| Function | Input | Rationale |
+| Function | Submitted input | Rationale |
 | --- | --- | --- |
 | 1 | `0.628558-0.628558` | Maximise the seven-positive official source fit along the diagonal supported by the archived peak. The local archive fit predicts about 1.999997 at this previously untested input. |
 | 2 | `0.500000-0.500000` | Deliberate external replication. Eight archived returns at this exact point scored 0.756–0.920, all above the official best of 0.723. The official GP favours the shortlist winner at x1 ≈ 0.70, with mean 0.645 versus 0.175 here, so this is an explicit transfer test. |
@@ -42,7 +45,7 @@ form was checked after the external review and its coefficients and peak
 are reproducible from the official starters alone.
 [Official weekly reviews](../../results/week-10-review.md#weekly-decision-notebooks)
 
-## Course and portal check
+## Course and portal check at preparation
 
 - The archived Module 19 Canvas brief lists **26 November 2026 at 16:29 GMT**
   for the module activities. Required discussion 19.1 is a transformer
